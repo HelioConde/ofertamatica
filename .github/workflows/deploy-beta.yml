@@ -1,4 +1,4 @@
-name: Deploy Ofertamatica V2 Beta
+name: Deploy Ofertamatica V2 Production
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ofertamatica-v2-beta
+  group: ofertamatica-v2-production
   cancel-in-progress: true
 
 jobs:
@@ -29,11 +29,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy beta to Locaweb
+      - name: Deploy production to Locaweb
         uses: locaweb/ftp-deploy@1.0.0
         with:
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.PASS }}
           localDir: "dist"
-          remoteDir: "public_html/beta"
+          remoteDir: "public_html"
+          options: "--delete --exclude-glob beta --exclude-glob beta/**"
