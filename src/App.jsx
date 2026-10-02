@@ -27,6 +27,18 @@ function normalizeImportedPrice(value) {
   return String(value || '').trim().replace(/^R\$\s*/i, '').replace(/^(\d+)\.(\d{2})$/, '$1,$2')
 }
 
+function normalizePrice(value) {
+  const clean = String(value || '').trim().replace(/^R\$\s*/i, '').replace(/\s/g, '')
+  if (!clean) return ''
+  const br = clean.includes(',')
+    ? clean.replace(/\./g, '').replace(',', '.')
+    : clean
+  const number = Number(br.replace(/[^0-9.-]/g, ''))
+  return Number.isFinite(number)
+    ? number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    : String(value || '').replace('.', ',')
+}
+
 function isHeaderRow(values) {
   const text = values.join(' ').toLocaleLowerCase('pt-BR')
   return /descri[cç][aã]o|produto|pre[cç]o|venda|gramatura|unidade/.test(text)
@@ -130,9 +142,12 @@ function FormatChooser({ onSelect }) {
     <main className="format-page" id="formatos">
       <section className="format-dialog">
         <header className="format-dialog-head">
-          <span className="eyebrow">NOVO CARTAZ</span>
-          <h1>Qual formato deseja criar?</h1>
-          <p>Escolha o tamanho para começar. Você poderá trocar o formato depois sem perder seus produtos.</p>
+          <span className="eyebrow">CRIE SEUS CARTAZES</span>
+          <h1>Qual formato você quer imprimir?</h1>
+          <p>Escolha o papel e a quantidade de cartazes por folha. Depois, adicione os produtos e imprima.</p>
+          <div className="format-steps" aria-label="Fluxo de criação">
+            <span><b>1</b> Formato</span><i>→</i><span><b>2</b> Produtos</span><i>→</i><span><b>3</b> Impressão</span>
+          </div>
         </header>
 
         <div className="format-grid">
@@ -142,6 +157,8 @@ function FormatChooser({ onSelect }) {
               <span className="format-copy">
                 <strong>{format.label}</strong>
                 <small>{format.description}</small>
+                <span className="format-meta">{format.paperLabel} · {format.orientationLabel}</span>
+                <span className="format-use">{format.application}</span>
                 <b>{format.pickerBadge}</b>
               </span>
             </button>
@@ -192,14 +209,7 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
   return (
     <div ref={hostRef} className={'preview-stage real-poster-preview ' + className}>
       <div className="real-poster-stage" style={{ width: naturalWidth * scale, height: naturalHeight * scale }}>
-        <div
-          className="real-poster-scale"
-          style={{
-            width: naturalWidth,
-            height: naturalHeight,
-            transform: 'scale(' + scale + ')',
-          }}
-        >
+        <div className="real-poster-scale" style={{ width: naturalWidth, height: naturalHeight, transform: 'scale(' + scale + ')' }}>
           <PosterSheet
             format={format}
             products={products}
@@ -215,21 +225,67 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
   )
 }
 
+function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint }) {
+  return (
+    <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <section className="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
+        <header>
+          <div>
+            <span className="section-label">REVISÃO DE IMPRESSÃO</span>
+            <h2 id="review-title">Confira antes de imprimir</h2>
+          </div>
+          <button type="button" className="review-close" onClick={onClose} aria-label="Fechar revisão">×</button>
+        </header>
+
+        <div className="review-summary">
+          <article><small>Produtos</small><strong>{products.length}</strong></article>
+          <article><small>Folhas</small><strong>{pageCount}</strong></article>
+          <article><small>Formato</small><strong>{format.shortLabel}</strong></article>
+          <article><small>Papel</small><strong>{format.paper}</strong></article>
+        </div>
+
+        <div className="review-format-details">
+          <strong>{format.paperLabel}</strong>
+          <span>Cartaz final: {format.cartSize}</span>
+          <span>Orientação: {format.orientationLabel}</span>
+          <span>{format.postersPerSheet} {format.postersPerSheet === 1 ? 'cartaz' : 'cartazes'} por folha</span>
+        </div>
+
+        {warnings.length ? (
+          <div className="review-warnings" role="alert">
+            <strong>Revise estes pontos</strong>
+            {warnings.map((warning) => <span key={warning}>• {warning}</span>)}
+          </div>
+        ) : (
+          <div className="review-ok">✓ Produtos com preço preenchido e prontos para revisão visual.</div>
+        )}
+
+        <div className="print-guidance">
+          <strong>Na janela de impressão</strong>
+          <span>Use escala de <b>100%</b> e evite “Ajustar à página”.</span>
+          <span>Selecione papel <b>{format.paper}</b> e orientação <b>{format.orientationLabel}</b>.</span>
+          <span>Desative cabeçalhos e rodapés do navegador para não aparecer URL/data na folha.</span>
+          {format.paper === 'A3' ? <span className="print-alert">Este trabalho exige papel/impressora A3.</span> : null}
+        </div>
+
+        <footer>
+          <button type="button" className="quiet-button review-back" onClick={onClose}>Voltar e corrigir</button>
+          <button type="button" className="generate-button review-print" onClick={onPrint}>Imprimir agora</button>
+        </footer>
+      </section>
+    </div>
+  )
+}
+
 function Editor({
-  formatId,
-  sourceText,
-  setSourceText,
-  products,
-  setProducts,
-  selectedProductId,
-  setSelectedProductId,
-  pageIndex,
-  setPageIndex,
-  onChangeFormat,
+  formatId, sourceText, setSourceText, products, setProducts, selectedProductId,
+  setSelectedProductId, pageIndex, setPageIndex, onChangeFormat,
 }) {
   const [expanded, setExpanded] = useState(false)
+  const [reviewOpen, setReviewOpen] = useState(false)
   const [importError, setImportError] = useState('')
   const [fontReady, setFontReady] = useState(false)
+  const [confirmExample, setConfirmExample] = useState(false)
   const fileInput = useRef(null)
 
   const format = getPosterFormat(formatId)
@@ -247,14 +303,8 @@ function Editor({
   }, [])
 
   const measure = useMemo(() => createBrowserTextMeasure(), [fontReady])
-  const layoutPlans = useMemo(
-    () => createPosterLayouts(products, template, format, measure),
-    [format, measure, products, template],
-  )
-  const pages = useMemo(
-    () => splitIntoPages(products, format.postersPerSheet),
-    [format.postersPerSheet, products],
-  )
+  const layoutPlans = useMemo(() => createPosterLayouts(products, template, format, measure), [format, measure, products, template])
+  const pages = useMemo(() => splitIntoPages(products, format.postersPerSheet), [format.postersPerSheet, products])
   const pageCount = getPageCount(products.length, format)
   const safePageIndex = Math.min(pageIndex, pageCount - 1)
   const pageProducts = pages[safePageIndex] || []
@@ -264,8 +314,34 @@ function Editor({
     : 'Sua prévia aparecerá aqui'
   const isAppFormat = formatId === 'A4X2_APP'
 
+  const standardFields = [
+    ['description', 'Nome do produto'],
+    ['subdescription', 'Marca / variante'],
+    ['complement', 'Complemento'],
+    ['unit', 'Peso / volume'],
+    ['price', isAppFormat ? 'Preço App' : 'Preço'],
+  ]
+  const appFields = isAppFormat
+    ? [...standardFields, ['validity', 'Validade'], ['regularPrice', 'Preço fora do App']]
+    : standardFields
+
+  const reviewWarnings = useMemo(() => {
+    const warnings = []
+    const noPrice = products.filter((product) => !String(product.price || '').trim()).length
+    if (noPrice) warnings.push(`${noPrice} produto(s) sem preço informado.`)
+    const noUnit = products.filter((product) => !String(product.unit || '').trim()).length
+    if (noUnit) warnings.push(`${noUnit} produto(s) sem peso/volume; confirme se a oferta é por unidade.`)
+    const veryLong = products.filter((product) => [product.description, product.subdescription, product.complement].filter(Boolean).join(' ').length > 55).length
+    if (veryLong) warnings.push(`${veryLong} nome(s) longo(s); confira a legibilidade na prévia antes de imprimir.`)
+    return warnings
+  }, [products])
+
   function generateFromSource(nextSource = sourceText) {
-    const parsed = applyAppDefaults(parseProductList(nextSource), formatId)
+    const parsed = applyAppDefaults(parseProductList(nextSource), formatId).map((product) => ({
+      ...product,
+      price: normalizePrice(product.price),
+      regularPrice: product.regularPrice ? normalizePrice(product.regularPrice) : '',
+    }))
     setProducts(parsed)
     setSelectedProductId(parsed[0]?.id || null)
     setPageIndex(0)
@@ -274,14 +350,13 @@ function Editor({
   function changeProduct(id, field, value) {
     setProducts((items) => items.map((item) => (
       item.id === id
-        ? {
-          ...item,
-          [field]: field === 'price' || field === 'regularPrice'
-            ? value.replace('.', ',')
-            : value.toLocaleUpperCase('pt-BR'),
-        }
+        ? { ...item, [field]: field === 'price' || field === 'regularPrice' ? value : value.toLocaleUpperCase('pt-BR') }
         : item
     )))
+  }
+
+  function finishPrice(id, field, value) {
+    setProducts((items) => items.map((item) => item.id === id ? { ...item, [field]: normalizePrice(value) } : item))
   }
 
   function selectProduct(product, index) {
@@ -293,24 +368,19 @@ function Editor({
     const file = event.target.files?.[0]
     if (!file) return
     setImportError('')
-
     try {
       const extension = file.name.split('.').pop()?.toLocaleLowerCase('pt-BR')
       let importedSource = ''
-
       if (extension === 'txt') {
         importedSource = await file.text()
       } else if (extension === 'csv' || extension === 'xls' || extension === 'xlsx') {
         const XLSX = await import('@e965/xlsx')
         const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array' })
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
-        importedSource = spreadsheetRowsToSource(
-          XLSX.utils.sheet_to_json(firstSheet, { header: 1, raw: true, defval: '' }),
-        )
+        importedSource = spreadsheetRowsToSource(XLSX.utils.sheet_to_json(firstSheet, { header: 1, raw: true, defval: '' }))
       } else {
         throw new Error('Formato não suportado.')
       }
-
       if (!importedSource.trim()) throw new Error('O arquivo não possui produtos para importar.')
       setSourceText(importedSource)
       generateFromSource(importedSource)
@@ -322,6 +392,11 @@ function Editor({
   }
 
   function useExample() {
+    if (sourceText.trim() && sourceText.trim() !== EXAMPLE_TEXT.trim() && !confirmExample) {
+      setConfirmExample(true)
+      return
+    }
+    setConfirmExample(false)
     setSourceText(EXAMPLE_TEXT)
     generateFromSource(EXAMPLE_TEXT)
   }
@@ -338,6 +413,7 @@ function Editor({
   }
 
   function printPosters() {
+    setReviewOpen(false)
     applyPrintPage(format)
     const cleanup = () => {
       clearPrintPage()
@@ -347,26 +423,15 @@ function Editor({
     window.requestAnimationFrame(() => window.print())
   }
 
-  const standardFields = [
-    ['description', 'Descrição'],
-    ['subdescription', 'Subdescrição'],
-    ['complement', 'Complemento'],
-    ['unit', 'Gramatura'],
-    ['price', isAppFormat ? 'Preço App' : 'Venda'],
-  ]
-  const appFields = isAppFormat
-    ? [...standardFields, ['validity', 'Validade'], ['regularPrice', 'Preço fora do App']]
-    : standardFields
-
   return (
     <main className="editor-page">
       <div className="editor-topline">
         <div className="editor-context">
-          <strong>Cartaz rápido</strong>
-          <span>Interpretação, auto-fit e impressão física do motor original.</span>
+          <strong>{format.shortLabel} · {products.length} {products.length === 1 ? 'produto' : 'produtos'}</strong>
+          <span>Ajuste automático do texto e impressão no tamanho físico escolhido.</span>
         </div>
-        <button className="change-format" type="button" onClick={onChangeFormat}>
-          <span>{format.label}</span>
+        <button className="change-format" type="button" onClick={onChangeFormat} title="Seus produtos serão preservados ao trocar o formato.">
+          <span>{format.shortLabel}</span>
           <b>Alterar formato</b>
         </button>
       </div>
@@ -378,36 +443,33 @@ function Editor({
               <div>
                 <span className="section-label">ENTRADA RÁPIDA</span>
                 <h2>Cole seus produtos</h2>
-                <p>Uma linha por produto. Separamos descrição, subdescrição, complemento, gramatura e preço.</p>
+                <p>Uma linha por produto. Ex.: Café 500 g 18,90 · Leite 1 L R$ 4,99. Aceita vírgula ou ponto decimal.</p>
               </div>
-              <span className="format-chip">Formato: {format.label}</span>
+              <span className="format-chip">{format.cartSize} · {format.orientationLabel}</span>
             </header>
 
-            <textarea value={sourceText} onChange={(event) => setSourceText(event.target.value)} aria-label="Uma linha por produto" />
+            <textarea value={sourceText} onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }} aria-label="Lista de produtos, uma linha por produto" />
 
             <div className="editor-actions">
-              <input
-                ref={fileInput}
-                hidden
-                type="file"
-                accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv"
-                onChange={handleFile}
-              />
-              <button className="icon-button" type="button" onClick={() => fileInput.current?.click()}>＋</button>
-              <button className="quiet-button" type="button" onClick={() => fileInput.current?.click()}>Importar arquivo</button>
-              <button className="quiet-button" type="button" onClick={useExample}>Usar exemplo</button>
+              <input ref={fileInput} hidden type="file" accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv" onChange={handleFile} />
+              <button className="quiet-button add-product-button" type="button" onClick={() => setSourceText((value) => value + (value.endsWith('\n') || !value ? '' : '\n'))}>＋ Adicionar produto</button>
+              <button className="quiet-button" type="button" onClick={() => fileInput.current?.click()}>Importar TXT/CSV/Excel</button>
+              <button className={`quiet-button ${confirmExample ? 'example-confirm' : ''}`} type="button" onClick={useExample}>
+                {confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}
+              </button>
               <span className="product-count">{products.length} produtos identificados</span>
               <button className="generate-button" type="button" onClick={() => generateFromSource()}>Gerar placas</button>
             </div>
-            {importError ? <div className="oferta-import-error">{importError}</div> : null}
+            {confirmExample ? <div className="inline-warning">“Usar exemplo” substituirá o texto atual. Clique novamente para confirmar.</div> : null}
+            {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
           </section>
 
           <section className="editor-card interpreted">
             <header>
               <div>
-                <span className="section-label">CONTEÚDO INTERPRETADO</span>
-                <h2>Lista de placas</h2>
-                <p>Edite qualquer campo. O auto-fit recalcula a placa automaticamente.</p>
+                <span className="section-label">PRODUTOS INTERPRETADOS</span>
+                <h2>Revise os dados</h2>
+                <p>Edite os campos abaixo. A prévia é atualizada automaticamente.</p>
               </div>
               <span className="round-count">{products.length}</span>
             </header>
@@ -415,22 +477,32 @@ function Editor({
             {products.length ? (
               <div className={'product-table ' + (isAppFormat ? 'app-product-table' : '')}>
                 <div className="product-row product-head">
-                  <span></span>
+                  <span>Selecionar</span>
                   {appFields.map(([field, label]) => <span key={field}>{label}</span>)}
                 </div>
                 {products.map((product, index) => (
                   <div className={'product-row ' + (product.id === selected?.id ? 'selected-row' : '')} key={product.id}>
-                    <button className="row-selector" type="button" onClick={() => selectProduct(product, index)}>
-                      {product.id === selected?.id ? '●' : '○'}
+                    <button
+                      className="row-selector"
+                      type="button"
+                      aria-label={`Selecionar ${[product.description, product.subdescription].filter(Boolean).join(' ')}`}
+                      onClick={() => selectProduct(product, index)}
+                    >
+                      {product.id === selected?.id ? '✓' : 'Selecionar'}
                     </button>
-                    {appFields.map(([field]) => (
-                      <input
-                        key={field}
-                        className={field === 'price' || field === 'regularPrice' ? 'price-field' : ''}
-                        value={product[field] || ''}
-                        onFocus={() => selectProduct(product, index)}
-                        onChange={(event) => changeProduct(product.id, field, event.target.value)}
-                      />
+                    {appFields.map(([field, label]) => (
+                      <label className="product-field" key={field}>
+                        <span>{label}</span>
+                        <input
+                          aria-label={`${label} de ${product.description || 'produto'}`}
+                          inputMode={field === 'price' || field === 'regularPrice' ? 'decimal' : undefined}
+                          className={field === 'price' || field === 'regularPrice' ? 'price-field' : ''}
+                          value={product[field] || ''}
+                          onFocus={() => selectProduct(product, index)}
+                          onChange={(event) => changeProduct(product.id, field, event.target.value)}
+                          onBlur={(event) => (field === 'price' || field === 'regularPrice') && finishPrice(product.id, field, event.target.value)}
+                        />
+                      </label>
                     ))}
                   </div>
                 ))}
@@ -450,12 +522,9 @@ function Editor({
             <div>
               <span className="section-label">PRÉ-VISUALIZAÇÃO</span>
               <h2>Folha {safePageIndex + 1} de {pageCount}</h2>
+              <small className="preview-dimensions">{format.paperLabel} · cartaz {format.cartSize}</small>
             </div>
-            <span>
-              {products.length
-                ? (safePageIndex * format.postersPerSheet + 1) + '–' + Math.min(products.length, (safePageIndex + 1) * format.postersPerSheet)
-                : '0'} / {products.length}
-            </span>
+            <span>{products.length ? (safePageIndex * format.postersPerSheet + 1) + '–' + Math.min(products.length, (safePageIndex + 1) * format.postersPerSheet) : '0'} / {products.length}</span>
           </header>
 
           <PosterViewport
@@ -470,22 +539,18 @@ function Editor({
           <div className="preview-title">{title}</div>
 
           <div className="preview-pager">
-            <button type="button" onClick={() => movePage(-1)} disabled={pageCount <= 1}>‹</button>
-            <span>{safePageIndex + 1} / {pageCount}</span>
-            <button type="button" onClick={() => movePage(1)} disabled={pageCount <= 1}>›</button>
+            <button type="button" aria-label="Folha anterior" onClick={() => movePage(-1)} disabled={pageCount <= 1}>‹</button>
+            <span>Folha {safePageIndex + 1} de {pageCount}</span>
+            <button type="button" aria-label="Próxima folha" onClick={() => movePage(1)} disabled={pageCount <= 1}>›</button>
           </div>
 
           <aside className="preview-ad-card" aria-label="Publicidade">
             <span>PUBLICIDADE</span>
-            <div>
-              <b>AD</b>
-              <strong>Espaço para anúncio</strong>
-              <small>Google AdSense</small>
-            </div>
+            <div><b>AD</b><strong>Espaço para anúncio</strong><small>Google AdSense</small></div>
           </aside>
 
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
-          <button className="print-button" type="button" disabled={!products.length} onClick={printPosters}>Revisar e imprimir</button>
+          <button className="print-button" type="button" disabled={!products.length} onClick={() => setReviewOpen(true)}>Revisar e imprimir</button>
         </aside>
       </section>
 
@@ -508,8 +573,8 @@ function Editor({
         <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setExpanded(false)}>
           <section className="poster-modal real-preview-modal" role="dialog" aria-modal="true">
             <header>
-              <div><span>VISUALIZAÇÃO · {format.label}</span><h2>{title}</h2></div>
-              <button type="button" onClick={() => setExpanded(false)}>×</button>
+              <div><span>VISUALIZAÇÃO · {format.shortLabel}</span><h2>{title}</h2></div>
+              <button type="button" aria-label="Fechar visualização" onClick={() => setExpanded(false)}>×</button>
             </header>
             <PosterViewport
               className="modal-real-preview"
@@ -522,17 +587,28 @@ function Editor({
             />
             <footer>
               <button type="button" onClick={() => setExpanded(false)}>Editar</button>
-              <button className="generate-button" type="button" onClick={printPosters}>Imprimir / Salvar PDF</button>
+              <button className="generate-button" type="button" onClick={() => { setExpanded(false); setReviewOpen(true) }}>Revisar impressão</button>
             </footer>
           </section>
         </div>
+      ) : null}
+
+      {reviewOpen ? (
+        <ReviewDialog
+          format={format}
+          products={products}
+          pageCount={pageCount}
+          warnings={reviewWarnings}
+          onClose={() => setReviewOpen(false)}
+          onPrint={printPosters}
+        />
       ) : null}
     </main>
   )
 }
 
 function App() {
-  const initialProducts = useMemo(() => parseProductList(EXAMPLE_TEXT), [])
+  const initialProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
   const [screen, setScreen] = useState('formats')
   const [formatId, setFormatId] = useState('A4X4')
   const [sourceText, setSourceText] = useState(EXAMPLE_TEXT)
