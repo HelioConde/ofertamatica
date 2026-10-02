@@ -2587,15 +2587,16 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .ofertamatica-custom-header {
   position: absolute;
   z-index: 5;
-  left: 4.5%;
-  right: 4.5%;
-  top: 1.8%;
+  left: 5%;
+  right: 5%;
+  top: 2%;
   height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   pointer-events: none;
+  background: transparent;
 }
 
 .ofertamatica-custom-header img {
@@ -2603,13 +2604,15 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
   height: 100%;
   display: block;
   object-fit: contain;
-  object-position: center;
+  object-position: center center;
+  flex: none;
 }
 
-.ofertamatica-custom-header-app {
-  left: 3.5%;
-  right: 3.5%;
-  top: 1.5%;
+/* Mesma área segura em prévia, modal e impressão. O contain mantém toda
+   a arte visível, mesmo quando sua proporção limita a largura ocupada. */
+.poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-custom-header,
+.poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-custom-header {
+  /* Termina em 18%, antes da área de produtos (19%) dos cartazes horizontais. */
   height: 16%;
 }
 
