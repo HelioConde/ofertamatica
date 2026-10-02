@@ -2698,3 +2698,95 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
     -webkit-print-color-adjust: exact;
   }
 }
+
+
+/* OFERTA grande integrada ao header artístico */
+.ofertamatica-poster-background,
+.ofertamatica-app-background {
+  container-type: inline-size;
+}
+
+.ofertamatica-art-offer-text {
+  position: absolute;
+  z-index: 8;
+  left: 5%;
+  right: 5%;
+  top: 2%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ofertamatica-art-offer-text b {
+  display: block;
+  width: 94%;
+  max-width: 94%;
+  color: #fff8dc;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
+  font-size: clamp(6mm, 14cqi, 22mm);
+  font-weight: 1000;
+  line-height: .78;
+  letter-spacing: -.035em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: scaleX(1.04);
+  transform-origin: center;
+  -webkit-text-stroke: .8mm #c81220;
+  paint-order: stroke fill;
+  text-shadow:
+    0 .8mm 0 #8f0915,
+    0 1.6mm 2.2mm rgba(0,0,0,.58);
+}
+
+.ofertamatica-art-offer-text.header-simple b {
+  color: var(--poster-header-text-color, #fff);
+  -webkit-text-stroke: .65mm rgba(0,0,0,.72);
+  text-shadow:
+    0 .6mm 0 rgba(0,0,0,.65),
+    0 1.2mm 1.8mm rgba(0,0,0,.48);
+}
+
+.ofertamatica-art-offer-text.header-hidden {
+  display: none !important;
+}
+
+.ofertamatica-art-offer-text-app {
+  left: 3.5%;
+  right: 3.5%;
+  top: 1.5%;
+  height: 16%;
+}
+
+.ofertamatica-art-offer-text-app b {
+  font-size: clamp(5mm, 12cqi, 19mm);
+}
+
+/* Em 2x1 o header é fisicamente mais baixo; reduz o texto sem perder largura. */
+.poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-art-offer-text,
+.poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-art-offer-text {
+  top: 2%;
+  height: 16%;
+}
+
+.poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-art-offer-text b,
+.poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-art-offer-text b {
+  font-size: clamp(4mm, 8cqi, 11mm);
+  -webkit-text-stroke-width: .5mm;
+}
+
+/* Desativa o selo antigo caso CSS cacheado ainda contenha a regra anterior. */
+.ofertamatica-art-offer-badge {
+  display: none !important;
+}
+
+@media print {
+  .ofertamatica-art-offer-text,
+  .ofertamatica-art-offer-text b {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

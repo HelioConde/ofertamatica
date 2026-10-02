@@ -33,8 +33,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
             <div className="ofertamatica-custom-header ofertamatica-custom-header-app">
               <img src={template.headerImage} alt="" />
             </div>
-            <div className={`ofertamatica-art-offer-badge ofertamatica-art-offer-badge-app header-${template.headerStyle || 'band'}`}>
-              <span className="ofertamatica-bag-mark">✓</span>
+            <div className={`ofertamatica-art-offer-text ofertamatica-art-offer-text-app header-${template.headerStyle || 'band'}`}>
               <b>{template.headerText || 'OFERTA APP'}</b>
             </div>
           </>
