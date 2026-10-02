@@ -49,6 +49,7 @@ const PX_PER_MM = 96 / 25.4
 const DRAFT_KEY = 'ofertamatica:draft:v1'
 const LAST_FORMAT_KEY = 'ofertamatica:last-format'
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
+const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
 
 const DEFAULT_POSTER_STYLE = {
   backgroundColor: '#fff200',
@@ -75,10 +76,11 @@ function loadPosterStyle() {
     const saved = JSON.parse(localStorage.getItem(POSTER_STYLE_KEY) || 'null')
     if (!saved) return DEFAULT_POSTER_STYLE
 
-    const migratedHeader = saved.headerImage
-      ? (HEADER_IMAGE_BY_ID[saved.headerImage]
-        ? saved.headerImage
-        : normalizeHeaderImageId(saved.headerImage))
+    const storedHeader = saved.headerImage || localStorage.getItem(POSTER_HEADER_KEY) || ''
+    const migratedHeader = storedHeader
+      ? (HEADER_IMAGE_BY_ID[storedHeader]
+        ? storedHeader
+        : normalizeHeaderImageId(storedHeader))
       : ''
 
     return {
@@ -403,7 +405,16 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
           <strong>Modelos rápidos</strong>
           <div className="style-presets">
             {POSTER_STYLE_PRESETS.map((preset) => (
-              <button type="button" key={preset.id} onClick={() => onChange({ ...preset.values })}>
+              <button
+                type="button"
+                key={preset.id}
+                onClick={() => onChange({
+                  ...preset.values,
+                  headerImage: style.headerImage,
+                  headerText: style.headerText,
+                  headerStyle: style.headerStyle,
+                })}
+              >
                 <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
                 <small>{preset.name}</small>
               </button>
@@ -578,6 +589,11 @@ function Editor({
   useEffect(() => {
     try {
       localStorage.setItem(POSTER_STYLE_KEY, JSON.stringify(posterStyle))
+      if (posterStyle.headerImage) {
+        localStorage.setItem(POSTER_HEADER_KEY, posterStyle.headerImage)
+      } else {
+        localStorage.removeItem(POSTER_HEADER_KEY)
+      }
     } catch {
       // Personalização continua funcionando mesmo sem armazenamento local.
     }
