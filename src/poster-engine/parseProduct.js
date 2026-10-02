@@ -215,6 +215,7 @@ export function parseProductLine(line, index = 0) {
 
   return {
     id: stableProductId(normalizedLine, index),
+    sourceLine: normalizedLine,
     description: upper(parsed.description),
     subdescription: upper(parsed.subdescription),
     complement: upper(parsed.complement),

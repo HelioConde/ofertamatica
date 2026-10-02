@@ -14,6 +14,20 @@ const EXAMPLE_TEXT = [
 
 const PRINT_STYLE_ID = 'ofertamatica-poster-page'
 const PX_PER_MM = 96 / 25.4
+const DRAFT_KEY = 'ofertamatica:draft:v1'
+const LAST_FORMAT_KEY = 'ofertamatica:last-format'
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY)
+    if (!raw) return null
+    const draft = JSON.parse(raw)
+    if (!draft || !Array.isArray(draft.products)) return null
+    return draft
+  } catch {
+    return null
+  }
+}
 
 function splitIntoPages(products, perPage) {
   if (!products.length) return [[]]
@@ -137,7 +151,7 @@ function FormatPreview({ format }) {
   )
 }
 
-function FormatChooser({ onSelect }) {
+function FormatChooser({ onSelect, draft, onResume }) {
   return (
     <main className="format-page" id="formatos">
       <section className="format-dialog">
@@ -149,6 +163,16 @@ function FormatChooser({ onSelect }) {
             <span><b>1</b> Formato</span><i>→</i><span><b>2</b> Produtos</span><i>→</i><span><b>3</b> Impressão</span>
           </div>
         </header>
+
+        {draft?.products?.length ? (
+          <div className="resume-work">
+            <div>
+              <span>TRABALHO SALVO NESTE DISPOSITIVO</span>
+              <strong>{draft.products.length} {draft.products.length === 1 ? 'produto' : 'produtos'} · {getPosterFormat(draft.formatId).shortLabel}</strong>
+            </div>
+            <button type="button" onClick={onResume}>Continuar último trabalho</button>
+          </div>
+        ) : null}
 
         <div className="format-grid">
           {POSTER_FORMAT_OPTIONS.map((format) => (
@@ -286,6 +310,8 @@ function Editor({
   const [importError, setImportError] = useState('')
   const [fontReady, setFontReady] = useState(false)
   const [confirmExample, setConfirmExample] = useState(false)
+  const [mobileTab, setMobileTab] = useState('products')
+  const [deletedSnapshot, setDeletedSnapshot] = useState(null)
   const fileInput = useRef(null)
 
   const format = getPosterFormat(formatId)
@@ -364,6 +390,49 @@ function Editor({
     setPageIndex(Math.floor(index / format.postersPerSheet))
   }
 
+  function duplicateProduct(product, index) {
+    const copy = {
+      ...product,
+      id: product.id + '-copy-' + Date.now(),
+      sourceLine: product.sourceLine || '',
+    }
+    const next = [...products]
+    next.splice(index + 1, 0, copy)
+    setProducts(next)
+    setSelectedProductId(copy.id)
+    setPageIndex(Math.floor((index + 1) / format.postersPerSheet))
+  }
+
+  function deleteProduct(product, index) {
+    setDeletedSnapshot({ product, index })
+    const next = products.filter((item) => item.id !== product.id)
+    setProducts(next)
+    const fallbackIndex = Math.min(index, Math.max(0, next.length - 1))
+    setSelectedProductId(next[fallbackIndex]?.id || null)
+    setPageIndex(Math.floor(fallbackIndex / format.postersPerSheet))
+  }
+
+  function undoDelete() {
+    if (!deletedSnapshot) return
+    const next = [...products]
+    next.splice(deletedSnapshot.index, 0, deletedSnapshot.product)
+    setProducts(next)
+    setSelectedProductId(deletedSnapshot.product.id)
+    setPageIndex(Math.floor(deletedSnapshot.index / format.postersPerSheet))
+    setDeletedSnapshot(null)
+  }
+
+  function moveProduct(index, direction) {
+    const target = index + direction
+    if (target < 0 || target >= products.length) return
+    const next = [...products]
+    const [item] = next.splice(index, 1)
+    next.splice(target, 0, item)
+    setProducts(next)
+    setSelectedProductId(item.id)
+    setPageIndex(Math.floor(target / format.postersPerSheet))
+  }
+
   async function handleFile(event) {
     const file = event.target.files?.[0]
     if (!file) return
@@ -436,8 +505,13 @@ function Editor({
         </button>
       </div>
 
+      <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor">
+        <button type="button" role="tab" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
+        <button type="button" role="tab" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
+      </div>
+
       <section className="editor-layout">
-        <div className="editor-main">
+        <div className={'editor-main ' + (mobileTab === 'products' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
           <section className="editor-card">
             <header>
               <div>
@@ -479,9 +553,14 @@ function Editor({
                 <div className="product-row product-head">
                   <span>Selecionar</span>
                   {appFields.map(([field, label]) => <span key={field}>{label}</span>)}
+                  <span>Ações</span>
                 </div>
                 {products.map((product, index) => (
-                  <div className={'product-row ' + (product.id === selected?.id ? 'selected-row' : '')} key={product.id}>
+                  <div
+                    className={'product-row ' + (product.id === selected?.id ? 'selected-row ' : '') + (!String(product.price || '').trim() ? 'product-row-warning' : '')}
+                    key={product.id}
+                    title={product.sourceLine ? 'Original: ' + product.sourceLine : undefined}
+                  >
                     <button
                       className="row-selector"
                       type="button"
@@ -504,6 +583,13 @@ function Editor({
                         />
                       </label>
                     ))}
+                    <div className="row-actions" aria-label={`Ações de ${product.description || 'produto'}`}>
+                      {!String(product.price || '').trim() ? <span className="row-warning" title="Preço não identificado">!</span> : <span className="row-ok" title="Produto com preço">✓</span>}
+                      <button type="button" onClick={() => moveProduct(index, -1)} disabled={index === 0} aria-label="Mover produto para cima">↑</button>
+                      <button type="button" onClick={() => moveProduct(index, 1)} disabled={index === products.length - 1} aria-label="Mover produto para baixo">↓</button>
+                      <button type="button" onClick={() => duplicateProduct(product, index)} aria-label="Duplicar produto">⧉</button>
+                      <button type="button" className="row-delete" onClick={() => deleteProduct(product, index)} aria-label="Excluir produto">×</button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -515,9 +601,15 @@ function Editor({
               </div>
             )}
           </section>
+          {deletedSnapshot ? (
+            <div className="undo-bar" role="status">
+              Produto excluído.
+              <button type="button" onClick={undoDelete}>Desfazer</button>
+            </div>
+          ) : null}
         </div>
 
-        <aside className="preview-card">
+        <aside className={'preview-card ' + (mobileTab === 'preview' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
           <header>
             <div>
               <span className="section-label">PRÉ-VISUALIZAÇÃO</span>
@@ -608,13 +700,43 @@ function Editor({
 }
 
 function App() {
-  const initialProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
+  const savedDraft = useMemo(() => loadDraft(), [])
+  const fallbackProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
+  const [draftAvailable, setDraftAvailable] = useState(savedDraft)
   const [screen, setScreen] = useState('formats')
-  const [formatId, setFormatId] = useState('A4X4')
-  const [sourceText, setSourceText] = useState(EXAMPLE_TEXT)
-  const [products, setProducts] = useState(initialProducts)
-  const [selectedProductId, setSelectedProductId] = useState(initialProducts[0]?.id || null)
-  const [pageIndex, setPageIndex] = useState(0)
+  const [formatId, setFormatId] = useState(() => savedDraft?.formatId || localStorage.getItem(LAST_FORMAT_KEY) || 'A4X4')
+  const [sourceText, setSourceText] = useState(() => savedDraft?.sourceText || EXAMPLE_TEXT)
+  const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : fallbackProducts)
+  const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || (savedDraft?.products?.[0]?.id || fallbackProducts[0]?.id || null))
+  const [pageIndex, setPageIndex] = useState(() => savedDraft?.pageIndex || 0)
+
+  useEffect(() => {
+    const draft = {
+      formatId,
+      sourceText,
+      products,
+      selectedProductId,
+      pageIndex,
+      savedAt: Date.now(),
+    }
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(draft))
+      localStorage.setItem(LAST_FORMAT_KEY, formatId)
+      setDraftAvailable(draft)
+    } catch {
+      // O editor continua funcionando mesmo se o armazenamento do navegador estiver indisponível.
+    }
+  }, [formatId, sourceText, products, selectedProductId, pageIndex])
+
+  function resumeDraft() {
+    if (!draftAvailable) return
+    setFormatId(draftAvailable.formatId || 'A4X4')
+    setSourceText(draftAvailable.sourceText || '')
+    setProducts(draftAvailable.products || [])
+    setSelectedProductId(draftAvailable.selectedProductId || draftAvailable.products?.[0]?.id || null)
+    setPageIndex(draftAvailable.pageIndex || 0)
+    setScreen('editor')
+  }
 
   function startWithFormat(id) {
     setFormatId(id)
@@ -633,7 +755,7 @@ function App() {
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
       <Navigation onCreate={showFormats} />
       {screen === 'formats' ? (
-        <FormatChooser onSelect={startWithFormat} />
+        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       ) : (
         <Editor
           formatId={formatId}
