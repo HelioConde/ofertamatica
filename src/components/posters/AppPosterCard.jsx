@@ -25,8 +25,13 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
     regularPrice: product.regularPrice ? `R$ ${product.regularPrice}` : '',
   }
   return (
-    <article className={`poster-card poster-app-card ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
+    <article className={`poster-card poster-app-card ofertamatica-app-card ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
+      <div className="ofertamatica-app-background" aria-hidden="true">
+        <div className="ofertamatica-app-ribbon"><span className="ofertamatica-bag-mark">✓</span><b>OFERTA APP</b></div>
+        <div className="ofertamatica-app-frame" />
+        <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
+      </div>
       {APP_BOXES.map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]

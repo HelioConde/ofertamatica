@@ -106,10 +106,21 @@ function Navigation({ onCreate }) {
 }
 
 function FormatPreview({ format }) {
-  const template = getDefaultTemplateForFormat(format.id)
+  const isSplit = format.postersPerSheet === 2 && format.rows === 2
+  const isApp = format.specialLayout === 'app-offer'
+  const isFour = format.postersPerSheet === 4
+
   return (
     <div className="format-thumb">
-      <img className="format-real-thumb" src={template.backgroundImage} alt="" />
+      <div className={`oferta-format-preview ${isSplit ? 'is-split' : ''} ${isApp ? 'is-app' : ''} ${isFour ? 'is-four' : ''}`}>
+        {Array.from({ length: format.postersPerSheet }, (_, index) => (
+          <div className={`oferta-format-mini ${format.invertedSlots.includes(index) ? 'is-inverted' : ''}`} key={index}>
+            <span>✓ OFERTA</span>
+            <i></i>
+            <b>R$</b>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
