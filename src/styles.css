@@ -1796,3 +1796,119 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* Retorno ao visual limpo do editor, mantendo as funções avançadas */
+.interpreted-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.selected-product-tools {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #e0e7f0;
+  border-radius: 7px;
+  background: #f8fafc;
+}
+
+.selected-product-tools button {
+  height: 22px;
+  min-width: 22px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #5f7089;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.selected-product-tools button:hover:not(:disabled) {
+  background: #fff;
+  color: var(--blue);
+  box-shadow: 0 1px 4px rgba(32,55,88,.08);
+}
+
+.selected-product-tools button:disabled { opacity: .28; }
+.selected-product-tools .selected-delete { color: #c73b3b; }
+
+.product-row,
+.app-product-table .product-row {
+  min-width: 0;
+  grid-template-columns: 34px 1.15fr 1.15fr 1.5fr .8fr .9fr !important;
+}
+
+.app-product-table .product-row {
+  min-width: 920px;
+  grid-template-columns: 34px 1fr 1fr 1.15fr .72fr .8fr .8fr .9fr !important;
+}
+
+.product-row-warning {
+  background: inherit !important;
+  box-shadow: none !important;
+}
+
+.selected-row,
+.selected-row.product-row-warning {
+  background: #fbfdff !important;
+  box-shadow: inset 3px 0 var(--blue) !important;
+}
+
+.row-selector {
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 !important;
+  display: grid;
+  place-items: center;
+  border: 0 !important;
+  background: transparent !important;
+  color: #9ba8ba;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.selected-row .row-selector {
+  color: var(--blue);
+  background: transparent !important;
+}
+
+.row-actions,
+.row-warning,
+.row-ok {
+  display: none !important;
+}
+
+.editor-actions .icon-button {
+  flex: 0 0 34px;
+}
+
+@media (max-width: 820px) {
+  .interpreted-header-actions { gap: 4px; }
+  .selected-product-tools {
+    max-width: 190px;
+    overflow-x: auto;
+  }
+  .selected-product-tools button {
+    flex: 0 0 auto;
+    min-width: 28px;
+    height: 26px;
+  }
+  .product-row,
+  .app-product-table .product-row {
+    min-width: 0 !important;
+    grid-template-columns: 28px 1fr !important;
+  }
+  .row-selector {
+    grid-row: 1 / span 8 !important;
+    width: 24px;
+    min-width: 24px;
+  }
+}

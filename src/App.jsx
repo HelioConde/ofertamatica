@@ -335,6 +335,7 @@ function Editor({
   const safePageIndex = Math.min(pageIndex, pageCount - 1)
   const pageProducts = pages[safePageIndex] || []
   const selected = products.find((item) => item.id === selectedProductId) || pageProducts[0] || products[0] || null
+  const selectedIndex = selected ? products.findIndex((item) => item.id === selected.id) : -1
   const title = selected
     ? [selected.description, selected.subdescription, selected.complement, selected.unit].filter(Boolean).join(' ')
     : 'Sua prévia aparecerá aqui'
@@ -526,8 +527,8 @@ function Editor({
 
             <div className="editor-actions">
               <input ref={fileInput} hidden type="file" accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv" onChange={handleFile} />
-              <button className="quiet-button add-product-button" type="button" onClick={() => setSourceText((value) => value + (value.endsWith('\n') || !value ? '' : '\n'))}>＋ Adicionar produto</button>
-              <button className="quiet-button" type="button" onClick={() => fileInput.current?.click()}>Importar TXT/CSV/Excel</button>
+              <button className="icon-button" type="button" onClick={() => setSourceText((value) => value + (value.endsWith('\n') || !value ? '' : '\n'))} aria-label="Adicionar produto">＋</button>
+              <button className="quiet-button" type="button" onClick={() => fileInput.current?.click()}>Importar arquivo</button>
               <button className={`quiet-button ${confirmExample ? 'example-confirm' : ''}`} type="button" onClick={useExample}>
                 {confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}
               </button>
@@ -545,19 +546,28 @@ function Editor({
                 <h2>Revise os dados</h2>
                 <p>Edite os campos abaixo. A prévia é atualizada automaticamente.</p>
               </div>
-              <span className="round-count">{products.length}</span>
+              <div className="interpreted-header-actions">
+                {selected && selectedIndex >= 0 ? (
+                  <div className="selected-product-tools" aria-label="Ações do produto selecionado">
+                    <button type="button" onClick={() => moveProduct(selectedIndex, -1)} disabled={selectedIndex === 0} title="Mover para cima">↑</button>
+                    <button type="button" onClick={() => moveProduct(selectedIndex, 1)} disabled={selectedIndex === products.length - 1} title="Mover para baixo">↓</button>
+                    <button type="button" onClick={() => duplicateProduct(selected, selectedIndex)} title="Duplicar produto">⧉</button>
+                    <button type="button" className="selected-delete" onClick={() => deleteProduct(selected, selectedIndex)} title="Excluir produto">Excluir</button>
+                  </div>
+                ) : null}
+                <span className="round-count">{products.length}</span>
+              </div>
             </header>
 
             {products.length ? (
               <div className={'product-table ' + (isAppFormat ? 'app-product-table' : '')}>
                 <div className="product-row product-head">
-                  <span>Selecionar</span>
+                  <span></span>
                   {appFields.map(([field, label]) => <span key={field}>{label}</span>)}
-                  <span>Ações</span>
                 </div>
                 {products.map((product, index) => (
                   <div
-                    className={'product-row ' + (product.id === selected?.id ? 'selected-row ' : '') + (!String(product.price || '').trim() ? 'product-row-warning' : '')}
+                    className={'product-row ' + (product.id === selected?.id ? 'selected-row' : '')}
                     key={product.id}
                     title={product.sourceLine ? 'Original: ' + product.sourceLine : undefined}
                   >
@@ -567,7 +577,7 @@ function Editor({
                       aria-label={`Selecionar ${[product.description, product.subdescription].filter(Boolean).join(' ')}`}
                       onClick={() => selectProduct(product, index)}
                     >
-                      {product.id === selected?.id ? '✓' : 'Selecionar'}
+                      {product.id === selected?.id ? '●' : '○'}
                     </button>
                     {appFields.map(([field, label]) => (
                       <label className="product-field" key={field}>
@@ -583,13 +593,6 @@ function Editor({
                         />
                       </label>
                     ))}
-                    <div className="row-actions" aria-label={`Ações de ${product.description || 'produto'}`}>
-                      {!String(product.price || '').trim() ? <span className="row-warning" title="Preço não identificado">!</span> : <span className="row-ok" title="Produto com preço">✓</span>}
-                      <button type="button" onClick={() => moveProduct(index, -1)} disabled={index === 0} aria-label="Mover produto para cima">↑</button>
-                      <button type="button" onClick={() => moveProduct(index, 1)} disabled={index === products.length - 1} aria-label="Mover produto para baixo">↓</button>
-                      <button type="button" onClick={() => duplicateProduct(product, index)} aria-label="Duplicar produto">⧉</button>
-                      <button type="button" className="row-delete" onClick={() => deleteProduct(product, index)} aria-label="Excluir produto">×</button>
-                    </div>
                   </div>
                 ))}
               </div>
