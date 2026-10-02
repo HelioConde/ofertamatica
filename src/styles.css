@@ -1912,3 +1912,102 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
     min-width: 24px;
   }
 }
+
+
+/* Menu único de ações no botão + */
+.input-actions-menu-wrap {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.input-menu-trigger.active {
+  border-color: #9dbcf0;
+  background: #edf4ff;
+  color: var(--blue);
+}
+
+.input-actions-menu {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  bottom: calc(100% + 7px);
+  width: 250px;
+  padding: 6px;
+  display: grid;
+  gap: 2px;
+  border: 1px solid #d9e3ef;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 42px rgba(30, 52, 82, .16);
+}
+
+.input-actions-menu > button {
+  width: 100%;
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #354660;
+  text-align: left;
+}
+
+.input-actions-menu > button:hover,
+.input-actions-menu > button:focus-visible {
+  background: #f1f6ff;
+}
+
+.input-menu-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #edf4ff;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.input-actions-menu > button > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.input-actions-menu b {
+  color: #34445f;
+  font-size: 9.5px;
+}
+
+.input-actions-menu small {
+  color: #8290a4;
+  font-size: 7.5px;
+}
+
+.input-actions-menu .example-confirm-menu {
+  background: #fff9e9;
+}
+
+.input-actions-menu .input-menu-danger b,
+.input-actions-menu .input-menu-danger .input-menu-icon {
+  color: #cc3f3f;
+}
+
+.input-actions-menu .input-menu-danger .input-menu-icon {
+  background: #fff0f0;
+}
+
+.editor-actions {
+  overflow: visible;
+}
+
+@media (max-width: 500px) {
+  .input-actions-menu {
+    width: min(250px, calc(100vw - 50px));
+  }
+}

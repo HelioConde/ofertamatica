@@ -312,10 +312,27 @@ function Editor({
   const [confirmExample, setConfirmExample] = useState(false)
   const [mobileTab, setMobileTab] = useState('products')
   const [deletedSnapshot, setDeletedSnapshot] = useState(null)
+  const [inputMenuOpen, setInputMenuOpen] = useState(false)
   const fileInput = useRef(null)
+  const inputMenuRef = useRef(null)
 
   const format = getPosterFormat(formatId)
   const template = getDefaultTemplateForFormat(formatId)
+
+  useEffect(() => {
+    function closeInputMenu(event) {
+      if (inputMenuRef.current && !inputMenuRef.current.contains(event.target)) setInputMenuOpen(false)
+    }
+    function closeInputMenuOnEscape(event) {
+      if (event.key === 'Escape') setInputMenuOpen(false)
+    }
+    document.addEventListener('pointerdown', closeInputMenu)
+    document.addEventListener('keydown', closeInputMenuOnEscape)
+    return () => {
+      document.removeEventListener('pointerdown', closeInputMenu)
+      document.removeEventListener('keydown', closeInputMenuOnEscape)
+    }
+  }, [])
 
   useEffect(() => {
     let active = true
@@ -464,11 +481,31 @@ function Editor({
   function useExample() {
     if (sourceText.trim() && sourceText.trim() !== EXAMPLE_TEXT.trim() && !confirmExample) {
       setConfirmExample(true)
-      return
+      return false
     }
     setConfirmExample(false)
     setSourceText(EXAMPLE_TEXT)
     generateFromSource(EXAMPLE_TEXT)
+    return true
+  }
+
+  function addProductLine() {
+    setSourceText((value) => value + (value.endsWith('\n') || !value ? '' : '\n'))
+    setInputMenuOpen(false)
+  }
+
+  function clearProductList() {
+    setSourceText('')
+    setProducts([])
+    setSelectedProductId(null)
+    setPageIndex(0)
+    setConfirmExample(false)
+    setInputMenuOpen(false)
+  }
+
+  function chooseExample() {
+    const applied = useExample()
+    if (applied) setInputMenuOpen(false)
   }
 
   function movePage(direction) {
@@ -526,12 +563,40 @@ function Editor({
             <textarea value={sourceText} onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }} aria-label="Lista de produtos, uma linha por produto" />
 
             <div className="editor-actions">
-              <input ref={fileInput} hidden type="file" accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv" onChange={handleFile} />
-              <button className="icon-button" type="button" onClick={() => setSourceText((value) => value + (value.endsWith('\n') || !value ? '' : '\n'))} aria-label="Adicionar produto">＋</button>
-              <button className="quiet-button" type="button" onClick={() => fileInput.current?.click()}>Importar arquivo</button>
-              <button className={`quiet-button ${confirmExample ? 'example-confirm' : ''}`} type="button" onClick={useExample}>
-                {confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}
-              </button>
+              <input ref={fileInput} hidden type="file" accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv" onChange={(event) => { setInputMenuOpen(false); handleFile(event) }} />
+              <div className="input-actions-menu-wrap" ref={inputMenuRef}>
+                <button
+                  className={`icon-button input-menu-trigger ${inputMenuOpen ? 'active' : ''}`}
+                  type="button"
+                  aria-label="Abrir ações de entrada"
+                  aria-expanded={inputMenuOpen}
+                  onClick={() => setInputMenuOpen((value) => !value)}
+                >
+                  ＋
+                </button>
+
+                {inputMenuOpen ? (
+                  <div className="input-actions-menu" role="menu">
+                    <button type="button" role="menuitem" onClick={addProductLine}>
+                      <span className="input-menu-icon">＋</span>
+                      <span><b>Adicionar produto</b><small>Nova linha para digitar</small></span>
+                    </button>
+                    <button type="button" role="menuitem" onClick={() => fileInput.current?.click()}>
+                      <span className="input-menu-icon">↥</span>
+                      <span><b>Importar arquivo</b><small>TXT, CSV ou Excel</small></span>
+                    </button>
+                    <button type="button" role="menuitem" className={confirmExample ? 'example-confirm-menu' : ''} onClick={chooseExample}>
+                      <span className="input-menu-icon">✦</span>
+                      <span><b>{confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}</b><small>{confirmExample ? 'Substitui o conteúdo atual' : 'Preencher uma lista pronta'}</small></span>
+                    </button>
+                    <button type="button" role="menuitem" className="input-menu-danger" onClick={clearProductList}>
+                      <span className="input-menu-icon">×</span>
+                      <span><b>Limpar lista</b><small>Remover texto e produtos</small></span>
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+
               <span className="product-count">{products.length} produtos identificados</span>
               <button className="generate-button" type="button" onClick={() => generateFromSource()}>Gerar placas</button>
             </div>
