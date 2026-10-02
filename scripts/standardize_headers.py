@@ -185,6 +185,9 @@ def main() -> None:
     output_dir = (args.output or source_dir / 'headers').resolve()
     if output_dir == source_dir:
         parser.error('Output must differ from source; originals cannot be overwritten.')
+    report_path = output_dir / 'validation.json'
+    if report_path.exists() and json.loads(report_path.read_text(encoding='utf-8')).get('method') == 'generative-panorama':
+        parser.error('Reviewed generative artwork exists here. Use a different --output for legacy texture drafts.')
     sources = sorted(source_dir.glob('*.png'), key=lambda p: p.name.casefold())
     if not sources:
         parser.error('No source PNG files found.')

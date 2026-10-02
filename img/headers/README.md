@@ -1,41 +1,44 @@
-# Headers horizontais
+# Headers panorâmicos recriados
 
-73 arquivos PNG de 1960 × 400 px, derivados dos originais em `img/`.
-Abra `preview.html` no navegador para conferir todos os arquivos e ativar as
-linhas da área segura horizontal (196–1764 px).
+73 PNGs de **1960 × 400 px**, recriados com IA a partir da identidade visual das
+campanhas originais em `img/`. Os originais permanecem preservados.
 
-## Reproduzir
+Abra `preview.html` para conferir todas as artes; clique em uma imagem para
+abrir o PNG em tamanho completo. `validation.json` registra dimensões, hashes
+dos originais e dos resultados, escala proporcional e enquadramento vertical.
 
-Na raiz do repositório, com Python 3.10 ou superior:
+## Composição
+
+- Títulos grandes e completos, com grafia e acentos conferidos visualmente.
+- Composições horizontais reorganizadas; laterais com produtos e cenários
+  próprios de cada campanha, sem espelhamento ou preenchimento borrado.
+- Os títulos longos foram redistribuídos horizontalmente para caber na faixa.
+- A exportação aplica uma única escala nos dois eixos e remove somente as
+  faixas superior/inferior excedentes do cenário gerado, após revisão visual.
+- Nenhum esticamento, blur, repetição ou preenchimento é aplicado na exportação.
+- São recriações: os pixels da nova arte não são idênticos aos originais.
+
+## Exportar novamente
+
+O processo generativo foi realizado com ImageGen. A exportação pode ser repetida
+quando as imagens geradas estiverem disponíveis localmente:
 
 ```sh
 python -m pip install -r scripts/headers-requirements.txt
-python scripts/standardize_headers.py
-python -m unittest discover -s scripts -p 'test_standardize_headers.py'
+python scripts/prepare_recreated_headers.py --manifest caminho/manifest.json
+python -m unittest discover -s scripts -p 'test_prepare_recreated_headers.py'
 ```
 
-O script lê somente os PNGs diretamente em `img/`, preserva os originais,
-normaliza os nomes e grava os resultados em `img/headers/`. É possível usar
-`--source` e `--output` para outras pastas; a pasta de saída deve ser diferente
-da pasta de origem.
+O manifest é uma lista com `name` (nome original sem extensão), `generated`
+(caminho local da arte gerada), `visually_reviewed: true` e, opcionalmente,
+`crop_top` (posição vertical após a escala proporcional). Deve incluir cada
+original exatamente uma vez. O exportador confere as imagens antes da gravação
+e compara os hashes dos originais com o relatório anterior.
 
-## Composição e validação
+A revisão visual é obrigatória; os testes automáticos não reconhecem palavras.
+O script antigo `standardize_headers.py` produz rascunhos com texturas e impede
+a sobrescrita destas artes recriadas. Para experimentar aquele método legado,
+use outra pasta com `--output`.
 
-- A imagem original inteira é a região protegida. Não há recorte nem OCR.
-- A escala é única para os dois eixos, com arredondamento de pixels.
-- A arte ocupa até 400 px de altura, centralizada e inteiramente na área segura.
-- As laterais são continuadas com faixas estreitas das próprias bordas,
-  espelhadas sem esticar. A suavização cresce para fora da arte original.
-- O texto e os elementos centrais não recebem blur, retoque ou alteração.
-- Não há regras específicas por arquivo. Os 73 originais atuais são RGB;
-  entradas transparentes futuras são compostas sobre uma cor derivada da arte.
-- `validation.json` registra dimensões, escala, posição, hashes e validações.
-  A região protegida do PNG exportado é comparada pixel a pixel com a composição
-  esperada. Os hashes dos originais são conferidos antes e depois do lote.
-
-A validação automática não reconhece o conteúdo escrito nem avalia qualidade
-estética: a preservação integral protege as letras e o HTML permite a revisão
-visual das texturas espelhadas. As dez artes solicitadas foram revistas.
-
-Estes arquivos ainda não estão integrados ao editor. Nenhum código do site,
-CSS, componente, sidebar ou fluxo de impressão foi alterado nesta tarefa.
+Esta atualização troca somente os assets dos headers e sua documentação de
+exportação. Não altera parser, preços, fontes, editor ou lógica de impressão.
