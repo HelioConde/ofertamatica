@@ -145,6 +145,15 @@ function FormatChooser({ onSelect }) {
               </span>
             </button>
           ))}
+
+          <aside className="format-ad-card" aria-label="Publicidade">
+            <span className="ad-label">PUBLICIDADE</span>
+            <div className="ad-slot-reserved">
+              <span className="ad-icon">AD</span>
+              <strong>Espaço para anúncio</strong>
+              <small>Google AdSense</small>
+            </div>
+          </aside>
         </div>
       </section>
     </main>
