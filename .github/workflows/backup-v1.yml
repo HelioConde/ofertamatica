@@ -1,0 +1,56 @@
+name: Backup Ofertamatica V1
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/backup-v1.yml"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install FTP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp zip
+
+      - name: Download V1 from Locaweb
+        env:
+          FTP_HOST: ${{ secrets.HOST }}
+          FTP_USER: ${{ secrets.USER }}
+          FTP_PASS: ${{ secrets.PASS }}
+        run: |
+          mkdir -p backup/public_html
+          lftp -c "
+            set ftp:ssl-allow no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            open -u \"$FTP_USER\",\"$FTP_PASS\" \"$FTP_HOST\";
+            mirror --verbose --parallel=4 \
+              --exclude-glob beta \
+              --exclude-glob beta/** \
+              --exclude-glob .env \
+              --exclude-glob .env.* \
+              --exclude-glob '*.sql' \
+              --exclude-glob '*.zip' \
+              public_html backup/public_html;
+            bye
+          "
+
+      - name: Create backup archive
+        run: |
+          printf "Backup da Ofertamatica V1\nData UTC: %s\nOrigem: public_html (excluindo beta e arquivos sensiveis)\n" "$(date -u +'%Y-%m-%d %H:%M:%S')" > backup/LEIA-ME.txt
+          cd backup
+          zip -r ../ofertamatica-v1-backup-2026-10-02.zip .
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ofertamatica-v1-backup-2026-10-02
+          path: ofertamatica-v1-backup-2026-10-02.zip
+          retention-days: 30
+          if-no-files-found: error
