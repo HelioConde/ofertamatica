@@ -2011,3 +2011,99 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
     width: min(250px, calc(100vw - 50px));
   }
 }
+
+
+/* Correções de impressão e composição do preço */
+.poster-price-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.poster-currency-inline {
+  position: absolute;
+  z-index: 4;
+  left: 1.5%;
+  top: 50%;
+  transform: translateY(-12%);
+  color: #e60025;
+  font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  font-size: clamp(3mm, 5cqi, 7mm);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.poster-price-box .poster-field-price {
+  left: 8% !important;
+  width: 90% !important;
+}
+
+.ofertamatica-currency-mark {
+  display: none !important;
+}
+
+@media print {
+  body.poster-printing {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    overflow: visible !important;
+  }
+
+  body.poster-printing #root,
+  body.poster-printing .app,
+  body.poster-printing .editor-page {
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  body.poster-printing .site-header {
+    display: none !important;
+  }
+
+  body.poster-printing .editor-page > *:not(.poster-print-root) {
+    display: none !important;
+  }
+
+  body.poster-printing .poster-print-root {
+    position: static !important;
+    inset: auto !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    overflow: visible !important;
+  }
+
+  body.poster-printing .poster-print-sheet {
+    margin: 0 !important;
+    padding: 0 !important;
+    break-before: auto !important;
+    page-break-before: auto !important;
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  body.poster-printing .poster-print-sheet:last-child {
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+
+  body.poster-printing .poster-currency-inline {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

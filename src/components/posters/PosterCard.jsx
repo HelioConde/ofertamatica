@@ -50,6 +50,7 @@ function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
   return (
     <div className={`poster-layout-box poster-price-box ${showDebug ? 'poster-layout-box-debug' : ''}`} style={boxStyle(box)} data-layout-box="priceBox" onPointerDown={editable ? (event) => onBoxPointerDown?.('priceBox', 'move', event) : undefined}>
       <div className="poster-price-content">
+        <span className="poster-currency-inline">R$</span>
         <div className="poster-field poster-planned-field poster-field-price" style={plannedFieldStyle(plan.price, box)}>{plan.price.text || '\u00a0'}</div>
       </div>
       {showDebug ? <span className="poster-box-label">priceBox</span> : null}
@@ -79,7 +80,6 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         <div className="ofertamatica-poster-background" aria-hidden="true">
           <div className="ofertamatica-offer-ribbon"><span className="ofertamatica-bag-mark">✓</span><b>OFERTA</b></div>
           <div className="ofertamatica-inner-frame" />
-          <div className="ofertamatica-currency-mark">R$</div>
           <div className="ofertamatica-poster-signature">OFERTAMÁTICA</div>
         </div>
         {showBackground ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
