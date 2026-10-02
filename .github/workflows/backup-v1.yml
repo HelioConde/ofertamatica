@@ -30,7 +30,7 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             open -u \"$FTP_USER\",\"$FTP_PASS\" \"$FTP_HOST\";
-            mirror --verbose --parallel=4 \
+            mirror --verbose --parallel=4 --no-perms \
               --exclude-glob beta \
               --exclude-glob beta/** \
               --exclude-glob .env \
