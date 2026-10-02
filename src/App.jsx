@@ -16,6 +16,35 @@ const PRINT_STYLE_ID = 'ofertamatica-poster-page'
 const PX_PER_MM = 96 / 25.4
 const DRAFT_KEY = 'ofertamatica:draft:v1'
 const LAST_FORMAT_KEY = 'ofertamatica:last-format'
+const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
+
+const DEFAULT_POSTER_STYLE = {
+  backgroundColor: '#fff200',
+  textColor: '#050505',
+  priceColor: '#e60025',
+  headerColor: '#e51e31',
+  headerTextColor: '#ffffff',
+  fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+  headerStyle: 'band',
+  headerText: 'OFERTA',
+  showCurrency: true,
+}
+
+const POSTER_STYLE_PRESETS = [
+  { id: 'classic', name: 'Clássico', values: DEFAULT_POSTER_STYLE },
+  { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925' } },
+  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547' } },
+  { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d63e9' } },
+]
+
+function loadPosterStyle() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(POSTER_STYLE_KEY) || 'null')
+    return saved ? { ...DEFAULT_POSTER_STYLE, ...saved } : DEFAULT_POSTER_STYLE
+  } catch {
+    return DEFAULT_POSTER_STYLE
+  }
+}
 
 function loadDraft() {
   try {
@@ -301,6 +330,117 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
   )
 }
 
+function StyleSidebar({ style, onChange, onReset, mobileActive }) {
+  const colorFields = [
+    ['backgroundColor', 'Fundo'],
+    ['textColor', 'Texto'],
+    ['priceColor', 'Preço'],
+    ['headerColor', 'Cabeçalho'],
+  ]
+
+  return (
+    <aside className={'style-sidebar ' + (mobileActive ? 'mobile-panel-active' : 'mobile-panel-hidden')} aria-label="Personalização da placa">
+      <header className="style-sidebar-head">
+        <div>
+          <span className="section-label">PERSONALIZAÇÃO</span>
+          <h2>Estilo da placa</h2>
+        </div>
+        <button type="button" className="style-reset-top" onClick={onReset}>Restaurar</button>
+      </header>
+
+      <div className="style-sidebar-scroll">
+        <section className="style-section">
+          <strong>Modelos rápidos</strong>
+          <div className="style-presets">
+            {POSTER_STYLE_PRESETS.map((preset) => (
+              <button type="button" key={preset.id} onClick={() => onChange({ ...preset.values })}>
+                <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
+                <small>{preset.name}</small>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="style-section">
+          <strong>Cores</strong>
+          <div className="style-color-list">
+            {colorFields.map(([field, label]) => (
+              <label className="style-color-row" key={field}>
+                <span>{label}</span>
+                <span className="style-color-control">
+                  <input
+                    type="color"
+                    value={style[field]}
+                    onChange={(event) => onChange({ ...style, [field]: event.target.value })}
+                    aria-label={'Cor de ' + label.toLocaleLowerCase('pt-BR')}
+                  />
+                  <code>{style[field].toUpperCase()}</code>
+                </span>
+              </label>
+            ))}
+          </div>
+        </section>
+
+        <section className="style-section">
+          <strong>Tipografia</strong>
+          <label className="style-select-row">
+            <span>Fonte principal</span>
+            <select value={style.fontFamily} onChange={(event) => onChange({ ...style, fontFamily: event.target.value })}>
+              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Ofertamática</option>
+              <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
+              <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
+              <option value={'Arial, sans-serif'}>Arial</option>
+            </select>
+          </label>
+        </section>
+
+        <section className="style-section">
+          <strong>Cabeçalho</strong>
+          <div className="header-style-switch">
+            <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band' })}>Faixa</button>
+            <button type="button" className={style.headerStyle === 'simple' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'simple' })}>Simples</button>
+            <button type="button" className={style.headerStyle === 'hidden' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'hidden' })}>Ocultar</button>
+          </div>
+
+          <label className="style-text-row">
+            <span>Texto</span>
+            <input
+              type="text"
+              maxLength="24"
+              value={style.headerText}
+              disabled={style.headerStyle === 'hidden'}
+              onChange={(event) => onChange({ ...style, headerText: event.target.value.toLocaleUpperCase('pt-BR') })}
+            />
+          </label>
+
+          <label className="style-color-row">
+            <span>Cor do texto</span>
+            <span className="style-color-control">
+              <input
+                type="color"
+                value={style.headerTextColor}
+                onChange={(event) => onChange({ ...style, headerTextColor: event.target.value })}
+                aria-label="Cor do texto do cabeçalho"
+              />
+              <code>{style.headerTextColor.toUpperCase()}</code>
+            </span>
+          </label>
+        </section>
+
+        <section className="style-section">
+          <strong>Preço</strong>
+          <label className="style-toggle-row">
+            <span><b>Mostrar R$</b><small>Exibir símbolo da moeda junto ao preço</small></span>
+            <input type="checkbox" checked={style.showCurrency} onChange={(event) => onChange({ ...style, showCurrency: event.target.checked })} />
+          </label>
+        </section>
+
+        <p className="style-save-note">As alterações ficam salvas automaticamente neste dispositivo.</p>
+      </div>
+    </aside>
+  )
+}
+
 function Editor({
   formatId, sourceText, setSourceText, products, setProducts, selectedProductId,
   setSelectedProductId, pageIndex, setPageIndex, onChangeFormat,
@@ -313,11 +453,35 @@ function Editor({
   const [mobileTab, setMobileTab] = useState('products')
   const [deletedSnapshot, setDeletedSnapshot] = useState(null)
   const [inputMenuOpen, setInputMenuOpen] = useState(false)
+  const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const fileInput = useRef(null)
   const inputMenuRef = useRef(null)
 
   const format = getPosterFormat(formatId)
-  const template = getDefaultTemplateForFormat(formatId)
+  const baseTemplate = getDefaultTemplateForFormat(formatId)
+  const template = useMemo(() => ({
+    ...baseTemplate,
+    showCurrency: posterStyle.showCurrency,
+    headerText: posterStyle.headerText || 'OFERTA',
+    headerStyle: posterStyle.headerStyle,
+  }), [baseTemplate, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle])
+
+  const posterStyleVars = {
+    '--poster-background': posterStyle.backgroundColor,
+    '--poster-text-color': posterStyle.textColor,
+    '--poster-price-color': posterStyle.priceColor,
+    '--poster-header-color': posterStyle.headerColor,
+    '--poster-header-text-color': posterStyle.headerTextColor,
+    '--poster-font-family': posterStyle.fontFamily,
+  }
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(POSTER_STYLE_KEY, JSON.stringify(posterStyle))
+    } catch {
+      // Personalização continua funcionando mesmo sem armazenamento local.
+    }
+  }, [posterStyle])
 
   useEffect(() => {
     function closeInputMenu(event) {
@@ -531,7 +695,7 @@ function Editor({
   }
 
   return (
-    <main className="editor-page">
+    <main className="editor-page" style={posterStyleVars}>
       <div className="editor-topline">
         <div className="editor-context">
           <strong>{format.shortLabel} · {products.length} {products.length === 1 ? 'produto' : 'produtos'}</strong>
@@ -546,6 +710,7 @@ function Editor({
       <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor">
         <button type="button" role="tab" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
         <button type="button" role="tab" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
+        <button type="button" role="tab" aria-selected={mobileTab === 'style'} className={mobileTab === 'style' ? 'active' : ''} onClick={() => setMobileTab('style')}>Estilo</button>
       </div>
 
       <section className="editor-layout">
@@ -712,6 +877,13 @@ function Editor({
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
           <button className="print-button" type="button" disabled={!products.length} onClick={() => setReviewOpen(true)}>Revisar e imprimir</button>
         </aside>
+
+        <StyleSidebar
+          style={posterStyle}
+          onChange={setPosterStyle}
+          onReset={() => setPosterStyle({ ...DEFAULT_POSTER_STYLE })}
+          mobileActive={mobileTab === 'style'}
+        />
       </section>
 
       <div className="poster-print-root" aria-hidden="true">

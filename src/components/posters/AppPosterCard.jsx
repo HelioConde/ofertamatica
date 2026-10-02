@@ -22,13 +22,13 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
     appPrice: product.price ? `${template.showCurrency && !template.currencyFromBackground ? 'R$ ' : ''}${product.price}` : '',
     validity: product.validity ? (product.validity.toLocaleUpperCase('pt-BR').startsWith('OFERTA') ? product.validity : `OFERTA VÁLIDA ATÉ ${product.validity}`) : template.appValidityText,
     regularLabel: product.regularLabel || template.appRegularLabel,
-    regularPrice: product.regularPrice ? `R$ ${product.regularPrice}` : '',
+    regularPrice: product.regularPrice ? `${template.showCurrency ? 'R$ ' : ''}${product.regularPrice}` : '',
   }
   return (
     <article className={`poster-card poster-app-card ofertamatica-app-card ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
       <div className="ofertamatica-app-background" aria-hidden="true">
-        <div className="ofertamatica-app-ribbon"><span className="ofertamatica-bag-mark">✓</span><b>OFERTA APP</b></div>
+        <div className={`ofertamatica-app-ribbon header-${template.headerStyle || 'band'}`}><span className="ofertamatica-bag-mark">✓</span><b>{template.headerText || 'OFERTA APP'}</b></div>
         <div className="ofertamatica-app-frame" />
         <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
       </div>

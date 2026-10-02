@@ -2107,3 +2107,298 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
     -webkit-print-color-adjust: exact;
   }
 }
+
+
+/* Barra lateral direita de personalização */
+@media (min-width: 1001px) {
+  .editor-layout {
+    grid-template-columns: minmax(0, 1fr) 292px 224px !important;
+    gap: 10px !important;
+  }
+
+  .style-sidebar {
+    min-width: 0;
+    height: 100%;
+    max-height: 100%;
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid #d8e3ef;
+    border-radius: 12px;
+    background: #fff;
+  }
+}
+
+.style-sidebar-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 10px 8px;
+  border-bottom: 1px solid #e6ecf3;
+}
+
+.style-sidebar-head h2 {
+  margin: 0;
+  color: #293951;
+  font-size: 13px;
+}
+
+.style-reset-top {
+  height: 25px;
+  padding: 0 7px;
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  background: #fff;
+  color: #607089;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.style-sidebar-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 8px;
+}
+
+.style-section {
+  display: grid;
+  gap: 8px;
+  padding: 9px 2px 10px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.style-section > strong {
+  color: #5f7088;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.style-presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.style-presets button {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 4px;
+  border: 1px solid #dfe7f0;
+  border-radius: 7px;
+  background: #fff;
+  text-align: left;
+}
+
+.style-presets button:hover { border-color: #a9c3ee; }
+
+.style-presets button > span {
+  width: 26px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 8px;
+  font-weight: 1000;
+}
+
+.style-presets small {
+  overflow: hidden;
+  color: #52637b;
+  font-size: 7px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.style-color-list { display: grid; gap: 6px; }
+
+.style-color-row,
+.style-select-row,
+.style-text-row {
+  display: grid;
+  gap: 4px;
+}
+
+.style-color-row > span:first-child,
+.style-select-row > span,
+.style-text-row > span {
+  color: #687991;
+  font-size: 7.5px;
+  font-weight: 750;
+}
+
+.style-color-control {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 3px 6px 3px 3px;
+  border: 1px solid #dfe7f0;
+  border-radius: 7px;
+  background: #fbfcfe;
+}
+
+.style-color-control input[type="color"] {
+  width: 28px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.style-color-control code {
+  color: #64758c;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 7px;
+}
+
+.style-select-row select,
+.style-text-row input {
+  width: 100%;
+  height: 31px;
+  padding: 0 7px;
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  background: #fff;
+  color: #394b65;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.header-style-switch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  border-radius: 7px;
+  background: #f0f4f8;
+}
+
+.header-style-switch button {
+  height: 27px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #718198;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.header-style-switch button.active {
+  background: #fff;
+  color: var(--blue);
+  box-shadow: 0 1px 5px rgba(34,57,89,.08);
+}
+
+.style-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.style-toggle-row > span { display: grid; gap: 1px; }
+.style-toggle-row b { color: #44566f; font-size: 8px; }
+.style-toggle-row small { color: #8a97a9; font-size: 6.5px; line-height: 1.2; }
+
+.style-toggle-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--blue);
+}
+
+.style-save-note {
+  margin: 8px 2px 2px;
+  color: #94a0b0;
+  font-size: 6.5px;
+  line-height: 1.35;
+}
+
+/* Variáveis de estilo aplicadas tanto na prévia quanto na impressão */
+.poster-card-layers,
+.poster-app-card,
+.ofertamatica-poster-background,
+.ofertamatica-app-background {
+  background: var(--poster-background, #fff200) !important;
+}
+
+.poster-planned-field:not(.poster-field-price),
+.poster-app-title > span,
+.poster-app-validity > span,
+.poster-app-regularLabel > span {
+  color: var(--poster-text-color, #050505) !important;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif) !important;
+}
+
+.poster-field-price,
+.poster-currency-inline,
+.poster-app-appPrice > span,
+.poster-app-regularPrice > span {
+  color: var(--poster-price-color, #e60025) !important;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif) !important;
+}
+
+.ofertamatica-offer-ribbon,
+.ofertamatica-app-ribbon {
+  background: var(--poster-header-color, #e51e31) !important;
+  color: var(--poster-header-text-color, #fff) !important;
+}
+
+.ofertamatica-offer-ribbon.header-simple,
+.ofertamatica-app-ribbon.header-simple {
+  min-width: 0;
+  padding: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--poster-price-color, #e60025) !important;
+}
+
+.ofertamatica-offer-ribbon.header-simple .ofertamatica-bag-mark,
+.ofertamatica-app-ribbon.header-simple .ofertamatica-bag-mark {
+  display: none;
+}
+
+.ofertamatica-offer-ribbon.header-hidden,
+.ofertamatica-app-ribbon.header-hidden {
+  display: none !important;
+}
+
+@media (max-width: 1000px) {
+  .mobile-editor-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .editor-layout {
+    display: block !important;
+  }
+
+  .style-sidebar {
+    min-height: calc(100dvh - 155px);
+    border: 1px solid #d8e3ef;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .style-sidebar.mobile-panel-hidden { display: none !important; }
+  .style-sidebar.mobile-panel-active { display: grid !important; grid-template-rows: auto minmax(0, 1fr); }
+
+  .editor-main.mobile-panel-hidden,
+  .preview-card.mobile-panel-hidden {
+    display: none !important;
+  }
+}
+
+@media print {
+  body.poster-printing .style-sidebar { display: none !important; }
+}

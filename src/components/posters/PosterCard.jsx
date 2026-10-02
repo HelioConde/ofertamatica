@@ -46,11 +46,11 @@ function ContentBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
   )
 }
 
-function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
+function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown, showCurrency = true }) {
   return (
     <div className={`poster-layout-box poster-price-box ${showDebug ? 'poster-layout-box-debug' : ''}`} style={boxStyle(box)} data-layout-box="priceBox" onPointerDown={editable ? (event) => onBoxPointerDown?.('priceBox', 'move', event) : undefined}>
       <div className="poster-price-content">
-        <span className="poster-currency-inline">R$</span>
+        {showCurrency ? <span className="poster-currency-inline">R$</span> : null}
         <div className="poster-field poster-planned-field poster-field-price" style={plannedFieldStyle(plan.price, box)}>{plan.price.text || '\u00a0'}</div>
       </div>
       {showDebug ? <span className="poster-box-label">priceBox</span> : null}
@@ -78,14 +78,14 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
       <div className="poster-card-layers">
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
         <div className="ofertamatica-poster-background" aria-hidden="true">
-          <div className="ofertamatica-offer-ribbon"><span className="ofertamatica-bag-mark">✓</span><b>OFERTA</b></div>
+          <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'band'}`}><span className="ofertamatica-bag-mark">✓</span><b>{template.headerText || 'OFERTA'}</b></div>
           <div className="ofertamatica-inner-frame" />
           <div className="ofertamatica-poster-signature">OFERTAMÁTICA</div>
         </div>
         {showBackground ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
         {showLayoutDebug ? <div className="poster-safe-area" style={{ inset: `${template.safeArea}%` }} aria-hidden="true" /> : null}
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
-        <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
+        <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
       </div>
     </article>
   )
