@@ -2402,3 +2402,220 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 @media print {
   body.poster-printing .style-sidebar { display: none !important; }
 }
+
+
+/* Biblioteca de headers em img/ */
+.style-section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.style-section-title-row > strong {
+  color: #5f7088;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.style-section-title-row > small {
+  color: #9aa6b5;
+  font-size: 6.5px;
+  font-weight: 750;
+}
+
+.selected-header-preview {
+  display: grid;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid #b9cdf0;
+  border-radius: 8px;
+  background: #f6f9ff;
+}
+
+.selected-header-preview > img {
+  width: 100%;
+  height: 52px;
+  display: block;
+  object-fit: contain;
+  border-radius: 5px;
+  background: #eef3f8;
+}
+
+.selected-header-preview > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.selected-header-preview strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #3e506c;
+  font-size: 7.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-header-preview button {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: #c43b3b;
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.default-header-choice {
+  width: 100%;
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border: 1px solid #dfe7f0;
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+}
+
+.default-header-choice > span {
+  display: grid;
+  place-items: center;
+  min-height: 27px;
+  border-radius: 999px;
+  background: var(--poster-header-color, #e51e31);
+  color: var(--poster-header-text-color, #fff);
+  font-size: 8px;
+  font-weight: 1000;
+}
+
+.default-header-choice small {
+  color: #718198;
+  font-size: 6.5px;
+  font-weight: 750;
+}
+
+.header-search {
+  display: grid;
+  gap: 4px;
+}
+
+.header-search > span {
+  color: #687991;
+  font-size: 7px;
+  font-weight: 750;
+}
+
+.header-search input {
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  background: #fff;
+  color: #3e4f68;
+  font-size: 8px;
+}
+
+.header-art-grid {
+  max-height: 250px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
+}
+
+.header-art-grid > button {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 50px auto;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #dfe7f0;
+  border-radius: 7px;
+  background: #fff;
+  text-align: left;
+}
+
+.header-art-grid > button:hover {
+  border-color: #a7c0ea;
+  background: #f8fbff;
+}
+
+.header-art-grid > button.active {
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--blue);
+  background: #f1f6ff;
+}
+
+.header-art-grid img {
+  width: 100%;
+  height: 50px;
+  display: block;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #eef3f8;
+}
+
+.header-art-grid span {
+  overflow: hidden;
+  color: #53637a;
+  font-size: 6.5px;
+  font-weight: 750;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-empty {
+  margin: 0;
+  padding: 8px;
+  border-radius: 7px;
+  background: #f7f9fc;
+  color: #8794a6;
+  font-size: 7px;
+  text-align: center;
+}
+
+.ofertamatica-custom-header {
+  position: absolute;
+  z-index: 5;
+  left: 4.5%;
+  right: 4.5%;
+  top: 1.8%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ofertamatica-custom-header img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ofertamatica-custom-header-app {
+  left: 3.5%;
+  right: 3.5%;
+  top: 1.5%;
+  height: 16%;
+}
+
+@media print {
+  .ofertamatica-custom-header img {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

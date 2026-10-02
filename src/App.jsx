@@ -6,6 +6,26 @@ import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 
+const HEADER_IMAGE_MODULES = import.meta.glob('../img/*.png', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+const HEADER_IMAGES = Object.entries(HEADER_IMAGE_MODULES)
+  .map(([path, url]) => {
+    const fileName = path.split('/').pop()
+    const rawName = fileName.replace(/\.png$/i, '')
+    const label = rawName
+      .split(' ')
+      .map((word) => word ? word.charAt(0).toLocaleUpperCase('pt-BR') + word.slice(1) : word)
+      .join(' ')
+    return { id: fileName, label, url }
+  })
+  .sort((a, b) => a.label.localeCompare(b.label, 'pt-BR'))
+
+const HEADER_IMAGE_BY_ID = Object.fromEntries(HEADER_IMAGES.map((item) => [item.id, item.url]))
+
 const EXAMPLE_TEXT = [
   'Cerveja Heineken Long Neck 300ml 5,99',
   'Pão Francês kg 10,90',
@@ -27,6 +47,7 @@ const DEFAULT_POSTER_STYLE = {
   fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
   headerStyle: 'band',
   headerText: 'OFERTA',
+  headerImage: '',
   showCurrency: true,
 }
 
@@ -331,6 +352,11 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
 }
 
 function StyleSidebar({ style, onChange, onReset, mobileActive }) {
+  const [headerSearch, setHeaderSearch] = useState('')
+  const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
+  const visibleHeaders = normalizedSearch
+    ? HEADER_IMAGES.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
+    : HEADER_IMAGES
   const colorFields = [
     ['backgroundColor', 'Fundo'],
     ['textColor', 'Texto'],
@@ -394,8 +420,57 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
           </label>
         </section>
 
+        <section className="style-section header-library-section">
+          <div className="style-section-title-row">
+            <strong>Header da placa</strong>
+            <small>{HEADER_IMAGES.length} artes</small>
+          </div>
+
+          {style.headerImage ? (
+            <div className="selected-header-preview">
+              <img src={HEADER_IMAGE_BY_ID[style.headerImage]} alt="" />
+              <div>
+                <strong>{HEADER_IMAGES.find((item) => item.id === style.headerImage)?.label || 'Header selecionado'}</strong>
+                <button type="button" onClick={() => onChange({ ...style, headerImage: '' })}>Remover</button>
+              </div>
+            </div>
+          ) : (
+            <button type="button" className="default-header-choice active">
+              <span>OFERTA</span>
+              <small>Cabeçalho padrão</small>
+            </button>
+          )}
+
+          <label className="header-search">
+            <span>Buscar arte</span>
+            <input
+              type="search"
+              value={headerSearch}
+              onChange={(event) => setHeaderSearch(event.target.value)}
+              placeholder="Ex.: padaria, açougue..."
+            />
+          </label>
+
+          <div className="header-art-grid">
+            {visibleHeaders.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                className={style.headerImage === item.id ? 'active' : ''}
+                onClick={() => onChange({ ...style, headerImage: item.id })}
+                title={item.label}
+              >
+                <img src={item.url} alt="" loading="lazy" />
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {!visibleHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
+        </section>
+
         <section className="style-section">
-          <strong>Cabeçalho</strong>
+          <strong>Cabeçalho padrão</strong>
           <div className="header-style-switch">
             <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band' })}>Faixa</button>
             <button type="button" className={style.headerStyle === 'simple' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'simple' })}>Simples</button>
@@ -464,7 +539,8 @@ function Editor({
     showCurrency: posterStyle.showCurrency,
     headerText: posterStyle.headerText || 'OFERTA',
     headerStyle: posterStyle.headerStyle,
-  }), [baseTemplate, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle])
+    headerImage: HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
+  }), [baseTemplate, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
