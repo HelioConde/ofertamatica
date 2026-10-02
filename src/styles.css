@@ -537,3 +537,342 @@ a { color: inherit; text-decoration: none; }
   .poster-art { width: 148mm !important; box-shadow: none !important; }
   .modal-backdrop { display: none !important; }
 }
+
+
+/* Workspace compacto: a ferramenta inteira cabe na viewport no desktop */
+.editor-context {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.editor-context strong {
+  color: #26344f;
+  font-size: 14px;
+  letter-spacing: -.02em;
+}
+.editor-context span {
+  color: #718098;
+  font-size: 9px;
+}
+
+.change-format {
+  min-width: 0;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-items: auto;
+  gap: 6px;
+  padding: 7px 11px;
+}
+.change-format span,
+.change-format b {
+  font-size: 9px;
+}
+
+@media (min-width: 821px) {
+  .format-mode,
+  .editor-mode {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .format-page {
+    height: calc(100dvh - 68px);
+    min-height: 0;
+    padding: 14px 0;
+    display: flex;
+  }
+
+  .format-dialog {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .format-dialog-head {
+    padding: 17px 24px 14px;
+  }
+
+  .format-dialog h1 {
+    font-size: 20px;
+  }
+
+  .format-dialog-head p {
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  .format-grid {
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 13px 18px 16px;
+  }
+
+  .format-choice {
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    padding: 7px;
+  }
+
+  .format-thumb {
+    height: 100%;
+    min-height: 82px;
+    max-height: 120px;
+  }
+
+  .format-copy {
+    padding-top: 7px;
+  }
+
+  .format-copy small {
+    margin-top: 3px;
+  }
+
+  .format-copy b {
+    margin-top: 4px;
+    padding: 3px 5px;
+  }
+
+  .editor-page {
+    height: calc(100dvh - 68px);
+    min-height: 0;
+    padding: 9px 0 11px;
+    display: grid;
+    grid-template-rows: 38px minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .editor-topline {
+    min-height: 0;
+    height: 38px;
+    margin: 0;
+    align-items: center;
+  }
+
+  .editor-layout {
+    min-height: 0;
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 11px;
+    align-items: stretch;
+  }
+
+  .editor-main {
+    min-height: 0;
+    height: 100%;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .editor-card,
+  .preview-card {
+    border-radius: 12px;
+  }
+
+  .editor-card > header,
+  .preview-card > header {
+    padding: 10px 13px 8px;
+  }
+
+  .section-label {
+    margin-bottom: 3px;
+    font-size: 7.5px;
+  }
+
+  .editor-card header h2,
+  .preview-card header h2 {
+    font-size: 14px;
+  }
+
+  .editor-card header p {
+    margin-top: 3px;
+    font-size: 8px;
+  }
+
+  .format-chip,
+  .round-count {
+    padding: 5px 7px;
+    font-size: 7px;
+  }
+
+  .editor-card textarea {
+    width: calc(100% - 26px);
+    min-height: 96px;
+    max-height: 118px;
+    margin: 0 13px;
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  .editor-actions {
+    min-height: 42px;
+    gap: 6px;
+    padding: 7px 13px 9px;
+  }
+
+  .icon-button,
+  .quiet-button {
+    height: 31px;
+    font-size: 8px;
+  }
+
+  .icon-button {
+    width: 33px;
+    font-size: 16px;
+  }
+
+  .quiet-button {
+    padding: 0 9px;
+  }
+
+  .product-count {
+    font-size: 8px;
+  }
+
+  .generate-button {
+    height: 31px;
+    padding: 0 14px;
+    font-size: 8.5px;
+  }
+
+  .interpreted {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .interpreted > header {
+    flex: 0 0 auto;
+  }
+
+  .product-table {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #b8c8db transparent;
+  }
+
+  .product-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .product-row {
+    grid-template-columns: 28px 1.2fr 1.15fr 1.55fr .8fr .78fr;
+    gap: 6px;
+    padding: 4px 7px;
+  }
+
+  .product-row input {
+    padding: 6px 7px;
+    font-size: 8.5px;
+  }
+
+  .preview-card {
+    position: static;
+    min-height: 0;
+    height: 100%;
+    padding-bottom: 8px;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) 22px 31px 30px 34px;
+    overflow: hidden;
+  }
+
+  .preview-stage {
+    min-height: 0;
+    height: 100%;
+    margin: 0 9px;
+    padding: 9px;
+  }
+
+  .poster-art {
+    width: auto;
+    height: 100%;
+    max-height: 400px;
+    max-width: 100%;
+  }
+
+  .poster-offer {
+    height: 11%;
+    font-size: clamp(17px, 2.1vh, 25px);
+  }
+
+  .poster-text {
+    height: 59%;
+  }
+
+  .poster-text strong {
+    font-size: clamp(21px, 3.2vh, 33px);
+  }
+
+  .poster-text .poster-complement {
+    font-size: clamp(17px, 2.4vh, 23px);
+  }
+
+  .poster-text span {
+    font-size: clamp(9px, 1.4vh, 12px);
+  }
+
+  .poster-price b {
+    font-size: clamp(43px, 7.4vh, 64px);
+  }
+
+  .preview-title {
+    min-height: 0;
+    height: 22px;
+    padding: 2px 8px;
+    font-size: 7.5px;
+  }
+
+  .preview-pager {
+    height: 31px;
+    margin: 0 9px;
+  }
+
+  .preview-pager button,
+  .outline-button {
+    height: 28px;
+  }
+
+  .outline-button,
+  .print-button {
+    width: calc(100% - 18px);
+    margin: 0 9px 5px;
+    font-size: 8.5px;
+  }
+
+  .print-button {
+    height: 32px;
+  }
+}
+
+@media (max-width: 820px) {
+  .format-mode,
+  .editor-mode {
+    height: auto;
+    overflow: visible;
+  }
+
+  .editor-page {
+    height: auto;
+    overflow: visible;
+  }
+
+  .editor-context {
+    display: grid;
+    gap: 1px;
+  }
+
+  .product-table {
+    overflow: visible;
+  }
+}

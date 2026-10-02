@@ -147,18 +147,6 @@ function FormatChooser({ onSelect }) {
           ))}
         </div>
       </section>
-
-      <section className="discovery-strip" id="guias">
-        <div>
-          <span>Não sabe qual escolher?</span>
-          <strong>Comece pelo A4 4x1 para ofertas rápidas ou A4 para uma placa maior.</strong>
-        </div>
-        <div className="discovery-links">
-          <a href="#como-funciona">Como criar uma placa</a>
-          <a href="#modelos">Modelos para supermercado</a>
-          <a href="#formatos">Guia de formatos</a>
-        </div>
-      </section>
     </main>
   )
 }
@@ -233,10 +221,9 @@ function Editor({ formatId, onChangeFormat }) {
   return (
     <main className="editor-page">
       <div className="editor-topline">
-        <div>
-          <span className="eyebrow">CRIAR CARTAZ</span>
-          <h1>Monte suas placas</h1>
-          <p>Cole seus produtos, confira a interpretação e imprima.</p>
+        <div className="editor-context">
+          <strong>Cartaz rápido</strong>
+          <span>Cole, revise e imprima.</span>
         </div>
         <button className="change-format" type="button" onClick={onChangeFormat}>
           <span>{format.label}</span>
@@ -336,14 +323,6 @@ function Editor({ formatId, onChangeFormat }) {
         </aside>
       </section>
 
-      <aside className="ad-placeholder">ESPAÇO PARA ANÚNCIO</aside>
-
-      <section className="editor-info" id="como-funciona">
-        <article id="modelos"><span>01</span><h3>Modelos prontos</h3><p>Vamos adicionar páginas por segmento para supermercado, padaria, açougue, hortifruti e outros.</p></article>
-        <article><span>02</span><h3>Escolha o formato</h3><p>A4 4x1, A4 2x1, A4, A5, A3 e formatos especiais em um único fluxo.</p></article>
-        <article><span>03</span><h3>Imprima sem cadastro</h3><p>A ferramenta principal continuará liberada para uso imediato.</p></article>
-      </section>
-
       {expanded && current && (
         <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setExpanded(false)}>
           <section className="poster-modal" role="dialog" aria-modal="true">
@@ -373,18 +352,13 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${screen === 'editor' ? 'editor-mode' : 'format-mode'}`}>
       <Navigation onCreate={showFormats} />
       {screen === 'formats' ? (
         <FormatChooser onSelect={startWithFormat} />
       ) : (
         <Editor formatId={formatId} onChangeFormat={showFormats} />
       )}
-      <footer className="site-footer">
-        <Brand />
-        <p>Crie placas de oferta profissionais, sem cadastro obrigatório.</p>
-        <nav><a href="#modelos">Modelos</a><a href="#formatos">Formatos</a><a href="#como-funciona">Como funciona</a><a href="#guias">Guias</a></nav>
-      </footer>
     </div>
   )
 }
