@@ -327,6 +327,15 @@ function Editor({ formatId, onChangeFormat }) {
             <button type="button" onClick={() => setActiveIndex((value) => products.length ? (value + 1) % products.length : 0)}>›</button>
           </div>
 
+          <aside className="preview-ad-card" aria-label="Publicidade">
+            <span>PUBLICIDADE</span>
+            <div>
+              <b>AD</b>
+              <strong>Espaço para anúncio</strong>
+              <small>Google AdSense</small>
+            </div>
+          </aside>
+
           <button className="outline-button" type="button" disabled={!current} onClick={() => setExpanded(true)}>Ampliar placa</button>
           <button className="print-button" type="button" disabled={!current} onClick={() => window.print()}>Revisar e imprimir</button>
         </aside>
