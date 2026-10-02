@@ -7,15 +7,39 @@ Ofertamática é uma plataforma SaaS para criar placas promocionais, cartazes, t
 Este repositório contém a reconstrução da **Ofertamática V2**, iniciada do zero.
 
 - A versão atual em produção (V1) permanece intacta na Locaweb.
-- Este repositório não publica em produção enquanto a V2 estiver em desenvolvimento.
-- O deploy automático será configurado primeiro para um ambiente de homologação/beta.
+- A V2 usa React + Vite.
+- O deploy automático da V2 aponta somente para `public_html/beta`.
+- O domínio principal não é sobrescrito durante o desenvolvimento.
 - Credenciais, chaves de API, senhas e arquivos `.env` nunca devem ser versionados.
+
+## Desenvolvimento
+
+```bash
+npm install
+npm run dev
+```
+
+Build de produção:
+
+```bash
+npm run build
+```
+
+## Deploy beta
+
+Todo push na branch `main` executa o workflow `.github/workflows/deploy-beta.yml`, gera `dist/` e envia o build para:
+
+```text
+public_html/beta
+```
+
+O ambiente beta poderá ser acessado inicialmente por `/beta/` e depois associado a um subdomínio de homologação.
 
 ## Estratégia
 
 1. Preservar e exportar a V1 atual.
 2. Desenvolver a V2 neste repositório.
-3. Publicar a V2 em ambiente beta.
+3. Publicar a V2 no ambiente beta.
 4. Validar cartazes, importação, IA, autenticação e responsividade.
 5. Somente depois trocar o domínio principal para a V2.
 
