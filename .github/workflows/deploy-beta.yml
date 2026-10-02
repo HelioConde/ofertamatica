@@ -29,7 +29,20 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy production to Locaweb
+      # Deploy imutável/seguro:
+      # 1) envia os assets com hash primeiro e preserva os antigos;
+      # 2) só depois troca index.html e demais arquivos de raiz.
+      # Isso evita que o HTML aponte para JS/CSS que ainda não existem no FTP.
+      - name: Deploy assets first
+        uses: locaweb/ftp-deploy@1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          localDir: "dist/assets"
+          remoteDir: "public_html/assets"
+
+      - name: Deploy app shell after assets
         uses: locaweb/ftp-deploy@1.0.0
         with:
           host: ${{ secrets.HOST }}
@@ -37,4 +50,4 @@ jobs:
           password: ${{ secrets.PASS }}
           localDir: "dist"
           remoteDir: "public_html"
-          options: "--delete --exclude-glob beta --exclude-glob beta/**"
+          options: "--exclude-glob assets --exclude-glob assets/** --exclude-glob beta --exclude-glob beta/**"
