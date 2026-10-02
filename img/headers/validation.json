@@ -1,0 +1,2424 @@
+{
+  "processed": 73,
+  "size": [
+    1960,
+    400
+  ],
+  "safe_x": [
+    196,
+    1764
+  ],
+  "method": "whole-original proportional fit + reflected narrow edge textures; background-only blur",
+  "semantic_text_detection": false,
+  "records": [
+    {
+      "source": "adega.png",
+      "output": "adega.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "195738f066caf52f6a14de18bb10339339f859f4609af1197e3c84c50c1bb640",
+      "output_sha256": "b01e9f7b5cd315e609e5bb604b5d0e62bc5d0373723d3cebd116190d809c287f",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "aniversario da loja.png",
+      "output": "aniversario-da-loja.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "2a8b2c921b87043501b7fecc7a78b1d06d9551f17a8d131a0c8e747f81cde102",
+      "output_sha256": "9241ee720d0c515b5159c843c9eef06529201c0d666b76cbeb640631ff039ce6",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "arroz e feijão.png",
+      "output": "arroz-e-feijao.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "db1711cdfaef633ef6d3bb79960d0c51dc0d60aacdd0f7ef3553cfff75638cb6",
+      "output_sha256": "19a0c551d4153a6fcef900be4bbca1971594c02c27dccbe09aeecb22162f2cf2",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "atacado.png",
+      "output": "atacado.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "cc9d8b8097118cd2906049261614c7b0d1bdbbeed092e020b4e7438a7d9bff88",
+      "output_sha256": "5b82f25c91a43a785543f79babf70b54db53f35ee2a806b09914fd198cc8db43",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "açougue.png",
+      "output": "acougue.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "19c0af5455d5a76b007c39de8a0133f00879766815af79e20236d62c39dfbc06",
+      "output_sha256": "de772307b21a54b22b6ab50ad83a000e6137f686d5a07083d8fa8bc74b73f9d1",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "bazar.png",
+      "output": "bazar.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "f4b1329963ca1ad27ba0d0e21b59aad50f92ab949f87a78b25fc23286a64cbed",
+      "output_sha256": "0f90a1577025a6a183046ab2821a877c8f9c8714714dd6f7f6e42a6cb4851757",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "bebidas.png",
+      "output": "bebidas.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "1fca1333018cb1214a0d3bfaf07cc3b1c33e2f4efdc86ec78753a61764c36563",
+      "output_sha256": "e7660b236142462db7e8c1f022f60ba1ed8daaeacc645419968075f7f15360d5",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "bebê.png",
+      "output": "bebe.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "0f7013ba83d43313d8e66cea84733beb7c847ff1f7f59ad370c0681c8c20c54e",
+      "output_sha256": "275dc88d736a7e5b58fb5c32e2adc7885396bb203d5b3b6ebd1d4ee76c9e0425",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "beleza.png",
+      "output": "beleza.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "adf364d4070e0963d21758d9c0a576ad6a954dcf9edf7c40ce4bee061c8e5c02",
+      "output_sha256": "e4e1c67c199eeae75329338fafdb7194e41a20e365bc07d816fccad3a7c436bf",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "biscoitos e snacks.png",
+      "output": "biscoitos-e-snacks.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "097e85dff48170a61755ef283a65c5b7896928bc89729d2712053143b72680e3",
+      "output_sha256": "26d691e333fc69e95a58365255e1305ebd3689f586436f968c250d1b1e6cce13",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "black friday.png",
+      "output": "black-friday.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "26bdf492020ecf8c67d036515faa5b5b0e0db941e94ff5fa853edb5279c0512a",
+      "output_sha256": "accf14fcfbfd151fc5ff885c04bd5ff4b728c9c0486f87505b47057368c5fe64",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "bomboniere.png",
+      "output": "bomboniere.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "653a9025ff8ceff8a56ff4dcaf28ca5085fbbf7aa3e2289354adc0827922b525",
+      "output_sha256": "f440f3fc468e6d8ab7346e456a1c0b13d86e8cb1f5113e96bfadea436779313c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "cafes.png",
+      "output": "cafes.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "3989d81f3af0f746581d0a9eaf25ae7a1fe3bf41ca1c293667ee5505489093fd",
+      "output_sha256": "8a1b8f11688f21b37b86ac49cd7c7a67cf2645d89e4161b00d5cedc870590e44",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "café da manhã.png",
+      "output": "cafe-da-manha.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "c4d5bf128aa699da0451470904d369c02ae387c9d175cc5684d6118fc7965890",
+      "output_sha256": "62ed13165a24860fac57cfb26701403f85b968e296ecbfff2095af9454f7b79a",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "carnaval.png",
+      "output": "carnaval.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "5f4815a55d3a5c8af201862b7b76d6f460932b3f549955954a30048f21fd51a3",
+      "output_sha256": "e8030c9c9e822d5a8448f1bf162b28c003e165cd2ab816c1d588df103c764fdd",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "cereais e matinais.png",
+      "output": "cereais-e-matinais.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "35207fd2986a4846273181f2b075dc5cd250429bdb8e914f94f9dfca675b136d",
+      "output_sha256": "ae5a8763cbe9337747e653a723af95c29a8bda9bb534cca4a75d61d02c1bf7fa",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "cervejas.png",
+      "output": "cervejas.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "642f2aaca98209460ceba8971c89a2075b4b3eb0daebb2e9abcba215b266e4bc",
+      "output_sha256": "b5b373fa5298c1e87864befacd09f1c4685a8de7ef550b533616006aff4f95ba",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "churrasco.png",
+      "output": "churrasco.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "ed280dcf3906ffa7899bb8ae83e2ecdbf2f3e8bd10c5020861f8e9aa6f4f8564",
+      "output_sha256": "0b0c68da84898a30930ebdffba009076a3429c59c5f8ad69a59aa1e907713b81",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "clube de ofertas.png",
+      "output": "clube-de-ofertas.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "a518e8ec6ad1e1d2b7e24fd4ef6d158b71f9298c2f42d9941cb7161d6cd389f5",
+      "output_sha256": "722d0aad107ed02e5f59f0e763f0ec6d51a5ea2854f7ae4bff5175f44a4129f4",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "compre 2 leve 3.png",
+      "output": "compre-2-leve-3.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "373cafdccedda5cf049a3dc5f476869fba39dc025d0947566e0ad838d2093419",
+      "output_sha256": "30ea1a3eb360697613248855319c0ce3612a2a32caa9c11dc9db3b6e43fedd94",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "congelados.png",
+      "output": "congelados.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "a28b15c3c05c0e91933ed8a08952fba8ecebf8e84d6b2760facd3fce628a3a0e",
+      "output_sha256": "b850d4c40770495e2d5c4146d98d7834454dec71481889b44f5085a80238258c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "destilados.png",
+      "output": "destilados.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "b87794d5b50272c579d2652682f5f76557b694405aaf02f8ab20c133ab7d9f68",
+      "output_sha256": "26d7ae75315c50d24ffcf6f595a379652b33cdd6fedbb51a31be196fef05ff24",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "dia das mães.png",
+      "output": "dia-das-maes.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "6bbe86e2e2f95f1cb88a9be77c0c5a955b9d75ba3daf99b3f9c0f2f84d9b108d",
+      "output_sha256": "ead55bc29a1d519ddcdd7342bda69b8c6e7adf7132a6ee05afaaac4bff7c15d4",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "dia dos namorados.png",
+      "output": "dia-dos-namorados.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "9bab82219d28e73a1bfead6ea149b4b5b7301684b0fba5b5ef3fd5f1c08d1e55",
+      "output_sha256": "3504dc945f14c0401351e37fd4dd162dff15a9bf3d08333c9e4e6760a51c9b47",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "dia dos pais.png",
+      "output": "dia-dos-pais.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "87a169da37d6fd2ce0de77b0a3431fb32e0c43f58b36ceeb1071663c37c73669",
+      "output_sha256": "1bc8472ddffed911b62d364d6261e94efd5a2ee7125b58e985199d8b8bf4c049",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "dias das crianças.png",
+      "output": "dias-das-criancas.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "22b2604b602700862204b4b75a1df2cde42c59109543b3065a153d883b330b12",
+      "output_sha256": "8fcc11b6da43439e10dcb1c1e92fe18eb0fb9f07a045b7d9123dcf6fca368631",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "doce.png",
+      "output": "doce.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "4a48f0e954ea6582d4086a107f67070e58e6cf9144d8cb477a943d52c34ce066",
+      "output_sha256": "1ec14772f68ac0a560f373fc58c04cd86416edf4fa281a8dfae3077cb10b715d",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "economia de verdade.png",
+      "output": "economia-de-verdade.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "84955259d942dd86053b715f76048392d378f3792b3867108453b3f06e5afd5d",
+      "output_sha256": "6403a278701cffabeb5739a8486388edcc7070fb47703e081159f0160bc14878",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "feira livre.png",
+      "output": "feira-livre.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "37ade651a1e5f89ee2276db1df2de9be2a1654c86fd2c6d298eb2e0251eee5fc",
+      "output_sha256": "c94ff22d033eace7bb47f58304d2ba0fa6abc0342af7a4fdac75194a61077f3b",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "feita do hortifruti.png",
+      "output": "feita-do-hortifruti.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "28fbc5c72363b78be5ea41538348bf2d72aa26610aa5f6e9be0f94aa151687c7",
+      "output_sha256": "fe0ff573ce1c64bff4aa7e01e0af8b5c12fe0ef65f6be7bb58df76488a7a5b36",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festa junina.png",
+      "output": "festa-junina.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "ba07876e2f4af50c0b296965f1f4f3309ef7ba9b3cbdbe8cc2a9b141474e57c7",
+      "output_sha256": "8fed06beefe1399bf00928f21d2853187610116e407c740cfbfff94ed90cf8a1",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de carnes.png",
+      "output": "festival-de-carnes.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "7020d62cfa57ec05695c9446d8fda03567da8985845574436880ef8af2ee6f8b",
+      "output_sha256": "172b2aa7b2c3d781275069bf439a49fd66c96fc731301b465053636dd356803f",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de frango.png",
+      "output": "festival-de-frango.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "2f6b67686cbd8abdbaad7d42b9c2df1982f1f48a9b04edb302d0a7cd8464f2c3",
+      "output_sha256": "03b14039e73aec46b2a0e9fe2a595806e8ca95a27040f33773662622408ba7b0",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de frutas.png",
+      "output": "festival-de-frutas.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "575d55d19a0c0cf5308e74b40dd74594e36fcfb89b77328d69093b59d2dd30f2",
+      "output_sha256": "9c1a8d49aaaf93d1e5d02a576f8e412561e71b5b63e8b40bb711d289ab6b2bf0",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de legumes.png",
+      "output": "festival-de-legumes.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "3b4b7af5b0772a3be5de5c768097cd67a7ddea59d3f54667fbf604a58001e4e3",
+      "output_sha256": "bff4d5c5ce02c29b71ccf1d00217fe1263a139440124d14cf964ca752844137d",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de linguiça.png",
+      "output": "festival-de-linguica.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "a083fd91efa02c4dd0abf1321fbf2f5c85c92c9a132f4584e9dcb01add9d00f7",
+      "output_sha256": "d16df57235cc6ee798b7187a59c71b1460161b062e9eea611ad0f0b5cb62d277",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de ofertas.png",
+      "output": "festival-de-ofertas.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "00490a116a34969c622ba2cc5f5fd2cf64151e4a3ead1faf65dbdc833b3b4538",
+      "output_sha256": "b626e4c746143d8a724913e0caa78204c7f1757c85913cf9062a83e49e75f96c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de peixe.png",
+      "output": "festival-de-peixe.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "dcc15ef67d490cae59c0ed81580a7d0e85b3177acc200dac566d4e9faa445797",
+      "output_sha256": "a870d8a8b03a088a155de1af60cdf7101bf9b10dca4e129bddae2b2da29c346d",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "festival de verduras.png",
+      "output": "festival-de-verduras.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "2f717317f783aeb6197258d87a92f3c833565ee4a709e120b2402e8a7685d38f",
+      "output_sha256": "07729fcfb81c938489d720cd790bf69e6300d6717239af08b2a4f70638e6d0c4",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "framacia e cuidados.png",
+      "output": "framacia-e-cuidados.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "6f527b40edaa4130e2b90b9ea5348568004cb9eb4b8d3d1346ef0382874fccde",
+      "output_sha256": "f28c30aeb4081d022a5ae28a040dca6db1dc9651037b87f2c63e61632af66de3",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "frios e laticinios.png",
+      "output": "frios-e-laticinios.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "dc1d4ba13a31155e12bcd593e7b827e1450cae634e13de8503025ac1b4ccbe18",
+      "output_sha256": "e1b7481d54f58ed0f548cf5fabfb905c24d76efc6082955790fe7533391c5ae7",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "halloween.png",
+      "output": "halloween.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "5fe0cac63b286bfa34592560e10b5f5d8b18e3059c135a3ecceca8a4dc4afe7b",
+      "output_sha256": "a8911ad9703397fb806e2a6d5725fe2a23e76a27ad0ebc4b19271c2377e3c9c5",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "higiene.png",
+      "output": "higiene.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "12dde54fe061a0e6a14e90585f3419dbef9b84286f7f7fb327e94ee193aeb3cf",
+      "output_sha256": "21ec266e51c68a8b9c452c39b80f7efc5b53e9ba85aed8f0763cb4a21d561785",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "hortifruti.png",
+      "output": "hortifruti.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "87c65f9a100df5716f2acb2c59228fed3cad4db624ac4498a275c3f655200851",
+      "output_sha256": "2f2c67259c5de0112127d0538da33a690b2e28ce528d5c26a55ba753df789890",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "inauguração.png",
+      "output": "inauguracao.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "2d12b603b5c97ee27f7c2a68899010e4dd103668040b10ae500d6d76982b1830",
+      "output_sha256": "2bd5febd582d14d303cf89e8076be239c3a828488219f9ec296aecef967b2663",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "leve mais pague menos.png",
+      "output": "leve-mais-pague-menos.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "64a82509c10b5bf3f25ec1fa3eeb9cda292e2cab1518d95d37255f28d16a0a2f",
+      "output_sha256": "0363cdc8b49926c58b427dde0f2e19ef974e2723ca4e2c66f6f934b8e8d14f8e",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "limpeza.png",
+      "output": "limpeza.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "34ead55424eb0cfec9d6c484994a6d21616e19ffa961bc7b248843ee3c25768a",
+      "output_sha256": "d19cde54ec00dd1a128342955f0ff6e3570fb0e5ccbdd10b934c53e57612fe70",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "massas e molhos.png",
+      "output": "massas-e-molhos.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "267549d78df77199b6a2cd73049d4620038b1057462be5da68c6eafba41d83a1",
+      "output_sha256": "634e1cc6c290c4c89dd4acab4f51beb7ab4b873efc331ba14d6973be40dd7533",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "materal escolar.png",
+      "output": "materal-escolar.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "4738679d0588cfac335fe8fb06348cec6c6ac8487ee2d75693691a7cda79cccd",
+      "output_sha256": "6efdc115722f42ebb045c758ef118c13b93709bced6314a065b45e683b78ec57",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "mercearia.png",
+      "output": "mercearia.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "3cb91510662331a17a9279783f1a0dd60d7716980fa6b6c65e5e441505496a5b",
+      "output_sha256": "e87f991556466309c0b718e4bc28614e28392f60377a06f09e58dca497326a90",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "natal.png",
+      "output": "natal.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "c35c0416f99a317348442bed1b2f392eab7310f534df7794fb632417b0daabb7",
+      "output_sha256": "0edae0a51806f369b66ea376fb17728f6d20cce0af0106605990514ef4cb8eba",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "oferta da semana.png",
+      "output": "oferta-da-semana.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "47fdf38f861597d9c83ba3250b6f71e3e5be5c9a21a4203a516d5854b7775676",
+      "output_sha256": "41ffc21374d5956ec055aafbf80020edc6dc5bea111cb58a98a592561e36af3a",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "oferta do dia.png",
+      "output": "oferta-do-dia.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "a0e4a40069e69087724e1d843f3836cbfe1ec6e41985f677e16f3747f90fa01a",
+      "output_sha256": "3b611ad8d94d852830d21b4558ffe0829868d2e7265579e57200be7f65b570e8",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "oferta do fim de semana.png",
+      "output": "oferta-do-fim-de-semana.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "f1503661dbe5459b3d917ba2112f7f13ca7b354f9ea598da860b09784c79b480",
+      "output_sha256": "44aadb535ca50cdcc4e13acc08b8b69235d9f607c8c426fe3819ae4c404d2699",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "oferta relampago.png",
+      "output": "oferta-relampago.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "33d3fca2d8cf481000194b1d82bb896e18846629a7c4762a4d5705729e06103c",
+      "output_sha256": "dee65c7ebbf56e96a4c2977bd0b7572f2ed35adbe7a604b406af9ff253ec7c28",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "padaria.png",
+      "output": "padaria.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "34bb1701e13d62ccc11bce6e00567921db8b9d7826c31b6373acd33da884de86",
+      "output_sha256": "290b21abd67b49c4d1410063418fa690fa3a2d721b58736aa1f406e026f1026a",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "papelaria.png",
+      "output": "papelaria.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "652e75de103025713ec70c5d96d33132b893416f3d4368b62ce13cc13a10f98d",
+      "output_sha256": "4c9e38d47732a61d4e0b88a160dc96cff5dbea8d0ea4e9191b93c6e986e6111c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "pascoa.png",
+      "output": "pascoa.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "b3649a2bd0203d0522a08be565fa7cfbba18a527a0342e093f2486f2509afa52",
+      "output_sha256": "398fa1cbc594d3654318b342cc114e32e65400f55c9ef7c62d6a31f374fa850c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "peixaria.png",
+      "output": "peixaria.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "2a3e1b9ae636613b616d6b2bf532bf4a5bedd0101caaf509e3c52cb8f178f9c7",
+      "output_sha256": "84a2e33efa322ab52a18a947c6cedb23bb720b2613b04ba7dce55c43179cba56",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "petshop.png",
+      "output": "petshop.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "4fd29ee7e0c88eef1b52583d84eef30605c2dcf98f5b8bc3190d355545d6cdec",
+      "output_sha256": "f84e2e87b349f5ce74a6a3e99a81fde043a0d7bac3ab5fbc59636fba61ec2371",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "pratos prontos.png",
+      "output": "pratos-prontos.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "e6540eca457fee66a1c077481d51f3530aa33637a7b7e1e95ca4fb5159f3f20f",
+      "output_sha256": "830888b8723ce8d51c82e7b39ee50802df40c63771c4d949bca6ec969656de35",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "preço baixo.png",
+      "output": "preco-baixo.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "19164e4ebaffdf4559b8622cfb4b8c0bbe6f86df1d6d0d7985ceb2af0657f37a",
+      "output_sha256": "e2ab71f2a92bff396b1274d7660c00a3b7a29ae45869129191cc70c5ef27141c",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "preço de atacado.png",
+      "output": "preco-de-atacado.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "0137a5387aaabe8b6866f1ba9344c65d4d848b841b0ff46492e7f66486c528c4",
+      "output_sha256": "55e6e33b3681652d9b64942cee4053e6c992bf16963558f600e8476d92882d1e",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "queima de estoque.png",
+      "output": "queima-de-estoque.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "d48463f722382207b62ec9f555834b623fc28c76588f86fcf8667b54554b82b4",
+      "output_sha256": "f38ac9bb12c4fc7d64edfac4b8667f1be9789970dae4be9b7e21d25d5ee5a4d3",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "refrigerantes.png",
+      "output": "refrigerantes.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "396646c9a1a9cd9739bcf7c2fb6a84a33fb803521d66b4ffb0c98f9ae2ffb441",
+      "output_sha256": "cdbffe67a01b04d35edaf7cb30c71678d113efeaaeaf1f7bb02a9fc2a2ff10d5",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "reinauguração.png",
+      "output": "reinauguracao.png",
+      "original_size": [
+        1774,
+        887
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4509582863585118,
+      "primary_size": [
+        800,
+        400
+      ],
+      "primary_position": [
+        580,
+        0
+      ],
+      "original_sha256": "ab9a083e09ff5f330c5b6cd729eed483fddd00fcb3e17a061ff10360ef166bd6",
+      "output_sha256": "cf3bce5fa78f87e08aba24eb83ba6dd317bf54d49d72700b81538241ff56b60a",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "rotisseria.png",
+      "output": "rotisseria.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "8c92a3b25369d690ded0150f93e0800a55bbcaeb0ced92a354e99fb24badba5c",
+      "output_sha256": "495fc707ba1f1c75471deff1d5bd0cc9b70d3e313ce3c3fc2a40f1ba6c211bdc",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "saudaveis.png",
+      "output": "saudaveis.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "4d97e03e8fa7e92446969042edb041e5b8f34e467a5c50ce40df102bd61b1f09",
+      "output_sha256": "0332900c0ac755e043d094db78dcb6534c3274cfce160c4f87d2f063fbdbc820",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "sucos agua.png",
+      "output": "sucos-agua.png",
+      "original_size": [
+        1672,
+        941
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.4250797024442083,
+      "primary_size": [
+        711,
+        400
+      ],
+      "primary_position": [
+        624,
+        0
+      ],
+      "original_sha256": "4d86212cd037cd6aabebaa28400080667df69f4a11e51d4e7e186edba35a4d6a",
+      "output_sha256": "fa33b271111e6197595f88ad0d51ccaca5a67c4df99303e22d9f87aa2f1f8ee1",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "super oferta.png",
+      "output": "super-oferta.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "50a1c3eaf999f6092983930e10cff0f143a0a85dbf1f508d3b2b570d0869bb25",
+      "output_sha256": "746a58f4f79c774b0d1e9bbff578dd8ba510df48263427faa5339351738d86d5",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "temperos e condimentos.png",
+      "output": "temperos-e-condimentos.png",
+      "original_size": [
+        2172,
+        724
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.5524861878453039,
+      "primary_size": [
+        1200,
+        400
+      ],
+      "primary_position": [
+        380,
+        0
+      ],
+      "original_sha256": "51f44b228e0e47f163cfd37ba124f190f29034570c41067ebcac9f3c16d84d68",
+      "output_sha256": "9bf2f69d9b3a35294a3ac9d6925fdbc55b1062f4febbc85d9c85cb1e0bfe7176",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "utilidades domesticas.png",
+      "output": "utilidades-domesticas.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "434e7911fc15b56e0889ff5f4e695bee248369d9dd925974c9ecada66b44d34d",
+      "output_sha256": "95dc061069a775b45ffceb86469ad23b5d06bf9256139ad34c725ff457c60b0f",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    },
+    {
+      "source": "verão de ofertas.png",
+      "output": "verao-de-ofertas.png",
+      "original_size": [
+        1916,
+        821
+      ],
+      "output_size": [
+        1960,
+        400
+      ],
+      "scale": 0.48721071863581,
+      "primary_size": [
+        933,
+        400
+      ],
+      "primary_position": [
+        513,
+        0
+      ],
+      "original_sha256": "1965c1b3c028a8db8d5472a70bc076ffa3d34ed18bf0d43b7a468a0cfcf008c3",
+      "output_sha256": "4a8fa8d7ca704e51202dc03f075e0bf243b9d99a307250aecf7e0943962bd4ff",
+      "checks": {
+        "dimensions_1960x400": true,
+        "format_png": true,
+        "nonempty": true,
+        "original_unchanged": true,
+        "whole_original_in_safe_area": true,
+        "uniform_scale_with_pixel_rounding": true,
+        "protected_region_pixel_exact": true
+      },
+      "special_treatment": []
+    }
+  ]
+}
