@@ -29,9 +29,15 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
       {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
       <div className="ofertamatica-app-background" aria-hidden="true">
         {template.headerImage ? (
-          <div className="ofertamatica-custom-header ofertamatica-custom-header-app">
-            <img src={template.headerImage} alt="" />
-          </div>
+          <>
+            <div className="ofertamatica-custom-header ofertamatica-custom-header-app">
+              <img src={template.headerImage} alt="" />
+            </div>
+            <div className={`ofertamatica-art-offer-badge ofertamatica-art-offer-badge-app header-${template.headerStyle || 'band'}`}>
+              <span className="ofertamatica-bag-mark">✓</span>
+              <b>{template.headerText || 'OFERTA APP'}</b>
+            </div>
+          </>
         ) : (
           <div className={`ofertamatica-app-ribbon header-${template.headerStyle || 'band'}`}><span className="ofertamatica-bag-mark">✓</span><b>{template.headerText || 'OFERTA APP'}</b></div>
         )}
