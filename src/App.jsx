@@ -6,7 +6,7 @@ import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 
-const HEADER_IMAGE_MODULES = import.meta.glob('../img/*.png', {
+const HEADER_IMAGE_MODULES = import.meta.glob('../img/headers/*.png', {
   eager: true,
   query: '?url',
   import: 'default',
@@ -17,7 +17,7 @@ const HEADER_IMAGES = Object.entries(HEADER_IMAGE_MODULES)
     const fileName = path.split('/').pop()
     const rawName = fileName.replace(/\.png$/i, '')
     const label = rawName
-      .split(' ')
+      .split(/[-_ ]+/)
       .map((word) => word ? word.charAt(0).toLocaleUpperCase('pt-BR') + word.slice(1) : word)
       .join(' ')
     return { id: fileName, label, url }
@@ -25,6 +25,18 @@ const HEADER_IMAGES = Object.entries(HEADER_IMAGE_MODULES)
   .sort((a, b) => a.label.localeCompare(b.label, 'pt-BR'))
 
 const HEADER_IMAGE_BY_ID = Object.fromEntries(HEADER_IMAGES.map((item) => [item.id, item.url]))
+
+function normalizeHeaderImageId(value) {
+  if (!value) return ''
+  const base = String(value).replace(/\.png$/i, '')
+  const normalized = base
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('pt-BR')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  return normalized ? normalized + '.png' : ''
+}
 
 const EXAMPLE_TEXT = [
   'Cerveja Heineken Long Neck 300ml 5,99',
@@ -61,7 +73,19 @@ const POSTER_STYLE_PRESETS = [
 function loadPosterStyle() {
   try {
     const saved = JSON.parse(localStorage.getItem(POSTER_STYLE_KEY) || 'null')
-    return saved ? { ...DEFAULT_POSTER_STYLE, ...saved } : DEFAULT_POSTER_STYLE
+    if (!saved) return DEFAULT_POSTER_STYLE
+
+    const migratedHeader = saved.headerImage
+      ? (HEADER_IMAGE_BY_ID[saved.headerImage]
+        ? saved.headerImage
+        : normalizeHeaderImageId(saved.headerImage))
+      : ''
+
+    return {
+      ...DEFAULT_POSTER_STYLE,
+      ...saved,
+      headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
+    }
   } catch {
     return DEFAULT_POSTER_STYLE
   }
