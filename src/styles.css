@@ -2740,6 +2740,21 @@ textarea:focus-visible {
   white-space: nowrap;
 }
 
+.header-show-more {
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid #dce5ef;
+  border-radius: 7px;
+  background: #f8fbff;
+  color: #4f6684;
+  font-size: 7px;
+  font-weight: 850;
+}
+.header-show-more:hover {
+  border-color: #8fb4f4;
+  color: #1d63e9;
+}
+
 /* Desktop: a Home/criador deve se comportar como uma ferramenta e caber no viewport. */
 @media (min-width: 821px) {
   .format-mode {
