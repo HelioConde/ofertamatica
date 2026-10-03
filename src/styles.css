@@ -2347,6 +2347,33 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
   background: #eef3f8;
 }
 
+.header-default-thumb {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  overflow: hidden;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f52a3d 0%, #d90a25 100%);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24);
+}
+
+.header-default-thumb .ofertamatica-bag-mark {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+}
+
+.header-default-thumb b {
+  font-size: 12px;
+  font-weight: 1000;
+  letter-spacing: -.03em;
+}
+
 .header-art-grid span {
   overflow: hidden;
   color: #53637a;
@@ -2370,33 +2397,37 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .ofertamatica-custom-header {
   position: absolute;
   z-index: 5;
-  left: 5%;
-  right: 5%;
-  top: 2%;
-  height: 15%;
+  left: 2.4%;
+  right: 2.4%;
+  top: 1.8%;
+  height: 16.2%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius: 3mm 3mm 1.8mm 1.8mm;
   pointer-events: none;
-  background: transparent;
+  background: #d4142d;
+  box-shadow: inset 0 0 0 .22mm rgba(255,255,255,.28);
 }
 
 .ofertamatica-custom-header img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   flex: none;
 }
 
-/* Mesma área segura em prévia, modal e impressão. O contain mantém toda
-   a arte visível, mesmo quando sua proporção limita a largura ocupada. */
+/* O cenário do header ocupa toda a faixa. Em formatos horizontais há crop
+   controlado nas bordas para evitar espaços vazios sem esticar a imagem. */
 .poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-custom-header,
 .poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-custom-header {
-  /* Termina em 18%, antes da área de produtos (19%) dos cartazes horizontais. */
-  height: 16%;
+  left: 2.2%;
+  right: 2.2%;
+  top: 1.7%;
+  height: 16.5%;
 }
 
 @media print {
@@ -2407,39 +2438,39 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 }
 
 
-/* Selo clássico OFERTA sobre headers artísticos */
+/* Selo OFERTA independente: a arte é o fundo da faixa e o texto fica legível por cima. */
 .ofertamatica-art-offer-badge {
   position: absolute;
   z-index: 7;
   left: 50%;
-  top: 13.2%;
+  top: 5.2%;
   transform: translateX(-50%);
-  min-width: 31%;
-  height: 6.2%;
+  min-width: 38%;
+  height: 7.4%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3%;
-  padding: 0 4%;
+  gap: 4%;
+  padding: 0 5.5%;
   border-radius: 999px;
   background: linear-gradient(180deg, #f52a3d 0%, #df0b28 100%);
   color: var(--poster-header-text-color, #fff);
   box-shadow:
-    0 1.1mm 2.4mm rgba(128, 0, 18, .24),
-    inset 0 .25mm 0 rgba(255,255,255,.22);
-  font-family: Inter, Arial, sans-serif;
-  font-size: clamp(2.2mm, 3.2cqi, 5.2mm);
+    0 1.1mm 2.8mm rgba(128, 0, 18, .32),
+    inset 0 .3mm 0 rgba(255,255,255,.25);
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
+  font-size: clamp(3.4mm, 5.8cqi, 8.6mm);
   font-weight: 1000;
-  line-height: 1;
-  letter-spacing: -.02em;
+  line-height: .9;
+  letter-spacing: -.025em;
   white-space: nowrap;
   pointer-events: none;
 }
 
 .ofertamatica-art-offer-badge .ofertamatica-bag-mark {
   width: auto;
-  min-width: 1.35em;
-  height: 1.35em;
+  min-width: 1.45em;
+  height: 1.45em;
   aspect-ratio: 1;
   flex: 0 0 auto;
 }
@@ -2461,18 +2492,19 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 }
 
 .ofertamatica-art-offer-badge-app {
-  top: 13%;
-  min-width: 34%;
-  height: 6.5%;
+  top: 5%;
+  min-width: 40%;
+  height: 7.8%;
+  font-size: clamp(3.2mm, 5cqi, 8mm);
 }
 
-/* Nos cartazes horizontais, o selo precisa terminar antes da área do produto. */
+/* Nos cartazes horizontais, mantém o selo grande sem invadir a área do produto. */
 .poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-art-offer-badge,
 .poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-art-offer-badge {
-  top: 12.2%;
-  height: 5.4%;
-  min-width: 25%;
-  font-size: clamp(1.8mm, 2.7cqi, 4.2mm);
+  top: 5.1%;
+  height: 7.2%;
+  min-width: 30%;
+  font-size: clamp(3mm, 4cqi, 7mm);
 }
 
 @media print {
@@ -2559,11 +2591,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-art-offer-text b {
   font-size: clamp(4mm, 8cqi, 11mm);
   -webkit-text-stroke-width: .5mm;
-}
-
-/* Desativa o selo antigo caso CSS cacheado ainda contenha a regra anterior. */
-.ofertamatica-art-offer-badge {
-  display: none !important;
 }
 
 @media print {
