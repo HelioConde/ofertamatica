@@ -4089,3 +4089,53 @@ textarea:focus-visible {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+
+/* Optional custom store header upload */
+.custom-header-upload {
+  width: 100%;
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border: 1px dashed #b9c9dc;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #50627a;
+  text-align: left;
+}
+
+.custom-header-upload > span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #edf4ff;
+  color: #1d63e9;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.custom-header-upload > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.custom-header-upload b {
+  color: #40536e;
+  font-size: 7.5px;
+}
+
+.custom-header-upload small {
+  color: #7e8ca0;
+  font-size: 6.5px;
+}
+
+.custom-header-preview > img {
+  height: 58px;
+  object-fit: cover;
+}
