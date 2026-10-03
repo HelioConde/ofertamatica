@@ -15,6 +15,19 @@ Esta é uma regra permanente:
 - Modelos, Formatos, Como funciona e Guias permanecem em páginas separadas;
 - se uma mudança futura conflitar com esta regra, a entrada direta no criador tem prioridade.
 
+## Regra de viewport e retenção
+
+No desktop, a Home e o workspace do criador devem se comportar como uma ferramenta instalada:
+
+- a rota `/` deve caber em `100dvh` sem exigir rolagem vertical global;
+- o editor também deve caber em `100dvh`;
+- quando houver conteúdo maior que a área disponível, a rolagem deve acontecer dentro do componente (lista de produtos, biblioteca de headers, configurações etc.);
+- a prévia deve permanecer visível durante a edição no desktop;
+- não inserir hero, depoimentos, artigos ou landing antes do seletor de formatos;
+- mensagens de valor devem ser compactas e ficar integradas ao próprio fluxo de criação;
+- o primeiro acesso deve começar vazio; exemplos são opt-in e não podem aparecer como rascunho real do usuário;
+- retenção deve vir da produtividade: menos passos, autosave, retomada do último trabalho e reutilização de escolhas recentes.
+
 ## Rotas principais
 
 - `/` — criação de placas / seletor de formatos;
@@ -22,6 +35,8 @@ Esta é uma regra permanente:
 - `/formatos/` — A4, A5, A3, SRA3 e divisões por folha;
 - `/como-funciona/` — fluxo de criação;
 - `/guias-para-varejo/` — central de guias;
+- `/privacidade/` — política de privacidade;
+- `/termos/` — termos de uso;
 - páginas SEO específicas ficam em URLs próprias.
 
 As definições de páginas, titles, descriptions e sitemap são centralizadas em:
@@ -102,7 +117,8 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_format_selected`;
 - `ofertamatica_draft_resumed`;
 - `ofertamatica_print_review`;
-- `ofertamatica_print_started`.
+- `ofertamatica_print_started`;
+- `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
