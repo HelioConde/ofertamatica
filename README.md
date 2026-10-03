@@ -39,7 +39,8 @@ No desktop, a Home e o workspace do criador devem se comportar como uma ferramen
 - não inserir hero, depoimentos, artigos ou landing antes do seletor de formatos;
 - mensagens de valor devem ser compactas e ficar integradas ao próprio fluxo de criação;
 - o primeiro acesso deve começar vazio; exemplos são opt-in e não podem aparecer como rascunho real do usuário;
-- retenção deve vir da produtividade: menos passos, autosave, retomada do último trabalho e reutilização de escolhas recentes.
+- retenção deve vir da produtividade: menos passos, autosave, retomada do último trabalho e reutilização de escolhas recentes;
+- histórico recente, atalhos e importação rápida devem ficar dentro do fluxo existente, sem criar nova tela obrigatória.
 
 ## Rotas principais
 
@@ -63,7 +64,7 @@ Não duplicar listas de páginas em outros arquivos.
 O fluxo atual permite:
 
 1. escolher o formato;
-2. colar produtos ou importar planilha;
+2. colar produtos, usar “Colar e gerar”, arrastar arquivo ou importar planilha;
 3. revisar descrição, complemento, unidade e preço;
 4. personalizar modelo, cores, tipografia e cabeçalho;
 5. visualizar o cartaz;
@@ -81,6 +82,14 @@ Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeç
 - Oferta de App no formato dedicado.
 
 Essas opções são deliberadamente **opcionais** e não criam uma nova etapa antes da primeira placa.
+
+Atalhos de produtividade no editor:
+
+- Ctrl+Enter (ou Cmd+Enter) gera as placas quando há conteúdo;
+- TXT, CSV, XLS e XLSX podem ser arrastados para a entrada rápida;
+- colagens vindas de Excel/ERP aceitam tabulação, ponto e vírgula e pipe;
+- cabeçalhos comuns como Produto / Unidade / Preço são ignorados automaticamente;
+- até cinco listas recentes ficam salvas localmente, com acesso compacto pelo menu “+”.
 
 Outros ajustes opcionais disponíveis depois da geração:
 
@@ -155,7 +164,11 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_store_logo_added` — registra o uso da logo da loja;
 - `ofertamatica_pdf_review`;
 - `ofertamatica_pdf_started`;
-- `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”.
+- `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”;
+- `ofertamatica_keyboard_generate` — uso do atalho Ctrl/Cmd+Enter;
+- `ofertamatica_file_import` — importação pelo seletor;
+- `ofertamatica_drag_import` — importação por arrastar e soltar;
+- `ofertamatica_recent_job_reused` — reutilização de um trabalho recente salvo localmente.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
