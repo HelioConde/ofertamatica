@@ -996,6 +996,7 @@ function Editor({
   }, [])
 
   const measure = useMemo(() => createBrowserTextMeasure(), [fontReady])
+  const sourceProductCount = useMemo(() => parseProductList(sourceText).length, [sourceText])
   const layoutPlans = useMemo(() => createPosterLayouts(products, template, format, measure), [format, measure, products, template])
   const pages = useMemo(() => splitIntoPages(products, format.postersPerSheet), [format.postersPerSheet, products])
   const pageCount = getPageCount(products.length, format)
@@ -1480,7 +1481,11 @@ function Editor({
                 ) : null}
               </div>
 
-              <span className="product-count">{products.length} produtos identificados</span>
+              <span className={'product-count ' + (sourceProductCount ? 'has-ready-products' : '')}>
+                {sourceProductCount
+                  ? sourceProductCount + ' ' + (sourceProductCount === 1 ? 'produto pronto' : 'produtos prontos') + ' para gerar'
+                  : 'Cole sua lista para começar'}
+              </span>
               <span className="keyboard-hint" aria-hidden="true">Ctrl+Enter gera · Ctrl+P imprime</span>
               {!sourceText.trim() && typeof navigator !== 'undefined' && navigator.clipboard?.readText ? (
                 <button className="generate-button paste-generate-button" type="button" onClick={pasteAndGenerate}>
