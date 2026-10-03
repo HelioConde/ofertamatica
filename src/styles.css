@@ -4590,3 +4590,507 @@ textarea:focus-visible {
     height: 64px;
   }
 }
+
+
+/* V2 — cada modelo tem um header realmente diferente, inspirado nas referências enviadas. */
+.poster-frame-mini-curva-simples > b {
+  left: -3px;
+  right: -3px;
+  top: 0;
+  height: 16px;
+  border-radius: 0 0 50% 50% / 0 0 24% 24%;
+  color: #fff200;
+}
+.poster-frame-mini-curva-simples::after {
+  content: "";
+  position: absolute;
+  left: -4px; right: -4px; top: 14px; height: 2px;
+  border-radius: 50%;
+  background: #e51e31;
+  box-shadow: 0 1px 0 #fff200;
+}
+
+.poster-frame-mini-ondas > b {
+  left: -3px; right: -3px; top: 0; height: 15px;
+  border-radius: 0 0 50% 50% / 0 0 26% 26%;
+  color: #fff200;
+}
+.poster-frame-mini-ondas > i {
+  display: block;
+  left: -8%; right: -8%; bottom: -5px; height: 13px;
+  border-top: 2px solid #fff200;
+  border-radius: 50% 50% 0 0 / 55% 55% 0 0;
+}
+
+.poster-frame-mini-especial {
+  background: #fff;
+  border-color: #e4e7eb;
+}
+.poster-frame-mini-especial > b {
+  left: 0; right: 12px; top: 2px; height: 14px;
+  border-radius: 0;
+  clip-path: polygon(0 0, 84% 0, 100% 50%, 84% 100%, 0 100%);
+  color: #fff200;
+}
+.poster-frame-mini-especial::after {
+  content: "Especial";
+  position: absolute;
+  z-index: 3;
+  top: 11px;
+  right: 1px;
+  color: #e51e31;
+  font: italic 700 6px Georgia, serif;
+  transform: rotate(-7deg);
+}
+.poster-frame-mini-especial > i {
+  display: block;
+  left: 5px; right: 5px; bottom: 3px; height: 19px;
+  border: 2px solid #e51e31;
+  border-radius: 50%;
+  background: #fff200;
+}
+
+.poster-frame-mini-rodape-forte > b {
+  left: -3px; right: -3px; top: 0; height: 15px;
+  border-radius: 0 0 50% 50% / 0 0 18% 18%;
+  color: #fff200;
+}
+.poster-frame-mini-rodape-forte > i {
+  display: block;
+  left: -10%; right: -10%; bottom: -7px; height: 15px;
+  border-top: 2px solid #fff200;
+  border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+}
+
+.poster-frame-mini-imperdivel {
+  border: 4px solid #e51e31;
+  background: #fff200;
+}
+.poster-frame-mini-imperdivel > b {
+  left: -1px; right: -1px; top: -1px; height: 16px;
+  border-radius: 0;
+  color: #fff;
+  font-size: 8px;
+}
+.poster-frame-mini-imperdivel::after {
+  content: "Imperdível";
+  position: absolute;
+  z-index: 3;
+  top: 12px; right: 1px;
+  color: #fff;
+  text-shadow: 0 0 0 #e51e31, 1px 1px 0 #e51e31;
+  font: italic 700 5px Georgia, serif;
+  transform: rotate(-8deg);
+}
+
+.poster-frame-mini-divertido > b {
+  left: -3px; right: -3px; top: 0; height: 17px;
+  border-radius: 0 0 45% 45% / 0 0 18% 18%;
+  color: #fff;
+  font-size: 8px;
+}
+.poster-frame-mini-divertido::after {
+  content: "👍";
+  position: absolute;
+  z-index: 3;
+  top: 8px; right: 1px;
+  font-size: 9px;
+}
+
+.poster-frame-mini-minimal > b {
+  left: 7px; right: 7px; top: 4px; height: 11px;
+  border: 1px solid #fff200;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 6px;
+}
+.poster-frame-mini-minimal > i {
+  display: block;
+  left: -6%; right: -6%; bottom: -6px; height: 10px;
+  border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+}
+
+.poster-frame-mini-moldura {
+  border: 3px solid #e51e31;
+}
+.poster-frame-mini-moldura > b {
+  left: 2px; right: 2px; top: 2px; height: 13px;
+  border: 1px solid #fff200;
+  border-radius: 4px;
+  color: #fff;
+}
+.poster-frame-mini-moldura > i {
+  display: block;
+  left: -3px; right: -3px; bottom: -6px; height: 12px;
+  border-radius: 50% 50% 0 0 / 45% 45% 0 0;
+}
+
+/* CURVA SIMPLES — vermelho cheio, OFERTA amarela e curva suave. */
+.poster-frame-curva-simples .ofertamatica-offer-ribbon,
+.poster-frame-curva-simples .ofertamatica-app-ribbon {
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 18% !important;
+  overflow: visible !important;
+  padding: 0 7% 1.5% !important;
+  border: 0 !important;
+  border-radius: 0 0 50% 50% / 0 0 18% 18% !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff200 !important;
+  box-shadow: none !important;
+}
+.poster-frame-curva-simples .ofertamatica-offer-ribbon::after,
+.poster-frame-curva-simples .ofertamatica-app-ribbon::after {
+  content: "";
+  position: absolute;
+  left: -2%; right: -2%; bottom: -1.8mm;
+  height: 1mm;
+  border-radius: 50%;
+  background: #fff200;
+  box-shadow: 0 .55mm 0 var(--poster-header-color, #e51e31);
+}
+.poster-frame-curva-simples.ofertamatica-poster-background::after,
+.poster-frame-curva-simples.ofertamatica-app-background::after {
+  inset: 1.8%;
+  border-color: rgba(229,30,49,.38);
+}
+
+/* ONDAS — topo e rodapé com linhas duplas. */
+.poster-frame-ondas .ofertamatica-offer-ribbon,
+.poster-frame-ondas .ofertamatica-app-ribbon {
+  left: 0 !important; right: 0 !important; top: 0 !important;
+  height: 18.5% !important;
+  overflow: visible !important;
+  padding-bottom: 1.5% !important;
+  border: 0 !important;
+  border-radius: 0 0 50% 50% / 0 0 24% 24% !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff200 !important;
+  box-shadow: none !important;
+}
+.poster-frame-ondas .ofertamatica-offer-ribbon::after,
+.poster-frame-ondas .ofertamatica-app-ribbon::after {
+  content: "";
+  position: absolute;
+  left: -3%; right: -3%; bottom: -2.3mm;
+  height: 1.2mm;
+  border-radius: 50%;
+  background: #fff200;
+  box-shadow:
+    0 .6mm 0 var(--poster-header-color, #e51e31),
+    0 1.05mm 0 #fff200;
+}
+.poster-frame-ondas .ofertamatica-footer-decoration {
+  display: block;
+  left: -7%; right: -7%; bottom: -5.5%;
+  height: 13%;
+  border-top: 1.1mm solid #fff200;
+  border-radius: 50% 50% 0 0 / 42% 42% 0 0;
+  background: var(--poster-header-color, #e51e31);
+  box-shadow: inset 0 .7mm 0 var(--poster-header-color, #e51e31), inset 0 1.25mm 0 #fff200;
+}
+.poster-frame-ondas.ofertamatica-poster-background::after,
+.poster-frame-ondas.ofertamatica-app-background::after {
+  border-color: rgba(229,30,49,.32);
+}
+
+/* ESPECIAL — seta vermelha no topo + escrita Especial + oval para o preço. */
+.poster-frame-especial.ofertamatica-poster-background,
+.poster-frame-especial.ofertamatica-app-background {
+  background: #fff !important;
+}
+.poster-frame-especial.ofertamatica-poster-background::after,
+.poster-frame-especial.ofertamatica-app-background::after {
+  display: none;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon,
+.poster-frame-especial .ofertamatica-app-ribbon {
+  left: 2% !important;
+  right: auto !important;
+  top: 1.5% !important;
+  width: 66% !important;
+  height: 15.5% !important;
+  overflow: visible !important;
+  padding: 0 15% 0 4% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 83% 0, 100% 50%, 83% 100%, 0 100%);
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff200 !important;
+  box-shadow: none !important;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon > b,
+.poster-frame-especial .ofertamatica-app-ribbon > b {
+  transform: scaleX(.94);
+  transform-origin: left center;
+  text-align: left;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon::after,
+.poster-frame-especial .ofertamatica-app-ribbon::after {
+  content: "Especial";
+  position: absolute;
+  z-index: 5;
+  left: 70%;
+  top: 38%;
+  width: 65%;
+  color: var(--poster-header-color, #e51e31);
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: .62em;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow:
+    -1px -1px 0 #fff, 1px -1px 0 #fff,
+    -1px 1px 0 #fff, 1px 1px 0 #fff,
+    0 1mm 1mm rgba(0,0,0,.08);
+  transform: rotate(-8deg);
+}
+.poster-frame-especial .ofertamatica-inner-frame,
+.poster-frame-especial .ofertamatica-app-frame {
+  display: none;
+}
+.poster-frame-especial .ofertamatica-footer-decoration {
+  display: block;
+  left: 8%; right: 8%; bottom: 5%;
+  height: 31%;
+  border: 2.2mm solid var(--poster-header-color, #e51e31);
+  border-radius: 50%;
+  background: #fff200;
+}
+
+/* RODAPÉ FORTE — cabeçalho curvo simples e faixa vermelha grande embaixo. */
+.poster-frame-rodape-forte .ofertamatica-offer-ribbon,
+.poster-frame-rodape-forte .ofertamatica-app-ribbon {
+  left: 0 !important; right: 0 !important; top: 0 !important;
+  height: 17.5% !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 0 50% 50% / 0 0 16% 16% !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff200 !important;
+  box-shadow: none !important;
+}
+.poster-frame-rodape-forte .ofertamatica-offer-ribbon::after,
+.poster-frame-rodape-forte .ofertamatica-app-ribbon::after {
+  content: "";
+  position: absolute;
+  left: -3%; right: -3%; bottom: -1.8mm;
+  height: .9mm;
+  border-radius: 50%;
+  background: #fff200;
+}
+.poster-frame-rodape-forte .ofertamatica-footer-decoration {
+  display: block;
+  left: -8%; right: -8%; bottom: -5%;
+  height: 14%;
+  border-top: 1.1mm solid #fff200;
+  border-radius: 50% 50% 0 0 / 42% 42% 0 0;
+  background: var(--poster-header-color, #e51e31);
+}
+.poster-frame-rodape-forte.ofertamatica-poster-background::after,
+.poster-frame-rodape-forte.ofertamatica-app-background::after {
+  inset: 2%;
+  border-color: rgba(229,30,49,.35);
+}
+
+/* IMPERDÍVEL — OFERTA branca gigante e palavra script sobreposta. */
+.poster-frame-imperdivel.ofertamatica-poster-background,
+.poster-frame-imperdivel.ofertamatica-app-background {
+  background:
+    linear-gradient(180deg, var(--poster-header-color, #e51e31) 0 20%, #fff200 20% 100%) !important;
+}
+.poster-frame-imperdivel.ofertamatica-poster-background::after,
+.poster-frame-imperdivel.ofertamatica-app-background::after {
+  inset: .8%;
+  border: 3mm solid var(--poster-header-color, #e51e31);
+  border-radius: 2mm;
+  box-shadow: none;
+}
+.poster-frame-imperdivel .ofertamatica-offer-ribbon,
+.poster-frame-imperdivel .ofertamatica-app-ribbon {
+  left: 1% !important; right: 1% !important; top: .6% !important;
+  height: 20% !important;
+  overflow: visible !important;
+  padding: 0 3% 3% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.poster-frame-imperdivel .ofertamatica-offer-ribbon > b,
+.poster-frame-imperdivel .ofertamatica-app-ribbon > b {
+  font-size: 1.12em;
+  letter-spacing: -.06em;
+}
+.poster-frame-imperdivel .ofertamatica-offer-ribbon::after,
+.poster-frame-imperdivel .ofertamatica-app-ribbon::after {
+  content: "Imperdível";
+  position: absolute;
+  z-index: 5;
+  right: 5%;
+  bottom: -12%;
+  color: #fff;
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: .54em;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow:
+    -1px -1px 0 var(--poster-header-color, #e51e31),
+    1px 1px 0 var(--poster-header-color, #e51e31),
+    0 1mm 0 rgba(120,0,20,.25);
+  transform: rotate(-8deg);
+}
+.poster-frame-imperdivel .ofertamatica-inner-frame,
+.poster-frame-imperdivel .ofertamatica-app-frame {
+  left: 4%; right: 4%; top: 22%; bottom: 4%;
+  border: 0;
+  border-radius: 5mm;
+  background: rgba(255,255,255,.04);
+}
+
+/* DIVERTIDO — letras brancas, exclamação e joinha. */
+.poster-frame-divertido .ofertamatica-offer-ribbon,
+.poster-frame-divertido .ofertamatica-app-ribbon {
+  left: 0 !important; right: 0 !important; top: 0 !important;
+  height: 20% !important;
+  overflow: visible !important;
+  padding: 0 18% 2% 3% !important;
+  border: 0 !important;
+  border-radius: 0 0 48% 48% / 0 0 16% 16% !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.poster-frame-divertido .ofertamatica-offer-ribbon > b::after,
+.poster-frame-divertido .ofertamatica-app-ribbon > b::after {
+  content: "!";
+}
+.poster-frame-divertido .ofertamatica-offer-ribbon::after,
+.poster-frame-divertido .ofertamatica-app-ribbon::after {
+  content: "👍";
+  position: absolute;
+  z-index: 5;
+  right: 4%;
+  top: 25%;
+  font-family: "Segoe UI Emoji", sans-serif;
+  font-size: .58em;
+  filter: drop-shadow(0 .8mm 0 rgba(120,0,15,.28));
+  transform: rotate(-12deg);
+}
+.poster-frame-divertido .ofertamatica-offer-ribbon::before,
+.poster-frame-divertido .ofertamatica-app-ribbon::before {
+  content: "";
+  position: absolute;
+  left: -2%; right: -2%; bottom: -1.5mm;
+  height: 1.4mm;
+  border-radius: 50%;
+  background: #ffb800;
+}
+
+/* MINIMAL — header menor centralizado e selo APROVEITE no rodapé. */
+.poster-frame-minimal .ofertamatica-offer-ribbon,
+.poster-frame-minimal .ofertamatica-app-ribbon {
+  left: 15% !important; right: 15% !important; top: 2.2% !important;
+  height: 11.5% !important;
+  overflow: visible !important;
+  border: .7mm solid #fff200 !important;
+  border-radius: 4mm !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff !important;
+  box-shadow: 0 1mm 2mm rgba(120,0,20,.14) !important;
+}
+.poster-frame-minimal.ofertamatica-poster-background::after,
+.poster-frame-minimal.ofertamatica-app-background::after {
+  inset: 2%;
+  border: .7mm solid rgba(229,30,49,.42);
+  border-radius: 2mm;
+}
+.poster-frame-minimal .ofertamatica-inner-frame,
+.poster-frame-minimal .ofertamatica-app-frame {
+  top: 16%;
+}
+.poster-frame-minimal .ofertamatica-footer-decoration {
+  display: block;
+  left: -7%; right: -7%; bottom: -5%;
+  height: 9%;
+  border-radius: 50% 50% 0 0 / 46% 46% 0 0;
+  background: var(--poster-header-color, #e51e31);
+}
+.poster-frame-minimal .ofertamatica-footer-decoration::after {
+  content: "APROVEITE";
+  position: absolute;
+  right: 10%;
+  top: 14%;
+  padding: .7mm 1.6mm;
+  border-radius: 999px;
+  background: #fff200;
+  color: var(--poster-header-color, #e51e31);
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 2.2mm;
+  font-style: italic;
+  transform: rotate(-7deg);
+}
+
+/* MOLDURA — borda forte, header tipo placa e rodapé ondulado. */
+.poster-frame-moldura.ofertamatica-poster-background::after,
+.poster-frame-moldura.ofertamatica-app-background::after {
+  inset: .8%;
+  border: 2.6mm solid var(--poster-header-color, #e51e31);
+  border-radius: 3mm;
+  box-shadow: inset 0 0 0 .65mm #fff200;
+}
+.poster-frame-moldura .ofertamatica-offer-ribbon,
+.poster-frame-moldura .ofertamatica-app-ribbon {
+  left: 4% !important; right: 4% !important; top: 1.5% !important;
+  height: 15.5% !important;
+  overflow: visible !important;
+  border: .8mm solid #fff200 !important;
+  border-radius: 4mm !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.poster-frame-moldura .ofertamatica-footer-decoration {
+  display: block;
+  left: .7%; right: .7%; bottom: .5%;
+  height: 8%;
+  border-radius: 50% 50% 1mm 1mm / 45% 45% 1mm 1mm;
+  background: var(--poster-header-color, #e51e31);
+}
+
+/* Área interna acompanha a altura de cada header. */
+.poster-frame-curva-simples .ofertamatica-inner-frame,
+.poster-frame-curva-simples .ofertamatica-app-frame,
+.poster-frame-ondas .ofertamatica-inner-frame,
+.poster-frame-ondas .ofertamatica-app-frame,
+.poster-frame-rodape-forte .ofertamatica-inner-frame,
+.poster-frame-rodape-forte .ofertamatica-app-frame,
+.poster-frame-divertido .ofertamatica-inner-frame,
+.poster-frame-divertido .ofertamatica-app-frame,
+.poster-frame-moldura .ofertamatica-inner-frame,
+.poster-frame-moldura .ofertamatica-app-frame {
+  top: 20.5%;
+}
+
+/* Imagens de cabeçalho continuam disponíveis; quando usadas, não recebem os
+   textos decorativos dos modelos gerados em CSS. */
+.ofertamatica-custom-header + .ofertamatica-inner-frame {
+  z-index: 1;
+}
+
+@media print {
+  .poster-frame-curva-simples,
+  .poster-frame-ondas,
+  .poster-frame-especial,
+  .poster-frame-rodape-forte,
+  .poster-frame-imperdivel,
+  .poster-frame-divertido,
+  .poster-frame-minimal,
+  .poster-frame-moldura {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
