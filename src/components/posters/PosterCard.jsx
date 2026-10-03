@@ -146,6 +146,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
         <OfferMeta product={product} template={template} />
         <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
+        {template.storeLogo ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
         <OfferFooter template={template} />
       </div>
     </article>
