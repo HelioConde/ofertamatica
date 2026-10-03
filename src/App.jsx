@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
-import { AdUnit, HomeMarketing, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
+import { AdUnit, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
@@ -190,7 +190,7 @@ function Brand() {
 function Navigation({ routePath, screen }) {
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
   const links = [
-    ['/criar-placas', 'Criar placas'],
+    ['/', 'Criar placas'],
     ['/modelos', 'Modelos'],
     ['/formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona'],
@@ -1114,7 +1114,7 @@ function App() {
   }
 
   function showFormats() {
-    const createPath = '/criar-placas/'
+    const createPath = '/'
     if (routePath !== createPath) {
       window.history.pushState({}, '', createPath)
       setRoutePath(createPath)
@@ -1126,7 +1126,7 @@ function App() {
   const seoPage = getSeoPage(routePath)
   const publicPage = getPublicPage(routePath)
   const cleanRoute = String(routePath || '/').replace(/\/+$/, '') || '/'
-  const isCreateRoute = cleanRoute === '/criar-placas'
+  const isCreateRoute = cleanRoute === '/' || cleanRoute === '/criar-placas'
 
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
@@ -1151,7 +1151,7 @@ function App() {
       ) : isCreateRoute ? (
         <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       ) : (
-        <HomeMarketing onCreate={showFormats} />
+        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       )}
     </div>
   )
