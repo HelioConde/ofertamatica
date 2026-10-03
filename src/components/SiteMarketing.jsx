@@ -28,6 +28,7 @@ const MODEL_PRESETS = [
   { id: 'super-oferta', name: 'Super oferta', category: 'Impacto', label: 'SUPER OFERTA', background: '#ffea00', price: '#d8001d', text: '#111111', header: '#0c59c7', headerText: '#ffffff', variant: 'super', product: 'ARROZ 5 kg', value: '24,90', note: 'Visual forte para ponta de gôndola e produtos campeões.' },
   { id: 'economia', name: 'Economia de verdade', category: 'Essenciais', label: 'ECONOMIA', background: '#fff5b5', price: '#d71920', text: '#16324a', header: '#16734a', headerText: '#ffffff', variant: 'savings', product: 'FEIJÃO 1 kg', value: '7,49', note: 'Mais sóbrio, ótimo para comunicação recorrente de preço.' },
   { id: 'de-por', name: 'De / Por', category: 'Vendas', label: 'OFERTA', background: '#fff7a8', price: '#d71920', text: '#172033', header: '#e51e31', headerText: '#ffffff', variant: 'depor', product: 'CAFÉ 500 g', value: '18,90', note: 'Preço anterior e preço de oferta sem criar outra placa do zero.' },
+  { id: 'segunda-unidade', name: '2ª unidade', category: 'Vendas', label: '2ª UNIDADE', background: '#fff0f5', price: '#d71920', text: '#172033', header: '#7b2cbf', headerText: '#ffffff', variant: 'second-unit', product: 'SHAMPOO 350 ml', value: '14,99', note: 'Mostre o preço da primeira unidade e o valor especial da segunda.' },
   { id: 'hortifruti', name: 'Hortifruti', category: 'Setores', label: 'FRESQUINHOS', background: '#20a464', price: '#fff000', text: '#ffffff', header: '#0b7042', headerText: '#ffffff', variant: 'fresh', product: 'BANANA PRATA kg', value: '4,99', note: 'Verde vivo para feira, frutas, legumes e verduras.' },
   { id: 'acougue', name: 'Açougue', category: 'Setores', label: 'AÇOUGUE', background: '#8f1723', price: '#ffd93b', text: '#ffffff', header: '#5d0b14', headerText: '#ffffff', variant: 'butcher', product: 'CONTRA FILÉ kg', value: '39,90', note: 'Vermelho fechado para carnes, cortes e festival de churrasco.' },
   { id: 'padaria', name: 'Padaria', category: 'Setores', label: 'PADARIA', background: '#f2c06b', price: '#9d1f17', text: '#3d2617', header: '#8f4c24', headerText: '#fff8e7', variant: 'bakery', product: 'PÃO FRANCÊS kg', value: '12,90', note: 'Tons quentes para pães, bolos, cafés e itens frescos.' },
@@ -313,6 +314,9 @@ function ModelCard({ item, onCreate }) {
       'de-por': 'de-por',
       'leve-mais': 'leve-por',
       atacado: 'atacado-varejo',
+      clube: 'club-app',
+      app: 'club-app',
+      'segunda-unidade': 'second-unit',
     }[item.id] || 'standard'
 
     try {
@@ -430,13 +434,15 @@ export function PublicPage({ page, onCreate }) {
               <div className="marketing-heading">
                 <span className="marketing-kicker">TIPOS DE OFERTA</span>
                 <h2>Primeiro a placa fica pronta. Depois você escolhe se quer uma condição especial.</h2>
-                <p>O fluxo padrão continua em 2 cliques. De/Por, Leve X por Y e Atacado/Varejo entram como opções de personalização, não como burocracia antes do resultado.</p>
+                <p>O fluxo padrão continua em 2 cliques. De/Por, Leve X por Y, Atacado/Varejo, Clube/App e 2ª unidade entram depois como opções, sem burocracia antes do resultado.</p>
               </div>
               <div className="workflow-grid offer-capability-grid">
                 <article><span>✓</span><strong>Padrão</strong><p>Produto, unidade e preço em destaque para a rotina do dia a dia.</p></article>
                 <article><span>DE</span><strong>De / Por</strong><p>Mostre o preço anterior e o novo preço de oferta sem reconstruir a placa.</p></article>
                 <article><span>X</span><strong>Leve X por Y</strong><p>Informe a quantidade e use o preço principal como valor do combo.</p></article>
                 <article><span>2</span><strong>Atacado / Varejo</strong><p>Exiba preço de atacado junto do preço de varejo na mesma comunicação.</p></article>
+                <article><span>★</span><strong>Clube / App</strong><p>Mostre um preço exclusivo e mantenha o preço normal como referência.</p></article>
+                <article><span>2ª</span><strong>2ª unidade</strong><p>Comunique um valor especial para a segunda unidade sem criar outro cartaz.</p></article>
               </div>
             </section>
             <AiTeaser onCreate={onCreate} compact />
