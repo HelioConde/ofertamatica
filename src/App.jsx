@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
+import { AdUnit, HomeMarketing, SeoLanding, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
@@ -193,10 +194,10 @@ function Navigation({ onCreate }) {
         <Brand />
         <nav className="main-nav" aria-label="Navegação principal">
           <button className="nav-link active" type="button" onClick={onCreate}>Criar placas</button>
-          <a className="nav-link" href="#modelos">Modelos</a>
-          <a className="nav-link" href="#formatos">Formatos</a>
-          <a className="nav-link" href="#como-funciona">Como funciona</a>
-          <a className="nav-link" href="#guias">Guias para varejo</a>
+          <a className="nav-link" href="/#modelos">Modelos</a>
+          <a className="nav-link" href="/#formatos">Formatos</a>
+          <a className="nav-link" href="/#como-funciona">Como funciona</a>
+          <a className="nav-link" href="/#guias">Guias para varejo</a>
         </nav>
         <div className="nav-meta">
           <span className="free-pill">Grátis</span>
@@ -265,12 +266,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
           ))}
 
           <aside className="format-ad-card" aria-label="Publicidade">
-            <span className="ad-label">PUBLICIDADE</span>
-            <div className="ad-slot-reserved">
-              <span className="ad-icon">AD</span>
-              <strong>Espaço para anúncio</strong>
-              <small>Google AdSense</small>
-            </div>
+            <AdUnit placement="format-grid" />
           </aside>
         </div>
       </section>
@@ -986,8 +982,7 @@ function Editor({
           </div>
 
           <aside className="preview-ad-card" aria-label="Publicidade">
-            <span>PUBLICIDADE</span>
-            <div><b>AD</b><strong>Espaço para anúncio</strong><small>Google AdSense</small></div>
+            <AdUnit placement="editor-preview" />
           </aside>
 
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
@@ -1056,6 +1051,7 @@ function Editor({
 }
 
 function App() {
+  const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
   const fallbackProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
   const [draftAvailable, setDraftAvailable] = useState(savedDraft)
@@ -1065,6 +1061,12 @@ function App() {
   const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : fallbackProducts)
   const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || (savedDraft?.products?.[0]?.id || fallbackProducts[0]?.id || null))
   const [pageIndex, setPageIndex] = useState(() => savedDraft?.pageIndex || 0)
+
+  useEffect(() => {
+    const handlePopState = () => setRoutePath(window.location.pathname || '/')
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
 
   useEffect(() => {
     const draft = {
@@ -1103,15 +1105,26 @@ function App() {
   }
 
   function showFormats() {
+    if (routePath !== '/') {
+      window.history.pushState({}, '', '/')
+      setRoutePath('/')
+    }
     setScreen('formats')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const seoPage = getSeoPage(routePath)
+
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
       <Navigation onCreate={showFormats} />
-      {screen === 'formats' ? (
-        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+      {seoPage ? (
+        <SeoLanding page={seoPage} onCreate={showFormats} />
+      ) : screen === 'formats' ? (
+        <>
+          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+          <HomeMarketing onCreate={showFormats} />
+        </>
       ) : (
         <Editor
           formatId={formatId}
