@@ -46,15 +46,28 @@ function ContentBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
   )
 }
 
+function numericPrice(value) {
+  const normalized = String(value || '').trim().replace(/^R\$\s*/i, '').replace(/\./g, '').replace(',', '.')
+  const number = Number(normalized.replace(/[^0-9.-]/g, ''))
+  return Number.isFinite(number) ? number : 0
+}
+
 function OfferMeta({ product, template }) {
   const mode = template.offerMode || 'standard'
   if (mode === 'standard') return null
 
   if (mode === 'de-por' && product.regularPrice) {
+    const regular = numericPrice(product.regularPrice)
+    const offer = numericPrice(product.price)
+    const discount = regular > offer && offer > 0
+      ? Math.round(((regular - offer) / regular) * 100)
+      : 0
+
     return (
       <div className="poster-offer-meta poster-offer-meta-depor">
         <span>DE <s>R$ {product.regularPrice}</s></span>
         <b>POR</b>
+        {discount > 0 && discount < 100 ? <small className="poster-discount-badge">{discount}% OFF</small> : null}
       </div>
     )
   }
@@ -63,6 +76,7 @@ function OfferMeta({ product, template }) {
     return (
       <div className="poster-offer-meta poster-offer-meta-bundle">
         <b>LEVE {product.offerQuantity} POR</b>
+        {product.regularPrice ? <small>OU R$ {product.regularPrice} CADA</small> : null}
       </div>
     )
   }
@@ -70,7 +84,7 @@ function OfferMeta({ product, template }) {
   if (mode === 'atacado-varejo' && product.wholesalePrice) {
     return (
       <div className="poster-offer-meta poster-offer-meta-wholesale">
-        <span>ATACADO</span>
+        <span>ATACADO{product.wholesaleQuantity ? ` · A PARTIR DE ${product.wholesaleQuantity} UN.` : ''}</span>
         <b>R$ {product.wholesalePrice}</b>
         <small>VAREJO</small>
       </div>
