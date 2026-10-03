@@ -1,42 +1,125 @@
-# Ofertamática V2
+# Ofertamática
 
-Ofertamática é uma plataforma SaaS para criar placas promocionais, cartazes, tabloides e comunicação visual profissional para supermercados, farmácias, padarias e varejo.
-
+Ofertamática é uma ferramenta web para criação de placas e cartazes promocionais para supermercados, mercados, atacarejos e outros negócios do varejo.
 
 ## Regra obrigatória de entrada do produto
 
 > **Ao acessar `https://ofertamatica.com.br/`, o usuário deve cair diretamente na criação de placas, começando pelo seletor de formatos.**
 
-Esta é uma regra permanente de produto e deve ser preservada em futuras alterações de layout, SEO e navegação:
+Esta é uma regra permanente:
 
-- a rota raiz `/` é a Home e também o ponto de entrada do criador;
-- não criar uma landing page intermediária antes do criador;
-- o usuário não deve precisar clicar em “Criar placas” para começar;
-- o logo e o item **Criar placas** da navbar devem levar para `/`;
-- `/criar-placas/` pode continuar existindo apenas como alias de compatibilidade;
-- Modelos, Formatos, Como funciona e Guias para varejo devem permanecer em páginas separadas;
-- as subpáginas não devem substituir o criador na rota raiz;
-- ao clicar em **Criar placas** a partir de qualquer subpágina, o usuário deve voltar para `/`.
+- `/` é a Home e o ponto de entrada do criador;
+- não criar landing intermediária antes do criador;
+- o logo e **Criar placas** levam para `/`;
+- `/criar-placas/` é apenas um alias legado e é normalizado para `/`;
+- Modelos, Formatos, Como funciona e Guias permanecem em páginas separadas;
+- se uma mudança futura conflitar com esta regra, a entrada direta no criador tem prioridade.
 
-### Estrutura principal de rotas
+## Rotas principais
 
 - `/` — criação de placas / seletor de formatos;
 - `/modelos/` — modelos e estilos;
-- `/formatos/` — detalhes dos formatos;
-- `/como-funciona/` — fluxo de uso;
-- `/guias-para-varejo/` — guias e conteúdos.
+- `/formatos/` — A4, A5, A3, SRA3 e divisões por folha;
+- `/como-funciona/` — fluxo de criação;
+- `/guias-para-varejo/` — central de guias;
+- páginas SEO específicas ficam em URLs próprias.
 
-**Se houver conflito entre uma mudança futura e esta regra, a entrada direta no criador pela rota `/` tem prioridade.**
+As definições de páginas, titles, descriptions e sitemap são centralizadas em:
 
-## Status
+`src/seo/seoPages.js`
 
-Este repositório contém a reconstrução da **Ofertamática V2**, iniciada do zero.
+Não duplicar listas de páginas em outros arquivos.
 
-- A versão atual em produção (V1) permanece intacta na Locaweb.
-- A V2 usa React + Vite.
-- O deploy automático da V2 aponta somente para `public_html/beta`.
-- O domínio principal não é sobrescrito durante o desenvolvimento.
-- Credenciais, chaves de API, senhas e arquivos `.env` nunca devem ser versionados.
+## Criador
+
+O fluxo atual permite:
+
+1. escolher o formato;
+2. colar produtos ou importar planilha;
+3. revisar descrição, complemento, unidade e preço;
+4. personalizar modelo, cores, tipografia e cabeçalho;
+5. visualizar o cartaz;
+6. revisar papel/orientação;
+7. imprimir.
+
+Formatos principais disponíveis:
+
+- A4 com 4 cartazes;
+- A4 com 2 cartazes;
+- A4 com 2 cartazes invertido;
+- A4 com 2 ofertas de App;
+- A4;
+- A5;
+- A3;
+- SRA3.
+
+A impressão usa as medidas físicas do formato em milímetros.
+
+## Inteligência artificial
+
+**“Crie seu cartaz com IA” é uma próxima implementação.**
+
+Não anunciar IA como recurso disponível no produto atual. O editor atual continua gratuito e sem cadastro obrigatório para começar.
+
+## Publicidade
+
+Google AdSense publisher:
+
+`ca-pub-9514218545388169`
+
+Slots manuais:
+
+- seletor de formatos: `7286894770`;
+- páginas de conteúdo/SEO: `5483033524`.
+
+O slot antigo `3215962830` não faz parte do fluxo atual porque a raiz é o criador, não uma landing de conteúdo.
+
+Regras:
+
+- não colocar anúncio manual dentro do editor;
+- anúncio bloqueado ou não preenchido não deve reservar espaço vazio;
+- Auto Ads permanece conservador/desligado enquanto usamos posições manuais;
+- nunca clicar em anúncios próprios para teste.
+
+O arquivo `/ads.txt` deve conter somente:
+
+```text
+google.com, pub-9514218545388169, DIRECT, f08c47fec0942fa0
+```
+
+A aprovação/recrawl do AdSense depende do Google e não do deploy.
+
+## Analytics
+
+- Google Tag Manager: `GTM-5RGPM6HD`;
+- GA4 de referência: `G-K8YWSXBHS7`.
+
+O HTML carrega **somente o GTM**. A instalação direta de `gtag.js` foi removida para evitar pageviews duplicados.
+
+Eventos de produto enviados ao `dataLayer`:
+
+- `ofertamatica_creator_view`;
+- `ofertamatica_format_selected`;
+- `ofertamatica_draft_resumed`;
+- `ofertamatica_print_review`;
+- `ofertamatica_print_started`.
+
+O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
+
+## SEO
+
+O build gera páginas estáticas para as páginas públicas e SEO, além de:
+
+- canonical individual;
+- title e description individuais;
+- Open Graph;
+- JSON-LD;
+- breadcrumbs;
+- FAQ estruturada;
+- `sitemap.xml`;
+- `robots.txt`.
+
+A raiz continua sendo o criador e não é substituída por uma landing SEO.
 
 ## Desenvolvimento
 
@@ -45,30 +128,37 @@ npm install
 npm run dev
 ```
 
-Build de produção:
+Build:
 
 ```bash
 npm run build
 ```
 
-## Deploy beta
+Validação do build:
 
-Todo push na branch `main` executa o workflow `.github/workflows/deploy-beta.yml`, gera `dist/` e envia o build para:
-
-```text
-public_html/beta
+```bash
+npm run check:build
 ```
 
-O ambiente beta poderá ser acessado inicialmente por `/beta/` e depois associado a um subdomínio de homologação.
+Build + validação:
 
-## Estratégia
+```bash
+npm run verify
+```
 
-1. Preservar e exportar a V1 atual.
-2. Desenvolver a V2 neste repositório.
-3. Publicar a V2 no ambiente beta.
-4. Validar cartazes, importação, IA, autenticação e responsividade.
-5. Somente depois trocar o domínio principal para a V2.
+## Deploy de produção
 
-## Produção
+Pushes em `main` executam `.github/workflows/deploy-beta.yml`.
 
-O site atual não deve ser sobrescrito durante o desenvolvimento da V2.
+O nome do arquivo é histórico; o workflow atual publica **produção** na Locaweb em:
+
+`public_html`
+
+Antes do FTP, o workflow executa build e validações automáticas. O deploy envia assets primeiro e depois o restante do app.
+
+## Segurança
+
+- nunca versionar senhas, tokens ou arquivos `.env`;
+- FTP usa GitHub Secrets;
+- não colocar credenciais privadas no frontend;
+- mudanças de monetização, Analytics ou rota raiz devem preservar as regras deste README.

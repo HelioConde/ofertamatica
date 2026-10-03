@@ -29,6 +29,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Validate production build
+        run: npm run check:build
+
       # Deploy imutável/seguro:
       # 1) envia os assets com hash primeiro e preserva os antigos;
       # 2) só depois troca index.html e demais arquivos de raiz.

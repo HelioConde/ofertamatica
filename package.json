@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo-pages.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:build": "node scripts/validate-build.mjs",
+    "verify": "npm run build && npm run check:build"
   },
   "dependencies": {
     "@e965/xlsx": "^0.20.3",
