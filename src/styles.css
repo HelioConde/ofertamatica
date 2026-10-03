@@ -569,7 +569,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (min-width: 821px) {
-  .format-mode,
+  /* Páginas públicas e seletor de formatos precisam rolar normalmente.
+     Somente o workspace do editor fica preso à viewport. */
+  .format-mode {
+    min-height: 100dvh;
+    height: auto;
+    overflow: visible;
+  }
+
   .editor-mode {
     height: 100dvh;
     overflow: hidden;
