@@ -17,6 +17,8 @@ function styleFor(box, textStyle) {
 }
 
 export default function AppPosterCard({ product, template, editable, showLayoutDebug, onBoxPointerDown, badgeLabel, selected, onSelect }) {
+  const headerText = template.headerText || 'OFERTA APP'
+  const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   const values = {
     title: [product.description, product.subdescription, product.complement, product.unit].filter(Boolean).join('\n'),
     appPrice: product.price ? `${template.showCurrency && !template.currencyFromBackground ? 'R$ ' : ''}${product.price}` : '',
@@ -33,7 +35,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
             <img src={template.headerImage} alt="" />
           </div>
         ) : (
-          <div className={`ofertamatica-app-ribbon header-${template.headerStyle || 'band'}`}><b>{template.headerText || 'OFERTA APP'}</b></div>
+          <div className={`ofertamatica-app-ribbon header-${template.headerStyle || 'band'} ${headerLengthClass}`}><b>{headerText}</b></div>
         )}
         <div className="ofertamatica-app-frame" />
         <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
