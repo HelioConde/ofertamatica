@@ -80,6 +80,19 @@ function OfferMeta({ product, template }) {
   return null
 }
 
+function OfferFooter({ template }) {
+  const validity = String(template.validityText || '').trim()
+  const limit = String(template.limitText || '').trim()
+  if (!validity && !limit) return null
+
+  return (
+    <div className="poster-offer-footer">
+      {validity ? <span>{validity}</span> : null}
+      {limit ? <span>{limit}</span> : null}
+    </div>
+  )
+}
+
 function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown, showCurrency = true }) {
   return (
     <div className={`poster-layout-box poster-price-box ${showDebug ? 'poster-layout-box-debug' : ''}`} style={boxStyle(box)} data-layout-box="priceBox" onPointerDown={editable ? (event) => onBoxPointerDown?.('priceBox', 'move', event) : undefined}>
@@ -133,6 +146,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
         <OfferMeta product={product} template={template} />
         <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
+        <OfferFooter template={template} />
       </div>
     </article>
   )
