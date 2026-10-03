@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
-import { AdUnit, HomeMarketing, SeoLanding, getSeoPage } from './components/SiteMarketing'
+import AdUnit from './components/AdUnit'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
@@ -1051,7 +1051,6 @@ function Editor({
 }
 
 function App() {
-  const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
   const fallbackProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
   const [draftAvailable, setDraftAvailable] = useState(savedDraft)
@@ -1061,12 +1060,6 @@ function App() {
   const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : fallbackProducts)
   const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || (savedDraft?.products?.[0]?.id || fallbackProducts[0]?.id || null))
   const [pageIndex, setPageIndex] = useState(() => savedDraft?.pageIndex || 0)
-
-  useEffect(() => {
-    const handlePopState = () => setRoutePath(window.location.pathname || '/')
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
-  }, [])
 
   useEffect(() => {
     const draft = {
@@ -1105,26 +1098,15 @@ function App() {
   }
 
   function showFormats() {
-    if (routePath !== '/') {
-      window.history.pushState({}, '', '/')
-      setRoutePath('/')
-    }
     setScreen('formats')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const seoPage = getSeoPage(routePath)
-
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
       <Navigation onCreate={showFormats} />
-      {seoPage ? (
-        <SeoLanding page={seoPage} onCreate={showFormats} />
-      ) : screen === 'formats' ? (
-        <>
-          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
-          <HomeMarketing onCreate={showFormats} />
-        </>
+      {screen === 'formats' ? (
+        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       ) : (
         <Editor
           formatId={formatId}
