@@ -200,11 +200,13 @@ Build:
 npm run build
 ```
 
-Validação do build:
+Validação do build e parser de listas:
 
 ```bash
 npm run check:build
 ```
+
+A validação cobre também entradas simples e colagens de Excel/ERP com cabeçalho, tabulação, ponto e vírgula e pipe.
 
 Build + validação:
 
