@@ -396,6 +396,11 @@ function FormatChooser({ onSelect, draft, onResume }) {
           <span className="eyebrow two-click-kicker">PLACA PRONTA EM 2 CLIQUES</span>
           <h1>Escolha o formato.</h1>
           <p>Na próxima tela, cole seus produtos e gere as placas. Simples assim.</p>
+          <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
+            <span>✓ Pensado para rotina real de supermercado</span>
+            <span>✓ Sem cadastro</span>
+            <span>✓ PDF e impressão</span>
+          </div>
         </header>
 
         {draft?.products?.length ? (
