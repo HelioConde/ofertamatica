@@ -1,5 +1,4 @@
 // PRODUCT_DECISION_AI_PERMANENT_COPY: manter a mensagem de IA sem rótulos temporários.
-// PRODUCT_DECISION_AI_UPCOMING: IA é a próxima implementação; não anunciar como recurso disponível.
 export const SITE_URL = 'https://ofertamatica.com.br'
 
 export const SEO_PAGES = [
