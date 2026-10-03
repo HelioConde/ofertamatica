@@ -27,6 +27,12 @@ const HEADER_IMAGES = Object.entries(HEADER_IMAGE_MODULES)
 
 const HEADER_IMAGE_BY_ID = Object.fromEntries(HEADER_IMAGES.map((item) => [item.id, item.url]))
 
+const DEFAULT_HEADER_OPTION_ID = '__oferta__'
+const HEADER_OPTIONS = [
+  { id: DEFAULT_HEADER_OPTION_ID, label: 'Oferta', url: '' },
+  ...HEADER_IMAGES,
+]
+
 function normalizeHeaderImageId(value) {
   if (!value) return ''
   const base = String(value).replace(/\.png$/i, '')
@@ -440,14 +446,19 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
   const filteredHeaders = normalizedSearch
-    ? HEADER_IMAGES.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
-    : HEADER_IMAGES
+    ? HEADER_OPTIONS.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
+    : HEADER_OPTIONS
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
     .filter(Boolean)
 
   function chooseHeader(id) {
+    if (id === DEFAULT_HEADER_OPTION_ID) {
+      onChange({ ...style, headerImage: '' })
+      return
+    }
+
     onChange({ ...style, headerImage: id })
     const next = [id, ...recentHeaderIds.filter((current) => current !== id)].slice(0, 6)
     setRecentHeaderIds(next)
@@ -532,7 +543,7 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
         <section className="style-section header-library-section">
           <div className="style-section-title-row">
             <strong>Header da placa</strong>
-            <small>{HEADER_IMAGES.length} artes</small>
+            <small>{HEADER_OPTIONS.length} opções</small>
           </div>
 
           {style.headerImage ? (
@@ -540,15 +551,10 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
               <img src={HEADER_IMAGE_BY_ID[style.headerImage]} alt="" />
               <div>
                 <strong>{HEADER_IMAGES.find((item) => item.id === style.headerImage)?.label || 'Header selecionado'}</strong>
-                <button type="button" onClick={() => onChange({ ...style, headerImage: '' })}>Remover</button>
+                <button type="button" onClick={() => chooseHeader(DEFAULT_HEADER_OPTION_ID)}>Usar padrão</button>
               </div>
             </div>
-          ) : (
-            <button type="button" className="default-header-choice active">
-              <span>OFERTA</span>
-              <small>Cabeçalho padrão</small>
-            </button>
-          )}
+          ) : null}
 
           {recentHeaders.length ? (
             <div className="recent-headers">
@@ -584,18 +590,29 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
           </label>
 
           <div className="header-art-grid">
-            {visibleHeaders.map((item) => (
-              <button
-                type="button"
-                key={item.id}
-                className={style.headerImage === item.id ? 'active' : ''}
-                onClick={() => chooseHeader(item.id)}
-                title={item.label}
-              >
-                <img src={item.url} alt="" loading="lazy" />
-                <span>{item.label}</span>
-              </button>
-            ))}
+            {visibleHeaders.map((item) => {
+              const isDefault = item.id === DEFAULT_HEADER_OPTION_ID
+              const isActive = isDefault ? !style.headerImage : style.headerImage === item.id
+              return (
+                <button
+                  type="button"
+                  key={item.id}
+                  className={isActive ? 'active' : ''}
+                  onClick={() => chooseHeader(item.id)}
+                  title={isDefault ? 'OFERTA — cabeçalho padrão' : item.label}
+                >
+                  {isDefault ? (
+                    <div className="header-default-thumb" aria-hidden="true">
+                      <span className="ofertamatica-bag-mark">✓</span>
+                      <b>OFERTA</b>
+                    </div>
+                  ) : (
+                    <img src={item.url} alt="" loading="lazy" />
+                  )}
+                  <span>{isDefault ? 'Oferta (padrão)' : item.label}</span>
+                </button>
+              )
+            })}
           </div>
 
           {!filteredHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
