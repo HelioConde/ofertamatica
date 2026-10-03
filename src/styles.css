@@ -3537,3 +3537,101 @@ textarea:focus-visible {
     box-shadow: 0 2px 8px rgba(35,62,99,.09);
   }
 }
+
+
+/* Fast return, literal second click and extra retail offer modes */
+.format-choice-badges {
+  position: absolute;
+  z-index: 4;
+  left: 7px;
+  top: 7px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.format-choice-badges .format-recommended {
+  position: static;
+}
+
+.format-last-used {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #edf8f1;
+  color: #168451;
+  font-size: 6.5px;
+  font-weight: 900;
+  box-shadow: 0 2px 6px rgba(22,132,81,.10);
+}
+
+.format-choice.is-last-used {
+  border-color: #b9ddc7;
+}
+
+.paste-generate-button {
+  box-shadow: 0 5px 14px rgba(29,99,233,.16);
+}
+
+.clipboard-error {
+  margin-top: 7px;
+}
+
+.poster-offer-meta-club,
+.poster-offer-meta-second-unit {
+  top: 59.5%;
+  gap: 1.2mm;
+}
+
+.poster-offer-meta-club span,
+.poster-offer-meta-club small,
+.poster-offer-meta-second-unit span,
+.poster-offer-meta-second-unit small {
+  padding: .75mm 1.35mm;
+  border-radius: 999px;
+  background: rgba(255,255,255,.80);
+}
+
+.poster-offer-meta-club span {
+  color: #1d63e9;
+  font-size: 2.35mm;
+}
+
+.poster-offer-meta-club b {
+  color: #1d63e9;
+  font-size: 2.9mm;
+}
+
+.poster-offer-meta-club small {
+  color: var(--poster-text-color, #111);
+  font-size: 2mm;
+  font-weight: 900;
+}
+
+.poster-offer-meta-second-unit span {
+  color: #7b2cbf;
+  font-size: 2.3mm;
+}
+
+.poster-offer-meta-second-unit b {
+  color: var(--poster-price-color, #e60025);
+  font-size: 3.6mm;
+}
+
+.poster-offer-meta-second-unit small {
+  color: var(--poster-text-color, #111);
+  font-size: 1.9mm;
+  font-weight: 900;
+}
+
+@media (max-width: 820px) {
+  .format-choice-badges {
+    left: 6px;
+    top: 6px;
+    flex-wrap: wrap;
+    max-width: calc(100% - 12px);
+  }
+}
