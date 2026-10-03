@@ -126,15 +126,9 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
         <div className="ofertamatica-poster-background" aria-hidden="true">
           {template.headerImage ? (
-            <>
-              <div className="ofertamatica-custom-header">
-                <img src={template.headerImage} alt="" />
-              </div>
-              <div className={`ofertamatica-art-offer-badge header-${template.headerStyle || 'band'}`}>
-                <span className="ofertamatica-bag-mark">✓</span>
-                <b>{template.headerText || 'OFERTA'}</b>
-              </div>
-            </>
+            <div className="ofertamatica-custom-header">
+              <img src={template.headerImage} alt="" />
+            </div>
           ) : (
             <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'band'}`}><span className="ofertamatica-bag-mark">✓</span><b>{template.headerText || 'OFERTA'}</b></div>
           )}
