@@ -207,21 +207,21 @@ export function AdUnit({ placement = 'content' }) {
     }
   }, [placement])
 
+  // Sem um slot manual configurado, não reservamos um "buraco" vazio.
+  // O script global do AdSense continua livre para trabalhar com Auto Ads.
+  if (!ADSENSE_SLOT) return null
+
   return (
     <div className="oferta-ad-unit" data-placement={placement} aria-label="Publicidade">
       <span className="oferta-ad-label">PUBLICIDADE</span>
-      {ADSENSE_SLOT ? (
-        <ins
-          className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client={ADSENSE_CLIENT}
-          data-ad-slot={ADSENSE_SLOT}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      ) : (
-        <div className="oferta-ad-fallback" aria-hidden="true" />
-      )}
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client={ADSENSE_CLIENT}
+        data-ad-slot={ADSENSE_SLOT}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   )
 }

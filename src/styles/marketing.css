@@ -244,11 +244,11 @@
 .marketing-final-cta p { margin: 8px 0 0; color: #deebff; }
 
 .oferta-ad-unit {
-  min-height: 86px;
+  min-height: 72px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 18px 0;
+  margin: 12px 0;
   border: 1px solid #e3e9f1;
   border-radius: 12px;
   background: #fff;
@@ -262,7 +262,13 @@
   letter-spacing: .1em;
   text-align: center;
 }
-.oferta-ad-fallback { min-height: 62px; }
+
+.oferta-ad-unit:has(.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+  margin: 0;
+  min-height: 0;
+  border: 0;
+}
 .format-ad-card .oferta-ad-unit,
 .preview-ad-card .oferta-ad-unit {
   width: 100%;
