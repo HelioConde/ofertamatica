@@ -132,6 +132,20 @@ function normalizeParsedPrice(value) {
   return normalizePrice(raw)
 }
 
+function isLikelyHeaderLine(line) {
+  const value = normalizedToken(String(line || '').replace(/[;|\t,]+/g, ' '))
+  if (!value || PRICE_PATTERN.test(String(line || ''))) return false
+
+  const groups = [
+    /\b(PRODUTO|DESCRICAO|NOME)\b/,
+    /\b(PRECO|VALOR|VENDA)\b/,
+    /\b(UNIDADE|GRAMATURA|PESO|VOLUME)\b/,
+    /\b(MARCA|VARIANTE|COMPLEMENTO)\b/,
+  ]
+
+  return groups.reduce((score, pattern) => score + (pattern.test(value) ? 1 : 0), 0) >= 2
+}
+
 function splitTextFields(text) {
   const normalized = String(text || '').replace(/[;|\t]+/g, ',')
   const parts = normalized.split(/\s*,\s*/).map(cleanPart).filter(Boolean)
@@ -229,5 +243,6 @@ export function parseProductList(text) {
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean)
+    .filter((line) => !isLikelyHeaderLine(line))
     .map(parseProductLine)
 }
