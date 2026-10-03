@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
-import { AdUnit, HomeMarketing, SeoLanding, getSeoPage } from './components/SiteMarketing'
+import { AdUnit, HomeMarketing, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
@@ -187,17 +187,29 @@ function Brand() {
   )
 }
 
-function Navigation({ onCreate }) {
+function Navigation({ routePath, screen }) {
+  const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
+  const links = [
+    ['/criar-placas', 'Criar placas'],
+    ['/modelos', 'Modelos'],
+    ['/formatos', 'Formatos'],
+    ['/como-funciona', 'Como funciona'],
+    ['/guias-para-varejo', 'Guias para varejo'],
+  ]
+
   return (
     <header className="site-header">
       <div className="nav-shell">
         <Brand />
         <nav className="main-nav" aria-label="Navegação principal">
-          <button className="nav-link active" type="button" onClick={onCreate}>Criar placas</button>
-          <a className="nav-link" href="/#modelos">Modelos</a>
-          <a className="nav-link" href="/#formatos">Formatos</a>
-          <a className="nav-link" href="/#como-funciona">Como funciona</a>
-          <a className="nav-link" href="/#guias">Guias para varejo</a>
+          {links.map(([href, label]) => {
+            const active = cleanPath === href || (label === 'Criar placas' && screen === 'editor')
+            return (
+              <a className={'nav-link ' + (active ? 'active' : '')} href={href + '/'} key={href}>
+                {label}
+              </a>
+            )
+          })}
         </nav>
         <div className="nav-meta">
           <span className="free-pill">Grátis</span>
@@ -1105,27 +1117,24 @@ function App() {
   }
 
   function showFormats() {
-    if (routePath !== '/') {
-      window.history.pushState({}, '', '/')
-      setRoutePath('/')
+    const createPath = '/criar-placas/'
+    if (routePath !== createPath) {
+      window.history.pushState({}, '', createPath)
+      setRoutePath(createPath)
     }
     setScreen('formats')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const seoPage = getSeoPage(routePath)
+  const publicPage = getPublicPage(routePath)
+  const cleanRoute = String(routePath || '/').replace(/\/+$/, '') || '/'
+  const isCreateRoute = cleanRoute === '/criar-placas'
 
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
-      <Navigation onCreate={showFormats} />
-      {seoPage ? (
-        <SeoLanding page={seoPage} onCreate={showFormats} />
-      ) : screen === 'formats' ? (
-        <>
-          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
-          <HomeMarketing onCreate={showFormats} />
-        </>
-      ) : (
+      <Navigation routePath={routePath} screen={screen} />
+      {screen === 'editor' ? (
         <Editor
           formatId={formatId}
           sourceText={sourceText}
@@ -1138,6 +1147,17 @@ function App() {
           setPageIndex={setPageIndex}
           onChangeFormat={showFormats}
         />
+      ) : seoPage ? (
+        <SeoLanding page={seoPage} onCreate={showFormats} />
+      ) : publicPage ? (
+        <PublicPage page={publicPage} onCreate={showFormats} />
+      ) : isCreateRoute ? (
+        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+      ) : (
+        <>
+          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+          <HomeMarketing onCreate={showFormats} />
+        </>
       )}
     </div>
   )
