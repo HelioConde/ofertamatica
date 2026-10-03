@@ -4044,3 +4044,37 @@ textarea:focus-visible {
   color: #168451;
   font-weight: 900;
 }
+
+
+/* Richer promotional labels: calculated discount, bundle each-price and wholesale minimum */
+.poster-discount-badge {
+  padding: .75mm 1.5mm;
+  border-radius: 999px;
+  background: var(--poster-price-color, #e60025);
+  color: #fff;
+  font-size: 2.1mm;
+  font-weight: 1000;
+  white-space: nowrap;
+}
+
+.poster-offer-meta-bundle {
+  flex-wrap: wrap;
+  row-gap: .8mm;
+}
+
+.poster-offer-meta-bundle small {
+  padding: .7mm 1.4mm;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  color: var(--poster-text-color, #111);
+  font-size: 1.9mm;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.poster-offer-meta-wholesale span {
+  max-width: 58%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
