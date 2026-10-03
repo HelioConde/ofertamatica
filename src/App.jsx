@@ -408,14 +408,15 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
   )
 }
 
-function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint }) {
+function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint, intent = 'print' }) {
+  const savingPdf = intent === 'pdf'
   return (
     <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <section className="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
         <header>
           <div>
-            <span className="section-label">REVISÃO DE IMPRESSÃO</span>
-            <h2 id="review-title">Confira antes de imprimir</h2>
+            <span className="section-label">{savingPdf ? 'SALVAR COMO PDF' : 'REVISÃO DE IMPRESSÃO'}</span>
+            <h2 id="review-title">{savingPdf ? 'Confira antes de gerar o PDF' : 'Confira antes de imprimir'}</h2>
           </div>
           <button type="button" className="review-close" onClick={onClose} aria-label="Fechar revisão">×</button>
         </header>
@@ -444,16 +445,19 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
         )}
 
         <div className="print-guidance">
-          <strong>Na janela de impressão</strong>
+          <strong>{savingPdf ? 'Na janela que abrir' : 'Na janela de impressão'}</strong>
+          {savingPdf ? <span>Escolha <b>Salvar como PDF</b> como destino da impressão.</span> : null}
           <span>Use escala de <b>100%</b> e evite “Ajustar à página”.</span>
           <span>Selecione papel <b>{format.paper}</b> e orientação <b>{format.orientationLabel}</b>.</span>
           <span>Desative cabeçalhos e rodapés do navegador para não aparecer URL/data na folha.</span>
-          {format.paper === 'A3' ? <span className="print-alert">Este trabalho exige papel/impressora A3.</span> : null}
+          {format.paper === 'A3' ? <span className="print-alert">Este trabalho usa tamanho A3; o PDF manterá o tamanho físico configurado.</span> : null}
         </div>
 
         <footer>
           <button type="button" className="quiet-button review-back" onClick={onClose}>Voltar e corrigir</button>
-          <button type="button" className="generate-button review-print" onClick={onPrint}>Imprimir agora</button>
+          <button type="button" className="generate-button review-print" onClick={onPrint}>
+            {savingPdf ? 'Abrir para salvar PDF' : 'Imprimir agora'}
+          </button>
         </footer>
       </section>
     </div>
@@ -813,6 +817,7 @@ function Editor({
 }) {
   const [expanded, setExpanded] = useState(false)
   const [reviewOpen, setReviewOpen] = useState(false)
+  const [reviewIntent, setReviewIntent] = useState('print')
   const [importError, setImportError] = useState('')
   const [fontReady, setFontReady] = useState(false)
   const [confirmExample, setConfirmExample] = useState(false)
@@ -1109,8 +1114,9 @@ function Editor({
     setSelectedProductId(pages[next]?.[0]?.id || null)
   }
 
-  function openPrintReview(source = 'preview') {
-    trackProductEvent('ofertamatica_print_review', {
+  function openPrintReview(source = 'preview', intent = 'print') {
+    setReviewIntent(intent)
+    trackProductEvent(intent === 'pdf' ? 'ofertamatica_pdf_review' : 'ofertamatica_print_review', {
       source,
       format_id: format.id,
       product_count: products.length,
@@ -1120,7 +1126,7 @@ function Editor({
   }
 
   function printPosters() {
-    trackProductEvent('ofertamatica_print_started', {
+    trackProductEvent(reviewIntent === 'pdf' ? 'ofertamatica_pdf_started' : 'ofertamatica_print_started', {
       format_id: format.id,
       product_count: products.length,
       page_count: pageCount,
@@ -1362,7 +1368,10 @@ function Editor({
           </div>
 
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
-          <button className="print-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview')}>Revisar e imprimir</button>
+          <div className="preview-output-actions">
+            <button className="pdf-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview', 'pdf')}>Salvar PDF</button>
+            <button className="print-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview', 'print')}>Revisar e imprimir</button>
+          </div>
         </aside>
 
         <StyleSidebar
@@ -1409,7 +1418,8 @@ function Editor({
             />
             <footer>
               <button type="button" onClick={() => setExpanded(false)}>Editar</button>
-              <button className="generate-button" type="button" onClick={() => { setExpanded(false); openPrintReview('expanded-preview') }}>Revisar impressão</button>
+              <button type="button" onClick={() => { setExpanded(false); openPrintReview('expanded-preview', 'pdf') }}>Salvar PDF</button>
+              <button className="generate-button" type="button" onClick={() => { setExpanded(false); openPrintReview('expanded-preview', 'print') }}>Revisar impressão</button>
             </footer>
           </section>
         </div>
@@ -1423,6 +1433,7 @@ function Editor({
           warnings={reviewWarnings}
           onClose={() => setReviewOpen(false)}
           onPrint={printPosters}
+          intent={reviewIntent}
         />
       ) : null}
     </main>
