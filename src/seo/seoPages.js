@@ -274,7 +274,7 @@ export const SEO_FAQS = [
   { q: 'Quais formatos posso imprimir?', a: 'O editor oferece A4, A5, A3 e SRA3, além de opções A4 com dois ou quatro cartazes por folha.' },
   { q: 'Consigo criar vários cartazes de uma vez?', a: 'Sim. Você pode colar uma lista com vários produtos, revisar os dados e gerar as placas no mesmo fluxo.' },
   { q: 'Posso importar produtos de planilha?', a: 'Sim. O editor aceita importação compatível e também permite colar os produtos diretamente na entrada rápida.' },
-  { q: 'Preciso instalar algum programa?', a: 'Não. O Ofertamática funciona no navegador e a criação, revisão e impressão acontecem online.' },
+  { q: 'Preciso instalar algum programa?', a: 'Não. O Ofertamática funciona direto no navegador. Em navegadores compatíveis, você pode instalar o site como app opcional para abrir mais rápido no computador ou celular da loja.' },
   { q: 'Posso colocar a logo da minha loja?', a: 'Sim. A logo pode ser adicionada como personalização opcional e fica salva localmente no dispositivo para facilitar os próximos trabalhos.' },
   { q: 'Consigo salvar os cartazes em PDF?', a: 'Sim. O editor oferece a opção Salvar PDF e abre a janela de impressão para escolher “Salvar como PDF”, preservando o tamanho físico configurado.' },
   { q: 'Preciso fazer cadastro para começar?', a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.' },
