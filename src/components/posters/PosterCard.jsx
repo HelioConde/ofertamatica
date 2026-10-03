@@ -77,6 +77,26 @@ function OfferMeta({ product, template }) {
     )
   }
 
+  if (mode === 'club-app' && product.regularPrice) {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-club">
+        <span>CLUBE / APP</span>
+        <b>PREÇO EXCLUSIVO</b>
+        <small>Normal R$ {product.regularPrice}</small>
+      </div>
+    )
+  }
+
+  if (mode === 'second-unit' && product.secondUnitPrice) {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-second-unit">
+        <span>2ª UNIDADE</span>
+        <b>R$ {product.secondUnitPrice}</b>
+        <small>1ª UNIDADE ABAIXO</small>
+      </div>
+    )
+  }
+
   return null
 }
 
