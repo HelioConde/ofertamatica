@@ -320,7 +320,7 @@ function Brand() {
   )
 }
 
-function Navigation({ routePath, screen }) {
+function Navigation({ routePath, screen, onInstall }) {
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
   const links = [
     ['/', 'Criar placas'],
@@ -351,6 +351,7 @@ function Navigation({ routePath, screen }) {
           })}
         </nav>
         <div className="nav-meta">
+          {onInstall ? <button type="button" className="install-app-button" onClick={onInstall}>Instalar app</button> : null}
           <span className="free-pill">Grátis</span>
           <span className="nav-note">sem cadastro</span>
         </div>
@@ -1724,6 +1725,24 @@ function App() {
   const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : [])
   const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || savedDraft?.products?.[0]?.id || null)
   const [pageIndex, setPageIndex] = useState(() => savedDraft?.pageIndex || 0)
+  const [installPrompt, setInstallPrompt] = useState(null)
+
+  useEffect(() => {
+    const handleInstallPrompt = (event) => {
+      event.preventDefault()
+      setInstallPrompt(event)
+    }
+    const handleInstalled = () => {
+      setInstallPrompt(null)
+      trackProductEvent('ofertamatica_app_installed')
+    }
+    window.addEventListener('beforeinstallprompt', handleInstallPrompt)
+    window.addEventListener('appinstalled', handleInstalled)
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleInstallPrompt)
+      window.removeEventListener('appinstalled', handleInstalled)
+    }
+  }, [])
 
   useEffect(() => {
     const handlePopState = () => setRoutePath(window.location.pathname || '/')
@@ -1762,6 +1781,16 @@ function App() {
       trackProductEvent('ofertamatica_creator_view', { entry: 'root' })
     }
   }, [routePath, screen])
+
+  async function installApp() {
+    if (!installPrompt) return
+    installPrompt.prompt()
+    const choice = await installPrompt.userChoice
+    trackProductEvent('ofertamatica_install_prompt_result', {
+      outcome: choice?.outcome || 'unknown',
+    })
+    setInstallPrompt(null)
+  }
 
   function resumeDraft() {
     if (!draftAvailable) return
@@ -1805,7 +1834,7 @@ function App() {
 
   return (
     <div className={'app ' + appModeClass}>
-      <Navigation routePath={routePath} screen={screen} />
+      <Navigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
       {screen === 'editor' ? (
         <>
           <CreatorSeoHead />
