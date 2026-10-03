@@ -6,6 +6,7 @@ const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545
 const ADSENSE_SLOTS = {
   'home-content': '3215962830',
   'seo-content': '5483033524',
+  'format-grid': '7286894770',
 }
 // PRODUCT_DECISION_AI_UPCOMING: IA é a próxima implementação; não anunciar como recurso disponível.
 // PRODUCT_DECISION_AI_PERMANENT_COPY: manter “Crie seu cartaz com IA” sem rótulos temporários.
