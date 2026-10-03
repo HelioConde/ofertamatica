@@ -27,6 +27,7 @@ const MODEL_PRESETS = [
   { id: 'relampago', name: 'Oferta relâmpago', category: 'Impacto', label: 'OFERTA RELÂMPAGO', background: '#f02b45', price: '#fff200', text: '#ffffff', header: '#b80925', headerText: '#ffffff', variant: 'flash', product: 'REFRIGERANTE 2 L', value: '6,99', note: 'Alto contraste para promoções curtas e chamadas urgentes.' },
   { id: 'super-oferta', name: 'Super oferta', category: 'Impacto', label: 'SUPER OFERTA', background: '#ffea00', price: '#d8001d', text: '#111111', header: '#0c59c7', headerText: '#ffffff', variant: 'super', product: 'ARROZ 5 kg', value: '24,90', note: 'Visual forte para ponta de gôndola e produtos campeões.' },
   { id: 'economia', name: 'Economia de verdade', category: 'Essenciais', label: 'ECONOMIA', background: '#fff5b5', price: '#d71920', text: '#16324a', header: '#16734a', headerText: '#ffffff', variant: 'savings', product: 'FEIJÃO 1 kg', value: '7,49', note: 'Mais sóbrio, ótimo para comunicação recorrente de preço.' },
+  { id: 'de-por', name: 'De / Por', category: 'Vendas', label: 'OFERTA', background: '#fff7a8', price: '#d71920', text: '#172033', header: '#e51e31', headerText: '#ffffff', variant: 'depor', product: 'CAFÉ 500 g', value: '18,90', note: 'Preço anterior e preço de oferta sem criar outra placa do zero.' },
   { id: 'hortifruti', name: 'Hortifruti', category: 'Setores', label: 'FRESQUINHOS', background: '#20a464', price: '#fff000', text: '#ffffff', header: '#0b7042', headerText: '#ffffff', variant: 'fresh', product: 'BANANA PRATA kg', value: '4,99', note: 'Verde vivo para feira, frutas, legumes e verduras.' },
   { id: 'acougue', name: 'Açougue', category: 'Setores', label: 'AÇOUGUE', background: '#8f1723', price: '#ffd93b', text: '#ffffff', header: '#5d0b14', headerText: '#ffffff', variant: 'butcher', product: 'CONTRA FILÉ kg', value: '39,90', note: 'Vermelho fechado para carnes, cortes e festival de churrasco.' },
   { id: 'padaria', name: 'Padaria', category: 'Setores', label: 'PADARIA', background: '#f2c06b', price: '#9d1f17', text: '#3d2617', header: '#8f4c24', headerText: '#fff8e7', variant: 'bakery', product: 'PÃO FRANCÊS kg', value: '12,90', note: 'Tons quentes para pães, bolos, cafés e itens frescos.' },
@@ -308,6 +309,12 @@ function MarketingFooter() {
 
 function ModelCard({ item, onCreate }) {
   function useModel() {
+    const offerMode = {
+      'de-por': 'de-por',
+      'leve-mais': 'leve-por',
+      atacado: 'atacado-varejo',
+    }[item.id] || 'standard'
+
     try {
       localStorage.setItem(POSTER_STYLE_KEY, JSON.stringify({
         backgroundColor: item.background,
@@ -320,6 +327,9 @@ function ModelCard({ item, onCreate }) {
         headerText: item.label,
         headerImage: '',
         showCurrency: true,
+        offerMode,
+        validityText: '',
+        limitText: '',
       }))
     } catch {
       // Mesmo sem armazenamento local, o usuário ainda pode abrir o criador.
