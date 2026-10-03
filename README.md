@@ -15,6 +15,18 @@ Esta é uma regra permanente:
 - Modelos, Formatos, Como funciona e Guias permanecem em páginas separadas;
 - se uma mudança futura conflitar com esta regra, a entrada direta no criador tem prioridade.
 
+## Diferencial principal: 2 cliques
+
+> **A primeira placa deve poder ficar pronta em 2 cliques: escolher o formato e gerar a partir da lista de produtos.**
+
+Essa é uma regra de produto tão importante quanto a entrada direta no criador:
+
+- não inserir uma etapa obrigatória de escolha de modelo, campanha, cadastro ou personalização antes da geração;
+- tipos de oferta especiais, headers, cores, fontes e outros ajustes entram depois do resultado;
+- novos recursos devem preservar o caminho rápido por padrão;
+- quando uma funcionalidade avançada aumentar a burocracia, ela deve ficar como opção, não como etapa obrigatória;
+- o objetivo é reduzir o tempo entre entrar no site e ver a primeira placa pronta.
+
 ## Regra de viewport e retenção
 
 No desktop, a Home e o workspace do criador devem se comportar como uma ferramenta instalada:
@@ -56,6 +68,16 @@ O fluxo atual permite:
 5. visualizar o cartaz;
 6. revisar papel/orientação;
 7. imprimir.
+
+Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeçar o fluxo:
+
+- Padrão;
+- De / Por;
+- Leve X por Y;
+- Atacado / Varejo;
+- Oferta de App no formato dedicado.
+
+Essas opções são deliberadamente **opcionais** e não criam uma nova etapa antes da primeira placa.
 
 Formatos principais disponíveis:
 
@@ -118,7 +140,8 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_draft_resumed`;
 - `ofertamatica_print_review`;
 - `ofertamatica_print_started`;
-- `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão.
+- `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão;
+- `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
