@@ -494,14 +494,14 @@ export function PublicPage({ page, onCreate }) {
               </div>
               <div className="workflow-grid">
                 <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A4, A5, A3, SRA3 ou a quantidade de placas por folha.</p></article>
-                <article><span>2</span><strong>Cole e gere</strong><p>Cole sua lista ou importe Excel, CSV ou TXT e gere várias placas de uma vez.</p></article>
+                <article><span>2</span><strong>Cole e gere</strong><p>Cole direto do Excel/ERP, mesmo com cabeçalho, ou importe TXT, CSV, XLS e XLSX.</p></article>
                 <article><span>+</span><strong>Personalize se quiser</strong><p>Header, cores, fonte e tipo de oferta ficam disponíveis sem bloquear o resultado.</p></article>
                 <article><span>✓</span><strong>Revise e imprima</strong><p>Confira papel, orientação e preços antes de enviar para a impressora.</p></article>
               </div>
             </section>
             <section className="marketing-section compact-info-grid">
               <article><strong>Sem cadastro para começar</strong><p>O usuário entra direto no gerador, sem formulário antes da primeira placa.</p></article>
-              <article><strong>Trabalho salvo localmente</strong><p>O último trabalho pode ser retomado no mesmo dispositivo.</p></article>
+              <article><strong>Histórico salvo localmente</strong><p>Retome o último trabalho ou reaproveite listas recentes no mesmo dispositivo.</p></article>
               <article><strong>Revisão antes da impressão</strong><p>Preço, quantidade, papel e orientação ficam visíveis antes de imprimir.</p></article>
             </section>
           </>
