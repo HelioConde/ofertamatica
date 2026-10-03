@@ -47,6 +47,42 @@ export const PUBLIC_PAGES = [
     lead: 'Conteúdos organizados por criação, supermercado, campanhas, preço, impressão e inteligência artificial.',
     benefits: ['Conteúdo por necessidade', 'Links internos organizados', 'Acesso direto ao criador'],
   },
+  {
+    kind: 'public',
+    slug: 'privacidade',
+    title: 'Política de Privacidade | Ofertamática',
+    description: 'Entenda como o Ofertamática usa armazenamento local, analytics, publicidade e dados técnicos durante o uso do site.',
+    keywords: 'privacidade Ofertamática, política de privacidade',
+    eyebrow: 'PRIVACIDADE',
+    heading: 'Privacidade e uso de dados no Ofertamática',
+    lead: 'A criação de placas pode começar sem cadastro. Esta página explica quais dados ficam no dispositivo e quais serviços externos podem processar dados técnicos.',
+    benefits: ['Criação sem cadastro obrigatório', 'Rascunhos salvos localmente', 'Transparência sobre analytics e publicidade'],
+    legal: true,
+    sections: [
+      { title: 'Rascunhos e preferências', text: 'O editor usa o armazenamento local do navegador para manter o último trabalho, o formato escolhido e preferências de personalização no dispositivo. Esses dados não são um cadastro de conta.' },
+      { title: 'Analytics e desempenho', text: 'O site pode usar ferramentas de medição para entender páginas acessadas, etapas do criador e problemas de desempenho. Essas medições ajudam a melhorar a experiência e o fluxo de criação.' },
+      { title: 'Publicidade', text: 'Páginas públicas e áreas específicas podem exibir publicidade do Google AdSense. O provedor pode usar cookies ou tecnologias equivalentes conforme suas próprias políticas e as escolhas de consentimento aplicáveis.' },
+      { title: 'Arquivos importados', text: 'Arquivos TXT, CSV ou Excel selecionados no editor são usados no navegador para preencher a lista de produtos. O fluxo atual não exige uma conta para essa importação.' },
+    ],
+  },
+  {
+    kind: 'public',
+    slug: 'termos',
+    title: 'Termos de Uso | Ofertamática',
+    description: 'Consulte as condições gerais de uso do criador de cartazes Ofertamática.',
+    keywords: 'termos Ofertamática, termos de uso',
+    eyebrow: 'TERMOS DE USO',
+    heading: 'Condições de uso do Ofertamática',
+    lead: 'O Ofertamática é uma ferramenta de apoio à criação e impressão de comunicação promocional. O usuário continua responsável pela revisão das informações comerciais.',
+    benefits: ['Revise preços antes de imprimir', 'Use conteúdos e marcas com autorização', 'A ferramenta pode evoluir continuamente'],
+    legal: true,
+    sections: [
+      { title: 'Revisão das informações', text: 'Antes de imprimir ou publicar qualquer material, confira produto, preço, unidade, validade, condições promocionais e demais informações. A revisão final é responsabilidade de quem utiliza a ferramenta.' },
+      { title: 'Conteúdo utilizado', text: 'Ao inserir textos, logotipos, imagens ou outros materiais, utilize conteúdo que você tenha autorização para usar e respeite direitos de terceiros.' },
+      { title: 'Disponibilidade', text: 'O serviço pode receber melhorias, correções, novos formatos e mudanças de interface. Recursos podem ser alterados para melhorar segurança, desempenho ou usabilidade.' },
+      { title: 'Uso adequado', text: 'Não utilize o serviço para práticas ilícitas, fraude, conteúdo enganoso ou qualquer finalidade que viole a legislação aplicável.' },
+    ],
+  },
 ]
 
 export const SEO_PAGES = [
@@ -62,6 +98,7 @@ export const SEO_PAGES = [
     lead: 'Monte placas promocionais com um fluxo simples: escolha o formato, adicione os produtos, revise e imprima.',
     benefits: ['Formatos físicos para varejo', 'Vários cartazes por folha', 'Edição de preço, texto, cores e cabeçalho'],
     tips: ['Escolha o formato pela distância de leitura.', 'Mantenha a descrição curta e reconhecível.', 'Revise preço e unidade antes de imprimir.'],
+    storeUse: ['Cole dezenas de produtos de uma vez para reduzir digitação repetitiva.', 'Revise somente o que precisa de correção antes de imprimir.', 'Mantenha a prévia visível enquanto ajusta preço, unidade e cabeçalho.'],
   },
   {
     kind: 'seo',
@@ -75,6 +112,7 @@ export const SEO_PAGES = [
     lead: 'Organize ofertas para gôndolas, hortifruti, açougue, padaria, bebidas e outros setores em um padrão visual consistente.',
     benefits: ['Preço em destaque', 'Cabeçalhos por campanha ou setor', 'Fluxo pensado para várias ofertas'],
     tips: ['Use cartazes menores para gôndola e maiores para ponta/vitrine.', 'Agrupe campanhas por setor para manter consistência.', 'Evite excesso de texto concorrendo com o preço.'],
+    storeUse: ['Gôndola: placas compactas e leitura próxima.', 'Ilhas e pontas: preço maior e menos texto.', 'Setores como hortifruti, açougue e padaria podem usar cabeçalhos próprios mantendo o mesmo padrão de preço.'],
   },
   {
     kind: 'seo',
@@ -88,6 +126,7 @@ export const SEO_PAGES = [
     lead: 'Crie comunicação promocional clara para ofertas recorrentes e campanhas sazonais sem começar o layout do zero.',
     benefits: ['Criação em lote', 'Cabeçalhos promocionais', 'Formatos para diferentes pontos da loja'],
     tips: ['Use um cabeçalho coerente com a campanha.', 'Destaque uma condição promocional por cartaz.', 'Padronize os cartazes da mesma ação.'],
+    storeUse: ['Crie uma sequência inteira com o mesmo header para uma campanha.', 'Troque produtos e preços sem reconstruir o layout.', 'Use campanhas sazonais e ofertas relâmpago mantendo consistência visual.'],
   },
   {
     kind: 'seo',
@@ -101,6 +140,7 @@ export const SEO_PAGES = [
     lead: 'Organize produto, complemento, unidade e valor com uma hierarquia visual pensada para leitura rápida.',
     benefits: ['Preço com destaque automático', 'Campos editáveis', 'Pré-visualização antes da impressão'],
     tips: ['Confira se unidade e gramatura correspondem ao preço.', 'Evite abreviações pouco conhecidas.', 'Use contraste forte entre fundo e preço.'],
+    storeUse: ['O preço deve ser o elemento de maior leitura à distância.', 'Produto e unidade precisam continuar identificáveis em poucos segundos.', 'Contraste alto ajuda a leitura em corredores, ilhas e áreas promocionais.'],
   },
   {
     kind: 'seo',
@@ -140,6 +180,7 @@ export const SEO_PAGES = [
     lead: 'Escolha o papel, confira a orientação e revise o resultado visual antes de abrir a janela de impressão.',
     benefits: ['A4, A5, A3 e SRA3', '1, 2 ou 4 cartazes por folha no A4', 'Revisão de impressão integrada'],
     tips: ['Use escala de 100% na impressão.', 'Desative cabeçalhos e rodapés do navegador.', 'Confira papel e orientação antes de confirmar.'],
+    storeUse: ['Revise o tamanho físico antes de abrir a janela de impressão.', 'Use vários cartazes por folha quando a leitura for próxima.', 'Prefira cartazes maiores para vitrines, pontas e comunicação suspensa.'],
   },
   {
     kind: 'seo',
@@ -153,6 +194,7 @@ export const SEO_PAGES = [
     lead: 'Use uma folha inteira para maior impacto ou aproveite o A4 com duas ou quatro placas menores.',
     benefits: ['A4 com 1 cartaz', 'A4 com 2 cartazes', 'A4 com 4 cartazes'],
     tips: ['A4 inteiro funciona melhor à distância.', 'Dois por folha equilibram impacto e economia.', 'Quatro por folha funcionam melhor em leitura próxima.'],
+    storeUse: ['A4 inteiro: maior impacto visual.', 'A4 com 2 placas: equilíbrio entre economia e leitura.', 'A4 com 4 placas: bom aproveitamento para gôndolas e pontos próximos.'],
   },
   {
     kind: 'seo',
