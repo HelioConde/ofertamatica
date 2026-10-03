@@ -436,11 +436,13 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
 
 function StyleSidebar({ style, onChange, onReset, mobileActive }) {
   const [headerSearch, setHeaderSearch] = useState('')
+  const [headerLimit, setHeaderLimit] = useState(18)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
-  const visibleHeaders = normalizedSearch
+  const filteredHeaders = normalizedSearch
     ? HEADER_IMAGES.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
     : HEADER_IMAGES
+  const visibleHeaders = filteredHeaders.slice(0, headerLimit)
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
     .filter(Boolean)
@@ -573,7 +575,10 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
             <input
               type="search"
               value={headerSearch}
-              onChange={(event) => setHeaderSearch(event.target.value)}
+              onChange={(event) => {
+                setHeaderSearch(event.target.value)
+                setHeaderLimit(18)
+              }}
               placeholder="Ex.: padaria, açougue..."
             />
           </label>
@@ -593,7 +598,12 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
             ))}
           </div>
 
-          {!visibleHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
+          {!filteredHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
+          {filteredHeaders.length > visibleHeaders.length ? (
+            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 18)}>
+              Mostrar mais headers ({filteredHeaders.length - visibleHeaders.length})
+            </button>
+          ) : null}
         </section>
 
         <section className="style-section">
