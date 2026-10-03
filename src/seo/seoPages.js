@@ -114,7 +114,7 @@ export const SEO_FAQS = [
   ['Dá para fazer oferta relâmpago e promoção do fim de semana?', 'Sim. O mesmo editor pode ser usado para oferta relâmpago, promoção do dia, ofertas da semana, feira do mês e campanhas sazonais.'],
   ['Consigo criar vários cartazes de uma vez?', 'Sim. Você pode colar uma lista com vários produtos, revisar os dados interpretados e gerar várias placas no mesmo fluxo.'],
   ['Posso importar produtos de planilha?', 'Sim. O editor aceita importação de arquivos compatíveis e também permite colar produtos diretamente na área de entrada rápida.'],
-  ['O site já cria cartaz com IA?', 'Ainda não. “Crie seu cartaz com IA” é a próxima implementação do Ofertamática. Hoje o editor já permite criar, personalizar, revisar e imprimir cartazes online.'],
+  ['Como funciona a criação de cartazes com IA?', 'A inteligência artificial ajuda a interpretar produtos, organizar informações e reduzir ajustes manuais para acelerar a criação das ofertas.'],
   ['Preciso instalar algum programa?', 'Não. O Ofertamática funciona no navegador e o fluxo de criação, revisão e impressão acontece online.'],
   ['Posso usar para farmácia, papelaria e utilidades?', 'Sim. O modelo de criação pode ser usado em farmácia e cuidados, papelaria, utilidades domésticas, pet shop, loja de bebidas e diversos tipos de comércio.'],
   ['Como deixar o preço mais visível no cartaz?', 'Use contraste forte, poucas informações concorrendo com o preço e uma hierarquia clara entre produto, complemento, unidade e valor. O Ofertamática já organiza essa estrutura no layout.'],
