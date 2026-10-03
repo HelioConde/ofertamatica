@@ -1059,6 +1059,7 @@ function Editor({
   )
 }
 
+// PRODUCT_RULE_ROOT_IS_CREATOR: a rota / abre diretamente o criador; não inserir landing intermediária.
 function App() {
   const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
@@ -1076,6 +1077,14 @@ function App() {
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
+
+  useEffect(() => {
+    const clean = String(routePath || '/').replace(/\/+$/, '') || '/'
+    if (clean === '/criar-placas') {
+      window.history.replaceState({}, '', '/')
+      setRoutePath('/')
+    }
+  }, [routePath])
 
   useEffect(() => {
     const draft = {
@@ -1126,7 +1135,6 @@ function App() {
   const seoPage = getSeoPage(routePath)
   const publicPage = getPublicPage(routePath)
   const cleanRoute = String(routePath || '/').replace(/\/+$/, '') || '/'
-  const isCreateRoute = cleanRoute === '/' || cleanRoute === '/criar-placas'
 
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
@@ -1148,8 +1156,6 @@ function App() {
         <SeoLanding page={seoPage} onCreate={showFormats} />
       ) : publicPage ? (
         <PublicPage page={publicPage} onCreate={showFormats} />
-      ) : isCreateRoute ? (
-        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       ) : (
         <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       )}
