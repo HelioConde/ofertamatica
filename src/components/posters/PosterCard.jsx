@@ -47,7 +47,11 @@ function ContentBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
 }
 
 function numericPrice(value) {
-  const normalized = String(value || '').trim().replace(/^R\$\s*/i, '').replace(/\./g, '').replace(',', '.')
+  const raw = String(value || '').trim().replace(/^R\$\s*/i, '').replace(/\s/g, '')
+  if (!raw) return 0
+  const normalized = raw.includes(',')
+    ? raw.replace(/\./g, '').replace(',', '.')
+    : raw
   const number = Number(normalized.replace(/[^0-9.-]/g, ''))
   return Number.isFinite(number) ? number : 0
 }
