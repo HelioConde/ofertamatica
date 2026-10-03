@@ -3971,3 +3971,38 @@ textarea:focus-visible {
   max-width: 190px;
   color: #8794a5;
 }
+
+
+/* Browser-driven PWA install action */
+.install-app-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid #b9cdf0;
+  border-radius: 999px;
+  background: #f4f8ff;
+  color: #1d63e9;
+  font-size: 7.5px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.install-app-button:hover {
+  border-color: #79a4ed;
+  background: #edf4ff;
+}
+
+@media (max-width: 500px) {
+  .nav-meta.has-install {
+    display: flex;
+  }
+
+  .nav-meta.has-install .free-pill,
+  .nav-meta.has-install .nav-note {
+    display: none;
+  }
+
+  .install-app-button {
+    min-height: 30px;
+    padding: 0 10px;
+  }
+}
