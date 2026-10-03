@@ -227,6 +227,38 @@ function applyAppDefaults(products, formatId) {
   }))
 }
 
+function productIdentity(product) {
+  return [
+    product.description,
+    product.subdescription,
+    product.complement,
+    product.unit,
+  ].map((value) => String(value || '').trim().toLocaleUpperCase('pt-BR')).join('|')
+}
+
+function preservePromotionFields(nextProducts, previousProducts) {
+  const previousByIdentity = new Map(
+    previousProducts
+      .map((product) => [productIdentity(product), product])
+      .filter(([identity]) => identity.replace(/\|/g, '')),
+  )
+
+  return nextProducts.map((product) => {
+    const previous = previousByIdentity.get(productIdentity(product))
+    if (!previous) return product
+
+    return {
+      ...product,
+      regularPrice: previous.regularPrice || product.regularPrice || '',
+      regularLabel: previous.regularLabel || product.regularLabel || '',
+      validity: previous.validity || product.validity || '',
+      offerQuantity: previous.offerQuantity || '',
+      wholesalePrice: previous.wholesalePrice || '',
+      secondUnitPrice: previous.secondUnitPrice || '',
+    }
+  })
+}
+
 function applyPrintPage(format) {
   let style = document.getElementById(PRINT_STYLE_ID)
   if (!style) {
@@ -1002,11 +1034,14 @@ function Editor({
   }, [offerMode, products])
 
   function generateFromSource(nextSource = sourceText) {
-    const parsed = applyAppDefaults(parseProductList(nextSource), formatId).map((product) => ({
-      ...product,
-      price: normalizePrice(product.price),
-      regularPrice: product.regularPrice ? normalizePrice(product.regularPrice) : '',
-    }))
+    const parsed = preservePromotionFields(
+      applyAppDefaults(parseProductList(nextSource), formatId).map((product) => ({
+        ...product,
+        price: normalizePrice(product.price),
+        regularPrice: product.regularPrice ? normalizePrice(product.regularPrice) : '',
+      })),
+      products,
+    )
     setProducts(parsed)
     setSelectedProductId(parsed[0]?.id || null)
     setPageIndex(0)
