@@ -466,3 +466,135 @@ summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* Retail conversion and trust sections */
+.store-use-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.store-use-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.store-use-grid article {
+  min-height: 132px;
+  padding: 20px;
+  border: 1px solid #dce6f2;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.store-use-grid article > span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #edf4ff;
+  color: #1d63e9;
+  font-size: 10px;
+  font-weight: 950;
+}
+
+.store-use-grid p {
+  margin: 0;
+  color: #5f7089;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.legal-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.legal-content article {
+  padding: 22px;
+  border: 1px solid #dfe7f0;
+  border-radius: 14px;
+  background: #f9fbfe;
+}
+
+.legal-content h2 {
+  margin: 0 0 9px;
+  color: #293a55;
+  font-size: 18px;
+  letter-spacing: -.025em;
+}
+
+.legal-content p {
+  margin: 0;
+  color: #667892;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.marketing-footer {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  gap: 18px 28px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 24px 4px 0;
+  border-top: 1px solid #dfe7f0;
+  color: #71819a;
+}
+
+.marketing-footer-brand {
+  display: grid;
+  gap: 4px;
+}
+
+.marketing-footer-brand strong {
+  color: #26344f;
+  font-size: 15px;
+}
+
+.marketing-footer-brand span,
+.marketing-footer small {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.marketing-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 18px;
+}
+
+.marketing-footer nav a {
+  color: #52657f;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.marketing-footer nav a:hover {
+  color: #1d63e9;
+}
+
+.marketing-footer small {
+  grid-column: 1 / -1;
+  padding-bottom: 4px;
+}
+
+@media (max-width: 850px) {
+  .store-use-grid,
+  .legal-content {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-footer nav {
+    justify-content: flex-start;
+  }
+}
