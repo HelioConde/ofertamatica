@@ -25,7 +25,8 @@ Essa é uma regra de produto tão importante quanto a entrada direta no criador:
 - tipos de oferta especiais, headers, cores, fontes e outros ajustes entram depois do resultado;
 - novos recursos devem preservar o caminho rápido por padrão;
 - quando uma funcionalidade avançada aumentar a burocracia, ela deve ficar como opção, não como etapa obrigatória;
-- o objetivo é reduzir o tempo entre entrar no site e ver a primeira placa pronta.
+- o objetivo é reduzir o tempo entre entrar no site e ver a primeira placa pronta;
+- quando a área de transferência estiver disponível, o segundo clique pode ser literalmente **Colar e gerar**.
 
 ## Regra de viewport e retenção
 
@@ -75,6 +76,8 @@ Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeç
 - De / Por;
 - Leve X por Y;
 - Atacado / Varejo;
+- Clube / App;
+- 2ª unidade;
 - Oferta de App no formato dedicado.
 
 Essas opções são deliberadamente **opcionais** e não criam uma nova etapa antes da primeira placa.
@@ -151,7 +154,8 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional;
 - `ofertamatica_store_logo_added` — registra o uso da logo da loja;
 - `ofertamatica_pdf_review`;
-- `ofertamatica_pdf_started`.
+- `ofertamatica_pdf_started`;
+- `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
