@@ -4037,3 +4037,10 @@ textarea:focus-visible {
     width: 100%;
   }
 }
+
+
+/* Live readiness feedback before the second click */
+.product-count.has-ready-products {
+  color: #168451;
+  font-weight: 900;
+}
