@@ -289,6 +289,7 @@ function preservePromotionFields(nextProducts, previousProducts) {
       regularLabel: previous.regularLabel || product.regularLabel || '',
       validity: previous.validity || product.validity || '',
       offerQuantity: previous.offerQuantity || '',
+      eachPrice: previous.eachPrice || '',
       wholesalePrice: previous.wholesalePrice || '',
       wholesaleQuantity: previous.wholesaleQuantity || '',
       secondUnitPrice: previous.secondUnitPrice || '',
@@ -1097,7 +1098,7 @@ function Editor({
   }
 
   function changeProduct(id, field, value) {
-    const priceFields = new Set(['price', 'regularPrice', 'wholesalePrice', 'secondUnitPrice'])
+    const priceFields = new Set(['price', 'regularPrice', 'eachPrice', 'wholesalePrice', 'secondUnitPrice'])
     setProducts((items) => items.map((item) => (
       item.id === id
         ? { ...item, [field]: priceFields.has(field) ? value : value.toLocaleUpperCase('pt-BR') }
@@ -1596,10 +1597,10 @@ function Editor({
                               <input
                                 inputMode="decimal"
                                 className="price-field"
-                                value={product.regularPrice || ''}
+                                value={product.eachPrice || ''}
                                 onFocus={() => selectProduct(product, index)}
-                                onChange={(event) => changeProduct(product.id, 'regularPrice', event.target.value)}
-                                onBlur={(event) => finishPrice(product.id, 'regularPrice', event.target.value)}
+                                onChange={(event) => changeProduct(product.id, 'eachPrice', event.target.value)}
+                                onBlur={(event) => finishPrice(product.id, 'eachPrice', event.target.value)}
                                 placeholder="Ex.: 4,99"
                               />
                             </label>
