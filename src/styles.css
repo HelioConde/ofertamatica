@@ -4006,3 +4006,34 @@ textarea:focus-visible {
     padding: 0 10px;
   }
 }
+
+
+/* Compact trust signals on the viewport-first format chooser */
+.format-trust-row {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  color: #60728a;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.format-trust-row span {
+  white-space: nowrap;
+}
+
+.format-trust-row span::first-letter {
+  color: #168451;
+}
+
+@media (max-width: 500px) {
+  .format-trust-row {
+    gap: 4px 10px;
+  }
+
+  .format-trust-row span:first-child {
+    width: 100%;
+  }
+}
