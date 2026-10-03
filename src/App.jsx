@@ -861,6 +861,7 @@ function Editor({
   const [reviewIntent, setReviewIntent] = useState('print')
   const [importError, setImportError] = useState('')
   const [clipboardError, setClipboardError] = useState('')
+  const [draggingFile, setDraggingFile] = useState(false)
   const [fontReady, setFontReady] = useState(false)
   const [confirmExample, setConfirmExample] = useState(false)
   const [mobileTab, setMobileTab] = useState('products')
@@ -1136,10 +1137,11 @@ function Editor({
     }
   }
 
-  async function handleFile(event) {
-    const file = event.target.files?.[0]
+  async function importProductFile(file, source = 'picker') {
     if (!file) return
     setImportError('')
+    setClipboardError('')
+
     try {
       const extension = file.name.split('.').pop()?.toLocaleLowerCase('pt-BR')
       let importedSource = ''
@@ -1151,15 +1153,45 @@ function Editor({
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
         importedSource = spreadsheetRowsToSource(XLSX.utils.sheet_to_json(firstSheet, { header: 1, raw: true, defval: '' }))
       } else {
-        throw new Error('Formato não suportado.')
+        throw new Error('Formato não suportado. Use TXT, CSV, XLS ou XLSX.')
       }
+
       if (!importedSource.trim()) throw new Error('O arquivo não possui produtos para importar.')
       setSourceText(importedSource)
+      setConfirmExample(false)
       generateFromSource(importedSource)
+      trackProductEvent(source === 'drop' ? 'ofertamatica_drag_import' : 'ofertamatica_file_import', {
+        format_id: formatId,
+        file_extension: extension || 'unknown',
+      })
     } catch (error) {
       setImportError(error instanceof Error ? error.message : 'Não foi possível importar o arquivo.')
-    } finally {
-      event.target.value = ''
+    }
+  }
+
+  async function handleFile(event) {
+    const file = event.target.files?.[0]
+    await importProductFile(file, 'picker')
+    event.target.value = ''
+  }
+
+  async function handleFileDrop(event) {
+    event.preventDefault()
+    setDraggingFile(false)
+    const file = event.dataTransfer?.files?.[0]
+    if (!file) return
+    await importProductFile(file, 'drop')
+  }
+
+  function handleSourceShortcut(event) {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault()
+      if (!sourceText.trim()) return
+      generateFromSource()
+      trackProductEvent('ofertamatica_keyboard_generate', {
+        format_id: formatId,
+        product_count: parseProductList(sourceText).length,
+      })
     }
   }
 
@@ -1261,12 +1293,27 @@ function Editor({
 
       <section className="editor-layout">
         <div className={'editor-main ' + (mobileTab === 'products' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
-          <section className="editor-card">
+          <section
+            className={'editor-card quick-entry-card ' + (draggingFile ? 'is-file-dragging' : '')}
+            onDragEnter={(event) => {
+              if (event.dataTransfer?.types?.includes('Files')) {
+                event.preventDefault()
+                setDraggingFile(true)
+              }
+            }}
+            onDragOver={(event) => {
+              if (event.dataTransfer?.types?.includes('Files')) event.preventDefault()
+            }}
+            onDragLeave={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setDraggingFile(false)
+            }}
+            onDrop={handleFileDrop}
+          >
             <header>
               <div>
                 <span className="section-label">ENTRADA RÁPIDA</span>
                 <h2>Cole seus produtos</h2>
-                <p>Uma linha por produto. Ex.: Café 500 g 18,90 · Leite 1 L R$ 4,99. Aceita vírgula ou ponto decimal.</p>
+                <p>Uma linha por produto. Ex.: Café 500 g 18,90 · Leite 1 L R$ 4,99. Cole do Excel ou arraste TXT, CSV, XLS e XLSX.</p>
               </div>
               <span className="format-chip">{format.cartSize} · {format.orientationLabel}</span>
             </header>
@@ -1280,6 +1327,7 @@ function Editor({
                 setConfirmExample(false)
                 setClipboardError('')
               }}
+              onKeyDown={handleSourceShortcut}
               aria-label="Lista de produtos, uma linha por produto"
             />
 
@@ -1319,6 +1367,7 @@ function Editor({
               </div>
 
               <span className="product-count">{products.length} produtos identificados</span>
+              <span className="keyboard-hint" aria-hidden="true">Ctrl+Enter gera</span>
               {!sourceText.trim() && typeof navigator !== 'undefined' && navigator.clipboard?.readText ? (
                 <button className="generate-button paste-generate-button" type="button" onClick={pasteAndGenerate}>
                   <span className="generate-step-badge">2</span>
@@ -1331,6 +1380,7 @@ function Editor({
                 </button>
               )}
             </div>
+            {draggingFile ? <div className="drop-file-overlay" aria-hidden="true"><b>Solte para importar</b><span>TXT, CSV, XLS ou XLSX</span></div> : null}
             {confirmExample ? <div className="inline-warning">“Usar exemplo” substituirá o texto atual. Clique novamente para confirmar.</div> : null}
             {clipboardError ? <div className="oferta-import-error clipboard-error" role="alert">{clipboardError}</div> : null}
             {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
