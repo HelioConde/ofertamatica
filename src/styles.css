@@ -3991,6 +3991,17 @@ textarea:focus-visible {
   background: #edf4ff;
 }
 
+@media (max-width: 1040px) {
+  .nav-meta.has-install {
+    display: flex;
+  }
+
+  .nav-meta.has-install .free-pill,
+  .nav-meta.has-install .nav-note {
+    display: none;
+  }
+}
+
 @media (max-width: 500px) {
   .nav-meta.has-install {
     display: flex;
