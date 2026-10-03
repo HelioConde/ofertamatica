@@ -28,32 +28,38 @@ function replaceMeta(html, page) {
 
 function structuredData(page) {
   const canonical = `${SITE_URL}/${page.slug}/`
+  const graph = [
+    {
+      '@type': 'WebPage',
+      name: page.heading,
+      description: page.description,
+      url: canonical,
+      isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Ofertamática', item: SITE_URL + '/' },
+        { '@type': 'ListItem', position: 2, name: page.heading, item: canonical },
+      ],
+    },
+  ]
+
+  // FAQ estruturada somente onde as perguntas também aparecem visivelmente na página.
+  if (page.kind === 'seo') {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: SEO_FAQS.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    })
+  }
+
   return JSON.stringify({
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebPage',
-        name: page.heading,
-        description: page.description,
-        url: canonical,
-        isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/' },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Ofertamática', item: SITE_URL + '/' },
-          { '@type': 'ListItem', position: 2, name: page.heading, item: canonical },
-        ],
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: SEO_FAQS.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      },
-    ],
+    '@graph': graph,
   }).replaceAll('<', '\\u003c')
 }
 
@@ -61,6 +67,22 @@ function snapshot(page) {
   const benefits = page.benefits.map((item) => `<li>${esc(item)}</li>`).join('')
   return `<main style="font-family:Arial,sans-serif;max-width:1080px;margin:60px auto;padding:0 22px;color:#1f2d47"><p style="font-weight:700;color:#1d63e9">${esc(page.eyebrow)}</p><h1 style="font-size:48px;line-height:1.05">${esc(page.heading)}</h1><p style="font-size:18px;line-height:1.7">${esc(page.lead)}</p><ul>${benefits}</ul><p><a href="/" style="color:#1d63e9;font-weight:700">Criar meu cartaz no Ofertamática</a></p></main>`
 }
+
+function creatorSnapshot() {
+  return `<main style="font-family:Arial,sans-serif;max-width:1120px;margin:34px auto;padding:0 22px;color:#1f2d47">
+    <p style="font-weight:800;color:#1d63e9;letter-spacing:.06em">CRIADOR DE CARTAZES PARA VAREJO</p>
+    <h1 style="font-size:44px;line-height:1.05;margin:10px 0">Da lista de produtos às placas prontas para imprimir</h1>
+    <p style="font-size:17px;line-height:1.65;max-width:820px">Escolha o formato, cole sua lista ou importe Excel, revise os preços e imprima em A4, A5, A3 ou SRA3. Grátis e sem cadastro obrigatório.</p>
+    <ul style="line-height:1.8"><li>Criação em lote para supermercado e varejo</li><li>Importação TXT, CSV e Excel</li><li>Prévia e revisão antes da impressão</li><li>Rascunho salvo no dispositivo</li></ul>
+  </main>`
+}
+
+// A raiz continua sendo o criador. O snapshot existe apenas no HTML inicial para
+// buscadores e navegadores sem JavaScript; o React substitui esse conteúdo ao carregar.
+fs.writeFileSync(
+  indexPath,
+  baseHtml.replace('<div id="root"></div>', `<div id="root">${creatorSnapshot()}</div>`),
+)
 
 for (const page of INDEXABLE_PAGES) {
   let html = replaceMeta(baseHtml, page)
