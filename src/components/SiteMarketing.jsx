@@ -165,7 +165,8 @@ function SeoHead({ page }) {
       canonical.setAttribute('rel', 'canonical')
       document.head.appendChild(canonical)
     }
-    canonical.setAttribute('href', SITE_URL + path)
+    const canonicalPath = path === '/' ? '/' : path.replace(/\\/+$/, '') + '/'
+    canonical.setAttribute('href', SITE_URL + canonicalPath)
 
     const oldSchema = document.getElementById('ofertamatica-faq-schema')
     oldSchema?.remove()
@@ -315,7 +316,7 @@ export function HomeMarketing({ onCreate }) {
           </div>
           <div className="seo-link-grid">
             {SEO_PAGES.map((page) => (
-              <a key={page.slug} href={'/' + page.slug}>
+              <a key={page.slug} href={'/' + page.slug + '/'}>
                 <span>{page.eyebrow}</span>
                 <strong>{page.heading}</strong>
                 <small>Ver página →</small>
@@ -390,7 +391,7 @@ export function SeoLanding({ page, onCreate }) {
           <h2>Outras formas de usar o Ofertamática</h2>
           <div>
             {SEO_PAGES.filter((item) => item.slug !== page.slug).slice(0, 5).map((item) => (
-              <a href={'/' + item.slug} key={item.slug}>{item.heading}<span>→</span></a>
+              <a href={'/' + item.slug + '/'} key={item.slug}>{item.heading}<span>→</span></a>
             ))}
           </div>
         </section>
