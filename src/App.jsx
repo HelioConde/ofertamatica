@@ -350,7 +350,7 @@ function Navigation({ routePath, screen, onInstall }) {
             )
           })}
         </nav>
-        <div className="nav-meta">
+        <div className={'nav-meta ' + (onInstall ? 'has-install' : '')}>
           {onInstall ? <button type="button" className="install-app-button" onClick={onInstall}>Instalar app</button> : null}
           <span className="free-pill">Grátis</span>
           <span className="nav-note">sem cadastro</span>
