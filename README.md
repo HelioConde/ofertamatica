@@ -74,9 +74,9 @@ O fluxo atual permite:
 Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeçar o fluxo:
 
 - Padrão;
-- De / Por;
-- Leve X por Y;
-- Atacado / Varejo;
+- De / Por — pode calcular automaticamente o percentual de desconto;
+- Leve X por Y — pode mostrar também o preço unitário “cada”;
+- Atacado / Varejo — pode informar a quantidade mínima do atacado;
 - Clube / App;
 - 2ª unidade;
 - Oferta de App no formato dedicado.
@@ -172,6 +172,7 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_pdf_started`;
 - `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”;
 - `ofertamatica_keyboard_generate` — uso do atalho Ctrl/Cmd+Enter;
+- `ofertamatica_keyboard_print_review` — uso de Ctrl/Cmd+P para abrir a revisão de impressão;
 - `ofertamatica_file_import` — importação pelo seletor;
 - `ofertamatica_drag_import` — importação por arrastar e soltar;
 - `ofertamatica_recent_job_reused` — reutilização de um trabalho recente salvo localmente;
