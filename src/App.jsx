@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
-import { AdUnit, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
+import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
@@ -51,6 +51,12 @@ const DRAFT_KEY = 'ofertamatica:draft:v1'
 const LAST_FORMAT_KEY = 'ofertamatica:last-format'
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
+
+function trackProductEvent(event, details = {}) {
+  if (typeof window === 'undefined') return
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({ event, ...details })
+}
 
 const DEFAULT_POSTER_STYLE = {
   backgroundColor: '#fff200',
@@ -169,7 +175,7 @@ function applyPrintPage(format) {
     style.id = PRINT_STYLE_ID
     document.head.appendChild(style)
   }
-  style.textContent = '@page { size: ' + format.paper + ' ' + format.orientation + '; margin: 0; }'
+  style.textContent = '@page { size: ' + format.widthMm + 'mm ' + format.heightMm + 'mm; margin: 0; }'
   document.body.classList.add('poster-printing')
 }
 
@@ -204,8 +210,14 @@ function Navigation({ routePath, screen }) {
         <nav className="main-nav" aria-label="Navegação principal">
           {links.map(([href, label]) => {
             const active = cleanPath === href || (label === 'Criar placas' && screen === 'editor')
+            const target = href === '/' ? '/' : href + '/'
             return (
-              <a className={'nav-link ' + (active ? 'active' : '')} href={href + '/'} key={href}>
+              <a
+                className={'nav-link ' + (active ? 'active' : '')}
+                href={target}
+                key={href}
+                aria-current={active ? 'page' : undefined}
+              >
                 {label}
               </a>
             )
@@ -265,7 +277,14 @@ function FormatChooser({ onSelect, draft, onResume }) {
 
         <div className="format-grid">
           {POSTER_FORMAT_OPTIONS.map((format) => (
-            <button className="format-choice" type="button" key={format.id} onClick={() => onSelect(format.id)}>
+            <button
+              className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended' : '')}
+              type="button"
+              key={format.id}
+              onClick={() => onSelect(format.id)}
+              aria-label={'Escolher ' + format.label + ', ' + format.application}
+            >
+              {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
               <FormatPreview format={format} />
               <span className="format-copy">
                 <strong>{format.label}</strong>
@@ -808,7 +827,22 @@ function Editor({
     setSelectedProductId(pages[next]?.[0]?.id || null)
   }
 
+  function openPrintReview(source = 'preview') {
+    trackProductEvent('ofertamatica_print_review', {
+      source,
+      format_id: format.id,
+      product_count: products.length,
+      page_count: pageCount,
+    })
+    setReviewOpen(true)
+  }
+
   function printPosters() {
+    trackProductEvent('ofertamatica_print_started', {
+      format_id: format.id,
+      product_count: products.length,
+      page_count: pageCount,
+    })
     setReviewOpen(false)
     applyPrintPage(format)
     const cleanup = () => {
@@ -995,7 +1029,7 @@ function Editor({
           </div>
 
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
-          <button className="print-button" type="button" disabled={!products.length} onClick={() => setReviewOpen(true)}>Revisar e imprimir</button>
+          <button className="print-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview')}>Revisar e imprimir</button>
         </aside>
 
         <StyleSidebar
@@ -1039,7 +1073,7 @@ function Editor({
             />
             <footer>
               <button type="button" onClick={() => setExpanded(false)}>Editar</button>
-              <button className="generate-button" type="button" onClick={() => { setExpanded(false); setReviewOpen(true) }}>Revisar impressão</button>
+              <button className="generate-button" type="button" onClick={() => { setExpanded(false); openPrintReview('expanded-preview') }}>Revisar impressão</button>
             </footer>
           </section>
         </div>
@@ -1104,8 +1138,18 @@ function App() {
     }
   }, [formatId, sourceText, products, selectedProductId, pageIndex])
 
+  useEffect(() => {
+    if (routePath === '/' && screen === 'formats') {
+      trackProductEvent('ofertamatica_creator_view', { entry: 'root' })
+    }
+  }, [routePath, screen])
+
   function resumeDraft() {
     if (!draftAvailable) return
+    trackProductEvent('ofertamatica_draft_resumed', {
+      format_id: draftAvailable.formatId || 'A4X4',
+      product_count: draftAvailable.products?.length || 0,
+    })
     setFormatId(draftAvailable.formatId || 'A4X4')
     setSourceText(draftAvailable.sourceText || '')
     setProducts(draftAvailable.products || [])
@@ -1115,6 +1159,7 @@ function App() {
   }
 
   function startWithFormat(id) {
+    trackProductEvent('ofertamatica_format_selected', { format_id: id })
     setFormatId(id)
     setProducts((current) => applyAppDefaults(current, id))
     setPageIndex(0)
@@ -1134,13 +1179,14 @@ function App() {
 
   const seoPage = getSeoPage(routePath)
   const publicPage = getPublicPage(routePath)
-  const cleanRoute = String(routePath || '/').replace(/\/+$/, '') || '/'
 
   return (
     <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
       <Navigation routePath={routePath} screen={screen} />
       {screen === 'editor' ? (
-        <Editor
+        <>
+          <CreatorSeoHead />
+          <Editor
           formatId={formatId}
           sourceText={sourceText}
           setSourceText={setSourceText}
@@ -1152,12 +1198,16 @@ function App() {
           setPageIndex={setPageIndex}
           onChangeFormat={showFormats}
         />
+        </>
       ) : seoPage ? (
         <SeoLanding page={seoPage} onCreate={showFormats} />
       ) : publicPage ? (
         <PublicPage page={publicPage} onCreate={showFormats} />
       ) : (
-        <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+        <>
+          <CreatorSeoHead />
+          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
+        </>
       )}
     </div>
   )

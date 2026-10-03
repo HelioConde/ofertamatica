@@ -31,6 +31,7 @@ export const DEFAULT_POSTER_LAYOUTS = {
   A4X2_APP: { contentBox: content(8, 22, 84, 34, 1.5), priceBox: price(10, 58, 80, 17), textScale: 1 },
   A4: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 1.36 },
   A3: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 1.9 },
+  SRA3: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 2.05 },
 }
 
 const appBox = (x, y, width, height) => ({ x, y, width, height, ...centered })
@@ -93,6 +94,7 @@ export const POSTER_TEMPLATES = [
   createTemplate({ id: 'ofertamatica-a4', name: 'A4', format: 'A4' }),
   createTemplate({ id: 'ofertamatica-a5', name: 'A5', format: 'A5' }),
   createTemplate({ id: 'ofertamatica-a3', name: 'A3', format: 'A3' }),
+  createTemplate({ id: 'ofertamatica-sra3', name: 'SRA3', format: 'SRA3' }),
 ]
 
 export const DEFAULT_TEMPLATE_BY_FORMAT = Object.fromEntries(POSTER_TEMPLATES.map((template) => [template.format, template.id]))
