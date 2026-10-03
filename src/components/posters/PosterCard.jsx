@@ -164,7 +164,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
     <article className={`poster-card ${inverted ? 'poster-card-inverted' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       <div className="poster-card-layers">
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
-        <div className="ofertamatica-poster-background" aria-hidden="true">
+        <div className={`ofertamatica-poster-background poster-frame-${template.headerFooterStyle || 'wave-top'}`} aria-hidden="true">
           {template.headerImage ? (
             <div className="ofertamatica-custom-header">
               <img src={template.headerImage} alt="" />
@@ -173,6 +173,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
             <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'band'} ${headerLengthClass}`}><b>{headerText}</b></div>
           )}
           <div className="ofertamatica-inner-frame" />
+          <div className="ofertamatica-footer-decoration" />
           <div className="ofertamatica-poster-signature">OFERTAMÁTICA</div>
         </div>
         {showBackground ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
