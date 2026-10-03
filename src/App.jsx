@@ -70,6 +70,7 @@ const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
 const RECENT_HEADERS_KEY = 'ofertamatica:recent-headers:v1'
 const EXAMPLE_USED_KEY = 'ofertamatica:example-used:v1'
 const STORE_LOGO_KEY = 'ofertamatica:store-logo:v1'
+const CUSTOM_HEADER_KEY = 'ofertamatica:custom-header:v1'
 const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
 
 function trackProductEvent(event, details = {}) {
@@ -167,6 +168,14 @@ function loadRecentHeaders() {
 function loadStoreLogo() {
   try {
     return localStorage.getItem(STORE_LOGO_KEY) || ''
+  } catch {
+    return ''
+  }
+}
+
+function loadCustomHeader() {
+  try {
+    return localStorage.getItem(CUSTOM_HEADER_KEY) || ''
   } catch {
     return ''
   }
@@ -550,10 +559,15 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
   )
 }
 
-function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = false, storeLogo = '', onStoreLogoChange }) {
+function StyleSidebar({
+  style, onChange, onReset, mobileActive, isAppFormat = false,
+  storeLogo = '', onStoreLogoChange, customHeader = '', onCustomHeaderChange,
+}) {
   const [headerSearch, setHeaderSearch] = useState('')
   const [logoError, setLogoError] = useState('')
+  const [customHeaderError, setCustomHeaderError] = useState('')
   const logoInputRef = useRef(null)
+  const customHeaderInputRef = useRef(null)
   const [headerLimit, setHeaderLimit] = useState(18)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
@@ -566,6 +580,7 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
     .filter(Boolean)
 
   function chooseHeader(id) {
+    onCustomHeaderChange?.('')
     if (id === DEFAULT_HEADER_OPTION_ID) {
       onChange({ ...style, headerImage: '' })
       return
@@ -607,6 +622,35 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
     reader.onerror = () => setLogoError('Não foi possível ler esta imagem.')
     reader.readAsDataURL(file)
   }
+
+  function handleCustomHeader(event) {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+
+    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)) {
+      setCustomHeaderError('Use PNG, JPG ou WebP.')
+      return
+    }
+
+    if (file.size > 1024 * 1024) {
+      setCustomHeaderError('O header deve ter no máximo 1 MB.')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      const value = typeof reader.result === 'string' ? reader.result : ''
+      if (!value) return
+      setCustomHeaderError('')
+      onChange({ ...style, headerImage: '' })
+      onCustomHeaderChange?.(value)
+      trackProductEvent('ofertamatica_custom_header_added', { file_type: file.type })
+    }
+    reader.onerror = () => setCustomHeaderError('Não foi possível ler esta imagem.')
+    reader.readAsDataURL(file)
+  }
+
   const colorFields = [
     ['backgroundColor', 'Fundo'],
     ['textColor', 'Texto'],
@@ -770,10 +814,26 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
         <section className="style-section header-library-section">
           <div className="style-section-title-row">
             <strong>Header da placa</strong>
-            <small>{HEADER_OPTIONS.length} opções</small>
+            <small>{HEADER_OPTIONS.length} opções + sua arte</small>
           </div>
 
-          {style.headerImage ? (
+          <input
+            ref={customHeaderInputRef}
+            hidden
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={handleCustomHeader}
+          />
+
+          {customHeader ? (
+            <div className="selected-header-preview custom-header-preview">
+              <img src={customHeader} alt="Header personalizado" />
+              <div>
+                <strong>Header personalizado</strong>
+                <button type="button" onClick={() => onCustomHeaderChange?.('')}>Remover</button>
+              </div>
+            </div>
+          ) : style.headerImage ? (
             <div className="selected-header-preview">
               <img src={HEADER_IMAGE_BY_ID[style.headerImage]} alt="" />
               <div>
@@ -782,6 +842,15 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
               </div>
             </div>
           ) : null}
+
+          <button type="button" className="custom-header-upload" onClick={() => customHeaderInputRef.current?.click()}>
+            <span>＋</span>
+            <div>
+              <b>{customHeader ? 'Trocar arte personalizada' : 'Usar minha própria arte'}</b>
+              <small>PNG, JPG ou WebP · até 1 MB</small>
+            </div>
+          </button>
+          {customHeaderError ? <p className="store-logo-error" role="alert">{customHeaderError}</p> : null}
 
           {recentHeaders.length ? (
             <div className="recent-headers">
@@ -913,6 +982,7 @@ function Editor({
   const [inputMenuOpen, setInputMenuOpen] = useState(false)
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const [storeLogo, setStoreLogo] = useState(loadStoreLogo)
+  const [customHeader, setCustomHeader] = useState(loadCustomHeader)
   const [recentJobs, setRecentJobs] = useState(loadRecentJobs)
   const fileInput = useRef(null)
   const sourceInputRef = useRef(null)
@@ -927,12 +997,12 @@ function Editor({
     showCurrency: posterStyle.showCurrency,
     headerText: posterStyle.headerText || 'OFERTA',
     headerStyle: posterStyle.headerStyle,
-    headerImage: HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
+    headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
     offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
     validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
     limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
     storeLogo,
-  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo])
+  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo, customHeader])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
@@ -951,6 +1021,15 @@ function Editor({
       // A logo continua aplicada na sessão mesmo sem armazenamento local.
     }
   }, [storeLogo])
+
+  useEffect(() => {
+    try {
+      if (customHeader) localStorage.setItem(CUSTOM_HEADER_KEY, customHeader)
+      else localStorage.removeItem(CUSTOM_HEADER_KEY)
+    } catch {
+      // O header personalizado continua aplicado durante a sessão.
+    }
+  }, [customHeader])
 
   useEffect(() => {
     try {
@@ -1723,6 +1802,8 @@ function Editor({
           isAppFormat={isAppFormat}
           storeLogo={storeLogo}
           onStoreLogoChange={setStoreLogo}
+          customHeader={customHeader}
+          onCustomHeaderChange={setCustomHeader}
         />
       </section>
 
