@@ -55,7 +55,6 @@ const FORMAT_CARDS = [
   { id: 'A4', paper: 'A4', title: '1 cartaz por folha', size: '21 × 29,7 cm', use: 'Vitrine e ponta', cells: 1 },
   { id: 'A5', paper: 'A5', title: '1 cartaz', size: '14,8 × 21 cm', use: 'Gôndola e balcão', cells: 1, compact: true },
   { id: 'A3', paper: 'A3', title: '1 cartaz', size: '29,7 × 42 cm', use: 'Leitura à distância', cells: 1, large: true },
-  { id: 'SRA3', paper: 'SRA3', title: '1 cartaz', size: '32 × 45 cm', use: 'Impressão ampliada', cells: 1, large: true },
 ]
 
 function upsertMeta(name, content) {
@@ -356,7 +355,6 @@ function ModelCard({ item, onCreate }) {
       >
         <div className="model-poster-standard-bg" aria-hidden="true">
           <div className="model-poster-standard-header">
-            <span className="model-poster-standard-mark">✓</span>
             <b>{item.label}</b>
           </div>
           <div className="model-poster-standard-frame" />
