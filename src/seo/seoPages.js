@@ -276,6 +276,7 @@ export const SEO_FAQS = [
   { q: 'Posso importar produtos de planilha?', a: 'Sim. O editor aceita importação compatível e também permite colar os produtos diretamente na entrada rápida.' },
   { q: 'Preciso instalar algum programa?', a: 'Não. O Ofertamática funciona direto no navegador. Em navegadores compatíveis, você pode instalar o site como app opcional para abrir mais rápido no computador ou celular da loja.' },
   { q: 'Posso colocar a logo da minha loja?', a: 'Sim. A logo pode ser adicionada como personalização opcional e fica salva localmente no dispositivo para facilitar os próximos trabalhos.' },
+  { q: 'Posso usar meu próprio header ou arte de campanha?', a: 'Sim. Depois de gerar a placa, você pode enviar um header próprio em PNG, JPG ou WebP. A arte fica salva localmente no dispositivo e pode ser trocada a qualquer momento.' },
   { q: 'Consigo salvar os cartazes em PDF?', a: 'Sim. O editor oferece a opção Salvar PDF e abre a janela de impressão para escolher “Salvar como PDF”, preservando o tamanho físico configurado.' },
   { q: 'Preciso fazer cadastro para começar?', a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.' },
   { q: 'Dá para ter a primeira placa pronta em 2 cliques?', a: 'Sim. No fluxo principal, o primeiro clique escolhe o formato. Se a lista já estiver copiada, o segundo pode usar “Colar e gerar”. Também é possível colar manualmente ou importar arquivo. Personalização é opcional e vem depois.' },
