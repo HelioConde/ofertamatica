@@ -51,6 +51,8 @@ const DRAFT_KEY = 'ofertamatica:draft:v1'
 const LAST_FORMAT_KEY = 'ofertamatica:last-format'
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
+const RECENT_HEADERS_KEY = 'ofertamatica:recent-headers:v1'
+const EXAMPLE_USED_KEY = 'ofertamatica:example-used:v1'
 
 function trackProductEvent(event, details = {}) {
   if (typeof window === 'undefined') return
@@ -106,9 +108,30 @@ function loadDraft() {
     if (!raw) return null
     const draft = JSON.parse(raw)
     if (!draft || !Array.isArray(draft.products)) return null
+
+    // Migração: versões antigas iniciavam o editor com o exemplo já salvo como se fosse
+    // um trabalho do usuário. Removemos apenas esse falso rascunho legado.
+    const isLegacyExample = String(draft.sourceText || '').trim() === EXAMPLE_TEXT.trim()
+      && draft.products.length === 3
+      && localStorage.getItem(EXAMPLE_USED_KEY) !== '1'
+    if (isLegacyExample) {
+      localStorage.removeItem(DRAFT_KEY)
+      return null
+    }
+
     return draft
   } catch {
     return null
+  }
+}
+
+function loadRecentHeaders() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(RECENT_HEADERS_KEY) || '[]')
+    if (!Array.isArray(saved)) return []
+    return saved.filter((id) => HEADER_IMAGE_BY_ID[id]).slice(0, 6)
+  } catch {
+    return []
   }
 }
 
@@ -257,11 +280,17 @@ function FormatChooser({ onSelect, draft, onResume }) {
     <main className="format-page" id="formatos">
       <section className="format-dialog">
         <header className="format-dialog-head">
-          <span className="eyebrow">CRIE SEUS CARTAZES</span>
+          <span className="eyebrow">DA LISTA DE PRODUTOS ÀS PLACAS PRONTAS</span>
           <h1>Qual formato você quer imprimir?</h1>
-          <p>Escolha o papel e a quantidade de cartazes por folha. Depois, adicione os produtos e imprima.</p>
+          <p>Cole sua lista ou importe Excel, revise os preços e imprima no tamanho certo — sem cadastro e sem burocracia.</p>
+          <div className="creator-value-row" aria-label="Vantagens do criador">
+            <span>✓ Grátis</span>
+            <span>✓ Sem cadastro</span>
+            <span>✓ TXT, CSV e Excel</span>
+            <span>✓ Rascunho salvo no dispositivo</span>
+          </div>
           <div className="format-steps" aria-label="Fluxo de criação">
-            <span><b>1</b> Formato</span><i>→</i><span><b>2</b> Produtos</span><i>→</i><span><b>3</b> Impressão</span>
+            <span><b>1</b> Formato</span><i>→</i><span><b>2</b> Produtos</span><i>→</i><span><b>3</b> Personalizar</span><i>→</i><span><b>4</b> Imprimir</span>
           </div>
         </header>
 
@@ -407,10 +436,25 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
 
 function StyleSidebar({ style, onChange, onReset, mobileActive }) {
   const [headerSearch, setHeaderSearch] = useState('')
+  const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
   const visibleHeaders = normalizedSearch
     ? HEADER_IMAGES.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
     : HEADER_IMAGES
+  const recentHeaders = recentHeaderIds
+    .map((id) => HEADER_IMAGES.find((item) => item.id === id))
+    .filter(Boolean)
+
+  function chooseHeader(id) {
+    onChange({ ...style, headerImage: id })
+    const next = [id, ...recentHeaderIds.filter((current) => current !== id)].slice(0, 6)
+    setRecentHeaderIds(next)
+    try {
+      localStorage.setItem(RECENT_HEADERS_KEY, JSON.stringify(next))
+    } catch {
+      // A seleção continua funcionando mesmo sem armazenamento local.
+    }
+  }
   const colorFields = [
     ['backgroundColor', 'Fundo'],
     ['textColor', 'Texto'],
@@ -504,6 +548,26 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
             </button>
           )}
 
+          {recentHeaders.length ? (
+            <div className="recent-headers">
+              <span>Usados recentemente</span>
+              <div>
+                {recentHeaders.map((item) => (
+                  <button
+                    type="button"
+                    key={item.id}
+                    className={style.headerImage === item.id ? 'active' : ''}
+                    onClick={() => chooseHeader(item.id)}
+                    title={item.label}
+                  >
+                    <img src={item.url} alt="" loading="lazy" />
+                    <small>{item.label}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
           <label className="header-search">
             <span>Buscar arte</span>
             <input
@@ -520,7 +584,7 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
                 type="button"
                 key={item.id}
                 className={style.headerImage === item.id ? 'active' : ''}
-                onClick={() => onChange({ ...style, headerImage: item.id })}
+                onClick={() => chooseHeader(item.id)}
                 title={item.label}
               >
                 <img src={item.url} alt="" loading="lazy" />
@@ -594,6 +658,8 @@ function Editor({
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const fileInput = useRef(null)
   const inputMenuRef = useRef(null)
+  const creatorStartedAt = useRef(typeof performance !== 'undefined' ? performance.now() : Date.now())
+  const firstGenerationTracked = useRef(false)
 
   const format = getPosterFormat(formatId)
   const baseTemplate = getDefaultTemplateForFormat(formatId)
@@ -697,6 +763,16 @@ function Editor({
     setProducts(parsed)
     setSelectedProductId(parsed[0]?.id || null)
     setPageIndex(0)
+
+    if (parsed.length && !firstGenerationTracked.current) {
+      firstGenerationTracked.current = true
+      const now = typeof performance !== 'undefined' ? performance.now() : Date.now()
+      trackProductEvent('ofertamatica_first_generation', {
+        format_id: formatId,
+        product_count: parsed.length,
+        time_to_first_generation_ms: Math.max(0, Math.round(now - creatorStartedAt.current)),
+      })
+    }
   }
 
   function changeProduct(id, field, value) {
@@ -792,6 +868,11 @@ function Editor({
       return false
     }
     setConfirmExample(false)
+    try {
+      localStorage.setItem(EXAMPLE_USED_KEY, '1')
+    } catch {
+      // O exemplo continua disponível mesmo sem armazenamento local.
+    }
     setSourceText(EXAMPLE_TEXT)
     generateFromSource(EXAMPLE_TEXT)
     return true
@@ -1097,13 +1178,12 @@ function Editor({
 function App() {
   const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
-  const fallbackProducts = useMemo(() => parseProductList(EXAMPLE_TEXT).map((product) => ({ ...product, price: normalizePrice(product.price) })), [])
   const [draftAvailable, setDraftAvailable] = useState(savedDraft)
   const [screen, setScreen] = useState('formats')
   const [formatId, setFormatId] = useState(() => savedDraft?.formatId || localStorage.getItem(LAST_FORMAT_KEY) || 'A4X4')
-  const [sourceText, setSourceText] = useState(() => savedDraft?.sourceText || EXAMPLE_TEXT)
-  const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : fallbackProducts)
-  const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || (savedDraft?.products?.[0]?.id || fallbackProducts[0]?.id || null))
+  const [sourceText, setSourceText] = useState(() => savedDraft?.sourceText || '')
+  const [products, setProducts] = useState(() => savedDraft?.products?.length ? savedDraft.products : [])
+  const [selectedProductId, setSelectedProductId] = useState(() => savedDraft?.selectedProductId || savedDraft?.products?.[0]?.id || null)
   const [pageIndex, setPageIndex] = useState(() => savedDraft?.pageIndex || 0)
 
   useEffect(() => {
