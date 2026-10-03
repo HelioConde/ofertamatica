@@ -387,3 +387,14 @@
   .related-pages h2 { font-size: 24px; }
   .seo-hero > div > p { font-size: 14px; }
 }
+
+/* Enquanto o AdSense ainda está carregando/bloqueado, não mostrar caixa vazia. */
+.oferta-ad-unit.is-pending {
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+.oferta-ad-unit.is-pending .oferta-ad-label {
+  display: none;
+}

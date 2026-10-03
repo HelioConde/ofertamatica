@@ -277,9 +277,10 @@ function FormatChooser({ onSelect, draft, onResume }) {
             </button>
           ))}
 
-          <aside className="format-ad-card" aria-label="Publicidade">
-            <AdUnit placement="format-grid" />
-          </aside>
+        </div>
+
+        <div className="format-ad-row">
+          <AdUnit placement="format-grid" />
         </div>
       </section>
     </main>
@@ -992,10 +993,6 @@ function Editor({
             <span>Folha {safePageIndex + 1} de {pageCount}</span>
             <button type="button" aria-label="Próxima folha" onClick={() => movePage(1)} disabled={pageCount <= 1}>›</button>
           </div>
-
-          <aside className="preview-ad-card" aria-label="Publicidade">
-            <AdUnit placement="editor-preview" />
-          </aside>
 
           <button className="outline-button" type="button" disabled={!products.length} onClick={() => setExpanded(true)}>Ampliar placa</button>
           <button className="print-button" type="button" disabled={!products.length} onClick={() => setReviewOpen(true)}>Revisar e imprimir</button>

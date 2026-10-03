@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../styles/marketing.css'
 
 const SITE_URL = 'https://ofertamatica.com.br'
@@ -245,24 +245,59 @@ export function AdUnit({ placement = 'content' }) {
   const slot = ADSENSE_SLOTS[placement]
     || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '')
     || ''
+  const adRef = useRef(null)
+  const [adState, setAdState] = useState(slot ? 'pending' : 'hidden')
 
   useEffect(() => {
-    if (!slot) return
+    if (!slot) {
+      setAdState('hidden')
+      return undefined
+    }
+
+    setAdState('pending')
+    const node = adRef.current
+    const syncStatus = () => {
+      const status = node?.getAttribute('data-ad-status')
+      if (status === 'filled') setAdState('filled')
+      if (status === 'unfilled') setAdState('hidden')
+      return status
+    }
+
+    const observer = typeof MutationObserver !== 'undefined' && node
+      ? new MutationObserver(syncStatus)
+      : null
+    observer?.observe(node, { attributes: true, attributeFilter: ['data-ad-status'] })
+
     try {
       ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     } catch {
-      // Auto Ads continuam disponíveis pelo script global do AdSense.
+      // O elemento pode já ter sido processado em desenvolvimento/StrictMode.
+    }
+
+    const timeout = window.setTimeout(() => {
+      const status = syncStatus()
+      // Bloqueadores podem impedir completamente o AdSense de definir data-ad-status.
+      // Nesse caso recolhemos o espaço para não deixar um cartão vazio.
+      if (status !== 'filled') setAdState('hidden')
+    }, 8000)
+
+    return () => {
+      observer?.disconnect()
+      window.clearTimeout(timeout)
     }
   }, [placement, slot])
 
-  // Cada posição recebe seu próprio bloco do AdSense.
-  // Enquanto um slot ainda não foi criado, a posição não reserva espaço vazio.
-  if (!slot) return null
+  if (!slot || adState === 'hidden') return null
 
   return (
-    <div className="oferta-ad-unit" data-placement={placement} aria-label="Publicidade">
+    <div
+      className={'oferta-ad-unit ' + (adState === 'pending' ? 'is-pending' : 'is-filled')}
+      data-placement={placement}
+      aria-label="Publicidade"
+    >
       <span className="oferta-ad-label">PUBLICIDADE</span>
       <ins
+        ref={adRef}
         className="adsbygoogle"
         style={{ display: 'block' }}
         data-ad-client={ADSENSE_CLIENT}
