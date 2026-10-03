@@ -49,6 +49,7 @@ const EXAMPLE_TEXT = [
   'Cerveja Heineken Long Neck 300ml 5,99',
   'Pão Francês kg 10,90',
   'Pão de queijo kg 20,90',
+  'Arroz Tipo 1 5kg 24,90',
 ].join('\n')
 
 const PRINT_STYLE_ID = 'ofertamatica-poster-page'
@@ -1175,7 +1176,12 @@ function Editor({
               <span className="format-chip">{format.cartSize} · {format.orientationLabel}</span>
             </header>
 
-            <textarea value={sourceText} onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }} aria-label="Lista de produtos, uma linha por produto" />
+            <textarea
+              value={sourceText}
+              placeholder={'Ex.:\nCerveja Heineken Long Neck 300ml 5,99\nPão Francês kg 10,90\nPão de queijo kg 20,90\nArroz Tipo 1 5kg 24,90'}
+              onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }}
+              aria-label="Lista de produtos, uma linha por produto"
+            />
 
             <div className="editor-actions">
               <input ref={fileInput} hidden type="file" accept=".txt,.csv,.xls,.xlsx,text/plain,text/csv" onChange={(event) => { setInputMenuOpen(false); handleFile(event) }} />
