@@ -290,6 +290,7 @@ function preservePromotionFields(nextProducts, previousProducts) {
       validity: previous.validity || product.validity || '',
       offerQuantity: previous.offerQuantity || '',
       wholesalePrice: previous.wholesalePrice || '',
+      wholesaleQuantity: previous.wholesaleQuantity || '',
       secondUnitPrice: previous.secondUnitPrice || '',
     }
   })
@@ -1053,6 +1054,8 @@ function Editor({
     if (offerMode === 'atacado-varejo') {
       const missing = products.filter((product) => !String(product.wholesalePrice || '').trim()).length
       if (missing) warnings.push(`${missing} produto(s) sem preço de atacado.`)
+      const missingQuantity = products.filter((product) => product.wholesalePrice && !String(product.wholesaleQuantity || '').trim()).length
+      if (missingQuantity) warnings.push(`${missingQuantity} produto(s) com atacado sem quantidade mínima; confirme se a condição não exige volume.`)
     }
     if (offerMode === 'club-app') {
       const missing = products.filter((product) => !String(product.regularPrice || '').trim()).length
@@ -1577,30 +1580,56 @@ function Editor({
                           </label>
                         ) : null}
                         {offerMode === 'leve-por' ? (
-                          <label>
-                            <span>Quantidade do combo</span>
-                            <input
-                              inputMode="numeric"
-                              value={product.offerQuantity || ''}
-                              onFocus={() => selectProduct(product, index)}
-                              onChange={(event) => changeProduct(product.id, 'offerQuantity', event.target.value)}
-                              placeholder="Ex.: 3"
-                            />
-                          </label>
+                          <>
+                            <label>
+                              <span>Quantidade do combo</span>
+                              <input
+                                inputMode="numeric"
+                                value={product.offerQuantity || ''}
+                                onFocus={() => selectProduct(product, index)}
+                                onChange={(event) => changeProduct(product.id, 'offerQuantity', event.target.value)}
+                                placeholder="Ex.: 3"
+                              />
+                            </label>
+                            <label>
+                              <span>Preço cada (opcional)</span>
+                              <input
+                                inputMode="decimal"
+                                className="price-field"
+                                value={product.regularPrice || ''}
+                                onFocus={() => selectProduct(product, index)}
+                                onChange={(event) => changeProduct(product.id, 'regularPrice', event.target.value)}
+                                onBlur={(event) => finishPrice(product.id, 'regularPrice', event.target.value)}
+                                placeholder="Ex.: 4,99"
+                              />
+                            </label>
+                          </>
                         ) : null}
                         {offerMode === 'atacado-varejo' ? (
-                          <label>
-                            <span>Preço atacado</span>
-                            <input
-                              inputMode="decimal"
-                              className="price-field"
-                              value={product.wholesalePrice || ''}
-                              onFocus={() => selectProduct(product, index)}
-                              onChange={(event) => changeProduct(product.id, 'wholesalePrice', event.target.value)}
-                              onBlur={(event) => finishPrice(product.id, 'wholesalePrice', event.target.value)}
-                              placeholder="Ex.: 24,90"
-                            />
-                          </label>
+                          <>
+                            <label>
+                              <span>Preço atacado</span>
+                              <input
+                                inputMode="decimal"
+                                className="price-field"
+                                value={product.wholesalePrice || ''}
+                                onFocus={() => selectProduct(product, index)}
+                                onChange={(event) => changeProduct(product.id, 'wholesalePrice', event.target.value)}
+                                onBlur={(event) => finishPrice(product.id, 'wholesalePrice', event.target.value)}
+                                placeholder="Ex.: 24,90"
+                              />
+                            </label>
+                            <label>
+                              <span>Quantidade mínima</span>
+                              <input
+                                inputMode="numeric"
+                                value={product.wholesaleQuantity || ''}
+                                onFocus={() => selectProduct(product, index)}
+                                onChange={(event) => changeProduct(product.id, 'wholesaleQuantity', event.target.value)}
+                                placeholder="Ex.: 6"
+                              />
+                            </label>
+                          </>
                         ) : null}
                         {offerMode === 'club-app' ? (
                           <label>
