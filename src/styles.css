@@ -1715,9 +1715,12 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
   left: 0;
   bottom: calc(100% + 7px);
   width: 250px;
+  max-height: min(70vh, 480px);
   padding: 6px;
   display: grid;
   gap: 2px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid #d9e3ef;
   border-radius: 10px;
   background: #fff;
@@ -3929,7 +3932,24 @@ textarea:focus-visible {
 }
 
 .input-menu-recent-job {
+  width: 100%;
   min-width: 0;
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #354660;
+  text-align: left;
+}
+
+.input-menu-recent-job:hover,
+.input-menu-recent-job:focus-visible {
+  background: #f1f6ff;
 }
 
 .input-menu-recent-job > span:last-child {
