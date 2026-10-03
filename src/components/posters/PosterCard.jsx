@@ -83,7 +83,8 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
               <div className="ofertamatica-custom-header">
                 <img src={template.headerImage} alt="" />
               </div>
-              <div className={`ofertamatica-art-offer-text header-${template.headerStyle || 'band'}`}>
+              <div className={`ofertamatica-art-offer-badge header-${template.headerStyle || 'band'}`}>
+                <span className="ofertamatica-bag-mark">✓</span>
                 <b>{template.headerText || 'OFERTA'}</b>
               </div>
             </>
