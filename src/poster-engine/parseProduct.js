@@ -133,7 +133,7 @@ function normalizeParsedPrice(value) {
 }
 
 function splitTextFields(text) {
-  const normalized = String(text || '').replace(/\t+/g, ',')
+  const normalized = String(text || '').replace(/[;|\t]+/g, ',')
   const parts = normalized.split(/\s*,\s*/).map(cleanPart).filter(Boolean)
   if (!parts.length) return { description: '', subdescription: '', complement: '' }
 
