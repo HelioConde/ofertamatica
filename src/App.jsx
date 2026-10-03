@@ -1307,6 +1307,33 @@ function Editor({
     setSelectedProductId(pages[next]?.[0]?.id || null)
   }
 
+  useEffect(() => {
+    function handleEditorShortcuts(event) {
+      if (event.key === 'Escape') {
+        if (reviewOpen) setReviewOpen(false)
+        if (expanded) setExpanded(false)
+        return
+      }
+
+      if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase('pt-BR') === 'p') {
+        event.preventDefault()
+        if (!products.length) {
+          setImportError('Gere pelo menos uma placa antes de imprimir.')
+          sourceInputRef.current?.focus()
+          return
+        }
+        openPrintReview('keyboard', 'print')
+        trackProductEvent('ofertamatica_keyboard_print_review', {
+          format_id: format.id,
+          product_count: products.length,
+        })
+      }
+    }
+
+    document.addEventListener('keydown', handleEditorShortcuts)
+    return () => document.removeEventListener('keydown', handleEditorShortcuts)
+  }, [expanded, reviewOpen, products.length, format.id])
+
   function openPrintReview(source = 'preview', intent = 'print') {
     setReviewIntent(intent)
     trackProductEvent(intent === 'pdf' ? 'ofertamatica_pdf_review' : 'ofertamatica_print_review', {
@@ -1426,7 +1453,7 @@ function Editor({
                     {recentJobs.length ? (
                       <div className="input-menu-recents">
                         <div className="input-menu-recents-head">
-                          <span>Trabalhos recentes</span>
+                          <span>Listas recentes</span>
                           <button type="button" onClick={clearRecentJobs}>Limpar</button>
                         </div>
                         {recentJobs.slice(0, 3).map((job) => (
