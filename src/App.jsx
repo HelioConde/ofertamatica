@@ -333,7 +333,7 @@ function FormatPreview({ format }) {
       <div className={`oferta-format-preview ${isSplit ? 'is-split' : ''} ${isApp ? 'is-app' : ''} ${isFour ? 'is-four' : ''}`}>
         {Array.from({ length: format.postersPerSheet }, (_, index) => (
           <div className={`oferta-format-mini ${format.invertedSlots.includes(index) ? 'is-inverted' : ''}`} key={index}>
-            <span>✓ OFERTA</span>
+            <span>OFERTA</span>
             <i></i>
             <b>R$</b>
           </div>
@@ -355,20 +355,10 @@ function FormatChooser({ onSelect, draft, onResume }) {
   return (
     <main className="format-page" id="formatos">
       <section className="format-dialog">
-        <header className="format-dialog-head">
-          <span className="eyebrow two-click-kicker">2 CLIQUES · PLACA PRONTA</span>
-          <h1>Escolha o formato e comece.</h1>
-          <p>1º clique: escolha o formato. 2º clique: cole a lista e gere as placas. Personalização é opcional e vem depois do resultado.</p>
-          <div className="creator-value-row" aria-label="Vantagens do criador">
-            <span>✓ Grátis</span>
-            <span>✓ Sem cadastro</span>
-            <span>✓ TXT, CSV e Excel</span>
-            <span>✓ Várias placas de uma vez</span>
-          </div>
-          <div className="format-steps two-click-steps" aria-label="Fluxo principal em dois cliques">
-            <span><b>1</b> Escolher formato</span><i>→</i><span><b>2</b> Colar e gerar</span>
-            <small>Depois, se quiser: personalize e imprima.</small>
-          </div>
+        <header className="format-dialog-head format-dialog-head-clean">
+          <span className="eyebrow two-click-kicker">PLACA PRONTA EM 2 CLIQUES</span>
+          <h1>Escolha o formato.</h1>
+          <p>Na próxima tela, cole seus produtos e gere as placas. Simples assim.</p>
         </header>
 
         {draft?.products?.length ? (
@@ -382,7 +372,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         ) : null}
 
         <div className="format-grid">
-          {POSTER_FORMAT_OPTIONS.map((format) => (
+          {POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => (
             <button
               className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
               type="button"
@@ -404,11 +394,9 @@ function FormatChooser({ onSelect, draft, onResume }) {
               </span>
             </button>
           ))}
-
-        </div>
-
-        <div className="format-ad-row">
-          <AdUnit placement="format-grid" />
+          <div className="format-choice format-ad-card" aria-label="Espaço reservado para publicidade">
+            <AdUnit placement="format-grid" />
+          </div>
         </div>
       </section>
     </main>
@@ -798,7 +786,6 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
                 >
                   {isDefault ? (
                     <div className="header-default-thumb" aria-hidden="true">
-                      <span className="ofertamatica-bag-mark">✓</span>
                       <b>OFERTA</b>
                     </div>
                   ) : (
@@ -1681,8 +1668,12 @@ function App() {
   const seoPage = getSeoPage(routePath)
   const publicPage = getPublicPage(routePath)
 
+  const appModeClass = screen === 'editor'
+    ? 'editor-mode'
+    : (seoPage || publicPage ? 'public-mode' : 'format-mode')
+
   return (
-    <div className={'app ' + (screen === 'editor' ? 'editor-mode' : 'format-mode')}>
+    <div className={'app ' + appModeClass}>
       <Navigation routePath={routePath} screen={screen} />
       {screen === 'editor' ? (
         <>
