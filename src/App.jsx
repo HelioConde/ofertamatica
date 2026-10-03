@@ -100,7 +100,7 @@ const DEFAULT_POSTER_STYLE = {
   headerStyle: 'band',
   headerText: 'OFERTA',
   headerImage: '',
-  headerFooterStyle: 'wave-top',
+  headerFooterStyle: 'curva-simples',
   showCurrency: true,
   offerMode: 'standard',
   validityText: '',
@@ -115,12 +115,14 @@ const POSTER_STYLE_PRESETS = [
 ]
 
 const HEADER_FOOTER_MODELS = [
-  { id: 'wave-top', name: 'Onda superior', note: 'Faixa vermelha curva no topo', preview: 'wave-top' },
-  { id: 'wave-both', name: 'Ondas completa', note: 'Header e rodapé com ondas', preview: 'wave-both' },
-  { id: 'framed', name: 'Moldura clássica', note: 'Moldura vermelha ao redor', preview: 'framed' },
-  { id: 'badge', name: 'Placa destacada', note: 'Header em placa arredondada', preview: 'badge' },
-  { id: 'imperdivel', name: 'Oferta imperdível', note: 'Topo alto e moldura forte', preview: 'imperdivel' },
-  { id: 'clean', name: 'Faixa reta', note: 'Header direto e sem rodapé', preview: 'clean' },
+  { id: 'curva-simples', name: 'Curva simples', note: 'OFERTA amarela em faixa vermelha curva', preview: 'curva-simples' },
+  { id: 'ondas', name: 'Ondas completa', note: 'Ondas no topo e no rodapé', preview: 'ondas' },
+  { id: 'especial', name: 'Oferta Especial', note: 'Bloco lateral com destaque Especial', preview: 'especial' },
+  { id: 'rodape-forte', name: 'Rodapé forte', note: 'Topo curvo e base vermelha marcante', preview: 'rodape-forte' },
+  { id: 'imperdivel', name: 'Oferta Imperdível', note: 'OFERTA branca gigante + Imperdível', preview: 'imperdivel' },
+  { id: 'divertido', name: 'Oferta divertida', note: 'Topo divertido com exclamação e joinha', preview: 'divertido' },
+  { id: 'minimal', name: 'Oferta minimal', note: 'Header compacto e rodapé discreto', preview: 'minimal' },
+  { id: 'moldura', name: 'Moldura clássica', note: 'Borda vermelha e header em placa', preview: 'moldura' },
 ]
 
 const OFFER_MODES = [
@@ -137,6 +139,15 @@ function loadPosterStyle() {
     const saved = JSON.parse(localStorage.getItem(POSTER_STYLE_KEY) || 'null')
     if (!saved) return DEFAULT_POSTER_STYLE
 
+    const legacyFrameMap = {
+      'wave-top': 'curva-simples',
+      'wave-both': 'ondas',
+      framed: 'moldura',
+      badge: 'minimal',
+      clean: 'curva-simples',
+    }
+    const normalizedHeaderFooterStyle = legacyFrameMap[saved.headerFooterStyle] || saved.headerFooterStyle || DEFAULT_POSTER_STYLE.headerFooterStyle
+
     const storedHeader = saved.headerImage || localStorage.getItem(POSTER_HEADER_KEY) || ''
     const migratedHeader = storedHeader
       ? (HEADER_IMAGE_BY_ID[storedHeader]
@@ -147,6 +158,7 @@ function loadPosterStyle() {
     return {
       ...DEFAULT_POSTER_STYLE,
       ...saved,
+      headerFooterStyle: normalizedHeaderFooterStyle,
       headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
     }
   } catch {
@@ -1076,7 +1088,7 @@ function Editor({
     headerText: posterStyle.headerText || 'OFERTA',
     headerStyle: posterStyle.headerStyle,
     headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
-    headerFooterStyle: posterStyle.headerFooterStyle || 'wave-top',
+    headerFooterStyle: posterStyle.headerFooterStyle || 'curva-simples',
     offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
     validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
     limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
