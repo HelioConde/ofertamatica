@@ -264,7 +264,15 @@
 }
 .oferta-ad-fallback { min-height: 62px; }
 .format-ad-card .oferta-ad-unit,
-.preview-ad-card .oferta-ad-unit { width: 100%; margin: 0; border: 0; background: transparent; }
+.preview-ad-card .oferta-ad-unit {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  grid-template-columns: none;
+  grid-template-rows: none;
+}
 .format-ad-card .oferta-ad-label,
 .preview-ad-card .oferta-ad-label { padding-top: 0; }
 
