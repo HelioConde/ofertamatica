@@ -449,9 +449,9 @@ export function PublicPage({ page, onCreate }) {
               </div>
               <div className="workflow-grid offer-capability-grid">
                 <article><span>✓</span><strong>Padrão</strong><p>Produto, unidade e preço em destaque para a rotina do dia a dia.</p></article>
-                <article><span>DE</span><strong>De / Por</strong><p>Mostre o preço anterior e o novo preço de oferta sem reconstruir a placa.</p></article>
-                <article><span>X</span><strong>Leve X por Y</strong><p>Informe a quantidade e use o preço principal como valor do combo.</p></article>
-                <article><span>2</span><strong>Atacado / Varejo</strong><p>Exiba preço de atacado junto do preço de varejo na mesma comunicação.</p></article>
+                <article><span>DE</span><strong>De / Por</strong><p>Mostre preço anterior e oferta; o percentual de desconto é calculado automaticamente.</p></article>
+                <article><span>X</span><strong>Leve X por Y</strong><p>Informe a quantidade, o valor do combo e, se quiser, o preço unitário “cada”.</p></article>
+                <article><span>2</span><strong>Atacado / Varejo</strong><p>Exiba os dois preços e informe a quantidade mínima exigida para o atacado.</p></article>
                 <article><span>★</span><strong>Clube / App</strong><p>Mostre um preço exclusivo e mantenha o preço normal como referência.</p></article>
                 <article><span>2ª</span><strong>2ª unidade</strong><p>Comunique um valor especial para a segunda unidade sem criar outro cartaz.</p></article>
               </div>
