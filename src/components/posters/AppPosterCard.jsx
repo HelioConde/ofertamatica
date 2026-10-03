@@ -44,6 +44,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
         <div className="ofertamatica-app-frame" />
         <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
       </div>
+      {template.storeLogo ? <div className="poster-store-logo poster-store-logo-app"><img src={template.storeLogo} alt="" /></div> : null}
       {APP_BOXES.map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
