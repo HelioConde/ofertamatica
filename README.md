@@ -102,6 +102,7 @@ Outros ajustes opcionais disponíveis depois da geração:
 - validade da oferta;
 - limite por cliente;
 - logo da loja salva localmente no dispositivo;
+- header personalizado da loja/campanha, enviado em PNG, JPG ou WebP e salvo localmente;
 - salvar como PDF usando o destino PDF da janela de impressão.
 
 Formatos principais disponíveis:
@@ -168,6 +169,7 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão;
 - `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional;
 - `ofertamatica_store_logo_added` — registra o uso da logo da loja;
+- `ofertamatica_custom_header_added` — registra o uso de um header personalizado;
 - `ofertamatica_pdf_review`;
 - `ofertamatica_pdf_started`;
 - `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”;
