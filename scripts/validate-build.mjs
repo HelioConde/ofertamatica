@@ -20,6 +20,8 @@ expect(index.includes('href="https://ofertamatica.com.br/"'), 'Canonical da raiz
 expect(!index.includes('src="./assets/'), 'Assets relativos detectados no index.html')
 expect(!index.includes('href="./assets/'), 'CSS/assets relativos detectados no index.html')
 expect(!index.includes('ESCOLHA SEU CAMINHO'), 'Copy antiga da landing voltou ao build')
+expect(index.includes('rel="manifest" href="/manifest.webmanifest"'), 'Manifest PWA não está ligado ao index.html')
+expect(index.includes('/icons/icon-192.png'), 'Ícone PWA 192 ausente do index.html')
 
 const ads = read('ads.txt').trim()
 expect(
@@ -41,6 +43,10 @@ for (const page of INDEXABLE_PAGES) {
 }
 
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'icons', 'icon-192.png')), 'Ícone PWA 192x192 não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'icons', 'icon-512.png')), 'Ícone PWA 512x512 não foi copiado para dist')
 
 if (failures.length) {
   console.error('\nFalhas de validação do build:')
