@@ -80,22 +80,12 @@ const SEO_PAGES = [
   },
   {
     slug: 'gerador-de-cartaz-com-ia',
-    title: 'Gerador de cartaz com IA — em breve | Ofertamática',
-    description: 'Conheça a próxima implementação do Ofertamática: criação de cartazes de oferta com inteligência artificial para acelerar a rotina do varejo.',
-    eyebrow: 'PRÓXIMA IMPLEMENTAÇÃO · IA',
+    title: 'Gerador de cartaz com IA | Ofertamática',
+    description: 'Crie cartazes de oferta com inteligência artificial para interpretar produtos, organizar informações e acelerar a produção de placas para o varejo.',
+    eyebrow: 'INTELIGÊNCIA ARTIFICIAL',
     heading: 'Crie seu cartaz com IA',
-    lead: 'Estamos preparando uma experiência em que a inteligência artificial ajudará a interpretar os produtos, organizar as informações e reduzir ajustes manuais.',
+    lead: 'Use inteligência artificial para interpretar os produtos, organizar as informações e reduzir ajustes manuais na criação dos cartazes de oferta.',
     benefits: ['Interpretação inteligente de produtos', 'Menos ajustes manuais', 'Fluxo pensado para acelerar campanhas'],
-    comingSoon: true,
-  },
-  {
-    slug: 'imprimir-cartaz-de-preco',
-    title: 'Imprimir cartaz de preço online | Ofertamática',
-    description: 'Crie, revise e imprima cartazes de preço para mercado e varejo diretamente pelo navegador.',
-    eyebrow: 'IMPRIMIR CARTAZ DE PREÇO',
-    heading: 'Do produto à impressão em poucos passos',
-    lead: 'Escolha o papel, cole sua lista, confira os dados interpretados e faça a revisão final antes de imprimir.',
-    benefits: ['Prévia visual', 'Orientação e tamanho indicados', 'Revisão antes da impressão'],
   },
   {
     slug: 'como-fazer-cartaz-de-oferta',
@@ -140,8 +130,8 @@ const FAQS = [
     a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.',
   },
   {
-    q: 'O Ofertamática já cria cartazes com inteligência artificial?',
-    a: 'Ainda não. “Crie seu cartaz com IA” é a próxima implementação do Ofertamática. O editor atual já permite criar, personalizar, revisar e imprimir cartazes gratuitamente.'
+    q: 'Como funciona a criação de cartazes com inteligência artificial?',
+    a: 'A inteligência artificial ajuda a interpretar produtos, organizar informações e reduzir ajustes manuais para acelerar a criação das ofertas.'
   },
 ]
 
@@ -237,9 +227,9 @@ function AiTeaser({ onCreate, compact = false }) {
   return (
     <section className={`ai-teaser ${compact ? 'compact' : ''}`} id="ia">
       <div className="ai-teaser-copy">
-        <span className="marketing-kicker">PRÓXIMA IMPLEMENTAÇÃO</span>
+        <span className="marketing-kicker">INTELIGÊNCIA ARTIFICIAL</span>
         <h2>Crie seu cartaz com IA</h2>
-        <p>Estamos preparando inteligência artificial para entender sua lista de produtos, organizar as informações e acelerar a criação dos cartazes.</p>
+        <p>Use inteligência artificial para entender sua lista de produtos, organizar as informações e acelerar a criação dos cartazes.</p>
         <div className="ai-feature-row">
           <span>✦ Interpretação inteligente</span>
           <span>✦ Menos ajustes manuais</span>
@@ -247,9 +237,8 @@ function AiTeaser({ onCreate, compact = false }) {
         </div>
       </div>
       <div className="ai-teaser-action">
-        <span className="coming-soon-pill">EM BREVE</span>
-        <button type="button" onClick={onCreate}>Criar cartaz agora</button>
-        <small>O editor atual continua grátis.</small>
+        <button type="button" onClick={onCreate}>Criar cartaz com IA</button>
+        <small>Mais velocidade para a rotina do varejo.</small>
       </div>
     </section>
   )
@@ -327,7 +316,7 @@ export function HomeMarketing({ onCreate }) {
           <div className="seo-link-grid">
             {SEO_PAGES.map((page) => (
               <a key={page.slug} href={'/' + page.slug + '/'}>
-                <span>{page.comingSoon ? 'IA · EM BREVE' : page.eyebrow}</span>
+                <span>{page.eyebrow}</span>
                 <strong>{page.heading}</strong>
                 <small>Ver página →</small>
               </a>
@@ -363,7 +352,7 @@ export function SeoLanding({ page, onCreate }) {
             <p>{page.lead}</p>
             <div className="seo-hero-actions">
               <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
-              <span>{page.comingSoon ? 'IA em breve · editor atual disponível' : 'Grátis · sem cadastro obrigatório'}</span>
+              <span>Grátis · sem cadastro obrigatório</span>
             </div>
           </div>
           <aside className="seo-benefit-card">
