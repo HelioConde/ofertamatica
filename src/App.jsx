@@ -28,9 +28,20 @@ const HEADER_IMAGES = Object.entries(HEADER_IMAGE_MODULES)
 const HEADER_IMAGE_BY_ID = Object.fromEntries(HEADER_IMAGES.map((item) => [item.id, item.url]))
 
 const DEFAULT_HEADER_OPTION_ID = '__oferta__'
+const HEADER_TEXT_PRESETS = [
+  { id: DEFAULT_HEADER_OPTION_ID, kind: 'preset', label: 'Oferta', text: 'OFERTA', headerColor: '#e51e31', headerTextColor: '#ffffff' },
+  { id: '__super_oferta__', kind: 'preset', label: 'Super Oferta', text: 'SUPER OFERTA', headerColor: '#d4142d', headerTextColor: '#ffffff' },
+  { id: '__oferta_relampago__', kind: 'preset', label: 'Oferta Relâmpago', text: 'OFERTA RELÂMPAGO', headerColor: '#b60925', headerTextColor: '#ffffff' },
+  { id: '__so_hoje__', kind: 'preset', label: 'Só Hoje', text: 'SÓ HOJE', headerColor: '#f05a18', headerTextColor: '#ffffff' },
+  { id: '__imperdivel__', kind: 'preset', label: 'Imperdível', text: 'IMPERDÍVEL', headerColor: '#7b2cbf', headerTextColor: '#ffffff' },
+  { id: '__preco_baixo__', kind: 'preset', label: 'Preço Baixo', text: 'PREÇO BAIXO', headerColor: '#168451', headerTextColor: '#ffffff' },
+  { id: '__economia__', kind: 'preset', label: 'Economia', text: 'ECONOMIA', headerColor: '#0b7547', headerTextColor: '#ffffff' },
+  { id: '__fim_de_semana__', kind: 'preset', label: 'Fim de Semana', text: 'FIM DE SEMANA', headerColor: '#1d63e9', headerTextColor: '#ffffff' },
+  { id: '__clube_ofertas__', kind: 'preset', label: 'Clube de Ofertas', text: 'CLUBE DE OFERTAS', headerColor: '#113d9d', headerTextColor: '#ffffff' },
+]
 const HEADER_OPTIONS = [
-  { id: DEFAULT_HEADER_OPTION_ID, label: 'Oferta', url: '' },
-  ...HEADER_IMAGES,
+  ...HEADER_TEXT_PRESETS,
+  ...HEADER_IMAGES.map((item) => ({ ...item, kind: 'image' })),
 ]
 
 function normalizeHeaderImageId(value) {
@@ -581,11 +592,22 @@ function StyleSidebar({
 
   function chooseHeader(id) {
     onCustomHeaderChange?.('')
-    if (id === DEFAULT_HEADER_OPTION_ID) {
-      onChange({ ...style, headerImage: '' })
+    const option = HEADER_OPTIONS.find((item) => item.id === id)
+
+    if (option?.kind === 'preset') {
+      onChange({
+        ...style,
+        headerImage: '',
+        headerStyle: 'band',
+        headerText: option.text,
+        headerColor: option.headerColor,
+        headerTextColor: option.headerTextColor,
+      })
+      trackProductEvent('ofertamatica_header_preset_selected', { header_id: option.id })
       return
     }
 
+    if (!HEADER_IMAGE_BY_ID[id]) return
     onChange({ ...style, headerImage: id })
     const next = [id, ...recentHeaderIds.filter((current) => current !== id)].slice(0, 6)
     setRecentHeaderIds(next)
@@ -887,24 +909,33 @@ function StyleSidebar({
 
           <div className="header-art-grid">
             {visibleHeaders.map((item) => {
-              const isDefault = item.id === DEFAULT_HEADER_OPTION_ID
-              const isActive = isDefault ? !style.headerImage : style.headerImage === item.id
+              const isPreset = item.kind === 'preset'
+              const isActive = isPreset
+                ? (!style.headerImage && !customHeader && style.headerText === item.text)
+                : style.headerImage === item.id
               return (
                 <button
                   type="button"
                   key={item.id}
                   className={isActive ? 'active' : ''}
                   onClick={() => chooseHeader(item.id)}
-                  title={isDefault ? 'OFERTA — cabeçalho padrão' : item.label}
+                  title={isPreset ? `${item.text} — cabeçalho pronto` : item.label}
                 >
-                  {isDefault ? (
-                    <div className="header-default-thumb" aria-hidden="true">
-                      <b>OFERTA</b>
+                  {isPreset ? (
+                    <div
+                      className="header-preset-thumb"
+                      aria-hidden="true"
+                      style={{
+                        '--header-thumb-bg': item.headerColor,
+                        '--header-thumb-color': item.headerTextColor,
+                      }}
+                    >
+                      <b>{item.text}</b>
                     </div>
                   ) : (
                     <img src={item.url} alt="" loading="lazy" />
                   )}
-                  <span>{isDefault ? 'Oferta (padrão)' : item.label}</span>
+                  <span>{item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label}</span>
                 </button>
               )
             })}
