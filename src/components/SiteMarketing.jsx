@@ -165,7 +165,7 @@ function SeoHead({ page }) {
       canonical.setAttribute('rel', 'canonical')
       document.head.appendChild(canonical)
     }
-    const canonicalPath = path === '/' ? '/' : path.replace(/\\/+$/, '') + '/'
+    const canonicalPath = path === '/' ? '/' : path.replace(/\/+$/, '') + '/'
     canonical.setAttribute('href', SITE_URL + canonicalPath)
 
     const oldSchema = document.getElementById('ofertamatica-faq-schema')
