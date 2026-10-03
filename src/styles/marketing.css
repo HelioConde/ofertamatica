@@ -398,3 +398,197 @@
 .oferta-ad-unit.is-pending .oferta-ad-label {
   display: none;
 }
+
+
+/* Home enxuta: detalhes de Modelos, Formatos, Como funciona e Guias vivem em páginas próprias. */
+.home-landing {
+  padding-top: 28px;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, .65fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.home-hero-copy,
+.home-hero-panel {
+  border: 1px solid #d8e3f1;
+  border-radius: 20px;
+}
+
+.home-hero-copy {
+  padding: 46px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(25,182,108,.12), transparent 26%),
+    linear-gradient(135deg, #fff 0%, #f5f8ff 100%);
+  box-shadow: 0 18px 48px rgba(34,62,103,.08);
+}
+
+.home-hero-copy h1 {
+  max-width: 820px;
+  margin: 0;
+  color: #21324f;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -.05em;
+}
+
+.home-hero-copy > p {
+  max-width: 760px;
+  margin: 18px 0 24px;
+  color: #60728e;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.home-hero-actions button,
+.home-hero-actions a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  padding: 0 18px;
+  font-weight: 900;
+}
+
+.home-hero-actions button {
+  border: 0;
+  background: #1d63e9;
+  color: #fff;
+}
+
+.home-hero-actions a {
+  border: 1px solid #cdd9e9;
+  background: #fff;
+  color: #304564;
+}
+
+.home-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 22px;
+  color: #60728e;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.home-hero-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  background: #12213f;
+  color: #fff;
+}
+
+.home-hero-panel .marketing-kicker {
+  color: #78a8ff;
+}
+
+.home-hero-panel strong {
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.home-hero-panel p {
+  margin: 14px 0 0;
+  color: #cbd8ec;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.home-route-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+
+.home-route-card {
+  min-width: 0;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #dce6f2;
+  border-radius: 14px;
+  background: #fff;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.home-route-card:hover {
+  transform: translateY(-2px);
+  border-color: #9dbcf2;
+  box-shadow: 0 12px 30px rgba(29,99,233,.08);
+}
+
+.home-route-card > span {
+  margin-bottom: 20px;
+  color: #1d63e9;
+  font-size: 10px;
+  font-weight: 950;
+}
+
+.home-route-card strong {
+  color: #26344f;
+  font-size: 19px;
+}
+
+.home-route-card p {
+  flex: 1;
+  margin: 8px 0 18px;
+  color: #6b7b94;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.home-route-card b {
+  color: #1d63e9;
+  font-size: 11px;
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-route-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .home-landing {
+    padding-top: 14px;
+  }
+
+  .home-hero-copy,
+  .home-hero-panel {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .home-hero-copy h1 {
+    font-size: 38px;
+  }
+
+  .home-route-section {
+    grid-template-columns: 1fr;
+  }
+
+  .home-route-card {
+    min-height: 0;
+  }
+}

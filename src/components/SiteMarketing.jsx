@@ -363,65 +363,71 @@ export function HomeMarketing({ onCreate }) {
     <>
       <SeoHead page={HOME_META} />
 
-      <div className="marketing-shell">
+      <main className="marketing-shell home-landing">
+        <section className="home-hero">
+          <div className="home-hero-copy">
+            <span className="marketing-kicker">CARTAZES PARA VAREJO</span>
+            <h1>Crie cartazes de oferta sem perder tempo formatando</h1>
+            <p>Escolha o formato, adicione seus produtos, personalize o visual e revise tudo antes de imprimir. O editor atual é grátis e funciona direto no navegador.</p>
+            <div className="home-hero-actions">
+              <button type="button" onClick={onCreate}>Criar cartaz grátis</button>
+              <a href="/como-funciona/">Ver como funciona</a>
+            </div>
+            <div className="home-proof-row">
+              <span>✓ Sem cadastro obrigatório</span>
+              <span>✓ A4, A3 e SRA3</span>
+              <span>✓ Prévia antes da impressão</span>
+            </div>
+          </div>
+          <aside className="home-hero-panel">
+            <span className="marketing-kicker">ESCOLHA SEU CAMINHO</span>
+            <strong>O conteúdo agora está organizado em páginas próprias.</strong>
+            <p>A Home apresenta o produto. Modelos, formatos, funcionamento e guias ficam separados para facilitar a navegação.</p>
+          </aside>
+        </section>
+
+        <section className="home-route-section" aria-label="Principais áreas do Ofertamática">
+          <a href="/modelos/" className="home-route-card">
+            <span>01</span>
+            <strong>Modelos</strong>
+            <p>Conheça os estilos visuais e escolha uma base para suas campanhas.</p>
+            <b>Ver modelos →</b>
+          </a>
+          <a href="/formatos/" className="home-route-card">
+            <span>02</span>
+            <strong>Formatos</strong>
+            <p>Compare A4, A3, SRA3 e diferentes quantidades de cartazes por folha.</p>
+            <b>Ver formatos →</b>
+          </a>
+          <a href="/como-funciona/" className="home-route-card">
+            <span>03</span>
+            <strong>Como funciona</strong>
+            <p>Veja o fluxo completo da lista de produtos até a revisão de impressão.</p>
+            <b>Entender o fluxo →</b>
+          </a>
+          <a href="/guias-para-varejo/" className="home-route-card">
+            <span>04</span>
+            <strong>Guias para varejo</strong>
+            <p>Acesse conteúdos específicos para supermercado, preços, promoções e impressão.</p>
+            <b>Abrir guias →</b>
+          </a>
+        </section>
+
         <AiTeaser onCreate={onCreate} />
 
-        <section className="marketing-section" id="modelos">
-          <div className="marketing-heading">
-            <span className="marketing-kicker">FEITO PARA O VAREJO</span>
-            <h2>Do preço simples à campanha completa</h2>
-            <p>Use o mesmo fluxo para criar cartazes de mercado, supermercado, atacarejo, hortifruti, açougue, padaria e outros setores.</p>
-          </div>
-          <div className="marketing-cards">
-            <article><b>01</b><strong>Ofertas do dia</strong><p>Cartazes rápidos para ações que precisam entrar na loja agora.</p></article>
-            <article><b>02</b><strong>Campanhas sazonais</strong><p>Black Friday, Natal, Páscoa, aniversário da loja e outras datas.</p></article>
-            <article><b>03</b><strong>Departamentos</strong><p>Padaria, açougue, hortifruti, bebidas, limpeza, bomboniere e mais.</p></article>
-          </div>
-        </section>
-
         <AdUnit placement="home-content" />
-
-        <section className="marketing-section how-section" id="como-funciona">
-          <div className="marketing-heading">
-            <span className="marketing-kicker">COMO FUNCIONA</span>
-            <h2>Três etapas para sair da lista e chegar à impressão</h2>
-          </div>
-          <div className="how-grid">
-            <article><span>1</span><div><strong>Escolha o formato</strong><p>Defina papel, orientação e quantidade de cartazes por folha.</p></div></article>
-            <article><span>2</span><div><strong>Cole seus produtos</strong><p>Revise descrição, gramatura, unidade e preço interpretados pelo editor.</p></div></article>
-            <article><span>3</span><div><strong>Personalize e imprima</strong><p>Ajuste cores e cabeçalho, confira a prévia e faça a revisão final.</p></div></article>
-          </div>
-          <button className="marketing-primary-cta" type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
-        </section>
-
-        <section className="marketing-section seo-guides" id="guias">
-          <div className="marketing-heading">
-            <span className="marketing-kicker">GUIAS E FERRAMENTAS</span>
-            <h2>Encontre o caminho certo para sua necessidade</h2>
-            <p>Páginas específicas para quem procura criar, imprimir ou organizar cartazes promocionais.</p>
-          </div>
-          <div className="seo-link-grid">
-            {SEO_PAGES.map((page) => (
-              <a key={page.slug} href={'/' + page.slug + '/'}>
-                <span>{page.eyebrow}</span>
-                <strong>{page.heading}</strong>
-                <small>Ver página →</small>
-              </a>
-            ))}
-          </div>
-        </section>
 
         <FaqSection onCreate={onCreate} />
 
         <section className="marketing-final-cta">
           <div>
             <span className="marketing-kicker">COMECE AGORA</span>
-            <h2>Crie seus cartazes sem começar do zero</h2>
-            <p>Escolha um formato e deixe o Ofertamática organizar sua impressão.</p>
+            <h2>Escolha um formato e crie seu primeiro cartaz</h2>
+            <p>O editor organiza seus produtos e permite revisar o resultado antes de imprimir.</p>
           </div>
           <button type="button" onClick={onCreate}>Criar cartaz grátis</button>
         </section>
-      </div>
+      </main>
     </>
   )
 }

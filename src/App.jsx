@@ -1151,10 +1151,7 @@ function App() {
       ) : isCreateRoute ? (
         <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
       ) : (
-        <>
-          <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
-          <HomeMarketing onCreate={showFormats} />
-        </>
+        <HomeMarketing onCreate={showFormats} />
       )}
     </div>
   )
