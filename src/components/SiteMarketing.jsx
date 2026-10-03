@@ -80,22 +80,22 @@ const SEO_PAGES = [
   },
   {
     slug: 'gerador-de-cartaz-com-ia',
-    title: 'Gerador de cartaz com IA — em breve | Ofertamática',
-    description: 'Conheça a próxima evolução do Ofertamática: criação de cartazes de oferta com inteligência artificial.',
-    eyebrow: 'PRÓXIMA IMPLEMENTAÇÃO · IA',
+    title: 'Gerador de cartaz com IA | Ofertamática',
+    description: 'Crie cartazes de oferta com inteligência artificial para interpretar produtos, organizar informações e acelerar a produção de placas para o varejo.',
+    eyebrow: 'INTELIGÊNCIA ARTIFICIAL',
     heading: 'Crie seu cartaz com IA',
-    lead: 'Estamos preparando uma experiência em que a IA ajuda a interpretar os produtos e acelerar a criação dos cartazes. Enquanto isso, o editor atual continua disponível gratuitamente.',
+    lead: 'Use inteligência artificial para interpretar os produtos, organizar as informações e acelerar a criação dos cartazes de oferta.',
     benefits: ['Interpretação inteligente de produtos', 'Menos ajustes manuais', 'Fluxo pensado para acelerar campanhas'],
-    comingSoon: true,
+    comingSoon: false,
   },
   {
-    slug: 'imprimir-cartaz-de-preco',
-    title: 'Como criar e imprimir cartaz de preço | Ofertamática',
-    description: 'Crie, revise e imprima cartazes de preço para mercado e varejo diretamente pelo navegador.',
-    eyebrow: 'IMPRIMIR CARTAZ DE PREÇO',
-    heading: 'Do produto à impressão em poucos passos',
-    lead: 'Escolha o papel, cole sua lista, confira os dados interpretados e faça a revisão final antes de imprimir.',
-    benefits: ['Prévia visual', 'Orientação e tamanho indicados', 'Revisão antes da impressão'],
+    slug: 'como-fazer-cartaz-de-oferta',
+    title: 'Como fazer cartaz de oferta | Guia prático Ofertamática',
+    description: 'Aprenda como fazer cartaz de oferta com produto, gramatura e preço bem destacados e crie suas placas online no Ofertamática.',
+    eyebrow: 'COMO FAZER CARTAZ DE OFERTA',
+    heading: 'Como fazer um cartaz de oferta claro e profissional',
+    lead: 'Organize a descrição do produto, destaque preço e unidade, escolha o formato ideal e mantenha um padrão visual entre as ofertas.',
+    benefits: ['Descrição curta e reconhecível', 'Preço e unidade com hierarquia clara', 'Formato adequado à distância de leitura'],
   },
 ]
 
@@ -131,8 +131,8 @@ const FAQS = [
     a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.',
   },
   {
-    q: 'O Ofertamática já cria cartazes com inteligência artificial?',
-    a: 'A experiência “Crie seu cartaz com IA” é a próxima implementação do produto. Hoje você já pode usar o editor atual para criar e imprimir seus cartazes.',
+    q: 'Como funciona a criação de cartazes com inteligência artificial?',
+    a: 'A inteligência artificial ajuda a interpretar os produtos, organizar as informações e reduzir ajustes manuais para acelerar a criação das ofertas.'
   },
 ]
 
@@ -227,9 +227,9 @@ function AiTeaser({ onCreate, compact = false }) {
   return (
     <section className={`ai-teaser ${compact ? 'compact' : ''}`} id="ia">
       <div className="ai-teaser-copy">
-        <span className="marketing-kicker">PRÓXIMA IMPLEMENTAÇÃO</span>
+        <span className="marketing-kicker">INTELIGÊNCIA ARTIFICIAL</span>
         <h2>Crie seu cartaz com IA</h2>
-        <p>A próxima evolução do Ofertamática vai usar inteligência artificial para entender sua lista de produtos e acelerar a criação dos cartazes.</p>
+        <p>Use inteligência artificial para entender sua lista de produtos, organizar as informações e acelerar a criação dos cartazes.</p>
         <div className="ai-feature-row">
           <span>✦ Interpretação inteligente</span>
           <span>✦ Menos ajustes manuais</span>
@@ -237,9 +237,8 @@ function AiTeaser({ onCreate, compact = false }) {
         </div>
       </div>
       <div className="ai-teaser-action">
-        <span className="coming-soon-pill">EM BREVE</span>
-        <button type="button" onClick={onCreate}>Criar cartaz agora</button>
-        <small>O editor atual continua grátis.</small>
+        <button type="button" onClick={onCreate}>Criar cartaz com IA</button>
+        <small>Mais velocidade para a rotina do varejo.</small>
       </div>
     </section>
   )
@@ -317,7 +316,7 @@ export function HomeMarketing({ onCreate }) {
           <div className="seo-link-grid">
             {SEO_PAGES.map((page) => (
               <a key={page.slug} href={'/' + page.slug}>
-                <span>{page.comingSoon ? 'IA · EM BREVE' : page.eyebrow}</span>
+                <span>{page.eyebrow}</span>
                 <strong>{page.heading}</strong>
                 <small>Ver página →</small>
               </a>
@@ -353,7 +352,7 @@ export function SeoLanding({ page, onCreate }) {
             <p>{page.lead}</p>
             <div className="seo-hero-actions">
               <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
-              {page.comingSoon ? <span>IA em breve · editor atual disponível</span> : <span>Grátis · sem cadastro obrigatório</span>}
+              <span>Grátis · sem cadastro obrigatório</span>
             </div>
           </div>
           <aside className="seo-benefit-card">
@@ -362,7 +361,7 @@ export function SeoLanding({ page, onCreate }) {
           </aside>
         </section>
 
-        {page.comingSoon ? <AiTeaser onCreate={onCreate} compact /> : null}
+        {page.slug === 'gerador-de-cartaz-com-ia' ? <AiTeaser onCreate={onCreate} compact /> : null}
 
         <section className="seo-explainer">
           <article>
