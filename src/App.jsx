@@ -1272,6 +1272,29 @@ function Editor({
     if (applied) setInputMenuOpen(false)
   }
 
+  function reuseRecentJob(job) {
+    setSourceText(job.sourceText)
+    setConfirmExample(false)
+    setClipboardError('')
+    setImportError('')
+    generateFromSource(job.sourceText)
+    setInputMenuOpen(false)
+    trackProductEvent('ofertamatica_recent_job_reused', {
+      original_format_id: job.formatId || 'unknown',
+      current_format_id: formatId,
+      product_count: job.productCount || 0,
+    })
+  }
+
+  function clearRecentJobs() {
+    try {
+      localStorage.removeItem(RECENT_JOBS_KEY)
+    } catch {
+      // O estado em memória ainda pode ser limpo.
+    }
+    setRecentJobs([])
+  }
+
   function movePage(direction) {
     const next = (() => {
       const candidate = safePageIndex + direction
@@ -1399,6 +1422,23 @@ function Editor({
                       <span className="input-menu-icon">✦</span>
                       <span><b>{confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}</b><small>{confirmExample ? 'Substitui o conteúdo atual' : 'Preencher uma lista pronta'}</small></span>
                     </button>
+                    {recentJobs.length ? (
+                      <div className="input-menu-recents">
+                        <div className="input-menu-recents-head">
+                          <span>Trabalhos recentes</span>
+                          <button type="button" onClick={clearRecentJobs}>Limpar</button>
+                        </div>
+                        {recentJobs.slice(0, 3).map((job) => (
+                          <button type="button" role="menuitem" className="input-menu-recent-job" key={job.id} onClick={() => reuseRecentJob(job)}>
+                            <span className="input-menu-icon">↺</span>
+                            <span>
+                              <b>{job.label}</b>
+                              <small>{job.productCount || '?'} produtos · {job.formatId || 'formato salvo'}</small>
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
                     <button type="button" role="menuitem" className="input-menu-danger" onClick={clearProductList}>
                       <span className="input-menu-icon">×</span>
                       <span><b>Limpar lista</b><small>Remover texto e produtos</small></span>
