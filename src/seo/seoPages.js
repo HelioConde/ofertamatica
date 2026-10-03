@@ -1,0 +1,138 @@
+export const SITE_URL = 'https://ofertamatica.com.br'
+
+export const SEO_PAGES = [
+  {
+    slug: 'criador-de-cartaz-de-oferta',
+    title: 'Criador de Cartaz de Oferta Grátis | Ofertamática',
+    h1: 'Criador de cartaz de oferta',
+    description: 'Crie cartazes de oferta profissionais para imprimir. Cole seus produtos, escolha o formato, personalize o visual e gere placas de preço com o Ofertamática.',
+    keywords: 'criador de cartaz de oferta, criar cartaz de oferta, cartaz promocional, placa de oferta',
+    eyebrow: 'CARTAZES DE OFERTA',
+    intro: 'Transforme sua lista de produtos em cartazes de oferta claros, padronizados e prontos para impressão.',
+    benefits: ['Criação rápida a partir da lista de produtos', 'Formatos A4, A3 e múltiplos cartazes por folha', 'Preço, descrição, gramatura e cabeçalho personalizáveis'],
+  },
+  {
+    slug: 'cartaz-para-supermercado',
+    title: 'Cartaz para Supermercado | Crie Ofertas Profissionais',
+    h1: 'Cartaz para supermercado',
+    description: 'Faça cartazes para supermercado, mercado, mercearia, atacarejo e hortifruti com preços em destaque e formatos prontos para impressão.',
+    keywords: 'cartaz para supermercado, cartaz supermercado, cartaz para mercado, placa de preço supermercado',
+    eyebrow: 'VAREJO ALIMENTAR',
+    intro: 'Crie placas de preço para gôndola, ilha, açougue, hortifruti, padaria e campanhas promocionais do supermercado.',
+    benefits: ['Visual de preço pensado para leitura rápida', 'Cabeçalhos por setor e campanha', 'Padronização para muitas ofertas de uma vez'],
+  },
+  {
+    slug: 'gerador-de-cartaz-de-promocao',
+    title: 'Gerador de Cartaz de Promoção Online | Ofertamática',
+    h1: 'Gerador de cartaz de promoção',
+    description: 'Gere cartazes de promoção online para campanhas, ofertas da semana, fim de semana e oferta relâmpago. Personalize e imprima.',
+    keywords: 'gerador de cartaz de promoção, cartaz de promoção online, criar promoção, cartaz promocional',
+    eyebrow: 'PROMOÇÕES',
+    intro: 'Monte campanhas promocionais com cartazes consistentes e destaque o que importa: produto, condição e preço.',
+    benefits: ['Ideal para campanhas recorrentes', 'Modelos rápidos de estilo', 'Impressão no tamanho físico escolhido'],
+  },
+  {
+    slug: 'cartaz-de-preco-online',
+    title: 'Cartaz de Preço Online | Crie e Imprima no Ofertamática',
+    h1: 'Cartaz de preço online',
+    description: 'Crie cartaz de preço online com descrição, unidade, gramatura e preço em destaque. Edite, visualize e imprima direto do navegador.',
+    keywords: 'cartaz de preço online, placa de preço, criar cartaz de preço, preço para imprimir',
+    eyebrow: 'PREÇOS',
+    intro: 'Crie placas de preço legíveis e prontas para uso no ponto de venda sem depender de editor gráfico.',
+    benefits: ['Preço com destaque automático', 'Pré-visualização antes de imprimir', 'Edição de cada produto após a interpretação'],
+  },
+  {
+    slug: 'cartaz-de-oferta-gratis',
+    title: 'Cartaz de Oferta Grátis | Crie Online com Ofertamática',
+    h1: 'Faça seu cartaz de oferta grátis',
+    description: 'Crie cartazes e placas de oferta grátis no navegador. Escolha o formato, adicione produtos e prepare a impressão sem cadastro obrigatório.',
+    keywords: 'cartaz de oferta grátis, fazer cartaz de oferta grátis, cartaz grátis, criar placa de oferta grátis',
+    eyebrow: 'GRÁTIS',
+    intro: 'Comece rapidamente: escolha o tamanho, cole seus produtos e personalize o cartaz antes de imprimir.',
+    benefits: ['Sem cadastro obrigatório para começar', 'Editor direto no navegador', 'Formatos para diferentes necessidades do varejo'],
+  },
+  {
+    slug: 'cartaz-supermercado-online',
+    title: 'Cartaz de Supermercado Online | Ofertamática',
+    h1: 'Cartaz de supermercado online',
+    description: 'Crie cartazes de supermercado online para ofertas, preços e campanhas. Organize produtos, personalize o estilo e imprima em poucos passos.',
+    keywords: 'cartaz supermercado online, criar cartaz supermercado, ofertas supermercado, placa supermercado',
+    eyebrow: 'SUPERMERCADO',
+    intro: 'Centralize a criação dos cartazes do seu supermercado em uma ferramenta feita para rotina de ofertas.',
+    benefits: ['Criação em lote', 'Biblioteca de cabeçalhos', 'Layouts para impressão no varejo'],
+  },
+  {
+    slug: 'cartaz-de-oferta-para-imprimir',
+    title: 'Cartaz de Oferta para Imprimir | A4 e A3',
+    h1: 'Cartaz de oferta para imprimir',
+    description: 'Crie cartaz de oferta para imprimir em A4 e A3, com opções de 1, 2 ou 4 cartazes por folha e prévia no tamanho escolhido.',
+    keywords: 'cartaz de oferta para imprimir, cartaz A4 para imprimir, placa de oferta imprimir, cartaz A3',
+    eyebrow: 'IMPRESSÃO',
+    intro: 'Prepare cartazes no formato certo para aproveitar melhor cada folha e manter o padrão visual da loja.',
+    benefits: ['A4 e A3', '1, 2 ou 4 cartazes por folha', 'Revisão de impressão antes de enviar para a impressora'],
+  },
+  {
+    slug: 'cartaz-a4',
+    title: 'Cartaz A4 de Oferta | Crie e Imprima Online',
+    h1: 'Cartaz A4 de oferta',
+    description: 'Crie cartaz A4 de oferta online. Use uma folha inteira ou divida em múltiplas placas para imprimir promoções e preços.',
+    keywords: 'cartaz A4, cartaz A4 oferta, cartaz A4 para imprimir, placa de preço A4',
+    eyebrow: 'FORMATO A4',
+    intro: 'Use o formato A4 para cartazes de destaque ou aproveite a folha com múltiplas ofertas menores.',
+    benefits: ['A4 1 por folha', 'A4 2 por folha', 'A4 4 por folha'],
+  },
+  {
+    slug: 'gerador-de-cartaz-com-ia',
+    title: 'Gerador de Cartaz com IA | Ofertamática',
+    h1: 'Crie seu cartaz com IA',
+    description: 'Use o Ofertamática para criar cartazes de oferta com IA, organizar informações do produto, destacar preços e acelerar a produção de placas para o varejo.',
+    keywords: 'gerador de cartaz com IA, cartaz com inteligência artificial, criar cartaz com IA, IA para supermercado',
+    eyebrow: 'INTELIGÊNCIA ARTIFICIAL',
+    intro: 'A proposta do Ofertamática é reduzir o trabalho manual na criação de ofertas: você informa os produtos e a tecnologia ajuda a transformar os dados em cartazes prontos para revisar e imprimir.',
+    benefits: ['Menos digitação e ajuste manual', 'Interpretação dos dados do produto', 'Fluxo pensado para criação em volume'],
+  },
+  {
+    slug: 'como-fazer-cartaz-de-oferta',
+    title: 'Como Fazer Cartaz de Oferta | Guia Prático',
+    h1: 'Como fazer cartaz de oferta',
+    description: 'Veja como fazer um cartaz de oferta com produto, gramatura e preço bem destacados e crie suas placas online no Ofertamática.',
+    keywords: 'como fazer cartaz de oferta, como criar cartaz de preço, modelo cartaz oferta, fazer placa promoção',
+    eyebrow: 'GUIA PRÁTICO',
+    intro: 'Um bom cartaz precisa ser entendido em segundos. Organize a informação, dê prioridade ao preço e mantenha um padrão entre as ofertas.',
+    benefits: ['Use uma descrição curta e reconhecível', 'Destaque preço e unidade sem competir com o produto', 'Escolha o formato de acordo com a distância de leitura'],
+  },
+]
+
+export const SEO_PAGE_BY_PATH = Object.fromEntries(
+  SEO_PAGES.map((page) => [`/${page.slug}`, page]),
+)
+
+export const SEO_FAQS = [
+  ['O Ofertamática serve para supermercado?', 'Sim. O editor foi pensado para rotinas de ofertas de supermercados, mercados, atacarejos, mercearias, hortifrutis, padarias, açougues e outros negócios do varejo.'],
+  ['Posso criar cartaz para hortifruti, açougue e padaria?', 'Sim. Você pode criar cartazes por setor e usar cabeçalhos específicos para hortifruti, açougue, padaria, bebidas, limpeza, higiene, bomboniere e outros departamentos.'],
+  ['Quais formatos posso imprimir?', 'O Ofertamática trabalha com formatos como A4, A3 e composições com 1, 2 ou 4 cartazes por folha, conforme as opções disponíveis no editor.'],
+  ['Dá para fazer oferta relâmpago e promoção do fim de semana?', 'Sim. O mesmo editor pode ser usado para oferta relâmpago, promoção do dia, ofertas da semana, feira do mês e campanhas sazonais.'],
+  ['Consigo criar vários cartazes de uma vez?', 'Sim. Você pode colar uma lista com vários produtos, revisar os dados interpretados e gerar várias placas no mesmo fluxo.'],
+  ['Posso importar produtos de planilha?', 'Sim. O editor aceita importação de arquivos compatíveis e também permite colar produtos diretamente na área de entrada rápida.'],
+  ['O site cria cartaz com IA?', 'A inteligência artificial faz parte do posicionamento do Ofertamática para reduzir o trabalho manual na criação, interpretação e organização das ofertas.'],
+  ['Preciso instalar algum programa?', 'Não. O Ofertamática funciona no navegador e o fluxo de criação, revisão e impressão acontece online.'],
+  ['Posso usar para farmácia, papelaria e utilidades?', 'Sim. O modelo de criação pode ser usado em farmácia e cuidados, papelaria, utilidades domésticas, pet shop, loja de bebidas e diversos tipos de comércio.'],
+  ['Como deixar o preço mais visível no cartaz?', 'Use contraste forte, poucas informações concorrendo com o preço e uma hierarquia clara entre produto, complemento, unidade e valor. O Ofertamática já organiza essa estrutura no layout.'],
+  ['Quais campanhas posso criar?', 'Você pode montar campanhas de Black Friday, Natal, Páscoa, Dia das Mães, Dia dos Pais, volta às aulas, verão de ofertas e aniversário da loja, além das promoções recorrentes.'],
+  ['Posso criar cartaz de preço sem cadastro?', 'O fluxo principal permite começar a criar cartazes sem cadastro obrigatório, conforme indicado no próprio editor.'],
+]
+
+export const SEO_TOPIC_GROUPS = [
+  {
+    title: 'Para o seu negócio',
+    items: ['Supermercado', 'Mercado', 'Atacarejo', 'Mercearia', 'Hortifruti', 'Padaria', 'Açougue', 'Farmácia', 'Papelaria', 'Pet shop'],
+  },
+  {
+    title: 'Para suas campanhas',
+    items: ['Oferta relâmpago', 'Promoção do dia', 'Fim de semana', 'Ofertas da semana', 'Feira do mês', 'Black Friday', 'Natal', 'Páscoa', 'Volta às aulas', 'Verão de ofertas'],
+  },
+  {
+    title: 'Para seus setores',
+    items: ['Bebidas', 'Destilados', 'Hortifruti', 'Açougue', 'Padaria', 'Frios e laticínios', 'Limpeza', 'Higiene e beleza', 'Bomboniere', 'Rotisseria'],
+  },
+]
