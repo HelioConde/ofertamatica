@@ -532,6 +532,7 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
                   headerImage: style.headerImage,
                   headerText: style.headerText,
                   headerStyle: style.headerStyle,
+                  offerMode: style.offerMode || 'standard',
                 })}
               >
                 <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
