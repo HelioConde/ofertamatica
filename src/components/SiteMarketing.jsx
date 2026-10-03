@@ -3,6 +3,8 @@ import AdUnit from './AdUnit'
 import '../styles/marketing.css'
 
 const SITE_URL = 'https://ofertamatica.com.br'
+const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
+const ADSENSE_SLOT = import.meta.env.VITE_ADSENSE_SLOT || ''
 
 const SEO_PAGES = [
   {
@@ -191,6 +193,35 @@ function SeoHead({ page }) {
 export function getSeoPage(pathname) {
   const clean = String(pathname || '/').replace(/^\/+|\/+$/g, '')
   return SEO_PAGES.find((page) => page.slug === clean) || null
+}
+
+export function AdUnit({ placement = 'content' }) {
+  useEffect(() => {
+    if (!ADSENSE_SLOT) return
+    try {
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+    } catch {
+      // Auto Ads continuam disponíveis pelo script global do AdSense.
+    }
+  }, [placement])
+
+  return (
+    <div className="oferta-ad-unit" data-placement={placement} aria-label="Publicidade">
+      <span className="oferta-ad-label">PUBLICIDADE</span>
+      {ADSENSE_SLOT ? (
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={ADSENSE_SLOT}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      ) : (
+        <div className="oferta-ad-fallback" aria-hidden="true" />
+      )}
+    </div>
+  )
 }
 
 function AiTeaser({ onCreate, compact = false }) {
