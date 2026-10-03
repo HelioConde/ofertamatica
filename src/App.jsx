@@ -1476,7 +1476,7 @@ function Editor({
               </div>
 
               <span className="product-count">{products.length} produtos identificados</span>
-              <span className="keyboard-hint" aria-hidden="true">Ctrl+Enter gera</span>
+              <span className="keyboard-hint" aria-hidden="true">Ctrl+Enter gera · Ctrl+P imprime</span>
               {!sourceText.trim() && typeof navigator !== 'undefined' && navigator.clipboard?.readText ? (
                 <button className="generate-button paste-generate-button" type="button" onClick={pasteAndGenerate}>
                   <span className="generate-step-badge">2</span>
