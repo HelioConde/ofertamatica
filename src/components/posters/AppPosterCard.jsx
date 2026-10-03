@@ -29,7 +29,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
   return (
     <article className={`poster-card poster-app-card ofertamatica-app-card ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
-      <div className={`ofertamatica-app-background poster-frame-${template.headerFooterStyle || 'wave-top'}`} aria-hidden="true">
+      <div className={`ofertamatica-app-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
         {template.headerImage ? (
           <div className="ofertamatica-custom-header ofertamatica-custom-header-app">
             <img src={template.headerImage} alt="" />
