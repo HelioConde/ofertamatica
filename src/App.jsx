@@ -52,6 +52,15 @@ const EXAMPLE_TEXT = [
   'Arroz Tipo 1 5kg 24,90',
 ].join('\n')
 
+const LEGACY_EXAMPLE_TEXTS = [
+  [
+    'Cerveja Heineken Long Neck 300ml 5,99',
+    'Pão Francês kg 10,90',
+    'Pão de queijo kg 20,90',
+  ].join('\n'),
+  EXAMPLE_TEXT,
+]
+
 const PRINT_STYLE_ID = 'ofertamatica-poster-page'
 const PX_PER_MM = 96 / 25.4
 const DRAFT_KEY = 'ofertamatica:draft:v1'
@@ -131,8 +140,7 @@ function loadDraft() {
 
     // Migração: versões antigas iniciavam o editor com o exemplo já salvo como se fosse
     // um trabalho do usuário. Removemos apenas esse falso rascunho legado.
-    const isLegacyExample = String(draft.sourceText || '').trim() === EXAMPLE_TEXT.trim()
-      && draft.products.length === 3
+    const isLegacyExample = LEGACY_EXAMPLE_TEXTS.includes(String(draft.sourceText || '').trim())
       && localStorage.getItem(EXAMPLE_USED_KEY) !== '1'
     if (isLegacyExample) {
       localStorage.removeItem(DRAFT_KEY)
@@ -1157,6 +1165,7 @@ function Editor({
   function clearProductList() {
     setSourceText('')
     setProducts([])
+    setClipboardError('')
     setSelectedProductId(null)
     setPageIndex(0)
     setConfirmExample(false)
@@ -1244,7 +1253,11 @@ function Editor({
               ref={sourceInputRef}
               value={sourceText}
               placeholder={'Ex.:\nCerveja Heineken Long Neck 300ml 5,99\nPão Francês kg 10,90\nPão de queijo kg 20,90\nArroz Tipo 1 5kg 24,90'}
-              onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }}
+              onChange={(event) => {
+                setSourceText(event.target.value)
+                setConfirmExample(false)
+                setClipboardError('')
+              }}
               aria-label="Lista de produtos, uma linha por produto"
             />
 
