@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import AdUnit from './AdUnit'
 import '../styles/marketing.css'
 
 const SITE_URL = 'https://ofertamatica.com.br'
