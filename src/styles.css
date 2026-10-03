@@ -3692,3 +3692,203 @@ textarea:focus-visible {
     display: none;
   }
 }
+
+
+/* UX 03/10 — formatos mais legíveis, slot SRA3 reservado a anúncios,
+   cabeçalho OFERTA sem ícone e páginas públicas com rolagem normal. */
+.public-mode {
+  min-height: 100dvh;
+  height: auto;
+  overflow: visible;
+}
+
+.public-mode .seo-landing {
+  overflow: visible;
+}
+
+.format-dialog-head-clean {
+  padding-block: 18px 15px;
+}
+
+.format-dialog-head-clean .two-click-kicker {
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
+.format-dialog-head-clean h1 {
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+.format-dialog-head-clean p {
+  max-width: 720px;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.format-ad-card {
+  cursor: default;
+  display: grid;
+  place-items: stretch;
+  min-height: 0;
+  padding: 0 !important;
+  border-style: dashed;
+  border-color: #d9e3ef;
+  background:
+    linear-gradient(135deg, rgba(29,99,233,.018), rgba(25,182,108,.018)),
+    #fbfdff;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.format-ad-card::before {
+  content: "PUBLICIDADE";
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  color: #a0adbd;
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+
+.format-ad-card .oferta-ad-unit {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+}
+
+.format-ad-card .oferta-ad-unit.is-pending {
+  min-height: 100%;
+}
+
+.oferta-format-mini > span {
+  top: 4%;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-size: 6px;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.header-art-grid {
+  max-height: 300px;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  touch-action: pan-y;
+}
+
+.header-art-grid > button {
+  grid-template-rows: 54px auto;
+}
+
+.header-art-grid img,
+.header-default-thumb {
+  height: 54px;
+  border-radius: 5px;
+  background: #eef3f8;
+}
+
+.header-art-grid img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.header-default-thumb {
+  padding: 0 8px;
+  background: linear-gradient(180deg, #f52a3d 0%, #d90a25 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 2px 6px rgba(128,0,18,.12);
+}
+
+.header-default-thumb b {
+  color: #fff;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
+  font-size: 22px;
+  font-weight: 1000;
+  line-height: .9;
+  letter-spacing: -.035em;
+}
+
+.ofertamatica-offer-ribbon,
+.ofertamatica-app-ribbon {
+  gap: 0 !important;
+  font-size: clamp(6mm, 9cqi, 16mm) !important;
+}
+
+.ofertamatica-offer-ribbon > b,
+.ofertamatica-app-ribbon > b {
+  max-width: 94%;
+  overflow: hidden;
+  line-height: .82;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.poster-sheet[data-poster-format="A4X2_CIMA_BAIXO"] .ofertamatica-offer-ribbon,
+.poster-sheet[data-poster-format="A4X2_INVERTIDO"] .ofertamatica-offer-ribbon {
+  font-size: clamp(5mm, 6.5cqi, 11mm) !important;
+}
+
+@media (min-width: 1001px) {
+  .format-mode .format-dialog-head-clean {
+    padding: 12px 20px 10px;
+  }
+
+  .format-mode .format-dialog-head-clean h1 {
+    font-size: clamp(23px, 2.7vh, 30px);
+  }
+
+  .format-mode .format-dialog-head-clean p {
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
+  .format-mode .format-copy strong {
+    font-size: 11px;
+  }
+
+  .format-mode .format-copy small {
+    margin-top: 3px;
+    font-size: 8px;
+    line-height: 1.25;
+  }
+
+  .format-mode .format-meta,
+  .format-mode .format-use,
+  .format-mode .format-copy b {
+    font-size: 7.5px;
+    line-height: 1.25;
+  }
+
+  .format-mode .resume-work {
+    min-height: 38px;
+    margin-top: 7px;
+  }
+
+  .format-mode .resume-work span {
+    font-size: 7px;
+  }
+
+  .format-mode .resume-work strong {
+    font-size: 9px;
+  }
+
+  .format-mode .resume-work button {
+    height: 30px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .format-ad-card {
+    min-height: 220px;
+  }
+}
