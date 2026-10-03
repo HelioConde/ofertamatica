@@ -15,8 +15,8 @@ const ADSENSE_SLOTS = {
 }
 
 const CREATOR_META = {
-  title: 'Ofertamática — Criador grátis de cartazes de oferta',
-  description: 'Crie cartazes de oferta para supermercado e varejo. Escolha o formato, adicione produtos, personalize e revise antes de imprimir.',
+  title: 'Ofertamática — Cartaz de oferta pronto em 2 cliques',
+  description: 'Crie placas de oferta em 2 cliques: escolha o formato, cole sua lista e gere. Grátis, sem cadastro e com personalização opcional para supermercado e varejo.',
   path: '/',
 }
 
@@ -416,6 +416,19 @@ export function PublicPage({ page, onCreate }) {
                 {MODEL_PRESETS.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
               </div>
             </section>
+            <section className="marketing-section">
+              <div className="marketing-heading">
+                <span className="marketing-kicker">TIPOS DE OFERTA</span>
+                <h2>Primeiro a placa fica pronta. Depois você escolhe se quer uma condição especial.</h2>
+                <p>O fluxo padrão continua em 2 cliques. De/Por, Leve X por Y e Atacado/Varejo entram como opções de personalização, não como burocracia antes do resultado.</p>
+              </div>
+              <div className="workflow-grid offer-capability-grid">
+                <article><span>✓</span><strong>Padrão</strong><p>Produto, unidade e preço em destaque para a rotina do dia a dia.</p></article>
+                <article><span>DE</span><strong>De / Por</strong><p>Mostre o preço anterior e o novo preço de oferta sem reconstruir a placa.</p></article>
+                <article><span>X</span><strong>Leve X por Y</strong><p>Informe a quantidade e use o preço principal como valor do combo.</p></article>
+                <article><span>2</span><strong>Atacado / Varejo</strong><p>Exiba preço de atacado junto do preço de varejo na mesma comunicação.</p></article>
+              </div>
+            </section>
             <AiTeaser onCreate={onCreate} compact />
           </>
         ) : null}
@@ -448,19 +461,20 @@ export function PublicPage({ page, onCreate }) {
           <>
             <section className="marketing-section">
               <div className="marketing-heading">
-                <span className="marketing-kicker">PASSO A PASSO</span>
-                <h2>Crie, revise e imprima em um único fluxo</h2>
+                <span className="marketing-kicker">2 CLIQUES · PLACA PRONTA</span>
+                <h2>O resultado vem antes da personalização</h2>
+                <p>O fluxo principal foi reduzido ao essencial. Ajustes visuais e condições especiais existem, mas só entram se você quiser.</p>
               </div>
               <div className="workflow-grid">
-                <article><span>1</span><strong>Escolha o formato</strong><p>Defina papel, orientação e quantidade de cartazes por folha.</p></article>
-                <article><span>2</span><strong>Adicione produtos</strong><p>Cole a lista ou importe uma planilha e revise os campos interpretados.</p></article>
-                <article><span>3</span><strong>Personalize</strong><p>Ajuste modelo, cores, tipografia e cabeçalho.</p></article>
-                <article><span>4</span><strong>Revise e imprima</strong><p>Confira a prévia física e valide as orientações de impressão.</p></article>
+                <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A4, A5, A3, SRA3 ou a quantidade de placas por folha.</p></article>
+                <article><span>2</span><strong>Cole e gere</strong><p>Cole sua lista ou importe Excel, CSV ou TXT e gere várias placas de uma vez.</p></article>
+                <article><span>+</span><strong>Personalize se quiser</strong><p>Header, cores, fonte e tipo de oferta ficam disponíveis sem bloquear o resultado.</p></article>
+                <article><span>✓</span><strong>Revise e imprima</strong><p>Confira papel, orientação e preços antes de enviar para a impressora.</p></article>
               </div>
             </section>
             <section className="marketing-section compact-info-grid">
+              <article><strong>Sem cadastro para começar</strong><p>O usuário entra direto no gerador, sem formulário antes da primeira placa.</p></article>
               <article><strong>Trabalho salvo localmente</strong><p>O último trabalho pode ser retomado no mesmo dispositivo.</p></article>
-              <article><strong>Sem anúncio no editor</strong><p>A área principal de criação permanece livre de publicidade manual.</p></article>
               <article><strong>Revisão antes da impressão</strong><p>Preço, quantidade, papel e orientação ficam visíveis antes de imprimir.</p></article>
             </section>
           </>
@@ -597,8 +611,8 @@ export function SeoLanding({ page, onCreate }) {
         <section className="marketing-final-cta">
           <div>
             <span className="marketing-kicker">PRONTO PARA COMEÇAR?</span>
-            <h2>A página inicial já abre direto no criador</h2>
-            <p>Escolha o formato, adicione seus produtos e revise tudo antes de imprimir.</p>
+            <h2>2 cliques para ter a primeira placa pronta</h2>
+            <p>Escolha o formato, cole a lista e gere. Personalize apenas se precisar.</p>
           </div>
           <button type="button" onClick={onCreate}>Abrir criador de cartazes</button>
         </section>
