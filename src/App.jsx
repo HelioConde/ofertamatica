@@ -70,6 +70,7 @@ const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
 const RECENT_HEADERS_KEY = 'ofertamatica:recent-headers:v1'
 const EXAMPLE_USED_KEY = 'ofertamatica:example-used:v1'
 const STORE_LOGO_KEY = 'ofertamatica:store-logo:v1'
+const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
 
 function trackProductEvent(event, details = {}) {
   if (typeof window === 'undefined') return
@@ -169,6 +170,41 @@ function loadStoreLogo() {
   } catch {
     return ''
   }
+}
+
+function loadRecentJobs() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(RECENT_JOBS_KEY) || '[]')
+    if (!Array.isArray(saved)) return []
+    return saved
+      .filter((item) => item && typeof item.sourceText === 'string' && item.sourceText.trim())
+      .slice(0, 5)
+  } catch {
+    return []
+  }
+}
+
+function saveRecentJob(sourceText, formatId, productCount) {
+  const source = String(sourceText || '').trim()
+  if (!source || source.length > 20000) return loadRecentJobs()
+
+  const firstLine = source.split(/\r?\n/).find((line) => line.trim())?.trim() || 'Lista de produtos'
+  const previous = loadRecentJobs().filter((item) => item.sourceText.trim() !== source)
+  const next = [{
+    id: Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+    sourceText: source,
+    formatId,
+    productCount,
+    label: firstLine.slice(0, 52),
+    savedAt: Date.now(),
+  }, ...previous].slice(0, 5)
+
+  try {
+    localStorage.setItem(RECENT_JOBS_KEY, JSON.stringify(next))
+  } catch {
+    // O histórico é apenas um atalho; o criador continua funcionando sem ele.
+  }
+  return next
 }
 
 function splitIntoPages(products, perPage) {
@@ -869,6 +905,7 @@ function Editor({
   const [inputMenuOpen, setInputMenuOpen] = useState(false)
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const [storeLogo, setStoreLogo] = useState(loadStoreLogo)
+  const [recentJobs, setRecentJobs] = useState(loadRecentJobs)
   const fileInput = useRef(null)
   const sourceInputRef = useRef(null)
   const inputMenuRef = useRef(null)
@@ -1033,6 +1070,10 @@ function Editor({
     setProducts(parsed)
     setSelectedProductId(parsed[0]?.id || null)
     setPageIndex(0)
+
+    if (parsed.length) {
+      setRecentJobs(saveRecentJob(nextSource, formatId, parsed.length))
+    }
 
     if (parsed.length && !firstGenerationTracked.current) {
       firstGenerationTracked.current = true
