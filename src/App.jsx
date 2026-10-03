@@ -78,6 +78,8 @@ const DEFAULT_POSTER_STYLE = {
   headerImage: '',
   showCurrency: true,
   offerMode: 'standard',
+  validityText: '',
+  limitText: '',
 }
 
 const POSTER_STYLE_PRESETS = [
@@ -496,28 +498,57 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
 
       <div className="style-sidebar-scroll">
         {!isAppFormat ? (
-          <section className="style-section offer-mode-section">
-            <div className="style-section-title-row">
-              <strong>Tipo de oferta</strong>
-              <small>Opcional · não atrasa os 2 cliques</small>
-            </div>
-            <div className="offer-mode-grid">
-              {OFFER_MODES.map((mode) => (
-                <button
-                  type="button"
-                  key={mode.id}
-                  className={style.offerMode === mode.id ? 'active' : ''}
-                  onClick={() => {
-                    onChange({ ...style, offerMode: mode.id })
-                    trackProductEvent('ofertamatica_offer_mode_selected', { offer_mode: mode.id })
-                  }}
-                >
-                  <b>{mode.name}</b>
-                  <small>{mode.note}</small>
-                </button>
-              ))}
-            </div>
-          </section>
+          <>
+            <section className="style-section offer-mode-section">
+              <div className="style-section-title-row">
+                <strong>Tipo de oferta</strong>
+                <small>Opcional · não atrasa os 2 cliques</small>
+              </div>
+              <div className="offer-mode-grid">
+                {OFFER_MODES.map((mode) => (
+                  <button
+                    type="button"
+                    key={mode.id}
+                    className={style.offerMode === mode.id ? 'active' : ''}
+                    onClick={() => {
+                      onChange({ ...style, offerMode: mode.id })
+                      trackProductEvent('ofertamatica_offer_mode_selected', { offer_mode: mode.id })
+                    }}
+                  >
+                    <b>{mode.name}</b>
+                    <small>{mode.note}</small>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            <section className="style-section offer-details-section">
+              <div className="style-section-title-row">
+                <strong>Detalhes da oferta</strong>
+                <small>Opcional</small>
+              </div>
+              <label className="style-text-row">
+                <span>Validade</span>
+                <input
+                  type="text"
+                  maxLength="36"
+                  value={style.validityText || ''}
+                  placeholder="Ex.: Válido até 06/10"
+                  onChange={(event) => onChange({ ...style, validityText: event.target.value.toLocaleUpperCase('pt-BR') })}
+                />
+              </label>
+              <label className="style-text-row">
+                <span>Limite por cliente</span>
+                <input
+                  type="text"
+                  maxLength="44"
+                  value={style.limitText || ''}
+                  placeholder="Ex.: Limite 6 un. por cliente"
+                  onChange={(event) => onChange({ ...style, limitText: event.target.value.toLocaleUpperCase('pt-BR') })}
+                />
+              </label>
+            </section>
+          </>
         ) : null}
 
         <section className="style-section">
@@ -533,6 +564,8 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
                   headerText: style.headerText,
                   headerStyle: style.headerStyle,
                   offerMode: style.offerMode || 'standard',
+                  validityText: style.validityText || '',
+                  limitText: style.limitText || '',
                 })}
               >
                 <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
@@ -732,7 +765,9 @@ function Editor({
     headerStyle: posterStyle.headerStyle,
     headerImage: HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
     offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
-  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode])
+    validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
+    limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
+  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
