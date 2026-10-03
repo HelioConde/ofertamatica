@@ -80,7 +80,7 @@ function OfferMeta({ product, template }) {
     return (
       <div className="poster-offer-meta poster-offer-meta-bundle">
         <b>LEVE {product.offerQuantity} POR</b>
-        {product.regularPrice ? <small>OU R$ {product.regularPrice} CADA</small> : null}
+        {product.eachPrice ? <small>OU R$ {product.eachPrice} CADA</small> : null}
       </div>
     )
   }
