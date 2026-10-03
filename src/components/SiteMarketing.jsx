@@ -129,8 +129,8 @@ const FAQS = [
     a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.',
   },
   {
-    q: 'O Ofertamática já cria cartazes com inteligência artificial?',
-    a: 'Ainda não. “Crie seu cartaz com IA” é a próxima implementação do Ofertamática. O editor atual já permite criar, personalizar, revisar e imprimir cartazes gratuitamente.'
+    q: 'Como funciona a criação de cartazes com inteligência artificial?',
+    a: 'A inteligência artificial ajuda a interpretar produtos, organizar informações e reduzir ajustes manuais para acelerar a criação das ofertas.'
   },
 ]
 
