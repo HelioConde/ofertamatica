@@ -46,6 +46,40 @@ function ContentBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
   )
 }
 
+function OfferMeta({ product, template }) {
+  const mode = template.offerMode || 'standard'
+  if (mode === 'standard') return null
+
+  if (mode === 'de-por' && product.regularPrice) {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-depor">
+        <span>DE <s>R$ {product.regularPrice}</s></span>
+        <b>POR</b>
+      </div>
+    )
+  }
+
+  if (mode === 'leve-por' && product.offerQuantity) {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-bundle">
+        <b>LEVE {product.offerQuantity} POR</b>
+      </div>
+    )
+  }
+
+  if (mode === 'atacado-varejo' && product.wholesalePrice) {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-wholesale">
+        <span>ATACADO</span>
+        <b>R$ {product.wholesalePrice}</b>
+        <small>VAREJO</small>
+      </div>
+    )
+  }
+
+  return null
+}
+
 function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown, showCurrency = true }) {
   return (
     <div className={`poster-layout-box poster-price-box ${showDebug ? 'poster-layout-box-debug' : ''}`} style={boxStyle(box)} data-layout-box="priceBox" onPointerDown={editable ? (event) => onBoxPointerDown?.('priceBox', 'move', event) : undefined}>
@@ -97,6 +131,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         {showBackground ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
         {showLayoutDebug ? <div className="poster-safe-area" style={{ inset: `${template.safeArea}%` }} aria-hidden="true" /> : null}
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
+        <OfferMeta product={product} template={template} />
         <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
       </div>
     </article>
