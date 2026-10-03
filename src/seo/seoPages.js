@@ -110,7 +110,7 @@ export const SEO_PAGES = [
     eyebrow: 'CARTAZ PARA SUPERMERCADO',
     heading: 'Cartazes de supermercado sem perder tempo formatando',
     lead: 'Organize ofertas para gôndolas, hortifruti, açougue, padaria, bebidas e outros setores em um padrão visual consistente.',
-    benefits: ['Preço em destaque', 'De/Por, Leve X por Y e Atacado/Varejo', 'Logo, validade e limite opcionais'],
+    benefits: ['Preço em destaque', '6 tipos de oferta opcionais', 'Logo, validade e limite opcionais'],
     tips: ['Use cartazes menores para gôndola e maiores para ponta/vitrine.', 'Agrupe campanhas por setor para manter consistência.', 'Evite excesso de texto concorrendo com o preço.'],
     storeUse: ['Gôndola: placas compactas e leitura próxima.', 'Ilhas e pontas: preço maior e menos texto.', 'Setores como hortifruti, açougue e padaria podem usar cabeçalhos próprios mantendo o mesmo padrão de preço.'],
   },
@@ -236,13 +236,14 @@ export const SEO_FAQS = [
   { q: 'Posso colocar a logo da minha loja?', a: 'Sim. A logo pode ser adicionada como personalização opcional e fica salva localmente no dispositivo para facilitar os próximos trabalhos.' },
   { q: 'Consigo salvar os cartazes em PDF?', a: 'Sim. O editor oferece a opção Salvar PDF e abre a janela de impressão para escolher “Salvar como PDF”, preservando o tamanho físico configurado.' },
   { q: 'Preciso fazer cadastro para começar?', a: 'Não. O fluxo atual permite começar gratuitamente e sem cadastro obrigatório.' },
-  { q: 'Dá para ter a primeira placa pronta em 2 cliques?', a: 'Sim. No fluxo principal, o primeiro clique escolhe o formato e o segundo gera as placas depois que você cola ou importa a lista. Personalização é opcional e vem depois.' },
+  { q: 'Dá para ter a primeira placa pronta em 2 cliques?', a: 'Sim. No fluxo principal, o primeiro clique escolhe o formato. Se a lista já estiver copiada, o segundo pode usar “Colar e gerar”. Também é possível colar manualmente ou importar arquivo. Personalização é opcional e vem depois.' },
+  { q: 'Quais tipos de oferta posso usar?', a: 'Além do cartaz padrão, o editor oferece De/Por, Leve X por Y, Atacado/Varejo, Clube/App e 2ª unidade como opções de personalização depois da geração.' },
   { q: 'O site já cria cartaz com IA?', a: 'Ainda não. “Crie seu cartaz com IA” é a próxima implementação. O editor atual já permite criar, personalizar, revisar e imprimir cartazes.' },
 ]
 
 export const SEO_TOPIC_GROUPS = [
   { title: 'Para o seu negócio', items: ['Supermercado', 'Mercado', 'Atacarejo', 'Mercearia', 'Hortifruti', 'Padaria', 'Açougue', 'Farmácia'] },
-  { title: 'Para suas campanhas', items: ['Oferta padrão', 'De / Por', 'Leve X por Y', 'Atacado / Varejo', 'Oferta relâmpago', 'Fim de semana', 'Black Friday', 'Natal', 'Páscoa'] },
+  { title: 'Para suas campanhas', items: ['Oferta padrão', 'De / Por', 'Leve X por Y', 'Atacado / Varejo', 'Clube / App', '2ª unidade', 'Oferta relâmpago', 'Fim de semana', 'Black Friday', 'Natal', 'Páscoa'] },
   { title: 'Para seus setores', items: ['Bebidas', 'Hortifruti', 'Açougue', 'Padaria', 'Frios e laticínios', 'Limpeza', 'Higiene e beleza'] },
 ]
 
