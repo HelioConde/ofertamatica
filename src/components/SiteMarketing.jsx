@@ -344,18 +344,31 @@ function ModelCard({ item, onCreate }) {
   return (
     <article className="model-showcase-card">
       <div
-        className={`model-poster model-poster-${item.variant}`}
+        className="model-poster-standard"
         style={{
-          '--demo-bg': item.background,
-          '--demo-price': item.price,
-          '--demo-text': item.text,
-          '--demo-header': item.header,
-          '--demo-header-text': item.headerText,
+          '--poster-background': item.background,
+          '--poster-price-color': item.price,
+          '--poster-text-color': item.text,
+          '--poster-header-color': item.header,
+          '--poster-header-text-color': item.headerText,
         }}
+        aria-label={`Prévia do modelo ${item.name}`}
       >
-        <span>{item.label}</span>
-        <strong>{item.product}</strong>
-        <div><small>R$</small><b>{item.value}</b></div>
+        <div className="model-poster-standard-bg" aria-hidden="true">
+          <div className="model-poster-standard-header">
+            <span className="model-poster-standard-mark">✓</span>
+            <b>{item.label}</b>
+          </div>
+          <div className="model-poster-standard-frame" />
+          <div className="model-poster-standard-signature">OFERTAMÁTICA</div>
+        </div>
+        <div className="model-poster-standard-product">
+          <strong>{item.product}</strong>
+        </div>
+        <div className="model-poster-standard-price">
+          <small>R$</small>
+          <b>{item.value}</b>
+        </div>
       </div>
       <div className="model-card-copy">
         <span className="model-category">{item.category}</span>
