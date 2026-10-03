@@ -5,6 +5,7 @@ const SITE_URL = 'https://ofertamatica.com.br'
 const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
 const ADSENSE_SLOTS = {
   'home-content': '3215962830',
+  'seo-content': '5483033524',
 }
 // PRODUCT_DECISION_AI_UPCOMING: IA é a próxima implementação; não anunciar como recurso disponível.
 // PRODUCT_DECISION_AI_PERMANENT_COPY: manter “Crie seu cartaz com IA” sem rótulos temporários.
@@ -200,7 +201,9 @@ export function getSeoPage(pathname) {
 }
 
 export function AdUnit({ placement = 'content' }) {
-  const slot = ADSENSE_SLOTS[placement] || ''
+  const slot = ADSENSE_SLOTS[placement]
+    || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '')
+    || ''
 
   useEffect(() => {
     if (!slot) return
