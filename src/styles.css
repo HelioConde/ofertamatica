@@ -3208,3 +3208,32 @@ textarea:focus-visible {
     justify-self: start;
   }
 }
+
+
+/* Optional validity and limit notes printed on the poster */
+.poster-offer-footer {
+  position: absolute;
+  z-index: 5;
+  left: 7%;
+  right: 7%;
+  bottom: 5.4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2mm 2.4mm;
+  color: var(--poster-text-color, #111);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1.8mm;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+}
+
+.poster-offer-footer span {
+  padding: .65mm 1.25mm;
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 .25mm .8mm rgba(55,45,0,.08);
+}
