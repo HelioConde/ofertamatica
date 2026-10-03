@@ -117,7 +117,7 @@ function usePageHead(page, { creator = false } = {}) {
       },
     }))
 
-    if (!creator) {
+    if (!creator && page.kind === 'seo') {
       cleanup.push(setStructuredData('ofertamatica-faq-schema', {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
@@ -270,6 +270,24 @@ function FaqSection({ onCreate }) {
   )
 }
 
+function MarketingFooter() {
+  return (
+    <footer className="marketing-footer">
+      <div className="marketing-footer-brand">
+        <strong>Ofertamática</strong>
+        <span>Da lista de produtos às placas prontas para imprimir.</span>
+      </div>
+      <nav aria-label="Links institucionais">
+        <a href="/">Criar placas</a>
+        <a href="/como-funciona/">Como funciona</a>
+        <a href="/privacidade/">Privacidade</a>
+        <a href="/termos/">Termos</a>
+      </nav>
+      <small>Grátis · sem cadastro obrigatório para começar</small>
+    </footer>
+  )
+}
+
 function ModelCard({ item }) {
   return (
     <article className="model-showcase-card">
@@ -307,6 +325,7 @@ export function PublicPage({ page, onCreate }) {
   const isFormats = page.slug === 'formatos'
   const isHow = page.slug === 'como-funciona'
   const isGuides = page.slug === 'guias-para-varejo'
+  const isLegal = Boolean(page.legal)
   const guideGroups = SEO_PAGES.reduce((acc, item) => {
     ;(acc[item.group] ||= []).push(item)
     return acc
@@ -421,16 +440,29 @@ export function PublicPage({ page, onCreate }) {
           </section>
         ) : null}
 
-        <AdUnit placement={'seo-' + page.slug} />
+        {isLegal ? (
+          <section className="marketing-section legal-content">
+            {(page.sections || []).map((section) => (
+              <article key={section.title}>
+                <h2>{section.title}</h2>
+                <p>{section.text}</p>
+              </article>
+            ))}
+          </section>
+        ) : null}
+
+        {!isLegal ? <AdUnit placement={'seo-' + page.slug} /> : null}
 
         <section className="marketing-final-cta">
           <div>
-            <span className="marketing-kicker">CRIE AGORA</span>
-            <h2>Volte ao criador e monte sua próxima placa</h2>
-            <p>A página inicial do Ofertamática abre diretamente no seletor de formatos.</p>
+            <span className="marketing-kicker">{isLegal ? 'OFERTAMÁTICA' : 'CRIE AGORA'}</span>
+            <h2>{isLegal ? 'Criar placas continua a um clique' : 'Volte ao criador e monte sua próxima placa'}</h2>
+            <p>{isLegal ? 'A página inicial abre direto no seletor de formatos, sem landing intermediária.' : 'A página inicial do Ofertamática abre diretamente no seletor de formatos.'}</p>
           </div>
           <button type="button" onClick={onCreate}>Criar cartaz grátis</button>
         </section>
+
+        <MarketingFooter />
       </main>
     </>
   )
@@ -478,6 +510,24 @@ export function SeoLanding({ page, onCreate }) {
           <article><span className="marketing-kicker">IMPRESSÃO</span><h2>Confira antes de enviar</h2><p>A revisão final mostra o formato físico e orientações importantes para a janela de impressão.</p></article>
         </section>
 
+        {page.storeUse?.length ? (
+          <section className="marketing-section store-use-section">
+            <div className="marketing-heading">
+              <span className="marketing-kicker">ROTINA REAL DE LOJA</span>
+              <h2>Feito para criar várias placas sem reconstruir o trabalho</h2>
+              <p>O objetivo é reduzir etapas repetitivas e manter preço, produto e leitura como prioridade.</p>
+            </div>
+            <div className="store-use-grid">
+              {page.storeUse.map((item, index) => (
+                <article key={item}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <p>{item}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <AdUnit placement={'seo-' + page.slug} />
 
         <FaqSection onCreate={onCreate} />
@@ -500,6 +550,8 @@ export function SeoLanding({ page, onCreate }) {
           </div>
           <button type="button" onClick={onCreate}>Abrir criador de cartazes</button>
         </section>
+
+        <MarketingFooter />
       </main>
     </>
   )
