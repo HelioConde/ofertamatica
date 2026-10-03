@@ -59,6 +59,7 @@ const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 const POSTER_HEADER_KEY = 'ofertamatica:poster-header:v1'
 const RECENT_HEADERS_KEY = 'ofertamatica:recent-headers:v1'
 const EXAMPLE_USED_KEY = 'ofertamatica:example-used:v1'
+const STORE_LOGO_KEY = 'ofertamatica:store-logo:v1'
 
 function trackProductEvent(event, details = {}) {
   if (typeof window === 'undefined') return
@@ -148,6 +149,14 @@ function loadRecentHeaders() {
     return saved.filter((id) => HEADER_IMAGE_BY_ID[id]).slice(0, 6)
   } catch {
     return []
+  }
+}
+
+function loadStoreLogo() {
+  try {
+    return localStorage.getItem(STORE_LOGO_KEY) || ''
+  } catch {
+    return ''
   }
 }
 
@@ -451,8 +460,10 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
   )
 }
 
-function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = false }) {
+function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = false, storeLogo = '', onStoreLogoChange }) {
   const [headerSearch, setHeaderSearch] = useState('')
+  const [logoError, setLogoError] = useState('')
+  const logoInputRef = useRef(null)
   const [headerLimit, setHeaderLimit] = useState(18)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
@@ -478,6 +489,33 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
     } catch {
       // A seleção continua funcionando mesmo sem armazenamento local.
     }
+  }
+
+  function handleStoreLogo(event) {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+
+    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)) {
+      setLogoError('Use PNG, JPG ou WebP.')
+      return
+    }
+
+    if (file.size > 1024 * 1024) {
+      setLogoError('A logo deve ter no máximo 1 MB.')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      const value = typeof reader.result === 'string' ? reader.result : ''
+      if (!value) return
+      setLogoError('')
+      onStoreLogoChange?.(value)
+      trackProductEvent('ofertamatica_store_logo_added', { file_type: file.type })
+    }
+    reader.onerror = () => setLogoError('Não foi possível ler esta imagem.')
+    reader.readAsDataURL(file)
   }
   const colorFields = [
     ['backgroundColor', 'Fundo'],
@@ -606,6 +644,37 @@ function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = fa
               <option value={'Arial, sans-serif'}>Arial</option>
             </select>
           </label>
+        </section>
+
+        <section className="style-section store-brand-section">
+          <div className="style-section-title-row">
+            <strong>Logo da loja</strong>
+            <small>Opcional · fica salva neste dispositivo</small>
+          </div>
+          <input
+            ref={logoInputRef}
+            hidden
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={handleStoreLogo}
+          />
+          {storeLogo ? (
+            <div className="store-logo-preview">
+              <img src={storeLogo} alt="Logo da loja" />
+              <div>
+                <b>Logo aplicada</b>
+                <span>Ela aparecerá discretamente na placa.</span>
+              </div>
+              <button type="button" onClick={() => onStoreLogoChange?.('')}>Remover</button>
+            </div>
+          ) : (
+            <button type="button" className="store-logo-upload" onClick={() => logoInputRef.current?.click()}>
+              <span>＋</span>
+              <b>Adicionar logo da loja</b>
+              <small>PNG, JPG ou WebP · até 1 MB</small>
+            </button>
+          )}
+          {logoError ? <p className="store-logo-error" role="alert">{logoError}</p> : null}
         </section>
 
         <section className="style-section header-library-section">
@@ -751,6 +820,7 @@ function Editor({
   const [deletedSnapshot, setDeletedSnapshot] = useState(null)
   const [inputMenuOpen, setInputMenuOpen] = useState(false)
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
+  const [storeLogo, setStoreLogo] = useState(loadStoreLogo)
   const fileInput = useRef(null)
   const inputMenuRef = useRef(null)
   const creatorStartedAt = useRef(typeof performance !== 'undefined' ? performance.now() : Date.now())
@@ -767,7 +837,8 @@ function Editor({
     offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
     validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
     limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
-  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText])
+    storeLogo,
+  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
@@ -777,6 +848,15 @@ function Editor({
     '--poster-header-text-color': posterStyle.headerTextColor,
     '--poster-font-family': posterStyle.fontFamily,
   }
+
+  useEffect(() => {
+    try {
+      if (storeLogo) localStorage.setItem(STORE_LOGO_KEY, storeLogo)
+      else localStorage.removeItem(STORE_LOGO_KEY)
+    } catch {
+      // A logo continua aplicada na sessão mesmo sem armazenamento local.
+    }
+  }, [storeLogo])
 
   useEffect(() => {
     try {
@@ -1291,6 +1371,8 @@ function Editor({
           onReset={() => setPosterStyle({ ...DEFAULT_POSTER_STYLE })}
           mobileActive={mobileTab === 'style'}
           isAppFormat={isAppFormat}
+          storeLogo={storeLogo}
+          onStoreLogoChange={setStoreLogo}
         />
       </section>
 
