@@ -91,6 +91,12 @@ Atalhos de produtividade no editor:
 - cabeçalhos comuns como Produto / Unidade / Preço são ignorados automaticamente;
 - até cinco listas recentes ficam salvas localmente, com acesso compacto pelo menu “+”.
 
+Retorno recorrente:
+
+- o site possui manifest, service worker e ícones 192/512 para instalação como app quando o navegador oferecer suporte;
+- o botão “Instalar app” só aparece quando o navegador disponibiliza o prompt;
+- a instalação é opcional e não altera a regra dos 2 cliques.
+
 Outros ajustes opcionais disponíveis depois da geração:
 
 - validade da oferta;
@@ -168,7 +174,9 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_keyboard_generate` — uso do atalho Ctrl/Cmd+Enter;
 - `ofertamatica_file_import` — importação pelo seletor;
 - `ofertamatica_drag_import` — importação por arrastar e soltar;
-- `ofertamatica_recent_job_reused` — reutilização de um trabalho recente salvo localmente.
+- `ofertamatica_recent_job_reused` — reutilização de um trabalho recente salvo localmente;
+- `ofertamatica_install_prompt_result` — resultado do prompt de instalação do app;
+- `ofertamatica_app_installed` — instalação concluída.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
