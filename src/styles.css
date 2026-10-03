@@ -3892,3 +3892,62 @@ textarea:focus-visible {
     min-height: 220px;
   }
 }
+
+
+/* Local recent jobs inside quick input menu */
+.input-menu-recents {
+  display: grid;
+  gap: 3px;
+  padding: 5px;
+  border-top: 1px solid #edf1f6;
+  border-bottom: 1px solid #edf1f6;
+  background: #fbfcfe;
+}
+
+.input-menu-recents-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 1px 3px 3px;
+}
+
+.input-menu-recents-head > span {
+  color: #7b899d;
+  font-size: 6.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.input-menu-recents-head > button {
+  border: 0;
+  background: transparent;
+  color: #8a97a8;
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.input-menu-recent-job {
+  min-width: 0;
+}
+
+.input-menu-recent-job > span:last-child {
+  min-width: 0;
+}
+
+.input-menu-recent-job b,
+.input-menu-recent-job small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-menu-recent-job b {
+  max-width: 190px;
+}
+
+.input-menu-recent-job small {
+  max-width: 190px;
+  color: #8794a5;
+}
