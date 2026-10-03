@@ -1026,6 +1026,9 @@ function Editor({
         <div className="editor-context">
           <strong>{format.shortLabel} · {products.length} {products.length === 1 ? 'produto' : 'produtos'}</strong>
           <span>Ajuste automático do texto e impressão no tamanho físico escolhido.</span>
+          <em className={products.length ? 'two-click-result is-ready' : 'two-click-result'}>
+            {products.length ? '✓ 2/2 · placas geradas' : '2º clique · cole e gere'}
+          </em>
         </div>
         <button className="change-format" type="button" onClick={onChangeFormat} title="Seus produtos serão preservados ao trocar o formato.">
           <span>{format.shortLabel}</span>
