@@ -96,6 +96,8 @@ const OFFER_MODES = [
   { id: 'de-por', name: 'De / Por', note: 'Preço anterior + oferta' },
   { id: 'leve-por', name: 'Leve X por Y', note: 'Promoção por quantidade' },
   { id: 'atacado-varejo', name: 'Atacado / Varejo', note: 'Dois preços na placa' },
+  { id: 'club-app', name: 'Clube / App', note: 'Preço exclusivo + normal' },
+  { id: 'second-unit', name: '2ª unidade', note: 'Preço especial na segunda' },
 ]
 
 function loadPosterStyle() {
@@ -302,6 +304,14 @@ function FormatPreview({ format }) {
 }
 
 function FormatChooser({ onSelect, draft, onResume }) {
+  const lastFormatId = (() => {
+    try {
+      return localStorage.getItem(LAST_FORMAT_KEY) || ''
+    } catch {
+      return ''
+    }
+  })()
+
   return (
     <main className="format-page" id="formatos">
       <section className="format-dialog">
@@ -334,13 +344,16 @@ function FormatChooser({ onSelect, draft, onResume }) {
         <div className="format-grid">
           {POSTER_FORMAT_OPTIONS.map((format) => (
             <button
-              className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended' : '')}
+              className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
               type="button"
               key={format.id}
               onClick={() => onSelect(format.id)}
               aria-label={'Escolher ' + format.label + ', ' + format.application}
             >
-              {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
+              <span className="format-choice-badges">
+                {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
+                {format.id === lastFormatId ? <span className="format-last-used">Último usado</span> : null}
+              </span>
               <FormatPreview format={format} />
               <span className="format-copy">
                 <strong>{format.label}</strong>
@@ -820,6 +833,7 @@ function Editor({
   const [reviewOpen, setReviewOpen] = useState(false)
   const [reviewIntent, setReviewIntent] = useState('print')
   const [importError, setImportError] = useState('')
+  const [clipboardError, setClipboardError] = useState('')
   const [fontReady, setFontReady] = useState(false)
   const [confirmExample, setConfirmExample] = useState(false)
   const [mobileTab, setMobileTab] = useState('products')
@@ -828,6 +842,7 @@ function Editor({
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const [storeLogo, setStoreLogo] = useState(loadStoreLogo)
   const fileInput = useRef(null)
+  const sourceInputRef = useRef(null)
   const inputMenuRef = useRef(null)
   const creatorStartedAt = useRef(typeof performance !== 'undefined' ? performance.now() : Date.now())
   const firstGenerationTracked = useRef(false)
@@ -878,6 +893,12 @@ function Editor({
   }, [posterStyle])
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia?.('(min-width: 821px)').matches) {
+      window.requestAnimationFrame(() => sourceInputRef.current?.focus())
+    }
+  }, [])
+
+  useEffect(() => {
     function closeInputMenu(event) {
       if (inputMenuRef.current && !inputMenuRef.current.contains(event.target)) setInputMenuOpen(false)
     }
@@ -924,7 +945,11 @@ function Editor({
         ? 'Preço do combo'
         : offerMode === 'atacado-varejo'
           ? 'Preço varejo'
-          : 'Preço'
+          : offerMode === 'club-app'
+            ? 'Preço Clube / App'
+            : offerMode === 'second-unit'
+              ? '1ª unidade'
+              : 'Preço'
 
   const standardFields = [
     ['description', 'Nome do produto'],
@@ -957,6 +982,14 @@ function Editor({
       const missing = products.filter((product) => !String(product.wholesalePrice || '').trim()).length
       if (missing) warnings.push(`${missing} produto(s) sem preço de atacado.`)
     }
+    if (offerMode === 'club-app') {
+      const missing = products.filter((product) => !String(product.regularPrice || '').trim()).length
+      if (missing) warnings.push(`${missing} produto(s) sem preço normal no modelo Clube / App.`)
+    }
+    if (offerMode === 'second-unit') {
+      const missing = products.filter((product) => !String(product.secondUnitPrice || '').trim()).length
+      if (missing) warnings.push(`${missing} produto(s) sem preço da 2ª unidade.`)
+    }
     return warnings
   }, [offerMode, products])
 
@@ -982,7 +1015,7 @@ function Editor({
   }
 
   function changeProduct(id, field, value) {
-    const priceFields = new Set(['price', 'regularPrice', 'wholesalePrice'])
+    const priceFields = new Set(['price', 'regularPrice', 'wholesalePrice', 'secondUnitPrice'])
     setProducts((items) => items.map((item) => (
       item.id === id
         ? { ...item, [field]: priceFields.has(field) ? value : value.toLocaleUpperCase('pt-BR') }
@@ -1040,6 +1073,37 @@ function Editor({
     setProducts(next)
     setSelectedProductId(item.id)
     setPageIndex(Math.floor(target / format.postersPerSheet))
+  }
+
+  async function pasteAndGenerate() {
+    setClipboardError('')
+    setImportError('')
+
+    if (!navigator.clipboard?.readText) {
+      setClipboardError('Seu navegador não liberou a leitura da área de transferência. Cole a lista no campo e use “Gerar placas”.')
+      sourceInputRef.current?.focus()
+      return
+    }
+
+    try {
+      const clipboardText = await navigator.clipboard.readText()
+      if (!clipboardText.trim()) {
+        setClipboardError('A área de transferência está vazia. Copie sua lista de produtos e tente novamente.')
+        sourceInputRef.current?.focus()
+        return
+      }
+
+      setSourceText(clipboardText)
+      setConfirmExample(false)
+      generateFromSource(clipboardText)
+      trackProductEvent('ofertamatica_clipboard_generate', {
+        format_id: formatId,
+        source_lines: clipboardText.split(/\r?\n/).filter((line) => line.trim()).length,
+      })
+    } catch {
+      setClipboardError('Não foi possível acessar o conteúdo copiado. Cole a lista manualmente e use “Gerar placas”.')
+      sourceInputRef.current?.focus()
+    }
   }
 
   async function handleFile(event) {
@@ -1177,6 +1241,7 @@ function Editor({
             </header>
 
             <textarea
+              ref={sourceInputRef}
               value={sourceText}
               placeholder={'Ex.:\nCerveja Heineken Long Neck 300ml 5,99\nPão Francês kg 10,90\nPão de queijo kg 20,90\nArroz Tipo 1 5kg 24,90'}
               onChange={(event) => { setSourceText(event.target.value); setConfirmExample(false) }}
@@ -1219,12 +1284,20 @@ function Editor({
               </div>
 
               <span className="product-count">{products.length} produtos identificados</span>
-              <button className="generate-button" type="button" onClick={() => generateFromSource()}>
-                <span className="generate-step-badge">2</span>
-                Gerar placas
-              </button>
+              {!sourceText.trim() && typeof navigator !== 'undefined' && navigator.clipboard?.readText ? (
+                <button className="generate-button paste-generate-button" type="button" onClick={pasteAndGenerate}>
+                  <span className="generate-step-badge">2</span>
+                  Colar e gerar
+                </button>
+              ) : (
+                <button className="generate-button" type="button" disabled={!sourceText.trim()} onClick={() => generateFromSource()}>
+                  <span className="generate-step-badge">2</span>
+                  Gerar placas
+                </button>
+              )}
             </div>
             {confirmExample ? <div className="inline-warning">“Usar exemplo” substituirá o texto atual. Clique novamente para confirmar.</div> : null}
+            {clipboardError ? <div className="oferta-import-error clipboard-error" role="alert">{clipboardError}</div> : null}
             {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
           </section>
 
@@ -1322,6 +1395,34 @@ function Editor({
                               onChange={(event) => changeProduct(product.id, 'wholesalePrice', event.target.value)}
                               onBlur={(event) => finishPrice(product.id, 'wholesalePrice', event.target.value)}
                               placeholder="Ex.: 24,90"
+                            />
+                          </label>
+                        ) : null}
+                        {offerMode === 'club-app' ? (
+                          <label>
+                            <span>Preço normal</span>
+                            <input
+                              inputMode="decimal"
+                              className="price-field"
+                              value={product.regularPrice || ''}
+                              onFocus={() => selectProduct(product, index)}
+                              onChange={(event) => changeProduct(product.id, 'regularPrice', event.target.value)}
+                              onBlur={(event) => finishPrice(product.id, 'regularPrice', event.target.value)}
+                              placeholder="Ex.: 24,90"
+                            />
+                          </label>
+                        ) : null}
+                        {offerMode === 'second-unit' ? (
+                          <label>
+                            <span>Preço 2ª unidade</span>
+                            <input
+                              inputMode="decimal"
+                              className="price-field"
+                              value={product.secondUnitPrice || ''}
+                              onFocus={() => selectProduct(product, index)}
+                              onChange={(event) => changeProduct(product.id, 'secondUnitPrice', event.target.value)}
+                              onBlur={(event) => finishPrice(product.id, 'secondUnitPrice', event.target.value)}
+                              placeholder="Ex.: 14,99"
                             />
                           </label>
                         ) : null}
