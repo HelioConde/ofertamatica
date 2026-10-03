@@ -4,7 +4,7 @@ import '../styles/marketing.css'
 const SITE_URL = 'https://ofertamatica.com.br'
 const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
 const ADSENSE_SLOT = import.meta.env.VITE_ADSENSE_SLOT || ''
-// PRODUCT_DECISION_AI_PERMANENT_COPY: manter “Crie seu cartaz com IA” sem rótulos temporários como “em breve”.
+// PRODUCT_DECISION_AI_PERMANENT_COPY: manter “Crie seu cartaz com IA” sem rótulos temporários.
 
 const SEO_PAGES = [
   {
