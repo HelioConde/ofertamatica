@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Preserve existing files and directories, including APIs and assets.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Send SEO routes to the React entrypoint.
+RewriteRule ^ index.html [L]
