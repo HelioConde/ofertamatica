@@ -100,6 +100,7 @@ const DEFAULT_POSTER_STYLE = {
   headerStyle: 'band',
   headerText: 'OFERTA',
   headerImage: '',
+  headerFooterStyle: 'wave-top',
   showCurrency: true,
   offerMode: 'standard',
   validityText: '',
@@ -111,6 +112,15 @@ const POSTER_STYLE_PRESETS = [
   { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925' } },
   { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547' } },
   { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d63e9' } },
+]
+
+const HEADER_FOOTER_MODELS = [
+  { id: 'wave-top', name: 'Onda superior', note: 'Faixa vermelha curva no topo', preview: 'wave-top' },
+  { id: 'wave-both', name: 'Ondas completa', note: 'Header e rodapé com ondas', preview: 'wave-both' },
+  { id: 'framed', name: 'Moldura clássica', note: 'Moldura vermelha ao redor', preview: 'framed' },
+  { id: 'badge', name: 'Placa destacada', note: 'Header em placa arredondada', preview: 'badge' },
+  { id: 'imperdivel', name: 'Oferta imperdível', note: 'Topo alto e moldura forte', preview: 'imperdivel' },
+  { id: 'clean', name: 'Faixa reta', note: 'Header direto e sem rodapé', preview: 'clean' },
 ]
 
 const OFFER_MODES = [
@@ -949,6 +959,43 @@ function StyleSidebar({
           ) : null}
         </section>
 
+        <section className="style-section poster-frame-style-section">
+          <div className="style-section-title-row">
+            <strong>Header e rodapé</strong>
+            <small>Inspirados nos modelos de cartaz</small>
+          </div>
+          <div className="poster-frame-style-grid">
+            {HEADER_FOOTER_MODELS.map((model) => (
+              <button
+                type="button"
+                key={model.id}
+                className={style.headerFooterStyle === model.id ? 'active' : ''}
+                onClick={() => {
+                  onCustomHeaderChange?.('')
+                  onChange({
+                    ...style,
+                    headerFooterStyle: model.id,
+                    headerImage: '',
+                    headerStyle: 'band',
+                    headerText: 'OFERTA',
+                  })
+                  trackProductEvent('ofertamatica_header_footer_model_selected', { model_id: model.id })
+                }}
+                title={model.note}
+              >
+                <span className={'poster-frame-mini poster-frame-mini-' + model.preview} aria-hidden="true">
+                  <b>OFERTA</b>
+                  <i />
+                </span>
+                <span>
+                  <b>{model.name}</b>
+                  <small>{model.note}</small>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section className="style-section">
           <strong>Cabeçalho padrão</strong>
           <div className="header-style-switch">
@@ -1029,11 +1076,12 @@ function Editor({
     headerText: posterStyle.headerText || 'OFERTA',
     headerStyle: posterStyle.headerStyle,
     headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
+    headerFooterStyle: posterStyle.headerFooterStyle || 'wave-top',
     offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
     validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
     limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
     storeLogo,
-  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo, customHeader])
+  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.headerFooterStyle, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo, customHeader])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
