@@ -67,7 +67,7 @@ O fluxo atual permite:
 4. personalizar modelo, cores, tipografia e cabeçalho;
 5. visualizar o cartaz;
 6. revisar papel/orientação;
-7. imprimir.
+7. salvar como PDF ou imprimir.
 
 Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeçar o fluxo:
 
@@ -78,6 +78,13 @@ Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeç
 - Oferta de App no formato dedicado.
 
 Essas opções são deliberadamente **opcionais** e não criam uma nova etapa antes da primeira placa.
+
+Outros ajustes opcionais disponíveis depois da geração:
+
+- validade da oferta;
+- limite por cliente;
+- logo da loja salva localmente no dispositivo;
+- salvar como PDF usando o destino PDF da janela de impressão.
 
 Formatos principais disponíveis:
 
@@ -141,7 +148,10 @@ Eventos de produto enviados ao `dataLayer`:
 - `ofertamatica_print_review`;
 - `ofertamatica_print_started`;
 - `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão;
-- `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional.
+- `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional;
+- `ofertamatica_store_logo_added` — registra o uso da logo da loja;
+- `ofertamatica_pdf_review`;
+- `ofertamatica_pdf_started`.
 
 O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
 
