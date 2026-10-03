@@ -3,7 +3,9 @@ import '../styles/marketing.css'
 
 const SITE_URL = 'https://ofertamatica.com.br'
 const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
-const ADSENSE_SLOT = import.meta.env.VITE_ADSENSE_SLOT || ''
+const ADSENSE_SLOTS = {
+  'home-content': '3215962830',
+}
 // PRODUCT_DECISION_AI_UPCOMING: IA é a próxima implementação; não anunciar como recurso disponível.
 // PRODUCT_DECISION_AI_PERMANENT_COPY: manter “Crie seu cartaz com IA” sem rótulos temporários.
 
@@ -198,18 +200,20 @@ export function getSeoPage(pathname) {
 }
 
 export function AdUnit({ placement = 'content' }) {
+  const slot = ADSENSE_SLOTS[placement] || ''
+
   useEffect(() => {
-    if (!ADSENSE_SLOT) return
+    if (!slot) return
     try {
       ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     } catch {
       // Auto Ads continuam disponíveis pelo script global do AdSense.
     }
-  }, [placement])
+  }, [placement, slot])
 
-  // Sem um slot manual configurado, não reservamos um "buraco" vazio.
-  // O script global do AdSense continua livre para trabalhar com Auto Ads.
-  if (!ADSENSE_SLOT) return null
+  // Cada posição recebe seu próprio bloco do AdSense.
+  // Enquanto um slot ainda não foi criado, a posição não reserva espaço vazio.
+  if (!slot) return null
 
   return (
     <div className="oferta-ad-unit" data-placement={placement} aria-label="Publicidade">
@@ -218,7 +222,7 @@ export function AdUnit({ placement = 'content' }) {
         className="adsbygoogle"
         style={{ display: 'block' }}
         data-ad-client={ADSENSE_CLIENT}
-        data-ad-slot={ADSENSE_SLOT}
+        data-ad-slot={slot}
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
