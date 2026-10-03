@@ -2,6 +2,32 @@
 
 Ofertamática é uma plataforma SaaS para criar placas promocionais, cartazes, tabloides e comunicação visual profissional para supermercados, farmácias, padarias e varejo.
 
+
+## Regra obrigatória de entrada do produto
+
+> **Ao acessar `https://ofertamatica.com.br/`, o usuário deve cair diretamente na criação de placas, começando pelo seletor de formatos.**
+
+Esta é uma regra permanente de produto e deve ser preservada em futuras alterações de layout, SEO e navegação:
+
+- a rota raiz `/` é a Home e também o ponto de entrada do criador;
+- não criar uma landing page intermediária antes do criador;
+- o usuário não deve precisar clicar em “Criar placas” para começar;
+- o logo e o item **Criar placas** da navbar devem levar para `/`;
+- `/criar-placas/` pode continuar existindo apenas como alias de compatibilidade;
+- Modelos, Formatos, Como funciona e Guias para varejo devem permanecer em páginas separadas;
+- as subpáginas não devem substituir o criador na rota raiz;
+- ao clicar em **Criar placas** a partir de qualquer subpágina, o usuário deve voltar para `/`.
+
+### Estrutura principal de rotas
+
+- `/` — criação de placas / seletor de formatos;
+- `/modelos/` — modelos e estilos;
+- `/formatos/` — detalhes dos formatos;
+- `/como-funciona/` — fluxo de uso;
+- `/guias-para-varejo/` — guias e conteúdos.
+
+**Se houver conflito entre uma mudança futura e esta regra, a entrada direta no criador pela rota `/` tem prioridade.**
+
 ## Status
 
 Este repositório contém a reconstrução da **Ofertamática V2**, iniciada do zero.
