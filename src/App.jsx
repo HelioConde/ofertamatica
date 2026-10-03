@@ -77,6 +77,7 @@ const DEFAULT_POSTER_STYLE = {
   headerText: 'OFERTA',
   headerImage: '',
   showCurrency: true,
+  offerMode: 'standard',
 }
 
 const POSTER_STYLE_PRESETS = [
@@ -84,6 +85,13 @@ const POSTER_STYLE_PRESETS = [
   { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925' } },
   { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547' } },
   { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d63e9' } },
+]
+
+const OFFER_MODES = [
+  { id: 'standard', name: 'Padrão', note: 'Produto + preço' },
+  { id: 'de-por', name: 'De / Por', note: 'Preço anterior + oferta' },
+  { id: 'leve-por', name: 'Leve X por Y', note: 'Promoção por quantidade' },
+  { id: 'atacado-varejo', name: 'Atacado / Varejo', note: 'Dois preços na placa' },
 ]
 
 function loadPosterStyle() {
@@ -286,17 +294,18 @@ function FormatChooser({ onSelect, draft, onResume }) {
     <main className="format-page" id="formatos">
       <section className="format-dialog">
         <header className="format-dialog-head">
-          <span className="eyebrow">DA LISTA DE PRODUTOS ÀS PLACAS PRONTAS</span>
-          <h1>Qual formato você quer imprimir?</h1>
-          <p>Cole sua lista ou importe Excel, revise os preços e imprima no tamanho certo — sem cadastro e sem burocracia.</p>
+          <span className="eyebrow two-click-kicker">2 CLIQUES · PLACA PRONTA</span>
+          <h1>Escolha o formato e comece.</h1>
+          <p>1º clique: escolha o formato. 2º clique: cole a lista e gere as placas. Personalização é opcional e vem depois do resultado.</p>
           <div className="creator-value-row" aria-label="Vantagens do criador">
             <span>✓ Grátis</span>
             <span>✓ Sem cadastro</span>
             <span>✓ TXT, CSV e Excel</span>
-            <span>✓ Rascunho salvo no dispositivo</span>
+            <span>✓ Várias placas de uma vez</span>
           </div>
-          <div className="format-steps" aria-label="Fluxo de criação">
-            <span><b>1</b> Formato</span><i>→</i><span><b>2</b> Produtos</span><i>→</i><span><b>3</b> Personalizar</span><i>→</i><span><b>4</b> Imprimir</span>
+          <div className="format-steps two-click-steps" aria-label="Fluxo principal em dois cliques">
+            <span><b>1</b> Escolher formato</span><i>→</i><span><b>2</b> Colar e gerar</span>
+            <small>Depois, se quiser: personalize e imprima.</small>
           </div>
         </header>
 
@@ -440,7 +449,7 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint 
   )
 }
 
-function StyleSidebar({ style, onChange, onReset, mobileActive }) {
+function StyleSidebar({ style, onChange, onReset, mobileActive, isAppFormat = false }) {
   const [headerSearch, setHeaderSearch] = useState('')
   const [headerLimit, setHeaderLimit] = useState(18)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
@@ -486,6 +495,31 @@ function StyleSidebar({ style, onChange, onReset, mobileActive }) {
       </header>
 
       <div className="style-sidebar-scroll">
+        {!isAppFormat ? (
+          <section className="style-section offer-mode-section">
+            <div className="style-section-title-row">
+              <strong>Tipo de oferta</strong>
+              <small>Opcional · não atrasa os 2 cliques</small>
+            </div>
+            <div className="offer-mode-grid">
+              {OFFER_MODES.map((mode) => (
+                <button
+                  type="button"
+                  key={mode.id}
+                  className={style.offerMode === mode.id ? 'active' : ''}
+                  onClick={() => {
+                    onChange({ ...style, offerMode: mode.id })
+                    trackProductEvent('ofertamatica_offer_mode_selected', { offer_mode: mode.id })
+                  }}
+                >
+                  <b>{mode.name}</b>
+                  <small>{mode.note}</small>
+                </button>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <section className="style-section">
           <strong>Modelos rápidos</strong>
           <div className="style-presets">
@@ -696,7 +730,8 @@ function Editor({
     headerText: posterStyle.headerText || 'OFERTA',
     headerStyle: posterStyle.headerStyle,
     headerImage: HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
-  }), [baseTemplate, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage])
+    offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
+  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.offerMode])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
@@ -758,13 +793,23 @@ function Editor({
     ? [selected.description, selected.subdescription, selected.complement, selected.unit].filter(Boolean).join(' ')
     : 'Sua prévia aparecerá aqui'
   const isAppFormat = formatId === 'A4X2_APP'
+  const offerMode = isAppFormat ? 'standard' : (posterStyle.offerMode || 'standard')
+  const mainPriceLabel = isAppFormat
+    ? 'Preço App'
+    : offerMode === 'de-por'
+      ? 'Preço oferta'
+      : offerMode === 'leve-por'
+        ? 'Preço do combo'
+        : offerMode === 'atacado-varejo'
+          ? 'Preço varejo'
+          : 'Preço'
 
   const standardFields = [
     ['description', 'Nome do produto'],
     ['subdescription', 'Marca / variante'],
     ['complement', 'Complemento'],
     ['unit', 'Peso / volume'],
-    ['price', isAppFormat ? 'Preço App' : 'Preço'],
+    ['price', mainPriceLabel],
   ]
   const appFields = isAppFormat
     ? [...standardFields, ['validity', 'Validade'], ['regularPrice', 'Preço fora do App']]
@@ -778,8 +823,20 @@ function Editor({
     if (noUnit) warnings.push(`${noUnit} produto(s) sem peso/volume; confirme se a oferta é por unidade.`)
     const veryLong = products.filter((product) => [product.description, product.subdescription, product.complement].filter(Boolean).join(' ').length > 55).length
     if (veryLong) warnings.push(`${veryLong} nome(s) longo(s); confira a legibilidade na prévia antes de imprimir.`)
+    if (offerMode === 'de-por') {
+      const missing = products.filter((product) => !String(product.regularPrice || '').trim()).length
+      if (missing) warnings.push(`${missing} produto(s) sem preço anterior no modelo De / Por.`)
+    }
+    if (offerMode === 'leve-por') {
+      const missing = products.filter((product) => !String(product.offerQuantity || '').trim()).length
+      if (missing) warnings.push(`${missing} produto(s) sem quantidade no modelo Leve X por Y.`)
+    }
+    if (offerMode === 'atacado-varejo') {
+      const missing = products.filter((product) => !String(product.wholesalePrice || '').trim()).length
+      if (missing) warnings.push(`${missing} produto(s) sem preço de atacado.`)
+    }
     return warnings
-  }, [products])
+  }, [offerMode, products])
 
   function generateFromSource(nextSource = sourceText) {
     const parsed = applyAppDefaults(parseProductList(nextSource), formatId).map((product) => ({
@@ -803,9 +860,10 @@ function Editor({
   }
 
   function changeProduct(id, field, value) {
+    const priceFields = new Set(['price', 'regularPrice', 'wholesalePrice'])
     setProducts((items) => items.map((item) => (
       item.id === id
-        ? { ...item, [field]: field === 'price' || field === 'regularPrice' ? value : value.toLocaleUpperCase('pt-BR') }
+        ? { ...item, [field]: priceFields.has(field) ? value : value.toLocaleUpperCase('pt-BR') }
         : item
     )))
   }
@@ -1030,7 +1088,10 @@ function Editor({
               </div>
 
               <span className="product-count">{products.length} produtos identificados</span>
-              <button className="generate-button" type="button" onClick={() => generateFromSource()}>Gerar placas</button>
+              <button className="generate-button" type="button" onClick={() => generateFromSource()}>
+                <span className="generate-step-badge">2</span>
+                Gerar placas
+              </button>
             </div>
             {confirmExample ? <div className="inline-warning">“Usar exemplo” substituirá o texto atual. Clique novamente para confirmar.</div> : null}
             {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
@@ -1090,6 +1151,51 @@ function Editor({
                         />
                       </label>
                     ))}
+
+                    {!isAppFormat && offerMode !== 'standard' ? (
+                      <div className="product-promo-fields">
+                        {offerMode === 'de-por' ? (
+                          <label>
+                            <span>Preço anterior</span>
+                            <input
+                              inputMode="decimal"
+                              className="price-field"
+                              value={product.regularPrice || ''}
+                              onFocus={() => selectProduct(product, index)}
+                              onChange={(event) => changeProduct(product.id, 'regularPrice', event.target.value)}
+                              onBlur={(event) => finishPrice(product.id, 'regularPrice', event.target.value)}
+                              placeholder="Ex.: 39,99"
+                            />
+                          </label>
+                        ) : null}
+                        {offerMode === 'leve-por' ? (
+                          <label>
+                            <span>Quantidade do combo</span>
+                            <input
+                              inputMode="numeric"
+                              value={product.offerQuantity || ''}
+                              onFocus={() => selectProduct(product, index)}
+                              onChange={(event) => changeProduct(product.id, 'offerQuantity', event.target.value)}
+                              placeholder="Ex.: 3"
+                            />
+                          </label>
+                        ) : null}
+                        {offerMode === 'atacado-varejo' ? (
+                          <label>
+                            <span>Preço atacado</span>
+                            <input
+                              inputMode="decimal"
+                              className="price-field"
+                              value={product.wholesalePrice || ''}
+                              onFocus={() => selectProduct(product, index)}
+                              onChange={(event) => changeProduct(product.id, 'wholesalePrice', event.target.value)}
+                              onBlur={(event) => finishPrice(product.id, 'wholesalePrice', event.target.value)}
+                              placeholder="Ex.: 24,90"
+                            />
+                          </label>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
                 ))}
               </div>
@@ -1145,6 +1251,7 @@ function Editor({
           onChange={setPosterStyle}
           onReset={() => setPosterStyle({ ...DEFAULT_POSTER_STYLE })}
           mobileActive={mobileTab === 'style'}
+          isAppFormat={isAppFormat}
         />
       </section>
 
