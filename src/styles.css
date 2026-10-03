@@ -3035,7 +3035,7 @@ textarea:focus-visible {
 .product-promo-fields {
   grid-column: 2 / -1;
   display: grid;
-  grid-template-columns: minmax(150px, 240px);
+  grid-template-columns: repeat(2, minmax(150px, 220px));
   gap: 5px;
   padding: 4px 0 2px;
 }
