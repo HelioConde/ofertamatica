@@ -83,6 +83,13 @@ const EXAMPLE_USED_KEY = 'ofertamatica:example-used:v1'
 const STORE_LOGO_KEY = 'ofertamatica:store-logo:v1'
 const CUSTOM_HEADER_KEY = 'ofertamatica:custom-header:v1'
 const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
+const RETIRED_CONTENT_REDIRECTS = {
+  '/cartaz-de-oferta-gratis': '/criador-de-cartaz-de-oferta/',
+  '/cartaz-supermercado-online': '/cartaz-para-supermercado/',
+  '/placa-de-preco-supermercado': '/cartaz-de-preco-online/',
+  '/gerador-de-cartaz-com-ia': '/criador-de-cartaz-de-oferta/',
+}
+
 
 function trackProductEvent(event, details = {}) {
   if (typeof window === 'undefined') return
@@ -2000,6 +2007,13 @@ function App() {
     if (clean === '/criar-placas') {
       window.history.replaceState({}, '', '/')
       setRoutePath('/')
+      return
+    }
+
+    const redirect = RETIRED_CONTENT_REDIRECTS[clean]
+    if (redirect) {
+      window.history.replaceState({}, '', redirect)
+      setRoutePath(redirect)
     }
   }, [routePath])
 
