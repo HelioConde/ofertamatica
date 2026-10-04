@@ -511,7 +511,7 @@ export function PublicPage({ page, onCreate }) {
                 <p>O fluxo principal foi reduzido ao essencial. Ajustes visuais e condições especiais existem, mas só entram se você quiser.</p>
               </div>
               <div className="workflow-grid">
-                <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A4, A5, A3, SRA3 ou a quantidade de placas por folha.</p></article>
+                <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A4, A5, A3 ou a quantidade de placas por folha.</p></article>
                 <article><span>2</span><strong>Cole e gere</strong><p>Cole direto do Excel/ERP, mesmo com cabeçalho, ou importe TXT, CSV, XLS e XLSX.</p></article>
                 <article><span>+</span><strong>Personalize se quiser</strong><p>Header, cores, fonte e tipo de oferta ficam disponíveis sem bloquear o resultado.</p></article>
                 <article><span>✓</span><strong>Revise e imprima</strong><p>Confira papel, orientação e preços antes de enviar para a impressora.</p></article>
