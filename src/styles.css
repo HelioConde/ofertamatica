@@ -5098,3 +5098,40 @@ textarea:focus-visible {
     -webkit-print-color-adjust: exact;
   }
 }
+
+
+.format-trust-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 14px;
+  padding: 0 18px 12px;
+  color: #7a8799;
+}
+
+.format-trust-links a {
+  color: #6b7890;
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.format-trust-links a:hover {
+  color: var(--blue);
+}
+
+@media (min-width: 1001px) {
+  .format-mode .format-trust-links {
+    padding-bottom: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .format-trust-links {
+    gap: 8px 12px;
+    padding-bottom: 16px;
+  }
+
+  .format-trust-links a {
+    font-size: 10px;
+  }
+}
