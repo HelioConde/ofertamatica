@@ -3730,22 +3730,24 @@ textarea:focus-visible {
 }
 
 .format-ad-card {
+  position: relative;
   cursor: default;
+  min-width: 0;
+  min-height: 150px;
   display: grid;
   place-items: stretch;
-  min-height: 0;
-  padding: 0 !important;
-  border-style: dashed;
-  border-color: #d9e3ef;
+  overflow: hidden;
+  padding: 0;
+  border: 1px dashed #cfd9e7;
+  border-radius: 10px;
   background:
     linear-gradient(135deg, rgba(29,99,233,.018), rgba(25,182,108,.018)),
     #fbfdff;
-  box-shadow: none !important;
-  transform: none !important;
+  box-shadow: none;
 }
 
 .format-ad-card::before {
-  content: "PUBLICIDADE";
+  content: "ESPAÇO PUBLICITÁRIO";
   position: absolute;
   top: 8px;
   left: 10px;
@@ -3756,9 +3758,11 @@ textarea:focus-visible {
 }
 
 .format-ad-card .oferta-ad-unit {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  min-height: 150px;
   margin: 0;
   border: 0;
   border-radius: 9px;
