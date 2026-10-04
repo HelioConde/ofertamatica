@@ -111,6 +111,17 @@ function usePageHead(page, { creator = false } = {}) {
     upsertPropertyMeta('og:url', canonical)
 
     const cleanup = []
+    const organization = {
+      '@type': 'Organization',
+      name: 'Ofertamática',
+      url: SITE_URL + '/',
+    }
+    const publicPageType = page.slug === 'sobre'
+      ? 'AboutPage'
+      : page.slug === 'fale-conosco'
+        ? 'ContactPage'
+        : 'WebPage'
+
     cleanup.push(setStructuredData('ofertamatica-page-schema', creator ? {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
@@ -119,14 +130,17 @@ function usePageHead(page, { creator = false } = {}) {
       operatingSystem: 'Web',
       url: SITE_URL + '/',
       description: page.description,
+      publisher: organization,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
     } : {
       '@context': 'https://schema.org',
-      '@type': 'WebPage',
+      '@type': publicPageType,
       name: page.heading || page.title,
       description: page.description,
       url: canonical,
-      isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/' },
+      dateModified: page.updatedAt ? '2026-10-04' : undefined,
+      publisher: organization,
+      isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/', publisher: organization },
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -222,7 +236,7 @@ export function AdUnit({ placement = 'content' }) {
   if (!slot || adState === 'hidden') return null
 
   return (
-    <div className={`oferta-ad-unit ${adState === 'pending' ? 'is-pending' : 'is-filled'}`} data-placement={placement} aria-label="Publicidade">
+    <aside className={`oferta-ad-unit ${adState === 'pending' ? 'is-pending' : 'is-filled'}`} data-placement={placement} aria-label="Publicidade" role="complementary">
       <span className="oferta-ad-label">PUBLICIDADE</span>
       <ins
         ref={adRef}
@@ -233,7 +247,7 @@ export function AdUnit({ placement = 'content' }) {
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-    </div>
+    </aside>
   )
 }
 
@@ -299,6 +313,9 @@ function MarketingFooter() {
       <nav aria-label="Links institucionais">
         <a href="/">Criar placas</a>
         <a href="/como-funciona/">Como funciona</a>
+        <a href="/guias-para-varejo/">Guias</a>
+        <a href="/sobre/">Sobre</a>
+        <a href="/fale-conosco/">Fale conosco</a>
         <a href="/privacidade/">Privacidade</a>
         <a href="/termos/">Termos</a>
       </nav>
@@ -400,6 +417,7 @@ export function PublicPage({ page, onCreate }) {
   const isHow = page.slug === 'como-funciona'
   const isGuides = page.slug === 'guias-para-varejo'
   const isLegal = Boolean(page.legal)
+  const isTrust = Boolean(page.trust)
   const guideGroups = SEO_PAGES.reduce((acc, item) => {
     ;(acc[item.group] ||= []).push(item)
     return acc
@@ -533,24 +551,45 @@ export function PublicPage({ page, onCreate }) {
           </section>
         ) : null}
 
-        {isLegal ? (
-          <section className="marketing-section legal-content">
-            {(page.sections || []).map((section) => (
-              <article key={section.title}>
-                <h2>{section.title}</h2>
-                <p>{section.text}</p>
-              </article>
-            ))}
-          </section>
+        {(isLegal || isTrust) ? (
+          <>
+            {page.updatedAt ? <p className="trust-updated">{page.updatedAt}</p> : null}
+            <section className="marketing-section legal-content trust-content">
+              {(page.sections || []).map((section) => (
+                <article key={section.title}>
+                  <h2>{section.title}</h2>
+                  <p>{section.text}</p>
+                </article>
+              ))}
+            </section>
+            {page.contacts?.length ? (
+              <section className="marketing-section contact-actions" aria-label="Canais de contato">
+                <div className="marketing-heading">
+                  <span className="marketing-kicker">CANAL DE CONTATO</span>
+                  <h2>Escolha como falar com o projeto</h2>
+                  <p>Para sua segurança, não publique senhas, documentos ou dados comerciais confidenciais.</p>
+                </div>
+                <div className="contact-link-grid">
+                  {page.contacts.map((contact) => (
+                    <a href={contact.href} key={contact.href} target="_blank" rel="noreferrer">
+                      <strong>{contact.label}</strong>
+                      <span>{contact.note}</span>
+                      <b>Abrir canal →</b>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+          </>
         ) : null}
 
-        {!isLegal ? <AdUnit placement={'seo-' + page.slug} /> : null}
+        {(!isLegal && !isTrust) ? <AdUnit placement={'seo-' + page.slug} /> : null}
 
         <section className="marketing-final-cta">
           <div>
-            <span className="marketing-kicker">{isLegal ? 'OFERTAMÁTICA' : 'CRIE AGORA'}</span>
-            <h2>{isLegal ? 'Criar placas continua a um clique' : 'Volte ao criador e monte sua próxima placa'}</h2>
-            <p>{isLegal ? 'A página inicial abre direto no seletor de formatos, sem landing intermediária.' : 'A página inicial do Ofertamática abre diretamente no seletor de formatos.'}</p>
+            <span className="marketing-kicker">{(isLegal || isTrust) ? 'OFERTAMÁTICA' : 'CRIE AGORA'}</span>
+            <h2>{(isLegal || isTrust) ? 'Criar placas continua a um clique' : 'Volte ao criador e monte sua próxima placa'}</h2>
+            <p>{(isLegal || isTrust) ? 'A página inicial abre direto no seletor de formatos, sem landing intermediária.' : 'A página inicial do Ofertamática abre diretamente no seletor de formatos.'}</p>
           </div>
           <button type="button" onClick={onCreate}>Criar cartaz grátis</button>
         </section>
