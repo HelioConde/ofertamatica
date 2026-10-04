@@ -1,5 +1,11 @@
 RewriteEngine On
 
+# Consolidated content routes: keep old URLs working without duplicate pages.
+RewriteRule ^cartaz-de-oferta-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^cartaz-supermercado-online/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^placa-de-preco-supermercado/?$ /cartaz-de-preco-online/ [R=301,L]
+RewriteRule ^gerador-de-cartaz-com-ia/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+
 # Preserve existing files and directories, including APIs and assets.
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
