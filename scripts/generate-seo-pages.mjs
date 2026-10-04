@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { INDEXABLE_PAGES, SEO_FAQS, SITE_URL } from '../src/seo/seoPages.js'
+import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -53,18 +53,6 @@ function structuredData(page) {
     },
   ]
 
-  // FAQ estruturada somente onde as perguntas também aparecem visivelmente na página.
-  if (page.kind === 'seo') {
-    graph.push({
-      '@type': 'FAQPage',
-      mainEntity: SEO_FAQS.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
-      })),
-    })
-  }
-
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': graph,
@@ -84,7 +72,7 @@ function snapshot(page) {
   const storeUse = (page.storeUse || []).length
     ? `<section style="margin-top:28px"><h2 style="font-size:24px">Na rotina da loja</h2><ul style="line-height:1.8">${page.storeUse.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>`
     : ''
-  const contacts = (page.contacts || []).map((contact) => `<p><a href="${esc(contact.href)}" style="color:#1d63e9;font-weight:700">${esc(contact.label)}</a> — ${esc(contact.note)}</p>`).join('')
+  const helpfulLinks = (page.links || []).map((link) => `<p><a href="${esc(link.href)}" style="color:#1d63e9;font-weight:700">${esc(link.label)}</a> — ${esc(link.note)}</p>`).join('')
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
 
   return `<main style="font-family:Arial,sans-serif;max-width:1080px;margin:60px auto;padding:0 22px;color:#1f2d47">
@@ -96,7 +84,7 @@ function snapshot(page) {
     ${sections}
     ${tips}
     ${storeUse}
-    ${contacts}
+    ${helpfulLinks}
     <nav style="margin-top:32px;padding-top:20px;border-top:1px solid #e1e7ef">
       <a href="/sobre/" style="margin-right:16px;color:#1d63e9">Sobre</a>
       <a href="/fale-conosco/" style="margin-right:16px;color:#1d63e9">Fale conosco</a>
