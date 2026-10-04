@@ -3,7 +3,6 @@ import {
   PUBLIC_PAGES,
   SEO_FAQS,
   SEO_PAGES,
-  SEO_TOPIC_GROUPS,
   SITE_URL,
 } from '../seo/seoPages'
 import '../styles/marketing.css'
@@ -150,19 +149,7 @@ function usePageHead(page, { creator = false } = {}) {
       },
     }))
 
-    if (!creator && page.kind === 'seo') {
-      cleanup.push(setStructuredData('ofertamatica-faq-schema', {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: SEO_FAQS.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: { '@type': 'Answer', text: item.a },
-        })),
-      }))
-    } else {
-      document.getElementById('ofertamatica-faq-schema')?.remove()
-    }
+    document.getElementById('ofertamatica-faq-schema')?.remove()
 
     return () => cleanup.forEach((fn) => fn?.())
   }, [creator, page])
@@ -273,30 +260,20 @@ function AiTeaser({ onCreate, compact = false }) {
   )
 }
 
-function FaqSection({ onCreate }) {
+function FaqSection() {
   return (
     <section className="marketing-section faq-section">
       <div className="marketing-heading">
         <span className="marketing-kicker">DÚVIDAS FREQUENTES</span>
-        <h2>Antes de criar seu cartaz</h2>
-        <p>Formatos, impressão, cadastro e próximos recursos do Ofertamática.</p>
+        <h2>Respostas rápidas</h2>
+        <p>As dúvidas mais comuns sobre criação, formatos e impressão.</p>
       </div>
       <div className="faq-grid">
-        {SEO_FAQS.map((item) => (
+        {SEO_FAQS.slice(0, 8).map((item) => (
           <details key={item.q}>
             <summary>{item.q}</summary>
             <p>{item.a}</p>
           </details>
-        ))}
-      </div>
-      <div className="topic-groups">
-        {SEO_TOPIC_GROUPS.map((group) => (
-          <div key={group.title}>
-            <strong>{group.title}</strong>
-            <div className="topic-cloud">
-              {group.items.map((topic) => <button type="button" key={topic} onClick={onCreate}>{topic}</button>)}
-            </div>
-          </div>
         ))}
       </div>
     </section>
@@ -408,7 +385,7 @@ function FormatDiagram({ item }) {
 function relatedPages(page) {
   const sameGroup = SEO_PAGES.filter((item) => item.slug !== page.slug && item.group === page.group)
   const others = SEO_PAGES.filter((item) => item.slug !== page.slug && item.group !== page.group)
-  return [...sameGroup, ...others].slice(0, 5)
+  return [...sameGroup, ...others].slice(0, 3)
 }
 
 export function PublicPage({ page, onCreate }) {
@@ -418,6 +395,7 @@ export function PublicPage({ page, onCreate }) {
   const isGuides = page.slug === 'guias-para-varejo'
   const isLegal = Boolean(page.legal)
   const isTrust = Boolean(page.trust)
+  const isInstitutional = isLegal || isTrust
   const guideGroups = SEO_PAGES.reduce((acc, item) => {
     ;(acc[item.group] ||= []).push(item)
     return acc
@@ -427,21 +405,25 @@ export function PublicPage({ page, onCreate }) {
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
       <main className="seo-landing">
-        <section className="seo-hero">
+        <section className={'seo-hero ' + (isInstitutional ? 'seo-hero-institutional' : '')}>
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
             <span className="marketing-kicker">{page.eyebrow}</span>
             <h1>{page.heading}</h1>
             <p>{page.lead}</p>
-            <div className="seo-hero-actions">
-              <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
-              <span>Grátis · sem cadastro obrigatório</span>
-            </div>
+            {!isInstitutional ? (
+              <div className="seo-hero-actions">
+                <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
+                <span>Grátis · sem cadastro obrigatório</span>
+              </div>
+            ) : null}
           </div>
-          <aside className="seo-benefit-card">
-            <span>OFERTAMÁTICA</span>
-            {page.benefits.map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
-          </aside>
+          {!isInstitutional ? (
+            <aside className="seo-benefit-card">
+              <span>OFERTAMÁTICA</span>
+              {page.benefits.map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
+            </aside>
+          ) : null}
         </section>
 
         {isModels ? (
@@ -474,7 +456,6 @@ export function PublicPage({ page, onCreate }) {
                 <article><span>2ª</span><strong>2ª unidade</strong><p>Comunique um valor especial para a segunda unidade sem criar outro cartaz.</p></article>
               </div>
             </section>
-            <AiTeaser onCreate={onCreate} compact />
           </>
         ) : null}
 
@@ -551,6 +532,8 @@ export function PublicPage({ page, onCreate }) {
           </section>
         ) : null}
 
+        {isGuides ? <FaqSection /> : null}
+
         {(isLegal || isTrust) ? (
           <>
             {page.updatedAt ? <p className="trust-updated">{page.updatedAt}</p> : null}
@@ -562,19 +545,18 @@ export function PublicPage({ page, onCreate }) {
                 </article>
               ))}
             </section>
-            {page.contacts?.length ? (
-              <section className="marketing-section contact-actions" aria-label="Canais de contato">
+            {page.links?.length ? (
+              <section className="marketing-section contact-actions" aria-label="Ajuda rápida">
                 <div className="marketing-heading">
-                  <span className="marketing-kicker">CANAL DE CONTATO</span>
-                  <h2>Escolha como falar com o projeto</h2>
-                  <p>Para sua segurança, não publique senhas, documentos ou dados comerciais confidenciais.</p>
+                  <span className="marketing-kicker">AJUDA RÁPIDA</span>
+                  <h2>Encontre a informação que precisa</h2>
                 </div>
                 <div className="contact-link-grid">
-                  {page.contacts.map((contact) => (
-                    <a href={contact.href} key={contact.href} target="_blank" rel="noreferrer">
-                      <strong>{contact.label}</strong>
-                      <span>{contact.note}</span>
-                      <b>Abrir canal →</b>
+                  {page.links.map((link) => (
+                    <a href={link.href} key={link.href}>
+                      <strong>{link.label}</strong>
+                      <span>{link.note}</span>
+                      <b>Abrir →</b>
                     </a>
                   ))}
                 </div>
@@ -587,9 +569,9 @@ export function PublicPage({ page, onCreate }) {
 
         <section className="marketing-final-cta">
           <div>
-            <span className="marketing-kicker">{(isLegal || isTrust) ? 'OFERTAMÁTICA' : 'CRIE AGORA'}</span>
-            <h2>{(isLegal || isTrust) ? 'Criar placas continua a um clique' : 'Volte ao criador e monte sua próxima placa'}</h2>
-            <p>{(isLegal || isTrust) ? 'A página inicial abre direto no seletor de formatos, sem landing intermediária.' : 'A página inicial do Ofertamática abre diretamente no seletor de formatos.'}</p>
+            <span className="marketing-kicker">{isInstitutional ? 'OFERTAMÁTICA' : 'CRIE AGORA'}</span>
+            <h2>{isInstitutional ? 'Voltar ao criador' : 'Monte sua próxima placa'}</h2>
+            <p>{isInstitutional ? 'Escolha o formato e continue a criação.' : 'Escolha o formato, informe os produtos e revise antes de imprimir.'}</p>
           </div>
           <button type="button" onClick={onCreate}>Criar cartaz grátis</button>
         </section>
@@ -605,29 +587,26 @@ export function SeoLanding({ page, onCreate }) {
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
       <main className="seo-landing">
-        <section className="seo-hero">
+        <section className="seo-hero seo-hero-guide">
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
             <span className="marketing-kicker">{page.eyebrow}</span>
             <h1>{page.heading}</h1>
             <p>{page.lead}</p>
             <div className="seo-hero-actions">
-              <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
-              <span>Grátis · sem cadastro obrigatório</span>
+              <button type="button" onClick={onCreate}>Criar cartaz</button>
+              <a href="/guias-para-varejo/">Ver todos os guias</a>
             </div>
           </div>
           <aside className="seo-benefit-card">
-            <span>OFERTAMÁTICA</span>
             {page.benefits.map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
           </aside>
         </section>
 
-        {page.comingSoon ? <AiTeaser onCreate={onCreate} compact /> : null}
-
         <section className="marketing-section practical-section">
           <div className="marketing-heading">
             <span className="marketing-kicker">NA PRÁTICA</span>
-            <h2>Pontos que fazem diferença nesse tipo de cartaz</h2>
+            <h2>O que vale observar</h2>
           </div>
           <div className="practical-grid">
             {page.tips.map((tip, index) => (
@@ -636,18 +615,11 @@ export function SeoLanding({ page, onCreate }) {
           </div>
         </section>
 
-        <section className="seo-explainer">
-          <article><span className="marketing-kicker">FORMATO</span><h2>Escolha pelo local de exposição</h2><p>O tamanho do papel e a quantidade por folha mudam a distância de leitura e o aproveitamento da impressão.</p></article>
-          <article><span className="marketing-kicker">CONTEÚDO</span><h2>Revise produto, unidade e preço</h2><p>Os campos continuam editáveis para que você corrija qualquer interpretação antes de gerar as placas.</p></article>
-          <article><span className="marketing-kicker">IMPRESSÃO</span><h2>Confira antes de enviar</h2><p>A revisão final mostra o formato físico e orientações importantes para a janela de impressão.</p></article>
-        </section>
-
         {page.storeUse?.length ? (
           <section className="marketing-section store-use-section">
             <div className="marketing-heading">
-              <span className="marketing-kicker">ROTINA REAL DE LOJA</span>
-              <h2>Feito para criar várias placas sem reconstruir o trabalho</h2>
-              <p>O objetivo é reduzir etapas repetitivas e manter preço, produto e leitura como prioridade.</p>
+              <span className="marketing-kicker">NA LOJA</span>
+              <h2>Como aplicar no dia a dia</h2>
             </div>
             <div className="store-use-grid">
               {page.storeUse.map((item, index) => (
@@ -662,11 +634,9 @@ export function SeoLanding({ page, onCreate }) {
 
         <AdUnit placement={'seo-' + page.slug} />
 
-        <FaqSection onCreate={onCreate} />
-
         <section className="related-pages">
-          <span className="marketing-kicker">TAMBÉM PODE AJUDAR</span>
-          <h2>Conteúdos relacionados</h2>
+          <span className="marketing-kicker">CONTINUE</span>
+          <h2>Guias relacionados</h2>
           <div>
             {relatedPages(page).map((item) => (
               <a href={'/' + item.slug + '/'} key={item.slug}>{item.heading}<span>→</span></a>
@@ -674,13 +644,13 @@ export function SeoLanding({ page, onCreate }) {
           </div>
         </section>
 
-        <section className="marketing-final-cta">
+        <section className="marketing-final-cta compact-final-cta">
           <div>
-            <span className="marketing-kicker">PRONTO PARA COMEÇAR?</span>
-            <h2>2 cliques para ter a primeira placa pronta</h2>
-            <p>Escolha o formato, cole a lista e gere. Personalize apenas se precisar.</p>
+            <span className="marketing-kicker">PRONTO PARA CRIAR?</span>
+            <h2>Abra o criador e monte a placa</h2>
+            <p>O resultado pode ser revisado e personalizado antes da impressão.</p>
           </div>
-          <button type="button" onClick={onCreate}>Abrir criador de cartazes</button>
+          <button type="button" onClick={onCreate}>Abrir criador</button>
         </section>
 
         <MarketingFooter />
