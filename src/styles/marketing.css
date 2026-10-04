@@ -1100,3 +1100,65 @@ summary:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Subpáginas mais leves: menos blocos genéricos, mais foco no conteúdo da página. */
+.seo-hero-institutional {
+  grid-template-columns: minmax(0, 1fr);
+  padding-block: 34px;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.seo-hero-institutional > div {
+  max-width: 860px;
+}
+
+.seo-hero-institutional h1 {
+  max-width: 820px;
+}
+
+.seo-hero-guide .seo-benefit-card {
+  align-self: stretch;
+}
+
+.seo-hero-actions a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid #d6e2f1;
+  border-radius: 9px;
+  background: #fff;
+  color: #4c607c;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.seo-hero-actions a:hover {
+  border-color: #9bb8e7;
+  color: #1d63e9;
+}
+
+.compact-final-cta {
+  padding-block: 26px;
+}
+
+.trust-content {
+  align-items: stretch;
+}
+
+.trust-content article {
+  min-height: 0;
+}
+
+.contact-actions .marketing-heading {
+  max-width: 720px;
+}
+
+@media (max-width: 850px) {
+  .seo-hero-institutional {
+    padding-block: 26px;
+  }
+}
