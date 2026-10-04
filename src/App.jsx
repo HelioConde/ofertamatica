@@ -484,6 +484,12 @@ function FormatChooser({ onSelect, draft, onResume }) {
             <AdUnit placement="format-grid" />
           </aside>
         </div>
+        <nav className="format-trust-links" aria-label="Informações institucionais">
+          <a href="/sobre/">Sobre</a>
+          <a href="/fale-conosco/">Fale conosco</a>
+          <a href="/privacidade/">Privacidade</a>
+          <a href="/termos/">Termos</a>
+        </nav>
       </section>
     </main>
   )
