@@ -46,9 +46,11 @@ No desktop, a Home e o workspace do criador devem se comportar como uma ferramen
 
 - `/` — criação de placas / seletor de formatos;
 - `/modelos/` — modelos e estilos;
-- `/formatos/` — A4, A5, A3, SRA3 e divisões por folha;
+- `/formatos/` — A4, A5, A3 e divisões por folha;
 - `/como-funciona/` — fluxo de criação;
 - `/guias-para-varejo/` — central de guias;
+- `/sobre/` — propósito e transparência do projeto;
+- `/fale-conosco/` — suporte, contato e sugestões;
 - `/privacidade/` — política de privacidade;
 - `/termos/` — termos de uso;
 - páginas SEO específicas ficam em URLs próprias.
@@ -114,15 +116,25 @@ Formatos principais disponíveis:
 - A4;
 - A5;
 - A3;
-- SRA3.
 
-A impressão usa as medidas físicas do formato em milímetros.
+A impressão usa as medidas físicas do formato em milímetros. O SRA3 permanece apenas como compatibilidade interna legada e não é oferecido para novos trabalhos.
 
 ## Inteligência artificial
 
 **“Crie seu cartaz com IA” é uma próxima implementação.**
 
 Não anunciar IA como recurso disponível no produto atual. O editor atual continua gratuito e sem cadastro obrigatório para começar.
+
+## Páginas institucionais e confiança
+
+Para transparência com usuários e revisão de monetização, o site mantém páginas indexáveis e acessíveis no footer:
+
+- Sobre;
+- Fale Conosco;
+- Política de Privacidade;
+- Termos de Uso.
+
+Essas páginas não recebem anúncios manuais e devem permanecer claras, atualizadas e acessíveis sem cadastro.
 
 ## Publicidade
 
