@@ -480,9 +480,9 @@ function FormatChooser({ onSelect, draft, onResume }) {
               </span>
             </button>
           ))}
-          <div className="format-choice format-ad-card" aria-label="Espaço reservado para publicidade">
+          <aside className="format-ad-card" aria-label="Publicidade">
             <AdUnit placement="format-grid" />
-          </div>
+          </aside>
         </div>
       </section>
     </main>
