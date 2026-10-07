@@ -6004,8 +6004,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   }
 
   .style-toggle-row input[type="checkbox"] {
-    width: 26px !important;
-    height: 26px !important;
+    width: 32px !important;
+    height: 32px !important;
   }
 
   .style-color-control code {
