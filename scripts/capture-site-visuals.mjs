@@ -68,7 +68,8 @@ async function captureViewport(name, viewport) {
 }
 
 await captureViewport('desktop', { width: 1440, height: 1000 })
-await captureViewport('mobile', { width: 390, height: 844 })
+await captureViewport('mobile-360', { width: 360, height: 800 })
+await captureViewport('mobile-412', { width: 412, height: 915 })
 
 await browser.close()
 
