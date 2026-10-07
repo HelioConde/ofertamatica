@@ -1,4 +1,4 @@
-export const LAYOUT_CONFIG_VERSION = 9
+export const LAYOUT_CONFIG_VERSION = 10
 
 const baseTextStyles = {
   description: { fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
@@ -24,15 +24,15 @@ const price = (x, y, width, height) => ({ x, y, width, height, ...centered })
 // Calibração visual inspirada nas placas físicas usadas como referência:
 // descrição mais larga/alta e preço dominando o terço inferior, sem copiar a identidade visual da loja.
 export const DEFAULT_POSTER_LAYOUTS = {
-  A4X8: { contentBox: content(5, 22, 90, 34, 1), priceBox: price(7, 60, 86, 31), textScale: 0.48 },
-  A4X4: { contentBox: content(6, 20, 88, 43), priceBox: price(9, 66, 82, 27), textScale: 0.78 },
-  A5: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 1.05 },
-  A4X2_CIMA_BAIXO: { contentBox: content(6, 19, 88, 45), priceBox: price(9, 66, 82, 28), textScale: 1.02 },
-  A4X2_INVERTIDO: { contentBox: content(6, 19, 88, 45), priceBox: price(9, 66, 82, 28), textScale: 1.02 },
+  A4X8: { contentBox: content(5, 21, 90, 34, 1), priceBox: price(6, 57, 88, 36), textScale: 0.48 },
+  A4X4: { contentBox: content(6, 20, 88, 42), priceBox: price(8, 63, 84, 31), textScale: 0.78 },
+  A5: { contentBox: content(7, 20, 86, 43), priceBox: price(7, 65, 86, 30), textScale: 1.05 },
+  A4X2_CIMA_BAIXO: { contentBox: content(6, 19, 88, 44), priceBox: price(8, 64, 84, 31), textScale: 1.02 },
+  A4X2_INVERTIDO: { contentBox: content(6, 19, 88, 44), priceBox: price(8, 64, 84, 31), textScale: 1.02 },
   A4X2_APP: { contentBox: content(8, 22, 84, 34, 1.5), priceBox: price(10, 58, 80, 17), textScale: 1 },
-  A4: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 1.4 },
-  A3: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 2.02 },
-  SRA3: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 2.15 },
+  A4: { contentBox: content(7, 20, 86, 43), priceBox: price(7, 65, 86, 30), textScale: 1.4 },
+  A3: { contentBox: content(7, 20, 86, 43), priceBox: price(7, 65, 86, 30), textScale: 2.02 },
+  SRA3: { contentBox: content(7, 20, 86, 43), priceBox: price(7, 65, 86, 30), textScale: 2.15 },
 }
 
 const appBox = (x, y, width, height) => ({ x, y, width, height, ...centered })
