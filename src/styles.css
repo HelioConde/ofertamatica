@@ -7407,3 +7407,143 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* Final desktop creator viewport hardening */
+@media (min-width: 1001px) {
+  .format-mode {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .format-mode .format-page {
+    height: calc(100dvh - 68px) !important;
+    min-height: 0 !important;
+    padding: 7px 0 !important;
+    overflow: hidden !important;
+  }
+
+  .format-mode .format-dialog {
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .format-mode .format-dialog-head {
+    flex: 0 0 auto;
+    padding-top: 7px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .format-mode .format-dialog-head-clean .two-click-kicker {
+    margin-bottom: 2px !important;
+    font-size: 8px !important;
+  }
+
+  .format-mode .format-dialog-head-clean h1 {
+    font-size: clamp(20px, 2.35vh, 27px) !important;
+    line-height: 1.04;
+  }
+
+  .format-mode .format-dialog-head-clean p {
+    margin-top: 3px !important;
+    font-size: 8.5px !important;
+    line-height: 1.3;
+  }
+
+  .format-mode .format-trust-row {
+    margin-top: 5px !important;
+    gap: 6px 12px !important;
+  }
+
+  .format-mode .format-size-guide {
+    margin-top: 4px !important;
+  }
+
+  .format-mode .format-size-guide > span {
+    padding: 3px 6px !important;
+  }
+
+  .format-mode .resume-work {
+    flex: 0 0 auto;
+    margin-top: 4px !important;
+  }
+
+  .format-mode .format-grid {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    padding: 6px 12px !important;
+    overflow: hidden !important;
+  }
+
+  .format-mode .format-choice,
+  .format-mode .format-ad-card {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .format-mode .format-choice {
+    grid-template-columns: 84px minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 7px !important;
+    padding: 5px !important;
+  }
+
+  .format-mode .format-thumb {
+    width: 84px !important;
+    height: 100% !important;
+    min-height: 44px !important;
+    max-height: 88px !important;
+  }
+
+  .format-mode .format-copy {
+    min-width: 0;
+    padding-top: 0 !important;
+    text-align: left;
+  }
+
+  .format-mode .format-copy strong {
+    font-size: 9px !important;
+  }
+
+  .format-mode .format-copy small,
+  .format-mode .format-meta,
+  .format-mode .format-use,
+  .format-mode .format-copy b {
+    font-size: 6px !important;
+    line-height: 1.18 !important;
+  }
+
+  .format-mode .format-copy b {
+    margin-top: 2px !important;
+  }
+
+  .format-mode .format-trust-links {
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 4px 10px 2px !important;
+  }
+
+  .format-mode .format-trust-links a {
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending) {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending)::before {
+    opacity: .55;
+  }
+}
