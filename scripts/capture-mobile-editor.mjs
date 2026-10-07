@@ -184,6 +184,55 @@ for (const [viewportName, viewport] of viewports) {
       })
 
       results.push({ viewport: viewportName, formatId, tab, errors: [...errors], ...metrics })
+
+      if (viewportName === 'mobile-390' && formatId === 'A4' && tab === 'style') {
+        const redPreset = page.locator('[data-style-preset="red"]')
+        await redPreset.click()
+        await page.waitForTimeout(120)
+
+        const contrast = await page.evaluate(() => {
+          const poster = document.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
+          const price = document.querySelector('.poster-price-value')
+          const backgroundColor = poster ? getComputedStyle(poster).backgroundColor : ''
+          const priceColor = price ? getComputedStyle(price).color : ''
+
+          function rgb(value) {
+            const values = String(value || '').match(/\d+(?:\.\d+)?/g)
+            if (!values || values.length < 3) return null
+            return values.slice(0, 3).map(Number)
+          }
+
+          function redLike(value) {
+            const color = rgb(value)
+            if (!color) return false
+            const [red, green, blue] = color
+            return red >= 150 && red >= green * 1.35 && red >= blue * 1.12
+          }
+
+          return {
+            backgroundColor,
+            priceColor,
+            redBackground: redLike(backgroundColor),
+            redPrice: redLike(priceColor),
+            readable: !(redLike(backgroundColor) && redLike(priceColor)),
+          }
+        })
+
+        await page.screenshot({
+          path: path.join(outDir, 'a4-mobile-390-red-contrast.png'),
+          fullPage: true,
+        })
+
+        results.push({
+          viewport: viewportName,
+          formatId,
+          tab: 'red-contrast',
+          errors: [...errors],
+          horizontalOverflow: false,
+          offenders: [],
+          contrast,
+        })
+      }
     }
 
     await page.close()
@@ -206,6 +255,7 @@ const failures = results.filter((item) => {
       || !item.preview.stageUsesCardWidth
       || !item.preview.posterReadable
   }
+  if (item.tab === 'red-contrast' && item.contrast && !item.contrast.readable) return true
   return false
 })
 
