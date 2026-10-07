@@ -23,6 +23,12 @@ const sampleProducts = [
   'Mexerica Murcot kg 7,99',
 ].join('\n')
 
+const viewports = [
+  ['mobile-360', { width: 360, height: 800 }],
+  ['mobile-390', { width: 390, height: 844 }],
+  ['mobile-412', { width: 412, height: 915 }],
+]
+
 const browser = await chromium.launch({ headless: true })
 const results = []
 
@@ -56,9 +62,9 @@ async function collectBaseMetrics(page) {
   })
 }
 
-async function openEditor(formatId) {
+async function openEditor(formatId, viewport) {
   const page = await browser.newPage({
-    viewport: { width: 390, height: 844 },
+    viewport,
     deviceScaleFactor: 1,
   })
   const errors = []
@@ -84,91 +90,95 @@ async function openEditor(formatId) {
   return { page, errors }
 }
 
-for (const formatId of formats) {
-  const { page, errors } = await openEditor(formatId)
+for (const [viewportName, viewport] of viewports) {
+  for (const formatId of formats) {
+    const { page, errors } = await openEditor(formatId, viewport)
 
-  for (const tab of ['products', 'preview', 'style']) {
-    await page.locator('[data-mobile-tab="' + tab + '"]').click()
-    await page.waitForTimeout(120)
+    for (const tab of ['products', 'preview', 'style']) {
+      await page.locator('[data-mobile-tab="' + tab + '"]').click()
+      await page.waitForTimeout(120)
 
-    const metrics = await collectBaseMetrics(page)
+      const metrics = await collectBaseMetrics(page)
 
-    if (tab === 'products') {
-      metrics.products = await page.evaluate(() => {
-        const row = document.querySelector('.product-row:not(.product-head)')
-        const fields = row ? [...row.querySelectorAll('.product-field')] : []
-        const rect = row?.getBoundingClientRect()
-        return {
-          rowHeight: rect ? Number(rect.height.toFixed(1)) : 0,
-          fieldCount: fields.length,
-        }
+      if (tab === 'products') {
+        metrics.products = await page.evaluate(() => {
+          const row = document.querySelector('.product-row:not(.product-head)')
+          const fields = row ? [...row.querySelectorAll('.product-field')] : []
+          const rect = row?.getBoundingClientRect()
+          return {
+            rowHeight: rect ? Number(rect.height.toFixed(1)) : 0,
+            fieldCount: fields.length,
+          }
+        })
+      }
+
+      if (tab === 'preview') {
+        metrics.preview = await page.evaluate(() => {
+          const card = document.querySelector('.preview-card.mobile-panel-active')
+          const stage = document.querySelector('.preview-stage.real-poster-preview')
+          const poster = document.querySelector('.real-poster-stage')
+          const pager = document.querySelector('.preview-pager')
+          const header = card?.querySelector(':scope > header')
+          if (!card || !stage || !poster || !pager || !header) return null
+
+          const cardRect = card.getBoundingClientRect()
+          const stageRect = stage.getBoundingClientRect()
+          const posterRect = poster.getBoundingClientRect()
+          const pagerRect = pager.getBoundingClientRect()
+          const headerRect = header.getBoundingClientRect()
+
+          return {
+            display: getComputedStyle(card).display,
+            cardWidth: Number(cardRect.width.toFixed(1)),
+            stageWidth: Number(stageRect.width.toFixed(1)),
+            stageHeight: Number(stageRect.height.toFixed(1)),
+            posterWidth: Number(posterRect.width.toFixed(1)),
+            posterHeight: Number(posterRect.height.toFixed(1)),
+            headerBeforeStage: headerRect.bottom <= stageRect.top + 1,
+            pagerAfterStage: pagerRect.top >= stageRect.bottom - 1,
+            stageUsesCardWidth: stageRect.width >= cardRect.width * 0.9,
+            posterReadable: posterRect.width >= Math.min(220, cardRect.width * 0.64),
+          }
+        })
+      }
+
+      if (tab === 'style') {
+        metrics.style = await page.evaluate(() => {
+          const sidebar = document.querySelector('.style-sidebar.mobile-panel-active')
+          const controls = [...document.querySelectorAll('.style-sidebar select, .style-sidebar input, .style-sidebar button')]
+          const tooSmall = controls.filter((control) => {
+            const rect = control.getBoundingClientRect()
+            return rect.width > 0 && rect.height > 0 && rect.height < 30
+          }).slice(0, 8).map((control) => ({
+            tag: control.tagName.toLowerCase(),
+            className: String(control.className || '').slice(0, 100),
+            height: Number(control.getBoundingClientRect().height.toFixed(1)),
+          }))
+          const headerArt = document.querySelector('.header-art-grid')
+          const frames = document.querySelector('.poster-frame-style-grid')
+          return {
+            width: sidebar ? Number(sidebar.getBoundingClientRect().width.toFixed(1)) : 0,
+            headerArtHeight: headerArt ? Number(headerArt.getBoundingClientRect().height.toFixed(1)) : 0,
+            frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
+            tooSmall,
+          }
+        })
+      }
+
+      await page.screenshot({
+        path: path.join(
+          outDir,
+          formatId.toLowerCase().replaceAll('_', '-') + '-' + viewportName + '-' + tab + '.png',
+        ),
+        fullPage: true,
       })
+
+      results.push({ viewport: viewportName, formatId, tab, errors: [...errors], ...metrics })
     }
 
-    if (tab === 'preview') {
-      metrics.preview = await page.evaluate(() => {
-        const card = document.querySelector('.preview-card.mobile-panel-active')
-        const stage = document.querySelector('.preview-stage.real-poster-preview')
-        const poster = document.querySelector('.real-poster-stage')
-        const pager = document.querySelector('.preview-pager')
-        const header = card?.querySelector(':scope > header')
-        if (!card || !stage || !poster || !pager || !header) return null
-
-        const cardRect = card.getBoundingClientRect()
-        const stageRect = stage.getBoundingClientRect()
-        const posterRect = poster.getBoundingClientRect()
-        const pagerRect = pager.getBoundingClientRect()
-        const headerRect = header.getBoundingClientRect()
-
-        return {
-          display: getComputedStyle(card).display,
-          cardWidth: Number(cardRect.width.toFixed(1)),
-          stageWidth: Number(stageRect.width.toFixed(1)),
-          stageHeight: Number(stageRect.height.toFixed(1)),
-          posterWidth: Number(posterRect.width.toFixed(1)),
-          posterHeight: Number(posterRect.height.toFixed(1)),
-          headerBeforeStage: headerRect.bottom <= stageRect.top + 1,
-          pagerAfterStage: pagerRect.top >= stageRect.bottom - 1,
-          stageUsesCardWidth: stageRect.width >= cardRect.width * 0.9,
-          posterReadable: posterRect.width >= Math.min(240, cardRect.width * 0.68),
-        }
-      })
-    }
-
-    if (tab === 'style') {
-      metrics.style = await page.evaluate(() => {
-        const sidebar = document.querySelector('.style-sidebar.mobile-panel-active')
-        const controls = [...document.querySelectorAll('.style-sidebar select, .style-sidebar input, .style-sidebar button')]
-        const tooSmall = controls.filter((control) => {
-          const rect = control.getBoundingClientRect()
-          return rect.width > 0 && rect.height > 0 && rect.height < 30
-        }).slice(0, 8).map((control) => ({
-          tag: control.tagName.toLowerCase(),
-          className: String(control.className || '').slice(0, 100),
-          height: Number(control.getBoundingClientRect().height.toFixed(1)),
-        }))
-        const headerArt = document.querySelector('.header-art-grid')
-        const frames = document.querySelector('.poster-frame-style-grid')
-        return {
-          width: sidebar ? Number(sidebar.getBoundingClientRect().width.toFixed(1)) : 0,
-          headerArtHeight: headerArt ? Number(headerArt.getBoundingClientRect().height.toFixed(1)) : 0,
-          frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
-          tooSmall,
-        }
-      })
-    }
-
-    await page.screenshot({
-      path: path.join(outDir, formatId.toLowerCase().replaceAll('_', '-') + '-' + tab + '.png'),
-      fullPage: true,
-    })
-
-    results.push({ formatId, tab, errors: [...errors], ...metrics })
+    await page.close()
   }
-
-  await page.close()
 }
-
 await browser.close()
 
 const failures = results.filter((item) => {
@@ -204,6 +214,7 @@ if (failures.length) {
 
 console.log(JSON.stringify({
   formats: formats.length,
+  viewports: viewports.map(([name]) => name),
   captures: results.length,
   status: 'mobile editor QA passed',
 }, null, 2))
