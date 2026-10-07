@@ -1776,3 +1776,158 @@ summary:focus-visible {
     font-size: 9px !important;
   }
 }
+
+
+/* Public model header reference pack */
+.model-poster-standard.is-retail .model-poster-standard-header {
+  color: var(--poster-header-text-color, #fff) !important;
+}
+
+.model-poster-standard.header-frame-moldura .model-poster-standard-bg::after {
+  inset: 1.2%;
+  border: 7px solid var(--poster-header-color, #ed1c24);
+  border-radius: 0;
+}
+.model-poster-standard.header-frame-moldura .model-poster-standard-header {
+  left: 3%;
+  right: 3%;
+  top: 1.5%;
+  height: 16%;
+  border-radius: 2px;
+  background: var(--poster-header-color, #ed1c24);
+}
+
+.model-poster-standard.header-frame-chevron .model-poster-standard-header {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18%;
+  border-radius: 0;
+  clip-path: polygon(0 0,100% 0,100% 72%,50% 100%,0 72%);
+  background: var(--poster-header-color, #c80016);
+}
+
+.model-poster-standard.header-frame-rodape-forte .model-poster-standard-header,
+.model-poster-standard.header-frame-ondas .model-poster-standard-header,
+.model-poster-standard.header-frame-curva-simples .model-poster-standard-header {
+  left: -2%;
+  right: -2%;
+  top: 0;
+  height: 18%;
+  border-radius: 0 0 50% 50% / 0 0 22% 22%;
+  background: var(--poster-header-color, #e7192d);
+}
+.model-poster-standard.header-frame-ondas .model-poster-standard-header::after {
+  content: "";
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff200;
+  box-shadow: 0 3px 0 var(--poster-header-color, #e7192d), 0 5px 0 #fff200;
+}
+.model-poster-standard.header-frame-ondas .model-poster-standard-bg::before,
+.model-poster-standard.header-frame-rodape-forte .model-poster-standard-bg::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: -6%;
+  right: -6%;
+  bottom: -5%;
+  height: 11%;
+  border-radius: 50% 50% 0 0 / 42% 42% 0 0;
+  background: var(--poster-header-color, #e7192d);
+}
+
+.model-poster-standard.header-frame-oval .model-poster-standard-header {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 21%;
+  justify-content: flex-end;
+  padding-left: 42%;
+  padding-right: 6%;
+  border-radius: 0 0 72% 0 / 0 0 82% 0;
+  background: var(--poster-header-color, #c80016);
+}
+.model-poster-standard.header-frame-oval .model-poster-standard-header::after {
+  content: "";
+  position: absolute;
+  right: 4%;
+  top: 19%;
+  width: 60%;
+  height: 56%;
+  border: 3px solid #fff200;
+  border-radius: 50%;
+}
+.model-poster-standard.header-frame-oval .model-poster-standard-header b {
+  position: relative;
+  z-index: 2;
+}
+
+.model-poster-standard.header-frame-minimal .model-poster-standard-header {
+  left: 9%;
+  right: 9%;
+  top: 2.4%;
+  height: 13%;
+  border: 2px solid #fff200;
+  border-radius: 12px;
+  background: var(--poster-header-color, #ef3340);
+  box-shadow: -3px -3px 0 -1px var(--poster-header-color, #ef3340),
+              3px 3px 0 -1px var(--poster-header-color, #ef3340);
+}
+
+.model-poster-standard.header-frame-divertido .model-poster-standard-header {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 20%;
+  padding-right: 17%;
+  border-radius: 0 0 48% 48% / 0 0 16% 16%;
+  background: var(--poster-header-color, #ef3340);
+}
+.model-poster-standard.header-frame-divertido .model-poster-standard-header b::after {
+  content: "!";
+}
+.model-poster-standard.header-frame-divertido .model-poster-standard-header::after {
+  content: "★";
+  position: absolute;
+  right: 6%;
+  top: 25%;
+  font-size: 18px;
+  transform: rotate(-12deg);
+}
+
+.model-poster-standard.header-frame-imperdivel .model-poster-standard-bg {
+  background: linear-gradient(180deg, var(--poster-header-color, #ed1c24) 0 21%, var(--poster-background, #fff200) 21% 100%);
+}
+.model-poster-standard.header-frame-imperdivel .model-poster-standard-header {
+  left: 1%;
+  right: 1%;
+  top: 0;
+  height: 20%;
+  background: transparent;
+  font-size: 1.12em;
+}
+.model-poster-standard.header-frame-imperdivel .model-poster-standard-header::after {
+  content: "Imperdível";
+  position: absolute;
+  right: 4%;
+  bottom: -8%;
+  color: #fff;
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: 16px;
+  font-style: italic;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 600px) {
+  .model-poster-standard.header-frame-divertido .model-poster-standard-header::after {
+    font-size: 12px;
+  }
+  .model-poster-standard.header-frame-imperdivel .model-poster-standard-header::after {
+    font-size: 10px;
+  }
+}
