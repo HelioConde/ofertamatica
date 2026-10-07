@@ -264,37 +264,74 @@ function createPrice(product, template, priceBox, measure) {
   const style = template.textStyles.price
   const text = product.price || ''
   const strokeMm = 0.12
-  // Preço grande, com contorno discreto e margem vertical para não cortar na impressão.
   const verticalSafetyMm = 0.35
+  const availableWidthMm = Math.max(style.fontMin, priceBox.width - (strokeMm * 2))
   const availableHeightMm = Math.max(style.fontMin, priceBox.height - ((strokeMm + verticalSafetyMm) * 2))
-  const physicalFontCap = (availableHeightMm / Math.max(style.lineHeight, 0.7)) * (style.scale ?? 1)
+  const [integer = '', decimal = ''] = text.split(/[,\.]/)
+  const separator = text.includes(',') ? ',' : (text.includes('.') ? '.' : '')
   const priceStyle = {
     ...style,
-    fontMax: Math.max(style.fontMax, physicalFontCap / Math.max(style.scale ?? 1, 0.01)),
+    fontMax: Math.max(
+      style.fontMax,
+      (availableHeightMm / Math.max(style.lineHeight, 0.7)) / Math.max(style.scale ?? 1, 0.01),
+    ),
   }
-  const rawFit = fitSingleLine({
-    text: text || ' ',
-    style: priceStyle,
-    maxWidthMm: Math.max(style.fontMin, priceBox.width - (strokeMm * 2)),
-    maxHeightMm: availableHeightMm,
-    measure,
-  })
-  const characters = text.replace(/\s/g, '').length
-  const characterScale = characters <= 4 ? 1 : characters === 5 ? 0.9 : Math.max(0.68, 1 - ((characters - 4) * 0.1))
-  let fontSizeMm = Math.max(style.fontMin, rawFit.fontSizeMm * characterScale)
-  let measured = measure(text || ' ', { ...priceStyle, fontSizeMm })
-  let contentHeightMm = Math.max(measured.heightMm, lineHeightMm(priceStyle, fontSizeMm))
-  const widthRatio = (priceBox.width - (strokeMm * 2)) / measured.widthMm
-  const heightRatio = availableHeightMm / contentHeightMm
-  if (widthRatio < 1 || heightRatio < 1) {
-    fontSizeMm = Math.max(style.fontMin, fontSizeMm * Math.min(widthRatio, heightRatio))
+
+  function compositeMeasure(fontSizeMm) {
+    const major = measure(integer || text || ' ', { ...priceStyle, fontSizeMm })
+    const separatorSize = fontSizeMm * 0.44
+    const decimalSize = fontSizeMm * 0.71
+    const currencySize = fontSizeMm * 0.29
+    const separatorMetrics = separator
+      ? measure(separator, { ...priceStyle, fontSizeMm: separatorSize })
+      : { widthMm: 0, heightMm: 0 }
+    const decimalMetrics = decimal
+      ? measure(decimal, { ...priceStyle, fontSizeMm: decimalSize })
+      : { widthMm: 0, heightMm: 0 }
+    const currencyMetrics = template.showCurrency
+      ? measure('R$', { ...priceStyle, fontSizeMm: currencySize })
+      : { widthMm: 0, heightMm: 0 }
+
+    const currencyGapMm = template.showCurrency ? fontSizeMm * 0.035 : 0
+    const decimalGapMm = decimal ? fontSizeMm * 0.015 : 0
+    const widthMm = major.widthMm
+      + separatorMetrics.widthMm
+      + decimalMetrics.widthMm
+      + currencyMetrics.widthMm
+      + currencyGapMm
+      + decimalGapMm
+
+    const heightMm = Math.max(
+      lineHeightMm(priceStyle, fontSizeMm),
+      major.heightMm,
+      separatorMetrics.heightMm,
+      decimalMetrics.heightMm,
+      currencyMetrics.heightMm,
+    )
+
+    return { widthMm, heightMm }
   }
-  fontSizeMm = Math.floor(fontSizeMm * 1000) / 1000
-  measured = measure(text || ' ', { ...priceStyle, fontSizeMm })
-  contentHeightMm = Math.max(measured.heightMm, lineHeightMm(priceStyle, fontSizeMm))
-  const heightMm = contentHeightMm + ((strokeMm + verticalSafetyMm) * 2)
+
+  let low = Math.max(0.6, style.fontMin)
+  let high = Math.max(low, availableHeightMm / Math.max(style.lineHeight || 0.84, 0.5))
+  let best = low
+
+  for (let iteration = 0; iteration < 30; iteration += 1) {
+    const candidate = (low + high) / 2
+    const dimensions = compositeMeasure(candidate)
+    if (dimensions.widthMm <= availableWidthMm && dimensions.heightMm <= availableHeightMm) {
+      best = candidate
+      low = candidate
+    } else {
+      high = candidate
+    }
+  }
+
+  const fontSizeMm = Math.floor(best * 1000) / 1000
+  const measured = compositeMeasure(fontSizeMm)
+  const heightMm = measured.heightMm + ((strokeMm + verticalSafetyMm) * 2)
   const widthMm = measured.widthMm + (strokeMm * 2)
-  const [integer = '', decimal = ''] = text.split(',')
+
   return {
     text,
     integer,
@@ -305,7 +342,7 @@ function createPrice(product, template, priceBox, measure) {
     x: alignedX(priceBox, widthMm),
     y: alignedY(priceBox, heightMm),
     style: priceStyle,
-    characterScale,
+    characterScale: 1,
   }
 }
 
