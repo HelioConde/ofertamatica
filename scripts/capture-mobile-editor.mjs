@@ -160,10 +160,15 @@ for (const [viewportName, viewport] of viewports) {
           }))
           const headerArt = document.querySelector('.header-art-grid')
           const frames = document.querySelector('.poster-frame-style-grid')
+          const ribbon = document.querySelector('.ofertamatica-offer-ribbon, .ofertamatica-app-ribbon')
+          const ribbonStyle = ribbon ? getComputedStyle(ribbon) : null
           return {
             width: sidebar ? Number(sidebar.getBoundingClientRect().width.toFixed(1)) : 0,
             headerArtHeight: headerArt ? Number(headerArt.getBoundingClientRect().height.toFixed(1)) : 0,
             frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
+            headerBackgroundColor: ribbonStyle?.backgroundColor || '',
+            headerTextColor: ribbonStyle?.color || '',
+            headerVisible: Boolean(ribbon && ribbon.getBoundingClientRect().height > 0),
             tooSmall,
           }
         })
@@ -190,6 +195,8 @@ const failures = results.filter((item) => {
   if (item.tab === 'products' && item.products?.rowHeight > 390) return true
   if (item.tab === 'style' && item.style) {
     if (item.style.headerArtHeight > 250 || item.style.frameGridHeight > 180) return true
+    if (!item.style.headerVisible) return true
+    if (!item.style.headerBackgroundColor || item.style.headerBackgroundColor === 'rgba(0, 0, 0, 0)' || item.style.headerBackgroundColor === 'transparent') return true
   }
   if (item.tab === 'preview' && item.preview) {
     return item.preview.display !== 'grid'
