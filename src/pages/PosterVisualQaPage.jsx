@@ -8,6 +8,7 @@ import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 const PX_PER_MM = 96 / 25.4
 
 const SAMPLES = [
+  { id: 'biscoito-a7', formatId: 'A4X8', description: 'BISCOITO', subdescription: 'RECHEADO', complement: '', unit: '120G', price: '3,49', headerFooterStyle: 'moldura', headerText: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff' },
   { id: 'mamao-moldura-a4', formatId: 'A4', description: 'MAMÃO', subdescription: 'FORMOSA', complement: '', unit: 'KG', price: '4,99', headerFooterStyle: 'moldura', headerText: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff' },
   { id: 'abacaxi-imperdivel-a4', formatId: 'A4', description: 'ABACAXI', subdescription: 'PEÇA', complement: '', unit: '', price: '6,99', headerFooterStyle: 'imperdivel', headerText: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff' },
   { id: 'melancia-promocao-a4', formatId: 'A4', description: 'MELANCIA', subdescription: '', complement: '', unit: 'KG', price: '2,99', headerFooterStyle: 'promocao', headerText: 'PROMOÇÃO', headerColor: '#ef3340', headerTextColor: '#ffffff' },
