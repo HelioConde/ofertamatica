@@ -1,0 +1,121 @@
+name: Poster Visual Snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/components/posters/**'
+      - 'src/config/posterTemplates.js'
+      - 'src/poster-engine/**'
+      - 'src/utils/posterBrowserMeasure.js'
+      - 'src/styles/posters.css'
+      - 'src/pages/PosterVisualQaPage.jsx'
+      - 'src/App.jsx'
+      - 'src/assets/fonts/**'
+      - 'scripts/capture-poster-visuals.mjs'
+      - '.github/workflows/poster-visual-snapshot.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ofertamatica-poster-visual-snapshot
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Install Playwright for visual capture
+        run: npm install --no-save playwright@1.55.0
+
+      - name: Cache Playwright browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-ofertamatica-poster-playwright-1.55.0
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build visual QA version
+        run: npm run build
+
+      - name: Start local preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 5183 > /tmp/ofertamatica-poster-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:5183/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/ofertamatica-poster-preview.log
+          exit 1
+
+      - name: Capture poster screenshots
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/capture-poster-visuals.mjs
+
+      - name: Upload visual artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ofertamatica-poster-visual-snapshot
+          path: screenshots/cartazes/
+          retention-days: 30
+
+      - name: Commit latest screenshots
+        run: |
+          set -euo pipefail
+
+          SNAPSHOT_TMP="$(mktemp -d)"
+          cp -a screenshots/cartazes/. "$SNAPSHOT_TMP"/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Poster snapshot push attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            rm -rf screenshots/cartazes
+            mkdir -p screenshots/cartazes
+            cp -a "$SNAPSHOT_TMP"/. screenshots/cartazes/
+
+            git add screenshots/cartazes/
+            if git diff --cached --quiet; then
+              echo "No visual changes detected."
+              exit 0
+            fi
+
+            git commit -m "chore: refresh ofertamatica poster visual snapshots [skip ci]"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            sleep $((attempt * 2))
+          done
+
+          echo "Could not publish poster snapshots after 3 attempts."
+          exit 1
