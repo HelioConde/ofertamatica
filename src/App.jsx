@@ -1048,6 +1048,7 @@ function StyleSidebar({
                     headerImage: '',
                     headerStyle: 'band',
                     headerText: 'OFERTA',
+                    headerTextColor: '#ffffff',
                   })
                   trackProductEvent('ofertamatica_header_footer_model_selected', { model_id: model.id })
                 }}
@@ -1069,8 +1070,9 @@ function StyleSidebar({
         <section className="style-section">
           <strong>Cabeçalho padrão</strong>
           <div className="header-style-switch">
-            <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band' })}>Faixa</button>
-            <button type="button" className={style.headerStyle === 'simple' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'simple' })}>Simples</button>
+            <button type="button" className={style.headerStyle === 'retail' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'retail', headerTextColor: style.priceColor || '#d91b2b' })}>Varejo</button>
+            <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band', headerTextColor: '#ffffff' })}>Faixa</button>
+            <button type="button" className={style.headerStyle === 'simple' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'simple', headerTextColor: style.priceColor || '#d91b2b' })}>Simples</button>
             <button type="button" className={style.headerStyle === 'hidden' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'hidden' })}>Ocultar</button>
           </div>
 
@@ -1974,7 +1976,13 @@ function Editor({
               <h2>Folha {safePageIndex + 1} de {pageCount}</h2>
               <small className="preview-dimensions">{format.paperLabel} · cartaz {format.cartSize}</small>
             </div>
-            <span>{products.length ? (safePageIndex * format.postersPerSheet + 1) + '–' + Math.min(products.length, (safePageIndex + 1) * format.postersPerSheet) : '0'} / {products.length}</span>
+            <span>
+              {products.length
+                ? (format.postersPerSheet === 1
+                  ? (safePageIndex + 1) + ' / ' + products.length
+                  : (safePageIndex * format.postersPerSheet + 1) + '–' + Math.min(products.length, (safePageIndex + 1) * format.postersPerSheet) + ' / ' + products.length)
+                : '0 / 0'}
+            </span>
           </header>
 
           <PosterViewport
@@ -2013,18 +2021,6 @@ function Editor({
           onCustomHeaderChange={setCustomHeader}
         />
       </section>
-
-      {products.length && mobileTab !== 'preview' ? (
-        <button
-          type="button"
-          className="poster-mobile-preview-fab"
-          onClick={() => setMobileTab('preview')}
-          aria-label={`Abrir prévia das placas, ${products.length} ${products.length === 1 ? 'produto' : 'produtos'}`}
-        >
-          Ver prévia
-          <b>{products.length}</b>
-        </button>
-      ) : null}
 
       <div className="poster-print-root" aria-hidden="true">
         {pages.map((productsForPage, index) => (
