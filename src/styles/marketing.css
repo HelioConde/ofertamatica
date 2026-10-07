@@ -2193,3 +2193,125 @@ summary:focus-visible {
     font-size: 11px;
   }
 }
+
+
+/* Model gallery uses the exact creator poster engine */
+.model-showcase-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.model-showcase-card-real {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-top: 14px;
+  background:
+    linear-gradient(180deg, #f2f5f8 0 62%, #fbfdff 62% 100%);
+}
+
+.model-real-poster-shell {
+  position: relative;
+  width: 194.5px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(31,41,55,.12);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(24,38,59,.16);
+}
+
+.model-real-poster-scale {
+  position: absolute;
+  inset: 0 auto auto 0;
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.model-real-poster-scale .poster-sheet {
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.model-showcase-card-real .model-card-copy {
+  align-self: stretch;
+  margin-top: 14px;
+  border-top: 1px solid #e4eaf1;
+  background: #fbfdff;
+}
+
+.model-showcase-card-real .model-card-copy > strong {
+  font-size: 15px;
+}
+
+.model-showcase-card-real .model-card-copy button {
+  margin-top: auto;
+}
+
+@media (max-width: 1050px) {
+  .model-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .model-showcase-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .model-showcase-card-real {
+    grid-template-columns: 154px minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 0;
+    padding: 10px;
+    background: #f4f7fa;
+  }
+
+  .model-real-poster-shell {
+    width: 151px;
+    height: 213px !important;
+    margin: 0;
+  }
+
+  .model-real-poster-scale {
+    transform: scale(.19) !important;
+  }
+
+  .model-showcase-card-real .model-card-copy {
+    height: 100%;
+    align-content: center;
+    gap: 6px !important;
+    margin-top: 0;
+    padding: 10px 8px 10px 12px !important;
+    border-top: 0;
+    border-left: 1px solid #e2e8f0;
+    background: transparent;
+  }
+
+  .model-showcase-card-real .model-card-copy > strong {
+    font-size: 12px !important;
+  }
+
+  .model-showcase-card-real .model-showcase-card p {
+    display: block;
+  }
+
+  .model-showcase-card-real .model-card-copy button {
+    min-height: 40px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .model-showcase-card-real {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+
+  .model-real-poster-shell {
+    width: 135px;
+    height: 191px !important;
+  }
+
+  .model-real-poster-scale {
+    transform: scale(.17) !important;
+  }
+}
