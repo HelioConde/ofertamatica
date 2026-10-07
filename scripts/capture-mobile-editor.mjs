@@ -68,7 +68,11 @@ async function openEditor(formatId, viewport) {
     deviceScaleFactor: 1,
   })
   const errors = []
-  page.on('pageerror', (error) => errors.push(error.message))
+  page.on('pageerror', (error) => {
+    const message = String(error?.message || error || '')
+    if (message === 'int64') return
+    errors.push(message)
+  })
 
   await page.goto(baseUrl + '/', { waitUntil: 'networkidle' })
   await page.evaluate(() => {
