@@ -487,13 +487,18 @@ function FormatChooser({ onSelect, draft, onResume }) {
     <main className="format-page" id="formatos">
       <section className="format-dialog">
         <header className="format-dialog-head format-dialog-head-clean">
-          <span className="eyebrow two-click-kicker">PLACA PRONTA EM 2 CLIQUES</span>
-          <h1>Escolha o formato.</h1>
-          <p>Na próxima tela, cole seus produtos e gere as placas. Simples assim.</p>
+          <span className="eyebrow two-click-kicker">CARTAZ DE OFERTA PRONTO EM 2 CLIQUES</span>
+          <h1>Escolha o tamanho da sua placa.</h1>
+          <p>Do A7 para gôndola ao A3 para vitrine: escolha o formato, cole sua lista e gere tudo de uma vez.</p>
           <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
-            <span>✓ Pensado para rotina real de supermercado</span>
-            <span>✓ Sem cadastro</span>
-            <span>✓ PDF e impressão</span>
+            <span>✓ Grátis e sem cadastro</span>
+            <span>✓ Lista, Excel, CSV ou TXT</span>
+            <span>✓ PDF e impressão no tamanho físico</span>
+          </div>
+          <div className="format-size-guide" aria-label="Guia rápido de tamanhos">
+            <span><b>A7 / A6</b><small>Gôndola · economiza papel</small></span>
+            <span><b>A5 / A4</b><small>Balcão · ponta · ilha</small></span>
+            <span><b>A3</b><small>Vitrine · leitura à distância</small></span>
           </div>
         </header>
 
@@ -518,7 +523,9 @@ function FormatChooser({ onSelect, draft, onResume }) {
               aria-label={'Escolher ' + format.label + ', ' + format.application}
             >
               <span className="format-choice-badges">
+                {format.id === 'A4X8' ? <span className="format-economy">Economiza papel</span> : null}
                 {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
+                {format.id === 'A3' ? <span className="format-impact">Mais impacto</span> : null}
                 {format.id === lastFormatId ? <span className="format-last-used">Último usado</span> : null}
               </span>
               <FormatPreview format={format} />
@@ -535,9 +542,11 @@ function FormatChooser({ onSelect, draft, onResume }) {
             <AdUnit placement="format-grid" />
           </aside>
         </div>
-        <nav className="format-trust-links" aria-label="Informações institucionais">
-          <a href="/sobre/">Sobre</a>
-          <a href="/fale-conosco/">Fale conosco</a>
+        <nav className="format-trust-links" aria-label="Atalhos e informações">
+          <a href="/modelos/">Ver modelos</a>
+          <a href="/como-funciona/">Como funciona</a>
+          <a href="/guias-para-varejo/">Guias</a>
+          <a href="/fale-conosco/">Ajuda</a>
           <a href="/privacidade/">Privacidade</a>
           <a href="/termos/">Termos</a>
         </nav>
