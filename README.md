@@ -121,9 +121,9 @@ A impressão usa as medidas físicas do formato em milímetros. O SRA3 permanece
 
 ## Inteligência artificial
 
-**“Crie seu cartaz com IA” é uma próxima implementação.**
+**“Crie seu cartaz com IA” fica oficialmente na V2 e não bloqueia o encerramento do produto principal.**
 
-Não anunciar IA como recurso disponível no produto atual. O editor atual continua gratuito e sem cadastro obrigatório para começar.
+Não anunciar IA como recurso disponível no MVP atual. O criador principal é considerado funcional sem IA: continua gratuito, sem cadastro obrigatório para começar e preserva a regra dos 2 cliques.
 
 ## Páginas institucionais e confiança
 
@@ -253,3 +253,18 @@ Antes do FTP, o workflow executa build e validações automáticas. O deploy env
 - FTP usa GitHub Secrets;
 - não colocar credenciais privadas no frontend;
 - mudanças de monetização, Analytics ou rota raiz devem preservar as regras deste README.
+
+
+## Status do MVP principal
+
+> **MVP principal tecnicamente concluído em 07/10/2026.** A partir daqui, o foco é QA real de impressão/uso e dependências externas de monetização, não expansão de escopo.
+
+Gate final de validação:
+- revisar todos os formatos de impressão;
+- testar colagens reais de Excel/ERP;
+- testar PDF/impressão em Chrome, Edge e impressora física;
+- confirmar `100dvh` e ausência de scroll global indevido no desktop;
+- manter somente GTM no HTML, sem loader `gtag.js` duplicado;
+- manter `/ads.txt` correto e acompanhar o recrawl/aprovação do AdSense.
+
+**IA, novas automações e recursos avançados ficam para V2.**
