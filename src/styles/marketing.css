@@ -1931,3 +1931,140 @@ summary:focus-visible {
     font-size: 10px;
   }
 }
+
+
+/* Searchable model gallery */
+.model-gallery-tools {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: minmax(220px, 420px) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.model-gallery-tools > strong {
+  justify-self: end;
+  padding-bottom: 9px;
+  color: #6d7c91;
+  font-size: 10px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.model-search {
+  display: grid;
+  gap: 6px;
+}
+
+.model-search > span {
+  color: #5b6f8a;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.model-search input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #d5e0ec;
+  border-radius: 10px;
+  padding: 0 12px;
+  background: #fff;
+  color: #26344f;
+  font: inherit;
+  font-size: 12px;
+  outline: 0;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.model-search input:focus {
+  border-color: #7ea8ef;
+  box-shadow: 0 0 0 3px rgba(29,99,233,.10);
+}
+
+.model-category-strip button {
+  flex: 0 0 auto;
+  min-height: 32px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0 11px;
+  background: #edf4ff;
+  color: #1d63e9;
+  font-size: 9px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.model-category-strip button:hover {
+  border-color: #a8c4ee;
+  background: #f4f8ff;
+}
+
+.model-category-strip button.active {
+  border-color: #1d63e9;
+  background: #1d63e9;
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(29,99,233,.18);
+}
+
+.model-empty-state {
+  margin-top: 18px;
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  padding: 20px;
+  border: 1px dashed #cfdbea;
+  border-radius: 12px;
+  background: #f9fbfe;
+}
+
+.model-empty-state strong {
+  color: #31435e;
+  font-size: 14px;
+}
+
+.model-empty-state span {
+  color: #708097;
+  font-size: 11px;
+}
+
+.model-empty-state button {
+  min-height: 36px;
+  margin-top: 4px;
+  border: 1px solid #cbdaf0;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: #fff;
+  color: #1d63e9;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+@media (max-width: 700px) {
+  .model-gallery-tools {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .model-gallery-tools > strong {
+    justify-self: start;
+    padding: 0;
+    font-size: 10px;
+  }
+
+  .model-search input {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .model-category-strip {
+    margin-top: 12px;
+    scroll-padding-inline: 12px;
+    padding: 2px 8px 5px 0;
+  }
+
+  .model-category-strip button {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 10px;
+  }
+}
