@@ -105,7 +105,7 @@ const DEFAULT_POSTER_STYLE = {
   headerColor: '#e51e31',
   headerTextColor: '#d91b2b',
   fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
-  descriptionFontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+  descriptionFontFamily: 'auto',
   priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
   headerStyle: 'retail',
   headerText: 'OFERTA',
@@ -175,7 +175,10 @@ function loadPosterStyle() {
     return {
       ...DEFAULT_POSTER_STYLE,
       ...saved,
-      descriptionFontFamily: saved.descriptionFontFamily || saved.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily,
+      descriptionFontFamily: (() => {
+        const legacy = saved.descriptionFontFamily || saved.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
+        return legacy === '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif' ? 'auto' : legacy
+      })(),
       priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
       headerStyle: migrateLegacyDefaultHeader ? 'retail' : (saved.headerStyle || DEFAULT_POSTER_STYLE.headerStyle),
       headerTextColor: migrateLegacyDefaultHeader ? DEFAULT_POSTER_STYLE.headerTextColor : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
@@ -846,14 +849,17 @@ function StyleSidebar({
           <label className="style-select-row">
             <span>Fonte da descrição</span>
             <select
-              value={style.descriptionFontFamily || style.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily}
+              value={style.descriptionFontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily}
               onChange={(event) => onChange({
                 ...style,
-                fontFamily: event.target.value,
+                fontFamily: event.target.value === 'auto'
+                  ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+                  : event.target.value,
                 descriptionFontFamily: event.target.value,
               })}
             >
-              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada</option>
+              <option value="auto">Varejo condensada · acentos automáticos</option>
+              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada · forçar fonte</option>
               <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
               <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
               <option value={'Arial, sans-serif'}>Arial</option>
@@ -1133,7 +1139,8 @@ function Editor({
   const format = getPosterFormat(formatId)
   const baseTemplate = getDefaultTemplateForFormat(formatId)
   const template = useMemo(() => {
-    const descriptionFontFamily = posterStyle.descriptionFontFamily || posterStyle.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
+    const descriptionFontChoice = posterStyle.descriptionFontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
+    const descriptionFontFamily = descriptionFontChoice === 'auto' ? undefined : descriptionFontChoice
     const priceFontFamily = posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily
 
     return {
@@ -1185,8 +1192,12 @@ function Editor({
     '--poster-price-color': posterStyle.priceColor,
     '--poster-header-color': posterStyle.headerColor,
     '--poster-header-text-color': posterStyle.headerTextColor,
-    '--poster-font-family': posterStyle.descriptionFontFamily || posterStyle.fontFamily,
-    '--poster-description-font-family': posterStyle.descriptionFontFamily || posterStyle.fontFamily,
+    '--poster-font-family': posterStyle.descriptionFontFamily === 'auto'
+      ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+      : (posterStyle.descriptionFontFamily || posterStyle.fontFamily),
+    '--poster-description-font-family': posterStyle.descriptionFontFamily === 'auto'
+      ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+      : (posterStyle.descriptionFontFamily || posterStyle.fontFamily),
     '--poster-price-font-family': posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
   }
 
