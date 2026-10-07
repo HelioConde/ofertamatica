@@ -6635,7 +6635,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   padding: 0 3% 3% !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: transparent !important;
+  background: var(--poster-header-color, #ed1c24) !important;
   color: var(--poster-header-text-color, #fff) !important;
   box-shadow: none !important;
   font-size: clamp(9mm, 15cqi, 30mm) !important;
