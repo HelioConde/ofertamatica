@@ -457,10 +457,11 @@ function FormatPreview({ format }) {
   const isSplit = format.postersPerSheet === 2 && format.rows === 2
   const isApp = format.specialLayout === 'app-offer'
   const isFour = format.postersPerSheet === 4
+  const isEight = format.postersPerSheet === 8
 
   return (
     <div className="format-thumb">
-      <div className={`oferta-format-preview ${isSplit ? 'is-split' : ''} ${isApp ? 'is-app' : ''} ${isFour ? 'is-four' : ''}`}>
+      <div className={`oferta-format-preview ${isSplit ? 'is-split' : ''} ${isApp ? 'is-app' : ''} ${isFour ? 'is-four' : ''} ${isEight ? 'is-eight' : ''}`}>
         {Array.from({ length: format.postersPerSheet }, (_, index) => (
           <div className={`oferta-format-mini ${format.invertedSlots.includes(index) ? 'is-inverted' : ''}`} key={index}>
             <span>OFERTA</span>
