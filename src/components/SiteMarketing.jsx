@@ -181,9 +181,8 @@ export function AdUnit({ placement = 'content' }) {
   const slot = ADSENSE_SLOTS[placement]
     || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '')
     || ''
-  const mobileAdFormat = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 700px)').matches
-    ? 'rectangle'
-    : 'auto'
+  const isMobileAd = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 700px)').matches
+  const mobileAdFormat = isMobileAd ? 'horizontal' : 'auto'
   const adRef = useRef(null)
   const [adState, setAdState] = useState(slot ? 'pending' : 'hidden')
 
@@ -231,11 +230,13 @@ export function AdUnit({ placement = 'content' }) {
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={isMobileAd
+          ? { display: 'block', width: '100%', height: '100px', maxHeight: '100px' }
+          : { display: 'block' }}
         data-ad-client={ADSENSE_CLIENT}
         data-ad-slot={slot}
         data-ad-format={mobileAdFormat}
-        data-full-width-responsive="true"
+        data-full-width-responsive={isMobileAd ? 'false' : 'true'}
       />
     </aside>
   )
