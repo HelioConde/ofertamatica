@@ -6264,3 +6264,115 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     align-items: center;
   }
 }
+
+
+/* Mobile refinement pass: compact products, non-clipped nav, shorter style panel. */
+@media (max-width: 480px) {
+  .main-nav {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 4px 8px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    padding: 3px 0 5px !important;
+  }
+
+  .main-nav .nav-link {
+    width: 100%;
+    min-height: 34px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 2px !important;
+    font-size: 8.7px !important;
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal !important;
+  }
+
+  .main-nav .nav-link:nth-child(4) {
+    grid-column: 1 / span 1;
+  }
+
+  .main-nav .nav-link:nth-child(5) {
+    grid-column: 2 / span 2;
+  }
+
+  .product-row,
+  .app-product-table .product-row {
+    grid-template-columns: 28px repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .row-selector {
+    grid-column: 1 !important;
+    grid-row: 1 / span 10 !important;
+  }
+
+  .product-field {
+    grid-column: auto !important;
+  }
+
+  .product-row > .product-field:first-of-type,
+  .app-product-table .product-row > .product-field:first-of-type {
+    grid-column: 2 / -1 !important;
+  }
+
+  .product-promo-fields {
+    grid-column: 2 / -1 !important;
+  }
+
+  .product-row input {
+    min-height: 38px !important;
+  }
+
+  .header-art-grid {
+    max-height: 198px !important;
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: repeat(2, 94px) !important;
+    grid-auto-columns: 145px !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    padding: 0 0 5px !important;
+  }
+
+  .header-art-grid > button {
+    width: 145px !important;
+    min-height: 94px !important;
+    grid-template-rows: 62px auto !important;
+  }
+
+  .header-art-grid img,
+  .header-preset-thumb,
+  .header-default-thumb {
+    height: 62px !important;
+  }
+
+  .poster-frame-style-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .poster-frame-style-grid > button {
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+    min-height: 64px !important;
+    padding: 6px !important;
+  }
+
+  .poster-frame-mini {
+    width: 40px !important;
+    height: 56px !important;
+  }
+
+  .poster-frame-style-grid > button > span:last-child small {
+    display: none;
+  }
+
+  .poster-frame-style-grid > button > span:last-child b {
+    white-space: normal !important;
+    line-height: 1.15;
+  }
+}
