@@ -79,13 +79,33 @@ async function captureViewport(name, viewport, routes) {
           }
         })
 
+      const tinyTargets = [...document.querySelectorAll('button, a, input, select, summary')]
+        .filter((element) => {
+          const style = getComputedStyle(element)
+          if (style.display === 'none' || style.visibility === 'hidden') return false
+          const rect = element.getBoundingClientRect()
+          if (rect.width <= 0 || rect.height <= 0) return false
+          if (element.closest('.poster-card, .model-poster-standard, .format-diagram')) return false
+          return rect.height < 28
+        })
+        .slice(0, 12)
+        .map((element) => ({
+          tag: element.tagName.toLowerCase(),
+          className: String(element.className || '').slice(0, 100),
+          text: String(element.textContent || element.getAttribute('aria-label') || '').trim().slice(0, 60),
+          height: Number(element.getBoundingClientRect().height.toFixed(1)),
+        }))
+
       return {
         title: document.title,
         width: window.innerWidth,
+        height: window.innerHeight,
         scrollWidth: Math.max(root.scrollWidth, body?.scrollWidth || 0),
+        documentHeight: Math.max(root.scrollHeight, body?.scrollHeight || 0),
         horizontalOverflow,
         visibleOverflow,
         navClipped,
+        tinyTargets,
         ads,
       }
     })
@@ -119,8 +139,11 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.id === 'home' && item.viewport === 'desktop' && item.documentHeight > item.height + 4) return true
+  if (item.viewport === 'desktop' && item.ads.some((ad) => ad.className.includes('is-pending') && ad.height > 180)) return true
   if (!item.viewport.startsWith('mobile')) return false
   if (item.navClipped) return true
+  if (item.tinyTargets.length) return true
   return item.ads.some((ad) => ad.height > 130)
 })
 
