@@ -6490,3 +6490,60 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     touch-action: manipulation;
   }
 }
+
+
+/* Final mobile nav/carousel precedence after the compact-label pass. */
+@media (max-width: 480px) {
+  .main-nav {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 4px !important;
+    overflow: visible !important;
+    white-space: nowrap !important;
+  }
+
+  .main-nav .nav-link {
+    width: auto !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    min-height: 34px !important;
+    padding: 4px 1px !important;
+    white-space: nowrap !important;
+  }
+
+  .main-nav .nav-link:nth-child(4),
+  .main-nav .nav-link:nth-child(5) {
+    grid-column: auto !important;
+  }
+
+  .poster-frame-style-grid {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: repeat(2, 72px) !important;
+    grid-auto-columns: 156px !important;
+    gap: 7px !important;
+    max-height: 151px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+    padding: 1px 1px 5px !important;
+  }
+
+  .poster-frame-style-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .poster-frame-style-grid > button {
+    width: 156px !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+  }
+
+  .poster-frame-style-grid > button > span:last-child small {
+    display: block;
+    font-size: 7px !important;
+    line-height: 1.15;
+  }
+}
