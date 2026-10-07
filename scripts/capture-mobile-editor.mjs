@@ -194,7 +194,7 @@ for (const [viewportName, viewport] of viewports) {
           await page.waitForTimeout(100)
 
           const contrast = await page.evaluate(() => {
-            const poster = document.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
+            const poster = document.querySelector('.poster-card-layers, .poster-app-card')
             const description = document.querySelector('.poster-field-description')
             const price = document.querySelector('.poster-price-value')
             const header = document.querySelector('.ofertamatica-offer-ribbon, .ofertamatica-app-ribbon')
