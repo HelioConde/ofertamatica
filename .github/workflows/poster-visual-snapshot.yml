@@ -18,6 +18,7 @@ on:
       - 'src/assets/fonts/**'
       - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/capture-site-visuals.mjs'
+      - 'scripts/capture-mobile-editor.mjs'
       - '.github/workflows/poster-visual-snapshot.yml'
 
 permissions:
@@ -86,6 +87,12 @@ jobs:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
           GITHUB_SHA: ${{ github.sha }}
         run: node scripts/capture-site-visuals.mjs
+
+      - name: Capture mobile editor screenshots
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/capture-mobile-editor.mjs
 
       - name: Upload visual artifact
         uses: actions/upload-artifact@v4
