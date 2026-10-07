@@ -6,9 +6,11 @@ import './styles/posters.css'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {
-      // A instalação continua opcional; falha no service worker não bloqueia o criador.
-    })
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
+      .then((registration) => registration.update().catch(() => {}))
+      .catch(() => {
+        // A instalação continua opcional; falha no service worker não bloqueia o criador.
+      })
   })
 }
 
