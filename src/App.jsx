@@ -30,15 +30,22 @@ const HEADER_IMAGE_BY_ID = Object.fromEntries(HEADER_IMAGES.map((item) => [item.
 
 const DEFAULT_HEADER_OPTION_ID = '__oferta__'
 const HEADER_TEXT_PRESETS = [
-  { id: DEFAULT_HEADER_OPTION_ID, kind: 'preset', label: 'Oferta', text: 'OFERTA', headerColor: '#e51e31', headerTextColor: '#ffffff' },
-  { id: '__super_oferta__', kind: 'preset', label: 'Super Oferta', text: 'SUPER OFERTA', headerColor: '#d4142d', headerTextColor: '#ffffff' },
-  { id: '__oferta_relampago__', kind: 'preset', label: 'Oferta Relâmpago', text: 'OFERTA RELÂMPAGO', headerColor: '#b60925', headerTextColor: '#ffffff' },
-  { id: '__so_hoje__', kind: 'preset', label: 'Só Hoje', text: 'SÓ HOJE', headerColor: '#f05a18', headerTextColor: '#ffffff' },
-  { id: '__imperdivel__', kind: 'preset', label: 'Imperdível', text: 'IMPERDÍVEL', headerColor: '#7b2cbf', headerTextColor: '#ffffff' },
-  { id: '__preco_baixo__', kind: 'preset', label: 'Preço Baixo', text: 'PREÇO BAIXO', headerColor: '#168451', headerTextColor: '#ffffff' },
-  { id: '__economia__', kind: 'preset', label: 'Economia', text: 'ECONOMIA', headerColor: '#0b7547', headerTextColor: '#ffffff' },
-  { id: '__fim_de_semana__', kind: 'preset', label: 'Fim de Semana', text: 'FIM DE SEMANA', headerColor: '#1d63e9', headerTextColor: '#ffffff' },
-  { id: '__clube_ofertas__', kind: 'preset', label: 'Clube de Ofertas', text: 'CLUBE DE OFERTAS', headerColor: '#113d9d', headerTextColor: '#ffffff' },
+  { id: DEFAULT_HEADER_OPTION_ID, kind: 'preset', label: 'Oferta clássica', text: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' },
+  { id: '__imperdivel__', kind: 'preset', label: 'Oferta imperdível', text: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'imperdivel' },
+  { id: '__promocao__', kind: 'preset', label: 'Hoje tem promoção', text: 'PROMOÇÃO', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'promocao' },
+  { id: '__curva__', kind: 'preset', label: 'Oferta curva', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'curva-simples' },
+  { id: '__divertida__', kind: 'preset', label: 'Oferta divertida', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'divertido' },
+  { id: '__amarela__', kind: 'preset', label: 'Oferta amarela', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#fff200', headerFooterStyle: 'moldura' },
+  { id: '__chevron__', kind: 'preset', label: 'Oferta chevron', text: 'OFERTA', headerColor: '#c80016', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' },
+  { id: '__contorno__', kind: 'preset', label: 'Oferta contorno', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' },
+  { id: '__oval__', kind: 'preset', label: 'Oferta oval', text: 'OFERTA', headerColor: '#c80016', headerTextColor: '#fff200', headerFooterStyle: 'oval' },
+  { id: '__ondas__', kind: 'preset', label: 'Oferta ondas', text: 'OFERTA', headerColor: '#e7192d', headerTextColor: '#fff200', headerFooterStyle: 'ondas' },
+  { id: '__super_oferta__', kind: 'preset', label: 'Super oferta', text: 'SUPER OFERTA', headerColor: '#d4142d', headerTextColor: '#fff200', headerFooterStyle: 'rodape-forte' },
+  { id: '__oferta_relampago__', kind: 'preset', label: 'Oferta relâmpago', text: 'OFERTA RELÂMPAGO', headerColor: '#b60925', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' },
+  { id: '__preco_baixo__', kind: 'preset', label: 'Preço baixo', text: 'PREÇO BAIXO', headerColor: '#168451', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' },
+  { id: '__economia__', kind: 'preset', label: 'Economia', text: 'ECONOMIA', headerColor: '#0b7547', headerTextColor: '#fff200', headerFooterStyle: 'oval' },
+  { id: '__fim_de_semana__', kind: 'preset', label: 'Fim de semana', text: 'FIM DE SEMANA', headerColor: '#1d63e9', headerTextColor: '#ffffff', headerFooterStyle: 'ondas' },
+  { id: '__clube_ofertas__', kind: 'preset', label: 'Clube de ofertas', text: 'CLUBE DE OFERTAS', headerColor: '#113d9d', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' },
 ]
 const HEADER_OPTIONS = [
   ...HEADER_TEXT_PRESETS,
@@ -125,14 +132,17 @@ const POSTER_STYLE_PRESETS = [
 ]
 
 const HEADER_FOOTER_MODELS = [
-  { id: 'curva-simples', name: 'Curva simples', note: 'OFERTA amarela em faixa vermelha curva', preview: 'curva-simples' },
-  { id: 'ondas', name: 'Ondas completa', note: 'Ondas no topo e no rodapé', preview: 'ondas' },
-  { id: 'especial', name: 'Oferta Especial', note: 'Bloco lateral com destaque Especial', preview: 'especial' },
-  { id: 'rodape-forte', name: 'Rodapé forte', note: 'Topo curvo e base vermelha marcante', preview: 'rodape-forte' },
-  { id: 'imperdivel', name: 'Oferta Imperdível', note: 'OFERTA branca gigante + Imperdível', preview: 'imperdivel' },
-  { id: 'divertido', name: 'Oferta divertida', note: 'Topo divertido com exclamação e joinha', preview: 'divertido' },
-  { id: 'minimal', name: 'Oferta minimal', note: 'Header compacto e rodapé discreto', preview: 'minimal' },
-  { id: 'moldura', name: 'Moldura clássica', note: 'Borda vermelha e header em placa', preview: 'moldura' },
+  { id: 'moldura', name: 'Moldura clássica', note: 'Borda vermelha forte e placa de OFERTA no topo', preview: 'moldura', headerTextColor: '#ffffff' },
+  { id: 'imperdivel', name: 'Oferta imperdível', note: 'OFERTA branca gigante com Imperdível sobreposto', preview: 'imperdivel', headerTextColor: '#ffffff' },
+  { id: 'promocao', name: 'Hoje tem promoção', note: 'Topo vermelho com PROMOÇÃO e ponta central', preview: 'promocao', headerTextColor: '#ffffff' },
+  { id: 'chevron', name: 'Chevron', note: 'Faixa reta com ponta central para baixo', preview: 'chevron', headerTextColor: '#ffffff' },
+  { id: 'oval', name: 'Oferta oval', note: 'Curva ampla no topo com selo oval', preview: 'oval', headerTextColor: '#fff200' },
+  { id: 'curva-simples', name: 'Curva simples', note: 'Topo vermelho curvo, inspirado em cartaz tradicional', preview: 'curva-simples', headerTextColor: '#ffffff' },
+  { id: 'ondas', name: 'Ondas completa', note: 'Topo e rodapé com linhas duplas amarelas', preview: 'ondas', headerTextColor: '#fff200' },
+  { id: 'rodape-forte', name: 'Topo + rodapé forte', note: 'Cabeçalho curvo e faixa vermelha grande no rodapé', preview: 'rodape-forte', headerTextColor: '#fff200' },
+  { id: 'divertido', name: 'Oferta divertida', note: 'Topo ondulado com OFERTA! e destaque lateral', preview: 'divertido', headerTextColor: '#ffffff' },
+  { id: 'minimal', name: 'Contorno arredondado', note: 'Header compacto, moldura discreta e rodapé ondulado', preview: 'minimal', headerTextColor: '#ffffff' },
+  { id: 'especial', name: 'Oferta especial', note: 'Faixa lateral com escrita Especial', preview: 'especial', headerTextColor: '#fff200' },
 ]
 
 const OFFER_MODES = [
@@ -658,10 +668,11 @@ function StyleSidebar({
       onChange({
         ...style,
         headerImage: '',
-        headerStyle: 'retail',
+        headerStyle: option.headerStyle || 'retail',
         headerText: option.text,
         headerColor: option.headerColor,
         headerTextColor: option.headerTextColor,
+        headerFooterStyle: option.headerFooterStyle || style.headerFooterStyle,
       })
       trackProductEvent('ofertamatica_header_preset_selected', { header_id: option.id })
       return
@@ -1009,7 +1020,7 @@ function StyleSidebar({
                 >
                   {isPreset ? (
                     <div
-                      className="header-preset-thumb"
+                      className={`header-preset-thumb header-preset-thumb-${item.headerFooterStyle || 'moldura'}`}
                       aria-hidden="true"
                       style={{
                         '--header-thumb-bg': item.headerColor,
@@ -1052,9 +1063,9 @@ function StyleSidebar({
                     ...style,
                     headerFooterStyle: model.id,
                     headerImage: '',
-                    headerStyle: 'band',
-                    headerText: 'OFERTA',
-                    headerTextColor: '#ffffff',
+                    headerStyle: 'retail',
+                    headerText: model.id === 'promocao' ? 'PROMOÇÃO' : 'OFERTA',
+                    headerTextColor: model.headerTextColor || '#ffffff',
                   })
                   trackProductEvent('ofertamatica_header_footer_model_selected', { model_id: model.id })
                 }}
