@@ -117,7 +117,7 @@ const DEFAULT_POSTER_STYLE = {
   headerStyle: 'retail',
   headerText: 'OFERTA',
   headerImage: '',
-  headerFooterStyle: 'curva-simples',
+  headerFooterStyle: 'moldura',
   showCurrency: true,
   offerMode: 'standard',
   validityText: '',
