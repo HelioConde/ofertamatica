@@ -1,0 +1,93 @@
+import { chromium } from 'playwright'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+
+const baseUrl = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
+const outDir = path.resolve('screenshots/site')
+await fs.mkdir(outDir, { recursive: true })
+
+const routes = [
+  ['home', '/'],
+  ['modelos', '/modelos/'],
+  ['formatos', '/formatos/'],
+  ['como-funciona', '/como-funciona/'],
+  ['guias', '/guias-para-varejo/'],
+]
+
+const browser = await chromium.launch({ headless: true })
+const state = []
+
+async function captureViewport(name, viewport) {
+  const page = await browser.newPage({ viewport, deviceScaleFactor: 1 })
+
+  for (const [id, route] of routes) {
+    const errors = []
+    page.removeAllListeners('pageerror')
+    page.on('pageerror', (error) => errors.push(error.message))
+
+    await page.goto(baseUrl + route, { waitUntil: 'networkidle' })
+    await page.waitForTimeout(250)
+
+    const metrics = await page.evaluate(() => {
+      const root = document.documentElement
+      const body = document.body
+      const horizontalOverflow = Math.max(root.scrollWidth, body?.scrollWidth || 0) > window.innerWidth + 1
+      const visibleOverflow = [...document.querySelectorAll('body *')]
+        .filter((element) => {
+          const style = getComputedStyle(element)
+          if (style.position === 'fixed' || style.position === 'absolute') return false
+          const rect = element.getBoundingClientRect()
+          return rect.width > 0 && (rect.left < -1 || rect.right > window.innerWidth + 1)
+        })
+        .slice(0, 8)
+        .map((element) => ({
+          tag: element.tagName.toLowerCase(),
+          className: String(element.className || '').slice(0, 120),
+          left: Number(element.getBoundingClientRect().left.toFixed(1)),
+          right: Number(element.getBoundingClientRect().right.toFixed(1)),
+        }))
+
+      return {
+        title: document.title,
+        width: window.innerWidth,
+        scrollWidth: Math.max(root.scrollWidth, body?.scrollWidth || 0),
+        horizontalOverflow,
+        visibleOverflow,
+      }
+    })
+
+    await page.screenshot({
+      path: path.join(outDir, `${id}-${name}.png`),
+      fullPage: true,
+    })
+
+    state.push({ route, id, viewport: name, errors, ...metrics })
+  }
+
+  await page.close()
+}
+
+await captureViewport('desktop', { width: 1440, height: 1000 })
+await captureViewport('mobile', { width: 390, height: 844 })
+
+await browser.close()
+
+await fs.writeFile(
+  path.join(outDir, 'visual-state.json'),
+  JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    commit: process.env.GITHUB_SHA || null,
+    pages: state,
+  }, null, 2),
+)
+
+const failures = state.filter((item) => item.errors.length || item.horizontalOverflow || item.visibleOverflow.length)
+if (failures.length) {
+  console.error(JSON.stringify({ failures }, null, 2))
+  process.exit(1)
+}
+
+console.log(JSON.stringify({
+  captures: state.length,
+  pages: routes.map(([id]) => id),
+}, null, 2))
