@@ -5,6 +5,7 @@ import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
 import { parseProductList } from '../poster-engine/parseProduct'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
+import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
 import {
   PUBLIC_PAGES,
   SEO_FAQS,
@@ -333,7 +334,7 @@ function ModelCard({ item, onCreate }) {
     'leve-mais': 'ondas',
     clube: 'moldura',
     app: 'minimal',
-    'fim-de-semana': 'chevron',
+    'fim-de-semana': 'ondas',
     aniversario: 'divertido',
     verao: 'ondas',
     'black-friday': 'moldura',
@@ -352,6 +353,12 @@ function ModelCard({ item, onCreate }) {
     validade: 'near-expiry',
     'ultimas-unidades': 'last-units',
   }[item.id] || 'standard'
+
+  // A galeria deve mostrar exatamente as mesmas cores que o editor aceita.
+  // Assim, um modelo nunca muda de aparência depois que o usuário clica em “Usar este modelo”.
+  const resolvedTextColor = resolveReadableTextColor(item.background, item.text)
+  const resolvedPriceColor = resolveReadablePriceColor(item.background, item.price)
+  const resolvedHeaderTextColor = resolveReadableHeaderTextColor(item.header, item.headerText)
 
   const format = useMemo(() => getPosterFormat('A4'), [])
   const measure = useMemo(() => createBrowserTextMeasure(), [])
@@ -395,10 +402,10 @@ function ModelCard({ item, onCreate }) {
     try {
       localStorage.setItem(POSTER_STYLE_KEY, JSON.stringify({
         backgroundColor: item.background,
-        textColor: item.text,
-        priceColor: item.price,
+        textColor: resolvedTextColor,
+        priceColor: resolvedPriceColor,
         headerColor: item.header,
-        headerTextColor: item.headerText,
+        headerTextColor: resolvedHeaderTextColor,
         fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
         descriptionFontFamily: 'auto',
         priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
@@ -428,10 +435,10 @@ function ModelCard({ item, onCreate }) {
         className="model-real-poster-shell"
         style={{
           '--poster-background': item.background,
-          '--poster-price-color': item.price,
-          '--poster-text-color': item.text,
+          '--poster-price-color': resolvedPriceColor,
+          '--poster-text-color': resolvedTextColor,
           '--poster-header-color': item.header,
-          '--poster-header-text-color': item.headerText,
+          '--poster-header-text-color': resolvedHeaderTextColor,
           '--poster-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
           '--poster-description-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
           '--poster-price-font-family': '"Futura Price", Impact, "Arial Black", sans-serif',
