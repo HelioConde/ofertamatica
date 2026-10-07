@@ -99,13 +99,15 @@ function trackProductEvent(event, details = {}) {
 }
 
 const DEFAULT_POSTER_STYLE = {
-  backgroundColor: '#fff200',
-  textColor: '#050505',
-  priceColor: '#e60025',
+  backgroundColor: '#f5e66d',
+  textColor: '#101010',
+  priceColor: '#d91b2b',
   headerColor: '#e51e31',
-  headerTextColor: '#ffffff',
+  headerTextColor: '#d91b2b',
   fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
-  headerStyle: 'band',
+  descriptionFontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+  priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
+  headerStyle: 'retail',
   headerText: 'OFERTA',
   headerImage: '',
   headerFooterStyle: 'curva-simples',
@@ -163,9 +165,20 @@ function loadPosterStyle() {
         : normalizeHeaderImageId(storedHeader))
       : ''
 
+    const savedHeaderText = saved.headerText || DEFAULT_POSTER_STYLE.headerText
+    const savedHeaderColor = String(saved.headerColor || DEFAULT_POSTER_STYLE.headerColor).toLocaleLowerCase('pt-BR')
+    const migrateLegacyDefaultHeader = (!saved.headerStyle || saved.headerStyle === 'band')
+      && savedHeaderText === 'OFERTA'
+      && savedHeaderColor === '#e51e31'
+      && !migratedHeader
+
     return {
       ...DEFAULT_POSTER_STYLE,
       ...saved,
+      descriptionFontFamily: saved.descriptionFontFamily || saved.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily,
+      priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
+      headerStyle: migrateLegacyDefaultHeader ? 'retail' : (saved.headerStyle || DEFAULT_POSTER_STYLE.headerStyle),
+      headerTextColor: migrateLegacyDefaultHeader ? DEFAULT_POSTER_STYLE.headerTextColor : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
       headerFooterStyle: normalizedHeaderFooterStyle,
       headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
     }
@@ -634,7 +647,7 @@ function StyleSidebar({
       onChange({
         ...style,
         headerImage: '',
-        headerStyle: 'band',
+        headerStyle: 'retail',
         headerText: option.text,
         headerColor: option.headerColor,
         headerTextColor: option.headerTextColor,
@@ -825,17 +838,40 @@ function StyleSidebar({
           </div>
         </section>
 
-        <section className="style-section">
-          <strong>Tipografia</strong>
+        <section className="style-section typography-section">
+          <div className="style-section-title-row">
+            <strong>Tipografia</strong>
+            <small>Descrição e preço independentes</small>
+          </div>
           <label className="style-select-row">
-            <span>Fonte principal</span>
-            <select value={style.fontFamily} onChange={(event) => onChange({ ...style, fontFamily: event.target.value })}>
-              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Ofertamática</option>
+            <span>Fonte da descrição</span>
+            <select
+              value={style.descriptionFontFamily || style.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily}
+              onChange={(event) => onChange({
+                ...style,
+                fontFamily: event.target.value,
+                descriptionFontFamily: event.target.value,
+              })}
+            >
+              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada</option>
               <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
               <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
               <option value={'Arial, sans-serif'}>Arial</option>
             </select>
           </label>
+          <label className="style-select-row">
+            <span>Fonte do preço</span>
+            <select
+              value={style.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily}
+              onChange={(event) => onChange({ ...style, priceFontFamily: event.target.value })}
+            >
+              <option value={'"Futura Price", Impact, "Arial Black", sans-serif'}>Futura preço</option>
+              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada</option>
+              <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
+              <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
+            </select>
+          </label>
+          <p className="typography-help">O padrão usa a mesma combinação das placas de referência: descrição condensada e preço Futura.</p>
         </section>
 
         <section className="style-section store-brand-section">
@@ -1096,18 +1132,52 @@ function Editor({
 
   const format = getPosterFormat(formatId)
   const baseTemplate = getDefaultTemplateForFormat(formatId)
-  const template = useMemo(() => ({
-    ...baseTemplate,
-    showCurrency: posterStyle.showCurrency,
-    headerText: posterStyle.headerText || 'OFERTA',
-    headerStyle: posterStyle.headerStyle,
-    headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
-    headerFooterStyle: posterStyle.headerFooterStyle || 'curva-simples',
-    offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
-    validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
-    limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
+  const template = useMemo(() => {
+    const descriptionFontFamily = posterStyle.descriptionFontFamily || posterStyle.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
+    const priceFontFamily = posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily
+
+    return {
+      ...baseTemplate,
+      textStyles: {
+        ...baseTemplate.textStyles,
+        description: { ...baseTemplate.textStyles.description, fontFamily: descriptionFontFamily },
+        subdescription: { ...baseTemplate.textStyles.subdescription, fontFamily: descriptionFontFamily },
+        complement: { ...baseTemplate.textStyles.complement, fontFamily: descriptionFontFamily },
+        unit: { ...baseTemplate.textStyles.unit, fontFamily: descriptionFontFamily },
+        price: { ...baseTemplate.textStyles.price, fontFamily: priceFontFamily },
+        appTitle: { ...baseTemplate.textStyles.appTitle, fontFamily: descriptionFontFamily },
+        appPrice: { ...baseTemplate.textStyles.appPrice, fontFamily: priceFontFamily },
+        appValidity: { ...baseTemplate.textStyles.appValidity, fontFamily: descriptionFontFamily },
+        appRegularLabel: { ...baseTemplate.textStyles.appRegularLabel, fontFamily: descriptionFontFamily },
+        appRegularPrice: { ...baseTemplate.textStyles.appRegularPrice, fontFamily: priceFontFamily },
+      },
+      showCurrency: posterStyle.showCurrency,
+      headerText: posterStyle.headerText || 'OFERTA',
+      headerStyle: posterStyle.headerStyle,
+      headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
+      headerFooterStyle: posterStyle.headerFooterStyle || 'curva-simples',
+      offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
+      validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
+      limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
+      storeLogo,
+    }
+  }, [
+    baseTemplate,
+    formatId,
+    posterStyle.showCurrency,
+    posterStyle.headerText,
+    posterStyle.headerStyle,
+    posterStyle.headerImage,
+    posterStyle.headerFooterStyle,
+    posterStyle.offerMode,
+    posterStyle.validityText,
+    posterStyle.limitText,
+    posterStyle.fontFamily,
+    posterStyle.descriptionFontFamily,
+    posterStyle.priceFontFamily,
     storeLogo,
-  }), [baseTemplate, formatId, posterStyle.showCurrency, posterStyle.headerText, posterStyle.headerStyle, posterStyle.headerImage, posterStyle.headerFooterStyle, posterStyle.offerMode, posterStyle.validityText, posterStyle.limitText, storeLogo, customHeader])
+    customHeader,
+  ])
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
@@ -1115,7 +1185,9 @@ function Editor({
     '--poster-price-color': posterStyle.priceColor,
     '--poster-header-color': posterStyle.headerColor,
     '--poster-header-text-color': posterStyle.headerTextColor,
-    '--poster-font-family': posterStyle.fontFamily,
+    '--poster-font-family': posterStyle.descriptionFontFamily || posterStyle.fontFamily,
+    '--poster-description-font-family': posterStyle.descriptionFontFamily || posterStyle.fontFamily,
+    '--poster-price-font-family': posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
   }
 
   useEffect(() => {
