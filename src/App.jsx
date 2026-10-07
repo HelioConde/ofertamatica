@@ -103,7 +103,7 @@ const DEFAULT_POSTER_STYLE = {
   textColor: '#101010',
   priceColor: '#d91b2b',
   headerColor: '#e51e31',
-  headerTextColor: '#d91b2b',
+  headerTextColor: '#ffffff',
   fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
   descriptionFontFamily: 'auto',
   priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
@@ -167,10 +167,14 @@ function loadPosterStyle() {
 
     const savedHeaderText = saved.headerText || DEFAULT_POSTER_STYLE.headerText
     const savedHeaderColor = String(saved.headerColor || DEFAULT_POSTER_STYLE.headerColor).toLocaleLowerCase('pt-BR')
+    const savedHeaderTextColor = String(saved.headerTextColor || '').toLocaleLowerCase('pt-BR')
+    const savedPriceColor = String(saved.priceColor || DEFAULT_POSTER_STYLE.priceColor).toLocaleLowerCase('pt-BR')
     const migrateLegacyDefaultHeader = (!saved.headerStyle || saved.headerStyle === 'band')
       && savedHeaderText === 'OFERTA'
       && savedHeaderColor === '#e51e31'
       && !migratedHeader
+    const migrateLegacyRetailTextOnly = saved.headerStyle === 'retail'
+      && (!savedHeaderTextColor || savedHeaderTextColor === savedPriceColor)
 
     return {
       ...DEFAULT_POSTER_STYLE,
@@ -181,7 +185,9 @@ function loadPosterStyle() {
       })(),
       priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
       headerStyle: migrateLegacyDefaultHeader ? 'retail' : (saved.headerStyle || DEFAULT_POSTER_STYLE.headerStyle),
-      headerTextColor: migrateLegacyDefaultHeader ? DEFAULT_POSTER_STYLE.headerTextColor : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
+      headerTextColor: (migrateLegacyDefaultHeader || migrateLegacyRetailTextOnly)
+        ? DEFAULT_POSTER_STYLE.headerTextColor
+        : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
       headerFooterStyle: normalizedHeaderFooterStyle,
       headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
     }
@@ -1070,7 +1076,7 @@ function StyleSidebar({
         <section className="style-section">
           <strong>Cabeçalho padrão</strong>
           <div className="header-style-switch">
-            <button type="button" className={style.headerStyle === 'retail' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'retail', headerTextColor: style.priceColor || '#d91b2b' })}>Varejo</button>
+            <button type="button" className={style.headerStyle === 'retail' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'retail', headerTextColor: '#ffffff' })}>Varejo</button>
             <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band', headerTextColor: '#ffffff' })}>Faixa</button>
             <button type="button" className={style.headerStyle === 'simple' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'simple', headerTextColor: style.priceColor || '#d91b2b' })}>Simples</button>
             <button type="button" className={style.headerStyle === 'hidden' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'hidden' })}>Ocultar</button>
