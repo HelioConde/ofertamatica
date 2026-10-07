@@ -1680,3 +1680,20 @@ summary:focus-visible {
     overflow: hidden !important;
   }
 }
+
+
+/* Compact 360px footer */
+@media (max-width: 420px) {
+  .marketing-footer nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px 12px !important;
+  }
+
+  .marketing-footer nav a {
+    min-height: 32px;
+  }
+
+  .marketing-footer {
+    gap: 10px !important;
+  }
+}
