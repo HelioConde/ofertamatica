@@ -175,7 +175,7 @@ const failures = results.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.tab === 'products' && item.products?.rowHeight > 390) return true
   if (item.tab === 'style' && item.style) {
-    if (item.style.headerArtHeight > 215 || item.style.frameGridHeight > 330) return true
+    if (item.style.headerArtHeight > 250 || item.style.frameGridHeight > 180) return true
   }
   if (item.tab === 'preview' && item.preview) {
     return item.preview.display !== 'grid'
