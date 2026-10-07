@@ -67,7 +67,7 @@ async function openEditor(formatId) {
   await page.goto(baseUrl + '/', { waitUntil: 'networkidle' })
   await page.evaluate(() => {
     localStorage.removeItem('ofertamatica:draft:v1')
-    localStorage.removeItem('ofertamatica:last-format:v1')
+    localStorage.removeItem('ofertamatica:last-format')
   })
   await page.reload({ waitUntil: 'networkidle' })
 
@@ -78,7 +78,7 @@ async function openEditor(formatId) {
   const textarea = page.locator('.quick-entry-card textarea')
   await textarea.waitFor({ state: 'visible' })
   await textarea.fill(sampleProducts)
-  await page.locator('.generate-button').click()
+  await textarea.press('Control+Enter')
   await page.locator('.product-row:not(.product-head)').first().waitFor({ state: 'visible' })
 
   return { page, errors }
