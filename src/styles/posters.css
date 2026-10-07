@@ -1110,7 +1110,9 @@
 .poster-card-format-a5 .poster-card-layers::after,
 .poster-card-format-a3 .poster-card-layers::after,
 .poster-card-format-sra3 .poster-card-layers::after,
-.poster-card-format-a4x4 .poster-card-layers::after {
+.poster-card-format-a4x4 .poster-card-layers::after,
+.poster-card-format-a4x2-cima-baixo .poster-card-layers::after,
+.poster-card-format-a4x2-invertido .poster-card-layers::after {
   content: '';
   position: absolute;
   z-index: 4;
