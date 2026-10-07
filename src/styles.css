@@ -7077,3 +7077,69 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .poster-frame-especial .ofertamatica-footer-decoration {
   display: none !important;
 }
+
+
+/* Retail callouts inspired by real store workflows */
+.poster-offer-meta-near-expiry,
+.poster-offer-meta-last-units {
+  top: 59.5%;
+  left: 10%;
+  right: 10%;
+  gap: 1.2mm;
+  flex-wrap: wrap;
+}
+
+.poster-offer-meta-near-expiry b,
+.poster-offer-meta-last-units b {
+  padding: 1.05mm 2.6mm;
+  border-radius: 999px;
+  color: #fff;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 3.1mm;
+  letter-spacing: .01em;
+  box-shadow: 0 .45mm 1.1mm rgba(65, 30, 0, .15);
+}
+
+.poster-offer-meta-near-expiry b {
+  background: #f28c00;
+}
+
+.poster-offer-meta-last-units b {
+  background: var(--poster-header-color, #d4142d);
+}
+
+.poster-offer-meta-near-expiry small,
+.poster-offer-meta-last-units small {
+  padding: .7mm 1.5mm;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  color: var(--poster-text-color, #111);
+  font-size: 1.9mm;
+  font-weight: 950;
+}
+
+/* A7 em folha A4: mantém leitura e preço fortes mesmo com oito cartazes. */
+.poster-sheet[data-poster-format="A4X8"] .ofertamatica-offer-ribbon,
+.poster-sheet[data-poster-format="A4X8"] .ofertamatica-app-ribbon {
+  font-size: clamp(3.6mm, 7.3cqi, 8.5mm) !important;
+}
+
+.poster-sheet[data-poster-format="A4X8"] .poster-offer-meta {
+  top: 56.5%;
+  left: 7%;
+  right: 7%;
+  gap: .7mm;
+  font-size: 1.35mm;
+}
+
+.poster-sheet[data-poster-format="A4X8"] .poster-offer-meta b {
+  font-size: 1.6mm;
+}
+
+.poster-sheet[data-poster-format="A4X8"] .poster-offer-footer {
+  left: 4%;
+  right: 4%;
+  bottom: 3%;
+  gap: .7mm;
+  font-size: 1.05mm;
+}
