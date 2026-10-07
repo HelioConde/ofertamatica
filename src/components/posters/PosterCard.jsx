@@ -1,9 +1,12 @@
+import PriceValue from './PriceValue'
+
 const PRIMARY_POSTER_FONT = '"Burbank Big Cd Bk"'
 const ACCENT_POSTER_FONT = 'Impact, "Arial Black", sans-serif'
-const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ]/
+const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
 
 function hasAccent(text) {
-  return ACCENT_PATTERN.test(String(text || ''))
+  const value = String(text || '')
+  return ACCENT_PATTERN.test(value) || ACCENT_PATTERN.test(value.normalize('NFD'))
 }
 
 function fontFamilyForText(text) {
@@ -23,12 +26,13 @@ function plannedFieldStyle(line, box) {
     height: `${line.height}%`,
     fontSize: `${line.fontSizeMm}mm`,
     fontWeight: line.style.fontWeight,
-    fontFamily: fontFamilyForText(line.text),
+    fontFamily: line.style.fontFamily || fontFamilyForText(line.text),
     lineHeight: line.style.lineHeight,
     letterSpacing: `${line.style.letterSpacing}mm`,
     textAlign: box.alignX || 'center',
     overflow: 'visible',
     boxSizing: 'border-box',
+    transform: hasAccent(line.text) ? 'translateY(0.07em)' : undefined,
   }
 }
 
@@ -132,11 +136,11 @@ function OfferFooter({ template }) {
 }
 
 function PriceBox({ plan, box, showDebug, editable, onBoxPointerDown, showCurrency = true }) {
+  const priceText = plan.price.text ? `${showCurrency ? 'R$ ' : ''}${plan.price.text}` : ''
   return (
     <div className={`poster-layout-box poster-price-box ${showDebug ? 'poster-layout-box-debug' : ''}`} style={boxStyle(box)} data-layout-box="priceBox" onPointerDown={editable ? (event) => onBoxPointerDown?.('priceBox', 'move', event) : undefined}>
       <div className="poster-price-content">
-        {showCurrency ? <span className="poster-currency-inline">R$</span> : null}
-        <div className="poster-field poster-planned-field poster-field-price" style={plannedFieldStyle(plan.price, box)}>{plan.price.text || '\u00a0'}</div>
+        <div className="poster-field poster-planned-field poster-field-price" style={plannedFieldStyle(plan.price, box)}><PriceValue value={priceText} /></div>
       </div>
       {showDebug ? <span className="poster-box-label">priceBox</span> : null}
       {editable ? <button type="button" className="poster-resize-handle" aria-label="Redimensionar priceBox" onPointerDown={(event) => onBoxPointerDown?.('priceBox', 'resize', event)} /> : null}
@@ -161,7 +165,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
   const headerText = template.headerText || 'OFERTA'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   return (
-    <article className={`poster-card ${inverted ? 'poster-card-inverted' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
+    <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       <div className="poster-card-layers">
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
         <div className={`ofertamatica-poster-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
