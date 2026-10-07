@@ -7547,3 +7547,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     opacity: .55;
   }
 }
+
+
+/* Remove implicit blank grid rows from mobile product cards */
+@media (max-width: 820px) {
+  .product-row:not(.product-head) .row-selector {
+    grid-row: 1 / span 3 !important;
+  }
+
+  .app-product-table .product-row:not(.product-head) .row-selector,
+  .product-row:not(.product-head):has(.product-promo-fields) .row-selector {
+    grid-row: 1 / span 4 !important;
+  }
+}
