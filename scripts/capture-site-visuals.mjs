@@ -1,23 +1,26 @@
 import { chromium } from 'playwright'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { PUBLIC_PAGES, SEO_PAGES } from '../src/seo/seoPages.js'
 
 const baseUrl = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
 const outDir = path.resolve('screenshots/site')
 await fs.mkdir(outDir, { recursive: true })
 
-const routes = [
+const allRoutes = [
   ['home', '/'],
-  ['modelos', '/modelos/'],
-  ['formatos', '/formatos/'],
-  ['como-funciona', '/como-funciona/'],
-  ['guias', '/guias-para-varejo/'],
+  ...PUBLIC_PAGES.map((page) => [page.slug, '/' + page.slug + '/']),
+  ...SEO_PAGES.map((page) => [page.slug, '/' + page.slug + '/']),
 ]
+
+const desktopRoutes = allRoutes.filter(([id]) => (
+  ['home', 'modelos', 'formatos', 'como-funciona', 'guias-para-varejo'].includes(id)
+))
 
 const browser = await chromium.launch({ headless: true })
 const state = []
 
-async function captureViewport(name, viewport) {
+async function captureViewport(name, viewport, routes) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 })
 
   for (const [id, route] of routes) {
@@ -26,7 +29,7 @@ async function captureViewport(name, viewport) {
     page.on('pageerror', (error) => errors.push(error.message))
 
     await page.goto(baseUrl + route, { waitUntil: 'networkidle' })
-    await page.waitForTimeout(250)
+    await page.waitForTimeout(450)
 
     const metrics = await page.evaluate(() => {
       const root = document.documentElement
@@ -47,17 +50,32 @@ async function captureViewport(name, viewport) {
           right: Number(element.getBoundingClientRect().right.toFixed(1)),
         }))
 
+      const ads = [...document.querySelectorAll('.oferta-ad-unit, .format-ad-card')]
+        .filter((element) => {
+          const rect = element.getBoundingClientRect()
+          return rect.width > 0 && rect.height > 0
+        })
+        .map((element) => {
+          const rect = element.getBoundingClientRect()
+          return {
+            className: String(element.className || ''),
+            width: Number(rect.width.toFixed(1)),
+            height: Number(rect.height.toFixed(1)),
+          }
+        })
+
       return {
         title: document.title,
         width: window.innerWidth,
         scrollWidth: Math.max(root.scrollWidth, body?.scrollWidth || 0),
         horizontalOverflow,
         visibleOverflow,
+        ads,
       }
     })
 
     await page.screenshot({
-      path: path.join(outDir, `${id}-${name}.png`),
+      path: path.join(outDir, id + '-' + name + '.png'),
       fullPage: true,
     })
 
@@ -67,9 +85,9 @@ async function captureViewport(name, viewport) {
   await page.close()
 }
 
-await captureViewport('desktop', { width: 1440, height: 1000 })
-await captureViewport('mobile-360', { width: 360, height: 800 })
-await captureViewport('mobile-412', { width: 412, height: 915 })
+await captureViewport('desktop', { width: 1440, height: 1000 }, desktopRoutes)
+await captureViewport('mobile-360', { width: 360, height: 800 }, allRoutes)
+await captureViewport('mobile-412', { width: 412, height: 915 }, allRoutes)
 
 await browser.close()
 
@@ -78,11 +96,17 @@ await fs.writeFile(
   JSON.stringify({
     generatedAt: new Date().toISOString(),
     commit: process.env.GITHUB_SHA || null,
+    routes: allRoutes,
     pages: state,
   }, null, 2),
 )
 
-const failures = state.filter((item) => item.errors.length || item.horizontalOverflow)
+const failures = state.filter((item) => {
+  if (item.errors.length || item.horizontalOverflow) return true
+  if (!item.viewport.startsWith('mobile')) return false
+  return item.ads.some((ad) => ad.height > 130)
+})
+
 if (failures.length) {
   console.error(JSON.stringify({ failures }, null, 2))
   process.exit(1)
@@ -90,5 +114,7 @@ if (failures.length) {
 
 console.log(JSON.stringify({
   captures: state.length,
-  pages: routes.map(([id]) => id),
+  mobilePages: allRoutes.length,
+  desktopPages: desktopRoutes.length,
+  pages: allRoutes.map(([id]) => id),
 }, null, 2))
