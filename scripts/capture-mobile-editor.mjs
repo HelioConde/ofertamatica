@@ -7,6 +7,7 @@ const outDir = path.resolve('screenshots/mobile-editor')
 await fs.mkdir(outDir, { recursive: true })
 
 const formats = [
+  'A4X8',
   'A4X4',
   'A4X2_CIMA_BAIXO',
   'A4X2_INVERTIDO',
