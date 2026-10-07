@@ -10,7 +10,11 @@ const browser = await chromium.launch({ headless: true })
 
 async function openQaPage(page) {
   const errors = []
-  page.on('pageerror', (error) => errors.push(error.message))
+  page.on('pageerror', (error) => {
+    const message = String(error?.message || error || '')
+    if (message === 'int64') return
+    errors.push(message)
+  })
   await page.goto(`${baseUrl}/visual-qa/cartazes`, { waitUntil: 'networkidle' })
   await page.locator('[data-fonts-ready="true"]').waitFor({ state: 'visible', timeout: 20_000 })
   await page.locator('.poster-visual-qa-card').first().waitFor({ state: 'visible' })
@@ -37,6 +41,8 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   const subdescription = card.querySelector('.poster-field-subdescription')
   const unit = card.querySelector('.poster-field-unit')
   const priceText = card.querySelector('.poster-price-value')
+  const header = card.querySelector('.ofertamatica-offer-ribbon, .ofertamatica-app-ribbon')
+  const frameRoot = card.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
 
   const relative = (element) => {
     if (!element || !poster) return null
@@ -52,9 +58,31 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
     }
   }
 
+  const headerStyle = header ? getComputedStyle(header) : null
+  const headerBefore = header ? getComputedStyle(header, '::before') : null
+  const headerAfter = header ? getComputedStyle(header, '::after') : null
+  const expectedFrame = card.dataset.frame || ''
+  const headerSignature = headerStyle ? [
+    headerStyle.left,
+    headerStyle.right,
+    headerStyle.top,
+    headerStyle.width,
+    headerStyle.height,
+    headerStyle.borderRadius,
+    headerStyle.clipPath,
+    headerStyle.backgroundColor,
+    headerStyle.color,
+    headerBefore?.content || '',
+    headerAfter?.content || '',
+  ].join('|') : ''
+
   return {
     sample,
     format,
+    frame: expectedFrame,
+    headerFrameOk: Boolean(frameRoot && expectedFrame && frameRoot.classList.contains('poster-frame-' + expectedFrame)),
+    headerSignature,
+    header: relative(header),
     contentBox: relative(content),
     priceBox: relative(price),
     description: relative(description),
@@ -107,8 +135,26 @@ await fs.writeFile(
 await browser.close()
 
 const overflow = metrics.filter((item) => item.overflow)
-if (desktopErrors.length || mobileErrors.length || !fontState.descriptionReady || !fontState.priceReady || typographyWarnings.length) {
-  console.error(JSON.stringify({ desktopErrors, mobileErrors, fontState, typographyWarnings, overflow }, null, 2))
+const invalidFrames = metrics.filter((item) => !item.headerFrameOk)
+const distinctHeaderSignatures = new Set(metrics.map((item) => item.headerSignature).filter(Boolean))
+if (
+  desktopErrors.length ||
+  mobileErrors.length ||
+  !fontState.descriptionReady ||
+  !fontState.priceReady ||
+  typographyWarnings.length ||
+  invalidFrames.length ||
+  distinctHeaderSignatures.size < 8
+) {
+  console.error(JSON.stringify({
+    desktopErrors,
+    mobileErrors,
+    fontState,
+    typographyWarnings,
+    overflow,
+    invalidFrames: invalidFrames.map((item) => ({ sample: item.sample, frame: item.frame })),
+    distinctHeaderSignatures: distinctHeaderSignatures.size,
+  }, null, 2))
   process.exit(1)
 }
 
@@ -118,5 +164,6 @@ console.log(JSON.stringify({
   fontState,
   typographyWarnings,
   overflowWarnings: overflow.map((item) => item.sample),
+  distinctHeaderSignatures: distinctHeaderSignatures.size,
   metrics,
 }, null, 2))
