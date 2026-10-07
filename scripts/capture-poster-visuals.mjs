@@ -36,7 +36,7 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   const description = card.querySelector('.poster-field-description')
   const subdescription = card.querySelector('.poster-field-subdescription')
   const unit = card.querySelector('.poster-field-unit')
-  const priceText = card.querySelector('.poster-field-price')
+  const priceText = card.querySelector('.poster-price-value')
 
   const relative = (element) => {
     if (!element || !poster) return null
@@ -68,6 +68,24 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   }
 }))
 
+const fontState = await desktop.evaluate(() => ({
+  descriptionReady: document.fonts.check('16px "Burbank Big Cd Bk"'),
+  priceReady: document.fonts.check('16px "Futura Price"'),
+}))
+
+const typographyWarnings = metrics.flatMap((item) => {
+  const warnings = []
+  const descriptionFamily = item.description?.fontFamily || ''
+  const priceFamily = item.price?.fontFamily || ''
+  if (item.description && !/Burbank Big Cd Bk|Impact|Arial Black/i.test(descriptionFamily)) {
+    warnings.push(`${item.sample}: fonte inesperada na descrição (${descriptionFamily})`)
+  }
+  if (item.price && !/Futura Price/i.test(priceFamily)) {
+    warnings.push(`${item.sample}: fonte inesperada no preço (${priceFamily})`)
+  }
+  return warnings
+})
+
 const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 })
 const mobileErrors = await openQaPage(mobile)
 await mobile.screenshot({ path: path.join(outDir, 'latest-mobile-full.png'), fullPage: true })
@@ -79,6 +97,8 @@ await fs.writeFile(
     commit: process.env.GITHUB_SHA || null,
     desktopErrors,
     mobileErrors,
+    fontState,
+    typographyWarnings,
     samples,
     metrics,
   }, null, 2),
@@ -87,14 +107,16 @@ await fs.writeFile(
 await browser.close()
 
 const overflow = metrics.filter((item) => item.overflow)
-if (desktopErrors.length || mobileErrors.length) {
-  console.error(JSON.stringify({ desktopErrors, mobileErrors, overflow }, null, 2))
+if (desktopErrors.length || mobileErrors.length || !fontState.descriptionReady || !fontState.priceReady || typographyWarnings.length) {
+  console.error(JSON.stringify({ desktopErrors, mobileErrors, fontState, typographyWarnings, overflow }, null, 2))
   process.exit(1)
 }
 
 console.log(JSON.stringify({
   samples: samples.length,
   screenshots: samples.length + 2,
+  fontState,
+  typographyWarnings,
   overflowWarnings: overflow.map((item) => item.sample),
   metrics,
 }, null, 2))
