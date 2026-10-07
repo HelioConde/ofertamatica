@@ -26,8 +26,17 @@ async function captureViewport(name, viewport, routes) {
 
   for (const [id, route] of routes) {
     const errors = []
+    const ignoredErrors = []
     page.removeAllListeners('pageerror')
-    page.on('pageerror', (error) => errors.push(error.message))
+    page.on('pageerror', (error) => {
+      const message = String(error?.message || error || '')
+      // AdSense/Google scripts can throw this protobuf conversion error without breaking the page.
+      if (/^int64$/i.test(message.trim())) {
+        ignoredErrors.push(message)
+      } else {
+        errors.push(message)
+      }
+    })
 
     await page.goto(baseUrl + route, { waitUntil: 'networkidle' })
     await page.waitForTimeout(450)
@@ -80,7 +89,7 @@ async function captureViewport(name, viewport, routes) {
       fullPage: true,
     })
 
-    state.push({ route, id, viewport: name, errors, ...metrics })
+    state.push({ route, id, viewport: name, errors, ignoredErrors, ...metrics })
   }
 
   await page.close()
