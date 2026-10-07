@@ -6376,3 +6376,100 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     line-height: 1.15;
   }
 }
+
+
+/* Mobile style library: horizontal galleries keep the editor short and touch-friendly. */
+@media (max-width: 820px) {
+  .header-art-grid {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: repeat(2, 112px) !important;
+    grid-auto-columns: minmax(142px, 42vw) !important;
+    gap: 8px !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: 2px 1px 6px;
+  }
+
+  .header-art-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-art-grid > button {
+    min-width: 0;
+    height: 112px;
+    grid-template-rows: 76px minmax(0, 1fr) !important;
+    scroll-snap-align: start;
+  }
+
+  .header-art-grid img,
+  .header-preset-thumb {
+    height: 76px !important;
+  }
+
+  .header-art-grid span {
+    font-size: 9px !important;
+  }
+
+  .poster-frame-style-grid {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: repeat(2, 78px) !important;
+    grid-auto-columns: minmax(165px, 48vw) !important;
+    gap: 8px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: 2px 1px 6px;
+  }
+
+  .poster-frame-style-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .poster-frame-style-grid > button {
+    height: 78px;
+    grid-template-columns: 48px minmax(0, 1fr) !important;
+    scroll-snap-align: start;
+  }
+
+  .poster-frame-style-grid > button > span:last-child b {
+    font-size: 9px !important;
+  }
+
+  .poster-frame-style-grid > button > span:last-child small {
+    font-size: 8px !important;
+    line-height: 1.25;
+  }
+
+  .recent-headers > div {
+    display: flex !important;
+    gap: 8px !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .recent-headers > div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recent-headers button {
+    flex: 0 0 138px;
+    min-height: 48px;
+  }
+
+  .header-show-more {
+    min-height: 40px !important;
+    font-size: 10px !important;
+  }
+}
