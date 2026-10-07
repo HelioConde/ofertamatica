@@ -432,6 +432,8 @@ function relatedPages(page) {
 }
 
 export function PublicPage({ page, onCreate }) {
+  const [modelQuery, setModelQuery] = useState('')
+  const [modelCategory, setModelCategory] = useState('Todos')
   const isModels = page.slug === 'modelos'
   const isFormats = page.slug === 'formatos'
   const isHow = page.slug === 'como-funciona'
@@ -443,6 +445,16 @@ export function PublicPage({ page, onCreate }) {
     ;(acc[item.group] ||= []).push(item)
     return acc
   }, {})
+  const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
+  const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
+  const visibleModels = MODEL_PRESETS.filter((item) => {
+    const matchesCategory = modelCategory === 'Todos' || item.category === modelCategory
+    const haystack = [item.name, item.category, item.label, item.product, item.note]
+      .join(' ')
+      .toLocaleLowerCase('pt-BR')
+    const matchesQuery = !normalizedModelQuery || haystack.includes(normalizedModelQuery)
+    return matchesCategory && matchesQuery
+  })
 
   return (
     <>
@@ -477,12 +489,41 @@ export function PublicPage({ page, onCreate }) {
                 <h2>{MODEL_PRESETS.length} modelos de placas prontos para começar</h2>
                 <p>Escolha um estilo por campanha ou setor. Ao clicar em “Usar este modelo”, as cores e o cabeçalho ficam preparados para o criador.</p>
               </div>
-              <div className="model-category-strip" aria-label="Tipos de modelos">
-                {[...new Set(MODEL_PRESETS.map((item) => item.category))].map((category) => <span key={category}>{category}</span>)}
+              <div className="model-gallery-tools">
+                <label className="model-search">
+                  <span>Buscar modelo</span>
+                  <input
+                    type="search"
+                    value={modelQuery}
+                    placeholder="Ex.: hortifruti, atacado, oferta..."
+                    onChange={(event) => setModelQuery(event.target.value)}
+                  />
+                </label>
+                <strong>{visibleModels.length} de {MODEL_PRESETS.length} modelos</strong>
+              </div>
+              <div className="model-category-strip" aria-label="Filtrar modelos por categoria">
+                {modelCategories.map((category) => (
+                  <button
+                    type="button"
+                    className={modelCategory === category ? 'active' : ''}
+                    key={category}
+                    onClick={() => setModelCategory(category)}
+                    aria-pressed={modelCategory === category}
+                  >
+                    {category}
+                  </button>
+                ))}
               </div>
               <div className="model-showcase-grid">
-                {MODEL_PRESETS.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
+                {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
               </div>
+              {!visibleModels.length ? (
+                <div className="model-empty-state">
+                  <strong>Nenhum modelo encontrado</strong>
+                  <span>Tente outro termo ou escolha “Todos”.</span>
+                  <button type="button" onClick={() => { setModelQuery(''); setModelCategory('Todos') }}>Limpar filtros</button>
+                </div>
+              ) : null}
             </section>
             <section className="marketing-section">
               <div className="marketing-heading">
@@ -537,7 +578,7 @@ export function PublicPage({ page, onCreate }) {
                 <p>O fluxo principal foi reduzido ao essencial. Ajustes visuais e condições especiais existem, mas só entram se você quiser.</p>
               </div>
               <div className="workflow-grid">
-                <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A4, A5, A3 ou a quantidade de placas por folha.</p></article>
+                <article><span>1</span><strong>Escolha o formato</strong><p>Selecione A7, A6, A5, A4, A3 ou a quantidade de placas por folha.</p></article>
                 <article><span>2</span><strong>Cole e gere</strong><p>Cole direto do Excel/ERP, mesmo com cabeçalho, ou importe TXT, CSV, XLS e XLSX.</p></article>
                 <article><span>+</span><strong>Personalize se quiser</strong><p>Header, cores, fonte e tipo de oferta ficam disponíveis sem bloquear o resultado.</p></article>
                 <article><span>✓</span><strong>Revise e imprima</strong><p>Confira papel, orientação e preços antes de enviar para a impressora.</p></article>
