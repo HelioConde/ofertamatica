@@ -60,6 +60,11 @@ async function captureViewport(name, viewport, routes) {
           right: Number(element.getBoundingClientRect().right.toFixed(1)),
         }))
 
+      const navClipped = [...document.querySelectorAll('.main-nav .nav-link')].some((link) => {
+        const rect = link.getBoundingClientRect()
+        return rect.left < -1 || rect.right > window.innerWidth + 1
+      })
+
       const ads = [...document.querySelectorAll('.oferta-ad-unit, .format-ad-card')]
         .filter((element) => {
           const rect = element.getBoundingClientRect()
@@ -80,6 +85,7 @@ async function captureViewport(name, viewport, routes) {
         scrollWidth: Math.max(root.scrollWidth, body?.scrollWidth || 0),
         horizontalOverflow,
         visibleOverflow,
+        navClipped,
         ads,
       }
     })
@@ -114,6 +120,7 @@ await fs.writeFile(
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (!item.viewport.startsWith('mobile')) return false
+  if (item.navClipped) return true
   return item.ads.some((ad) => ad.height > 130)
 })
 
