@@ -119,6 +119,25 @@ function OfferMeta({ product, template }) {
     )
   }
 
+  if (mode === 'near-expiry') {
+    const validity = String(template.validityText || '').trim()
+    return (
+      <div className="poster-offer-meta poster-offer-meta-near-expiry">
+        <b>PRÓXIMO À VALIDADE</b>
+        {validity ? <small>{validity}</small> : <small>APROVEITE E EVITE DESPERDÍCIO</small>}
+      </div>
+    )
+  }
+
+  if (mode === 'last-units') {
+    return (
+      <div className="poster-offer-meta poster-offer-meta-last-units">
+        <b>ÚLTIMAS UNIDADES</b>
+        <small>ENQUANTO DURAR O ESTOQUE</small>
+      </div>
+    )
+  }
+
   return null
 }
 
