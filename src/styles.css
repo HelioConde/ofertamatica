@@ -2123,7 +2123,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .poster-app-validity > span,
 .poster-app-regularLabel > span {
   color: var(--poster-text-color, #101010) !important;
-  font-family: var(--poster-description-font-family, var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif)) !important;
 }
 
 .poster-field-price,
