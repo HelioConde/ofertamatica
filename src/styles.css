@@ -7007,3 +7007,73 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     -webkit-print-color-adjust: exact;
   }
 }
+
+
+/* ESPECIAL V3 — mesmo vocabulário visual dos headers de referência. */
+.poster-frame-especial.ofertamatica-poster-background,
+.poster-frame-especial.ofertamatica-app-background {
+  background: var(--poster-background, #fff200) !important;
+}
+.poster-frame-especial.ofertamatica-poster-background::after,
+.poster-frame-especial.ofertamatica-app-background::after {
+  display: block !important;
+  inset: 1.2% !important;
+  border: .65mm solid rgba(229,30,49,.38) !important;
+  border-radius: 2mm !important;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-especial .ofertamatica-app-ribbon.header-retail {
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: auto !important;
+  height: 19.5% !important;
+  padding: 0 5% 2.5% !important;
+  border: 0 !important;
+  border-radius: 0 0 48% 48% / 0 0 14% 14% !important;
+  clip-path: none !important;
+  background: var(--poster-header-color, #ed1c24) !important;
+  color: var(--poster-header-text-color, #fff) !important;
+  box-shadow: none !important;
+  font-size: clamp(8.5mm, 14cqi, 29mm) !important;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon.header-retail > b,
+.poster-frame-especial .ofertamatica-app-ribbon.header-retail > b {
+  transform: scaleX(.94);
+  transform-origin: center;
+  text-align: center;
+}
+.poster-frame-especial .ofertamatica-offer-ribbon.header-retail::after,
+.poster-frame-especial .ofertamatica-app-ribbon.header-retail::after {
+  content: "Especial";
+  position: absolute;
+  z-index: 5;
+  right: 5%;
+  bottom: -12%;
+  width: auto;
+  color: #fff;
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: .46em;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow:
+    -1px -1px 0 var(--poster-header-color, #ed1c24),
+    1px 1px 0 var(--poster-header-color, #ed1c24),
+    0 .8mm 0 rgba(100,0,15,.20);
+  transform: rotate(-7deg);
+}
+.poster-frame-especial .ofertamatica-inner-frame,
+.poster-frame-especial .ofertamatica-app-frame {
+  display: block !important;
+  left: 4%;
+  right: 4%;
+  top: 22%;
+  bottom: 4%;
+  border: .5mm solid rgba(229,30,49,.40);
+  border-radius: 4mm;
+  background: transparent;
+}
+.poster-frame-especial .ofertamatica-footer-decoration {
+  display: none !important;
+}
