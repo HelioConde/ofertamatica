@@ -5971,6 +5971,41 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
   .style-color-control {
     min-height: 42px !important;
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+  }
+
+  .style-color-control input[type="color"] {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 7px !important;
+  }
+
+  .style-reset-top {
+    min-height: 36px !important;
+    height: 36px !important;
+    padding: 0 11px !important;
+    font-size: 10px !important;
+  }
+
+  .header-style-switch button {
+    min-height: 38px !important;
+    height: 38px !important;
+    font-size: 10px !important;
+  }
+
+  .selected-header-preview button,
+  .recent-headers button {
+    min-height: 34px !important;
+    padding: 0 8px !important;
+  }
+
+  .style-toggle-row {
+    min-height: 44px;
+  }
+
+  .style-toggle-row input[type="checkbox"] {
+    width: 26px !important;
+    height: 26px !important;
   }
 
   .style-color-control code {
