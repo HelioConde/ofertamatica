@@ -6094,6 +6094,60 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     right: 12px !important;
     bottom: max(12px, env(safe-area-inset-bottom)) !important;
   }
+
+  .quick-entry-card .format-chip {
+    display: none !important;
+  }
+
+  .interpreted > header {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .interpreted-header-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .selected-product-tools {
+    gap: 5px;
+  }
+
+  .selected-product-tools button {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    padding: 0 9px !important;
+    font-size: 10px !important;
+  }
+
+  .selected-product-tools .selected-delete {
+    min-width: 58px !important;
+  }
+
+  .round-count {
+    min-width: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 10px !important;
+  }
+
+  .product-row.product-head,
+  .app-product-table .product-row.product-head {
+    display: none !important;
+  }
+
+  .format-ad-card:has(.oferta-ad-unit.is-pending) {
+    min-height: 110px !important;
+    max-height: 110px !important;
+  }
+
+  .format-ad-card .oferta-ad-unit.is-pending {
+    min-height: 110px !important;
+    height: 110px !important;
+    max-height: 110px !important;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 480px) {
@@ -6139,4 +6193,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .header-art-grid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+
+/* Não reservar um cartão de anúncio quando o AdSense informou que não há anúncio. */
+.format-ad-card:empty {
+  display: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
 }
