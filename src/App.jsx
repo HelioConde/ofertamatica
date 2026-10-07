@@ -391,11 +391,11 @@ function Brand() {
 function Navigation({ routePath, screen, onInstall }) {
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
   const links = [
-    ['/', 'Criar placas'],
-    ['/modelos', 'Modelos'],
-    ['/formatos', 'Formatos'],
-    ['/como-funciona', 'Como funciona'],
-    ['/guias-para-varejo', 'Guias para varejo'],
+    ['/', 'Criar placas', 'Criar'],
+    ['/modelos', 'Modelos', 'Modelos'],
+    ['/formatos', 'Formatos', 'Formatos'],
+    ['/como-funciona', 'Como funciona', 'Como'],
+    ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
   ]
 
   return (
@@ -403,7 +403,7 @@ function Navigation({ routePath, screen, onInstall }) {
       <div className="nav-shell">
         <Brand />
         <nav className="main-nav" aria-label="Navegação principal">
-          {links.map(([href, label]) => {
+          {links.map(([href, label, mobileLabel]) => {
             const active = cleanPath === href || (label === 'Criar placas' && screen === 'editor')
             const target = href === '/' ? '/' : href + '/'
             return (
@@ -413,7 +413,8 @@ function Navigation({ routePath, screen, onInstall }) {
                 key={href}
                 aria-current={active ? 'page' : undefined}
               >
-                {label}
+                <span className="nav-label-full">{label}</span>
+                <span className="nav-label-mobile">{mobileLabel}</span>
               </a>
             )
           })}
