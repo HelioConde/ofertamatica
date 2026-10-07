@@ -6203,3 +6203,29 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   margin: 0 !important;
   border: 0 !important;
 }
+
+
+/* Mobile ad slot: fixed horizontal banner, never a tall empty card. */
+@media (max-width: 820px) {
+  .format-ad-card {
+    min-height: 112px !important;
+    height: 112px !important;
+    max-height: 112px !important;
+  }
+
+  .format-ad-card .oferta-ad-unit,
+  .format-ad-card .oferta-ad-unit.is-pending,
+  .format-ad-card .oferta-ad-unit.is-filled {
+    min-height: 100px !important;
+    height: 100px !important;
+    max-height: 100px !important;
+    overflow: hidden !important;
+  }
+
+  .format-ad-card .adsbygoogle {
+    width: 100% !important;
+    height: 100px !important;
+    max-height: 100px !important;
+    overflow: hidden !important;
+  }
+}
