@@ -440,7 +440,7 @@ function FormatPreview({ format }) {
           <div className={`oferta-format-mini ${format.invertedSlots.includes(index) ? 'is-inverted' : ''}`} key={index}>
             <span>OFERTA</span>
             <i></i>
-            <b>R$</b>
+            <b><small>R$</small><em>4,99</em></b>
           </div>
         ))}
       </div>
