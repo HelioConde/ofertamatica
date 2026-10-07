@@ -382,7 +382,6 @@ function ModelCard({ item, onCreate }) {
       >
         <div className="model-poster-standard-bg" aria-hidden="true">
           <div className="model-poster-standard-header">
-            {item.id === 'classic' ? <span className="model-poster-standard-mark" aria-hidden="true"><i /><i /></span> : null}
             <b>{item.label}</b>
           </div>
           <div className="model-poster-standard-frame" />
