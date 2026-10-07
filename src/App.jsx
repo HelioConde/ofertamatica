@@ -487,6 +487,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
               className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
               type="button"
               key={format.id}
+              data-format-id={format.id}
               onClick={() => onSelect(format.id)}
               aria-label={'Escolher ' + format.label + ', ' + format.application}
             >
@@ -1672,9 +1673,9 @@ function Editor({
       </div>
 
       <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor">
-        <button type="button" role="tab" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
-        <button type="button" role="tab" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
-        <button type="button" role="tab" aria-selected={mobileTab === 'style'} className={mobileTab === 'style' ? 'active' : ''} onClick={() => setMobileTab('style')}>Estilo</button>
+        <button type="button" role="tab" data-mobile-tab="products" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
+        <button type="button" role="tab" data-mobile-tab="preview" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
+        <button type="button" role="tab" data-mobile-tab="style" aria-selected={mobileTab === 'style'} className={mobileTab === 'style' ? 'active' : ''} onClick={() => setMobileTab('style')}>Estilo</button>
       </div>
 
       <section className="editor-layout">
