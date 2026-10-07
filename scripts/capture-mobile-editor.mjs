@@ -186,52 +186,86 @@ for (const [viewportName, viewport] of viewports) {
       results.push({ viewport: viewportName, formatId, tab, errors: [...errors], ...metrics })
 
       if (viewportName === 'mobile-390' && formatId === 'A4' && tab === 'style') {
-        const redPreset = page.locator('[data-style-preset="red"]')
-        await redPreset.click()
-        await page.waitForTimeout(120)
+        const themeIds = ['classic', 'curve', 'fresh', 'butcher', 'impact', 'red', 'green', 'premium']
 
-        const contrast = await page.evaluate(() => {
-          const poster = document.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
-          const price = document.querySelector('.poster-price-value')
-          const backgroundColor = poster ? getComputedStyle(poster).backgroundColor : ''
-          const priceColor = price ? getComputedStyle(price).color : ''
+        for (const themeId of themeIds) {
+          await page.locator('[data-style-preset="' + themeId + '"]').click()
+          await page.locator('[data-mobile-tab="preview"]').click()
+          await page.waitForTimeout(100)
 
-          function rgb(value) {
-            const values = String(value || '').match(/\d+(?:\.\d+)?/g)
-            if (!values || values.length < 3) return null
-            return values.slice(0, 3).map(Number)
-          }
+          const contrast = await page.evaluate(() => {
+            const poster = document.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
+            const description = document.querySelector('.poster-field-description')
+            const price = document.querySelector('.poster-price-value')
+            const header = document.querySelector('.ofertamatica-offer-ribbon, .ofertamatica-app-ribbon')
 
-          function redLike(value) {
-            const color = rgb(value)
-            if (!color) return false
-            const [red, green, blue] = color
-            return red >= 150 && red >= green * 1.35 && red >= blue * 1.12
-          }
+            const backgroundColor = poster ? getComputedStyle(poster).backgroundColor : ''
+            const descriptionColor = description ? getComputedStyle(description).color : ''
+            const priceColor = price ? getComputedStyle(price).color : ''
+            const headerBackgroundColor = header ? getComputedStyle(header).backgroundColor : ''
+            const headerTextColor = header ? getComputedStyle(header).color : ''
 
-          return {
-            backgroundColor,
-            priceColor,
-            redBackground: redLike(backgroundColor),
-            redPrice: redLike(priceColor),
-            readable: !(redLike(backgroundColor) && redLike(priceColor)),
-          }
-        })
+            function rgb(value) {
+              const values = String(value || '').match(/\d+(?:\.\d+)?/g)
+              if (!values || values.length < 3) return null
+              return values.slice(0, 3).map(Number)
+            }
 
-        await page.screenshot({
-          path: path.join(outDir, 'a4-mobile-390-red-contrast.png'),
-          fullPage: true,
-        })
+            function channel(value) {
+              const normalized = value / 255
+              return normalized <= 0.03928
+                ? normalized / 12.92
+                : ((normalized + 0.055) / 1.055) ** 2.4
+            }
 
-        results.push({
-          viewport: viewportName,
-          formatId,
-          tab: 'red-contrast',
-          errors: [...errors],
-          horizontalOverflow: false,
-          offenders: [],
-          contrast,
-        })
+            function luminance(value) {
+              const color = rgb(value)
+              if (!color) return null
+              return (0.2126 * channel(color[0]))
+                + (0.7152 * channel(color[1]))
+                + (0.0722 * channel(color[2]))
+            }
+
+            function ratio(background, foreground) {
+              const a = luminance(background)
+              const b = luminance(foreground)
+              if (a === null || b === null) return 0
+              const lighter = Math.max(a, b)
+              const darker = Math.min(a, b)
+              return (lighter + 0.05) / (darker + 0.05)
+            }
+
+            return {
+              backgroundColor,
+              descriptionColor,
+              priceColor,
+              headerBackgroundColor,
+              headerTextColor,
+              descriptionContrast: Number(ratio(backgroundColor, descriptionColor).toFixed(2)),
+              priceContrast: Number(ratio(backgroundColor, priceColor).toFixed(2)),
+              headerContrast: Number(ratio(headerBackgroundColor, headerTextColor).toFixed(2)),
+            }
+          })
+
+          await page.screenshot({
+            path: path.join(outDir, 'theme-' + themeId + '-a4-mobile-390.png'),
+            fullPage: true,
+          })
+
+          results.push({
+            viewport: viewportName,
+            formatId,
+            tab: 'theme-contrast',
+            themeId,
+            errors: [...errors],
+            horizontalOverflow: false,
+            offenders: [],
+            contrast,
+          })
+
+          await page.locator('[data-mobile-tab="style"]').click()
+          await page.waitForTimeout(70)
+        }
       }
     }
 
@@ -255,7 +289,11 @@ const failures = results.filter((item) => {
       || !item.preview.stageUsesCardWidth
       || !item.preview.posterReadable
   }
-  if (item.tab === 'red-contrast' && item.contrast && !item.contrast.readable) return true
+  if (item.tab === 'theme-contrast' && item.contrast) {
+    if (item.contrast.descriptionContrast < 3) return true
+    if (item.contrast.priceContrast < 3) return true
+    if (item.contrast.headerContrast < 3) return true
+  }
   return false
 })
 
