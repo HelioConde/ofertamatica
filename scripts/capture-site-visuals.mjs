@@ -38,8 +38,9 @@ async function captureViewport(name, viewport, routes) {
       }
     })
 
-    await page.goto(baseUrl + route, { waitUntil: 'networkidle' })
-    await page.waitForTimeout(450)
+    await page.goto(baseUrl + route, { waitUntil: 'domcontentloaded' })
+    await page.locator('#root').waitFor({ state: 'visible', timeout: 10_000 })
+    await page.waitForTimeout(300)
 
     const metrics = await page.evaluate(() => {
       const root = document.documentElement
