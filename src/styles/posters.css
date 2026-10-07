@@ -453,7 +453,7 @@
   justify-content: center;
   max-width: 100%;
   color: inherit;
-  font-family: "Futura Price";
+  font-family: var(--poster-price-font-family, "Futura Price", Impact, "Arial Black", sans-serif);
   font-style: italic;
   font-weight: 900;
   line-height: .78;
@@ -466,7 +466,7 @@
 
 .poster-app-appPrice .poster-price-value,
 .poster-app-appRegularPrice .poster-price-value {
-  font-family: "Futura Price";
+  font-family: var(--poster-price-font-family, "Futura Price", Impact, "Arial Black", sans-serif);
 }
 .poster-app-appPrice .poster-price-value {
   -webkit-text-stroke: .08mm rgba(145, 15, 26, .72) !important;
