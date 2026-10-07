@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import PosterSheet from './posters/PosterSheet'
+import { getPosterFormat } from '../config/posterFormats'
+import { getDefaultTemplateForFormat } from '../config/posterTemplates'
+import { createPosterLayouts } from '../poster-engine/layoutPlan'
+import { parseProductList } from '../poster-engine/parseProduct'
+import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import {
   PUBLIC_PAGES,
   SEO_FAQS,
@@ -309,7 +315,6 @@ function MarketingFooter() {
 }
 
 function ModelCard({ item, onCreate }) {
-  const [priceMajor = item.value, priceDecimal = ''] = String(item.value || '').split(',')
   const headerFooterStyle = {
     classic: 'moldura',
     'oferta-dia': 'chevron',
@@ -337,18 +342,56 @@ function ModelCard({ item, onCreate }) {
     minimal: 'minimal',
   }[item.id] || 'moldura'
 
-  function useModel() {
-    const offerMode = {
-      'de-por': 'de-por',
-      'leve-mais': 'leve-por',
-      atacado: 'atacado-varejo',
-      clube: 'club-app',
-      app: 'club-app',
-      'segunda-unidade': 'second-unit',
-      validade: 'near-expiry',
-      'ultimas-unidades': 'last-units',
-    }[item.id] || 'standard'
+  const offerMode = {
+    'de-por': 'de-por',
+    'leve-mais': 'leve-por',
+    atacado: 'atacado-varejo',
+    clube: 'club-app',
+    app: 'club-app',
+    'segunda-unidade': 'second-unit',
+    validade: 'near-expiry',
+    'ultimas-unidades': 'last-units',
+  }[item.id] || 'standard'
 
+  const format = useMemo(() => getPosterFormat('A4'), [])
+  const measure = useMemo(() => createBrowserTextMeasure(), [])
+  const preview = useMemo(() => {
+    const parsed = parseProductList(`${item.product} ${item.value}`)[0] || {
+      id: `model-${item.id}`,
+      description: item.product,
+      subdescription: '',
+      complement: '',
+      unit: '',
+      price: item.value,
+    }
+    const product = {
+      ...parsed,
+      id: `model-${item.id}`,
+      price: item.value,
+      regularPrice: ['de-por', 'clube', 'app'].includes(item.id) ? '24,90' : parsed.regularPrice,
+      offerQuantity: item.id === 'leve-mais' ? '3' : parsed.offerQuantity,
+      eachPrice: item.id === 'leve-mais' ? item.value : parsed.eachPrice,
+      wholesalePrice: item.id === 'atacado' ? '4,99' : parsed.wholesalePrice,
+      wholesaleQuantity: item.id === 'atacado' ? '6' : parsed.wholesaleQuantity,
+      secondUnitPrice: item.id === 'segunda-unidade' ? '9,99' : parsed.secondUnitPrice,
+    }
+    const template = {
+      ...getDefaultTemplateForFormat('A4'),
+      headerStyle: 'retail',
+      headerText: item.label,
+      headerFooterStyle,
+      offerMode,
+      validityText: item.id === 'validade' ? 'VÁLIDO ATÉ HOJE' : '',
+      limitText: '',
+      showCurrency: true,
+      backgroundImage: '',
+      backgroundVisible: false,
+    }
+    const layouts = createPosterLayouts([product], template, format, measure)
+    return { product, template, layouts }
+  }, [format, headerFooterStyle, item, measure, offerMode])
+
+  function useModel() {
     try {
       localStorage.setItem(POSTER_STYLE_KEY, JSON.stringify({
         backgroundColor: item.background,
@@ -365,7 +408,7 @@ function ModelCard({ item, onCreate }) {
         headerFooterStyle,
         showCurrency: true,
         offerMode,
-        validityText: '',
+        validityText: item.id === 'validade' ? 'VÁLIDO ATÉ HOJE' : '',
         limitText: '',
       }))
     } catch {
@@ -374,35 +417,43 @@ function ModelCard({ item, onCreate }) {
     onCreate()
   }
 
+  const pxPerMm = 96 / 25.4
+  const naturalWidth = format.widthMm * pxPerMm
+  const naturalHeight = format.heightMm * pxPerMm
+  const scale = 0.245
+
   return (
-    <article className="model-showcase-card">
+    <article className="model-showcase-card model-showcase-card-real">
       <div
-        className={`model-poster-standard is-retail header-frame-${headerFooterStyle}`}
+        className="model-real-poster-shell"
         style={{
           '--poster-background': item.background,
           '--poster-price-color': item.price,
           '--poster-text-color': item.text,
           '--poster-header-color': item.header,
           '--poster-header-text-color': item.headerText,
+          '--poster-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+          '--poster-description-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+          '--poster-price-font-family': '"Futura Price", Impact, "Arial Black", sans-serif',
+          height: naturalHeight * scale,
         }}
-        aria-label={`Prévia do modelo ${item.name}`}
+        aria-label={`Prévia real do modelo ${item.name}`}
       >
-        <div className="model-poster-standard-bg" aria-hidden="true">
-          <div className="model-poster-standard-header">
-            <b>{item.label}</b>
-          </div>
-          <div className="model-poster-standard-frame" />
-          <div className="model-poster-standard-signature">OFERTAMÁTICA</div>
-        </div>
-        <div className="model-poster-standard-product">
-          <strong>{item.product}</strong>
-        </div>
-        <div className="model-poster-standard-price">
-          <small>R$</small>
-          <b>
-            <span>{priceMajor}</span>
-            {priceDecimal ? <><i>,</i><em>{priceDecimal}</em></> : null}
-          </b>
+        <div
+          className="model-real-poster-scale"
+          style={{
+            width: naturalWidth,
+            height: naturalHeight,
+            transform: `scale(${scale})`,
+          }}
+        >
+          <PosterSheet
+            format={format}
+            products={[preview.product]}
+            template={preview.template}
+            layoutPlans={preview.layouts}
+            showBackground
+          />
         </div>
       </div>
       <div className="model-card-copy">
