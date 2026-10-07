@@ -1155,6 +1155,27 @@ a { color: inherit; text-decoration: none; }
   grid-template-rows: 1fr 1fr;
 }
 
+.oferta-format-preview.is-eight {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.oferta-format-preview.is-eight .oferta-format-mini > span {
+  top: 3%;
+  padding: 1px 3px;
+  font-size: 2.6px;
+}
+
+.oferta-format-preview.is-eight .oferta-format-mini > i {
+  top: 28%;
+  height: 28%;
+}
+
+.oferta-format-preview.is-eight .oferta-format-mini > b {
+  bottom: 5%;
+  font-size: 2.8px;
+}
+
 .oferta-format-preview.is-split {
   grid-template-rows: 1fr 1fr;
 }
@@ -7142,4 +7163,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   bottom: 3%;
   gap: .7mm;
   font-size: 1.05mm;
+}
+
+
+/* 8 formatos + publicidade: grade 3x3 mantém o seletor inteiro na viewport desktop. */
+@media (min-width: 1001px) {
+  .format-mode .format-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .format-mode .format-thumb {
+    min-height: 44px !important;
+    max-height: 78px !important;
+  }
+
+  .format-mode .format-copy {
+    padding-top: 3px !important;
+  }
 }
