@@ -105,6 +105,18 @@ async function captureViewport(name, viewport, routes) {
           height: Number(element.getBoundingClientRect().height.toFixed(1)),
         }))
 
+      const formatRect = (selector) => {
+        const element = document.querySelector(selector)
+        if (!element) return null
+        const rect = element.getBoundingClientRect()
+        return {
+          top: Number(rect.top.toFixed(1)),
+          bottom: Number(rect.bottom.toFixed(1)),
+          width: Number(rect.width.toFixed(1)),
+          height: Number(rect.height.toFixed(1)),
+        }
+      }
+
       return {
         title: document.title,
         width: window.innerWidth,
@@ -116,6 +128,14 @@ async function captureViewport(name, viewport, routes) {
         navClipped,
         tinyTargets,
         ads,
+        creatorGeometry: {
+          page: formatRect('.format-page'),
+          dialog: formatRect('.format-dialog'),
+          header: formatRect('.format-dialog-head'),
+          grid: formatRect('.format-grid'),
+          ad: formatRect('.format-ad-card'),
+          links: formatRect('.format-trust-links'),
+        },
       }
     })
 
