@@ -1,11 +1,11 @@
 export const LAYOUT_CONFIG_VERSION = 9
 
 const baseTextStyles = {
-  description: { fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 1 },
-  subdescription: { fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 1 },
-  complement: { fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 1 },
-  unit: { fontMin: 2.8, fontMax: 14, fontWeight: 900, lineHeight: 0.96, letterSpacing: 0, scale: 0.72 },
-  price: { fontMin: 7, fontMax: 34, fontWeight: 900, lineHeight: 0.88, letterSpacing: 0, scale: 1 },
+  description: { fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  subdescription: { fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  complement: { fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  unit: { fontMin: 3, fontMax: 15, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 0.76 },
+  price: { fontMin: 8, fontMax: 40, fontWeight: 900, lineHeight: 0.84, letterSpacing: 0, scale: 1, fontFamily: '"Futura Price"' },
 }
 
 function textStyles(textScale = 1, scales = {}) {
@@ -21,17 +21,17 @@ const centered = { alignX: 'center', alignY: 'center' }
 const content = (x, y, width, height, gap = 2) => ({ x, y, width, height, gap, ...centered })
 const price = (x, y, width, height) => ({ x, y, width, height, ...centered })
 
-// Layouts próprios da Ofertamática. Mantêm o motor físico/auto-fit,
-// mas não dependem das artes ou posicionamentos visuais da outra empresa.
+// Calibração visual inspirada nas placas físicas usadas como referência:
+// descrição mais larga/alta e preço dominando o terço inferior, sem copiar a identidade visual da loja.
 export const DEFAULT_POSTER_LAYOUTS = {
-  A4X4: { contentBox: content(8, 20, 84, 43), priceBox: price(12, 66, 76, 25), textScale: 0.72 },
-  A5: { contentBox: content(8, 20, 84, 45), priceBox: price(12, 68, 76, 24), textScale: 1 },
-  A4X2_CIMA_BAIXO: { contentBox: content(8, 19, 84, 45), priceBox: price(12, 67, 76, 25), textScale: 1 },
-  A4X2_INVERTIDO: { contentBox: content(8, 19, 84, 45), priceBox: price(12, 67, 76, 25), textScale: 1 },
+  A4X4: { contentBox: content(6, 20, 88, 43), priceBox: price(9, 66, 82, 27), textScale: 0.78 },
+  A5: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 1.05 },
+  A4X2_CIMA_BAIXO: { contentBox: content(6, 19, 88, 45), priceBox: price(9, 66, 82, 28), textScale: 1.02 },
+  A4X2_INVERTIDO: { contentBox: content(6, 19, 88, 45), priceBox: price(9, 66, 82, 28), textScale: 1.02 },
   A4X2_APP: { contentBox: content(8, 22, 84, 34, 1.5), priceBox: price(10, 58, 80, 17), textScale: 1 },
-  A4: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 1.36 },
-  A3: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 1.9 },
-  SRA3: { contentBox: content(8, 20, 84, 46), priceBox: price(12, 69, 76, 23), textScale: 2.05 },
+  A4: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 1.4 },
+  A3: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 2.02 },
+  SRA3: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 2.15 },
 }
 
 const appBox = (x, y, width, height) => ({ x, y, width, height, ...centered })
