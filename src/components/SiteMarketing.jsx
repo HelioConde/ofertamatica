@@ -434,6 +434,7 @@ function relatedPages(page) {
 export function PublicPage({ page, onCreate }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
+  const [modelLimit, setModelLimit] = useState(12)
   const isModels = page.slug === 'modelos'
   const isFormats = page.slug === 'formatos'
   const isHow = page.slug === 'como-funciona'
@@ -447,7 +448,7 @@ export function PublicPage({ page, onCreate }) {
   }, {})
   const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
   const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
-  const visibleModels = MODEL_PRESETS.filter((item) => {
+  const filteredModels = MODEL_PRESETS.filter((item) => {
     const matchesCategory = modelCategory === 'Todos' || item.category === modelCategory
     const haystack = [item.name, item.category, item.label, item.product, item.note]
       .join(' ')
@@ -455,6 +456,7 @@ export function PublicPage({ page, onCreate }) {
     const matchesQuery = !normalizedModelQuery || haystack.includes(normalizedModelQuery)
     return matchesCategory && matchesQuery
   })
+  const visibleModels = filteredModels.slice(0, modelLimit)
 
   return (
     <>
@@ -496,10 +498,13 @@ export function PublicPage({ page, onCreate }) {
                     type="search"
                     value={modelQuery}
                     placeholder="Ex.: hortifruti, atacado, oferta..."
-                    onChange={(event) => setModelQuery(event.target.value)}
+                    onChange={(event) => {
+                      setModelQuery(event.target.value)
+                      setModelLimit(12)
+                    }}
                   />
                 </label>
-                <strong>{visibleModels.length} de {MODEL_PRESETS.length} modelos</strong>
+                <strong>{visibleModels.length} de {filteredModels.length} encontrados · {MODEL_PRESETS.length} no total</strong>
               </div>
               <div className="model-category-strip" aria-label="Filtrar modelos por categoria">
                 {modelCategories.map((category) => (
@@ -507,7 +512,10 @@ export function PublicPage({ page, onCreate }) {
                     type="button"
                     className={modelCategory === category ? 'active' : ''}
                     key={category}
-                    onClick={() => setModelCategory(category)}
+                    onClick={() => {
+                      setModelCategory(category)
+                      setModelLimit(12)
+                    }}
                     aria-pressed={modelCategory === category}
                   >
                     {category}
@@ -517,11 +525,20 @@ export function PublicPage({ page, onCreate }) {
               <div className="model-showcase-grid">
                 {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
               </div>
-              {!visibleModels.length ? (
+              {visibleModels.length < filteredModels.length ? (
+                <button
+                  type="button"
+                  className="model-show-more"
+                  onClick={() => setModelLimit((value) => Math.min(value + 12, filteredModels.length))}
+                >
+                  Mostrar mais modelos ({filteredModels.length - visibleModels.length})
+                </button>
+              ) : null}
+              {!filteredModels.length ? (
                 <div className="model-empty-state">
                   <strong>Nenhum modelo encontrado</strong>
                   <span>Tente outro termo ou escolha “Todos”.</span>
-                  <button type="button" onClick={() => { setModelQuery(''); setModelCategory('Todos') }}>Limpar filtros</button>
+                  <button type="button" onClick={() => { setModelQuery(''); setModelCategory('Todos'); setModelLimit(12) }}>Limpar filtros</button>
                 </div>
               ) : null}
             </section>
