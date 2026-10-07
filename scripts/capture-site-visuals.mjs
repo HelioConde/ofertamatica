@@ -7,6 +7,7 @@ const baseUrl = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
 const outDir = path.resolve('screenshots/site')
 await fs.mkdir(outDir, { recursive: true })
 
+// Full mobile coverage: root + every public, institutional and SEO route.
 const allRoutes = [
   ['home', '/'],
   ...PUBLIC_PAGES.map((page) => [page.slug, '/' + page.slug + '/']),
