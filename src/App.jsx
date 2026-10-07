@@ -162,6 +162,32 @@ const OFFER_MODES = [
   { id: 'last-units', name: 'Últimas unidades', note: 'Destaque para saldo final' },
 ]
 
+function hexToRgb(color) {
+  const value = String(color || '').trim()
+  const match = value.match(/^#([0-9a-f]{6})$/i)
+  if (!match) return null
+  const hex = match[1]
+  return {
+    r: Number.parseInt(hex.slice(0, 2), 16),
+    g: Number.parseInt(hex.slice(2, 4), 16),
+    b: Number.parseInt(hex.slice(4, 6), 16),
+  }
+}
+
+function isRedLike(color) {
+  const rgb = hexToRgb(color)
+  if (!rgb) return false
+  return rgb.r >= 150
+    && rgb.r >= rgb.g * 1.35
+    && rgb.r >= rgb.b * 1.12
+}
+
+function resolveReadablePriceColor(backgroundColor, priceColor) {
+  const desired = priceColor || DEFAULT_POSTER_STYLE.priceColor
+  if (isRedLike(backgroundColor) && isRedLike(desired)) return '#fff200'
+  return desired
+}
+
 function loadPosterStyle() {
   try {
     const saved = JSON.parse(localStorage.getItem(POSTER_STYLE_KEY) || 'null')
@@ -202,6 +228,10 @@ function loadPosterStyle() {
         return legacy === '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif' ? 'auto' : legacy
       })(),
       priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
+      priceColor: resolveReadablePriceColor(
+        saved.backgroundColor || DEFAULT_POSTER_STYLE.backgroundColor,
+        saved.priceColor || DEFAULT_POSTER_STYLE.priceColor,
+      ),
       headerStyle: migrateLegacyDefaultHeader ? 'retail' : (saved.headerStyle || DEFAULT_POSTER_STYLE.headerStyle),
       headerTextColor: (migrateLegacyDefaultHeader || migrateLegacyRetailTextOnly)
         ? DEFAULT_POSTER_STYLE.headerTextColor
@@ -868,7 +898,18 @@ function StyleSidebar({
                   <input
                     type="color"
                     value={style[field]}
-                    onChange={(event) => onChange({ ...style, [field]: event.target.value })}
+                    onChange={(event) => {
+                      const value = event.target.value
+                      if (field === 'backgroundColor') {
+                        onChange({
+                          ...style,
+                          backgroundColor: value,
+                          priceColor: resolveReadablePriceColor(value, style.priceColor),
+                        })
+                        return
+                      }
+                      onChange({ ...style, [field]: value })
+                    }}
                     aria-label={'Cor de ' + label.toLocaleLowerCase('pt-BR')}
                   />
                   <code>{style[field].toUpperCase()}</code>
@@ -1225,10 +1266,12 @@ function Editor({
     customHeader,
   ])
 
+  const resolvedPriceColor = resolveReadablePriceColor(posterStyle.backgroundColor, posterStyle.priceColor)
+
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
     '--poster-text-color': posterStyle.textColor,
-    '--poster-price-color': posterStyle.priceColor,
+    '--poster-price-color': resolvedPriceColor,
     '--poster-header-color': posterStyle.headerColor,
     '--poster-header-text-color': posterStyle.headerTextColor,
     '--poster-font-family': posterStyle.descriptionFontFamily === 'auto'
