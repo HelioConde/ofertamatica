@@ -22,7 +22,7 @@ const CREATOR_META = {
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
 const MODEL_PRESETS = [
-  { id: 'classic', name: 'Clássico de oferta', category: 'Essenciais', label: 'OFERTA', background: '#f5e66d', price: '#d91b2b', text: '#101010', header: '#e51e31', headerText: '#d91b2b', variant: 'classic', product: 'CAFÉ 500 g', value: '18,90', note: 'Visual varejo com descrição condensada, preço grande e leitura rápida.' },
+  { id: 'classic', name: 'Clássico de oferta', category: 'Essenciais', label: 'OFERTA', background: '#f5e66d', price: '#d91b2b', text: '#101010', header: '#e51e31', headerText: '#ffffff', variant: 'classic', product: 'CAFÉ 500 g', value: '18,90', note: 'Visual varejo com descrição condensada, preço grande e leitura rápida.' },
   { id: 'relampago', name: 'Oferta relâmpago', category: 'Impacto', label: 'OFERTA RELÂMPAGO', background: '#f02b45', price: '#fff200', text: '#ffffff', header: '#b80925', headerText: '#ffffff', variant: 'flash', product: 'REFRIGERANTE 2 L', value: '6,99', note: 'Alto contraste para promoções curtas e chamadas urgentes.' },
   { id: 'super-oferta', name: 'Super oferta', category: 'Impacto', label: 'SUPER OFERTA', background: '#ffea00', price: '#d8001d', text: '#111111', header: '#0c59c7', headerText: '#ffffff', variant: 'super', product: 'ARROZ 5 kg', value: '24,90', note: 'Visual forte para ponta de gôndola e produtos campeões.' },
   { id: 'economia', name: 'Economia de verdade', category: 'Essenciais', label: 'ECONOMIA', background: '#fff5b5', price: '#d71920', text: '#16324a', header: '#16734a', headerText: '#ffffff', variant: 'savings', product: 'FEIJÃO 1 kg', value: '7,49', note: 'Mais sóbrio, ótimo para comunicação recorrente de preço.' },
@@ -307,6 +307,30 @@ function MarketingFooter() {
 
 function ModelCard({ item, onCreate }) {
   const [priceMajor = item.value, priceDecimal = ''] = String(item.value || '').split(',')
+  const headerFooterStyle = {
+    classic: 'moldura',
+    relampago: 'chevron',
+    'super-oferta': 'rodape-forte',
+    economia: 'oval',
+    'de-por': 'curva-simples',
+    'segunda-unidade': 'minimal',
+    hortifruti: 'ondas',
+    acougue: 'moldura',
+    padaria: 'curva-simples',
+    adega: 'minimal',
+    farmacia: 'chevron',
+    atacado: 'moldura',
+    'leve-mais': 'ondas',
+    clube: 'moldura',
+    app: 'minimal',
+    'fim-de-semana': 'chevron',
+    aniversario: 'divertido',
+    verao: 'ondas',
+    'black-friday': 'moldura',
+    queima: 'imperdivel',
+    premium: 'minimal',
+    minimal: 'minimal',
+  }[item.id] || 'moldura'
 
   function useModel() {
     const offerMode = {
@@ -328,9 +352,10 @@ function ModelCard({ item, onCreate }) {
         fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
         descriptionFontFamily: 'auto',
         priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
-        headerStyle: item.id === 'classic' ? 'retail' : 'band',
+        headerStyle: 'retail',
         headerText: item.label,
         headerImage: '',
+        headerFooterStyle,
         showCurrency: true,
         offerMode,
         validityText: '',
@@ -345,7 +370,7 @@ function ModelCard({ item, onCreate }) {
   return (
     <article className="model-showcase-card">
       <div
-        className={`model-poster-standard ${item.id === 'classic' ? 'is-retail' : ''}`}
+        className={`model-poster-standard is-retail header-frame-${headerFooterStyle}`}
         style={{
           '--poster-background': item.background,
           '--poster-price-color': item.price,
