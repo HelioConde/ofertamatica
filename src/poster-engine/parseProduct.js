@@ -30,7 +30,6 @@ const COMPOUND_DESCRIPTIONS = [
   ['LEITE', 'CONDENSADO'],
   ['ACHOCOLATADO', 'EM', 'PO'],
   ['COCA', 'COLA'],
-  ['PAO', 'FRANCES'],
   ['TIXAN', 'YPE'],
 ]
 
