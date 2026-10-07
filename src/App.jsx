@@ -2003,6 +2003,18 @@ function Editor({
         />
       </section>
 
+      {products.length && mobileTab !== 'preview' ? (
+        <button
+          type="button"
+          className="poster-mobile-preview-fab"
+          onClick={() => setMobileTab('preview')}
+          aria-label={`Abrir prévia das placas, ${products.length} ${products.length === 1 ? 'produto' : 'produtos'}`}
+        >
+          Ver prévia
+          <b>{products.length}</b>
+        </button>
+      ) : null}
+
       <div className="poster-print-root" aria-hidden="true">
         {pages.map((productsForPage, index) => (
           <PosterSheet
