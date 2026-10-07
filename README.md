@@ -68,7 +68,7 @@ O fluxo atual permite:
 1. escolher o formato;
 2. colar produtos, usar “Colar e gerar”, arrastar arquivo ou importar planilha;
 3. revisar descrição, complemento, unidade e preço;
-4. personalizar modelo, cores, tipografia e cabeçalho;
+4. personalizar modelo, cores, fonte da descrição, fonte do preço e cabeçalho;
 5. visualizar o cartaz;
 6. revisar papel/orientação;
 7. salvar como PDF ou imprimir.
@@ -101,6 +101,7 @@ Retorno recorrente:
 
 Outros ajustes opcionais disponíveis depois da geração:
 
+- tipografia separada para descrição e preço, com padrão varejo condensado + Futura para preço;
 - validade da oferta;
 - limite por cliente;
 - logo da loja salva localmente no dispositivo;
@@ -209,6 +210,17 @@ O build gera páginas estáticas para as páginas públicas e SEO, além de:
 - `robots.txt`.
 
 A raiz continua sendo o criador e não é substituída por uma landing SEO.
+
+## QA visual automatizado
+
+O repositório mantém uma rota interna `/visual-qa/cartazes` e capturas Playwright para comparar as placas com referências físicas. O QA verifica carregamento das fontes, overflow, composição do preço e páginas principais do site em desktop/mobile.
+
+Arquivos principais:
+
+- `scripts/capture-poster-visuals.mjs`;
+- `scripts/capture-site-visuals.mjs`;
+- `scripts/validate-posters.mjs`;
+- `.github/workflows/poster-visual-snapshot.yml`.
 
 ## Desenvolvimento
 
