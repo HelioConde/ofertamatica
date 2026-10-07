@@ -93,6 +93,18 @@ for (const formatId of formats) {
 
     const metrics = await collectBaseMetrics(page)
 
+    if (tab === 'products') {
+      metrics.products = await page.evaluate(() => {
+        const row = document.querySelector('.product-row:not(.product-head)')
+        const fields = row ? [...row.querySelectorAll('.product-field')] : []
+        const rect = row?.getBoundingClientRect()
+        return {
+          rowHeight: rect ? Number(rect.height.toFixed(1)) : 0,
+          fieldCount: fields.length,
+        }
+      })
+    }
+
     if (tab === 'preview') {
       metrics.preview = await page.evaluate(() => {
         const card = document.querySelector('.preview-card.mobile-panel-active')
@@ -135,8 +147,12 @@ for (const formatId of formats) {
           className: String(control.className || '').slice(0, 100),
           height: Number(control.getBoundingClientRect().height.toFixed(1)),
         }))
+        const headerArt = document.querySelector('.header-art-grid')
+        const frames = document.querySelector('.poster-frame-style-grid')
         return {
           width: sidebar ? Number(sidebar.getBoundingClientRect().width.toFixed(1)) : 0,
+          headerArtHeight: headerArt ? Number(headerArt.getBoundingClientRect().height.toFixed(1)) : 0,
+          frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
           tooSmall,
         }
       })
@@ -157,6 +173,10 @@ await browser.close()
 
 const failures = results.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.tab === 'products' && item.products?.rowHeight > 390) return true
+  if (item.tab === 'style' && item.style) {
+    if (item.style.headerArtHeight > 215 || item.style.frameGridHeight > 330) return true
+  }
   if (item.tab === 'preview' && item.preview) {
     return item.preview.display !== 'grid'
       || !item.preview.headerBeforeStage
