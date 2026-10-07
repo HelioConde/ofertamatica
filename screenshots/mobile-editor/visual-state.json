@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T18:08:13.973Z",
-  "commit": "bb6d160689801766e47def286d40acb9e764c49a",
+  "generatedAt": "2026-10-07T19:30:10.777Z",
+  "commit": "1efa55a48651a4dc17be7051aa09f0eb93127b89",
   "results": [
     {
       "viewport": "mobile-360",
@@ -493,7 +493,7 @@
         "display": "grid",
         "cardWidth": 344,
         "stageWidth": 322,
-        "stageHeight": 480,
+        "stageHeight": 304,
         "posterWidth": 304,
         "posterHeight": 214.9,
         "headerBeforeStage": true,
@@ -1421,7 +1421,7 @@
         "display": "grid",
         "cardWidth": 374,
         "stageWidth": 352,
-        "stageHeight": 506.4,
+        "stageHeight": 320.7,
         "posterWidth": 334,
         "posterHeight": 236.2,
         "headerBeforeStage": true,
@@ -2501,7 +2501,7 @@
         "display": "grid",
         "cardWidth": 396,
         "stageWidth": 374,
-        "stageHeight": 520,
+        "stageHeight": 330,
         "posterWidth": 356,
         "posterHeight": 251.7,
         "headerBeforeStage": true,
