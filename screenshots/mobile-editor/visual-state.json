@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T17:23:47.706Z",
-  "commit": "6506df00e7ba8ec00c7ae1aff0e3706ff2b7e152",
+  "generatedAt": "2026-10-07T18:08:13.973Z",
+  "commit": "bb6d160689801766e47def286d40acb9e764c49a",
   "results": [
     {
       "viewport": "mobile-360",
@@ -12,7 +12,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -128,7 +128,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -244,7 +244,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -360,7 +360,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -476,7 +476,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 302,
+        "rowHeight": 231.2,
         "fieldCount": 7
       }
     },
@@ -592,7 +592,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -708,7 +708,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -824,7 +824,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -940,7 +940,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1056,7 +1056,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1172,7 +1172,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1288,7 +1288,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1404,7 +1404,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 302,
+        "rowHeight": 231.2,
         "fieldCount": 7
       }
     },
@@ -1520,7 +1520,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1629,16 +1629,153 @@
     {
       "viewport": "mobile-390",
       "formatId": "A4",
-      "tab": "red-contrast",
+      "tab": "theme-contrast",
+      "themeId": "classic",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(227, 6, 19)",
+        "headerBackgroundColor": "rgb(237, 28, 36)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 16.27,
+        "priceContrast": 4.17,
+        "headerContrast": 4.38
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "curve",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(227, 6, 19)",
+        "headerBackgroundColor": "rgb(239, 51, 64)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 16.27,
+        "priceContrast": 4.17,
+        "headerContrast": 4.02
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "fresh",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(246, 242, 59)",
+        "descriptionColor": "rgb(17, 17, 17)",
+        "priceColor": "rgb(215, 25, 32)",
+        "headerBackgroundColor": "rgb(22, 132, 81)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 15.9,
+        "priceContrast": 4.37,
+        "headerContrast": 4.72
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "butcher",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(255, 224, 90)",
+        "descriptionColor": "rgb(64, 20, 23)",
+        "priceColor": "rgb(181, 9, 31)",
+        "headerBackgroundColor": "rgb(143, 23, 35)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 12.07,
+        "priceContrast": 5.31,
+        "headerContrast": 9.07
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "impact",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(17, 17, 17)",
+        "priceColor": "rgb(227, 6, 19)",
+        "headerBackgroundColor": "rgb(212, 20, 45)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 16.14,
+        "priceContrast": 4.17,
+        "headerContrast": 5.33
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "red",
       "errors": [],
       "horizontalOverflow": false,
       "offenders": [],
       "contrast": {
         "backgroundColor": "rgb(239, 35, 60)",
+        "descriptionColor": "rgb(255, 255, 255)",
         "priceColor": "rgb(255, 242, 0)",
-        "redBackground": true,
-        "redPrice": false,
-        "readable": true
+        "headerBackgroundColor": "rgb(182, 9, 37)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 4.22,
+        "priceContrast": 3.61,
+        "headerContrast": 6.87
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "green",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(23, 167, 104)",
+        "descriptionColor": "rgb(7, 29, 20)",
+        "priceColor": "rgb(17, 17, 17)",
+        "headerBackgroundColor": "rgb(11, 117, 71)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 5.66,
+        "priceContrast": 6.08,
+        "headerContrast": 5.75
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "theme-contrast",
+      "themeId": "premium",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(20, 27, 45)",
+        "descriptionColor": "rgb(255, 255, 255)",
+        "priceColor": "rgb(255, 224, 0)",
+        "headerBackgroundColor": "rgb(29, 53, 87)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "descriptionContrast": 17.15,
+        "priceContrast": 13,
+        "headerContrast": 12.36
       }
     },
     {
@@ -1651,7 +1788,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1767,7 +1904,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1883,7 +2020,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -1999,7 +2136,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -2115,7 +2252,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -2231,7 +2368,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -2347,7 +2484,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 302,
+        "rowHeight": 231.2,
         "fieldCount": 7
       }
     },
@@ -2463,7 +2600,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -2579,7 +2716,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },
@@ -2695,7 +2832,7 @@
       "horizontalOverflow": false,
       "offenders": [],
       "products": {
-        "rowHeight": 250,
+        "rowHeight": 176.4,
         "fieldCount": 5
       }
     },

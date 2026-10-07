@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T17:22:26.817Z",
-  "commit": "6506df00e7ba8ec00c7ae1aff0e3706ff2b7e152",
+  "generatedAt": "2026-10-07T18:06:50.716Z",
+  "commit": "bb6d160689801766e47def286d40acb9e764c49a",
   "routes": [
     [
       "home",
@@ -84,11 +84,63 @@
       "ignoredErrors": [],
       "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
       "width": 1440,
+      "height": 1000,
       "scrollWidth": 1440,
+      "documentHeight": 1000,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [
+        {
+          "className": "format-ad-card",
+          "width": 1254,
+          "height": 86
+        },
+        {
+          "className": "oferta-ad-unit is-pending",
+          "width": 1252,
+          "height": 84
+        }
+      ],
+      "creatorGeometry": {
+        "page": {
+          "top": 69,
+          "bottom": 509.5,
+          "width": 1280,
+          "height": 440.5
+        },
+        "dialog": {
+          "top": 76,
+          "bottom": 502.5,
+          "width": 1280,
+          "height": 426.5
+        },
+        "header": {
+          "top": 77,
+          "bottom": 181.5,
+          "width": 1278,
+          "height": 104.5
+        },
+        "grid": {
+          "top": 181.5,
+          "bottom": 467.5,
+          "width": 1278,
+          "height": 286
+        },
+        "ad": {
+          "top": 375.5,
+          "bottom": 461.5,
+          "width": 1254,
+          "height": 86
+        },
+        "links": {
+          "top": 467.5,
+          "bottom": 501.5,
+          "width": 1278,
+          "height": 34
+        }
+      }
     },
     {
       "route": "/modelos/",
@@ -98,17 +150,71 @@
       "ignoredErrors": [],
       "title": "Modelos de Cartaz de Oferta | Ofertamática",
       "width": 1440,
+      "height": 1000,
       "scrollWidth": 1440,
+      "documentHeight": 3714,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": [
+      "tinyTargets": [
         {
-          "className": "oferta-ad-unit is-pending",
-          "width": 1240,
-          "height": 280
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › MODELOS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
         }
-      ]
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/formatos/",
@@ -118,11 +224,71 @@
       "ignoredErrors": [],
       "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
       "width": 1440,
+      "height": 1000,
       "scrollWidth": 1440,
+      "documentHeight": 1448,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FORMATOS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/como-funciona/",
@@ -132,11 +298,71 @@
       "ignoredErrors": [],
       "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
       "width": 1440,
+      "height": 1000,
       "scrollWidth": 1440,
+      "documentHeight": 1475,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › COMO FUNCIONA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/guias-para-varejo/",
@@ -146,11 +372,71 @@
       "ignoredErrors": [],
       "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
       "width": 1440,
+      "height": 1000,
       "scrollWidth": 1440,
+      "documentHeight": 2304,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIAS PARA VAREJO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/",
@@ -160,11 +446,63 @@
       "ignoredErrors": [],
       "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
       "width": 360,
+      "height": 800,
       "scrollWidth": 360,
+      "documentHeight": 1745,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [
+        {
+          "className": "format-ad-card",
+          "width": 298,
+          "height": 66
+        },
+        {
+          "className": "oferta-ad-unit is-pending",
+          "width": 296,
+          "height": 64
+        }
+      ],
+      "creatorGeometry": {
+        "page": {
+          "top": 99,
+          "bottom": 1745.3,
+          "width": 344,
+          "height": 1646.3
+        },
+        "dialog": {
+          "top": 111,
+          "bottom": 1721.3,
+          "width": 344,
+          "height": 1610.3
+        },
+        "header": {
+          "top": 112,
+          "bottom": 382.3,
+          "width": 318,
+          "height": 270.3
+        },
+        "grid": {
+          "top": 382.3,
+          "bottom": 1636.3,
+          "width": 318,
+          "height": 1254
+        },
+        "ad": {
+          "top": 1560.3,
+          "bottom": 1626.3,
+          "width": 298,
+          "height": 66
+        },
+        "links": {
+          "top": 1636.3,
+          "bottom": 1720.3,
+          "width": 318,
+          "height": 84
+        }
+      }
     },
     {
       "route": "/modelos/",
@@ -174,274 +512,488 @@
       "ignoredErrors": [],
       "title": "Modelos de Cartaz de Oferta | Ofertamática",
       "width": 360,
+      "height": 800,
       "scrollWidth": 360,
+      "documentHeight": 5841,
       "horizontalOverflow": false,
-      "visibleOverflow": [
-        {
-          "tag": "button",
-          "className": "",
-          "left": 328,
-          "right": 397.4
-        },
-        {
-          "tag": "button",
-          "className": "",
-          "left": 404.4,
-          "right": 495.7
-        },
-        {
-          "tag": "button",
-          "className": "",
-          "left": 502.7,
-          "right": 580.9
-        }
-      ],
+      "visibleOverflow": [],
       "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/formatos/",
+      "id": "formatos",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2646,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/como-funciona/",
+      "id": "como-funciona",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2442,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/guias-para-varejo/",
+      "id": "guias-para-varejo",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 3127,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/sobre/",
+      "id": "sobre",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Sobre o Ofertamática | Ferramenta para Cartazes de Oferta",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 1801,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/fale-conosco/",
+      "id": "fale-conosco",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Fale Conosco | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 1922,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/privacidade/",
+      "id": "privacidade",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Política de Privacidade | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2127,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/termos/",
+      "id": "termos",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Termos de Uso | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 1950,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/criador-de-cartaz-de-oferta/",
+      "id": "criador-de-cartaz-de-oferta",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2480,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-para-supermercado/",
+      "id": "cartaz-para-supermercado",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz para Supermercado | Crie e Imprima Online",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2529,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/gerador-de-cartaz-de-promocao/",
+      "id": "gerador-de-cartaz-de-promocao",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Gerador de Cartaz de Promoção Online | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2477,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-preco-online/",
+      "id": "cartaz-de-preco-online",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz de Preço Online | Crie e Imprima no Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2477,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-oferta-para-imprimir/",
+      "id": "cartaz-de-oferta-para-imprimir",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2459,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-a4/",
+      "id": "cartaz-a4",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2458,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-por/",
+      "id": "cartaz-de-por",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz De/Por para Supermercado | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2472,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-atacado-varejo/",
+      "id": "cartaz-atacado-varejo",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartaz Atacado e Varejo | Dois Preços na Mesma Placa",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2491,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/como-fazer-cartaz-de-oferta/",
+      "id": "como-fazer-cartaz-de-oferta",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Como Fazer Cartaz de Oferta | Guia Prático",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2005,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/",
+      "id": "home",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 1789,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
       "ads": [
+        {
+          "className": "format-ad-card",
+          "width": 350,
+          "height": 102
+        },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 348,
           "height": 100
         }
-      ]
-    },
-    {
-      "route": "/formatos/",
-      "id": "formatos",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/como-funciona/",
-      "id": "como-funciona",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/guias-para-varejo/",
-      "id": "guias-para-varejo",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/sobre/",
-      "id": "sobre",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Sobre o Ofertamática | Ferramenta para Cartazes de Oferta",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/fale-conosco/",
-      "id": "fale-conosco",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Fale Conosco | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/privacidade/",
-      "id": "privacidade",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Política de Privacidade | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/termos/",
-      "id": "termos",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Termos de Uso | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/criador-de-cartaz-de-oferta/",
-      "id": "criador-de-cartaz-de-oferta",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-para-supermercado/",
-      "id": "cartaz-para-supermercado",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz para Supermercado | Crie e Imprima Online",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/gerador-de-cartaz-de-promocao/",
-      "id": "gerador-de-cartaz-de-promocao",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Gerador de Cartaz de Promoção Online | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-de-preco-online/",
-      "id": "cartaz-de-preco-online",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz de Preço Online | Crie e Imprima no Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-de-oferta-para-imprimir/",
-      "id": "cartaz-de-oferta-para-imprimir",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-a4/",
-      "id": "cartaz-a4",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-de-por/",
-      "id": "cartaz-de-por",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz De/Por para Supermercado | Ofertamática",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/cartaz-atacado-varejo/",
-      "id": "cartaz-atacado-varejo",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Cartaz Atacado e Varejo | Dois Preços na Mesma Placa",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/como-fazer-cartaz-de-oferta/",
-      "id": "como-fazer-cartaz-de-oferta",
-      "viewport": "mobile-360",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Como Fazer Cartaz de Oferta | Guia Prático",
-      "width": 360,
-      "scrollWidth": 360,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
-    },
-    {
-      "route": "/",
-      "id": "home",
-      "viewport": "mobile-412",
-      "errors": [],
-      "ignoredErrors": [],
-      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
-      "width": 412,
-      "scrollWidth": 412,
-      "horizontalOverflow": false,
-      "visibleOverflow": [],
-      "navClipped": false,
-      "ads": []
+      ],
+      "creatorGeometry": {
+        "page": {
+          "top": 99,
+          "bottom": 1789.3,
+          "width": 396,
+          "height": 1690.3
+        },
+        "dialog": {
+          "top": 111,
+          "bottom": 1765.3,
+          "width": 396,
+          "height": 1654.3
+        },
+        "header": {
+          "top": 112,
+          "bottom": 390.3,
+          "width": 370,
+          "height": 278.3
+        },
+        "grid": {
+          "top": 390.3,
+          "bottom": 1680.3,
+          "width": 370,
+          "height": 1290
+        },
+        "ad": {
+          "top": 1568.3,
+          "bottom": 1670.3,
+          "width": 350,
+          "height": 102
+        },
+        "links": {
+          "top": 1680.3,
+          "bottom": 1764.3,
+          "width": 370,
+          "height": 84
+        }
+      }
     },
     {
       "route": "/modelos/",
@@ -451,30 +1003,22 @@
       "ignoredErrors": [],
       "title": "Modelos de Cartaz de Oferta | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 5798,
       "horizontalOverflow": false,
-      "visibleOverflow": [
-        {
-          "tag": "button",
-          "className": "",
-          "left": 404.4,
-          "right": 495.7
-        },
-        {
-          "tag": "button",
-          "className": "",
-          "left": 502.7,
-          "right": 580.9
-        }
-      ],
+      "visibleOverflow": [],
       "navClipped": false,
-      "ads": [
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 400,
-          "height": 100
-        }
-      ]
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/formatos/",
@@ -484,11 +1028,22 @@
       "ignoredErrors": [],
       "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2646,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/como-funciona/",
@@ -498,11 +1053,22 @@
       "ignoredErrors": [],
       "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2413,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/guias-para-varejo/",
@@ -512,11 +1078,22 @@
       "ignoredErrors": [],
       "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 3053,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/sobre/",
@@ -526,11 +1103,22 @@
       "ignoredErrors": [],
       "title": "Sobre o Ofertamática | Ferramenta para Cartazes de Oferta",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 1695,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/fale-conosco/",
@@ -540,11 +1128,22 @@
       "ignoredErrors": [],
       "title": "Fale Conosco | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 1882,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/privacidade/",
@@ -554,11 +1153,22 @@
       "ignoredErrors": [],
       "title": "Política de Privacidade | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 1974,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/termos/",
@@ -568,11 +1178,22 @@
       "ignoredErrors": [],
       "title": "Termos de Uso | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 1834,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/criador-de-cartaz-de-oferta/",
@@ -582,11 +1203,22 @@
       "ignoredErrors": [],
       "title": "Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2444,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-para-supermercado/",
@@ -596,11 +1228,22 @@
       "ignoredErrors": [],
       "title": "Cartaz para Supermercado | Crie e Imprima Online",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2480,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/gerador-de-cartaz-de-promocao/",
@@ -610,11 +1253,22 @@
       "ignoredErrors": [],
       "title": "Gerador de Cartaz de Promoção Online | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2438,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-de-preco-online/",
@@ -624,11 +1278,22 @@
       "ignoredErrors": [],
       "title": "Cartaz de Preço Online | Crie e Imprima no Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2476,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-de-oferta-para-imprimir/",
@@ -638,11 +1303,22 @@
       "ignoredErrors": [],
       "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2444,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-a4/",
@@ -652,11 +1328,22 @@
       "ignoredErrors": [],
       "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2438,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-de-por/",
@@ -666,11 +1353,22 @@
       "ignoredErrors": [],
       "title": "Cartaz De/Por para Supermercado | Ofertamática",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2456,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/cartaz-atacado-varejo/",
@@ -680,11 +1378,22 @@
       "ignoredErrors": [],
       "title": "Cartaz Atacado e Varejo | Dois Preços na Mesma Placa",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 2443,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     },
     {
       "route": "/como-fazer-cartaz-de-oferta/",
@@ -694,11 +1403,22 @@
       "ignoredErrors": [],
       "title": "Como Fazer Cartaz de Oferta | Guia Prático",
       "width": 412,
+      "height": 915,
       "scrollWidth": 412,
+      "documentHeight": 1958,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "ads": []
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
     }
   ]
 }

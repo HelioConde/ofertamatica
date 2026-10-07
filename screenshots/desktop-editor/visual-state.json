@@ -1,0 +1,471 @@
+{
+  "generatedAt": "2026-10-07T18:08:35.172Z",
+  "commit": "bb6d160689801766e47def286d40acb9e764c49a",
+  "results": [
+    {
+      "formatId": "A4X8",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A4X4",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A4X2_CIMA_BAIXO",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A4X2_INVERTIDO",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A4X2_APP",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 378.7,
+        "width": 254,
+        "height": 179.6,
+        "right": 1108,
+        "bottom": 558.3
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 920,
+        "height": 35,
+        "right": 1001,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A4",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A5",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.3,
+        "width": 254,
+        "height": 360.4,
+        "right": 1108,
+        "bottom": 648.7
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    },
+    {
+      "formatId": "A3",
+      "errors": [],
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 901,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "layout": {
+        "left": 80,
+        "top": 116,
+        "width": 1280,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "editorMain": {
+        "left": 80,
+        "top": 116,
+        "width": 744,
+        "height": 774,
+        "right": 824,
+        "bottom": 890
+      },
+      "preview": {
+        "left": 834,
+        "top": 116,
+        "width": 292,
+        "height": 774,
+        "right": 1126,
+        "bottom": 890
+      },
+      "style": {
+        "left": 1136,
+        "top": 116,
+        "width": 224,
+        "height": 774,
+        "right": 1360,
+        "bottom": 890
+      },
+      "poster": {
+        "left": 854,
+        "top": 288.9,
+        "width": 254,
+        "height": 359.2,
+        "right": 1108,
+        "bottom": 648.1
+      },
+      "firstRow": {
+        "left": 81,
+        "top": 405,
+        "width": 742,
+        "height": 35,
+        "right": 823,
+        "bottom": 440
+      }
+    }
+  ],
+  "failures": []
+}

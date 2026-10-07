@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T17:21:25.256Z",
-  "commit": "6506df00e7ba8ec00c7ae1aff0e3706ff2b7e152",
+  "generatedAt": "2026-10-07T18:06:28.734Z",
+  "commit": "bb6d160689801766e47def286d40acb9e764c49a",
   "desktopErrors": [],
   "mobileErrors": [],
   "fontState": {
@@ -29,6 +29,16 @@
       "frame": "moldura",
       "headerFrameOk": true,
       "headerSignature": "11.0469px|11.0469px|2.78125px|372.75px|45.9688px|3.77953px|none|rgb(237, 28, 36)|rgb(255, 255, 255)|none|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(237, 28, 36)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.38
+      },
       "header": {
         "x": 2.8,
         "y": 1,
@@ -39,23 +49,23 @@
       },
       "contentBox": {
         "x": 5,
-        "y": 22,
+        "y": 21,
         "width": 90,
         "height": 34,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 7,
-        "y": 60,
-        "width": 86,
-        "height": 30.99,
+        "x": 6,
+        "y": 57,
+        "width": 88,
+        "height": 36,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 23.12,
-        "y": 21.99,
+        "y": 20.99,
         "width": 53.75,
         "height": 14.19,
         "fontPx": 43.2983,
@@ -63,7 +73,7 @@
       },
       "subdescription": {
         "x": 22.89,
-        "y": 36.52,
+        "y": 35.52,
         "width": 54.21,
         "height": 12.21,
         "fontPx": 37.251,
@@ -71,18 +81,18 @@
       },
       "unit": {
         "x": 44.06,
-        "y": 49.07,
+        "y": 48.07,
         "width": 11.86,
         "height": 6.93,
         "fontPx": 20.6816,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 29.01,
-        "y": 61.59,
-        "width": 41.97,
-        "height": 27.8,
-        "fontPx": 99.3335,
+        "x": 25.72,
+        "y": 58.75,
+        "width": 48.55,
+        "height": 32.48,
+        "fontPx": 116.039,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -93,6 +103,16 @@
       "frame": "moldura",
       "headerFrameOk": true,
       "headerSignature": "22.1562px|22.1562px|11.2031px|747.375px|184.875px|3.77953px|none|rgb(237, 28, 36)|rgb(255, 255, 255)|none|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(237, 28, 36)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.38
+      },
       "header": {
         "x": 2.8,
         "y": 1,
@@ -105,21 +125,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 27.44,
+        "y": 26.48,
         "width": 79,
         "height": 15.23,
         "fontPx": 161.299,
@@ -127,7 +147,7 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 42.56,
+        "y": 41.56,
         "width": 79,
         "height": 10.06,
         "fontPx": 122.71,
@@ -135,18 +155,18 @@
       },
       "unit": {
         "x": 44.09,
-        "y": 53.52,
+        "y": 52.48,
         "width": 11.82,
         "height": 5.05,
         "fontPx": 60.3213,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.32,
-        "y": 68.12,
-        "width": 77.35,
-        "height": 25.75,
-        "fontPx": 369.94,
+        "x": 8.7,
+        "y": 66.24,
+        "width": 82.59,
+        "height": 27.52,
+        "fontPx": 395.323,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -156,7 +176,17 @@
       "format": "A4",
       "frame": "imperdivel",
       "headerFrameOk": true,
-      "headerSignature": "7.90625px|7.90625px|5.59375px|775.875px|229.703px|0px|none|rgba(0, 0, 0, 0)|rgb(255, 255, 255)|none|\"Imperdível\"",
+      "headerSignature": "7.90625px|7.90625px|5.59375px|775.875px|229.703px|0px|none|rgb(237, 28, 36)|rgb(255, 255, 255)|none|\"Imperdível\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(237, 28, 36)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.38
+      },
       "header": {
         "x": 1,
         "y": 0.5,
@@ -169,21 +199,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 26.47,
+        "y": 25.49,
         "width": 79,
         "height": 11.01,
         "fontPx": 134.381,
@@ -191,7 +221,7 @@
       },
       "subdescription": {
         "x": 12.66,
-        "y": 39.71,
+        "y": 38.69,
         "width": 74.67,
         "height": 20.15,
         "fontPx": 213.347,
@@ -199,11 +229,11 @@
       },
       "unit": null,
       "price": {
-        "x": 11.32,
-        "y": 68.12,
-        "width": 77.35,
-        "height": 25.75,
-        "fontPx": 369.94,
+        "x": 8.7,
+        "y": 66.24,
+        "width": 82.59,
+        "height": 27.52,
+        "fontPx": 395.323,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -214,6 +244,16 @@
       "frame": "promocao",
       "headerFrameOk": true,
       "headerSignature": "0px|0px|0px|791.688px|207.281px|0px|polygon(0px 0px, 100% 0px, 100% 78%, 50% 100%, 0px 78%)|rgb(239, 51, 64)|rgb(255, 255, 255)|\"HOJE TEM\"|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(239, 51, 64)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.02
+      },
       "header": {
         "x": 0,
         "y": 0,
@@ -226,21 +266,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 34.9,
+        "y": 33.92,
         "width": 79,
         "height": 9.25,
         "fontPx": 112.879,
@@ -249,18 +289,18 @@
       "subdescription": null,
       "unit": {
         "x": 44.09,
-        "y": 45.05,
+        "y": 44.03,
         "width": 11.82,
         "height": 5.05,
         "fontPx": 60.3213,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.32,
-        "y": 68.12,
-        "width": 77.35,
-        "height": 25.75,
-        "fontPx": 369.94,
+        "x": 8.7,
+        "y": 66.24,
+        "width": 82.59,
+        "height": 27.52,
+        "fontPx": 395.323,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -271,6 +311,16 @@
       "frame": "chevron",
       "headerFrameOk": true,
       "headerSignature": "0px|0px|0px|557.359px|142.5px|0px|polygon(0px 0px, 100% 0px, 100% 72%, 50% 100%, 0px 72%)|rgb(200, 0, 22)|rgb(255, 255, 255)|none|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(200, 0, 22)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 6.06
+      },
       "header": {
         "x": 0,
         "y": 0,
@@ -283,21 +333,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 20.85,
-        "y": 21.34,
+        "y": 20.4,
         "width": 58.28,
         "height": 18.55,
         "fontPx": 160.01,
@@ -305,7 +355,7 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 40.79,
+        "y": 39.81,
         "width": 78.99,
         "height": 8.7,
         "fontPx": 75.0501,
@@ -313,18 +363,18 @@
       },
       "unit": {
         "x": 40.79,
-        "y": 58.3,
+        "y": 57.24,
         "width": 18.42,
         "height": 5.36,
         "fontPx": 45.2409,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.33,
-        "y": 68.17,
-        "width": 77.33,
-        "height": 25.65,
-        "fontPx": 260.334,
+        "x": 8.63,
+        "y": 66.28,
+        "width": 82.73,
+        "height": 27.43,
+        "fontPx": 278.453,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -335,6 +385,16 @@
       "frame": "oval",
       "headerFrameOk": true,
       "headerSignature": "0px|0px|0px|557.359px|166.25px|0px 0px 72% / 0px 0px 82%|none|rgb(200, 0, 22)|rgb(255, 242, 0)|\"\"|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(200, 0, 22)",
+        "headerColor": "rgb(255, 242, 0)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 5.18
+      },
       "header": {
         "x": 0,
         "y": 0,
@@ -347,21 +407,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.49,
-        "y": 28.68,
+        "y": 27.72,
         "width": 79.01,
         "height": 9.22,
         "fontPx": 79.5704,
@@ -369,7 +429,7 @@
       },
       "subdescription": {
         "x": 10.49,
-        "y": 38.81,
+        "y": 37.81,
         "width": 79,
         "height": 11.25,
         "fontPx": 97.0394,
@@ -377,18 +437,18 @@
       },
       "unit": {
         "x": 43.7,
-        "y": 50.95,
+        "y": 49.92,
         "width": 12.58,
         "height": 5.36,
         "fontPx": 45.2409,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.33,
-        "y": 68.17,
-        "width": 77.33,
-        "height": 25.65,
-        "fontPx": 260.334,
+        "x": 8.63,
+        "y": 66.28,
+        "width": 82.73,
+        "height": 27.43,
+        "fontPx": 278.453,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -399,6 +459,16 @@
       "frame": "curva-simples",
       "headerFrameOk": true,
       "headerSignature": "-7.89062px|-7.89062px|0px|410.625px|103.453px|0px 0px 50% 50% / 0px 0px 24% 24%|none|rgb(239, 51, 64)|rgb(255, 255, 255)|none|\"\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(239, 51, 64)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.02
+      },
       "header": {
         "x": -2,
         "y": 0,
@@ -411,21 +481,21 @@
         "x": 6,
         "y": 20,
         "width": 88,
-        "height": 43,
+        "height": 42,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 9,
-        "y": 66,
-        "width": 82,
-        "height": 27,
+        "x": 8,
+        "y": 63,
+        "width": 84,
+        "height": 31,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.49,
-        "y": 24.84,
+        "y": 24.37,
         "width": 79,
         "height": 13.22,
         "fontPx": 80.6589,
@@ -433,26 +503,26 @@
       },
       "subdescription": {
         "x": 10.49,
-        "y": 38.92,
+        "y": 38.42,
         "width": 79,
         "height": 12.73,
         "fontPx": 77.6882,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "unit": {
-        "x": 43.41,
-        "y": 52.52,
-        "width": 13.17,
+        "x": 43.42,
+        "y": 52,
+        "width": 13.16,
         "height": 5.63,
         "fontPx": 33.6076,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 13.25,
-        "y": 67.21,
-        "width": 73.49,
-        "height": 24.57,
-        "fontPx": 176.175,
+        "x": 9.71,
+        "y": 65.05,
+        "width": 80.57,
+        "height": 26.89,
+        "fontPx": 192.797,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -463,6 +533,16 @@
       "frame": "ondas",
       "headerFrameOk": true,
       "headerSignature": "-15.8281px|-15.8281px|0px|823.344px|103.453px|0px 0px 50% 50% / 0px 0px 24% 24%|none|rgb(231, 25, 45)|rgb(255, 242, 0)|none|\"\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(231, 25, 45)",
+        "headerColor": "rgb(255, 242, 0)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 3.92
+      },
       "header": {
         "x": -2,
         "y": 0,
@@ -475,48 +555,48 @@
         "x": 6,
         "y": 19,
         "width": 88,
-        "height": 45,
+        "height": 44,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 9,
-        "y": 66,
-        "width": 82,
-        "height": 28,
+        "x": 8,
+        "y": 64,
+        "width": 84,
+        "height": 31,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 20.54,
+        "x": 21.32,
         "y": 19,
-        "width": 58.92,
-        "height": 17.92,
-        "fontPx": 109.342,
+        "width": 57.35,
+        "height": 17.44,
+        "fontPx": 106.413,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "subdescription": {
-        "x": 27.3,
-        "y": 37.82,
-        "width": 45.4,
-        "height": 17.92,
-        "fontPx": 109.342,
+        "x": 27.91,
+        "y": 37.32,
+        "width": 44.18,
+        "height": 17.44,
+        "fontPx": 106.413,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "unit": {
         "x": 45.69,
-        "y": 56.64,
+        "y": 55.64,
         "width": 8.61,
         "height": 7.36,
         "fontPx": 43.9483,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 30.83,
-        "y": 67.24,
-        "width": 38.34,
-        "height": 25.5,
-        "fontPx": 182.854,
+        "x": 28.73,
+        "y": 65.34,
+        "width": 42.53,
+        "height": 28.3,
+        "fontPx": 202.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -527,6 +607,16 @@
       "frame": "divertido",
       "headerFrameOk": true,
       "headerSignature": "0px|0px|0px|1120.52px|317.078px|0px 0px 48% 48% / 0px 0px 16% 16%|none|rgb(239, 51, 64)|rgb(255, 255, 255)|\"\"|\"👍\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(239, 51, 64)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.02
+      },
       "header": {
         "x": 0,
         "y": 0,
@@ -539,21 +629,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 26.38,
+        "y": 25.42,
         "width": 79,
         "height": 13.22,
         "fontPx": 228.098,
@@ -561,7 +651,7 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 40.5,
+        "y": 39.5,
         "width": 79,
         "height": 12.07,
         "fontPx": 208.248,
@@ -569,18 +659,18 @@
       },
       "unit": {
         "x": 43.97,
-        "y": 53.47,
+        "y": 52.43,
         "width": 12.06,
         "height": 5.15,
         "fontPx": 87.035,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.25,
-        "y": 68.09,
-        "width": 77.49,
-        "height": 25.82,
-        "fontPx": 524.901,
+        "x": 8.71,
+        "y": 66.24,
+        "width": 82.58,
+        "height": 27.52,
+        "fontPx": 559.31,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -591,6 +681,16 @@
       "frame": "minimal",
       "headerFrameOk": true,
       "headerSignature": "63.3281px|63.3281px|22.4062px|665.031px|151.266px|18.8976px|none|rgb(239, 51, 64)|rgb(255, 255, 255)|none|none",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(239, 51, 64)",
+        "headerColor": "rgb(255, 255, 255)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.02
+      },
       "header": {
         "x": 8,
         "y": 2,
@@ -603,21 +703,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 13.41,
-        "y": 26.77,
+        "y": 25.81,
         "width": 73.16,
         "height": 20.15,
         "fontPx": 213.347,
@@ -625,7 +725,7 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 46.49,
+        "y": 45.49,
         "width": 79,
         "height": 7.12,
         "fontPx": 86.8309,
@@ -633,18 +733,18 @@
       },
       "unit": {
         "x": 41.34,
-        "y": 54.5,
+        "y": 53.46,
         "width": 17.31,
         "height": 5.05,
         "fontPx": 60.3213,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 9.43,
-        "y": 70.58,
-        "width": 81.13,
-        "height": 20.84,
-        "fontPx": 299.323,
+        "x": 8.52,
+        "y": 69.33,
+        "width": 82.95,
+        "height": 21.33,
+        "fontPx": 306.467,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -655,6 +755,16 @@
       "frame": "rodape-forte",
       "headerFrameOk": true,
       "headerSignature": "41.1562px|41.1562px|21.2812px|709.375px|159.109px|6.80315px|none|rgb(212, 20, 45)|rgb(255, 242, 0)|none|\"\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(212, 20, 45)",
+        "headerColor": "rgb(255, 242, 0)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 4.56
+      },
       "header": {
         "x": 5.2,
         "y": 1.9,
@@ -667,21 +777,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 23.91,
+        "y": 22.95,
         "width": 79,
         "height": 14.23,
         "fontPx": 173.65,
@@ -689,7 +799,7 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 39.04,
+        "y": 38.04,
         "width": 79,
         "height": 16.09,
         "fontPx": 196.29,
@@ -697,18 +807,18 @@
       },
       "unit": {
         "x": 42.19,
-        "y": 56.03,
+        "y": 54.99,
         "width": 15.62,
         "height": 5.05,
         "fontPx": 60.3213,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 9.43,
-        "y": 70.58,
-        "width": 81.13,
-        "height": 20.84,
-        "fontPx": 299.323,
+        "x": 8.52,
+        "y": 69.33,
+        "width": 82.95,
+        "height": 21.33,
+        "fontPx": 306.467,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -719,6 +829,16 @@
       "frame": "especial",
       "headerFrameOk": true,
       "headerSignature": "0px|0px|0px|791.688px|218.5px|0px 0px 48% 48% / 0px 0px 14% 14%|none|rgb(237, 28, 36)|rgb(255, 242, 0)|none|\"Especial\"",
+      "contrast": {
+        "posterBackground": "rgb(255, 242, 0)",
+        "descriptionColor": "rgb(16, 16, 16)",
+        "priceColor": "rgb(217, 24, 32)",
+        "headerBackground": "rgb(237, 28, 36)",
+        "headerColor": "rgb(255, 242, 0)",
+        "description": 16.27,
+        "price": 4.38,
+        "header": 3.75
+      },
       "header": {
         "x": 0,
         "y": 0,
@@ -731,21 +851,21 @@
         "x": 7,
         "y": 20,
         "width": 86,
-        "height": 45,
+        "height": 43,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "priceBox": {
-        "x": 8,
-        "y": 67,
-        "width": 84,
-        "height": 28,
+        "x": 7,
+        "y": 65,
+        "width": 86,
+        "height": 30,
         "fontPx": 16,
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
         "x": 10.5,
-        "y": 25.85,
+        "y": 24.89,
         "width": 79,
         "height": 16.81,
         "fontPx": 205.13,
@@ -753,26 +873,26 @@
       },
       "subdescription": {
         "x": 10.5,
-        "y": 43.56,
+        "y": 42.56,
         "width": 79,
-        "height": 9.63,
+        "height": 9.64,
         "fontPx": 117.57,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "unit": {
         "x": 45.56,
-        "y": 54.1,
+        "y": 53.06,
         "width": 8.87,
         "height": 5.05,
         "fontPx": 60.3213,
         "fontFamily": "\"Burbank Big Cd Bk\""
       },
       "price": {
-        "x": 11.32,
-        "y": 68.12,
-        "width": 77.35,
-        "height": 25.75,
-        "fontPx": 369.94,
+        "x": 8.7,
+        "y": 66.24,
+        "width": 82.59,
+        "height": 27.52,
+        "fontPx": 395.323,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
