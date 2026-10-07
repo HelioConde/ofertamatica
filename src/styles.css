@@ -7595,20 +7595,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   }
 
   .format-mode .format-ad-card .oferta-ad-unit.is-pending {
-    display: none !important;
+    display: flex !important;
+    width: 100% !important;
+    height: 84px !important;
+    min-height: 84px !important;
+    max-height: 84px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
   }
 
-  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending) {
-    display: grid !important;
-    place-items: center !important;
-  }
-
-  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending)::after {
-    content: "Publicidade";
-    color: #a0adbd;
-    font-size: 7px;
-    font-weight: 800;
-    letter-spacing: .05em;
+  .format-mode .format-ad-card .oferta-ad-unit.is-pending .oferta-ad-label {
+    display: block !important;
+    padding-top: 7px;
   }
 
   .format-mode .format-choice {
