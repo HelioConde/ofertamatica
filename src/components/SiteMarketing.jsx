@@ -181,6 +181,9 @@ export function AdUnit({ placement = 'content' }) {
   const slot = ADSENSE_SLOTS[placement]
     || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '')
     || ''
+  const mobileAdFormat = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 700px)').matches
+    ? 'rectangle'
+    : 'auto'
   const adRef = useRef(null)
   const [adState, setAdState] = useState(slot ? 'pending' : 'hidden')
 
@@ -231,7 +234,7 @@ export function AdUnit({ placement = 'content' }) {
         style={{ display: 'block' }}
         data-ad-client={ADSENSE_CLIENT}
         data-ad-slot={slot}
-        data-ad-format="auto"
+        data-ad-format={mobileAdFormat}
         data-full-width-responsive="true"
       />
     </aside>
