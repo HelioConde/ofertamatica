@@ -24,6 +24,7 @@ const price = (x, y, width, height) => ({ x, y, width, height, ...centered })
 // Calibração visual inspirada nas placas físicas usadas como referência:
 // descrição mais larga/alta e preço dominando o terço inferior, sem copiar a identidade visual da loja.
 export const DEFAULT_POSTER_LAYOUTS = {
+  A4X8: { contentBox: content(5, 22, 90, 34, 1), priceBox: price(7, 60, 86, 31), textScale: 0.48 },
   A4X4: { contentBox: content(6, 20, 88, 43), priceBox: price(9, 66, 82, 27), textScale: 0.78 },
   A5: { contentBox: content(7, 20, 86, 45), priceBox: price(8, 67, 84, 28), textScale: 1.05 },
   A4X2_CIMA_BAIXO: { contentBox: content(6, 19, 88, 45), priceBox: price(9, 66, 82, 28), textScale: 1.02 },
@@ -87,6 +88,7 @@ function createTemplate({ id, name, format, specialLayout }) {
 }
 
 export const POSTER_TEMPLATES = [
+  createTemplate({ id: 'ofertamatica-a4x8', name: 'A4 8x1 · A7', format: 'A4X8' }),
   createTemplate({ id: 'ofertamatica-a4x4', name: 'A4 4x1', format: 'A4X4' }),
   createTemplate({ id: 'ofertamatica-a4x2', name: 'A4 2x1', format: 'A4X2_CIMA_BAIXO' }),
   createTemplate({ id: 'ofertamatica-a4x2-invertido', name: 'A4 2x1 Invertido', format: 'A4X2_INVERTIDO' }),
