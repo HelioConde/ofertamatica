@@ -43,11 +43,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: package-lock.json
 
       - name: Install app dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Install Playwright for visual capture
         run: npm install --no-save playwright@1.55.0
