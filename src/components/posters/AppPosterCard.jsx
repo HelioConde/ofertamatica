@@ -1,3 +1,5 @@
+import PriceValue from './PriceValue'
+
 const APP_BOXES = [
   ['appTitleBox', 'appTitle', 'title'],
   ['appPriceBox', 'appPrice', 'appPrice'],
@@ -46,7 +48,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
         return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle)} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>
-          <span>{values[valueName] || '\u00a0'}</span>
+          <span>{['appPrice', 'regularPrice'].includes(valueName) ? <PriceValue value={values[valueName]} /> : (values[valueName] || '\u00a0')}</span>
           {showLayoutDebug ? <small>{boxName}</small> : null}
           {editable ? <button type="button" className="poster-resize-handle" aria-label={`Redimensionar ${boxName}`} onPointerDown={(event) => onBoxPointerDown?.(boxName, 'resize', event)} /> : null}
         </div>
