@@ -36,6 +36,13 @@ expect(pipe[0]?.subdescription === 'KICALDO', 'Marca com pipe incorreta')
 expect(pipe[0]?.unit === '1 KG', 'Unidade com pipe incorreta')
 expect(pipe[0]?.price === '7,49', 'Preço com pipe incorreto')
 
+const bread = parseProductList('Pão Francês kg 10,90')
+expect(bread.length === 1, 'Pão Francês deve gerar 1 produto')
+expect(bread[0]?.description === 'PÃO', 'Pão Francês deve manter PÃO como nome do produto')
+expect(bread[0]?.subdescription === 'FRANCÊS', 'Pão Francês deve usar FRANCÊS como marca / variante')
+expect(bread[0]?.unit === 'KG', 'Pão Francês deve manter KG como unidade')
+expect(bread[0]?.price === '10,90', 'Pão Francês deve manter o preço')
+
 const headerOnly = parseProductList('Descrição;Marca;Peso;Valor')
 expect(headerOnly.length === 0, 'Cabeçalho isolado não deve virar cartaz')
 
@@ -45,4 +52,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Parser validado: lista simples, Excel, cabeçalho, ponto e vírgula e pipe OK.')
+console.log('Parser validado: lista simples, Excel, Pão Francês, cabeçalho, ponto e vírgula e pipe OK.')
