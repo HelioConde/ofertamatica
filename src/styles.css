@@ -7560,3 +7560,63 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     grid-row: 1 / span 4 !important;
   }
 }
+
+
+/* Desktop chooser: 4x2 formats plus compact ad strip */
+@media (min-width: 1001px) {
+  .format-mode .format-page,
+  .format-mode .format-dialog,
+  .format-mode .format-grid {
+    box-sizing: border-box !important;
+  }
+
+  .format-mode .format-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) 86px !important;
+    gap: 6px !important;
+  }
+
+  .format-mode .format-ad-card {
+    grid-column: 1 / -1 !important;
+    grid-row: 3 !important;
+    width: 100% !important;
+    height: 86px !important;
+    min-height: 86px !important;
+    max-height: 86px !important;
+  }
+
+  .format-mode .format-ad-card .oferta-ad-unit,
+  .format-mode .format-ad-card .adsbygoogle {
+    width: 100% !important;
+    height: 84px !important;
+    min-height: 0 !important;
+    max-height: 84px !important;
+    overflow: hidden !important;
+  }
+
+  .format-mode .format-ad-card .oferta-ad-unit.is-pending {
+    display: none !important;
+  }
+
+  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending) {
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  .format-mode .format-ad-card:has(.oferta-ad-unit.is-pending)::after {
+    content: "Publicidade";
+    color: #a0adbd;
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: .05em;
+  }
+
+  .format-mode .format-choice {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+  }
+
+  .format-mode .format-thumb {
+    width: 72px !important;
+    max-height: 76px !important;
+  }
+}
