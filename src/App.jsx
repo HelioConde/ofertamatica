@@ -1313,6 +1313,7 @@ function Editor({
 
   const reviewWarnings = useMemo(() => {
     const warnings = []
+    if (!fontReady) warnings.push('A tipografia da placa ainda está carregando; aguarde um instante antes de imprimir.')
     const noPrice = products.filter((product) => !String(product.price || '').trim()).length
     if (noPrice) warnings.push(`${noPrice} produto(s) sem preço informado.`)
     const noUnit = products.filter((product) => !String(product.unit || '').trim()).length
@@ -1342,7 +1343,7 @@ function Editor({
       if (missing) warnings.push(`${missing} produto(s) sem preço da 2ª unidade.`)
     }
     return warnings
-  }, [offerMode, products])
+  }, [fontReady, offerMode, products])
 
   function generateFromSource(nextSource = sourceText) {
     const parsed = preservePromotionFields(
@@ -1630,7 +1631,15 @@ function Editor({
     setReviewOpen(true)
   }
 
-  function printPosters() {
+  async function printPosters() {
+    if (document.fonts?.ready) {
+      try {
+        await document.fonts.ready
+      } catch {
+        // A impressão continua disponível mesmo se o navegador não expuser o estado final das fontes.
+      }
+    }
+
     trackProductEvent(reviewIntent === 'pdf' ? 'ofertamatica_pdf_started' : 'ofertamatica_print_started', {
       format_id: format.id,
       product_count: products.length,
