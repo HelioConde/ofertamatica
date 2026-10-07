@@ -7618,3 +7618,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     max-height: 76px !important;
   }
 }
+
+
+/* Landscape App sheet uses a shorter mobile preview stage */
+@media (max-width: 820px) {
+  .real-poster-preview:has(.poster-sheet[data-poster-format="A4X2_APP"]) {
+    min-height: 300px !important;
+  }
+}
