@@ -1,0 +1,61 @@
+import { POSTER_FORMATS } from '../src/config/posterFormats.js'
+import { getDefaultTemplateForFormat } from '../src/config/posterTemplates.js'
+import { createPosterLayouts } from '../src/poster-engine/layoutPlan.js'
+import { estimateTextMeasure } from '../src/poster-engine/textMeasure.js'
+
+const failures = []
+const expect = (condition, message) => {
+  if (!condition) failures.push(message)
+}
+
+const samples = [
+  { id: 'mamao', description: 'MAMÃO', subdescription: 'FORMOSA', complement: '', unit: 'KG', price: '4,99' },
+  { id: 'abacaxi', description: 'ABACAXI', subdescription: 'PEÇA', complement: '', unit: '', price: '6,99' },
+  { id: 'uva', description: 'UVA', subdescription: 'VERMELHA', complement: 'SEM SEMENTE', unit: '500G', price: '5,99' },
+  { id: 'longo', description: 'BISCOITO RECHEADO', subdescription: 'CHOCOLATE TRADICIONAL', complement: 'PACOTE ECONÔMICO', unit: '350G', price: '12,99' },
+]
+
+const publicFormats = ['A4X4', 'A4X2_CIMA_BAIXO', 'A4X2_INVERTIDO', 'A4X2_APP', 'A4', 'A5', 'A3']
+
+for (const formatId of publicFormats) {
+  const format = POSTER_FORMATS[formatId]
+  const template = getDefaultTemplateForFormat(formatId)
+  expect(Boolean(format), `Formato ausente: ${formatId}`)
+  expect(Boolean(template), `Template padrão ausente: ${formatId}`)
+  if (!format || !template) continue
+
+  const layouts = createPosterLayouts(samples, template, format, estimateTextMeasure)
+
+  for (const sample of samples) {
+    const layout = layouts[sample.id]
+    expect(Boolean(layout), `${formatId}/${sample.id}: layout ausente`)
+    if (!layout) continue
+
+    for (const line of layout.content.lines) {
+      expect(line.x >= -0.5, `${formatId}/${sample.id}/${line.field}: x negativo`)
+      expect(line.y >= -0.5, `${formatId}/${sample.id}/${line.field}: y negativo`)
+      expect(line.x + line.width <= 100.5, `${formatId}/${sample.id}/${line.field}: estoura largura`)
+      expect(line.y + line.height <= 100.5, `${formatId}/${sample.id}/${line.field}: estoura altura`)
+      expect(line.fontSizeMm > 0, `${formatId}/${sample.id}/${line.field}: fonte inválida`)
+    }
+
+    const price = layout.price
+    expect(price.x >= -0.5, `${formatId}/${sample.id}/preço: x negativo`)
+    expect(price.y >= -0.5, `${formatId}/${sample.id}/preço: y negativo`)
+    expect(price.x + price.width <= 100.5, `${formatId}/${sample.id}/preço: estoura largura`)
+    expect(price.y + price.height <= 100.5, `${formatId}/${sample.id}/preço: estoura altura`)
+    expect(price.fontSizeMm >= template.textStyles.price.fontMin, `${formatId}/${sample.id}/preço: fonte abaixo do mínimo`)
+    expect(
+      String(price.style.fontFamily || '').includes('Futura Price'),
+      `${formatId}/${sample.id}/preço: fonte padrão não é Futura Price`,
+    )
+  }
+}
+
+if (failures.length) {
+  console.error('\nFalhas de validação dos cartazes:')
+  failures.forEach((failure) => console.error(' - ' + failure))
+  process.exit(1)
+}
+
+console.log(`Cartazes validados: ${publicFormats.length} formatos × ${samples.length} amostras, sem overflow lógico.`)
