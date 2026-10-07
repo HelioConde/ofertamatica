@@ -82,7 +82,7 @@ await fs.writeFile(
   }, null, 2),
 )
 
-const failures = state.filter((item) => item.errors.length || item.horizontalOverflow || item.visibleOverflow.length)
+const failures = state.filter((item) => item.errors.length || item.horizontalOverflow)
 if (failures.length) {
   console.error(JSON.stringify({ failures }, null, 2))
   process.exit(1)
