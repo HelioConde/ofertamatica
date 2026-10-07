@@ -2135,3 +2135,31 @@ summary:focus-visible {
     line-height: 1.2;
   }
 }
+
+
+/* Pending ads never reserve blank page space */
+.public-mode .oferta-ad-unit.is-pending,
+.seo-landing .oferta-ad-unit.is-pending {
+  min-height: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  margin-block: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.public-mode .oferta-ad-unit.is-pending .adsbygoogle,
+.seo-landing .oferta-ad-unit.is-pending .adsbygoogle {
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.public-mode .oferta-ad-unit.is-filled,
+.seo-landing .oferta-ad-unit.is-filled {
+  height: auto !important;
+  max-height: none !important;
+}
