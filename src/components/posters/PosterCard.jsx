@@ -174,7 +174,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
               <img src={template.headerImage} alt="" />
             </div>
           ) : (
-            <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'band'} ${headerLengthClass}`}><b>{headerText}</b></div>
+            <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'retail'} ${headerLengthClass}`}><span className="ofertamatica-header-mark" aria-hidden="true"><i /><i /></span><b>{headerText}</b></div>
           )}
           <div className="ofertamatica-inner-frame" />
           <div className="ofertamatica-footer-decoration" />
