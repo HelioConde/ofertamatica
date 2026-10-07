@@ -2163,3 +2163,33 @@ summary:focus-visible {
   height: auto !important;
   max-height: none !important;
 }
+
+
+.model-show-more {
+  width: min(100%, 420px);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px auto 0;
+  border: 1px solid #c8d8ed;
+  border-radius: 10px;
+  background: #f7faff;
+  color: #1d63e9;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.model-show-more:hover,
+.model-show-more:focus-visible {
+  border-color: #7fa7e7;
+  background: #edf4ff;
+}
+
+@media (max-width: 700px) {
+  .model-show-more {
+    min-height: 46px;
+    margin-top: 13px;
+    font-size: 11px;
+  }
+}
