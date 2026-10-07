@@ -2068,3 +2068,57 @@ summary:focus-visible {
     font-size: 10px;
   }
 }
+
+
+/* Visual sweep polish — ads and mobile model filters */
+@media (min-width: 701px) {
+  .seo-landing > .oferta-ad-unit.is-pending {
+    min-height: 0 !important;
+    height: 160px !important;
+    max-height: 160px !important;
+    margin: 10px 0 !important;
+    overflow: hidden !important;
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .seo-landing > .oferta-ad-unit.is-pending .adsbygoogle {
+    height: 160px !important;
+    max-height: 160px !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .model-category-strip {
+    position: relative;
+    padding-right: 28px !important;
+    scroll-snap-type: x proximity;
+  }
+
+  .model-category-strip button {
+    scroll-snap-align: start;
+  }
+
+  .model-category-strip::after {
+    content: "→";
+    flex: 0 0 24px;
+    align-self: stretch;
+    display: grid;
+    place-items: center;
+    position: sticky;
+    right: 0;
+    min-height: 36px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,255,255,.35), #fff 42%);
+    color: #7a8ca7;
+    font-size: 13px;
+    font-weight: 950;
+    pointer-events: none;
+  }
+
+  .model-showcase-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 310px 520px;
+  }
+}
