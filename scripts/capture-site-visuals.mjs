@@ -49,6 +49,14 @@ async function captureViewport(name, viewport, routes) {
         .filter((element) => {
           const style = getComputedStyle(element)
           if (style.position === 'fixed' || style.position === 'absolute') return false
+
+          let parent = element.parentElement
+          while (parent && parent !== document.body) {
+            const parentStyle = getComputedStyle(parent)
+            if (parentStyle.overflowX === 'auto' || parentStyle.overflowX === 'scroll') return false
+            parent = parent.parentElement
+          }
+
           const rect = element.getBoundingClientRect()
           return rect.width > 0 && (rect.left < -1 || rect.right > window.innerWidth + 1)
         })
