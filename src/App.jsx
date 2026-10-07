@@ -871,6 +871,7 @@ function StyleSidebar({
               <button
                 type="button"
                 key={preset.id}
+                data-style-preset={preset.id}
                 onClick={() => onChange({
                   ...preset.values,
                   headerImage: style.headerImage,
