@@ -133,7 +133,7 @@ const POSTER_STYLE_PRESETS = [
   { id: 'butcher', name: 'Açougue', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ffe05a', textColor: '#401417', priceColor: '#b5091f', headerColor: '#8f1723', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' } },
   { id: 'impact', name: 'Impacto', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#111111', priceColor: '#e30613', headerColor: '#d4142d', headerTextColor: '#ffffff', headerFooterStyle: 'imperdivel' } },
   { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
-  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547', headerTextColor: '#ffffff', headerFooterStyle: 'oval' } },
+  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#071d14', priceColor: '#ffe500', headerColor: '#0b7547', headerTextColor: '#ffffff', headerFooterStyle: 'oval' } },
   { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d3557', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
 ]
 
@@ -174,18 +174,68 @@ function hexToRgb(color) {
   }
 }
 
-function isRedLike(color) {
-  const rgb = hexToRgb(color)
-  if (!rgb) return false
-  return rgb.r >= 150
-    && rgb.r >= rgb.g * 1.35
-    && rgb.r >= rgb.b * 1.12
+function channelLuminance(value) {
+  const channel = value / 255
+  return channel <= 0.03928
+    ? channel / 12.92
+    : ((channel + 0.055) / 1.055) ** 2.4
+}
+
+function contrastRatio(backgroundColor, foregroundColor) {
+  const background = hexToRgb(backgroundColor)
+  const foreground = hexToRgb(foregroundColor)
+  if (!background || !foreground) return 99
+
+  const backgroundLuminance = (0.2126 * channelLuminance(background.r))
+    + (0.7152 * channelLuminance(background.g))
+    + (0.0722 * channelLuminance(background.b))
+  const foregroundLuminance = (0.2126 * channelLuminance(foreground.r))
+    + (0.7152 * channelLuminance(foreground.g))
+    + (0.0722 * channelLuminance(foreground.b))
+
+  const lighter = Math.max(backgroundLuminance, foregroundLuminance)
+  const darker = Math.min(backgroundLuminance, foregroundLuminance)
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
+function bestContrastColor(backgroundColor, desiredColor, candidates, minimumRatio = 3) {
+  const desired = desiredColor || candidates[0]
+  if (contrastRatio(backgroundColor, desired) >= minimumRatio) return desired
+
+  return [desired, ...candidates]
+    .filter(Boolean)
+    .reduce((best, candidate) => (
+      contrastRatio(backgroundColor, candidate) > contrastRatio(backgroundColor, best)
+        ? candidate
+        : best
+    ), candidates[0] || desired)
 }
 
 function resolveReadablePriceColor(backgroundColor, priceColor) {
-  const desired = priceColor || DEFAULT_POSTER_STYLE.priceColor
-  if (isRedLike(backgroundColor) && isRedLike(desired)) return '#fff200'
-  return desired
+  return bestContrastColor(
+    backgroundColor,
+    priceColor || DEFAULT_POSTER_STYLE.priceColor,
+    ['#fff200', '#ffffff', '#111111', '#d91820'],
+    3,
+  )
+}
+
+function resolveReadableTextColor(backgroundColor, textColor) {
+  return bestContrastColor(
+    backgroundColor,
+    textColor || DEFAULT_POSTER_STYLE.textColor,
+    ['#111111', '#ffffff', '#fff200'],
+    3.8,
+  )
+}
+
+function resolveReadableHeaderTextColor(headerColor, headerTextColor) {
+  return bestContrastColor(
+    headerColor,
+    headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor,
+    ['#ffffff', '#fff200', '#111111'],
+    3,
+  )
 }
 
 function loadPosterStyle() {
@@ -228,14 +278,21 @@ function loadPosterStyle() {
         return legacy === '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif' ? 'auto' : legacy
       })(),
       priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
+      textColor: resolveReadableTextColor(
+        saved.backgroundColor || DEFAULT_POSTER_STYLE.backgroundColor,
+        saved.textColor || DEFAULT_POSTER_STYLE.textColor,
+      ),
       priceColor: resolveReadablePriceColor(
         saved.backgroundColor || DEFAULT_POSTER_STYLE.backgroundColor,
         saved.priceColor || DEFAULT_POSTER_STYLE.priceColor,
       ),
       headerStyle: migrateLegacyDefaultHeader ? 'retail' : (saved.headerStyle || DEFAULT_POSTER_STYLE.headerStyle),
-      headerTextColor: (migrateLegacyDefaultHeader || migrateLegacyRetailTextOnly)
-        ? DEFAULT_POSTER_STYLE.headerTextColor
-        : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
+      headerTextColor: resolveReadableHeaderTextColor(
+        saved.headerColor || DEFAULT_POSTER_STYLE.headerColor,
+        (migrateLegacyDefaultHeader || migrateLegacyRetailTextOnly)
+          ? DEFAULT_POSTER_STYLE.headerTextColor
+          : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
+      ),
       headerFooterStyle: normalizedHeaderFooterStyle,
       headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
     }
@@ -905,6 +962,7 @@ function StyleSidebar({
                         onChange({
                           ...style,
                           backgroundColor: value,
+                          textColor: resolveReadableTextColor(value, style.textColor),
                           priceColor: resolveReadablePriceColor(value, style.priceColor),
                         })
                         return
@@ -1267,14 +1325,16 @@ function Editor({
     customHeader,
   ])
 
+  const resolvedTextColor = resolveReadableTextColor(posterStyle.backgroundColor, posterStyle.textColor)
   const resolvedPriceColor = resolveReadablePriceColor(posterStyle.backgroundColor, posterStyle.priceColor)
+  const resolvedHeaderTextColor = resolveReadableHeaderTextColor(posterStyle.headerColor, posterStyle.headerTextColor)
 
   const posterStyleVars = {
     '--poster-background': posterStyle.backgroundColor,
-    '--poster-text-color': posterStyle.textColor,
+    '--poster-text-color': resolvedTextColor,
     '--poster-price-color': resolvedPriceColor,
     '--poster-header-color': posterStyle.headerColor,
-    '--poster-header-text-color': posterStyle.headerTextColor,
+    '--poster-header-text-color': resolvedHeaderTextColor,
     '--poster-font-family': posterStyle.descriptionFontFamily === 'auto'
       ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
       : (posterStyle.descriptionFontFamily || posterStyle.fontFamily),
