@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T17:12:45.032Z",
-  "commit": "4b77d07597435d37d1d959feac4df9bd689c575a",
+  "generatedAt": "2026-10-07T17:22:26.817Z",
+  "commit": "6506df00e7ba8ec00c7ae1aff0e3706ff2b7e152",
   "routes": [
     [
       "home",
@@ -649,9 +649,7 @@
       "id": "cartaz-a4",
       "viewport": "mobile-412",
       "errors": [],
-      "ignoredErrors": [
-        "int64"
-      ],
+      "ignoredErrors": [],
       "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
       "width": 412,
       "scrollWidth": 412,

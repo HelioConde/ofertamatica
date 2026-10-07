@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T17:13:58.520Z",
-  "commit": "4b77d07597435d37d1d959feac4df9bd689c575a",
+  "generatedAt": "2026-10-07T17:23:47.706Z",
+  "commit": "6506df00e7ba8ec00c7ae1aff0e3706ff2b7e152",
   "results": [
     {
       "viewport": "mobile-360",
@@ -1624,6 +1624,21 @@
         "headerTextColor": "rgb(255, 255, 255)",
         "headerVisible": true,
         "tooSmall": []
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4",
+      "tab": "red-contrast",
+      "errors": [],
+      "horizontalOverflow": false,
+      "offenders": [],
+      "contrast": {
+        "backgroundColor": "rgb(239, 35, 60)",
+        "priceColor": "rgb(255, 242, 0)",
+        "redBackground": true,
+        "redPrice": false,
+        "readable": true
       }
     },
     {
