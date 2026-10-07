@@ -1366,3 +1366,284 @@ summary:focus-visible {
 .format-diagram b::after {
   content: ' 4,99';
 }
+
+
+/* Mobile hardening — public pages */
+@media (max-width: 700px) {
+  .seo-landing {
+    width: min(100% - 16px, 1240px) !important;
+    padding: 12px 0 34px !important;
+    overflow-x: hidden;
+  }
+
+  .seo-hero,
+  .marketing-section,
+  .related-pages,
+  .marketing-final-cta,
+  .ai-teaser {
+    width: 100%;
+    min-width: 0;
+    margin: 12px 0 !important;
+    padding: 18px 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .seo-hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  .seo-breadcrumb {
+    margin-bottom: 14px !important;
+    font-size: 10px !important;
+  }
+
+  .marketing-kicker {
+    margin-bottom: 6px;
+    font-size: 9px;
+  }
+
+  .seo-hero h1 {
+    max-width: 100%;
+    font-size: clamp(30px, 10vw, 42px) !important;
+    line-height: 1.04;
+    overflow-wrap: anywhere;
+  }
+
+  .seo-hero > div > p {
+    margin: 13px 0 18px !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  .seo-hero-actions {
+    align-items: stretch !important;
+    flex-direction: column;
+    gap: 9px !important;
+  }
+
+  .seo-hero-actions button,
+  .seo-hero-actions a,
+  .marketing-primary-cta,
+  .marketing-final-cta button,
+  .ai-teaser-action button {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .seo-hero-actions span {
+    text-align: center;
+    font-size: 10px !important;
+  }
+
+  .seo-benefit-card {
+    width: 100%;
+    padding: 17px !important;
+    gap: 10px !important;
+  }
+
+  .seo-benefit-card strong {
+    font-size: 12px !important;
+  }
+
+  .marketing-heading h2,
+  .related-pages h2 {
+    font-size: clamp(23px, 8vw, 32px) !important;
+    line-height: 1.08;
+  }
+
+  .marketing-heading p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .model-category-strip {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 3px;
+  }
+
+  .model-category-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .model-category-strip span {
+    flex: 0 0 auto;
+  }
+
+  .model-showcase-grid,
+  .format-showcase-grid,
+  .workflow-grid,
+  .practical-grid,
+  .seo-explainer,
+  .compact-info-grid,
+  .store-use-grid,
+  .legal-content,
+  .faq-grid,
+  .guide-groups > section > div,
+  .related-pages > div,
+  .contact-link-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .model-showcase-card {
+    border-radius: 14px;
+  }
+
+  .model-poster-standard {
+    width: min(100%, 300px);
+    margin: 0 auto;
+  }
+
+  .model-card-copy {
+    padding: 14px !important;
+  }
+
+  .model-showcase-card p {
+    min-height: 0 !important;
+    font-size: 12px;
+  }
+
+  .model-card-copy button {
+    min-height: 44px;
+    font-size: 11px;
+  }
+
+  .format-showcase-card {
+    min-width: 0;
+    min-height: 0 !important;
+    grid-template-columns: 88px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding: 13px !important;
+  }
+
+  .format-diagram {
+    max-width: 100%;
+  }
+
+  .format-showcase-card strong {
+    font-size: 13px !important;
+  }
+
+  .format-showcase-card p {
+    font-size: 11px !important;
+  }
+
+  .workflow-grid article,
+  .practical-grid article,
+  .seo-explainer article,
+  .compact-info-grid article,
+  .store-use-grid article,
+  .legal-content article {
+    min-width: 0;
+    min-height: 0 !important;
+    padding: 16px !important;
+  }
+
+  .guide-groups {
+    gap: 14px !important;
+  }
+
+  .guide-groups a {
+    min-width: 0;
+    padding: 14px !important;
+  }
+
+  .ai-teaser {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  .ai-teaser h2 {
+    font-size: clamp(26px, 9vw, 36px) !important;
+  }
+
+  .ai-feature-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .ai-feature-row span {
+    white-space: normal;
+  }
+
+  .faq-grid details {
+    min-width: 0;
+    padding: 0 13px !important;
+  }
+
+  .marketing-final-cta {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .marketing-footer {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 18px 2px 0 !important;
+  }
+
+  .marketing-footer nav {
+    justify-content: flex-start !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px !important;
+  }
+
+  .marketing-footer nav a {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+  }
+
+  .trust-updated {
+    text-align: left !important;
+  }
+
+  .contact-link-grid a {
+    min-width: 0;
+    padding: 15px !important;
+  }
+
+  .oferta-ad-unit {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 420px) {
+  .seo-landing {
+    width: min(100% - 12px, 1240px) !important;
+  }
+
+  .seo-hero,
+  .marketing-section,
+  .related-pages,
+  .marketing-final-cta,
+  .ai-teaser {
+    padding: 16px 12px !important;
+  }
+
+  .seo-hero h1 {
+    font-size: clamp(28px, 9vw, 36px) !important;
+  }
+
+  .format-showcase-card {
+    grid-template-columns: 76px minmax(0, 1fr) !important;
+  }
+
+  .format-diagram {
+    transform: scale(.9);
+    transform-origin: center;
+  }
+
+  .marketing-footer nav {
+    grid-template-columns: 1fr !important;
+  }
+}
