@@ -169,7 +169,7 @@ for (const [viewportName, viewport] of viewports) {
             frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
             headerBackgroundColor: ribbonStyle?.backgroundColor || '',
             headerTextColor: ribbonStyle?.color || '',
-            headerVisible: Boolean(ribbon && ribbon.getBoundingClientRect().height > 0),
+            headerVisible: Boolean(ribbon && ribbonStyle && ribbonStyle.display !== 'none'),
             tooSmall,
           }
         })
