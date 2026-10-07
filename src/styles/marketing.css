@@ -1659,3 +1659,24 @@ summary:focus-visible {
     grid-template-columns: 1fr !important;
   }
 }
+
+
+@media (max-width: 700px) {
+  .seo-landing > .oferta-ad-unit,
+  .seo-landing > .oferta-ad-unit.is-pending,
+  .seo-landing > .oferta-ad-unit.is-filled {
+    width: 100%;
+    min-height: 100px !important;
+    height: 100px !important;
+    max-height: 100px !important;
+    margin: 10px 0 !important;
+    overflow: hidden !important;
+  }
+
+  .seo-landing > .oferta-ad-unit .adsbygoogle {
+    width: 100% !important;
+    height: 100px !important;
+    max-height: 100px !important;
+    overflow: hidden !important;
+  }
+}
