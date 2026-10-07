@@ -5305,3 +5305,95 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (max-width: 820px) {
   .typography-help { font-size: 9px; }
 }
+
+
+/* Legibilidade do workspace: mantém o editor compacto, mas evita controles microscópicos. */
+@media (min-width: 1001px) {
+  .style-sidebar-head {
+    padding: 11px 11px 9px;
+  }
+
+  .style-sidebar-head h2 {
+    font-size: 14px;
+  }
+
+  .style-reset-top {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 8.2px;
+  }
+
+  .style-sidebar-scroll {
+    padding: 9px;
+  }
+
+  .style-section {
+    gap: 8px;
+    padding: 10px 2px 11px;
+  }
+
+  .style-section > strong,
+  .style-section-title-row > strong {
+    font-size: 8.2px;
+  }
+
+  .style-section-title-row > small {
+    font-size: 7.4px;
+  }
+
+  .style-color-row > span:first-child,
+  .style-select-row > span,
+  .style-text-row > span,
+  .header-search > span {
+    font-size: 8.5px;
+  }
+
+  .style-select-row select,
+  .style-text-row input {
+    height: 34px;
+    font-size: 9.2px;
+  }
+
+  .style-color-control {
+    min-height: 33px;
+  }
+
+  .style-color-control code {
+    font-size: 8px;
+  }
+
+  .style-presets button {
+    min-height: 38px;
+  }
+
+  .style-presets small {
+    font-size: 8px;
+  }
+
+  .header-style-switch button {
+    height: 30px;
+    font-size: 8px;
+  }
+
+  .style-toggle-row b {
+    font-size: 8.5px;
+  }
+
+  .style-toggle-row small,
+  .style-save-note {
+    font-size: 7.4px;
+  }
+
+  .default-header-choice small,
+  .selected-header-preview button {
+    font-size: 7.5px;
+  }
+
+  .selected-header-preview strong {
+    font-size: 8.4px;
+  }
+
+  .typography-help {
+    font-size: 7.6px;
+  }
+}
