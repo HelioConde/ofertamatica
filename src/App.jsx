@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
+import PosterVisualQaPage from './pages/PosterVisualQaPage'
 import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
@@ -1172,8 +1173,16 @@ function Editor({
   useEffect(() => {
     let active = true
     if (!document.fonts) return undefined
-    document.fonts.load('16px "Burbank Big Cd Bk"').then(() => {
-      if (active) setFontReady(document.fonts.check('16px "Burbank Big Cd Bk"'))
+    Promise.all([
+      document.fonts.load('16px "Burbank Big Cd Bk"'),
+      document.fonts.load('16px "Futura Price"'),
+    ]).then(() => {
+      if (active) {
+        setFontReady(
+          document.fonts.check('16px "Burbank Big Cd Bk"') &&
+          document.fonts.check('16px "Futura Price"'),
+        )
+      }
     }).catch(() => {
       if (active) setFontReady(false)
     })
@@ -1967,7 +1976,7 @@ function Editor({
 }
 
 // PRODUCT_RULE_ROOT_IS_CREATOR: a rota / abre diretamente o criador; não inserir landing intermediária.
-function App() {
+function CreatorApp() {
   const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
   const [draftAvailable, setDraftAvailable] = useState(savedDraft)
@@ -2122,6 +2131,14 @@ function App() {
       )}
     </div>
   )
+}
+
+
+function App() {
+  if ((window.location.pathname || '/') === '/visual-qa/cartazes') {
+    return <PosterVisualQaPage />
+  }
+  return <CreatorApp />
 }
 
 export default App
