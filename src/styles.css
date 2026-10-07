@@ -5190,10 +5190,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   left: 5.2% !important;
   right: 5.2% !important;
   padding: 0 2.4% !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  color: var(--poster-price-color, #d91b2b) !important;
+  border-radius: 1.8mm !important;
+  background: var(--poster-header-color, #e51e31) !important;
+  box-shadow: 0 1mm 2.2mm rgba(80, 24, 30, .14) !important;
+  color: var(--poster-header-text-color, #ffffff) !important;
   font-size: clamp(7mm, 9cqi, 15mm) !important;
   letter-spacing: -.025em;
 }
