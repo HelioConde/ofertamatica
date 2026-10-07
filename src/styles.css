@@ -6547,3 +6547,28 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     line-height: 1.15;
   }
 }
+
+
+/* Final compact header-art height for phone QA */
+@media (max-width: 480px) {
+  .header-art-grid {
+    grid-template-rows: repeat(2, 94px) !important;
+    grid-auto-columns: 145px !important;
+    max-height: 198px !important;
+    gap: 6px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .header-art-grid > button {
+    width: 145px !important;
+    height: 94px !important;
+    min-height: 94px !important;
+    grid-template-rows: 62px minmax(0, 1fr) !important;
+  }
+
+  .header-art-grid img,
+  .header-preset-thumb,
+  .header-default-thumb {
+    height: 62px !important;
+  }
+}
