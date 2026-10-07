@@ -75,6 +75,41 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
     headerBefore?.content || '',
     headerAfter?.content || '',
   ].join('|') : ''
+  const parseRgb = (value) => {
+    const values = String(value || '').match(/\d+(?:\.\d+)?/g)
+    if (!values || values.length < 3) return null
+    return values.slice(0, 3).map(Number)
+  }
+  const channel = (value) => {
+    const normalized = value / 255
+    return normalized <= 0.03928
+      ? normalized / 12.92
+      : ((normalized + 0.055) / 1.055) ** 2.4
+  }
+  const luminance = (value) => {
+    const color = parseRgb(value)
+    if (!color) return null
+    return (0.2126 * channel(color[0]))
+      + (0.7152 * channel(color[1]))
+      + (0.0722 * channel(color[2]))
+  }
+  const contrastRatio = (background, foreground) => {
+    const a = luminance(background)
+    const b = luminance(foreground)
+    if (a === null || b === null) return 0
+    const lighter = Math.max(a, b)
+    const darker = Math.min(a, b)
+    return (lighter + 0.05) / (darker + 0.05)
+  }
+
+  const frameStyle = frameRoot ? getComputedStyle(frameRoot) : null
+  const descriptionStyle = description ? getComputedStyle(description) : null
+  const priceTextStyle = priceText ? getComputedStyle(priceText) : null
+  const posterBackground = frameStyle?.backgroundColor || ''
+  const descriptionColor = descriptionStyle?.color || ''
+  const priceColor = priceTextStyle?.color || ''
+  const headerBackground = headerStyle?.backgroundColor || ''
+  const headerColor = headerStyle?.color || ''
 
   return {
     sample,
@@ -82,6 +117,16 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
     frame: expectedFrame,
     headerFrameOk: Boolean(frameRoot && expectedFrame && frameRoot.classList.contains('poster-frame-' + expectedFrame)),
     headerSignature,
+    contrast: {
+      posterBackground,
+      descriptionColor,
+      priceColor,
+      headerBackground,
+      headerColor,
+      description: Number(contrastRatio(posterBackground, descriptionColor).toFixed(2)),
+      price: Number(contrastRatio(posterBackground, priceColor).toFixed(2)),
+      header: Number(contrastRatio(headerBackground, headerColor).toFixed(2)),
+    },
     header: relative(header),
     contentBox: relative(content),
     priceBox: relative(price),
@@ -136,6 +181,17 @@ await browser.close()
 
 const overflow = metrics.filter((item) => item.overflow)
 const invalidFrames = metrics.filter((item) => !item.headerFrameOk)
+const lowContrast = metrics.filter((item) => (
+  item.contrast.description < 3 ||
+  item.contrast.price < 3 ||
+  item.contrast.header < 3
+))
+const weakPriceCoverage = metrics.filter((item) => item.price && item.price.width < 35)
+const transparentHeaders = metrics.filter((item) => (
+  !item.contrast.headerBackground ||
+  item.contrast.headerBackground === 'rgba(0, 0, 0, 0)' ||
+  item.contrast.headerBackground === 'transparent'
+))
 const distinctHeaderSignatures = new Set(metrics.map((item) => item.headerSignature).filter(Boolean))
 if (
   desktopErrors.length ||
@@ -144,6 +200,9 @@ if (
   !fontState.priceReady ||
   typographyWarnings.length ||
   invalidFrames.length ||
+  lowContrast.length ||
+  weakPriceCoverage.length ||
+  transparentHeaders.length ||
   distinctHeaderSignatures.size < 8
 ) {
   console.error(JSON.stringify({
@@ -153,6 +212,9 @@ if (
     typographyWarnings,
     overflow,
     invalidFrames: invalidFrames.map((item) => ({ sample: item.sample, frame: item.frame })),
+    lowContrast: lowContrast.map((item) => ({ sample: item.sample, contrast: item.contrast })),
+    weakPriceCoverage: weakPriceCoverage.map((item) => ({ sample: item.sample, width: item.price?.width })),
+    transparentHeaders: transparentHeaders.map((item) => ({ sample: item.sample, frame: item.frame })),
     distinctHeaderSignatures: distinctHeaderSignatures.size,
   }, null, 2))
   process.exit(1)
@@ -164,6 +226,9 @@ console.log(JSON.stringify({
   fontState,
   typographyWarnings,
   overflowWarnings: overflow.map((item) => item.sample),
+  lowContrast: lowContrast.map((item) => item.sample),
+  weakPriceCoverage: weakPriceCoverage.map((item) => item.sample),
+  transparentHeaders: transparentHeaders.map((item) => item.sample),
   distinctHeaderSignatures: distinctHeaderSignatures.size,
   metrics,
 }, null, 2))
