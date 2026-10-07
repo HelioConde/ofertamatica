@@ -33,6 +33,8 @@ const HEADER_TEXT_PRESETS = [
   { id: DEFAULT_HEADER_OPTION_ID, kind: 'preset', label: 'Oferta clássica', text: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' },
   { id: '__imperdivel__', kind: 'preset', label: 'Oferta imperdível', text: 'OFERTA', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'imperdivel' },
   { id: '__promocao__', kind: 'preset', label: 'Hoje tem promoção', text: 'PROMOÇÃO', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'promocao' },
+  { id: '__oferta_do_dia__', kind: 'preset', label: 'Oferta do dia', text: 'OFERTA DO DIA', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' },
+  { id: '__barato_todo_dia__', kind: 'preset', label: 'Barato todo dia', text: 'BARATO TODO DIA', headerColor: '#d4142d', headerTextColor: '#fff200', headerFooterStyle: 'ondas' },
   { id: '__curva__', kind: 'preset', label: 'Oferta curva', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'curva-simples' },
   { id: '__divertida__', kind: 'preset', label: 'Oferta divertida', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'divertido' },
   { id: '__amarela__', kind: 'preset', label: 'Oferta amarela', text: 'OFERTA', headerColor: '#ef3340', headerTextColor: '#fff200', headerFooterStyle: 'moldura' },
@@ -125,10 +127,14 @@ const DEFAULT_POSTER_STYLE = {
 }
 
 const POSTER_STYLE_PRESETS = [
-  { id: 'classic', name: 'Clássico', values: DEFAULT_POSTER_STYLE },
-  { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925' } },
-  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547' } },
-  { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d63e9' } },
+  { id: 'classic', name: 'Cartaz raiz', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#101010', priceColor: '#e30613', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' } },
+  { id: 'curve', name: 'Oferta curva', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#101010', priceColor: '#e30613', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'curva-simples' } },
+  { id: 'fresh', name: 'Hortifruti', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#f6f23b', textColor: '#111111', priceColor: '#d71920', headerColor: '#168451', headerTextColor: '#ffffff', headerFooterStyle: 'ondas' } },
+  { id: 'butcher', name: 'Açougue', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ffe05a', textColor: '#401417', priceColor: '#b5091f', headerColor: '#8f1723', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' } },
+  { id: 'impact', name: 'Impacto', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#111111', priceColor: '#e30613', headerColor: '#d4142d', headerTextColor: '#ffffff', headerFooterStyle: 'imperdivel' } },
+  { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
+  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#ffffff', priceColor: '#ffe500', headerColor: '#0b7547', headerTextColor: '#ffffff', headerFooterStyle: 'oval' } },
+  { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d3557', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
 ]
 
 const HEADER_FOOTER_MODELS = [
@@ -152,6 +158,8 @@ const OFFER_MODES = [
   { id: 'atacado-varejo', name: 'Atacado / Varejo', note: 'Dois preços na placa' },
   { id: 'club-app', name: 'Clube / App', note: 'Preço exclusivo + normal' },
   { id: 'second-unit', name: '2ª unidade', note: 'Preço especial na segunda' },
+  { id: 'near-expiry', name: 'Próximo à validade', note: 'Sinaliza venda rápida' },
+  { id: 'last-units', name: 'Últimas unidades', note: 'Destaque para saldo final' },
 ]
 
 function loadPosterStyle() {
