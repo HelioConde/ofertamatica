@@ -1,5 +1,17 @@
 import PriceValue from './PriceValue'
 
+const PRIMARY_POSTER_FONT = '"Burbank Big Cd Bk"'
+const ACCENT_POSTER_FONT = 'Impact, "Arial Black", sans-serif'
+const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
+
+function fontFamilyForText(text, explicitFont) {
+  if (explicitFont) return explicitFont
+  const value = String(text || '')
+  return ACCENT_PATTERN.test(value) || ACCENT_PATTERN.test(value.normalize('NFD'))
+    ? ACCENT_POSTER_FONT
+    : PRIMARY_POSTER_FONT
+}
+
 const APP_BOXES = [
   ['appTitleBox', 'appTitle', 'title'],
   ['appPriceBox', 'appPrice', 'appPrice'],
@@ -8,13 +20,14 @@ const APP_BOXES = [
   ['appRegularPriceBox', 'appRegularPrice', 'regularPrice'],
 ]
 
-function styleFor(box, textStyle) {
+function styleFor(box, textStyle, text) {
   const alignX = { left: 'flex-start', center: 'center', right: 'flex-end' }[box.alignX] || 'center'
   const alignY = { top: 'flex-start', center: 'center', bottom: 'flex-end' }[box.alignY] || 'center'
   return {
     left: `${box.x}%`, top: `${box.y}%`, width: `${box.width}%`, height: `${box.height}%`,
     '--app-font-min': `${textStyle.fontMin}mm`, '--app-font-max': `${textStyle.fontMax}mm`,
     '--app-scale': textStyle.scale || 1, '--app-align-x': alignX, '--app-align-y': alignY,
+    fontFamily: fontFamilyForText(text, textStyle.fontFamily),
   }
 }
 
@@ -47,7 +60,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
       {APP_BOXES.map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
-        return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle)} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>
+        return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle, values[valueName])} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>
           <span>{['appPrice', 'regularPrice'].includes(valueName) ? <PriceValue value={values[valueName]} /> : (values[valueName] || '\u00a0')}</span>
           {showLayoutDebug ? <small>{boxName}</small> : null}
           {editable ? <button type="button" className="poster-resize-handle" aria-label={`Redimensionar ${boxName}`} onPointerDown={(event) => onBoxPointerDown?.(boxName, 'resize', event)} /> : null}
