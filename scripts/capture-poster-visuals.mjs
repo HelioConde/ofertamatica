@@ -43,6 +43,7 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   const priceText = card.querySelector('.poster-price-value')
   const header = card.querySelector('.ofertamatica-offer-ribbon, .ofertamatica-app-ribbon')
   const frameRoot = card.querySelector('.ofertamatica-poster-background, .ofertamatica-app-background')
+  const posterSurface = card.querySelector('.poster-card-layers, .poster-app-card')
 
   const relative = (element) => {
     if (!element || !poster) return null
@@ -103,9 +104,10 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   }
 
   const frameStyle = frameRoot ? getComputedStyle(frameRoot) : null
+  const surfaceStyle = posterSurface ? getComputedStyle(posterSurface) : null
   const descriptionStyle = description ? getComputedStyle(description) : null
   const priceTextStyle = priceText ? getComputedStyle(priceText) : null
-  const posterBackground = frameStyle?.backgroundColor || ''
+  const posterBackground = surfaceStyle?.backgroundColor || frameStyle?.backgroundColor || ''
   const descriptionColor = descriptionStyle?.color || ''
   const priceColor = priceTextStyle?.color || ''
   const headerBackground = headerStyle?.backgroundColor || ''
