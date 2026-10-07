@@ -1,0 +1,455 @@
+{
+  "generatedAt": "2026-10-07T11:29:52.377Z",
+  "commit": "ac71a381a54dc49f0db3d2fa6a39cdd3e49adf4a",
+  "results": [
+    {
+      "formatId": "A4X4",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A4X4",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.4,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A4X4",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A4X2_CIMA_BAIXO",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A4X2_CIMA_BAIXO",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.4,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A4X2_CIMA_BAIXO",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A4X2_INVERTIDO",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A4X2_INVERTIDO",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.4,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A4X2_INVERTIDO",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A4X2_APP",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A4X2_APP",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 236.2,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A4X2_APP",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A4",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A4",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.4,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A4",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A5",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A5",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 473.9,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A5",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    },
+    {
+      "formatId": "A3",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "formatId": "A3",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.3,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "formatId": "A3",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ],
+      "style": {
+        "width": 374,
+        "tooSmall": []
+      }
+    }
+  ],
+  "failures": []
+}

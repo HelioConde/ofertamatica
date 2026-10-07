@@ -1,0 +1,259 @@
+{
+  "generatedAt": "2026-10-07T11:29:30.123Z",
+  "commit": "ac71a381a54dc49f0db3d2fa6a39cdd3e49adf4a",
+  "pages": [
+    {
+      "route": "/",
+      "id": "home",
+      "viewport": "desktop",
+      "errors": [],
+      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false,
+      "visibleOverflow": []
+    },
+    {
+      "route": "/modelos/",
+      "id": "modelos",
+      "viewport": "desktop",
+      "errors": [],
+      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false,
+      "visibleOverflow": []
+    },
+    {
+      "route": "/formatos/",
+      "id": "formatos",
+      "viewport": "desktop",
+      "errors": [],
+      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false,
+      "visibleOverflow": []
+    },
+    {
+      "route": "/como-funciona/",
+      "id": "como-funciona",
+      "viewport": "desktop",
+      "errors": [],
+      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false,
+      "visibleOverflow": []
+    },
+    {
+      "route": "/guias-para-varejo/",
+      "id": "guias",
+      "viewport": "desktop",
+      "errors": [],
+      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false,
+      "visibleOverflow": []
+    },
+    {
+      "route": "/",
+      "id": "home",
+      "viewport": "mobile-360",
+      "errors": [],
+      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/modelos/",
+      "id": "modelos",
+      "viewport": "mobile-360",
+      "errors": [],
+      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 296.2,
+          "right": 375
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 382,
+          "right": 449
+        }
+      ]
+    },
+    {
+      "route": "/formatos/",
+      "id": "formatos",
+      "viewport": "mobile-360",
+      "errors": [],
+      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/como-funciona/",
+      "id": "como-funciona",
+      "viewport": "mobile-360",
+      "errors": [],
+      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/guias-para-varejo/",
+      "id": "guias",
+      "viewport": "mobile-360",
+      "errors": [],
+      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link active",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "id": "home",
+      "viewport": "mobile-412",
+      "errors": [],
+      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/modelos/",
+      "id": "modelos",
+      "viewport": "mobile-412",
+      "errors": [],
+      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 382,
+          "right": 449
+        }
+      ]
+    },
+    {
+      "route": "/formatos/",
+      "id": "formatos",
+      "viewport": "mobile-412",
+      "errors": [],
+      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/como-funciona/",
+      "id": "como-funciona",
+      "viewport": "mobile-412",
+      "errors": [],
+      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link ",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    },
+    {
+      "route": "/guias-para-varejo/",
+      "id": "guias",
+      "viewport": "mobile-412",
+      "errors": [],
+      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "visibleOverflow": [
+        {
+          "tag": "a",
+          "className": "nav-link active",
+          "left": 324.5,
+          "right": 423.8
+        }
+      ]
+    }
+  ]
+}
