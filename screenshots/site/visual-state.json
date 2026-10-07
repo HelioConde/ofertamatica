@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T14:42:45.180Z",
-  "commit": "5a030915887e4e0c9e15f695036b870d200affa4",
+  "generatedAt": "2026-10-07T17:12:45.032Z",
+  "commit": "4b77d07597435d37d1d959feac4df9bd689c575a",
   "routes": [
     [
       "home",
@@ -116,7 +116,7 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
       "width": 1440,
       "scrollWidth": 1440,
       "horizontalOverflow": false,
@@ -178,16 +178,22 @@
       "horizontalOverflow": false,
       "visibleOverflow": [
         {
-          "tag": "span",
+          "tag": "button",
           "className": "",
-          "left": 296.2,
-          "right": 375
+          "left": 328,
+          "right": 397.4
         },
         {
-          "tag": "span",
+          "tag": "button",
           "className": "",
-          "left": 382,
-          "right": 449
+          "left": 404.4,
+          "right": 495.7
+        },
+        {
+          "tag": "button",
+          "className": "",
+          "left": 502.7,
+          "right": 580.9
         }
       ],
       "navClipped": false,
@@ -205,7 +211,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
@@ -359,7 +365,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Oferta para Imprimir | A4, A5 e A3",
+      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
@@ -449,10 +455,16 @@
       "horizontalOverflow": false,
       "visibleOverflow": [
         {
-          "tag": "span",
+          "tag": "button",
           "className": "",
-          "left": 382,
-          "right": 449
+          "left": 404.4,
+          "right": 495.7
+        },
+        {
+          "tag": "button",
+          "className": "",
+          "left": 502.7,
+          "right": 580.9
         }
       ],
       "navClipped": false,
@@ -470,7 +482,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A4, A5 e A3 | Ofertamática",
+      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
       "width": 412,
       "scrollWidth": 412,
       "horizontalOverflow": false,
@@ -624,7 +636,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Oferta para Imprimir | A4, A5 e A3",
+      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
       "width": 412,
       "scrollWidth": 412,
       "horizontalOverflow": false,
@@ -637,7 +649,9 @@
       "id": "cartaz-a4",
       "viewport": "mobile-412",
       "errors": [],
-      "ignoredErrors": [],
+      "ignoredErrors": [
+        "int64"
+      ],
       "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
       "width": 412,
       "scrollWidth": 412,

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T14:41:22.493Z",
-  "commit": "5a030915887e4e0c9e15f695036b870d200affa4",
+  "generatedAt": "2026-10-07T17:11:44.586Z",
+  "commit": "4b77d07597435d37d1d959feac4df9bd689c575a",
   "desktopErrors": [],
   "mobileErrors": [],
   "fontState": {
@@ -9,19 +9,98 @@
   },
   "typographyWarnings": [],
   "samples": [
-    "mamao-formosa-a4",
-    "abacaxi-peca-a4",
-    "melancia-a4",
-    "uva-vermelha-a5",
-    "mexerica-murcot-a5",
-    "manga-tommy-a4x4",
-    "banana-prata-a4x2",
-    "manga-palmer-a3"
+    "biscoito-a7",
+    "mamao-moldura-a4",
+    "abacaxi-imperdivel-a4",
+    "melancia-promocao-a4",
+    "uva-chevron-a5",
+    "mexerica-oval-a5",
+    "manga-curva-a4x4",
+    "banana-ondas-a4x2",
+    "manga-divertida-a3",
+    "cafe-contorno-a4",
+    "arroz-rodape-a4",
+    "leite-especial-a4"
   ],
   "metrics": [
     {
-      "sample": "mamao-formosa-a4",
+      "sample": "biscoito-a7",
+      "format": "A4X8",
+      "frame": "moldura",
+      "headerFrameOk": true,
+      "headerSignature": "11.0469px|11.0469px|2.78125px|372.75px|45.9688px|3.77953px|none|rgb(237, 28, 36)|rgb(255, 255, 255)|none|none",
+      "header": {
+        "x": 2.8,
+        "y": 1,
+        "width": 94.4,
+        "height": 16.5,
+        "fontPx": 28.8236,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
+      "contentBox": {
+        "x": 5,
+        "y": 22,
+        "width": 90,
+        "height": 34,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "priceBox": {
+        "x": 7,
+        "y": 60,
+        "width": 86,
+        "height": 30.99,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "description": {
+        "x": 23.12,
+        "y": 21.99,
+        "width": 53.75,
+        "height": 14.19,
+        "fontPx": 43.2983,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "subdescription": {
+        "x": 22.89,
+        "y": 36.52,
+        "width": 54.21,
+        "height": 12.21,
+        "fontPx": 37.251,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "unit": {
+        "x": 44.06,
+        "y": 49.07,
+        "width": 11.86,
+        "height": 6.93,
+        "fontPx": 20.6816,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "price": {
+        "x": 29.01,
+        "y": 61.59,
+        "width": 41.97,
+        "height": 27.8,
+        "fontPx": 99.3335,
+        "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
+      },
+      "overflow": false
+    },
+    {
+      "sample": "mamao-moldura-a4",
       "format": "A4",
+      "frame": "moldura",
+      "headerFrameOk": true,
+      "headerSignature": "22.1562px|22.1562px|11.2031px|747.375px|184.875px|3.77953px|none|rgb(237, 28, 36)|rgb(255, 255, 255)|none|none",
+      "header": {
+        "x": 2.8,
+        "y": 1,
+        "width": 94.4,
+        "height": 16.5,
+        "fontPx": 105.827,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -73,8 +152,19 @@
       "overflow": false
     },
     {
-      "sample": "abacaxi-peca-a4",
+      "sample": "abacaxi-imperdivel-a4",
       "format": "A4",
+      "frame": "imperdivel",
+      "headerFrameOk": true,
+      "headerSignature": "7.90625px|7.90625px|5.59375px|775.875px|229.703px|0px|none|rgba(0, 0, 0, 0)|rgb(255, 255, 255)|none|\"Imperdível\"",
+      "header": {
+        "x": 1,
+        "y": 0.5,
+        "width": 98,
+        "height": 20.5,
+        "fontPx": 113.386,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -119,8 +209,19 @@
       "overflow": false
     },
     {
-      "sample": "melancia-a4",
+      "sample": "melancia-promocao-a4",
       "format": "A4",
+      "frame": "promocao",
+      "headerFrameOk": true,
+      "headerSignature": "0px|0px|0px|791.688px|207.281px|0px|polygon(0px 0px, 100% 0px, 100% 78%, 50% 100%, 0px 78%)|rgb(239, 51, 64)|rgb(255, 255, 255)|\"HOJE TEM\"|none",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 18.5,
+        "fontPx": 90.7087,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -165,8 +266,19 @@
       "overflow": false
     },
     {
-      "sample": "uva-vermelha-a5",
+      "sample": "uva-chevron-a5",
       "format": "A5",
+      "frame": "chevron",
+      "headerFrameOk": true,
+      "headerSignature": "0px|0px|0px|557.359px|142.5px|0px|polygon(0px 0px, 100% 0px, 100% 72%, 50% 100%, 0px 72%)|rgb(200, 0, 22)|rgb(255, 255, 255)|none|none",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 18,
+        "fontPx": 78.0303,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -218,8 +330,19 @@
       "overflow": false
     },
     {
-      "sample": "mexerica-murcot-a5",
+      "sample": "mexerica-oval-a5",
       "format": "A5",
+      "frame": "oval",
+      "headerFrameOk": true,
+      "headerSignature": "0px|0px|0px|557.359px|166.25px|0px 0px 72% / 0px 0px 82%|none|rgb(200, 0, 22)|rgb(255, 242, 0)|\"\"|none",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 21,
+        "fontPx": 64.0963,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -271,8 +394,19 @@
       "overflow": false
     },
     {
-      "sample": "manga-tommy-a4x4",
+      "sample": "manga-curva-a4x4",
       "format": "A4X4",
+      "frame": "curva-simples",
+      "headerFrameOk": true,
+      "headerSignature": "-7.89062px|-7.89062px|0px|410.625px|103.453px|0px 0px 50% 50% / 0px 0px 24% 24%|none|rgb(239, 51, 64)|rgb(255, 255, 255)|none|\"\"",
+      "header": {
+        "x": -2,
+        "y": 0,
+        "width": 104,
+        "height": 18.5,
+        "fontPx": 55.2781,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 6,
         "y": 20,
@@ -324,8 +458,19 @@
       "overflow": false
     },
     {
-      "sample": "banana-prata-a4x2",
+      "sample": "banana-ondas-a4x2",
       "format": "A4X2_CIMA_BAIXO",
+      "frame": "ondas",
+      "headerFrameOk": true,
+      "headerSignature": "-15.8281px|-15.8281px|0px|823.344px|103.453px|0px 0px 50% 50% / 0px 0px 24% 24%|none|rgb(231, 25, 45)|rgb(255, 242, 0)|none|\"\"",
+      "header": {
+        "x": -2,
+        "y": 0,
+        "width": 104,
+        "height": 18.5,
+        "fontPx": 68.0315,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 6,
         "y": 19,
@@ -377,8 +522,19 @@
       "overflow": false
     },
     {
-      "sample": "manga-palmer-a3",
+      "sample": "manga-divertida-a3",
       "format": "A3",
+      "frame": "divertido",
+      "headerFrameOk": true,
+      "headerSignature": "0px|0px|0px|1120.52px|317.078px|0px 0px 48% 48% / 0px 0px 16% 16%|none|rgb(239, 51, 64)|rgb(255, 255, 255)|\"\"|\"👍\"",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 20,
+        "fontPx": 102.047,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
       "contentBox": {
         "x": 7,
         "y": 20,
@@ -425,6 +581,198 @@
         "width": 77.49,
         "height": 25.82,
         "fontPx": 524.901,
+        "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
+      },
+      "overflow": false
+    },
+    {
+      "sample": "cafe-contorno-a4",
+      "format": "A4",
+      "frame": "minimal",
+      "headerFrameOk": true,
+      "headerSignature": "63.3281px|63.3281px|22.4062px|665.031px|151.266px|18.8976px|none|rgb(239, 51, 64)|rgb(255, 255, 255)|none|none",
+      "header": {
+        "x": 8,
+        "y": 2,
+        "width": 84,
+        "height": 13.5,
+        "fontPx": 90.7087,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
+      "contentBox": {
+        "x": 7,
+        "y": 20,
+        "width": 86,
+        "height": 45,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "priceBox": {
+        "x": 8,
+        "y": 67,
+        "width": 84,
+        "height": 28,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "description": {
+        "x": 13.41,
+        "y": 26.77,
+        "width": 73.16,
+        "height": 20.15,
+        "fontPx": 213.347,
+        "fontFamily": "Impact, \"Arial Black\", sans-serif"
+      },
+      "subdescription": {
+        "x": 10.5,
+        "y": 46.49,
+        "width": 79,
+        "height": 7.12,
+        "fontPx": 86.8309,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "unit": {
+        "x": 41.34,
+        "y": 54.5,
+        "width": 17.31,
+        "height": 5.05,
+        "fontPx": 60.3213,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "price": {
+        "x": 9.43,
+        "y": 70.58,
+        "width": 81.13,
+        "height": 20.84,
+        "fontPx": 299.323,
+        "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
+      },
+      "overflow": false
+    },
+    {
+      "sample": "arroz-rodape-a4",
+      "format": "A4",
+      "frame": "rodape-forte",
+      "headerFrameOk": true,
+      "headerSignature": "41.1562px|41.1562px|21.2812px|709.375px|159.109px|6.80315px|none|rgb(212, 20, 45)|rgb(255, 242, 0)|none|\"\"",
+      "header": {
+        "x": 5.2,
+        "y": 1.9,
+        "width": 89.6,
+        "height": 14.2,
+        "fontPx": 56.6929,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
+      "contentBox": {
+        "x": 7,
+        "y": 20,
+        "width": 86,
+        "height": 45,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "priceBox": {
+        "x": 8,
+        "y": 67,
+        "width": 84,
+        "height": 28,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "description": {
+        "x": 10.5,
+        "y": 23.91,
+        "width": 79,
+        "height": 14.23,
+        "fontPx": 173.65,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "subdescription": {
+        "x": 10.5,
+        "y": 39.04,
+        "width": 79,
+        "height": 16.09,
+        "fontPx": 196.29,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "unit": {
+        "x": 42.19,
+        "y": 56.03,
+        "width": 15.62,
+        "height": 5.05,
+        "fontPx": 60.3213,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "price": {
+        "x": 9.43,
+        "y": 70.58,
+        "width": 81.13,
+        "height": 20.84,
+        "fontPx": 299.323,
+        "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
+      },
+      "overflow": false
+    },
+    {
+      "sample": "leite-especial-a4",
+      "format": "A4",
+      "frame": "especial",
+      "headerFrameOk": true,
+      "headerSignature": "0px|0px|0px|791.688px|218.5px|0px 0px 48% 48% / 0px 0px 14% 14%|none|rgb(237, 28, 36)|rgb(255, 242, 0)|none|\"Especial\"",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 19.5,
+        "fontPx": 109.606,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
+      },
+      "contentBox": {
+        "x": 7,
+        "y": 20,
+        "width": 86,
+        "height": 45,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "priceBox": {
+        "x": 8,
+        "y": 67,
+        "width": 84,
+        "height": 28,
+        "fontPx": 16,
+        "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "description": {
+        "x": 10.5,
+        "y": 25.85,
+        "width": 79,
+        "height": 16.81,
+        "fontPx": 205.13,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "subdescription": {
+        "x": 10.5,
+        "y": 43.56,
+        "width": 79,
+        "height": 9.63,
+        "fontPx": 117.57,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "unit": {
+        "x": 45.56,
+        "y": 54.1,
+        "width": 8.87,
+        "height": 5.05,
+        "fontPx": 60.3213,
+        "fontFamily": "\"Burbank Big Cd Bk\""
+      },
+      "price": {
+        "x": 11.32,
+        "y": 68.12,
+        "width": 77.35,
+        "height": 25.75,
+        "fontPx": 369.94,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false

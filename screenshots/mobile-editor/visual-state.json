@@ -1,9 +1,125 @@
 {
-  "generatedAt": "2026-10-07T14:43:52.994Z",
-  "commit": "5a030915887e4e0c9e15f695036b870d200affa4",
+  "generatedAt": "2026-10-07T17:13:58.520Z",
+  "commit": "4b77d07597435d37d1d959feac4df9bd689c575a",
   "results": [
     {
       "viewport": "mobile-360",
+      "formatId": "A4X8",
+      "tab": "products",
+      "errors": [],
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "products": {
+        "rowHeight": 250,
+        "fieldCount": 5
+      }
+    },
+    {
+      "viewport": "mobile-360",
+      "formatId": "A4X8",
+      "tab": "preview",
+      "errors": [],
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 344,
+        "stageWidth": 322,
+        "stageHeight": 480,
+        "posterWidth": 304,
+        "posterHeight": 429.9,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "viewport": "mobile-360",
+      "formatId": "A4X8",
+      "tab": "style",
+      "errors": [],
+      "width": 360,
+      "scrollWidth": 360,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "button",
+          "className": "",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 341.7,
+          "right": 449.3
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 373.1,
+          "right": 417.9
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 474,
+          "right": 619
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
+          "left": 479,
+          "right": 614
+        }
+      ],
+      "style": {
+        "width": 344,
+        "headerArtHeight": 198,
+        "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
+        "tooSmall": []
+      }
+    },
+    {
+      "viewport": "mobile-360",
       "formatId": "A4X4",
       "tab": "products",
       "errors": [],
@@ -55,15 +171,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -73,21 +189,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -97,13 +213,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -112,6 +228,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -168,15 +287,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -186,21 +305,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -210,13 +329,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -225,6 +344,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -281,15 +403,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -299,21 +421,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -323,13 +445,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -338,6 +460,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -394,15 +519,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -412,21 +537,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -436,13 +561,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -451,6 +576,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -507,15 +635,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -525,21 +653,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -549,13 +677,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -564,6 +692,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -620,15 +751,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -638,21 +769,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -662,13 +793,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -677,6 +808,9 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -733,15 +867,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -751,21 +885,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -775,13 +909,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -790,6 +924,125 @@
         "width": 344,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
+        "tooSmall": []
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4X8",
+      "tab": "products",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "products": {
+        "rowHeight": 250,
+        "fieldCount": 5
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4X8",
+      "tab": "preview",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 374,
+        "stageWidth": 352,
+        "stageHeight": 506.4,
+        "posterWidth": 334,
+        "posterHeight": 472.4,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "viewport": "mobile-390",
+      "formatId": "A4X8",
+      "tab": "style",
+      "errors": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "button",
+          "className": "",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 341.7,
+          "right": 449.3
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 373.1,
+          "right": 417.9
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 474,
+          "right": 619
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
+          "left": 479,
+          "right": 614
+        }
+      ],
+      "style": {
+        "width": 374,
+        "headerArtHeight": 198,
+        "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -846,15 +1099,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -864,21 +1117,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -888,13 +1141,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -903,6 +1156,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -959,15 +1215,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -977,21 +1233,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1001,13 +1257,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1016,6 +1272,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1072,15 +1331,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1090,21 +1349,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1114,13 +1373,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1129,6 +1388,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1185,15 +1447,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1203,21 +1465,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1227,13 +1489,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1242,6 +1504,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1298,15 +1563,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1316,21 +1581,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1340,13 +1605,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1355,6 +1620,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1411,15 +1679,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1429,21 +1697,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1453,13 +1721,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1468,6 +1736,9 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1524,15 +1795,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1542,21 +1813,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1566,13 +1837,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1581,6 +1852,125 @@
         "width": 374,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
+        "tooSmall": []
+      }
+    },
+    {
+      "viewport": "mobile-412",
+      "formatId": "A4X8",
+      "tab": "products",
+      "errors": [],
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "products": {
+        "rowHeight": 250,
+        "fieldCount": 5
+      }
+    },
+    {
+      "viewport": "mobile-412",
+      "formatId": "A4X8",
+      "tab": "preview",
+      "errors": [],
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "offenders": [],
+      "preview": {
+        "display": "grid",
+        "cardWidth": 396,
+        "stageWidth": 374,
+        "stageHeight": 520,
+        "posterWidth": 354.9,
+        "posterHeight": 502,
+        "headerBeforeStage": true,
+        "pagerAfterStage": true,
+        "stageUsesCardWidth": true,
+        "posterReadable": true
+      }
+    },
+    {
+      "viewport": "mobile-412",
+      "formatId": "A4X8",
+      "tab": "style",
+      "errors": [],
+      "width": 412,
+      "scrollWidth": 412,
+      "horizontalOverflow": false,
+      "offenders": [
+        {
+          "tag": "button",
+          "className": "",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 341.7,
+          "right": 449.3
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 323,
+          "right": 468
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "b",
+          "className": "",
+          "left": 373.1,
+          "right": 417.9
+        },
+        {
+          "tag": "span",
+          "className": "",
+          "left": 328,
+          "right": 463
+        },
+        {
+          "tag": "button",
+          "className": "active",
+          "left": 474,
+          "right": 619
+        },
+        {
+          "tag": "div",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
+          "left": 479,
+          "right": 614
+        }
+      ],
+      "style": {
+        "width": 396,
+        "headerArtHeight": 198,
+        "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1637,15 +2027,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1655,21 +2045,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1679,13 +2069,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1694,6 +2084,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1750,15 +2143,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1768,21 +2161,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1792,13 +2185,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1807,6 +2200,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1863,15 +2259,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1881,21 +2277,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -1905,13 +2301,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -1920,6 +2316,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -1976,15 +2375,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -1994,21 +2393,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -2018,13 +2417,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -2033,6 +2432,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -2089,15 +2491,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -2107,21 +2509,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -2131,13 +2533,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -2146,6 +2548,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -2202,15 +2607,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -2220,21 +2625,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -2244,13 +2649,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -2259,6 +2664,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     },
@@ -2315,15 +2723,15 @@
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-ondas",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 358.5,
-          "right": 432.5
+          "left": 341.7,
+          "right": 449.3
         },
         {
           "tag": "span",
@@ -2333,21 +2741,21 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 323,
           "right": 468
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-curva-simples",
           "left": 328,
           "right": 463
         },
         {
           "tag": "b",
           "className": "",
-          "left": 354.8,
-          "right": 436.2
+          "left": 373.1,
+          "right": 417.9
         },
         {
           "tag": "span",
@@ -2357,13 +2765,13 @@
         },
         {
           "tag": "button",
-          "className": "",
+          "className": "active",
           "left": 474,
           "right": 619
         },
         {
           "tag": "div",
-          "className": "header-preset-thumb",
+          "className": "header-preset-thumb header-preset-thumb-divertido",
           "left": 479,
           "right": 614
         }
@@ -2372,6 +2780,9 @@
         "width": 396,
         "headerArtHeight": 198,
         "frameGridHeight": 151,
+        "headerBackgroundColor": "rgb(229, 30, 49)",
+        "headerTextColor": "rgb(255, 255, 255)",
+        "headerVisible": true,
         "tooSmall": []
       }
     }
