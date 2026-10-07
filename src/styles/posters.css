@@ -441,8 +441,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #d91820 !important;
-  -webkit-text-stroke: .08mm rgba(145, 15, 26, .72) !important;
+  color: var(--poster-price-color, #d91820) !important;
+  -webkit-text-stroke: .08mm rgba(0, 0, 0, .28) !important;
   text-shadow: none !important;
   paint-order: stroke fill;
 }
@@ -469,7 +469,7 @@
   font-family: var(--poster-price-font-family, "Futura Price", Impact, "Arial Black", sans-serif);
 }
 .poster-app-appPrice .poster-price-value {
-  -webkit-text-stroke: .08mm rgba(145, 15, 26, .72) !important;
+  -webkit-text-stroke: .08mm rgba(0, 0, 0, .28) !important;
   text-shadow: none !important;
 }
 
