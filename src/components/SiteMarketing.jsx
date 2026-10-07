@@ -23,6 +23,8 @@ const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
 const MODEL_PRESETS = [
   { id: 'classic', name: 'Clássico de oferta', category: 'Essenciais', label: 'OFERTA', background: '#f5e66d', price: '#d91b2b', text: '#101010', header: '#e51e31', headerText: '#ffffff', variant: 'classic', product: 'CAFÉ 500 g', value: '18,90', note: 'Visual varejo com descrição condensada, preço grande e leitura rápida.' },
+  { id: 'oferta-dia', name: 'Oferta do dia', category: 'Essenciais', label: 'OFERTA DO DIA', background: '#fff200', price: '#e30613', text: '#111111', header: '#ed1c24', headerText: '#ffffff', variant: 'daily', product: 'LEITE 1 L', value: '4,99', note: 'Header chevron e leitura rápida para ofertas do dia.' },
+  { id: 'validade', name: 'Próximo à validade', category: 'Vendas', label: 'OFERTA', background: '#fff3a0', price: '#d71920', text: '#111111', header: '#f28c00', headerText: '#ffffff', variant: 'expiry', product: 'IOGURTE 170 g', value: '2,49', note: 'Sinalização direta para acelerar giro e reduzir perdas.' },
   { id: 'relampago', name: 'Oferta relâmpago', category: 'Impacto', label: 'OFERTA RELÂMPAGO', background: '#f02b45', price: '#fff200', text: '#ffffff', header: '#b80925', headerText: '#ffffff', variant: 'flash', product: 'REFRIGERANTE 2 L', value: '6,99', note: 'Alto contraste para promoções curtas e chamadas urgentes.' },
   { id: 'super-oferta', name: 'Super oferta', category: 'Impacto', label: 'SUPER OFERTA', background: '#ffea00', price: '#d8001d', text: '#111111', header: '#0c59c7', headerText: '#ffffff', variant: 'super', product: 'ARROZ 5 kg', value: '24,90', note: 'Visual forte para ponta de gôndola e produtos campeões.' },
   { id: 'economia', name: 'Economia de verdade', category: 'Essenciais', label: 'ECONOMIA', background: '#fff5b5', price: '#d71920', text: '#16324a', header: '#16734a', headerText: '#ffffff', variant: 'savings', product: 'FEIJÃO 1 kg', value: '7,49', note: 'Mais sóbrio, ótimo para comunicação recorrente de preço.' },
@@ -47,7 +49,8 @@ const MODEL_PRESETS = [
 ]
 
 const FORMAT_CARDS = [
-  { id: 'A4X4', paper: 'A4', title: '4 cartazes por folha', size: '10,5 × 14,9 cm', use: 'Gôndola e leitura próxima', cells: 4 },
+  { id: 'A4X8', paper: 'A4', title: '8 cartazes A7 por folha', size: '10,5 × 7,4 cm', use: 'Etiqueta grande e leitura bem próxima', cells: 8 },
+  { id: 'A4X4', paper: 'A4', title: '4 cartazes A6 por folha', size: '10,5 × 14,9 cm', use: 'Gôndola e leitura próxima', cells: 4 },
   { id: 'A4X2', paper: 'A4', title: '2 cartazes por folha', size: '21 × 14,9 cm', use: 'Balcão e comunicação média', cells: 2 },
   { id: 'A4X2I', paper: 'A4', title: '2 cartazes · invertido', size: '21 × 14,9 cm', use: 'Dobra ou exposição especial', cells: 2, inverted: true },
   { id: 'A4APP', paper: 'A4', title: '2 ofertas de App', size: '14,9 × 21 cm', use: 'Oferta exclusiva de aplicativo', cells: 2, landscape: true },
@@ -309,6 +312,8 @@ function ModelCard({ item, onCreate }) {
   const [priceMajor = item.value, priceDecimal = ''] = String(item.value || '').split(',')
   const headerFooterStyle = {
     classic: 'moldura',
+    'oferta-dia': 'chevron',
+    validade: 'curva-simples',
     relampago: 'chevron',
     'super-oferta': 'rodape-forte',
     economia: 'oval',
@@ -340,6 +345,8 @@ function ModelCard({ item, onCreate }) {
       clube: 'club-app',
       app: 'club-app',
       'segunda-unidade': 'second-unit',
+      validade: 'near-expiry',
+      'ultimas-unidades': 'last-units',
     }[item.id] || 'standard'
 
     try {
@@ -490,6 +497,8 @@ export function PublicPage({ page, onCreate }) {
                 <article><span>2</span><strong>Atacado / Varejo</strong><p>Exiba os dois preços e informe a quantidade mínima exigida para o atacado.</p></article>
                 <article><span>★</span><strong>Clube / App</strong><p>Mostre um preço exclusivo e mantenha o preço normal como referência.</p></article>
                 <article><span>2ª</span><strong>2ª unidade</strong><p>Comunique um valor especial para a segunda unidade sem criar outro cartaz.</p></article>
+                <article><span>⏱</span><strong>Próximo à validade</strong><p>Sinalize produtos que precisam girar mais rápido e use a validade no próprio cartaz.</p></article>
+                <article><span>!</span><strong>Últimas unidades</strong><p>Destaque saldo final ou estoque curto sem perder a leitura principal de produto e preço.</p></article>
               </div>
             </section>
           </>
