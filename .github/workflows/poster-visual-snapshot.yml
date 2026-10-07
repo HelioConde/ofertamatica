@@ -47,6 +47,9 @@ jobs:
       - name: Install app dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Validate product parser
+        run: node scripts/validate-parser.mjs
+
       - name: Install Playwright for visual capture
         run: npm install --no-save playwright@1.55.0
 
