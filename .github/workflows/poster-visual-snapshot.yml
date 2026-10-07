@@ -10,10 +10,14 @@ on:
       - 'src/poster-engine/**'
       - 'src/utils/posterBrowserMeasure.js'
       - 'src/styles/posters.css'
+      - 'src/styles.css'
+      - 'src/styles/marketing.css'
+      - 'src/components/SiteMarketing.jsx'
       - 'src/pages/PosterVisualQaPage.jsx'
       - 'src/App.jsx'
       - 'src/assets/fonts/**'
       - 'scripts/capture-poster-visuals.mjs'
+      - 'scripts/capture-site-visuals.mjs'
       - '.github/workflows/poster-visual-snapshot.yml'
 
 permissions:
@@ -77,11 +81,17 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         run: node scripts/capture-poster-visuals.mjs
 
+      - name: Capture site screenshots
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/capture-site-visuals.mjs
+
       - name: Upload visual artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ofertamatica-poster-visual-snapshot
-          path: screenshots/cartazes/
+          name: ofertamatica-visual-snapshot
+          path: screenshots/
           retention-days: 30
 
       - name: Commit latest screenshots
@@ -89,7 +99,7 @@ jobs:
           set -euo pipefail
 
           SNAPSHOT_TMP="$(mktemp -d)"
-          cp -a screenshots/cartazes/. "$SNAPSHOT_TMP"/
+          cp -a screenshots/. "$SNAPSHOT_TMP"/
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -99,17 +109,17 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
-            rm -rf screenshots/cartazes
-            mkdir -p screenshots/cartazes
-            cp -a "$SNAPSHOT_TMP"/. screenshots/cartazes/
+            rm -rf screenshots
+            mkdir -p screenshots
+            cp -a "$SNAPSHOT_TMP"/. screenshots/
 
-            git add screenshots/cartazes/
+            git add screenshots/
             if git diff --cached --quiet; then
               echo "No visual changes detected."
               exit 0
             fi
 
-            git commit -m "chore: refresh ofertamatica poster visual snapshots [skip ci]"
+            git commit -m "chore: refresh ofertamatica visual snapshots [skip ci]"
             if git push origin HEAD:main; then
               exit 0
             fi
