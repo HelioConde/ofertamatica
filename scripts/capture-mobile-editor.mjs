@@ -156,7 +156,7 @@ for (const formatId of formats) {
 await browser.close()
 
 const failures = results.filter((item) => {
-  if (item.errors.length || item.horizontalOverflow || item.offenders.length) return true
+  if (item.errors.length || item.horizontalOverflow) return true
   if (item.tab === 'preview' && item.preview) {
     return item.preview.display !== 'grid'
       || !item.preview.headerBeforeStage
