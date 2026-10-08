@@ -106,6 +106,7 @@ function usePageHead(page, { creator = false } = {}) {
       '@type': 'Organization',
       name: 'Ofertamática',
       url: SITE_URL + '/',
+      logo: SITE_URL + '/icons/icon-192.png',
     }
     const publicPageType = page.slug === 'sobre'
       ? 'AboutPage'
