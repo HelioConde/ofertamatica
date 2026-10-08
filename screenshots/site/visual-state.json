@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T19:54:35.039Z",
-  "commit": "4c860d5388003e1f7c3449b87f6d1c0c55a66b04",
+  "generatedAt": "2026-10-08T20:53:16.190Z",
+  "commit": "6154dc80e4291565dacec24285401d32e9f97f5d",
   "routes": [
     [
       "home",
@@ -135,30 +135,19 @@
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
-      "ads": [
-        {
-          "className": "format-ad-card format-ad-zone",
-          "width": 728,
-          "height": 56
-        },
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 726,
-          "height": 54
-        }
-      ],
+      "ads": [],
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 720.5,
+          "bottom": 1001,
           "width": 1280,
-          "height": 651.5
+          "height": 932
         },
         "dialog": {
           "top": 81,
-          "bottom": 708.5,
+          "bottom": 989,
           "width": 1280,
-          "height": 627.5
+          "height": 908
         },
         "header": {
           "top": 82,
@@ -168,19 +157,19 @@
         },
         "grid": {
           "top": 256.5,
-          "bottom": 593.5,
+          "bottom": 943,
           "width": 1242,
-          "height": 337
+          "height": 686.5
         },
         "ad": {
-          "top": 603.5,
-          "bottom": 659.5,
-          "width": 728,
-          "height": 56
+          "top": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
         },
         "links": {
-          "top": 662.5,
-          "bottom": 707.5,
+          "top": 943,
+          "bottom": 988,
           "width": 1278,
           "height": 45
         }
@@ -595,7 +584,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1951,
+      "documentHeight": 2143,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -701,7 +690,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 3154,
+      "documentHeight": 3128,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -754,7 +743,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 3194,
+      "documentHeight": 3168,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -807,7 +796,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2868,
+      "documentHeight": 2842,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -860,7 +849,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2723,
+      "documentHeight": 2697,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -913,7 +902,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2916,
+      "documentHeight": 2890,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -966,7 +955,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2762,
+      "documentHeight": 2736,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1019,7 +1008,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2248,
+      "documentHeight": 2222,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1072,7 +1061,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2738,
+      "documentHeight": 2712,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1125,7 +1114,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2307,
+      "documentHeight": 2281,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1178,7 +1167,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2307,
+      "documentHeight": 2281,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1231,7 +1220,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2289,
+      "documentHeight": 2263,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1284,7 +1273,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2393,
+      "documentHeight": 2367,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1342,30 +1331,19 @@
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
-      "ads": [
-        {
-          "className": "format-ad-card format-ad-zone",
-          "width": 728,
-          "height": 48
-        },
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 726,
-          "height": 46
-        }
-      ],
+      "ads": [],
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 716.2,
+          "bottom": 761,
           "width": 1280,
-          "height": 647.2
+          "height": 692
         },
         "dialog": {
           "top": 81,
-          "bottom": 704.2,
+          "bottom": 749,
           "width": 1280,
-          "height": 623.2
+          "height": 668
         },
         "header": {
           "top": 82,
@@ -1375,19 +1353,19 @@
         },
         "grid": {
           "top": 284.6,
-          "bottom": 604.2,
+          "bottom": 707,
           "width": 1242,
-          "height": 319.6
+          "height": 422.4
         },
         "ad": {
-          "top": 611.2,
-          "bottom": 659.2,
-          "width": 728,
-          "height": 48
+          "top": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
         },
         "links": {
-          "top": 662.2,
-          "bottom": 703.2,
+          "top": 707,
+          "bottom": 748,
           "width": 1278,
           "height": 41
         }
@@ -1431,35 +1409,24 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1553,
+      "documentHeight": 1230,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
-      "ads": [
-        {
-          "className": "format-ad-card format-ad-zone",
-          "width": 700,
-          "height": 305
-        },
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 698,
-          "height": 303
-        }
-      ],
+      "ads": [],
       "creatorGeometry": {
         "page": {
           "top": 137,
-          "bottom": 1552.6,
+          "bottom": 1229.6,
           "width": 746,
-          "height": 1415.6
+          "height": 1092.6
         },
         "dialog": {
           "top": 151,
-          "bottom": 1526.6,
+          "bottom": 1203.6,
           "width": 746,
-          "height": 1375.6
+          "height": 1052.6
         },
         "header": {
           "top": 152,
@@ -1474,14 +1441,14 @@
           "height": 748
         },
         "ad": {
-          "top": 1156.6,
-          "bottom": 1461.6,
-          "width": 700,
-          "height": 305
+          "top": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
         },
         "links": {
-          "top": 1469.6,
-          "bottom": 1525.6,
+          "top": 1146.6,
+          "bottom": 1202.6,
           "width": 744,
           "height": 56
         }
@@ -1896,7 +1863,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2539,
+      "documentHeight": 2690,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2002,7 +1969,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4294,
+      "documentHeight": 4268,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2055,7 +2022,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4419,
+      "documentHeight": 4393,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2108,7 +2075,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4079,
+      "documentHeight": 4053,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2161,7 +2128,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3606,
+      "documentHeight": 3580,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2214,7 +2181,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4096,
+      "documentHeight": 4070,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2267,7 +2234,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3851,
+      "documentHeight": 3825,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2320,7 +2287,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3177,
+      "documentHeight": 3151,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2373,7 +2340,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3606,
+      "documentHeight": 3580,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2426,7 +2393,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3177,
+      "documentHeight": 3151,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2479,7 +2446,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3177,
+      "documentHeight": 3151,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2532,7 +2499,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3217,
+      "documentHeight": 3191,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2585,7 +2552,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3021,
+      "documentHeight": 2995,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2638,35 +2605,24 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2080,
+      "documentHeight": 1946,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
-      "ads": [
-        {
-          "className": "format-ad-card format-ad-zone",
-          "width": 284,
-          "height": 110
-        },
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 282,
-          "height": 100
-        }
-      ],
+      "ads": [],
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 2080.3,
+          "bottom": 1946.3,
           "width": 338,
-          "height": 1977.3
+          "height": 1843.3
         },
         "dialog": {
           "top": 117,
-          "bottom": 2054.3,
+          "bottom": 1920.3,
           "width": 338,
-          "height": 1937.3
+          "height": 1803.3
         },
         "header": {
           "top": 118,
@@ -2681,14 +2637,14 @@
           "height": 1271.2
         },
         "ad": {
-          "top": 1828.3,
-          "bottom": 1938.3,
-          "width": 284,
-          "height": 110
+          "top": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
         },
         "links": {
-          "top": 1950.3,
-          "bottom": 2053.3,
+          "top": 1816.3,
+          "bottom": 1919.3,
           "width": 312,
           "height": 103
         }
@@ -2732,7 +2688,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6511,
+      "documentHeight": 6517,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2785,7 +2741,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2738,
+      "documentHeight": 2726,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2838,7 +2794,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6223,
+      "documentHeight": 6211,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2891,7 +2847,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3586,
+      "documentHeight": 3574,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2944,7 +2900,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6447,
+      "documentHeight": 7005,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3103,7 +3059,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2908,
+      "documentHeight": 3124,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3209,7 +3165,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 4734,
+      "documentHeight": 4722,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3262,7 +3218,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 4948,
+      "documentHeight": 4936,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3315,7 +3271,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 4296,
+      "documentHeight": 4284,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3368,7 +3324,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3765,
+      "documentHeight": 3753,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3421,7 +3377,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 4479,
+      "documentHeight": 4467,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3474,7 +3430,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 4103,
+      "documentHeight": 4091,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3527,7 +3483,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3223,
+      "documentHeight": 3211,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3580,7 +3536,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3764,
+      "documentHeight": 3752,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3633,7 +3589,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3203,
+      "documentHeight": 3191,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3686,7 +3642,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3322,
+      "documentHeight": 3310,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3739,7 +3695,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3318,
+      "documentHeight": 3306,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3792,7 +3748,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3308,
+      "documentHeight": 3296,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3845,35 +3801,24 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1934,
+      "documentHeight": 1800,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
-      "ads": [
-        {
-          "className": "format-ad-card format-ad-zone",
-          "width": 336,
-          "height": 110
-        },
-        {
-          "className": "oferta-ad-unit is-pending",
-          "width": 334,
-          "height": 100
-        }
-      ],
+      "ads": [],
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1934.1,
+          "bottom": 1800.1,
           "width": 390,
-          "height": 1831.1
+          "height": 1697.1
         },
         "dialog": {
           "top": 117,
-          "bottom": 1908.1,
+          "bottom": 1774.1,
           "width": 390,
-          "height": 1791.1
+          "height": 1657.1
         },
         "header": {
           "top": 118,
@@ -3888,14 +3833,14 @@
           "height": 1155.9
         },
         "ad": {
-          "top": 1682.1,
-          "bottom": 1792.1,
-          "width": 336,
-          "height": 110
+          "top": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
         },
         "links": {
-          "top": 1804.1,
-          "bottom": 1907.1,
+          "top": 1670.1,
+          "bottom": 1773.1,
           "width": 364,
           "height": 103
         }
@@ -3939,7 +3884,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 6482,
+      "documentHeight": 6487,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3992,7 +3937,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2658,
+      "documentHeight": 2646,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4045,7 +3990,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 5912,
+      "documentHeight": 5900,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4098,7 +4043,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3528,
+      "documentHeight": 3516,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4151,7 +4096,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 6274,
+      "documentHeight": 6560,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4310,7 +4255,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2748,
+      "documentHeight": 2965,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4416,7 +4361,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 4507,
+      "documentHeight": 4495,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4469,7 +4414,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 4639,
+      "documentHeight": 4627,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4522,7 +4467,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 4077,
+      "documentHeight": 4065,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4575,7 +4520,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3682,
+      "documentHeight": 3670,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4628,7 +4573,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 4362,
+      "documentHeight": 4350,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4681,7 +4626,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3984,
+      "documentHeight": 3972,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4734,7 +4679,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3170,
+      "documentHeight": 3158,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4787,7 +4732,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3687,
+      "documentHeight": 3675,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4840,7 +4785,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3132,
+      "documentHeight": 3120,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4893,7 +4838,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3231,
+      "documentHeight": 3219,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4946,7 +4891,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3218,
+      "documentHeight": 3206,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4999,7 +4944,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3201,
+      "documentHeight": 3189,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
