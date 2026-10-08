@@ -171,7 +171,17 @@ const FRAME_ART_OPTIONS = HEADER_FOOTER_MODELS.map((frame) => ({
   label: frame.name,
   frameId: frame.id,
 }))
-const ALL_ART_OPTIONS = [...HEADER_OPTIONS, ...FRAME_ART_OPTIONS]
+// Variedade real já nos primeiros quatro cards; os 24 modelos continuam acessíveis.
+const FEATURED_MODEL_IDS = ['classic', 'hortifruti', 'acougue', 'premium']
+const ALL_ART_OPTIONS = [
+  ...FEATURED_MODEL_IDS
+    .map((id) => MODEL_ART_OPTIONS.find((item) => item.model.id === id))
+    .filter(Boolean),
+  ...MODEL_ART_OPTIONS.filter((item) => !FEATURED_MODEL_IDS.includes(item.model.id)),
+  ...FRAME_ART_OPTIONS,
+  ...HEADER_TEXT_PRESETS,
+  ...HEADER_IMAGES.map((item) => ({ ...item, kind: 'image' })),
+]
 
 const OFFER_MODES = [
   { id: 'standard', name: 'Padrão', note: 'Produto + preço' },
