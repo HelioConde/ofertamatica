@@ -76,6 +76,48 @@ for (const topic of SEARCH_INTENT_CLUSTERS) {
 }
 expect(read('como-funciona/index.html').includes('inteligência artificial está em desenvolvimento'), 'Não anunciar IA como recurso pronto')
 
+// Regressões verificadas a partir dos achados do Search Console/AdSense.
+const htaccess = read('.htaccess')
+expect(htaccess.includes('^www\\.ofertamatica\\.com\\.br, '.htaccess não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'icons', 'icon-192.png')), 'Ícone PWA 192x192 não foi copiado para dist')
+expect(fs.existsSync(path.join(dist, 'icons', 'icon-512.png')), 'Ícone PWA 512x512 não foi copiado para dist')
+
+if (failures.length) {
+  console.error('\nFalhas de validação do build:')
+  failures.forEach((failure) => console.error(' - ' + failure))
+  process.exit(1)
+}
+
+console.log(`Build validado: raiz + ${INDEXABLE_PAGES.length} páginas, sitemap, ads.txt, GTM e assets OK.`)
+), 'Redirecionamento 301 do www ausente')
+expect(htaccess.includes('RewriteRule ^ - [R=404,L]'), 'Rotas não encontradas precisam responder 404')
+expect(htaccess.includes('^(login|registro)/?$ - [G,L]'), 'Páginas antigas de cadastro não devem entregar a home')
+for (const [legacy, target] of [
+  ['cartazes-para-supermercado', 'cartaz-para-supermercado'],
+  ['excel-para-cartazes', 'cartazes-a-partir-de-excel'],
+  ['gerador-de-cartaz-gratis', 'criador-de-cartaz-de-oferta'],
+  ['gerador-de-placas-com-ia', 'como-funciona'],
+]) {
+  const redirectHtml = read(`${legacy}/index.html`)
+  expect(redirectHtml.includes(`${SITE_URL}/${target}/`), `Alvo de redirecionamento incorreto: ${legacy}`)
+  expect(htaccess.includes(`^${legacy}/?$ /${target}/ [R=301,L]`), `HTTP 301 ausente: ${legacy}`)
+  expect(!sitemap.includes(`<loc>${SITE_URL}/${legacy}/</loc>`), `Endereço antigo no sitemap: ${legacy}`)
+}
+expect(read('guias-para-varejo/index.html').includes('/placas-para-padaria/'), 'Hub não lista guia de padaria no HTML inicial')
+expect(read('guias-para-varejo/index.html').includes('/cartazes-a-partir-de-excel/'), 'Hub não lista guia Excel no HTML inicial')
+expect(read('placas-para-padaria/index.html').includes('Como escrever o preço do pão'), 'Falta conteúdo de padaria no HTML inicial')
+expect(read('cartazes-a-partir-de-excel/index.html').includes('Prepare a planilha'), 'Falta conteúdo de Excel no HTML inicial')
+expect(read('placas-para-padaria/index.html').includes('/icons/icon-192.png'), 'Logo do editor ausente do schema Organization')
+expect(index.includes('/guias-para-varejo/'), 'Home precisa vincular páginas SEO no HTML inicial')
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\\/loc>/g)].map((match) => match[1])
+expect(sitemapUrls.length === INDEXABLE_PAGES.length + 1, 'Quantidade de URLs incorreta no sitemap')
+expect(new Set(sitemapUrls).size === sitemapUrls.length, 'O sitemap contém URLs repetidas')
+const cssFiles = fs.readdirSync(path.join(dist, 'assets')).filter((file) => file.endsWith('.css'))
+const cssContents = cssFiles.map((file) => read(`assets/${file}`)).join('\\n')
+expect(cssContents.includes('format-ad-zone'), 'CSS do espaço publicitário separado não foi gerado')
+
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
