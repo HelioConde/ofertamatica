@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T16:27:18.968Z",
-  "commit": "205a654f392dfc38374b098cc6c8587fd83b78f8",
+  "generatedAt": "2026-10-08T16:35:58.766Z",
+  "commit": "a63333a59003574a8557c979c30c10338701c41c",
   "routes": [
     [
       "home",
@@ -379,6 +379,122 @@
       }
     },
     {
+      "route": "/qual-papel-usar-para-cartaz/",
+      "id": "qual-papel-usar-para-cartaz",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Qual Papel Usar para Cartaz de Oferta? A4, A5, A3 | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 3747,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIA DE PAPEL E IMPRESSÃO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Tipo de papel",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Tamanhos de folha",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como imprimir",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Dúvidas frequentes",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "paper-guide-related-link",
+          "text": "Ver todos os formatos disponíveis no gerador →",
+          "height": 15
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Qual a melhor gramatura de papel para cartaz de oferta?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Preciso comprar papel A6 ou A7 para imprimir várias placas?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Posso imprimir cartaz A3 em impressora A4?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Papel couchê funciona em qualquer impressora?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Por que o cartaz sai menor do que o tamanho escolhido?",
+          "height": 19.5
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
       "route": "/como-funciona/",
       "id": "como-funciona",
       "viewport": "desktop",
@@ -575,6 +691,1574 @@
       }
     },
     {
+      "route": "/sobre/",
+      "id": "sobre",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Sobre o Ofertamática | Ferramenta para Cartazes de Oferta",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1290,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › SOBRE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/fale-conosco/",
+      "id": "fale-conosco",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Fale Conosco | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1525,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FALE CONOSCO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/privacidade/",
+      "id": "privacidade",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Política de Privacidade | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1430,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › PRIVACIDADE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/termos/",
+      "id": "termos",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Termos de Uso | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1382,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › TERMOS DE USO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/placas-para-padaria/",
+      "id": "placas-para-padaria",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Placas de Preço para Padaria Grátis | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2647,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES PARA PADARIA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-a-partir-de-excel/",
+      "id": "cartazes-a-partir-de-excel",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Criar Cartazes a Partir do Excel Grátis | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2687,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES COM PLANILHAS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-para-acougue/",
+      "id": "cartazes-para-acougue",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartazes para Açougue Grátis | Placas de Preço Online",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2362,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES PARA AÇOUGUE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/criador-de-cartaz-de-oferta/",
+      "id": "criador-de-cartaz-de-oferta",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Criador de Placas de Preço Online Grátis | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2217,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CRIADOR DE CARTAZ DE OFERTA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-para-supermercado/",
+      "id": "cartaz-para-supermercado",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz para Supermercado Grátis | Criar e Imprimir",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2409,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ PARA SUPERMERCADO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/gerador-de-cartaz-de-promocao/",
+      "id": "gerador-de-cartaz-de-promocao",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Gerador de Cartaz de Promoção Grátis | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2256,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GERADOR DE CARTAZ DE PROMOÇÃO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-preco-online/",
+      "id": "cartaz-de-preco-online",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Placas de Preço para Mercado Online | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1742,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ DE PREÇO ONLINE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-oferta-para-imprimir/",
+      "id": "cartaz-de-oferta-para-imprimir",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta para Imprimir Grátis | A4, A5 e A3",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 2232,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ PARA IMPRIMIR",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-a4/",
+      "id": "cartaz-a4",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta A4 Grátis para Imprimir | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1801,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FORMATO A4",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-por/",
+      "id": "cartaz-de-por",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta De/Por Grátis | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1801,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ DE / POR",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-atacado-varejo/",
+      "id": "cartaz-atacado-varejo",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz Atacado e Varejo | Dois Preços para Imprimir",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1782,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › ATACADO / VAREJO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/como-fazer-cartaz-de-oferta/",
+      "id": "como-fazer-cartaz-de-oferta",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Como Fazer Placas de Preço para Mercado | Guia Grátis",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1886,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIA PRÁTICO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
       "route": "/",
       "id": "home",
       "viewport": "desktop-760-draft",
@@ -656,6 +2340,2172 @@
           "width": 1278,
           "height": 41
         }
+      }
+    },
+    {
+      "route": "/",
+      "id": "home",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 8,
+      "hasSavedDraft": false,
+      "title": "Placas para Mercado Online Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1553,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [
+        {
+          "className": "format-ad-card format-ad-zone",
+          "width": 700,
+          "height": 305
+        },
+        {
+          "className": "oferta-ad-unit is-pending",
+          "width": 698,
+          "height": 303
+        }
+      ],
+      "creatorGeometry": {
+        "page": {
+          "top": 137,
+          "bottom": 1552.6,
+          "width": 746,
+          "height": 1415.6
+        },
+        "dialog": {
+          "top": 151,
+          "bottom": 1526.6,
+          "width": 746,
+          "height": 1375.6
+        },
+        "header": {
+          "top": 152,
+          "bottom": 350.6,
+          "width": 744,
+          "height": 198.6
+        },
+        "grid": {
+          "top": 398.6,
+          "bottom": 1146.6,
+          "width": 716,
+          "height": 748
+        },
+        "ad": {
+          "top": 1156.6,
+          "bottom": 1461.6,
+          "width": 700,
+          "height": 305
+        },
+        "links": {
+          "top": 1469.6,
+          "bottom": 1525.6,
+          "width": 744,
+          "height": 56
+        }
+      }
+    },
+    {
+      "route": "/modelos/",
+      "id": "modelos",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Modelos de Placas de Preço Grátis para Mercado | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 6021,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › MODELOS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/formatos/",
+      "id": "formatos",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 8,
+      "formatGuideThumbnailsMatch": true,
+      "guideHeadingCentered": true,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 8,
+      "hasSavedDraft": false,
+      "title": "Cartaz A4, A5 e A3 para Imprimir | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2415,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FORMATOS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Qual papel usar para cartazes A4, A5 e A3 →",
+          "height": 15
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/qual-papel-usar-para-cartaz/",
+      "id": "qual-papel-usar-para-cartaz",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Qual Papel Usar para Cartaz de Oferta? A4, A5, A3 | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 4794,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIA DE PAPEL E IMPRESSÃO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Tipo de papel",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Tamanhos de folha",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como imprimir",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Dúvidas frequentes",
+          "height": 14
+        },
+        {
+          "tag": "a",
+          "className": "paper-guide-related-link",
+          "text": "Ver todos os formatos disponíveis no gerador →",
+          "height": 15
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Qual a melhor gramatura de papel para cartaz de oferta?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Preciso comprar papel A6 ou A7 para imprimir várias placas?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Posso imprimir cartaz A3 em impressora A4?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Papel couchê funciona em qualquer impressora?",
+          "height": 19.5
+        },
+        {
+          "tag": "summary",
+          "className": "",
+          "text": "Por que o cartaz sai menor do que o tamanho escolhido?",
+          "height": 19.5
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/como-funciona/",
+      "id": "como-funciona",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 3,
+      "howTopicLinksValid": true,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Como Fazer Placas para Mercado Online | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3092,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › COMO FUNCIONA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/guias-para-varejo/",
+      "id": "guias-para-varejo",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 3,
+      "retailCatalogCardCount": 12,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Como Fazer Cartazes de Supermercado | Guias Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 4587,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIAS PARA VAREJO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/sobre/",
+      "id": "sobre",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Sobre o Ofertamática | Ferramenta para Cartazes de Oferta",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1666,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › SOBRE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/fale-conosco/",
+      "id": "fale-conosco",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Fale Conosco | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1774,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FALE CONOSCO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/privacidade/",
+      "id": "privacidade",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Política de Privacidade | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1957,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › PRIVACIDADE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/termos/",
+      "id": "termos",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Termos de Uso | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1875,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › TERMOS DE USO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/placas-para-padaria/",
+      "id": "placas-para-padaria",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Placas de Preço para Padaria Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3729,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES PARA PADARIA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-a-partir-de-excel/",
+      "id": "cartazes-a-partir-de-excel",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Criar Cartazes a Partir do Excel Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3854,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES COM PLANILHAS",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-para-acougue/",
+      "id": "cartazes-para-acougue",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartazes para Açougue Grátis | Placas de Preço Online",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3513,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZES PARA AÇOUGUE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/criador-de-cartaz-de-oferta/",
+      "id": "criador-de-cartaz-de-oferta",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Criador de Placas de Preço Online Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3040,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CRIADOR DE CARTAZ DE OFERTA",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-para-supermercado/",
+      "id": "cartaz-para-supermercado",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz para Supermercado Grátis | Criar e Imprimir",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3531,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ PARA SUPERMERCADO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/gerador-de-cartaz-de-promocao/",
+      "id": "gerador-de-cartaz-de-promocao",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Gerador de Cartaz de Promoção Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3285,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GERADOR DE CARTAZ DE PROMOÇÃO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-preco-online/",
+      "id": "cartaz-de-preco-online",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Placas de Preço para Mercado Online | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2612,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ DE PREÇO ONLINE",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-oferta-para-imprimir/",
+      "id": "cartaz-de-oferta-para-imprimir",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta para Imprimir Grátis | A4, A5 e A3",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 3040,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ PARA IMPRIMIR",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-a4/",
+      "id": "cartaz-a4",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta A4 Grátis para Imprimir | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2612,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › FORMATO A4",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-de-por/",
+      "id": "cartaz-de-por",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz de Oferta De/Por Grátis | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2612,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › CARTAZ DE / POR",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartaz-atacado-varejo/",
+      "id": "cartaz-atacado-varejo",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Cartaz Atacado e Varejo | Dois Preços para Imprimir",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2651,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › ATACADO / VAREJO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/como-fazer-cartaz-de-oferta/",
+      "id": "como-fazer-cartaz-de-oferta",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "howGuideCardCount": 0,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Como Fazer Placas de Preço para Mercado | Guia Grátis",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 2455,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [
+        {
+          "tag": "a",
+          "className": "seo-breadcrumb",
+          "text": "Ofertamática › GUIA PRÁTICO",
+          "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Criar placas",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Como funciona",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Sobre",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Fale conosco",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Privacidade",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Termos",
+          "height": 11
+        }
+      ],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
       }
     },
     {
