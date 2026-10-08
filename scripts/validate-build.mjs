@@ -102,9 +102,10 @@ const sitemapUrls = sitemap.split('<loc>').slice(1).map((chunk) => chunk.split('
 expect(sitemapUrls.length === INDEXABLE_PAGES.length + 1, 'Quantidade incorreta de URLs no sitemap')
 expect(new Set(sitemapUrls).size === sitemapUrls.length, 'O sitemap contém URLs duplicadas')
 const assetDir = path.join(dist, 'assets')
+let cssContents = ''
 if (fs.existsSync(assetDir)) {
   const cssFiles = fs.readdirSync(assetDir).filter((file) => file.endsWith('.css'))
-  const cssContents = cssFiles.map((file) => read('assets/' + file)).join('\n')
+  cssContents = cssFiles.map((file) => read('assets/' + file)).join('\n')
   expect(cssContents.includes('format-ad-zone'), 'CSS dos anúncios separados ausente')
 } else {
   expect(false, 'Assets do build ausentes')
