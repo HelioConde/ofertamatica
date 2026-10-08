@@ -7,16 +7,15 @@ const baseUrl = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
 const outDir = path.resolve('screenshots/site')
 await fs.mkdir(outDir, { recursive: true })
 
-// Full mobile coverage: root + every public, institutional and SEO route.
+// Full visual release audit: all public, institutional and SEO routes at each viewport.
 const allRoutes = [
   ['home', '/'],
   ...PUBLIC_PAGES.map((page) => [page.slug, '/' + page.slug + '/']),
   ...SEO_PAGES.map((page) => [page.slug, '/' + page.slug + '/']),
 ]
 
-const desktopRoutes = allRoutes.filter(([id]) => (
-  ['home', 'modelos', 'formatos', 'como-funciona', 'guias-para-varejo'].includes(id)
-))
+// Every page must have a desktop screenshot, not only main navigation routes.
+const desktopRoutes = allRoutes
 
 const browser = await chromium.launch({ headless: true })
 const state = []
@@ -276,6 +275,7 @@ async function captureViewport(name, viewport, routes) {
 
 await captureViewport('desktop', { width: 1440, height: 1000 }, desktopRoutes)
 await captureViewport('desktop-760-draft', { width: 1600, height: 760 }, [['home', '/']])
+await captureViewport('tablet-768', { width: 768, height: 1024 }, allRoutes)
 await captureViewport('mobile-360', { width: 360, height: 800 }, allRoutes)
 await captureViewport('mobile-412', { width: 412, height: 915 }, allRoutes)
 
