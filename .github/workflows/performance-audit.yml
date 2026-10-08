@@ -1,0 +1,76 @@
+name: Ofertamatica Production Lighthouse
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy Ofertamatica V2 Production"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ofertamatica-production-lighthouse
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check Chrome and production
+        run: |
+          google-chrome --version
+          curl --fail --location --silent --show-error --retry 3 --retry-delay 5 https://ofertamatica.com.br/ -o /tmp/ofertamatica-production.html
+          grep -q 'Escolha o formato da sua placa de oferta' /tmp/ofertamatica-production.html
+
+      - name: Install Lighthouse
+        run: npm install --no-save --no-audit --no-fund lighthouse@12
+
+      - name: Audit mobile
+        run: |
+          mkdir -p performance
+          ./node_modules/.bin/lighthouse https://ofertamatica.com.br/ \
+            --chrome-flags="--headless --no-sandbox --disable-gpu" \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --output=json --output-path=performance/mobile.json --quiet
+
+      - name: Audit desktop
+        run: |
+          ./node_modules/.bin/lighthouse https://ofertamatica.com.br/ \
+            --preset=desktop \
+            --chrome-flags="--headless --no-sandbox --disable-gpu" \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --output=json --output-path=performance/desktop.json --quiet
+
+      - name: Publish report to job summary
+        if: always()
+        run: |
+          if [ -f performance/mobile.json ] && [ -f performance/desktop.json ]; then
+            node scripts/summarize-lighthouse.mjs performance/mobile.json performance/desktop.json >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Auditoria Lighthouse" >> "$GITHUB_STEP_SUMMARY"
+            echo "Um dos relatórios não foi gerado. Consulte o log para detalhes." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ofertamatica-lighthouse-production
+          path: performance/
+          if-no-files-found: warn
+          retention-days: 30
