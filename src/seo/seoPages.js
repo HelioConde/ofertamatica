@@ -151,7 +151,7 @@ export const PUBLIC_PAGES = [
     lead: 'Entre em contato pelo e-mail atendimento@ofertamatica.com.br para dúvidas, suporte, sugestões ou solicitações privadas. Consulte também nossos guias de criação e impressão.',
     benefits: ['Contato por e-mail', 'Ajuda para criar e imprimir', 'Privacidade e termos em linguagem clara'],
     trust: true,
-    updatedAt: 'Atualizado em 4 de outubro de 2026',
+    updatedAt: 'Atualizado em 8 de outubro de 2026',
     sections: [
       { title: 'Dúvidas sobre o criador', text: 'Se a dúvida é sobre formatos, importação de produtos, personalização ou impressão, consulte Como funciona e os Guias para varejo. As páginas mostram o fluxo sem exigir cadastro.' },
       { title: 'Problemas durante o uso', text: 'Antes de tentar novamente, confirme o formato escolhido, revise os produtos e atualize a página. Se o problema persistir, evite inserir informações confidenciais em qualquer relato de erro.' },
@@ -178,7 +178,7 @@ export const PUBLIC_PAGES = [
     lead: 'A criação de placas pode começar sem cadastro. Esta página explica quais dados ficam no dispositivo, quais serviços externos podem processar dados técnicos e como entrar em contato.',
     benefits: ['Criação sem cadastro obrigatório', 'Rascunhos salvos localmente', 'Transparência sobre analytics e publicidade'],
     legal: true,
-    updatedAt: 'Atualizado em 4 de outubro de 2026',
+    updatedAt: 'Atualizado em 8 de outubro de 2026',
     sections: [
       { title: 'Rascunhos e preferências', text: 'O editor usa o armazenamento local do navegador para manter o último trabalho, listas recentes, formato escolhido e preferências de personalização no dispositivo. Esses dados não formam um cadastro de conta e podem ser apagados limpando os dados do site no navegador.' },
       { title: 'Arquivos importados', text: 'Arquivos TXT, CSV, XLS ou XLSX selecionados no editor são lidos para preencher a lista de produtos. O fluxo atual não exige uma conta para essa importação e a ferramenta foi projetada para realizar essa preparação no navegador.' },
@@ -203,7 +203,7 @@ export const PUBLIC_PAGES = [
     lead: 'O Ofertamática é uma ferramenta de apoio à criação e impressão de comunicação promocional. O usuário continua responsável pela revisão das informações comerciais.',
     benefits: ['Revise preços antes de imprimir', 'Use conteúdos e marcas com autorização', 'A ferramenta pode evoluir continuamente'],
     legal: true,
-    updatedAt: 'Atualizado em 4 de outubro de 2026',
+    updatedAt: 'Atualizado em 8 de outubro de 2026',
     sections: [
       { title: 'Revisão das informações', text: 'Antes de imprimir ou publicar qualquer material, confira produto, preço, unidade, validade, condições promocionais e demais informações. A revisão final é responsabilidade de quem utiliza a ferramenta.' },
       { title: 'Conteúdo utilizado', text: 'Ao inserir textos, logotipos, imagens ou outros materiais, utilize conteúdo que você tenha autorização para usar e respeite direitos de terceiros.' },
