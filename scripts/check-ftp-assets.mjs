@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import os from 'node:os'
 import { spawn } from 'node:child_process'
 
 // Checagem FTP do diretório usado pela própria action da Locaweb.
@@ -29,28 +30,39 @@ for (const name of assets) {
 }
 const quote = (value) => '"' + String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"'
 function runLftp(commands, label) {
+  // lftp -f exige arquivo regular nesta versão; evite argumentos com credenciais.
+  // O script é criado com permissão 0600 e removido mesmo em caso de erro.
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ofertamatica-ftp-'))
+  const batchPath = path.join(tempDir, 'batch.lftp')
+  const script = [
+    'set cmd:fail-exit yes',
+    'set net:max-retries 2',
+    'set net:timeout 20',
+    'set ftp:ssl-allow no',
+    'open ' + quote(host),
+    'user ' + quote(user) + ' ' + quote(password),
+    ...commands,
+    'bye',
+  ].join('\n') + '\n'
+  fs.writeFileSync(batchPath, script, { mode: 0o600 })
   return new Promise((resolve, reject) => {
-    const proc = spawn('lftp', ['-f', '/dev/stdin'], { stdio: ['pipe', 'pipe', 'pipe'] })
+    const proc = spawn('lftp', ['-f', batchPath], { stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = '', stderr = ''
+    const cleanup = () => fs.rmSync(tempDir, { recursive: true, force: true })
     proc.stdout.on('data', (chunk) => { stdout += chunk.toString() })
     proc.stderr.on('data', (chunk) => { stderr += chunk.toString() })
-    proc.on('error', reject)
+    proc.on('error', (error) => {
+      cleanup()
+      reject(error)
+    })
     proc.on('close', (code) => {
+      cleanup()
       if (code !== 0) return reject(new Error(label + ': código FTP ' + code + '; ' + stderr.slice(-350)))
       resolve({ stdout, stderr })
     })
-    proc.stdin.end([
-      'set cmd:fail-exit yes',
-      'set net:max-retries 2',
-      'set net:timeout 20',
-      'set ftp:ssl-allow no',
-      'open ' + quote(host),
-      'user ' + quote(user) + ' ' + quote(password),
-      ...commands,
-      'bye',
-    ].join('\n') + '\n')
   })
 }
+
 try {
   // Os arquivos com hash são imutáveis: o mirror não remove uploads antigos.
   // O segundo envio cobre eventuais falhas silenciosas da action FTP.
