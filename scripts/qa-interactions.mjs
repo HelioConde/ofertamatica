@@ -38,22 +38,25 @@ await scenario('Home e escolha de formato desktop', { width: 1440, height: 900 }
   if (!(await page.locator('.editor-context').innerText()).includes('A4')) throw new Error('Formato A4 não foi preservado')
 })
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
+  const requests = []
+  page.on('request', (request) => {
+    if (/\/pagead\/ads(?:\?|$)|\/gampad\/ads(?:\?|$)/.test(request.url())) requests.push(request.url())
+  })
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
   await page.locator('.format-grid .format-choice').first().waitFor({ state: 'visible' })
   await page.waitForFunction(() => Boolean(window.ofertaConsent), null, { timeout: 8000 })
   const result = await page.evaluate(() => ({
     publisherCode: !!document.querySelector('script[data-ofertamatica-adsense]'),
-    paused: window.adsbygoogle?.pauseAdRequests === 1,
     defaultDenied: window.ofertaConsent.getState().adsEnabled === false,
     adUnitCount: document.querySelectorAll('.format-ad-card ins.adsbygoogle').length,
     gtmCount: document.querySelectorAll('script[data-ofertamatica-gtm]').length
   }))
   if (!result.publisherCode) throw new Error('Código publisher da CMP não carregou')
-  if (!result.paused) throw new Error('Solicitações de publicidade não começam pausadas')
   if (!result.defaultDenied || result.adUnitCount !== 0 || result.gtmCount !== 0) throw new Error('Serviços opcionais iniciaram antes da escolha')
   await page.locator('.format-ad-card').scrollIntoViewIfNeeded()
   await page.waitForTimeout(350)
   if (await page.locator('.format-ad-card ins.adsbygoogle').count()) throw new Error('Anúncio foi solicitado sem consentimento')
+  if (requests.length) throw new Error('Houve requisição de publicidade sem autorização: ' + requests[0])
 })
 await scenario('Cookies mobile: rejeitar, reabrir e personalizar', { width: 390, height: 844 }, async (page) => {
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
