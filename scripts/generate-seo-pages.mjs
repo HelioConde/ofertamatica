@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
+import { INDEXABLE_PAGES, SEO_PAGES, SEO_FAQS, SITE_URL } from '../src/seo/seoPages.js'
 import { searchTopicsFor } from '../src/seo/searchIntent.js'
 
 const dist = path.resolve('dist')
@@ -12,11 +12,23 @@ const baseHtml = fs.readFileSync(indexPath, 'utf8')
 const LEGACY_REDIRECTS = {
   'cartaz-de-supermercado': 'cartaz-para-supermercado',
   'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
-  'gerador-de-placas-com-ia': 'criador-de-cartaz-de-oferta',
+  'gerador-de-placas-com-ia': 'como-funciona',
   'cartaz-de-oferta-gratis': 'criador-de-cartaz-de-oferta',
   'cartaz-supermercado-online': 'cartaz-para-supermercado',
   'placa-de-preco-supermercado': 'cartaz-de-preco-online',
-  'gerador-de-cartaz-com-ia': 'criador-de-cartaz-de-oferta',
+  'gerador-de-cartaz-com-ia': 'como-funciona',
+  'cartazes-para-supermercado': 'cartaz-para-supermercado',
+  'cartaz-supermercado': 'cartaz-para-supermercado',
+  'cartazes-para-promocao': 'gerador-de-cartaz-de-promocao',
+  'gerador-de-placas-promocionais': 'gerador-de-cartaz-de-promocao',
+  'gerador-de-cartaz-gratis': 'criador-de-cartaz-de-oferta',
+  'como-criar-cartazes-promocionais': 'como-fazer-cartaz-de-oferta',
+  'guias': 'guias-para-varejo',
+  'faq': 'como-funciona',
+  'modelos-de-placas': 'modelos',
+  'excel-para-cartazes': 'cartazes-a-partir-de-excel',
+  'importar-produtos-excel': 'cartazes-a-partir-de-excel',
+  'ia-para-promocoes': 'como-funciona',
 }
 
 
@@ -43,7 +55,7 @@ function replaceMeta(html, page) {
 
 function structuredData(page) {
   const canonical = `${SITE_URL}/${page.slug}/`
-  const organization = { '@type': 'Organization', name: 'Ofertamática', url: SITE_URL + '/' }
+  const organization = { '@type': 'Organization', name: 'Ofertamática', url: SITE_URL + '/', logo: SITE_URL + '/icons/icon-192.png' }
   const pageType = page.slug === 'sobre'
     ? 'AboutPage'
     : page.slug === 'fale-conosco'
@@ -106,6 +118,14 @@ function snapshot(page) {
       <p style="font-size:16px;line-height:1.7">${esc(topic.text)}</p>
       <p><a href="${esc(topic.link)}">${esc(topic.linkLabel)}</a></p>
     </section>`).join('')
+  const guideIndex = page.slug === 'guias-para-varejo'
+    ? `<section aria-label="Guias por assunto"><h2>Guias para criar e imprimir cartazes</h2>
+        <p>Veja orientações práticas de preço, formato, setor e impressão.</p>
+        <ul>${SEO_PAGES.map((guide) => `<li><a href="/${esc(guide.slug)}/">${esc(guide.heading)}</a> — ${esc(guide.lead)}</li>`).join('')}</ul>
+        <h2>Dúvidas frequentes</h2>
+        ${SEO_FAQS.slice(0, 8).map((faq) => `<h3>${esc(faq.q)}</h3><p>${esc(faq.a)}</p>`).join('')}
+      </section>`
+    : ''
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
 
   const paperChoices = page.paperChoices?.length ? `
@@ -139,6 +159,7 @@ function snapshot(page) {
     ${updated}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${guideIndex}
     ${paperChoices}
     ${paperFormats}
     ${paperPrintSteps}
@@ -164,6 +185,9 @@ function creatorSnapshot() {
     <h1 style="font-size:44px;line-height:1.05;margin:10px 0">Escolha o tamanho da sua placa.</h1>
     <p style="font-size:17px;line-height:1.65;max-width:820px">Crie placas para mercado online e cartazes de oferta grátis. Do A7 para gôndola ao A3 para vitrine, escolha o formato, cole sua lista e gere as placas.</p>
     <ul style="line-height:1.8"><li>Primeira placa pronta em 2 cliques</li><li>Criação em lote para supermercado e varejo</li><li>Importação TXT, CSV e Excel</li><li>A4, A5 e A3</li></ul>
+    <nav aria-label="Guias e modelos para cartazes"><a href="/modelos/">Modelos de placas</a> · <a href="/formatos/">Formatos</a> ·
+      <a href="/cartaz-para-supermercado/">Supermercado</a> · <a href="/guias-para-varejo/">Guias</a> ·
+      <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a></nav>
   </main>`
 }
 
