@@ -1,5 +1,17 @@
 RewriteEngine On
 
+# Arquivos do Vite com hash no nome podem ficar no cache por um ano.
+# HTML, sitemap e manifestos permanecem revalidáveis em cada atualização.
+<IfModule mod_headers.c>
+  <FilesMatch "-[A-Za-z0-9_-]{8,}\\.(js|css|png|jpg|jpeg|webp|woff2?|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\\.(html|xml|txt|json)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+
 # One canonical HTTPS host. Preserve the full request path.
 RewriteCond %{HTTP_HOST} ^www\.ofertamatica\.com\.br$ [NC]
 RewriteRule ^ https://ofertamatica.com.br%{REQUEST_URI} [R=301,L,NE]
