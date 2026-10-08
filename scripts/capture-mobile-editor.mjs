@@ -68,6 +68,14 @@ async function openEditor(formatId, viewport) {
     viewport,
     deviceScaleFactor: 1,
   })
+  // Capturas do editor devem exercitar a interface sem uma decisão pendente
+  // sobre cookies. O fluxo real do banner é validado em qa-interactions.mjs.
+  // Rejeição explícita: não habilita AdSense, Analytics nem personalização.
+  await page.addInitScript(() => {
+    localStorage.setItem('ofertamatica:privacy-consent:v1', JSON.stringify({
+      version: 1, savedAt: Date.now(), analytics: false, ads: false, personalized: false,
+    }))
+  })
   const errors = []
   page.on('pageerror', (error) => {
     const message = String(error?.message || error || '')

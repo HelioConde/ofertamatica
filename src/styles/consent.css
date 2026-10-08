@@ -49,14 +49,14 @@
 .cookie-revoke{display:block;margin-top:16px;border:0;padding:6px 0;text-decoration:underline;color:#9c3940;cursor:pointer;background:transparent;font-size:12px;font-weight:700}
 .cookie-entry:focus-visible,.cookie-minimize:focus-visible,.cookie-action:focus-visible,.cookie-close:focus-visible,.cookie-revoke:focus-visible,.cookie-option input:focus-visible{outline:3px solid #ed903c;outline-offset:3px}
 @media(max-width:600px){
-  .cookie-banner{right:8px;left:8px;bottom:8px;width:auto;max-width:none;max-height:min(48dvh,340px);padding:12px;gap:9px;border-radius:14px}
+  .cookie-banner{right:8px;left:8px;bottom:8px;width:auto;max-width:none;max-height:min(36dvh,250px);padding:10px 12px;gap:7px;border-radius:14px}
   .cookie-banner-intro{grid-template-columns:minmax(0,1fr);gap:0}
   .cookie-symbol{display:none}
   .cookie-banner h2{font-size:15px}
   .cookie-banner p{font-size:11.5px;line-height:1.4}
-  .cookie-banner-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-  .cookie-banner-actions .cookie-primary{grid-column:span 2}
-  .cookie-action{min-height:40px;padding:8px 7px;font-size:12px}
+  .cookie-banner-actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .cookie-banner-actions .cookie-primary{grid-column:auto}
+  .cookie-action{min-height:44px;padding:7px 5px;font-size:11.5px}
   .cookie-entry{right:8px;bottom:8px}
   .cookie-dialog{padding:17px;border-radius:14px}
   .cookie-dialog h2{font-size:19px}

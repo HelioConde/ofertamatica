@@ -33,6 +33,14 @@ for (const formatId of formats) {
     deviceScaleFactor: 1,
   })
 
+  // Capturas do editor devem exercitar a interface sem uma decisão pendente
+  // sobre cookies. O fluxo real do banner é validado em qa-interactions.mjs.
+  // Rejeição explícita: não habilita AdSense, Analytics nem personalização.
+  await page.addInitScript(() => {
+    localStorage.setItem('ofertamatica:privacy-consent:v1', JSON.stringify({
+      version: 1, savedAt: Date.now(), analytics: false, ads: false, personalized: false,
+    }))
+  })
   const errors = []
   page.on('pageerror', (error) => {
     const message = String(error?.message || error || '')
@@ -127,6 +135,12 @@ for (const formatId of formats) {
 const uploadPage = await browser.newPage({
   viewport: { width: 1440, height: 900 },
   deviceScaleFactor: 1,
+})
+// Mesmo estado de privacidade dos demais exemplos do editor.
+await uploadPage.addInitScript(() => {
+  localStorage.setItem('ofertamatica:privacy-consent:v1', JSON.stringify({
+    version: 1, savedAt: Date.now(), analytics: false, ads: false, personalized: false,
+  }))
 })
 await uploadPage.goto(baseUrl + '/', { waitUntil: 'networkidle' })
 await uploadPage.locator('[data-format-id="A4"]').click()
