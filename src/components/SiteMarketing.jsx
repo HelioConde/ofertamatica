@@ -13,6 +13,7 @@ import {
   SEO_PAGES,
   SITE_URL,
 } from '../seo/seoPages'
+import { searchTopicsFor } from '../seo/searchIntent'
 import '../styles/marketing.css'
 
 const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
@@ -430,6 +431,30 @@ function relatedPages(page) {
   return [...sameGroup, ...others].slice(0, 3)
 }
 
+function SearchTopicSections({ slug }) {
+  const topics = searchTopicsFor(slug)
+  if (!topics.length) return null
+
+  return (
+    <section className="marketing-section store-use-section" aria-label="Orientações para criar placas e cartazes">
+      <div className="marketing-heading">
+        <span className="marketing-kicker">GUIA DE CRIAÇÃO</span>
+        <h2>Escolha o tipo de cartaz certo para sua loja</h2>
+        <p>Dicas de criação, formatos e aplicação no dia a dia do varejo.</p>
+      </div>
+      <div className="store-use-grid">
+        {topics.map((topic) => (
+          <article key={topic.name}>
+            <h2>{topic.title}</h2>
+            <p>{topic.text}</p>
+            <a href={topic.link}>{topic.linkLabel} →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 export function PublicPage({ page, onCreate }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
@@ -667,6 +692,8 @@ export function PublicPage({ page, onCreate }) {
           </>
         ) : null}
 
+        {!isInstitutional ? <SearchTopicSections slug={page.slug} /> : null}
+
         {(!isLegal && !isTrust) ? <AdUnit placement={'seo-' + page.slug} /> : null}
 
         <section className="marketing-final-cta">
@@ -704,6 +731,8 @@ export function SeoLanding({ page, onCreate }) {
             {page.benefits.map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
           </aside>
         </section>
+
+        <SearchTopicSections slug={page.slug} />
 
         <section className="marketing-section practical-section">
           <div className="marketing-heading">
