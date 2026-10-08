@@ -153,11 +153,16 @@ expect(!cssContents.includes('font-display:block'), 'Fonte está configurada com
 // O CSS de prévias e as páginas de marketing devem ficar fora do carregamento inicial.
 const entrySource = fs.readFileSync('src/main.jsx', 'utf8')
 const appSource = fs.readFileSync('src/App.jsx', 'utf8')
+const fullAppSource = fs.readFileSync('src/CreatorApp.jsx', 'utf8')
+const marketingSource = fs.readFileSync('src/components/SiteMarketing.jsx', 'utf8')
 const posterSheetSource = fs.readFileSync('src/components/posters/PosterSheet.jsx', 'utf8')
 expect(!entrySource.includes("import './styles/posters.css'"), 'CSS de impressão voltou para a home')
 expect(posterSheetSource.includes("import '../../styles/posters.css'"), 'CSS de impressão não acompanha o PosterSheet')
-expect(appSource.includes("lazy(() => import('./components/SiteMarketing')"), 'Marketing deve carregar por rota')
-expect(appSource.includes("lazy(() => import('./components/posters/PosterSheet')"), 'Prévia de impressão deve carregar sob demanda')
+expect(appSource.includes("lazy(() => import('./CreatorApp.jsx')"), 'O editor completo deve carregar somente após escolher formato')
+expect(fullAppSource.includes("lazy(() => import('./components/SiteMarketing')"), 'Marketing deve carregar por rota')
+expect(fullAppSource.includes("lazy(() => import('./components/posters/PosterSheet')"), 'Prévia de impressão deve carregar sob demanda')
+expect(!entrySource.includes("import './styles/marketing.css'"), 'CSS de marketing não pode bloquear a Home')
+expect(marketingSource.includes("import '../styles/marketing.css'"), 'As páginas públicas precisam carregar seu próprio CSS')
 
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
