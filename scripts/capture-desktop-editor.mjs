@@ -122,6 +122,73 @@ for (const formatId of formats) {
   await page.close()
 }
 
+// Regression: upload a valid PNG >1 MB. Client optimization must keep the
+// custom header and store logo usable without exceeding localStorage capacity.
+const uploadPage = await browser.newPage({
+  viewport: { width: 1440, height: 900 },
+  deviceScaleFactor: 1,
+})
+await uploadPage.goto(baseUrl + '/', { waitUntil: 'networkidle' })
+await uploadPage.locator('[data-format-id="A4"]').click()
+await uploadPage.locator('[data-style-tab="art"]').click()
+
+const pngBase64 = await uploadPage.evaluate(() => {
+  const canvas = document.createElement('canvas')
+  canvas.width = 1500
+  canvas.height = 520
+  const context = canvas.getContext('2d')
+  const pixels = context.createImageData(canvas.width, canvas.height)
+  let seed = 20261008
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    seed ^= seed << 13
+    seed ^= seed >>> 17
+    seed ^= seed << 5
+    pixels.data[i] = seed & 255
+    pixels.data[i + 1] = (seed >>> 8) & 255
+    pixels.data[i + 2] = (seed >>> 16) & 255
+    pixels.data[i + 3] = 255
+  }
+  context.putImageData(pixels, 0, 0)
+  return canvas.toDataURL('image/png').split(',')[1]
+})
+const largeImageBuffer = Buffer.from(pngBase64, 'base64')
+if (largeImageBuffer.length <= 1024 * 1024 || largeImageBuffer.length > 8 * 1024 * 1024) {
+  throw new Error('The upload fixture is not a valid 1–8 MB PNG image.')
+}
+
+await uploadPage.locator('.header-library-section input[type="file"]').setInputFiles({
+  name: 'qa-large-artwork.png',
+  mimeType: 'image/png',
+  buffer: largeImageBuffer,
+})
+await uploadPage.locator('.selected-header-preview.custom-header-preview').waitFor({ state: 'visible', timeout: 15000 })
+const headerUploadResult = await uploadPage.evaluate(() => ({
+  saved: localStorage.getItem('ofertamatica:custom-header:v1') || '',
+  error: [...document.querySelectorAll('.header-library-section .store-logo-error')].map((item) => item.textContent).join(' '),
+}))
+if (!headerUploadResult.saved.startsWith('data:image/webp;') ||
+    headerUploadResult.saved.length > 1200000 || headerUploadResult.error) {
+  throw new Error('Large custom header was not optimized/stored correctly: ' + headerUploadResult.error)
+}
+
+await uploadPage.locator('[data-style-tab="settings"]').click()
+await uploadPage.locator('.store-brand-section summary').click()
+await uploadPage.locator('.store-brand-section input[type="file"]').setInputFiles({
+  name: 'qa-large-logo.png',
+  mimeType: 'image/png',
+  buffer: largeImageBuffer,
+})
+await uploadPage.locator('.store-logo-preview').waitFor({ state: 'visible', timeout: 15000 })
+const logoUploadResult = await uploadPage.evaluate(() => ({
+  saved: localStorage.getItem('ofertamatica:store-logo:v1') || '',
+  error: [...document.querySelectorAll('.store-brand-section .store-logo-error')].map((item) => item.textContent).join(' '),
+}))
+if (!logoUploadResult.saved.startsWith('data:image/webp;') ||
+    logoUploadResult.saved.length > 1200000 || logoUploadResult.error) {
+  throw new Error('Large store logo was not optimized/stored correctly: ' + logoUploadResult.error)
+}
+await uploadPage.close()
+
 await browser.close()
 
 const failures = results.filter((item) => (
