@@ -18,6 +18,7 @@ import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from './utils/posterColorContrast'
+import { optimizePosterImage } from './utils/optimizePosterImage'
 
 const HEADER_IMAGE_MODULES = import.meta.glob('../img/headers/*.png', {
   eager: true,
@@ -845,6 +846,8 @@ function StyleSidebar({
   const [offerDetailsOpen, setOfferDetailsOpen] = useState(() => Boolean(style.validityText || style.limitText || style.offerMode === 'near-expiry'))
   const [logoError, setLogoError] = useState('')
   const [customHeaderError, setCustomHeaderError] = useState('')
+  const [logoUploading, setLogoUploading] = useState(false)
+  const [headerUploading, setHeaderUploading] = useState(false)
   const logoInputRef = useRef(null)
   const customHeaderInputRef = useRef(null)
   const [headerLimit, setHeaderLimit] = useState(4)
@@ -860,8 +863,22 @@ function StyleSidebar({
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
     .filter(Boolean)
+  const activeModel = MODEL_ART_OPTIONS.find(({ model }) =>
+    !style.headerImage &&
+    model.background === style.backgroundColor &&
+    resolveReadablePriceColor(model.background, model.price) === style.priceColor &&
+    model.label === style.headerText &&
+    (model.headerFooterStyle || 'moldura') === style.headerFooterStyle
+  )
+  const currentArtLabel = customHeader
+    ? 'Arte personalizada'
+    : style.headerImage
+      ? (HEADER_IMAGES.find((item) => item.id === style.headerImage)?.label || 'Arte do catálogo')
+      : (activeModel?.label || (HEADER_TEXT_PRESETS.find((item) => item.text === style.headerText)?.label || 'Estilo personalizado'))
+
 
   function chooseHeader(id) {
+    setCustomHeaderError('')
     onCustomHeaderChange?.('')
     const option = ALL_ART_OPTIONS.find((item) => item.id === id)
 
@@ -924,59 +941,39 @@ function StyleSidebar({
     }
   }
 
-  function handleStoreLogo(event) {
+  async function handleStoreLogo(event) {
     const file = event.target.files?.[0]
     event.target.value = ''
     if (!file) return
-
-    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)) {
-      setLogoError('Use PNG, JPG ou WebP.')
-      return
+    setLogoError('')
+    setLogoUploading(true)
+    try {
+      const { dataUrl, optimized } = await optimizePosterImage(file, { kind: 'logo' })
+      onStoreLogoChange?.(dataUrl)
+      trackProductEvent('ofertamatica_store_logo_added', { file_type: file.type, optimized })
+    } catch (error) {
+      setLogoError(error instanceof Error ? error.message : 'Não foi possível preparar a logo.')
+    } finally {
+      setLogoUploading(false)
     }
-
-    if (file.size > 1024 * 1024) {
-      setLogoError('A logo deve ter no máximo 1 MB.')
-      return
-    }
-
-    const reader = new FileReader()
-    reader.onload = () => {
-      const value = typeof reader.result === 'string' ? reader.result : ''
-      if (!value) return
-      setLogoError('')
-      onStoreLogoChange?.(value)
-      trackProductEvent('ofertamatica_store_logo_added', { file_type: file.type })
-    }
-    reader.onerror = () => setLogoError('Não foi possível ler esta imagem.')
-    reader.readAsDataURL(file)
   }
 
-  function handleCustomHeader(event) {
+  async function handleCustomHeader(event) {
     const file = event.target.files?.[0]
     event.target.value = ''
     if (!file) return
-
-    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)) {
-      setCustomHeaderError('Use PNG, JPG ou WebP.')
-      return
-    }
-
-    if (file.size > 1024 * 1024) {
-      setCustomHeaderError('O header deve ter no máximo 1 MB.')
-      return
-    }
-
-    const reader = new FileReader()
-    reader.onload = () => {
-      const value = typeof reader.result === 'string' ? reader.result : ''
-      if (!value) return
-      setCustomHeaderError('')
+    setCustomHeaderError('')
+    setHeaderUploading(true)
+    try {
+      const { dataUrl, optimized } = await optimizePosterImage(file, { kind: 'header' })
       onChange({ ...style, headerImage: '' })
-      onCustomHeaderChange?.(value)
-      trackProductEvent('ofertamatica_custom_header_added', { file_type: file.type })
+      onCustomHeaderChange?.(dataUrl)
+      trackProductEvent('ofertamatica_custom_header_added', { file_type: file.type, optimized })
+    } catch (error) {
+      setCustomHeaderError(error instanceof Error ? error.message : 'Não foi possível preparar esta arte.')
+    } finally {
+      setHeaderUploading(false)
     }
-    reader.onerror = () => setCustomHeaderError('Não foi possível ler esta imagem.')
-    reader.readAsDataURL(file)
   }
 
   const colorFields = [
@@ -1163,10 +1160,10 @@ function StyleSidebar({
               <button type="button" onClick={() => onStoreLogoChange?.('')}>Remover</button>
             </div>
           ) : (
-            <button type="button" className="store-logo-upload" onClick={() => logoInputRef.current?.click()}>
+            <button type="button" className="store-logo-upload" disabled={logoUploading} aria-busy={logoUploading} onClick={() => logoInputRef.current?.click()}>
               <span>＋</span>
-              <b>Adicionar logo da loja</b>
-              <small>PNG, JPG ou WebP · até 1 MB</small>
+              <b>{logoUploading ? 'Preparando imagem...' : 'Adicionar logo da loja'}</b>
+              <small>PNG, JPG ou WebP · até 8 MB · otimização automática</small>
             </button>
           )}
           {logoError ? <p className="store-logo-error" role="alert">{logoError}</p> : null}
@@ -1195,6 +1192,10 @@ function StyleSidebar({
           <div className="personalization-gallery-meta">
             <span>Todos · {filteredHeaders.length} opções</span>
             <a href="/modelos/">Galeria de modelos →</a>
+          </div>
+          <div className="personalization-current-art" role="status" aria-live="polite">
+            <span>Em uso</span>
+            <strong title={currentArtLabel}>{currentArtLabel}</strong>
           </div>
 
           <input
@@ -1225,13 +1226,13 @@ function StyleSidebar({
 
           <details className="personalization-library-extra">
             <summary>+ {customHeader ? 'Trocar arte personalizada' : 'Adicionar arte própria'}</summary>
-                      <button type="button" className="custom-header-upload" onClick={() => customHeaderInputRef.current?.click()}>
-            <span>＋</span>
-            <div>
-              <b>{customHeader ? 'Trocar arte personalizada' : 'Usar minha própria arte'}</b>
-              <small>PNG, JPG ou WebP · até 1 MB</small>
-            </div>
-          </button>
+            <button type="button" className="custom-header-upload" disabled={headerUploading} aria-busy={headerUploading} onClick={() => customHeaderInputRef.current?.click()}>
+              <span>＋</span>
+              <div>
+                <b>{headerUploading ? 'Otimizando imagem...' : (customHeader ? 'Trocar arte personalizada' : 'Usar minha própria arte')}</b>
+                <small>PNG, JPG ou WebP · até 8 MB · ajuste automático</small>
+              </div>
+            </button>
           {customHeaderError ? <p className="store-logo-error" role="alert">{customHeaderError}</p> : null}
           </details>
 
