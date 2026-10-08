@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './posters/PosterSheet'
+import PaperGuide from './PaperGuide'
 import { getPosterFormat } from '../config/posterFormats'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
@@ -95,6 +96,10 @@ function usePageHead(page, { creator = false } = {}) {
     upsertPropertyMeta('og:title', page.title)
     upsertPropertyMeta('og:description', page.description)
     upsertPropertyMeta('og:url', canonical)
+    upsertPropertyMeta('og:type', page.paperChoices ? 'article' : 'website')
+    upsertMeta('twitter:card', 'summary')
+    upsertMeta('twitter:title', page.title)
+    upsertMeta('twitter:description', page.description)
 
     const cleanup = []
     const organization = {
@@ -137,6 +142,20 @@ function usePageHead(page, { creator = false } = {}) {
     }))
 
     document.getElementById('ofertamatica-faq-schema')?.remove()
+    if (!creator && page.paperChoices) {
+      cleanup.push(setStructuredData('ofertamatica-article-schema', {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: page.heading,
+        description: page.description,
+        mainEntityOfPage: canonical,
+        inLanguage: 'pt-BR',
+        author: organization,
+        publisher: organization,
+      }))
+    } else {
+      document.getElementById('ofertamatica-article-schema')?.remove()
+    }
 
     return () => cleanup.forEach((fn) => fn?.())
   }, [creator, page])
@@ -282,6 +301,7 @@ function MarketingFooter() {
         <a href="/">Criar placas</a>
         <a href="/como-funciona/">Como funciona</a>
         <a href="/guias-para-varejo/">Guias</a>
+        <a href="/qual-papel-usar-para-cartaz/">Papel para cartazes</a>
         <a href="/sobre/">Sobre</a>
         <a href="/fale-conosco/">Fale conosco</a>
         <a href="/privacidade/">Privacidade</a>
@@ -461,6 +481,7 @@ export function PublicPage({ page, onCreate }) {
   const [modelLimit, setModelLimit] = useState(12)
   const isModels = page.slug === 'modelos'
   const isFormats = page.slug === 'formatos'
+  const isPaperGuide = page.slug === 'qual-papel-usar-para-cartaz'
   const isHow = page.slug === 'como-funciona'
   const isGuides = page.slug === 'guias-para-varejo'
   const isLegal = Boolean(page.legal)
@@ -586,6 +607,8 @@ export function PublicPage({ page, onCreate }) {
           </>
         ) : null}
 
+        {isPaperGuide ? <PaperGuide page={page} /> : null}
+
         {isFormats ? (
           <section className="marketing-section">
             <div className="marketing-heading">
@@ -605,6 +628,11 @@ export function PublicPage({ page, onCreate }) {
                   </div>
                 </article>
               ))}
+            </div>
+            <div className="paper-guide-inline">
+              <strong>Dúvida sobre papel ou gramatura?</strong>
+              <p>O formato é uma parte da escolha. Confira também qual papel usar em cada tipo de cartaz e como imprimir no tamanho correto.</p>
+              <a href="/qual-papel-usar-para-cartaz/">Qual papel usar para cartazes A4, A5 e A3 →</a>
             </div>
             <button className="marketing-primary-cta" type="button" onClick={onCreate}>Escolher um formato no criador</button>
           </section>
@@ -640,6 +668,11 @@ export function PublicPage({ page, onCreate }) {
               <h2>Encontre o guia pela sua necessidade</h2>
               <p>Os guias abaixo têm objetivos diferentes para evitar páginas repetitivas e facilitar a navegação interna.</p>
             </div>
+            <a className="paper-guide-featured" href="/qual-papel-usar-para-cartaz/">
+              <span>GUIA DE IMPRESSÃO</span>
+              <strong>Qual papel usar para cartazes de oferta?</strong>
+              <small>Entenda gramatura, folha A4/A5/A3, corte e escala de impressão →</small>
+            </a>
             <div className="guide-groups">
               {Object.entries(guideGroups).map(([group, items]) => (
                 <section key={group}>
