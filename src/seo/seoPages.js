@@ -153,11 +153,9 @@ export const PUBLIC_PAGES = [
     trust: true,
     updatedAt: 'Atualizado em 8 de outubro de 2026',
     sections: [
-      { title: 'Dúvidas sobre o criador', text: 'Se a dúvida é sobre formatos, importação de produtos, personalização ou impressão, consulte Como funciona e os Guias para varejo. As páginas mostram o fluxo sem exigir cadastro.' },
-      { title: 'Problemas durante o uso', text: 'Antes de tentar novamente, confirme o formato escolhido, revise os produtos e atualize a página. Se o problema persistir, evite inserir informações confidenciais em qualquer relato de erro.' },
-      { title: 'Privacidade e publicidade', text: 'A Política de Privacidade explica armazenamento local, medição de uso e publicidade. Os Termos de Uso apresentam as responsabilidades ao criar e imprimir materiais.' },
-      { title: 'Atendimento por e-mail', text: 'Escreva para atendimento@ofertamatica.com.br com sua dúvida ou solicitação. Este é o canal para suporte e assuntos que não devem ser publicados em uma plataforma aberta.' },
-      { title: 'Relatos técnicos públicos', text: 'Para relatar erros reproduzíveis ou sugerir recursos publicamente, você também pode usar o GitHub. Os relatos são públicos e exigem uma conta. Nunca publique dados pessoais, senhas ou documentos privados nesse canal.' },
+      { title: 'Ajuda para criar e imprimir', text: 'Consulte Como funciona e os Guias para varejo para aprender a escolher formatos, importar listas de produtos, personalizar cartazes e imprimir.' },
+      { title: 'Se alguma função não estiver funcionando', text: 'Descreva o problema no e-mail acima e, se possível, informe o navegador, o dispositivo e a etapa em que ocorreu. Não envie senhas nem listas de clientes.' },
+      { title: 'Relatos técnicos públicos', text: 'O GitHub é uma alternativa para sugestões e falhas técnicas que possam ser compartilhadas publicamente. Para assuntos privados, utilize somente o contato por e-mail.' },
     ],
     links: [
       { label: 'Enviar e-mail ao atendimento', href: 'mailto:atendimento@ofertamatica.com.br?subject=Atendimento%20Ofertam%C3%A1tica', note: 'Canal oficial de suporte, dúvidas e sugestões.' },

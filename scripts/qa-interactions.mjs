@@ -99,6 +99,10 @@ await scenario('Contato oficial: e-mail nas páginas institucionais', { width: 3
     const href = await link.getAttribute('href')
     if (!href?.startsWith('mailto:atendimento@ofertamatica.com.br')) throw new Error('E-mail inválido em ' + slug)
     if (!(await page.locator('main').innerText()).includes('atendimento@ofertamatica.com.br')) throw new Error('E-mail não aparece em ' + slug)
+    if (slug === 'fale-conosco') {
+      const cards = await page.locator('.legal-content article').count()
+      if (cards !== 3) throw new Error('Fale Conosco deve exibir apenas 3 orientações objetivas: ' + cards)
+    }
     await page.getByRole('button', { name: 'Copiar e-mail' }).click()
     await page.getByRole('status').getByText('E-mail copiado para a área de transferência.').waitFor()
     if (await page.evaluate(() => window.__supportEmailCopied) !== 'atendimento@ofertamatica.com.br') {
