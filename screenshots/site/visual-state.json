@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T18:52:06.442Z",
-  "commit": "4ce850c430a34af2333b1ce490a509edf08b5850",
+  "generatedAt": "2026-10-08T19:12:56.015Z",
+  "commit": "03123de8657f1fc98a2273546c98b358960a03b3",
   "routes": [
     [
       "home",
@@ -150,15 +150,15 @@
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 720.5,
+          "bottom": 1001,
           "width": 1280,
-          "height": 651.5
+          "height": 932
         },
         "dialog": {
           "top": 81,
-          "bottom": 708.5,
+          "bottom": 989,
           "width": 1280,
-          "height": 627.5
+          "height": 908
         },
         "header": {
           "top": 82,
@@ -168,19 +168,19 @@
         },
         "grid": {
           "top": 256.5,
-          "bottom": 593.5,
+          "bottom": 874,
           "width": 1242,
-          "height": 337
+          "height": 617.5
         },
         "ad": {
-          "top": 603.5,
-          "bottom": 659.5,
+          "top": 884,
+          "bottom": 940,
           "width": 728,
           "height": 56
         },
         "links": {
-          "top": 662.5,
-          "bottom": 707.5,
+          "top": 943,
+          "bottom": 988,
           "width": 1278,
           "height": 45
         }
@@ -2638,7 +2638,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1747,
+      "documentHeight": 2080,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2647,48 +2647,48 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 284,
-          "height": 85
+          "height": 110
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 282,
-          "height": 83
+          "height": 100
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1746.6,
+          "bottom": 2080.3,
           "width": 338,
-          "height": 1643.6
+          "height": 1977.3
         },
         "dialog": {
           "top": 117,
-          "bottom": 1720.6,
+          "bottom": 2054.3,
           "width": 338,
-          "height": 1603.6
+          "height": 1937.3
         },
         "header": {
           "top": 118,
-          "bottom": 414.1,
+          "bottom": 473.3,
           "width": 312,
-          "height": 296.1
+          "height": 355.3
         },
         "grid": {
-          "top": 462.1,
-          "bottom": 1507.6,
+          "top": 545.1,
+          "bottom": 1816.3,
           "width": 288,
-          "height": 1045.5
+          "height": 1271.2
         },
         "ad": {
-          "top": 1519.6,
-          "bottom": 1604.6,
+          "top": 1828.3,
+          "bottom": 1938.3,
           "width": 284,
-          "height": 85
+          "height": 110
         },
         "links": {
-          "top": 1616.6,
-          "bottom": 1719.6,
+          "top": 1950.3,
+          "bottom": 2053.3,
           "width": 312,
           "height": 103
         }
@@ -3845,7 +3845,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1675,
+      "documentHeight": 1934,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3854,7 +3854,7 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 336,
-          "height": 102
+          "height": 110
         },
         {
           "className": "oferta-ad-unit is-pending",
@@ -3865,37 +3865,37 @@
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1674.7,
+          "bottom": 1934.1,
           "width": 390,
-          "height": 1571.7
+          "height": 1831.1
         },
         "dialog": {
           "top": 117,
-          "bottom": 1648.7,
+          "bottom": 1908.1,
           "width": 390,
-          "height": 1531.7
+          "height": 1791.1
         },
         "header": {
           "top": 118,
-          "bottom": 390,
+          "bottom": 459.8,
           "width": 364,
-          "height": 272
+          "height": 341.8
         },
         "grid": {
-          "top": 438,
-          "bottom": 1418.7,
+          "top": 514.2,
+          "bottom": 1670.1,
           "width": 340,
-          "height": 980.8
+          "height": 1155.9
         },
         "ad": {
-          "top": 1430.7,
-          "bottom": 1532.7,
+          "top": 1682.1,
+          "bottom": 1792.1,
           "width": 336,
-          "height": 102
+          "height": 110
         },
         "links": {
-          "top": 1544.7,
-          "bottom": 1647.7,
+          "top": 1804.1,
+          "bottom": 1907.1,
           "width": 364,
           "height": 103
         }
