@@ -2,9 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './styles.css'
-// Carrega os estilos editoriais no HTML inicial, antes da hidratação das rotas.
-// Evita a galeria de guias aparecer sem grid em carregamentos diretos.
-import './styles/marketing.css'
+// O CSS das páginas internas é carregado pelas rotas; manter fora da Home reduz CSS não usado.
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
