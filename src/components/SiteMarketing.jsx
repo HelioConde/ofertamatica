@@ -365,23 +365,45 @@ function relatedPages(page) {
   return [...sameGroup, ...others].slice(0, 3)
 }
 
+const HOW_RELATED_GUIDES = [
+  {
+    name: 'Formato e quantidade por folha',
+    title: 'Escolha o tamanho ideal para cada cartaz',
+    text: 'Compare oito formatos: A4 com uma ou várias placas, A5 para balcão e A3 para vitrines. Veja o tamanho físico antes de começar.',
+    link: '/formatos/',
+    linkLabel: 'Comparar formatos',
+  },
+  {
+    name: 'Papel e impressão',
+    title: 'Imprima no papel e na escala corretos',
+    text: 'Confira o tipo de papel, a gramatura e a orientação da folha. Faça uma prova antes de imprimir várias ofertas.',
+    link: '/qual-papel-usar-para-cartaz/',
+    linkLabel: 'Ver guia de impressão',
+  },
+]
+
 function SearchTopicSections({ slug }) {
-  const topics = searchTopicsFor(slug)
+  const isHow = slug === 'como-funciona'
+  const topics = isHow ? [...searchTopicsFor(slug), ...HOW_RELATED_GUIDES] : searchTopicsFor(slug)
   if (!topics.length) return null
 
   return (
-    <section className="marketing-section store-use-section" aria-label="Orientações para criar placas e cartazes">
+    <section
+      className={'marketing-section store-use-section ' + (isHow ? 'how-guide-section' : '')}
+      aria-label="Orientações para criar placas e cartazes"
+    >
       <div className="marketing-heading">
-        <span className="marketing-kicker">GUIA DE CRIAÇÃO</span>
-        <h2>Escolha o tipo de cartaz certo para sua loja</h2>
-        <p>Dicas de criação, formatos e aplicação no dia a dia do varejo.</p>
+        <span className="marketing-kicker">{isHow ? 'PRÓXIMOS PASSOS' : 'GUIA DE CRIAÇÃO'}</span>
+        <h2>{isHow ? 'Da planilha à impressão, sem complicação' : 'Escolha o tipo de cartaz certo para sua loja'}</h2>
+        <p>{isHow ? 'Explore recursos que ajudam a preparar, personalizar e imprimir placas no tamanho certo.' : 'Dicas de criação, formatos e aplicação no dia a dia do varejo.'}</p>
       </div>
       <div className="store-use-grid">
-        {topics.map((topic) => (
-          <article key={topic.name}>
-            <h2>{topic.title}</h2>
+        {topics.map((topic, index) => (
+          <article className="store-use-topic" key={topic.name}>
+            <span className="store-use-topic-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{topic.title}</h3>
             <p>{topic.text}</p>
-            <a href={topic.link}>{topic.linkLabel} →</a>
+            <a href={topic.link}>{topic.linkLabel} <span aria-hidden="true">→</span></a>
           </article>
         ))}
       </div>
