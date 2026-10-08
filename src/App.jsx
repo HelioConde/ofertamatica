@@ -4,7 +4,6 @@ import PosterVisualQaPage from './pages/PosterVisualQaPage'
 import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
-import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
@@ -127,27 +126,6 @@ const DEFAULT_POSTER_STYLE = {
   validityText: '',
   limitText: '',
 }
-
-const POSTER_STYLE_PRESETS = POSTER_MODEL_PRESETS.map((preset) => ({
-  id: preset.id,
-  name: preset.name,
-  category: preset.category,
-  values: {
-    ...DEFAULT_POSTER_STYLE,
-    backgroundColor: preset.background,
-    textColor: resolveReadableTextColor(preset.background, preset.text),
-    priceColor: resolveReadablePriceColor(preset.background, preset.price),
-    headerColor: preset.header,
-    headerTextColor: resolveReadableHeaderTextColor(preset.header, preset.headerText),
-    headerStyle: 'retail',
-    headerText: preset.label,
-    headerImage: '',
-    headerFooterStyle: preset.headerFooterStyle || 'moldura',
-    offerMode: preset.offerMode || 'standard',
-    validityText: preset.validityText || '',
-    limitText: '',
-  },
-}))
 
 const HEADER_FOOTER_MODELS = [
   { id: 'moldura', name: 'Moldura clássica', note: 'Borda vermelha forte e placa de OFERTA no topo', preview: 'moldura', headerTextColor: '#ffffff' },
@@ -681,35 +659,52 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
   )
 }
 
+function PosterOptionPreview({
+  frame = 'moldura',
+  headerText = 'OFERTA',
+  headerColor = '#ed1c24',
+  headerTextColor = '#ffffff',
+  imageUrl = '',
+}) {
+  return (
+    <span
+      className={`poster-option-preview poster-option-preview-${frame}`}
+      aria-hidden="true"
+      style={{
+        '--option-header': headerColor,
+        '--option-header-text': headerTextColor,
+      }}
+    >
+      <span className="poster-option-preview-head">
+        {imageUrl
+          ? <img src={imageUrl} alt="" loading="lazy" />
+          : <b>{headerText || 'OFERTA'}</b>}
+      </span>
+      <span className="poster-option-preview-copy"><i /><i /></span>
+      <strong><small>R$</small> 9,99</strong>
+      <em />
+    </span>
+  )
+}
+
 function StyleSidebar({
   style, onChange, onReset, mobileActive, isAppFormat = false,
   storeLogo = '', onStoreLogoChange, customHeader = '', onCustomHeaderChange,
 }) {
   const [headerSearch, setHeaderSearch] = useState('')
-  const [modelCategory, setModelCategory] = useState('Todos')
+  const [offerDetailsOpen, setOfferDetailsOpen] = useState(() => Boolean(style.validityText || style.limitText || style.offerMode === 'near-expiry'))
   const [logoError, setLogoError] = useState('')
   const [customHeaderError, setCustomHeaderError] = useState('')
   const logoInputRef = useRef(null)
   const customHeaderInputRef = useRef(null)
-  const [headerLimit, setHeaderLimit] = useState(18)
+  const [headerLimit, setHeaderLimit] = useState(8)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
   const filteredHeaders = normalizedSearch
     ? HEADER_OPTIONS.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
     : HEADER_OPTIONS
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
-  const modelCategories = ['Todos', ...new Set(POSTER_STYLE_PRESETS.map((preset) => preset.category))]
-  const visibleModelPresets = modelCategory === 'Todos'
-    ? POSTER_STYLE_PRESETS
-    : POSTER_STYLE_PRESETS.filter((preset) => preset.category === modelCategory)
-  const activeModelId = POSTER_STYLE_PRESETS.find((preset) => (
-    preset.values.backgroundColor === style.backgroundColor
-    && preset.values.textColor === style.textColor
-    && preset.values.priceColor === style.priceColor
-    && preset.values.headerColor === style.headerColor
-    && preset.values.headerFooterStyle === style.headerFooterStyle
-    && preset.values.offerMode === (style.offerMode || 'standard')
-  ))?.id || ''
+  const selectedOfferMode = OFFER_MODES.find((mode) => mode.id === (style.offerMode || 'standard')) || OFFER_MODES[0]
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
     .filter(Boolean)
@@ -817,108 +812,64 @@ function StyleSidebar({
 
       <div className="style-sidebar-scroll">
         {!isAppFormat ? (
-          <>
-            <section className="style-section offer-mode-section">
-              <div className="style-section-title-row">
-                <strong>Tipo de oferta</strong>
-                <small>Opcional · não atrasa os 2 cliques</small>
-              </div>
-              <div className="offer-mode-grid">
+          <section className="style-section offer-mode-section compact-offer-section">
+            <div className="style-section-title-row">
+              <strong>Tipo de oferta</strong>
+              <small>Opcional</small>
+            </div>
+            <label className="offer-mode-select-row">
+              <select
+                value={style.offerMode || 'standard'}
+                onChange={(event) => {
+                  const offerMode = event.target.value
+                  onChange({ ...style, offerMode })
+                  if (offerMode === 'near-expiry') setOfferDetailsOpen(true)
+                  trackProductEvent('ofertamatica_offer_mode_selected', { offer_mode: offerMode })
+                }}
+                aria-label="Tipo de oferta"
+              >
                 {OFFER_MODES.map((mode) => (
-                  <button
-                    type="button"
-                    key={mode.id}
-                    className={style.offerMode === mode.id ? 'active' : ''}
-                    onClick={() => {
-                      onChange({ ...style, offerMode: mode.id })
-                      trackProductEvent('ofertamatica_offer_mode_selected', { offer_mode: mode.id })
-                    }}
-                  >
-                    <b>{mode.name}</b>
-                    <small>{mode.note}</small>
-                  </button>
+                  <option key={mode.id} value={mode.id}>{mode.name}</option>
                 ))}
-              </div>
-            </section>
+              </select>
+              <small>{selectedOfferMode.note}</small>
+            </label>
 
-            <section className="style-section offer-details-section">
-              <div className="style-section-title-row">
-                <strong>Detalhes da oferta</strong>
-                <small>Opcional</small>
+            <details
+              className="offer-details-disclosure"
+              open={offerDetailsOpen}
+              onToggle={(event) => setOfferDetailsOpen(event.currentTarget.open)}
+            >
+              <summary>Validade e limite <span>opcional</span></summary>
+              <div className="offer-details-compact">
+                <label className="style-text-row">
+                  <span>Validade</span>
+                  <input
+                    type="text"
+                    maxLength="36"
+                    value={style.validityText || ''}
+                    placeholder="Ex.: Válido até 06/10"
+                    onChange={(event) => onChange({ ...style, validityText: event.target.value.toLocaleUpperCase('pt-BR') })}
+                  />
+                </label>
+                <label className="style-text-row">
+                  <span>Limite por cliente</span>
+                  <input
+                    type="text"
+                    maxLength="44"
+                    value={style.limitText || ''}
+                    placeholder="Ex.: Limite 6 un. por cliente"
+                    onChange={(event) => onChange({ ...style, limitText: event.target.value.toLocaleUpperCase('pt-BR') })}
+                  />
+                </label>
               </div>
-              <label className="style-text-row">
-                <span>Validade</span>
-                <input
-                  type="text"
-                  maxLength="36"
-                  value={style.validityText || ''}
-                  placeholder="Ex.: Válido até 06/10"
-                  onChange={(event) => onChange({ ...style, validityText: event.target.value.toLocaleUpperCase('pt-BR') })}
-                />
-              </label>
-              <label className="style-text-row">
-                <span>Limite por cliente</span>
-                <input
-                  type="text"
-                  maxLength="44"
-                  value={style.limitText || ''}
-                  placeholder="Ex.: Limite 6 un. por cliente"
-                  onChange={(event) => onChange({ ...style, limitText: event.target.value.toLocaleUpperCase('pt-BR') })}
-                />
-              </label>
-            </section>
-          </>
+            </details>
+          </section>
         ) : null}
 
-        <section className="style-section model-preset-section">
-          <div className="style-section-title-row">
-            <strong>Modelos rápidos</strong>
-            <small>{POSTER_STYLE_PRESETS.length} modelos · sincronizados</small>
-          </div>
 
-          <div className="model-category-tabs" role="group" aria-label="Filtrar modelos por categoria">
-            {modelCategories.map((category) => (
-              <button
-                type="button"
-                key={category}
-                className={modelCategory === category ? 'active' : ''}
-                aria-pressed={modelCategory === category}
-                onClick={() => setModelCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          <div className="style-presets style-presets-scroll" aria-label={`Modelos rápidos · ${modelCategory}`}>
-            {visibleModelPresets.map((preset) => (
-              <button
-                type="button"
-                key={preset.id}
-                data-style-preset={preset.id}
-                className={activeModelId === preset.id ? 'active' : ''}
-                aria-pressed={activeModelId === preset.id}
-                title={`${preset.name} · ${preset.category}`}
-                onClick={() => {
-                  onCustomHeaderChange?.('')
-                  onChange({ ...preset.values, headerImage: '' })
-                  trackProductEvent('ofertamatica_model_preset_selected', { model_id: preset.id, source: 'home-style-sidebar' })
-                }}
-              >
-                <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
-                <small>{preset.name}</small>
-              </button>
-            ))}
-          </div>
-
-          <div className="model-preset-footer">
-            <span>{visibleModelPresets.length} {visibleModelPresets.length === 1 ? 'modelo' : 'modelos'} nesta categoria</span>
-            <a href="/modelos/">Ver galeria</a>
-          </div>
-        </section>
-
-        <section className="style-section">
-          <strong>Cores</strong>
+        <details className="style-section style-accordion">
+          <summary>Cores</summary>
           <div className="style-color-list">
             {colorFields.map(([field, label]) => (
               <label className="style-color-row" key={field}>
@@ -947,13 +898,10 @@ function StyleSidebar({
               </label>
             ))}
           </div>
-        </section>
+        </details>
 
-        <section className="style-section typography-section">
-          <div className="style-section-title-row">
-            <strong>Tipografia</strong>
-            <small>Descrição e preço independentes</small>
-          </div>
+        <details className="style-section style-accordion typography-section">
+          <summary>Tipografia <small>descrição + preço</small></summary>
           <label className="style-select-row">
             <span>Fonte da descrição</span>
             <select
@@ -986,13 +934,10 @@ function StyleSidebar({
             </select>
           </label>
           <p className="typography-help">O padrão usa a mesma combinação das placas de referência: descrição condensada e preço Futura.</p>
-        </section>
+        </details>
 
-        <section className="style-section store-brand-section">
-          <div className="style-section-title-row">
-            <strong>Logo da loja</strong>
-            <small>Opcional · fica salva neste dispositivo</small>
-          </div>
+        <details className="style-section style-accordion store-brand-section">
+          <summary>Logo da loja <small>opcional</small></summary>
           <input
             ref={logoInputRef}
             hidden
@@ -1017,12 +962,15 @@ function StyleSidebar({
             </button>
           )}
           {logoError ? <p className="store-logo-error" role="alert">{logoError}</p> : null}
-        </section>
+        </details>
 
         <section className="style-section header-library-section">
           <div className="style-section-title-row">
-            <strong>Header da placa</strong>
+            <strong>Arte do cabeçalho</strong>
             <small>{HEADER_OPTIONS.length} opções + sua arte</small>
+          </div>
+          <div className="header-library-filter" aria-label="Filtro de artes">
+            <span className="active">Todos</span>
           </div>
 
           <input
@@ -1087,7 +1035,7 @@ function StyleSidebar({
               value={headerSearch}
               onChange={(event) => {
                 setHeaderSearch(event.target.value)
-                setHeaderLimit(18)
+                setHeaderLimit(8)
               }}
               placeholder="Ex.: padaria, açougue..."
             />
@@ -1107,20 +1055,13 @@ function StyleSidebar({
                   onClick={() => chooseHeader(item.id)}
                   title={isPreset ? `${item.text} — cabeçalho pronto` : item.label}
                 >
-                  {isPreset ? (
-                    <div
-                      className={`header-preset-thumb header-preset-thumb-${item.headerFooterStyle || 'moldura'}`}
-                      aria-hidden="true"
-                      style={{
-                        '--header-thumb-bg': item.headerColor,
-                        '--header-thumb-color': item.headerTextColor,
-                      }}
-                    >
-                      <b>{item.text}</b>
-                    </div>
-                  ) : (
-                    <img src={item.url} alt="" loading="lazy" />
-                  )}
+                  <PosterOptionPreview
+                    frame={isPreset ? (item.headerFooterStyle || 'moldura') : 'moldura'}
+                    headerText={isPreset ? item.text : 'OFERTA'}
+                    headerColor={isPreset ? item.headerColor : '#ed1c24'}
+                    headerTextColor={isPreset ? item.headerTextColor : '#ffffff'}
+                    imageUrl={isPreset ? '' : item.url}
+                  />
                   <span>{item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label}</span>
                 </button>
               )
@@ -1129,7 +1070,7 @@ function StyleSidebar({
 
           {!filteredHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
           {filteredHeaders.length > visibleHeaders.length ? (
-            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 18)}>
+            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 8)}>
               Mostrar mais headers ({filteredHeaders.length - visibleHeaders.length})
             </button>
           ) : null}
@@ -1160,10 +1101,12 @@ function StyleSidebar({
                 }}
                 title={model.note}
               >
-                <span className={'poster-frame-mini poster-frame-mini-' + model.preview} aria-hidden="true">
-                  <b>OFERTA</b>
-                  <i />
-                </span>
+                <PosterOptionPreview
+                  frame={model.preview}
+                  headerText={model.id === 'promocao' ? 'PROMOÇÃO' : 'OFERTA'}
+                  headerColor={style.headerColor || '#ed1c24'}
+                  headerTextColor={model.headerTextColor || '#ffffff'}
+                />
                 <span>
                   <b>{model.name}</b>
                   <small>{model.note}</small>
@@ -1173,8 +1116,8 @@ function StyleSidebar({
           </div>
         </section>
 
-        <section className="style-section">
-          <strong>Cabeçalho padrão</strong>
+        <details className="style-section style-accordion">
+          <summary>Ajustes do cabeçalho</summary>
           <div className="header-style-switch">
             <button type="button" className={style.headerStyle === 'retail' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'retail', headerTextColor: '#ffffff' })}>Varejo</button>
             <button type="button" className={style.headerStyle === 'band' ? 'active' : ''} onClick={() => onChange({ ...style, headerStyle: 'band', headerTextColor: '#ffffff' })}>Faixa</button>
@@ -1205,15 +1148,15 @@ function StyleSidebar({
               <code>{style.headerTextColor.toUpperCase()}</code>
             </span>
           </label>
-        </section>
+        </details>
 
-        <section className="style-section">
-          <strong>Preço</strong>
+        <details className="style-section style-accordion">
+          <summary>Preço</summary>
           <label className="style-toggle-row">
             <span><b>Mostrar R$</b><small>Exibir símbolo da moeda junto ao preço</small></span>
             <input type="checkbox" checked={style.showCurrency} onChange={(event) => onChange({ ...style, showCurrency: event.target.checked })} />
           </label>
-        </section>
+        </details>
 
         <p className="style-save-note">As alterações ficam salvas automaticamente neste dispositivo.</p>
       </div>
