@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './posters/PosterSheet'
 import { AdUnit } from './AdUnit'
 import PaperGuide from './PaperGuide'
-import { getPosterFormat } from '../config/posterFormats'
+import FormatOptionCard from './FormatOptionCard'
+import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
@@ -27,17 +28,6 @@ const CREATOR_META = {
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
 const MODEL_PRESETS = POSTER_MODEL_PRESETS
-
-const FORMAT_CARDS = [
-  { id: 'A4X8', paper: 'A4', title: '8 cartazes A7 por folha', size: '10,5 × 7,4 cm', use: 'Etiqueta grande e leitura bem próxima', cells: 8 },
-  { id: 'A4X4', paper: 'A4', title: '4 cartazes A6 por folha', size: '10,5 × 14,9 cm', use: 'Gôndola e leitura próxima', cells: 4 },
-  { id: 'A4X2', paper: 'A4', title: '2 cartazes por folha', size: '21 × 14,9 cm', use: 'Balcão e comunicação média', cells: 2 },
-  { id: 'A4X2I', paper: 'A4', title: '2 cartazes · invertido', size: '21 × 14,9 cm', use: 'Dobra ou exposição especial', cells: 2, inverted: true },
-  { id: 'A4APP', paper: 'A4', title: '2 ofertas de App', size: '14,9 × 21 cm', use: 'Oferta exclusiva de aplicativo', cells: 2, landscape: true },
-  { id: 'A4', paper: 'A4', title: '1 cartaz por folha', size: '21 × 29,7 cm', use: 'Vitrine e ponta', cells: 1 },
-  { id: 'A5', paper: 'A5', title: '1 cartaz', size: '14,8 × 21 cm', use: 'Gôndola e balcão', cells: 1, compact: true },
-  { id: 'A3', paper: 'A3', title: '1 cartaz', size: '29,7 × 42 cm', use: 'Leitura à distância', cells: 1, large: true },
-]
 
 function upsertMeta(name, content) {
   let tag = document.querySelector(`meta[name="${name}"]`)
@@ -369,16 +359,6 @@ function ModelCard({ item, onCreate }) {
   )
 }
 
-function FormatDiagram({ item }) {
-  return (
-    <div className={`format-diagram ${item.landscape ? 'landscape' : ''} ${item.compact ? 'compact' : ''} ${item.large ? 'large' : ''}`} aria-hidden="true">
-      {Array.from({ length: item.cells }, (_, index) => (
-        <span className={item.inverted && index === 0 ? 'inverted' : ''} key={index}><i>OFERTA</i><b>R$</b></span>
-      ))}
-    </div>
-  )
-}
-
 function relatedPages(page) {
   const sameGroup = SEO_PAGES.filter((item) => item.slug !== page.slug && item.group === page.group)
   const others = SEO_PAGES.filter((item) => item.slug !== page.slug && item.group !== page.group)
@@ -409,7 +389,7 @@ function SearchTopicSections({ slug }) {
   )
 }
 
-export function PublicPage({ page, onCreate }) {
+export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
@@ -544,23 +524,19 @@ export function PublicPage({ page, onCreate }) {
         {isPaperGuide ? <PaperGuide page={page} /> : null}
 
         {isFormats ? (
-          <section className="marketing-section">
-            <div className="marketing-heading">
+          <section className="marketing-section format-home-refresh format-guide-section">
+            <div className="marketing-heading format-guide-heading">
               <span className="marketing-kicker">TAMANHO FÍSICO</span>
               <h2>Compare papel, divisão e uso recomendado</h2>
-              <p>Os diagramas mostram como o papel é aproveitado. A prévia final do editor respeita o tamanho físico selecionado.</p>
+              <p>Os mesmos cartazes da página inicial: confira quantas placas cabem em cada folha, compare os tamanhos e selecione o formato para criar.</p>
             </div>
             <div className="format-showcase-grid">
-              {FORMAT_CARDS.map((item) => (
-                <article className="format-showcase-card" key={item.id}>
-                  <FormatDiagram item={item} />
-                  <div>
-                    <span>{item.paper}</span>
-                    <strong>{item.title}</strong>
-                    <small>{item.size}</small>
-                    <p>{item.use}</p>
-                  </div>
-                </article>
+              {POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => (
+                <FormatOptionCard
+                  key={format.id}
+                  format={format}
+                  onSelect={onChooseFormat || onCreate}
+                />
               ))}
             </div>
             <div className="paper-guide-inline">
