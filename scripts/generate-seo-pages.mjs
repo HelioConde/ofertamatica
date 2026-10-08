@@ -12,7 +12,6 @@ const LEGACY_REDIRECTS = {
   'cartaz-de-supermercado': 'cartaz-para-supermercado',
   'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
   'gerador-de-placas-com-ia': 'criador-de-cartaz-de-oferta',
-  'cartazes-para-acougue': 'cartaz-para-supermercado',
   'cartaz-de-oferta-gratis': 'criador-de-cartaz-de-oferta',
   'cartaz-supermercado-online': 'cartaz-para-supermercado',
   'placa-de-preco-supermercado': 'cartaz-de-preco-online',
