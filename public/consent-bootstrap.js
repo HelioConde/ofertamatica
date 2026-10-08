@@ -148,7 +148,8 @@
     getState: getState,
     saveChoice: saveChoice,
     revoke: revoke,
-    showGoogleChoices: showGoogleChoices
+    showGoogleChoices: showGoogleChoices,
+    refresh: apply
   }
 
   // API oficial Google Privacy & Messaging, sem simular TC strings nem CMP.
