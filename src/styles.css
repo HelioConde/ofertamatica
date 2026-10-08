@@ -9406,3 +9406,99 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     min-height: 132px !important;
   }
 }
+
+
+/* Revisão visual do editor 08/10 — melhor uso da coluna de produtos em listas curtas. */
+@media screen and (min-width: 1360px) {
+  .editor-mode .editor-main > .editor-card:first-child textarea {
+    min-height: 124px !important;
+    max-height: 150px !important;
+    padding: 11px 12px !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .editor-mode .interpreted.is-short-list .product-row:not(.product-head) {
+    min-height: 55px !important;
+    padding: 7px 9px !important;
+  }
+
+  .editor-mode .interpreted.is-short-list .product-row input {
+    min-height: 37px !important;
+    padding: 8px 8px !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+
+  .editor-mode .interpreted .product-head {
+    min-height: 28px;
+    font-size: 8.5px !important;
+  }
+
+  .editor-mode .interpreted > header {
+    padding-top: 12px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .editor-mode .interpreted > header p {
+    color: #62748c !important;
+    font-size: 10px !important;
+    line-height: 1.4;
+  }
+
+  .editor-mode .preview-card {
+    grid-template-rows: auto minmax(0, 1fr) 26px 36px 33px 38px !important;
+  }
+
+  .editor-mode .preview-title {
+    font-size: 10px !important;
+  }
+
+  .editor-mode .preview-pager {
+    height: 36px !important;
+    font-size: 10px !important;
+  }
+
+  .editor-mode .preview-pager button {
+    height: 34px !important;
+    min-width: 34px;
+    border-radius: 8px;
+  }
+
+  .editor-mode .preview-output-actions {
+    min-height: 38px;
+    align-items: center;
+  }
+
+  .editor-mode .style-sidebar .style-section-title-row > strong {
+    font-size: 10px !important;
+  }
+
+  .editor-mode .style-sidebar .personalization-gallery-meta,
+  .editor-mode .style-sidebar .personalization-gallery-meta a {
+    font-size: 10px !important;
+  }
+
+  .editor-mode .style-sidebar .header-art-grid > button > span:last-child {
+    font-size: 10px !important;
+    line-height: 1.32 !important;
+  }
+
+  .editor-mode .style-sidebar .header-show-more,
+  .editor-mode .style-sidebar .personalization-library-extra > summary {
+    min-height: 36px;
+    font-size: 10px !important;
+  }
+
+  .editor-mode .style-sidebar .style-accordion > summary {
+    font-size: 10px !important;
+    min-height: 42px !important;
+  }
+}
+
+/* Listas extensas preservam linhas compactas para manter a rolagem interna. */
+@media screen and (min-width: 1360px) {
+  .editor-mode .interpreted:not(.is-short-list) .product-row:not(.product-head) {
+    min-height: 43px;
+  }
+}
