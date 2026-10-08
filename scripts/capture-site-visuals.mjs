@@ -142,6 +142,19 @@ async function captureViewport(name, viewport, routes) {
       const retailGuideNoEmptyColumns = window.innerWidth <= 650 || retailCatalogCards.length <= 1 ||
         Math.abs(retailCatalogCards[0].getBoundingClientRect().top - retailCatalogCards[1].getBoundingClientRect().top) < 2
 
+      // Um catálogo sem CSS pode passar nos testes de DOM, mas aparece como texto puro.
+      const retailPaperLink = document.querySelector('.retail-guide-paper-link')
+      const retailCardGrid = document.querySelector('.retail-guide-card-grid')
+      const retailGuideSearch = document.querySelector('.retail-guide-search')
+      const retailCategoryButton = document.querySelector('.retail-guide-categories button')
+      const retailGuideStylesApplied = Boolean(
+        retailPaperLink && getComputedStyle(retailPaperLink).display === 'flex' &&
+        retailCardGrid && getComputedStyle(retailCardGrid).display === 'grid' &&
+        retailGuideSearch && getComputedStyle(retailGuideSearch).display === 'grid' &&
+        retailCategoryButton && getComputedStyle(retailCategoryButton).display === 'inline-flex' &&
+        retailCatalogCards.every((card) => getComputedStyle(card).display === 'flex')
+      )
+
       const guideCards = [...document.querySelectorAll('.format-guide-section [data-format-id]')]
       const guideFormatCounts = {
         A4X8: 8, A4X4: 4, A4X2_CIMA_BAIXO: 2, A4X2_INVERTIDO: 2,
@@ -210,6 +223,7 @@ async function captureViewport(name, viewport, routes) {
         retailCatalogCardCount: retailCatalogCards.length,
         retailGuideCardsFit,
         retailGuideNoEmptyColumns,
+        retailGuideStylesApplied,
         howGuideCardCount: howTopicCards.length,
         howTopicLinksValid,
         howGuideCardsFit,
@@ -296,7 +310,8 @@ const failures = state.filter((item) => {
   if (item.id === 'guias-para-varejo' && (
     item.retailIntroCardCount !== 3 ||
     item.retailCatalogCardCount !== SEO_PAGES.length ||
-    !item.retailGuideCardsFit || !item.retailGuideNoEmptyColumns
+    !item.retailGuideCardsFit || !item.retailGuideNoEmptyColumns ||
+    !item.retailGuideStylesApplied
   )) return true
   if (item.id === 'como-funciona' && (
     item.howGuideCardCount !== 3 || !item.howTopicLinksValid ||
