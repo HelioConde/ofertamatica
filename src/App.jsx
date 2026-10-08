@@ -526,6 +526,17 @@ function FormatPreview({ format }) {
   )
 }
 
+const HOME_FORMAT_DETAILS = {
+  A4X8: { title: '8 cartazes A7', sheet: 'Imprime em 1 folha A4', use: 'Etiquetas grandes e gôndolas' },
+  A4X4: { title: '4 cartazes A6', sheet: 'Imprime em 1 folha A4', use: 'Gôndolas e ofertas do dia' },
+  A4X2_CIMA_BAIXO: { title: '2 cartazes por folha', sheet: 'Imprime em 1 folha A4', use: 'Balcão e ponta de gôndola' },
+  A4X2_INVERTIDO: { title: '2 cartazes invertidos', sheet: 'Imprime em 1 folha A4', use: 'Dobra e exposição frente e verso' },
+  A4X2_APP: { title: '2 ofertas de App', sheet: 'Folha A4 na horizontal', use: 'Preço exclusivo do aplicativo' },
+  A4: { title: '1 cartaz A4', sheet: 'Folha A4 inteira', use: 'Ponta de gôndola e destaque' },
+  A5: { title: '1 cartaz A5', sheet: 'Folha A5 inteira', use: 'Balcão e gôndolas menores' },
+  A3: { title: '1 cartaz A3', sheet: 'Impressora compatível com A3', use: 'Vitrine e leitura à distância' },
+}
+
 function FormatChooser({ onSelect, draft, onResume }) {
   const lastFormatId = (() => {
     try {
@@ -536,22 +547,26 @@ function FormatChooser({ onSelect, draft, onResume }) {
   })()
 
   return (
-    <main className="format-page" id="formatos">
+    <main className="format-page format-home-refresh" id="formatos">
       <section className="format-dialog">
         <header className="format-dialog-head format-dialog-head-clean">
-          <span className="eyebrow two-click-kicker">CARTAZ DE OFERTA PRONTO EM 2 CLIQUES</span>
-          <h1>Escolha o tamanho da sua placa.</h1>
-          <p>Crie placas para mercado online e cartazes de oferta grátis. Do A7 para gôndola ao A3 para vitrine, escolha o formato, cole sua lista e gere as placas.</p>
-          <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
-            <span>✓ Grátis e sem cadastro</span>
-            <span>✓ Lista, Excel, CSV ou TXT</span>
-            <span>✓ PDF e impressão no tamanho físico</span>
+          <div className="format-home-intro">
+            <div className="format-home-intro-copy">
+              <span className="eyebrow two-click-kicker">GERADOR GRÁTIS DE CARTAZES PARA VAREJO</span>
+              <h1>Escolha o formato da sua placa de oferta</h1>
+              <p>Selecione o tamanho, adicione seus produtos e imprima cartazes de preço em A4, A5 ou A3. Sem cadastro.</p>
+              <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
+                <span>Grátis e sem cadastro</span>
+                <span>Lista, Excel, CSV ou TXT</span>
+                <span>PDF no tamanho correto</span>
+              </div>
+            </div>
+            <a className="format-paper-guide-link" href="/qual-papel-usar-para-cartaz/">
+              <span className="format-paper-icon" aria-hidden="true">▤</span>
+              <span><b>Dúvida sobre o papel?</b><small>Confira folhas, gramaturas e impressão</small></span>
+              <strong aria-hidden="true">→</strong>
+            </a>
           </div>
-          <a className="format-paper-guide-link" href="/qual-papel-usar-para-cartaz/">
-            <span aria-hidden="true">▤</span>
-            <span><b>Qual papel usar para imprimir as placas?</b><small>Guia de papel sulfite, gramatura, A4, A5 e A3</small></span>
-            <strong aria-hidden="true">→</strong>
-          </a>
         </header>
 
         {draft?.products?.length ? (
@@ -564,44 +579,62 @@ function FormatChooser({ onSelect, draft, onResume }) {
           </div>
         ) : null}
 
-        <div className="format-grid">
-          {POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => (
-            <button
-              className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
-              type="button"
-              key={format.id}
-              data-format-id={format.id}
-              onClick={() => onSelect(format.id)}
-              aria-label={'Escolher ' + format.label + ', ' + format.application}
-            >
-              <span className="format-choice-badges">
-                {format.id === 'A4X8' ? <span className="format-economy">Economiza papel</span> : null}
-                {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
-                {format.id === 'A3' ? <span className="format-impact">Mais impacto</span> : null}
-                {format.id === lastFormatId ? <span className="format-last-used">Último usado</span> : null}
-              </span>
-              <FormatPreview format={format} />
-              <span className="format-copy">
-                <strong>{format.label}</strong>
-                <small>{format.description}</small>
-                <span className="format-meta">{format.paperLabel} · {format.orientationLabel}</span>
-                <span className="format-use">{format.application}</span>
-                <b>{format.pickerBadge}</b>
-              </span>
-            </button>
-          ))}
-        </div>
+        <section className="format-home-chooser" aria-labelledby="format-picker-title">
+          <div className="format-home-section-title">
+            <div>
+              <h2 id="format-picker-title">Selecione o tamanho do cartaz</h2>
+              <p>8 opções de impressão · clique em uma para começar</p>
+            </div>
+            <span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span>
+          </div>
+          <div className="format-grid">
+            {POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => {
+              const details = HOME_FORMAT_DETAILS[format.id]
+              return (
+                <button
+                  className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
+                  type="button"
+                  key={format.id}
+                  data-format-id={format.id}
+                  onClick={() => onSelect(format.id)}
+                  aria-label={`Selecionar ${details.title}. ${details.sheet}. ${details.use}`}
+                  title={format.helpText}
+                >
+                  <span className="format-choice-badges">
+                    {format.id === 'A4X8' ? <span className="format-economy">Economiza papel</span> : null}
+                    {format.id === 'A4X4' ? <span className="format-recommended">Mais usado</span> : null}
+                    {format.id === 'A3' ? <span className="format-impact">Maior destaque</span> : null}
+                    {format.id === lastFormatId ? <span className="format-last-used">Último usado</span> : null}
+                  </span>
+                  <FormatPreview format={format} />
+                  <span className="format-copy">
+                    <strong>{details.title}</strong>
+                    <small className="format-sheet">{details.sheet}</small>
+                    <span className="format-use">{details.use}</span>
+                    <span className="format-meta">{format.cartSize} por cartaz</span>
+                    <span className="format-card-action">Selecionar <span aria-hidden="true">→</span></span>
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </section>
         <aside className="format-ad-card format-ad-zone" aria-label="Publicidade separada dos formatos">
           <AdUnit placement="format-grid" />
         </aside>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
-          <a href="/modelos/">Ver modelos</a>
-          <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a>
+          <a href="/modelos/">Modelos de cartazes</a>
+          <a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a>
           <a href="/como-funciona/">Como funciona</a>
-          <a href="/guias-para-varejo/">Guias</a>
-          <a href="/fale-conosco/">Ajuda</a>
-          <a href="/privacidade/">Privacidade</a>
-          <a href="/termos/">Termos</a>
+          <details className="format-more-links">
+            <summary>Mais informações</summary>
+            <div>
+              <a href="/guias-para-varejo/">Guias para varejo</a>
+              <a href="/fale-conosco/">Ajuda e contato</a>
+              <a href="/privacidade/">Privacidade</a>
+              <a href="/termos/">Termos de uso</a>
+            </div>
+          </details>
         </nav>
       </section>
     </main>
