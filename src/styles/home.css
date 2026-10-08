@@ -2393,3 +2393,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) .oferta-ad-label {
   opacity: 0;
 }
+
+
+/* Leitura mobile: textos de uso, formato e preço não podem exigir zoom.
+   Preserva duas colunas; os cartões podem crescer verticalmente. */
+@media (max-width: 700px) {
+  .format-mode .format-home-refresh .format-copy strong { font-size: 14px !important; line-height: 1.3 !important; }
+  .format-mode .format-home-refresh .format-copy .format-sheet,
+  .format-mode .format-home-refresh .format-copy .format-use,
+  .format-mode .format-home-refresh .format-copy .format-meta { font-size: 12px !important; line-height: 1.35 !important; }
+  .format-mode .format-home-refresh .format-trust-row span,
+  .format-mode .format-home-refresh .format-home-section-title p,
+  .format-mode .format-home-refresh .format-trust-links > a,
+  .format-mode .format-home-refresh .format-more-links > summary,
+  .format-mode .format-home-refresh .format-more-links a,
+  .format-mode .format-home-refresh .format-paper-guide-link small,
+  .format-mode .format-home-refresh .format-paper-guide-link b,
+  .format-mode .format-home-refresh .format-dialog-head-clean .two-click-kicker { font-size: 12px !important; line-height: 1.45 !important; }
+  .format-mode .format-home-refresh .format-choice-badges > span { font-size: 11px !important; line-height: 1.25 !important; }
+  .format-mode .format-home-refresh .format-choice { height: auto !important; }
+  .format-mode .format-home-refresh .format-copy { min-width: 0; }
+}

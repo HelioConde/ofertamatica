@@ -37,6 +37,14 @@ await scenario('Home e escolha de formato desktop', { width: 1440, height: 900 }
   await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]', 'Editor não abriu após a seleção')
   if (!(await page.locator('.editor-context').innerText()).includes('A4')) throw new Error('Formato A4 não foi preservado')
 })
+await scenario('Publicidade mobile: adiar carregamento até aproximar anúncio', { width: 390, height: 844 }, async (page) => {
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await page.locator('.format-grid .format-choice').first().waitFor({ state: 'visible' })
+  await page.waitForTimeout(350)
+  if (await page.locator('script[data-ofertamatica-adsense]').count()) throw new Error('O script do AdSense iniciou fora da tela')
+  await page.locator('.format-ad-card').scrollIntoViewIfNeeded()
+  await page.waitForFunction(() => Boolean(document.querySelector('script[data-ofertamatica-adsense]')), null, { timeout: 8000 })
+})
 await scenario('Editor mobile: gerar, prévia e voltar', { width: 390, height: 844 }, async (page) => {
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
   await page.locator('.format-choice[data-format-id="A4"]').click()

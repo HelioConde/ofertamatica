@@ -27,6 +27,8 @@ expect(index.includes('href="/?formato=A4"'), 'Formatos no HTML inicial devem fu
 expect(index.includes('GTM-5RGPM6HD'), 'GTM não encontrado no index.html')
 expect(!index.includes('gtag/js?id=G-K8YWSXBHS7'), 'GA4 direto voltou ao index.html; use o GTM como fonte única')
 expect(index.includes('ca-pub-9514218545388169'), 'Publisher AdSense ausente do index.html')
+expect(!index.includes('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'), 'AdSense síncrono/antecipado voltou a bloquear a primeira pintura')
+expect(fs.readFileSync('src/components/AdUnit.jsx', 'utf8').includes('IntersectionObserver'), 'Lazy loading de anúncios fora da tela ausente')
 expect(index.includes('href="https://ofertamatica.com.br/"'), 'Canonical da raiz incorreto')
 expect(index.includes('Criar Placas de Preço e Cartazes Grátis | Ofertamática'), 'Título atualizado da home ausente')
 expect(index.includes('Escolha modelos, personalize em A4, A5 ou A3'), 'Descrição atualizada da home ausente')
