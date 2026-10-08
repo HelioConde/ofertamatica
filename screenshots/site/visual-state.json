@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T13:44:19.972Z",
-  "commit": "408a5ced7d8d2e1b898dcbcdeb86ed4dffcbe1b9",
+  "generatedAt": "2026-10-08T13:51:51.528Z",
+  "commit": "e33c2fdd396bd14b8ca64b8a73e7c6330b65f86f",
   "routes": [
     [
       "home",
@@ -500,7 +500,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1770,
+      "documentHeight": 1772,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -509,26 +509,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 290,
-          "height": 83
+          "height": 85
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 288,
-          "height": 81
+          "height": 83
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 99,
-          "bottom": 1770.3,
+          "bottom": 1772.3,
           "width": 344,
-          "height": 1671.3
+          "height": 1673.3
         },
         "dialog": {
           "top": 111,
-          "bottom": 1746.3,
+          "bottom": 1748.3,
           "width": 344,
-          "height": 1635.3
+          "height": 1637.3
         },
         "header": {
           "top": 112,
@@ -544,13 +544,13 @@
         },
         "ad": {
           "top": 1566.3,
-          "bottom": 1649.3,
+          "bottom": 1651.3,
           "width": 290,
-          "height": 83
+          "height": 85
         },
         "links": {
-          "top": 1661.3,
-          "bottom": 1745.3,
+          "top": 1663.3,
+          "bottom": 1747.3,
           "width": 318,
           "height": 84
         }
