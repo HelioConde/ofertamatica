@@ -9780,3 +9780,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) .oferta-ad-label {
   opacity: 0;
 }
+
+/* Contraste AA para a etiqueta de gratuidade na navegação. */
+.nav-meta .free-pill { color: #09663e !important; }

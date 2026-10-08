@@ -2414,3 +2414,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .format-mode .format-home-refresh .format-choice { height: auto !important; }
   .format-mode .format-home-refresh .format-copy { min-width: 0; }
 }
+
+/* Contraste AA para a etiqueta de gratuidade na navegação. */
+.nav-meta .free-pill { color: #09663e !important; }

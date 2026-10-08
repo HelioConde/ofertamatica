@@ -44,7 +44,7 @@ export default function FormatOptionCard({ format, onSelect, lastFormatId = '' }
       className={'format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + (format.id === lastFormatId ? 'is-last-used' : '')}
       data-format-id={format.id}
       onClick={() => onSelect(format.id)}
-      aria-label={`Selecionar ${details.title}. ${details.sheet}. ${details.use}`}
+      // O texto visível inteiro será o nome acessível do botão.
       title={format.helpText}
     >
       <span className="format-choice-badges">
