@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
+import { searchTopicsFor } from '../src/seo/searchIntent.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -85,6 +86,12 @@ function snapshot(page) {
     ? `<section style="margin-top:28px"><h2 style="font-size:24px">Na rotina da loja</h2><ul style="line-height:1.8">${page.storeUse.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></section>`
     : ''
   const helpfulLinks = (page.links || []).map((link) => `<p><a href="${esc(link.href)}" style="color:#1d63e9;font-weight:700">${esc(link.label)}</a> — ${esc(link.note)}</p>`).join('')
+  const searchContent = searchTopicsFor(page.slug).map((topic) => `
+    <section style="margin-top:28px">
+      <h2 style="font-size:24px;margin-bottom:8px">${esc(topic.title)}</h2>
+      <p style="font-size:16px;line-height:1.7">${esc(topic.text)}</p>
+      <p><a href="${esc(topic.link)}">${esc(topic.linkLabel)}</a></p>
+    </section>`).join('')
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
 
   return `<main style="font-family:Arial,sans-serif;max-width:1080px;margin:60px auto;padding:0 22px;color:#1f2d47">
@@ -94,6 +101,7 @@ function snapshot(page) {
     ${updated}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${searchContent}
     ${tips}
     ${storeUse}
     ${helpfulLinks}
