@@ -9111,3 +9111,40 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .format-home-refresh .format-trust-links > a,
   .format-more-links > summary { min-height: 38px !important; font-size: 10.5px !important; }
 }
+
+
+/* Proteção contra sobreposição: a grade mantém duas linhas com altura real. */
+@media (min-width: 1001px) {
+  .format-mode .format-home-refresh .format-home-chooser {
+    flex: 1 1 310px !important;
+    height: auto !important;
+    min-height: 290px !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    flex: 1 1 auto !important;
+    height: auto !important;
+    min-height: 255px !important;
+    grid-template-rows: repeat(2, minmax(125px, 1fr)) !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    min-height: 125px !important;
+  }
+}
+@media (min-width: 1001px) and (max-height: 780px) {
+  .format-mode .format-home-refresh .format-home-chooser {
+    flex-basis: 280px !important;
+    min-height: 264px !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    min-height: 240px !important;
+    grid-template-rows: repeat(2, minmax(116px, 1fr)) !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    min-height: 116px !important;
+  }
+}
+.format-home-refresh .format-paper-guide-link > span:nth-child(2) {
+  display: grid;
+  gap: 3px;
+  align-content: center;
+}
