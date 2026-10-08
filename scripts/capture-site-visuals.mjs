@@ -133,6 +133,24 @@ async function captureViewport(name, viewport, routes) {
         }
       }
 
+      const guideCards = [...document.querySelectorAll('.format-guide-section [data-format-id]')]
+      const guideFormatCounts = {
+        A4X8: 8, A4X4: 4, A4X2_CIMA_BAIXO: 2, A4X2_INVERTIDO: 2,
+        A4X2_APP: 2, A4: 1, A5: 1, A3: 1,
+      }
+      const formatGuideThumbnailsMatch = guideCards.length === 8 &&
+        guideCards.every((card) => {
+          const expected = guideFormatCounts[card.dataset.formatId]
+          const miniatures = card.querySelectorAll('.oferta-format-mini')
+          return expected && miniatures.length === expected &&
+            Boolean(card.querySelector('.format-thumb .oferta-format-preview')) &&
+            Boolean(card.querySelector('.format-card-action'))
+        })
+      const guideHeading = document.querySelector('.format-guide-heading h2')
+      const guideHeadingCentered = guideHeading
+        ? getComputedStyle(guideHeading).textAlign === 'center'
+        : false
+
       const formatCards = [...document.querySelectorAll('.format-home-refresh .format-choice')]
       const clippedFormatCards = formatCards.flatMap((card) => {
         const bounds = card.getBoundingClientRect()
@@ -163,6 +181,9 @@ async function captureViewport(name, viewport, routes) {
       }))
 
       return {
+        guideCardCount: guideCards.length,
+        formatGuideThumbnailsMatch,
+        guideHeadingCentered,
         appPreviewClipped,
         clippedFormatCards,
         formatCardsOverlap,
@@ -195,6 +216,10 @@ async function captureViewport(name, viewport, routes) {
       path: path.join(outDir, id + '-' + name + '.png'),
       fullPage: true,
     })
+    if (id === 'formatos' && name === 'desktop') {
+      await page.locator('.format-guide-section [data-format-id="A4X4"]').click()
+      await page.locator('.editor-layout').waitFor({ state: 'visible', timeout: 10000 })
+    }
 
     state.push({ route, id, viewport: name, errors, ignoredErrors, ...metrics })
   }
@@ -221,6 +246,9 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.id === 'formatos' && (
+    item.guideCardCount !== 8 || !item.formatGuideThumbnailsMatch || !item.guideHeadingCentered
+  )) return true
   if (item.id === 'home') {
     if (item.visibleFormatCards !== 8 || item.clippedFormatCards.length ||
         item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd ||
