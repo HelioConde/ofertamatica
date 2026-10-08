@@ -734,8 +734,8 @@ function PosterOptionPreview({
   const naturalHeight = format.heightMm * PX_PER_MM
 
   return (
-    <span className="personalization-live-preview" aria-hidden="true">
-      <span
+    <div className="personalization-live-preview" aria-hidden="true">
+      <div
         className="personalization-live-stage"
         style={{
           width: naturalWidth * scale,
@@ -750,7 +750,7 @@ function PosterOptionPreview({
           '--poster-price-font-family': '"Futura Price", Impact, "Arial Black", sans-serif',
         }}
       >
-        <span
+        <div
           className="personalization-live-scale"
           style={{ width: naturalWidth, height: naturalHeight, transform: `scale(${scale})` }}
         >
@@ -761,9 +761,9 @@ function PosterOptionPreview({
             layoutPlans={preview.layoutPlans}
             showBackground
           />
-        </span>
-      </span>
-    </span>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -1188,10 +1188,8 @@ function StyleSidebar({
                   </button>
                 ))}
               </div>
-            </div>
+            </details>
           ) : null}
-
-
 
           <div className="header-art-grid">
             {visibleHeaders.map((item) => {
