@@ -1,3 +1,4 @@
+import '../../styles/posters.css'
 import PosterCard, { PosterBackground } from './PosterCard'
 import AppPosterCard from './AppPosterCard'
 
