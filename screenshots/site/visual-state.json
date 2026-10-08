@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-07T19:32:34.792Z",
-  "commit": "6bd7ee0a40a447ced59fb278d91ef50a1cd04eaf",
+  "generatedAt": "2026-10-08T13:44:19.972Z",
+  "commit": "408a5ced7d8d2e1b898dcbcdeb86ed4dffcbe1b9",
   "routes": [
     [
       "home",
@@ -13,6 +13,10 @@
     [
       "formatos",
       "/formatos/"
+    ],
+    [
+      "qual-papel-usar-para-cartaz",
+      "/qual-papel-usar-para-cartaz/"
     ],
     [
       "como-funciona",
@@ -37,6 +41,18 @@
     [
       "termos",
       "/termos/"
+    ],
+    [
+      "placas-para-padaria",
+      "/placas-para-padaria/"
+    ],
+    [
+      "cartazes-a-partir-de-excel",
+      "/cartazes-a-partir-de-excel/"
+    ],
+    [
+      "cartazes-para-acougue",
+      "/cartazes-para-acougue/"
     ],
     [
       "criador-de-cartaz-de-oferta",
@@ -82,7 +98,7 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "title": "Placas para Mercado Online Grátis | Ofertamática",
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
@@ -93,50 +109,50 @@
       "tinyTargets": [],
       "ads": [
         {
-          "className": "format-ad-card",
-          "width": 1254,
+          "className": "format-ad-card format-ad-zone",
+          "width": 728,
           "height": 86
         },
         {
           "className": "oferta-ad-unit is-pending",
-          "width": 1252,
+          "width": 726,
           "height": 84
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 509.5,
+          "bottom": 499.5,
           "width": 1280,
-          "height": 440.5
+          "height": 430.5
         },
         "dialog": {
           "top": 76,
-          "bottom": 502.5,
+          "bottom": 492.5,
           "width": 1280,
-          "height": 426.5
+          "height": 416.5
         },
         "header": {
           "top": 77,
-          "bottom": 181.5,
+          "bottom": 201.5,
           "width": 1278,
-          "height": 104.5
+          "height": 124.5
         },
         "grid": {
-          "top": 181.5,
-          "bottom": 467.5,
+          "top": 201.5,
+          "bottom": 361.5,
           "width": 1278,
-          "height": 286
+          "height": 160
         },
         "ad": {
-          "top": 375.5,
-          "bottom": 461.5,
-          "width": 1254,
+          "top": 366.5,
+          "bottom": 452.5,
+          "width": 728,
           "height": 86
         },
         "links": {
-          "top": 467.5,
-          "bottom": 501.5,
+          "top": 457.5,
+          "bottom": 491.5,
           "width": 1278,
           "height": 34
         }
@@ -148,11 +164,11 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "title": "Modelos de Placas de Preço Grátis para Mercado | Ofertamática",
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 3928,
+      "documentHeight": 4397,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -179,6 +195,12 @@
           "tag": "a",
           "className": "",
           "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
           "height": 11
         },
         {
@@ -222,11 +244,11 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
+      "title": "Cartaz A4, A5 e A3 para Imprimir | Ofertamática",
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1448,
+      "documentHeight": 1591,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -236,6 +258,12 @@
           "className": "seo-breadcrumb",
           "text": "Ofertamática › FORMATOS",
           "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Qual papel usar para cartazes A4, A5 e A3 →",
+          "height": 15
         },
         {
           "tag": "a",
@@ -253,6 +281,12 @@
           "tag": "a",
           "className": "",
           "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
           "height": 11
         },
         {
@@ -296,11 +330,11 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "title": "Como Fazer Placas para Mercado Online | Ofertamática",
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1475,
+      "documentHeight": 1945,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -310,6 +344,12 @@
           "className": "seo-breadcrumb",
           "text": "Ofertamática › COMO FUNCIONA",
           "height": 13
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Abrir o gerador atual de placas →",
+          "height": 19
         },
         {
           "tag": "a",
@@ -327,6 +367,12 @@
           "tag": "a",
           "className": "",
           "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
           "height": 11
         },
         {
@@ -370,11 +416,11 @@
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "title": "Como Fazer Cartazes de Supermercado | Guias Ofertamática",
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2304,
+      "documentHeight": 2960,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -401,6 +447,12 @@
           "tag": "a",
           "className": "",
           "text": "Guias",
+          "height": 11
+        },
+        {
+          "tag": "a",
+          "className": "",
+          "text": "Papel para cartazes",
           "height": 11
         },
         {
@@ -444,61 +496,61 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "title": "Placas para Mercado Online Grátis | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1745,
+      "documentHeight": 1770,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
       "ads": [
         {
-          "className": "format-ad-card",
-          "width": 298,
-          "height": 66
+          "className": "format-ad-card format-ad-zone",
+          "width": 290,
+          "height": 83
         },
         {
           "className": "oferta-ad-unit is-pending",
-          "width": 296,
-          "height": 64
+          "width": 288,
+          "height": 81
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 99,
-          "bottom": 1745.3,
+          "bottom": 1770.3,
           "width": 344,
-          "height": 1646.3
+          "height": 1671.3
         },
         "dialog": {
           "top": 111,
-          "bottom": 1721.3,
+          "bottom": 1746.3,
           "width": 344,
-          "height": 1610.3
+          "height": 1635.3
         },
         "header": {
           "top": 112,
-          "bottom": 382.3,
+          "bottom": 374.3,
           "width": 318,
-          "height": 270.3
+          "height": 262.3
         },
         "grid": {
-          "top": 382.3,
-          "bottom": 1636.3,
+          "top": 374.3,
+          "bottom": 1554.3,
           "width": 318,
-          "height": 1254
+          "height": 1180
         },
         "ad": {
-          "top": 1560.3,
-          "bottom": 1626.3,
-          "width": 298,
-          "height": 66
+          "top": 1566.3,
+          "bottom": 1649.3,
+          "width": 290,
+          "height": 83
         },
         "links": {
-          "top": 1636.3,
-          "bottom": 1720.3,
+          "top": 1661.3,
+          "bottom": 1745.3,
           "width": 318,
           "height": 84
         }
@@ -510,11 +562,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "title": "Modelos de Placas de Preço Grátis para Mercado | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 8190,
+      "documentHeight": 8710,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -535,11 +587,36 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
+      "title": "Cartaz A4, A5 e A3 para Imprimir | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2646,
+      "documentHeight": 2902,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/qual-papel-usar-para-cartaz/",
+      "id": "qual-papel-usar-para-cartaz",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Qual Papel Usar para Cartaz de Oferta? A4, A5, A3 | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 6039,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -560,11 +637,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "title": "Como Fazer Placas para Mercado Online | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2442,
+      "documentHeight": 2959,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -585,11 +662,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "title": "Como Fazer Cartazes de Supermercado | Guias Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3127,
+      "documentHeight": 4426,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -705,16 +782,91 @@
       }
     },
     {
+      "route": "/placas-para-padaria/",
+      "id": "placas-para-padaria",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Placas de Preço para Padaria Grátis | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 3989,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-a-partir-de-excel/",
+      "id": "cartazes-a-partir-de-excel",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Criar Cartazes a Partir do Excel Grátis | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 4202,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-para-acougue/",
+      "id": "cartazes-para-acougue",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartazes para Açougue Grátis | Placas de Preço Online",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 3550,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
       "route": "/criador-de-cartaz-de-oferta/",
       "id": "criador-de-cartaz-de-oferta",
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática",
+      "title": "Criador de Placas de Preço Online Grátis | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2480,
+      "documentHeight": 3000,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -735,11 +887,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz para Supermercado | Crie e Imprima Online",
+      "title": "Cartaz para Supermercado Grátis | Criar e Imprimir",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2529,
+      "documentHeight": 3671,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -760,11 +912,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Gerador de Cartaz de Promoção Online | Ofertamática",
+      "title": "Gerador de Cartaz de Promoção Grátis | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2477,
+      "documentHeight": 3295,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -785,7 +937,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Preço Online | Crie e Imprima no Ofertamática",
+      "title": "Placas de Preço para Mercado Online | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
@@ -810,11 +962,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
+      "title": "Cartaz de Oferta para Imprimir Grátis | A4, A5 e A3",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2459,
+      "documentHeight": 2997,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -835,7 +987,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
+      "title": "Cartaz de Oferta A4 Grátis para Imprimir | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
@@ -860,7 +1012,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz De/Por para Supermercado | Ofertamática",
+      "title": "Cartaz de Oferta De/Por Grátis | Ofertamática",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
@@ -885,7 +1037,7 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz Atacado e Varejo | Dois Preços na Mesma Placa",
+      "title": "Cartaz Atacado e Varejo | Dois Preços para Imprimir",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
@@ -910,11 +1062,11 @@
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Como Fazer Cartaz de Oferta | Guia Prático",
+      "title": "Como Fazer Placas de Preço para Mercado | Guia Grátis",
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2005,
+      "documentHeight": 2543,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -935,61 +1087,61 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Ofertamática — Cartaz de oferta pronto em 2 cliques",
+      "title": "Placas para Mercado Online Grátis | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1789,
+      "documentHeight": 1776,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [],
       "ads": [
         {
-          "className": "format-ad-card",
-          "width": 350,
+          "className": "format-ad-card format-ad-zone",
+          "width": 342,
           "height": 102
         },
         {
           "className": "oferta-ad-unit is-pending",
-          "width": 348,
+          "width": 340,
           "height": 100
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 99,
-          "bottom": 1789.3,
+          "bottom": 1776.3,
           "width": 396,
-          "height": 1690.3
+          "height": 1677.3
         },
         "dialog": {
           "top": 111,
-          "bottom": 1765.3,
+          "bottom": 1752.3,
           "width": 396,
-          "height": 1654.3
+          "height": 1641.3
         },
         "header": {
           "top": 112,
-          "bottom": 390.3,
+          "bottom": 361.3,
           "width": 370,
-          "height": 278.3
+          "height": 249.3
         },
         "grid": {
-          "top": 390.3,
-          "bottom": 1680.3,
+          "top": 361.3,
+          "bottom": 1541.3,
           "width": 370,
-          "height": 1290
+          "height": 1180
         },
         "ad": {
-          "top": 1568.3,
-          "bottom": 1670.3,
-          "width": 350,
+          "top": 1553.3,
+          "bottom": 1655.3,
+          "width": 342,
           "height": 102
         },
         "links": {
-          "top": 1680.3,
-          "bottom": 1764.3,
+          "top": 1667.3,
+          "bottom": 1751.3,
           "width": 370,
           "height": 84
         }
@@ -1001,11 +1153,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Modelos de Cartaz de Oferta | Ofertamática",
+      "title": "Modelos de Placas de Preço Grátis para Mercado | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 7974,
+      "documentHeight": 8485,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1026,11 +1178,36 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Formatos de Cartaz A7, A6, A5, A4 e A3 | Ofertamática",
+      "title": "Cartaz A4, A5 e A3 para Imprimir | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2646,
+      "documentHeight": 2862,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/qual-papel-usar-para-cartaz/",
+      "id": "qual-papel-usar-para-cartaz",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Qual Papel Usar para Cartaz de Oferta? A4, A5, A3 | Ofertamática",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 5747,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1051,11 +1228,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Como Funciona o Ofertamática | Placa Pronta em 2 Cliques",
+      "title": "Como Fazer Placas para Mercado Online | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2413,
+      "documentHeight": 2920,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1076,11 +1253,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Guias para Varejo e Cartazes de Oferta | Ofertamática",
+      "title": "Como Fazer Cartazes de Supermercado | Guias Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3053,
+      "documentHeight": 4275,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1196,16 +1373,91 @@
       }
     },
     {
+      "route": "/placas-para-padaria/",
+      "id": "placas-para-padaria",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Placas de Preço para Padaria Grátis | Ofertamática",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 3813,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-a-partir-de-excel/",
+      "id": "cartazes-a-partir-de-excel",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Criar Cartazes a Partir do Excel Grátis | Ofertamática",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 3945,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
+      "route": "/cartazes-para-acougue/",
+      "id": "cartazes-para-acougue",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "title": "Cartazes para Açougue Grátis | Placas de Preço Online",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 3383,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
       "route": "/criador-de-cartaz-de-oferta/",
       "id": "criador-de-cartaz-de-oferta",
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática",
+      "title": "Criador de Placas de Preço Online Grátis | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2444,
+      "documentHeight": 2918,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1226,11 +1478,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz para Supermercado | Crie e Imprima Online",
+      "title": "Cartaz para Supermercado Grátis | Criar e Imprimir",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2480,
+      "documentHeight": 3609,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1251,11 +1503,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Gerador de Cartaz de Promoção Online | Ofertamática",
+      "title": "Gerador de Cartaz de Promoção Grátis | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2438,
+      "documentHeight": 3178,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1276,7 +1528,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Preço Online | Crie e Imprima no Ofertamática",
+      "title": "Placas de Preço para Mercado Online | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
@@ -1301,11 +1553,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz de Oferta para Imprimir | A7, A6, A5, A4 e A3",
+      "title": "Cartaz de Oferta para Imprimir Grátis | A4, A5 e A3",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2444,
+      "documentHeight": 2945,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1326,7 +1578,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz A4 de Oferta | Crie e Imprima Online",
+      "title": "Cartaz de Oferta A4 Grátis para Imprimir | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
@@ -1351,7 +1603,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz De/Por para Supermercado | Ofertamática",
+      "title": "Cartaz de Oferta De/Por Grátis | Ofertamática",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
@@ -1376,7 +1628,7 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Cartaz Atacado e Varejo | Dois Preços na Mesma Placa",
+      "title": "Cartaz Atacado e Varejo | Dois Preços para Imprimir",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
@@ -1401,11 +1653,11 @@
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
-      "title": "Como Fazer Cartaz de Oferta | Guia Prático",
+      "title": "Como Fazer Placas de Preço para Mercado | Guia Grátis",
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1958,
+      "documentHeight": 2465,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
