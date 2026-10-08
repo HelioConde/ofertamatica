@@ -2315,3 +2315,29 @@ summary:focus-visible {
     transform: scale(.17) !important;
   }
 }
+
+
+.paper-guide-inline {
+  margin: 24px 0;
+  padding: 19px 22px;
+  border: 1px solid #cfdff4;
+  border-radius: 13px;
+  background: #f4f8ff;
+}
+.paper-guide-inline strong { display: block; color: #263c60; font-size: 16px; }
+.paper-guide-inline p { margin: 8px 0 12px; color: #637590; font-size: 13px; line-height: 1.6; }
+.paper-guide-inline a { color: #1d63e9; font-size: 13px; font-weight: 850; }
+.paper-guide-featured {
+  display: grid;
+  gap: 6px;
+  margin: 18px 0 24px;
+  padding: 21px 23px;
+  border: 1px solid #b9d2f5;
+  border-radius: 14px;
+  background: linear-gradient(105deg, #edf5ff, #fff);
+  text-decoration: none;
+}
+.paper-guide-featured:hover { border-color: #6a9fe9; box-shadow: 0 8px 22px rgba(29,99,233,.08); }
+.paper-guide-featured span { color: #1d63e9; font-size: 10px; font-weight: 900; letter-spacing: .07em; }
+.paper-guide-featured strong { color: #253a5b; font-size: 18px; }
+.paper-guide-featured small { color: #5e7698; font-size: 12px; }
