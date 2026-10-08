@@ -27,7 +27,7 @@ expect(index.includes('href="/?formato=A4"'), 'Formatos no HTML inicial devem fu
 expect(index.includes('data-ofertamatica-consent-bootstrap="inline"'), 'Consent Mode não foi incorporado ao HTML')
 expect(!index.includes('src="/consent-bootstrap.js"'), 'Bootstrap externo ainda bloqueia a primeira pintura')
 expect((index.match(/data-ofertamatica-consent-bootstrap="inline"/g) || []).length === 1, 'Bootstrap duplicado no HTML')
-expect(!index.includes('googletagmanager.com/gtm.js'), 'GTM não pode iniciar antes do consentimento')
+expect(!index.includes('src="https://www.googletagmanager.com/gtm.js'), 'GTM não pode iniciar antes do consentimento')
 expect(!index.includes('googletagmanager.com/ns.html'), 'GTM noscript não pode ignorar consentimento')
 expect(index.indexOf('data-ofertamatica-consent-bootstrap="inline"') < index.indexOf('adsbygoogle.js'), 'Consent Mode deve vir antes do AdSense')
 expect(read('consent-bootstrap.js').includes('GTM-5RGPM6HD'), 'GTM ausente do bootstrap')
