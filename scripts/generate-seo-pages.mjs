@@ -8,7 +8,22 @@ const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
 if (!fs.existsSync(indexPath)) process.exit(0)
 
-const baseHtml = fs.readFileSync(indexPath, 'utf8')
+const originalHtml = fs.readFileSync(indexPath, 'utf8')
+const bootstrapPath = path.join(dist, 'consent-bootstrap.js')
+if (!fs.existsSync(bootstrapPath)) throw new Error('Inicializador de consentimento ausente do build')
+const bootstrapCode = fs.readFileSync(bootstrapPath, 'utf8')
+const consentTag = '<script src="/consent-bootstrap.js"></script>'
+if (!originalHtml.includes(consentTag)) {
+  throw new Error('O Consent Mode não está antes do AdSense no HTML inicial')
+}
+// Evita requisição de JS síncrono antes do primeiro paint. A ordem de execução
+// é preservada: consentimento negado por padrão ANTES das tags do Google.
+// Mantém o arquivo externo no dist para abas antigas com HTML em cache.
+const safeInlineBootstrap = bootstrapCode.replace(/<\\/script/gi, '<\\\\/script')
+const baseHtml = originalHtml.replace(
+  consentTag,
+  '<script data-ofertamatica-consent-bootstrap="inline">' + safeInlineBootstrap + '</script>',
+)
 
 // O CSS das páginas editoriais pertence ao chunk lazy do Vite. Se não
 // constar no HTML inicial, os guias podem aparecer momentaneamente sem

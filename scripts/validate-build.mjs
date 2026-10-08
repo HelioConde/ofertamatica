@@ -24,10 +24,12 @@ for (const reference of [...moduleJsAssets, ...stylesheetAssets]) {
 expect(index.includes('ofertamatica-load-warning'), 'Falta aviso de recuperação caso o gerador não inicie')
 expect(index.includes('class="format-grid"'), 'A Home precisa renderizar os formatos no HTML inicial, sem piscada')
 expect(index.includes('href="/?formato=A4"'), 'Formatos no HTML inicial devem funcionar antes da hidratação')
-expect(index.includes('/consent-bootstrap.js'), 'Consentimento não inicializado no HTML')
+expect(index.includes('data-ofertamatica-consent-bootstrap="inline"'), 'Consent Mode não foi incorporado ao HTML')
+expect(!index.includes('src="/consent-bootstrap.js"'), 'Bootstrap externo ainda bloqueia a primeira pintura')
+expect((index.match(/data-ofertamatica-consent-bootstrap="inline"/g) || []).length === 1, 'Bootstrap duplicado no HTML')
 expect(!index.includes('googletagmanager.com/gtm.js'), 'GTM não pode iniciar antes do consentimento')
 expect(!index.includes('googletagmanager.com/ns.html'), 'GTM noscript não pode ignorar consentimento')
-expect(index.indexOf('/consent-bootstrap.js') < index.indexOf('adsbygoogle.js'), 'Consent Mode deve vir antes do AdSense')
+expect(index.indexOf('data-ofertamatica-consent-bootstrap="inline"') < index.indexOf('adsbygoogle.js'), 'Consent Mode deve vir antes do AdSense')
 expect(read('consent-bootstrap.js').includes('GTM-5RGPM6HD'), 'GTM ausente do bootstrap')
 expect(read('consent-bootstrap.js').includes('CONSENT_MODE_DATA_READY'), 'Integração da CMP ausente')
 expect(read('consent-bootstrap.js').includes('showRevocationMessage'), 'Revogação CMP ausente')
@@ -63,6 +65,8 @@ for (const page of INDEXABLE_PAGES) {
   const html = read(relative)
   const canonical = `${SITE_URL}/${page.slug}/`
   expect(html.includes(canonical), `Canonical ausente/incorreto em ${relative}`)
+  expect(html.includes('data-ofertamatica-consent-bootstrap="inline"'), `Consentimento inicial ausente em ${relative}`)
+  expect(!html.includes('src="/consent-bootstrap.js"'), `Script externo de consentimento bloqueante em ${relative}`)
   if (['fale-conosco', 'privacidade', 'termos'].includes(page.slug)) {
     expect(html.includes('atendimento@ofertamatica.com.br'), `Contato oficial ausente em ${relative}`)
     expect(html.includes('mailto:atendimento@ofertamatica.com.br'), `Link de e-mail ausente em ${relative}`)
