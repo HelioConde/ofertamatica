@@ -133,6 +133,16 @@ async function captureViewport(name, viewport, routes) {
         }
       }
 
+      const retailIntroCards = [...document.querySelectorAll('.retail-guide-intro-card')]
+      const retailCatalogCards = [...document.querySelectorAll('.retail-guide-catalog-card')]
+      const retailGuideCardsFit = [...retailIntroCards, ...retailCatalogCards].every((card) => {
+        const rect = card.getBoundingClientRect()
+        const parent = card.parentElement?.getBoundingClientRect()
+        return Boolean(parent && rect.width > 0 && rect.left >= parent.left - 2 && rect.right <= parent.right + 2)
+      })
+      const retailGuideNoEmptyColumns = retailCatalogCards.length <= 1 ||
+        retailCatalogCards.some((card) => Math.abs(card.getBoundingClientRect().top - retailCatalogCards[1].getBoundingClientRect().top) < 2)
+
       const guideCards = [...document.querySelectorAll('.format-guide-section [data-format-id]')]
       const guideFormatCounts = {
         A4X8: 8, A4X4: 4, A4X2_CIMA_BAIXO: 2, A4X2_INVERTIDO: 2,
@@ -197,6 +207,10 @@ async function captureViewport(name, viewport, routes) {
       }))
 
       return {
+        retailIntroCardCount: retailIntroCards.length,
+        retailCatalogCardCount: retailCatalogCards.length,
+        retailGuideCardsFit,
+        retailGuideNoEmptyColumns,
         howGuideCardCount: howTopicCards.length,
         howTopicLinksValid,
         howGuideCardsFit,
@@ -236,6 +250,19 @@ async function captureViewport(name, viewport, routes) {
       path: path.join(outDir, id + '-' + name + '.png'),
       fullPage: true,
     })
+    if (id === 'guias-para-varejo' && name === 'desktop') {
+      await page.getByRole('button', { name: 'Setores', exact: true }).click()
+      const filteredCategories = await page.locator('.retail-guide-card-category').allTextContents()
+      if (!filteredCategories.length || filteredCategories.some((category) => category.trim() !== 'Setores')) {
+        throw new Error('Filtrar por Setores deixou guias de outras categorias visíveis.')
+      }
+      await page.locator('.retail-guide-search input').fill('tema-sem-resultados-qa')
+      await page.locator('.retail-guide-empty button').click()
+      const restoredCards = await page.locator('.retail-guide-catalog-card').count()
+      if (restoredCards !== SEO_PAGES.length) {
+        throw new Error('Limpar filtros não restaurou todos os guias do catálogo.')
+      }
+    }
     if (id === 'formatos' && name === 'desktop') {
       await page.locator('.format-guide-section [data-format-id="A4X4"]').click()
       await page.locator('.editor-layout').waitFor({ state: 'visible', timeout: 10000 })
@@ -266,6 +293,11 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.id === 'guias-para-varejo' && (
+    item.retailIntroCardCount !== 3 ||
+    item.retailCatalogCardCount !== SEO_PAGES.length ||
+    !item.retailGuideCardsFit || !item.retailGuideNoEmptyColumns
+  )) return true
   if (item.id === 'como-funciona' && (
     item.howGuideCardCount !== 3 || !item.howTopicLinksValid ||
     !item.howGuideCardsFit ||
