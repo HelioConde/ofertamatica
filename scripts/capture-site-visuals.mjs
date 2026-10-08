@@ -140,8 +140,8 @@ async function captureViewport(name, viewport, routes) {
         const parent = card.parentElement?.getBoundingClientRect()
         return Boolean(parent && rect.width > 0 && rect.left >= parent.left - 2 && rect.right <= parent.right + 2)
       })
-      const retailGuideNoEmptyColumns = retailCatalogCards.length <= 1 ||
-        retailCatalogCards.some((card) => Math.abs(card.getBoundingClientRect().top - retailCatalogCards[1].getBoundingClientRect().top) < 2)
+      const retailGuideNoEmptyColumns = window.innerWidth <= 650 || retailCatalogCards.length <= 1 ||
+        Math.abs(retailCatalogCards[0].getBoundingClientRect().top - retailCatalogCards[1].getBoundingClientRect().top) < 2
 
       const guideCards = [...document.querySelectorAll('.format-guide-section [data-format-id]')]
       const guideFormatCounts = {
