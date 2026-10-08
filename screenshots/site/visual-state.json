@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T19:12:56.015Z",
-  "commit": "03123de8657f1fc98a2273546c98b358960a03b3",
+  "generatedAt": "2026-10-08T19:22:44.126Z",
+  "commit": "9692c8c9555ed130fc747c28b2f261202164fdb6",
   "routes": [
     [
       "home",
@@ -1357,15 +1357,15 @@
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 716.2,
+          "bottom": 761,
           "width": 1280,
-          "height": 647.2
+          "height": 692
         },
         "dialog": {
           "top": 81,
-          "bottom": 704.2,
+          "bottom": 749,
           "width": 1280,
-          "height": 623.2
+          "height": 668
         },
         "header": {
           "top": 82,
@@ -1375,19 +1375,19 @@
         },
         "grid": {
           "top": 284.6,
-          "bottom": 604.2,
+          "bottom": 649,
           "width": 1242,
-          "height": 319.6
+          "height": 364.4
         },
         "ad": {
-          "top": 611.2,
-          "bottom": 659.2,
+          "top": 656,
+          "bottom": 704,
           "width": 728,
           "height": 48
         },
         "links": {
-          "top": 662.2,
-          "bottom": 703.2,
+          "top": 707,
+          "bottom": 748,
           "width": 1278,
           "height": 41
         }
@@ -1431,7 +1431,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1553,
+      "documentHeight": 1358,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1440,26 +1440,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 700,
-          "height": 305
+          "height": 110
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 698,
-          "height": 303
+          "height": 100
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 137,
-          "bottom": 1552.6,
+          "bottom": 1357.6,
           "width": 746,
-          "height": 1415.6
+          "height": 1220.6
         },
         "dialog": {
           "top": 151,
-          "bottom": 1526.6,
+          "bottom": 1331.6,
           "width": 746,
-          "height": 1375.6
+          "height": 1180.6
         },
         "header": {
           "top": 152,
@@ -1475,13 +1475,13 @@
         },
         "ad": {
           "top": 1156.6,
-          "bottom": 1461.6,
+          "bottom": 1266.6,
           "width": 700,
-          "height": 305
+          "height": 110
         },
         "links": {
-          "top": 1469.6,
-          "bottom": 1525.6,
+          "top": 1274.6,
+          "bottom": 1330.6,
           "width": 744,
           "height": 56
         }
