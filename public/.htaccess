@@ -1,5 +1,13 @@
 RewriteEngine On
 
+# Compactação HTTP: o Lighthouse detectou JS/CSS servidos sem gzip/br.
+# mod_deflate é opcional na hospedagem: não falha caso o módulo não exista.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/ld+json application/xml image/svg+xml
+</IfModule>
+
 # Arquivos do Vite com hash no nome podem ficar no cache por um ano.
 # HTML, sitemap e manifestos permanecem revalidáveis em cada atualização.
 <IfModule mod_headers.c>
