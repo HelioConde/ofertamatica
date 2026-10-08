@@ -47,6 +47,13 @@ await scenario('Editor mobile: gerar, prévia e voltar', { width: 390, height: 8
   if (await page.locator('[data-mobile-tab="preview"]').getAttribute('aria-selected') !== 'true') throw new Error('Aba prévia não está selecionada')
   await page.locator('[data-mobile-tab="products"]').click()
   await check(page, '.editor-main.mobile-panel-active', 'Não foi possível voltar a Produtos')
+  await page.locator('[data-mobile-tab="products"]').focus()
+  await page.keyboard.press('ArrowRight')
+  if (await page.locator('[data-mobile-tab="preview"]').getAttribute('aria-selected') !== 'true') throw new Error('Teclado não alternou para Prévia')
+  await page.keyboard.press('ArrowRight')
+  if (await page.locator('[data-mobile-tab="style"]').getAttribute('aria-selected') !== 'true') throw new Error('Teclado não alternou para Estilo')
+  await page.keyboard.press('Home')
+  if (await page.locator('[data-mobile-tab="products"]').getAttribute('aria-selected') !== 'true') throw new Error('Tecla Home não retornou a Produtos')
 })
 await scenario('Modelos mobile: grade compacta e prévia maior', { width: 360, height: 800 }, async (page) => {
   await page.goto(origin + '/modelos/', { waitUntil: 'domcontentloaded' })

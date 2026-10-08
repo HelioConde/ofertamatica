@@ -934,7 +934,7 @@ function StyleSidebar({
   ]
 
   return (
-    <aside className={'style-sidebar ' + (mobileActive ? 'mobile-panel-active' : 'mobile-panel-hidden')} aria-label="Personalização da placa">
+    <aside id="mobile-panel-style" role="tabpanel" aria-labelledby="mobile-tab-style" className={'style-sidebar ' + (mobileActive ? 'mobile-panel-active' : 'mobile-panel-hidden')} aria-label="Personalização da placa">
       <header className="style-sidebar-head">
         <div>
           <span className="section-label">PERSONALIZAÇÃO</span>
@@ -1877,14 +1877,27 @@ function Editor({
         </button>
       </div>
 
-      <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor">
-        <button type="button" role="tab" data-mobile-tab="products" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
-        <button type="button" role="tab" data-mobile-tab="preview" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
-        <button type="button" role="tab" data-mobile-tab="style" aria-selected={mobileTab === 'style'} className={mobileTab === 'style' ? 'active' : ''} onClick={() => setMobileTab('style')}>Estilo</button>
+      <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor" onKeyDown={(event) => {
+        const tabs = ['products', 'preview', 'style']
+        const current = tabs.indexOf(event.target?.dataset?.mobileTab)
+        if (current < 0) return
+        let target = current
+        if (event.key === 'ArrowRight') target = (current + 1) % tabs.length
+        else if (event.key === 'ArrowLeft') target = (current - 1 + tabs.length) % tabs.length
+        else if (event.key === 'Home') target = 0
+        else if (event.key === 'End') target = tabs.length - 1
+        else return
+        event.preventDefault()
+        setMobileTab(tabs[target])
+        event.currentTarget.querySelector('[data-mobile-tab="' + tabs[target] + '"]')?.focus()
+      }}>
+        <button id="mobile-tab-products" type="button" role="tab" aria-controls="mobile-panel-products" tabIndex={mobileTab === 'products' ? 0 : -1} data-mobile-tab="products" aria-selected={mobileTab === 'products'} className={mobileTab === 'products' ? 'active' : ''} onClick={() => setMobileTab('products')}>Produtos</button>
+        <button id="mobile-tab-preview" type="button" role="tab" aria-controls="mobile-panel-preview" tabIndex={mobileTab === 'preview' ? 0 : -1} data-mobile-tab="preview" aria-selected={mobileTab === 'preview'} className={mobileTab === 'preview' ? 'active' : ''} onClick={() => setMobileTab('preview')}>Prévia</button>
+        <button id="mobile-tab-style" type="button" role="tab" aria-controls="mobile-panel-style" tabIndex={mobileTab === 'style' ? 0 : -1} data-mobile-tab="style" aria-selected={mobileTab === 'style'} className={mobileTab === 'style' ? 'active' : ''} onClick={() => setMobileTab('style')}>Estilo</button>
       </div>
 
       <section className="editor-layout">
-        <div className={'editor-main ' + (mobileTab === 'products' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
+        <div id="mobile-panel-products" role="tabpanel" aria-labelledby="mobile-tab-products" className={'editor-main ' + (mobileTab === 'products' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
           <section
             className={'editor-card quick-entry-card ' + (draggingFile ? 'is-file-dragging' : '')}
             onDragEnter={(event) => {
@@ -2175,7 +2188,7 @@ function Editor({
               type="button"
               onClick={() => {
                 setMobileTab('preview')
-                window.scrollTo({ top: 0, behavior: 'smooth' })
+                window.scrollTo({ top: 0, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
               }}
             >
               Ver prévia da placa atual <span aria-hidden="true">→</span>
@@ -2183,7 +2196,7 @@ function Editor({
           ) : null}
         </div>
 
-        <aside className={'preview-card ' + (mobileTab === 'preview' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
+        <aside id="mobile-panel-preview" role="tabpanel" aria-labelledby="mobile-tab-preview" className={'preview-card ' + (mobileTab === 'preview' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>
           <header>
             <div>
               <span className="section-label">PRÉ-VISUALIZAÇÃO</span>
