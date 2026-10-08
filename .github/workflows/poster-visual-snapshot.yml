@@ -7,6 +7,7 @@ on:
     paths:
       - 'src/components/posters/**'
       - 'src/config/posterTemplates.js'
+      - 'src/config/posterModelPresets.js'
       - 'src/poster-engine/**'
       - 'src/utils/posterBrowserMeasure.js'
       - 'src/styles/posters.css'
