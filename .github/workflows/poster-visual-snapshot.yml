@@ -10,6 +10,7 @@ on:
       - 'src/config/posterModelPresets.js'
       - 'src/poster-engine/**'
       - 'src/utils/posterBrowserMeasure.js'
+      - 'src/utils/optimizePosterImage.js'
       - 'src/styles/posters.css'
       - 'src/styles.css'
       - 'src/styles/marketing.css'
