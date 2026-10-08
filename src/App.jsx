@@ -502,7 +502,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         <header className="format-dialog-head format-dialog-head-clean">
           <span className="eyebrow two-click-kicker">CARTAZ DE OFERTA PRONTO EM 2 CLIQUES</span>
           <h1>Escolha o tamanho da sua placa.</h1>
-          <p>Do A7 para gôndola ao A3 para vitrine: escolha o formato, cole sua lista e gere tudo de uma vez.</p>
+          <p>Crie placas para mercado online e cartazes de oferta grátis. Do A7 para gôndola ao A3 para vitrine, escolha o formato, cole sua lista e gere as placas.</p>
           <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
             <span>✓ Grátis e sem cadastro</span>
             <span>✓ Lista, Excel, CSV ou TXT</span>
