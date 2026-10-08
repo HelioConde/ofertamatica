@@ -30,6 +30,7 @@ jobs:
         run: |
           node --check scripts/generate-seo-pages.mjs
           node --check scripts/validate-build.mjs
+          node --check scripts/verify-live-seo.mjs
 
       - name: Build
         run: npm run build
@@ -59,3 +60,6 @@ jobs:
           localDir: "dist"
           remoteDir: "public_html"
           options: "--exclude-glob assets --exclude-glob assets/** --exclude-glob beta --exclude-glob beta/**"
+
+      - name: Verify deployed SEO URLs
+        run: node scripts/verify-live-seo.mjs
