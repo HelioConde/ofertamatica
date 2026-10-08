@@ -14,6 +14,14 @@ const read = (relative) => {
 }
 
 const index = read('index.html')
+const moduleJsAssets = [...index.matchAll(/<script\b[^>]*type=["']module["'][^>]*src=["'](\/assets\/[^"']+\.js)["']/gi)].map((m) => m[1])
+const stylesheetAssets = [...index.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'](\/assets\/[^"']+\.css)["']/gi)].map((m) => m[1])
+expect(moduleJsAssets.length > 0, 'HTML sem módulo JS de produção')
+expect(stylesheetAssets.length > 0, 'HTML sem CSS de produção')
+for (const reference of [...moduleJsAssets, ...stylesheetAssets]) {
+  expect(fs.existsSync(path.join(dist, reference.slice(1))), 'Bundle ausente no dist: ' + reference)
+}
+expect(index.includes('ofertamatica-load-warning'), 'Falta aviso de recuperação caso o gerador não inicie')
 expect(index.includes('GTM-5RGPM6HD'), 'GTM não encontrado no index.html')
 expect(!index.includes('gtag/js?id=G-K8YWSXBHS7'), 'GA4 direto voltou ao index.html; use o GTM como fonte única')
 expect(index.includes('ca-pub-9514218545388169'), 'Publisher AdSense ausente do index.html')
