@@ -3067,3 +3067,61 @@ summary:focus-visible {
   .institutional-email-actions { flex-direction: column; align-items: stretch; width: 100%; }
   .institutional-email-copy { width: 100%; }
 }
+
+
+/* Refinamento final mobile — legibilidade de Modelos e guias, sem mudar os pôsteres nem a impressão. */
+@media (max-width: 600px) {
+  /* A grade de duas colunas continua compacta, mas títulos e CTAs não exigem zoom. */
+  .seo-landing .model-gallery-compact .model-card-copy > strong {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere;
+  }
+  .seo-landing .model-gallery-compact .model-card-copy p {
+    min-height: 0;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    -webkit-line-clamp: 2;
+    overflow-wrap: anywhere;
+  }
+  .seo-landing .model-gallery-compact .model-card-copy button {
+    min-height: 44px !important;
+    padding: 8px 6px;
+    font-size: 12px !important;
+    line-height: 1.3;
+    border-color: #95b6eb;
+    color: #164da9;
+  }
+  .seo-landing .model-gallery-compact .model-category,
+  .seo-landing .model-gallery-detailed .model-category {
+    font-size: 10px !important;
+    line-height: 1.25;
+  }
+  .seo-landing .model-gallery-detailed .model-card-copy p {
+    min-height: 0;
+    font-size: 12px !important;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  .seo-landing .model-gallery-detailed .model-card-copy button {
+    min-height: 44px !important;
+    font-size: 12px !important;
+  }
+  .seo-landing .model-view-switch { display: flex; width: 100%; }
+  .seo-landing .model-view-switch button { flex: 1; min-height: 44px; }
+  .seo-landing .model-category-strip button { min-height: 40px; font-size: 11px; }
+  .seo-landing .model-gallery-tools strong { font-size: 12px; line-height: 1.4; }
+  /* Cards editoriais menores, texto ainda integral e links de toque adequados. */
+  .seo-landing .retail-guide-intro-card { padding: 17px; gap: 9px; }
+  .seo-landing .retail-guide-intro-card p,
+  .seo-landing .retail-guide-catalog-card p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .seo-landing .retail-guide-catalog-card { padding: 17px; gap: 8px; }
+  .seo-landing .retail-guide-catalog-card h4 { font-size: 16px; line-height: 1.35; }
+  .seo-landing .retail-guide-card-link { min-height: 44px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .model-showcase-card, .retail-guide-catalog-card { transition: none !important; }
+}

@@ -237,10 +237,16 @@ async function captureViewport(name, viewport, routes) {
           Math.min(card.bottom, other.bottom) - Math.max(card.top, other.top) > 3
         )
       )
-      const adRect = document.querySelector('.format-home-refresh .format-ad-card')?.getBoundingClientRect()
+      const adCandidate = document.querySelector('.format-home-refresh .format-ad-card')
+      const candidateRect = adCandidate?.getBoundingClientRect()
+      // Sem consentimento, AdUnit retorna null e o contêiner fica oculto (:empty).
+      // getBoundingClientRect() de um elemento display:none devolve (0,0,0,0):
+      // comparar esse top=0 com os cartões gera uma falsa sobreposição.
+      const adRect = candidateRect && candidateRect.width > 1 && candidateRect.height > 1
+        && getComputedStyle(adCandidate).display !== 'none' ? candidateRect : null
       const linksRect = document.querySelector('.format-home-refresh .format-trust-links')?.getBoundingClientRect()
       const lastCardBottom = formatCardRects.length ? Math.max(...formatCardRects.map((rect) => rect.bottom)) : null
-      const adOverlapsFormats = Boolean(adRect && lastCardBottom && adRect.top < lastCardBottom - 2)
+      const adOverlapsFormats = Boolean(adRect && lastCardBottom !== null && adRect.top < lastCardBottom - 2)
       const linksOverlapAd = Boolean(adRect && linksRect && linksRect.top < adRect.bottom - 2)
       const appThumb = document.querySelector('.format-choice[data-format-id="A4X2_APP"] .format-thumb')
       const appSheets = document.querySelectorAll('.format-choice[data-format-id="A4X2_APP"] .oferta-format-mini')

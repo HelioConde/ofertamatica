@@ -356,7 +356,7 @@ function ModelCard({ item, onCreate }) {
         <span className="model-category">{item.category}</span>
         <strong>{item.name}</strong>
         <p>{item.note}</p>
-        <button type="button" onClick={useModel}>Usar este modelo</button>
+        <button type="button" aria-label={`Usar modelo ${item.name} no criador`} onClick={useModel}>Usar este modelo</button>
       </div>
     </article>
   )
