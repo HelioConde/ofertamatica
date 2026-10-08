@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T16:40:16.378Z",
-  "commit": "14702aa071bcfa01113609c52ba0af67cfcdc095",
+  "generatedAt": "2026-10-08T17:13:35.817Z",
+  "commit": "befa08fb2c006db6042b89d8e4746aaf2d1449c8",
   "routes": [
     [
       "home",
@@ -102,6 +102,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -186,6 +196,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 12,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -204,66 +224,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 4376,
+      "documentHeight": 4382,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › MODELOS",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -284,6 +249,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -302,70 +277,16 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1694,
+      "documentHeight": 1700,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [
         {
           "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FORMATOS",
-          "height": 13
-        },
-        {
-          "tag": "a",
           "className": "",
           "text": "Qual papel usar para cartazes A4, A5 e A3 →",
           "height": 15
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
         }
       ],
       "ads": [],
@@ -388,6 +309,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -406,17 +337,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 3747,
+      "documentHeight": 3753,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIA DE PAPEL E IMPRESSÃO",
-          "height": 13
-        },
         {
           "tag": "a",
           "className": "",
@@ -476,12 +401,6 @@
           "className": "",
           "text": "Por que o cartaz sai menor do que o tamanho escolhido?",
           "height": 19.5
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
         }
       ],
       "ads": [],
@@ -504,6 +423,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 3,
       "howTopicLinksValid": true,
       "howGuideCardsFit": true,
@@ -522,66 +451,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2022,
+      "documentHeight": 2028,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › COMO FUNCIONA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -602,6 +476,16 @@
       "retailCatalogCardCount": 12,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": true,
+      "retailGuideComputed": {
+        "paperLink": "flex",
+        "grid": "grid",
+        "search": "grid",
+        "categoryButton": "flex",
+        "card": "flex"
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -620,66 +504,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 3136,
+      "documentHeight": 3142,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIAS PARA VAREJO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -700,6 +529,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -718,66 +557,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1290,
+      "documentHeight": 1296,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › SOBRE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -798,6 +582,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -816,66 +610,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1525,
+      "documentHeight": 1551,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FALE CONOSCO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -896,6 +635,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -914,66 +663,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1430,
+      "documentHeight": 1436,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › PRIVACIDADE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -994,6 +688,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1012,66 +716,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1382,
+      "documentHeight": 1388,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › TERMOS DE USO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1092,6 +741,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1110,66 +769,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2647,
+      "documentHeight": 2653,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES PARA PADARIA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1190,6 +794,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1208,66 +822,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2687,
+      "documentHeight": 2693,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES COM PLANILHAS",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1288,6 +847,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1306,66 +875,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2362,
+      "documentHeight": 2368,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES PARA AÇOUGUE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1386,6 +900,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1404,66 +928,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2217,
+      "documentHeight": 2223,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CRIADOR DE CARTAZ DE OFERTA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1484,6 +953,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1502,66 +981,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2409,
+      "documentHeight": 2415,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ PARA SUPERMERCADO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1582,6 +1006,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1600,66 +1034,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2256,
+      "documentHeight": 2262,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GERADOR DE CARTAZ DE PROMOÇÃO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1680,6 +1059,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1698,66 +1087,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1742,
+      "documentHeight": 1748,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ DE PREÇO ONLINE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1778,6 +1112,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1796,66 +1140,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2232,
+      "documentHeight": 2238,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ PARA IMPRIMIR",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1876,6 +1165,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1894,66 +1193,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1801,
+      "documentHeight": 1807,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FORMATO A4",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -1974,6 +1218,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -1992,66 +1246,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1801,
+      "documentHeight": 1807,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ DE / POR",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2072,6 +1271,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2090,66 +1299,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1782,
+      "documentHeight": 1788,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › ATACADO / VAREJO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2170,6 +1324,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2188,66 +1352,11 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1886,
+      "documentHeight": 1892,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIA PRÁTICO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2268,6 +1377,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2352,6 +1471,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2370,7 +1499,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1553,
+      "documentHeight": 1575,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2379,26 +1508,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 700,
-          "height": 305
+          "height": 327
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 698,
-          "height": 303
+          "height": 301
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 137,
-          "bottom": 1552.6,
+          "bottom": 1574.6,
           "width": 746,
-          "height": 1415.6
+          "height": 1437.6
         },
         "dialog": {
           "top": 151,
-          "bottom": 1526.6,
+          "bottom": 1548.6,
           "width": 746,
-          "height": 1375.6
+          "height": 1397.6
         },
         "header": {
           "top": 152,
@@ -2414,13 +1543,13 @@
         },
         "ad": {
           "top": 1156.6,
-          "bottom": 1461.6,
+          "bottom": 1483.6,
           "width": 700,
-          "height": 305
+          "height": 327
         },
         "links": {
-          "top": 1469.6,
-          "bottom": 1525.6,
+          "top": 1491.6,
+          "bottom": 1547.6,
           "width": 744,
           "height": 56
         }
@@ -2436,6 +1565,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 12,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2454,66 +1593,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 6021,
+      "documentHeight": 6046,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › MODELOS",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2534,6 +1618,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2552,70 +1646,16 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2415,
+      "documentHeight": 2440,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [
         {
           "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FORMATOS",
-          "height": 13
-        },
-        {
-          "tag": "a",
           "className": "",
           "text": "Qual papel usar para cartazes A4, A5 e A3 →",
           "height": 15
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
         }
       ],
       "ads": [],
@@ -2638,6 +1678,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2656,17 +1706,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4794,
+      "documentHeight": 4819,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
       "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIA DE PAPEL E IMPRESSÃO",
-          "height": 13
-        },
         {
           "tag": "a",
           "className": "",
@@ -2726,12 +1770,6 @@
           "className": "",
           "text": "Por que o cartaz sai menor do que o tamanho escolhido?",
           "height": 19.5
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
         }
       ],
       "ads": [],
@@ -2754,6 +1792,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 3,
       "howTopicLinksValid": true,
       "howGuideCardsFit": true,
@@ -2772,66 +1820,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3092,
+      "documentHeight": 3117,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › COMO FUNCIONA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2852,6 +1845,16 @@
       "retailCatalogCardCount": 12,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": true,
+      "retailGuideComputed": {
+        "paperLink": "flex",
+        "grid": "grid",
+        "search": "grid",
+        "categoryButton": "flex",
+        "card": "flex"
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2870,66 +1873,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 4587,
+      "documentHeight": 4612,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIAS PARA VAREJO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -2950,6 +1898,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -2968,66 +1926,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1666,
+      "documentHeight": 1691,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › SOBRE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3048,6 +1951,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3066,66 +1979,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1774,
+      "documentHeight": 1950,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FALE CONOSCO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3146,6 +2004,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3164,66 +2032,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1957,
+      "documentHeight": 1982,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › PRIVACIDADE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3244,6 +2057,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3262,66 +2085,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1875,
+      "documentHeight": 1900,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › TERMOS DE USO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3342,6 +2110,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3360,66 +2138,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3729,
+      "documentHeight": 3754,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES PARA PADARIA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3440,6 +2163,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3458,66 +2191,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3854,
+      "documentHeight": 3879,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES COM PLANILHAS",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3538,6 +2216,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3556,66 +2244,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3513,
+      "documentHeight": 3538,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZES PARA AÇOUGUE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3636,6 +2269,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3654,66 +2297,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3040,
+      "documentHeight": 3065,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CRIADOR DE CARTAZ DE OFERTA",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3734,6 +2322,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3752,66 +2350,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3531,
+      "documentHeight": 3556,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ PARA SUPERMERCADO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3832,6 +2375,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3850,66 +2403,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3285,
+      "documentHeight": 3310,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GERADOR DE CARTAZ DE PROMOÇÃO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -3930,6 +2428,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -3948,66 +2456,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2612,
+      "documentHeight": 2637,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ DE PREÇO ONLINE",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4028,6 +2481,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4046,66 +2509,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 3040,
+      "documentHeight": 3065,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ PARA IMPRIMIR",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4126,6 +2534,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4144,66 +2562,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2612,
+      "documentHeight": 2637,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › FORMATO A4",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4224,6 +2587,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4242,66 +2615,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2612,
+      "documentHeight": 2637,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › CARTAZ DE / POR",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4322,6 +2640,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4340,66 +2668,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2651,
+      "documentHeight": 2676,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › ATACADO / VAREJO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4420,6 +2693,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4438,66 +2721,11 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2455,
+      "documentHeight": 2480,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
-      "tinyTargets": [
-        {
-          "tag": "a",
-          "className": "seo-breadcrumb",
-          "text": "Ofertamática › GUIA PRÁTICO",
-          "height": 13
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Criar placas",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Como funciona",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Guias",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Papel para cartazes",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Sobre",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Fale conosco",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Privacidade",
-          "height": 11
-        },
-        {
-          "tag": "a",
-          "className": "",
-          "text": "Termos",
-          "height": 11
-        }
-      ],
+      "tinyTargets": [],
       "ads": [],
       "creatorGeometry": {
         "page": null,
@@ -4518,6 +2746,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4536,7 +2774,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1747,
+      "documentHeight": 1745,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4545,26 +2783,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 284,
-          "height": 85
+          "height": 83
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 282,
-          "height": 83
+          "height": 81
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1746.6,
+          "bottom": 1744.6,
           "width": 338,
-          "height": 1643.6
+          "height": 1641.6
         },
         "dialog": {
           "top": 117,
-          "bottom": 1720.6,
+          "bottom": 1718.6,
           "width": 338,
-          "height": 1603.6
+          "height": 1601.6
         },
         "header": {
           "top": 118,
@@ -4580,13 +2818,13 @@
         },
         "ad": {
           "top": 1519.6,
-          "bottom": 1604.6,
+          "bottom": 1602.6,
           "width": 284,
-          "height": 85
+          "height": 83
         },
         "links": {
-          "top": 1616.6,
-          "bottom": 1719.6,
+          "top": 1614.6,
+          "bottom": 1717.6,
           "width": 312,
           "height": 103
         }
@@ -4602,6 +2840,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 12,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4620,7 +2868,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 8749,
+      "documentHeight": 6446,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4645,6 +2893,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4688,6 +2946,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4706,7 +2974,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6057,
+      "documentHeight": 6104,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4731,6 +2999,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 3,
       "howTopicLinksValid": true,
       "howGuideCardsFit": true,
@@ -4774,6 +3052,16 @@
       "retailCatalogCardCount": 12,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": true,
+      "retailGuideComputed": {
+        "paperLink": "flex",
+        "grid": "grid",
+        "search": "grid",
+        "categoryButton": "flex",
+        "card": "flex"
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4817,6 +3105,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4860,6 +3158,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4878,7 +3186,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1940,
+      "documentHeight": 2233,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4903,6 +3211,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4946,6 +3264,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -4989,6 +3317,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5032,6 +3370,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5075,6 +3423,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5118,6 +3476,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5161,6 +3529,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5204,6 +3582,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5247,6 +3635,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5290,6 +3688,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5333,6 +3741,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5376,6 +3794,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5419,6 +3847,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5462,6 +3900,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5505,6 +3953,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5589,6 +4047,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 12,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5607,7 +4075,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 8830,
+      "documentHeight": 6681,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5632,6 +4100,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5675,6 +4153,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5693,7 +4181,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 5765,
+      "documentHeight": 5812,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5718,6 +4206,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 3,
       "howTopicLinksValid": true,
       "howGuideCardsFit": true,
@@ -5761,6 +4259,16 @@
       "retailCatalogCardCount": 12,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": true,
+      "retailGuideComputed": {
+        "paperLink": "flex",
+        "grid": "grid",
+        "search": "grid",
+        "categoryButton": "flex",
+        "card": "flex"
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5804,6 +4312,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5847,6 +4365,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5865,7 +4393,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1900,
+      "documentHeight": 2173,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5890,6 +4418,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5933,6 +4471,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -5976,6 +4524,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6019,6 +4577,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6062,6 +4630,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6105,6 +4683,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6148,6 +4736,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6191,6 +4789,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6234,6 +4842,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6277,6 +4895,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6320,6 +4948,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6363,6 +5001,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6406,6 +5054,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
@@ -6449,6 +5107,16 @@
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
       "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
       "howGuideCardCount": 0,
       "howTopicLinksValid": false,
       "howGuideCardsFit": true,
