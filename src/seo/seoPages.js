@@ -27,6 +27,75 @@ export const PUBLIC_PAGES = [
   },
   {
     kind: 'public',
+    slug: 'qual-papel-usar-para-cartaz',
+    title: 'Qual Papel Usar para Cartaz de Oferta? A4, A5, A3 | Ofertamática',
+    description: 'Saiba qual papel usar para imprimir cartazes de supermercado: sulfite, offset ou papel mais encorpado, gramaturas e formatos A4, A5 e A3.',
+    keywords: 'qual papel usar para cartaz de oferta, papel para cartaz de supermercado, papel para imprimir cartaz A4, gramatura para cartaz de preço',
+    eyebrow: 'GUIA DE PAPEL E IMPRESSÃO',
+    heading: 'Qual papel usar para imprimir cartazes de oferta?',
+    lead: 'Entenda a diferença entre tamanho da folha e gramatura do papel. Escolha A4, A5 ou A3 para a sua impressora e use a espessura adequada ao local de exposição.',
+    benefits: ['A4, A5 e A3 explicados', 'Gramatura conforme uso', 'Configuração de impressão sem distorção'],
+    sections: [
+      {
+        title: 'Papel sulfite ou offset para ofertas do dia a dia',
+        text: 'Para placas de preço trocadas com frequência, papel branco comum de aproximadamente 75 a 90 g/m² é uma escolha econômica. Confirme a compatibilidade com a impressora e faça uma prova de cor, pois papéis mais finos podem ficar transparentes com grandes áreas coloridas.',
+      },
+      {
+        title: 'Papel mais encorpado para vitrines, pontas e balcões',
+        text: 'Para um cartaz que precisa ter mais firmeza, avalie papel fosco mais encorpado, por exemplo na faixa de 120 a 180 g/m², sempre dentro da especificação da sua impressora. Papéis couchê exigem atenção à compatibilidade de tinta ou toner e ao acabamento; nem todo couchê funciona bem em impressoras comuns.',
+      },
+      {
+        title: 'Qual folha escolher: A4, A5 ou A3',
+        text: 'O tamanho da folha não é a mesma coisa que a gramatura. A4 mede 21 × 29,7 cm e permite imprimir um cartaz grande, dois, quatro ou oito cartazes menores. A5 mede 14,8 × 21 cm e é útil para comunicação próxima. A3 mede 29,7 × 42 cm, oferece mais área e depende de impressora compatível.',
+      },
+      {
+        title: 'Os cartazes A6 e A7 são feitos em folha A4',
+        text: 'No gerador, as opções de quatro cartazes A6 e oito cartazes A7 usam uma única folha A4. Não é necessário comprar folhas A6 ou A7 para essas opções: imprima a folha A4 e corte os cartazes. Confira as margens da impressora antes de recortar.',
+      },
+      {
+        title: 'Como imprimir sem reduzir o preço e o cabeçalho',
+        text: 'Na janela de impressão, escolha o mesmo papel configurado no cartaz, confirme retrato ou paisagem e use escala de 100% ou tamanho real. Desative cabeçalhos e rodapés do navegador. Evite “Ajustar à página” quando precisar preservar as dimensões físicas; se a impressora não aceitar a área de impressão, revise margens e faça uma prova.',
+      },
+      {
+        title: 'Teste antes de imprimir várias placas',
+        text: 'Imprima um exemplo, verifique se a tinta seca, se há contraste suficiente no preço, se o texto não foi cortado e se o material pode ser colocado no suporte da loja. Para cartazes expostos ao sol, à umidade ou ao manuseio frequente, considere proteção adequada ao ambiente.',
+      },
+    ],
+    paperChoices: [
+      { label: 'Rotina de gôndola', paper: 'Papel sulfite ou offset branco', weight: '75–90 g/m² (referência)', why: 'Bom custo para cartazes trocados com frequência' },
+      { label: 'Balcão e ponta de gôndola', paper: 'Papel fosco mais firme', weight: '120–150 g/m² (referência)', why: 'Maior rigidez e melhor apresentação quando compatível' },
+      { label: 'Vitrine e campanhas', paper: 'Papel fosco ou cartão apropriado', weight: '150–180 g/m² (referência)', why: 'Mais corpo; confira se sua impressora aceita' },
+    ],
+    formatChoices: [
+      { id: 'A4X8', name: '8 cartazes A7', sheet: 'A4 · 21 × 29,7 cm', area: '10,5 × 7,4 cm cada', use: 'Gôndola e etiquetas maiores' },
+      { id: 'A4X4', name: '4 cartazes A6', sheet: 'A4 · 21 × 29,7 cm', area: '10,5 × 14,9 cm cada', use: 'Gôndola e ofertas compactas' },
+      { id: 'A4X2_CIMA_BAIXO', name: '2 cartazes por folha', sheet: 'A4 · 21 × 29,7 cm', area: '21 × 14,9 cm cada', use: 'Balcão, ilha ou ponta' },
+      { id: 'A4', name: '1 cartaz A4', sheet: 'A4 · 21 × 29,7 cm', area: '21 × 29,7 cm', use: 'Ponta e cartaz de destaque' },
+      { id: 'A5', name: '1 cartaz A5', sheet: 'A5 · 14,8 × 21 cm', area: '14,8 × 21 cm', use: 'Balcão e espaços menores' },
+      { id: 'A3', name: '1 cartaz A3', sheet: 'A3 · 29,7 × 42 cm', area: '29,7 × 42 cm', use: 'Vitrine e leitura mais distante' },
+    ],
+    printSteps: [
+      'Selecione no Ofertamática o formato correspondente à folha que a impressora aceita.',
+      'Gere as placas e revise descrição, unidade, preço e texto do cabeçalho.',
+      'Abra Imprimir ou Salvar PDF e selecione o mesmo tamanho de papel usado no editor.',
+      'Confira a orientação, desative os cabeçalhos do navegador e mantenha 100% de escala.',
+      'Faça uma impressão de teste antes de produzir várias folhas.',
+    ],
+    faq: [
+      { q: 'Qual a melhor gramatura de papel para cartaz de oferta?', a: 'Para ofertas trocadas diariamente, 75–90 g/m² costuma ser suficiente. Para cartazes que precisam ficar mais firmes, avalie 120–180 g/m², desde que a impressora suporte esse papel.' },
+      { q: 'Preciso comprar papel A6 ou A7 para imprimir várias placas?', a: 'Não para os layouts A4 com quatro ou oito cartazes do Ofertamática. Eles usam papel A4; depois da impressão, basta recortar nas divisões.' },
+      { q: 'Posso imprimir cartaz A3 em impressora A4?', a: 'Não no tamanho físico A3. Para imprimir em 29,7 × 42 cm você precisa de uma impressora ou serviço gráfico compatível com A3. Reduzir para A4 altera o tamanho final.' },
+      { q: 'Papel couchê funciona em qualquer impressora?', a: 'Não. A compatibilidade depende do papel, da tinta ou do toner e das especificações do equipamento. Verifique o manual da impressora ou procure uma gráfica.' },
+      { q: 'Por que o cartaz sai menor do que o tamanho escolhido?', a: 'Isso costuma ocorrer quando a janela de impressão está em “Ajustar à página” ou usa papel diferente do selecionado. Confira o tamanho da folha, a orientação, as margens e a escala de 100%.' },
+    ],
+    links: [
+      { label: 'Comparar tamanhos dos cartazes', href: '/formatos/', note: 'Veja os layouts em A4, A5 e A3.' },
+      { label: 'Criar cartaz de oferta para imprimir', href: '/cartaz-de-oferta-para-imprimir/', note: 'Do gerador ao PDF e à impressora.' },
+      { label: 'Ver modelos de cartazes', href: '/modelos/', note: 'Escolha a arte antes de imprimir.' },
+    ],
+  },
+  {
+    kind: 'public',
     slug: 'como-funciona',
     title: 'Como Fazer Placas para Mercado Online | Ofertamática',
     description: 'Aprenda a criar placas de preço e cartazes de supermercado: escolha o formato, cole produtos ou importe uma planilha, gere em lote e imprima grátis.',
