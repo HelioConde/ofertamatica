@@ -55,6 +55,10 @@ for (const page of INDEXABLE_PAGES) {
   const html = read(relative)
   const canonical = `${SITE_URL}/${page.slug}/`
   expect(html.includes(canonical), `Canonical ausente/incorreto em ${relative}`)
+  if (['fale-conosco', 'privacidade', 'termos'].includes(page.slug)) {
+    expect(html.includes('atendimento@ofertamatica.com.br'), `Contato oficial ausente em ${relative}`)
+    expect(html.includes('mailto:atendimento@ofertamatica.com.br'), `Link de e-mail ausente em ${relative}`)
+  }
   expect(html.includes(page.title), `Title estático ausente em ${relative}`)
   expect((html.match(/<meta name="twitter:title"/g) || []).length === 1, `Twitter title duplicado em ${relative}`)
   expect((html.match(/<meta name="twitter:description"/g) || []).length === 1, `Twitter description duplicada em ${relative}`)

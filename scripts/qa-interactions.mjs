@@ -85,6 +85,16 @@ await scenario('SEO: cartaz De/Por com exemplo e CTA', { width: 390, height: 844
   await page.locator('.seo-poster-example .seo-example-create').click()
   await check(page, '.format-grid .format-choice', 'CTA do guia não abriu o criador')
 })
+await scenario('Contato oficial: e-mail nas páginas institucionais', { width: 390, height: 844 }, async (page) => {
+  for (const slug of ['fale-conosco', 'privacidade', 'termos']) {
+    await page.goto(origin + '/' + slug + '/', { waitUntil: 'domcontentloaded' })
+    const link = page.locator('.institutional-email-address')
+    await link.waitFor({ state: 'visible' })
+    const href = await link.getAttribute('href')
+    if (!href?.startsWith('mailto:atendimento@ofertamatica.com.br')) throw new Error('E-mail inválido em ' + slug)
+    if (!(await page.locator('main').innerText()).includes('atendimento@ofertamatica.com.br')) throw new Error('E-mail não aparece em ' + slug)
+  }
+})
 await browser.close()
 console.log('\nResultado: ' + findings.length + ' cenários aprovados, ' + failures.length + ' falhas.')
 if (failures.length) {

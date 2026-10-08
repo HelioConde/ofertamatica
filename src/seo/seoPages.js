@@ -144,21 +144,23 @@ export const PUBLIC_PAGES = [
     kind: 'public',
     slug: 'fale-conosco',
     title: 'Fale Conosco | Ofertamática',
-    description: 'Encontre ajuda para usar o Ofertamática, consultar informações de privacidade e acompanhar orientações sobre a ferramenta.',
+    description: 'Fale com a equipe da Ofertamática pelo e-mail atendimento@ofertamatica.com.br. Suporte, dúvidas, sugestões e privacidade.',
     keywords: 'contato Ofertamática, suporte Ofertamática, fale conosco',
     eyebrow: 'FALE CONOSCO',
     heading: 'Como podemos ajudar?',
-    lead: 'Encontre rapidamente as orientações certas para criar cartazes, resolver dúvidas de uso ou consultar informações sobre privacidade e condições do serviço.',
-    benefits: ['Ajuda para criar e imprimir', 'Orientações de uso', 'Privacidade e termos em linguagem clara'],
+    lead: 'Entre em contato pelo e-mail atendimento@ofertamatica.com.br para dúvidas, suporte, sugestões ou solicitações privadas. Consulte também nossos guias de criação e impressão.'
+    benefits: ['Contato por e-mail', 'Ajuda para criar e imprimir', 'Privacidade e termos em linguagem clara'],
     trust: true,
     updatedAt: 'Atualizado em 4 de outubro de 2026',
     sections: [
       { title: 'Dúvidas sobre o criador', text: 'Se a dúvida é sobre formatos, importação de produtos, personalização ou impressão, consulte Como funciona e os Guias para varejo. As páginas mostram o fluxo sem exigir cadastro.' },
       { title: 'Problemas durante o uso', text: 'Antes de tentar novamente, confirme o formato escolhido, revise os produtos e atualize a página. Se o problema persistir, evite inserir informações confidenciais em qualquer relato de erro.' },
       { title: 'Privacidade e publicidade', text: 'A Política de Privacidade explica armazenamento local, medição de uso e publicidade. Os Termos de Uso apresentam as responsabilidades ao criar e imprimir materiais.' },
-      { title: 'Relatos técnicos e sugestões', text: 'Para problemas e sugestões, abra um relato no GitHub da Ofertamática. Os relatos são públicos e exigem uma conta GitHub. Nunca publique dados pessoais, senhas, listas privadas ou documentos neste canal.' },
+      { title: 'Atendimento por e-mail', text: 'Escreva para atendimento@ofertamatica.com.br com sua dúvida ou solicitação. Este é o canal para suporte e assuntos que não devem ser publicados em uma plataforma aberta.' },
+      { title: 'Relatos técnicos públicos', text: 'Para relatar erros reproduzíveis ou sugerir recursos publicamente, você também pode usar o GitHub. Os relatos são públicos e exigem uma conta. Nunca publique dados pessoais, senhas ou documentos privados nesse canal.' },
     ],
     links: [
+      { label: 'Enviar e-mail ao atendimento', href: 'mailto:atendimento@ofertamatica.com.br?subject=Atendimento%20Ofertam%C3%A1tica', note: 'Canal oficial de suporte, dúvidas e sugestões.' },
       { label: 'Como funciona', href: '/como-funciona/', note: 'Passo a passo para criar, revisar e imprimir.' },
       { label: 'Guias para varejo', href: '/guias-para-varejo/', note: 'Boas práticas de preço, formatos e comunicação.' },
       { label: 'Política de Privacidade', href: '/privacidade/', note: 'Como dados, armazenamento local e anúncios são tratados.' },
@@ -183,7 +185,11 @@ export const PUBLIC_PAGES = [
       { title: 'Medição de uso e desempenho', text: 'O site pode usar ferramentas de medição para entender quais páginas são acessadas, como os recursos são utilizados e onde a experiência pode melhorar. Essas medições não criam uma conta no Ofertamática.' },
       { title: 'Publicidade e cookies', text: 'Áreas específicas podem exibir anúncios do Google AdSense. O Google e seus parceiros podem usar cookies ou tecnologias equivalentes para entregar, medir e proteger anúncios conforme suas políticas e as escolhas de consentimento aplicáveis.' },
       { title: 'Serviços externos', text: 'Serviços de medição e publicidade podem processar informações técnicas do navegador e do dispositivo de acordo com suas próprias políticas e requisitos legais.' },
-      { title: 'Contato e solicitações', text: 'Para relatar uma preocupação de privacidade, pedir correção de uma informação publicada ou esclarecer o funcionamento do site, use a página Fale Conosco. Não envie senhas ou dados sensíveis em canais públicos.' },
+      { title: 'Contato e solicitações', text: 'Para dúvidas sobre privacidade, pedidos de correção ou outros assuntos relacionados aos seus dados, escreva para atendimento@ofertamatica.com.br. Não compartilhe senhas nem dados sensíveis em canais públicos.' },
+    ],
+    links: [
+      { label: 'Solicitar atendimento sobre privacidade', href: 'mailto:atendimento@ofertamatica.com.br?subject=Privacidade%20-%20Ofertam%C3%A1tica', note: 'Entre em contato diretamente com a equipe.' },
+      { label: 'Fale conosco', href: '/fale-conosco/', note: 'Outros canais e orientações.' },
     ],
   },
   {
@@ -204,7 +210,11 @@ export const PUBLIC_PAGES = [
       { title: 'Disponibilidade', text: 'O serviço pode receber melhorias, correções, novos formatos e mudanças de interface. Recursos podem ser alterados, substituídos ou temporariamente ficar indisponíveis para melhorar segurança, desempenho ou usabilidade.' },
       { title: 'Uso adequado', text: 'Não utilize o serviço para práticas ilícitas, fraude, conteúdo enganoso, violação de direitos ou qualquer finalidade que descumpra a legislação aplicável.' },
       { title: 'Publicidade e serviços externos', text: 'O site pode exibir anúncios e usar serviços externos de medição. Esses serviços são identificados na Política de Privacidade e funcionam conforme as políticas de seus respectivos provedores.' },
-      { title: 'Contato', text: 'Dúvidas, relatos de erro e questões relacionadas a conteúdo ou privacidade podem ser encaminhadas pela página Fale Conosco.' },
+      { title: 'Contato', text: 'Dúvidas sobre os termos, relatos de erro ou questões relacionadas a conteúdo e privacidade podem ser enviados a atendimento@ofertamatica.com.br.' },
+    ],
+    links: [
+      { label: 'Entrar em contato por e-mail', href: 'mailto:atendimento@ofertamatica.com.br?subject=Termos%20de%20Uso%20-%20Ofertam%C3%A1tica', note: 'Dúvidas sobre as condições de uso e o serviço.' },
+      { label: 'Fale conosco', href: '/fale-conosco/', note: 'Ajuda e outras informações.' },
     ],
   },
 ]

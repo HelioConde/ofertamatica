@@ -230,6 +230,7 @@ function MarketingFooter() {
         <a href="/qual-papel-usar-para-cartaz/">Papel para cartazes</a>
         <a href="/sobre/">Sobre</a>
         <a href="/fale-conosco/">Fale conosco</a>
+        <a href="mailto:atendimento@ofertamatica.com.br">E-mail de atendimento</a>
         <a href="/privacidade/">Privacidade</a>
         <a href="/termos/">Termos</a>
       </nav>
@@ -706,6 +707,24 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
         ) : null}
 
         {isGuides ? <FaqSection /> : null}
+
+        {['fale-conosco', 'privacidade', 'termos'].includes(page.slug) ? (
+          <section className="marketing-section institutional-email" aria-label="Contato oficial">
+            <div>
+              <span className="marketing-kicker">CONTATO OFICIAL</span>
+              <h2>{page.slug === 'fale-conosco' ? 'Fale com nosso atendimento' : 'Fale conosco por e-mail'}</h2>
+              <p>{page.slug === 'privacidade'
+                ? 'Use este canal para questões de privacidade e solicitações relacionadas aos seus dados.'
+                : page.slug === 'termos'
+                  ? 'Envie dúvidas sobre os termos de uso ou o funcionamento da Ofertamática.'
+                  : 'Dúvidas, problemas, sugestões e assuntos privados podem ser encaminhados diretamente para nossa equipe.'}</p>
+              <a className="institutional-email-address" href={'mailto:atendimento@ofertamatica.com.br?subject=' + (page.slug === 'privacidade' ? 'Privacidade%20-%20Ofertam%C3%A1tica' : page.slug === 'termos' ? 'Termos%20de%20Uso%20-%20Ofertam%C3%A1tica' : 'Atendimento%20Ofertam%C3%A1tica')}>
+                atendimento@ofertamatica.com.br <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <span className="institutional-email-hint">O botão abre o aplicativo de e-mail configurado no dispositivo.</span>
+          </section>
+        ) : null}
 
         {(isLegal || isTrust) ? (
           <>
