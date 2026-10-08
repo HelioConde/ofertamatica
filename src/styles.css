@@ -9148,3 +9148,45 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   gap: 3px;
   align-content: center;
 }
+
+
+/* Refinamento após inspeção das capturas reais: previews inteiros e menos espaço ocioso. */
+@media (min-width: 1001px) {
+  .format-mode .format-home-refresh .format-choice[data-format-id="A4X2_APP"] .oferta-format-preview.is-app {
+    width: 92px !important;
+    max-width: calc(100% - 4px) !important;
+    height: 68px !important;
+    margin-inline: auto !important;
+  }
+  .format-mode .format-home-refresh .format-thumb .oferta-format-preview:not(.is-app) {
+    max-height: calc(100% - 7px) !important;
+    max-width: calc(100% - 7px) !important;
+    object-fit: contain;
+  }
+}
+@media (min-width: 1001px) and (min-height: 880px) {
+  .format-mode .format-home-refresh .format-home-chooser {
+    min-height: clamp(310px, 38dvh, 410px) !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    min-height: clamp(278px, 36dvh, 385px) !important;
+  }
+  .format-mode .format-home-refresh .format-copy strong { font-size: 14px !important; }
+  .format-mode .format-home-refresh .format-thumb .oferta-format-preview:not(.is-app) {
+    width: 82px !important;
+    height: 111px !important;
+  }
+}
+.format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) {
+  border: 1px dashed #dbe5f0 !important;
+  background: #fafcff !important;
+}
+.format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit.is-pending {
+  justify-content: center;
+  align-items: center;
+}
+.format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit.is-pending .oferta-ad-label {
+  margin: 0 auto;
+  text-align: center;
+  color: #8697ae;
+}
