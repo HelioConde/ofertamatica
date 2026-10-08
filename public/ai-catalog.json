@@ -1,0 +1,32 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Ofertamática",
+    "documentationUrl": "https://ofertamatica.com.br/como-funciona/",
+    "logoUrl": "https://ofertamatica.com.br/icons/icon-192.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:ofertamatica.com.br:docs:llms",
+      "displayName": "Ofertamática — documentação para agentes",
+      "type": "text/markdown",
+      "url": "https://ofertamatica.com.br/llms.txt",
+      "description": "Navegação por guias, modelos, formatos e informações institucionais. Não é uma API de edição de cartazes.",
+      "representativeQueries": [
+        "Como criar cartazes para supermercado grátis?",
+        "Quais formatos de impressão o Ofertamática oferece?"
+      ]
+    },
+    {
+      "identifier": "urn:air:ofertamatica.com.br:docs:sitemap",
+      "displayName": "Mapa de páginas públicas",
+      "type": "application/xml",
+      "url": "https://ofertamatica.com.br/sitemap.xml",
+      "description": "Índice das páginas web públicas e canônicas do Ofertamática.",
+      "representativeQueries": [
+        "Quais páginas e guias existem no Ofertamática?",
+        "Onde encontro modelos de cartazes gratuitos?"
+      ]
+    }
+  ]
+}
