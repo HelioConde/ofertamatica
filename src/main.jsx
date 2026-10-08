@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import './styles.css'
+import './styles/home.css'
 // O CSS das páginas internas é carregado pelas rotas; manter fora da Home reduz CSS não usado.
 
 if ('serviceWorker' in navigator) {

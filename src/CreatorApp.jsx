@@ -1,4 +1,6 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+// CSS integral carregado apenas ao entrar no gerador completo ou nas rotas públicas.
+import './styles.css'
 const PosterSheet = lazy(() => import('./components/posters/PosterSheet'))
 const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 import { AdUnit } from './components/AdUnit'
