@@ -1,7 +1,16 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
 import PosterVisualQaPage from './pages/PosterVisualQaPage'
-import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
+import { AdUnit } from './components/AdUnit'
+import CreatorSeoHead from './components/CreatorSeoHead'
+import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
+
+// Páginas editoriais e galeria de modelos só são carregadas nas suas rotas.
+const PublicPage = lazy(() => import('./components/SiteMarketing').then((m) => ({ default: m.PublicPage })))
+const SeoLanding = lazy(() => import('./components/SiteMarketing').then((m) => ({ default: m.SeoLanding })))
+const getPublicPage = (pathname) => PUBLIC_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/\\/+$/, '')) || null
+const getSeoPage = (pathname) => SEO_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/\\/+$/, '')) || null
+
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
@@ -2431,9 +2440,13 @@ function CreatorApp() {
         />
         </>
       ) : seoPage ? (
-        <SeoLanding page={seoPage} onCreate={showFormats} />
+        <Suspense fallback={<main className="seo-landing"><h1>{seoPage.heading}</h1><p>{seoPage.lead}</p></main>}>
+          <SeoLanding page={seoPage} onCreate={showFormats} />
+        </Suspense>
       ) : publicPage ? (
-        <PublicPage page={publicPage} onCreate={showFormats} />
+        <Suspense fallback={<main className="seo-landing"><h1>{publicPage.heading}</h1><p>{publicPage.lead}</p></main>}>
+          <PublicPage page={publicPage} onCreate={showFormats} />
+        </Suspense>
       ) : (
         <>
           <CreatorSeoHead />
