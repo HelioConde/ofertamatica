@@ -73,8 +73,14 @@ function replaceMeta(html, page) {
 }
 
 function structuredData(page) {
+  const monthNames = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+  const updated = String(page.updatedAt || '').match(/(\d{1,2}) de ([a-zç]+) de (\d{4})/i)
+  const month = updated ? monthNames.indexOf(updated[2].toLocaleLowerCase('pt-BR')) : -1
+  const dateModified = updated && month >= 0
+    ? updated[3] + '-' + String(month + 1).padStart(2, '0') + '-' + updated[1].padStart(2, '0')
+    : null
   const canonical = `${SITE_URL}/${page.slug}/`
-  const organization = { '@type': 'Organization', name: 'Ofertamática', url: SITE_URL + '/', logo: SITE_URL + '/icons/icon-192.png' }
+  const organization = { '@type': 'Organization', name: 'Ofertamática', url: SITE_URL + '/', logo: SITE_URL + '/icons/icon-192.png', email: 'atendimento@ofertamatica.com.br', contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'atendimento@ofertamatica.com.br', availableLanguage: 'Portuguese' } }
   const pageType = page.slug === 'sobre'
     ? 'AboutPage'
     : page.slug === 'fale-conosco'
@@ -86,7 +92,7 @@ function structuredData(page) {
       name: page.heading,
       description: page.description,
       url: canonical,
-      ...(page.updatedAt ? { dateModified: '2026-10-04' } : {}),
+      ...(dateModified ? { dateModified } : {}),
       publisher: organization,
       isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/', publisher: organization },
     },

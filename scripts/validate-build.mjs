@@ -30,6 +30,8 @@ expect(index.includes('ca-pub-9514218545388169'), 'Publisher AdSense ausente do 
 expect(!index.includes('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'), 'AdSense síncrono/antecipado voltou a bloquear a primeira pintura')
 expect(fs.readFileSync('src/components/AdUnit.jsx', 'utf8').includes('IntersectionObserver'), 'Lazy loading de anúncios fora da tela ausente')
 expect(index.includes('href="https://ofertamatica.com.br/"'), 'Canonical da raiz incorreto')
+expect(index.includes('"contactType": "customer support"'), 'Contato oficial ausente no schema da Home')
+expect(index.includes('atendimento@ofertamatica.com.br'), 'E-mail oficial ausente do schema da Home')
 expect(index.includes('Criar Placas de Preço e Cartazes Grátis | Ofertamática'), 'Título atualizado da home ausente')
 expect(index.includes('Escolha modelos, personalize em A4, A5 ou A3'), 'Descrição atualizada da home ausente')
 expect(index.includes('"@type": "WebSite"'), 'Schema WebSite para nome da marca ausente')
@@ -58,6 +60,8 @@ for (const page of INDEXABLE_PAGES) {
   if (['fale-conosco', 'privacidade', 'termos'].includes(page.slug)) {
     expect(html.includes('atendimento@ofertamatica.com.br'), `Contato oficial ausente em ${relative}`)
     expect(html.includes('mailto:atendimento@ofertamatica.com.br'), `Link de e-mail ausente em ${relative}`)
+    expect(html.includes('"email":"atendimento@ofertamatica.com.br"'), `E-mail no schema de organização ausente em ${relative}`)
+    expect(html.includes('"dateModified":"2026-10-08"'), `Data de atualização do schema incorreta em ${relative}`)
   }
   expect(html.includes(page.title), `Title estático ausente em ${relative}`)
   expect((html.match(/<meta name="twitter:title"/g) || []).length === 1, `Twitter title duplicado em ${relative}`)

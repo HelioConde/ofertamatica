@@ -57,6 +57,13 @@ export default function CreatorSeoHead() {
         name: 'Ofertamática',
         url: SITE_URL + '/',
         logo: SITE_URL + '/icons/icon-192.png',
+        email: 'atendimento@ofertamatica.com.br',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'atendimento@ofertamatica.com.br',
+          availableLanguage: 'Portuguese',
+        },
       },
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
       featureList: [
