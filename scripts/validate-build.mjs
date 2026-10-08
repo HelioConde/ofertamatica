@@ -110,6 +110,28 @@ if (fs.existsSync(assetDir)) {
   expect(false, 'Assets do build ausentes')
 }
 
+// Lighthouse: arquivos de descoberta e carregamento de fontes.
+const llms = read('llms.txt')
+expect(llms.startsWith('# Ofertamática'), 'llms.txt precisa de um H1 Markdown')
+expect(llms.includes('https://ofertamatica.com.br/modelos/'), 'llms.txt não contém links úteis')
+for (const manifestPath of ['ai-catalog.json', '.well-known/ai-catalog.json']) {
+  const raw = read(manifestPath)
+  try {
+    const manifest = JSON.parse(raw)
+    expect(manifest.specVersion === '1.0', 'Versão ARD inválida: ' + manifestPath)
+    expect(manifest.host?.displayName === 'Ofertamática', 'Editor do catálogo ausente: ' + manifestPath)
+    expect(Array.isArray(manifest.entries) && manifest.entries.length > 0, 'Catálogo sem recursos: ' + manifestPath)
+    for (const entry of manifest.entries || []) {
+      expect(/^urn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+$/.test(entry.identifier), 'Identificador de catálogo inválido')
+      expect(entry.url?.startsWith(SITE_URL + '/'), 'Catálogo com URL não pertencente ao site')
+    }
+  } catch {
+    expect(false, 'JSON de catálogo inválido: ' + manifestPath)
+  }
+}
+expect(cssContents.includes('font-display:swap'), 'Fontes ainda podem bloquear o texto inicial')
+expect(!cssContents.includes('font-display:block'), 'Fonte está configurada com font-display:block')
+
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
