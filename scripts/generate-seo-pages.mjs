@@ -188,6 +188,17 @@ function creatorSnapshot() {
     <nav aria-label="Guias e modelos para cartazes"><a href="/modelos/">Modelos de placas</a> · <a href="/formatos/">Formatos</a> ·
       <a href="/cartaz-para-supermercado/">Supermercado</a> · <a href="/guias-para-varejo/">Guias</a> ·
       <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a></nav>
+    <aside id="ofertamatica-load-warning" hidden role="alert" style="margin-top:24px;padding:18px 22px;border:1px solid #bcd2f5;border-radius:12px;background:#fff">
+      <strong style="font-size:18px">O gerador ainda não carregou.</strong>
+      <p style="font-size:15px">Pode ser uma atualização do site em andamento. Tente recarregar esta página para abrir o criador de placas.</p>
+      <button type="button" onclick="window.location.reload()" style="cursor:pointer;padding:12px 20px;border:0;border-radius:8px;color:#fff;background:#1d63e9;font-weight:800">Recarregar gerador</button>
+    </aside>
+    <script>
+      window.setTimeout(function () {
+        var warning = document.getElementById('ofertamatica-load-warning');
+        if (warning) warning.hidden = false;
+      }, 7000);
+    </script>
   </main>`
 }
 
