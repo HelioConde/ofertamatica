@@ -132,7 +132,7 @@ export const PUBLIC_PAGES = [
     lead: 'O Ofertamática simplifica a criação de placas de preço e materiais promocionais para supermercados, mercados e outros negócios do varejo.',
     benefits: ['Ferramenta focada em uso real', 'Criação sem cadastro obrigatório', 'Evolução guiada por clareza e produtividade'],
     trust: true,
-    updatedAt: 'Atualizado em 4 de outubro de 2026',
+    updatedAt: 'Atualizado em 8 de outubro de 2026',
     sections: [
       { title: 'Por que o Ofertamática existe', text: 'Criar dezenas de cartazes manualmente consome tempo e aumenta a chance de inconsistências. O Ofertamática foi pensado para transformar uma lista de produtos em placas prontas para revisão, mantendo preço, produto e leitura como prioridade.' },
       { title: 'Para quem é a ferramenta', text: 'O foco são equipes de supermercado, mercados, mercearias, atacarejos e outros negócios que precisam comunicar ofertas com frequência. O fluxo também pode ser usado por pequenos lojistas que querem preparar materiais diretamente no navegador.' },
@@ -148,7 +148,7 @@ export const PUBLIC_PAGES = [
     keywords: 'contato Ofertamática, suporte Ofertamática, fale conosco',
     eyebrow: 'FALE CONOSCO',
     heading: 'Como podemos ajudar?',
-    lead: 'Entre em contato pelo e-mail atendimento@ofertamatica.com.br para dúvidas, suporte, sugestões ou solicitações privadas. Consulte também nossos guias de criação e impressão.'
+    lead: 'Entre em contato pelo e-mail atendimento@ofertamatica.com.br para dúvidas, suporte, sugestões ou solicitações privadas. Consulte também nossos guias de criação e impressão.',
     benefits: ['Contato por e-mail', 'Ajuda para criar e imprimir', 'Privacidade e termos em linguagem clara'],
     trust: true,
     updatedAt: 'Atualizado em 4 de outubro de 2026',
