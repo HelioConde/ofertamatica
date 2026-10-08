@@ -2971,3 +2971,20 @@ summary:focus-visible {
   .seo-hero-guide .seo-benefit-card { align-self: stretch; }
 }
 @media (prefers-reduced-motion: reduce) { .seo-example-create { transition: none; } }
+
+/* Mobile: grade compacta por padrão, com alternativa de prévias ampliadas para leitura. */
+.model-view-switch { display: inline-flex; gap: 4px; margin: 14px 0 0; padding: 4px; border: 1px solid #dae5f2; border-radius: 11px; background: #f5f8fc; }
+.model-view-switch button { padding: 9px 12px; min-height: 36px; border: 0; border-radius: 8px; background: transparent; color: #536681; font-size: 12px; font-weight: 850; }
+.model-view-switch button[aria-pressed="true"] { color: #1555c9; background: white; box-shadow: 0 2px 8px #1f33501a; }
+.model-view-switch button:focus-visible { outline: 3px solid #1d63e9; outline-offset: 2px; }
+@media (min-width: 701px) { .model-view-switch { display: none; } }
+@media (max-width: 600px) {
+  .seo-landing .model-showcase-grid.model-gallery-detailed { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; }
+  .model-gallery-detailed .model-showcase-card-real { display: grid; grid-template-columns: minmax(124px, .9fr) minmax(0, 1fr) !important; align-items: center; grid-template-rows: auto; padding: 9px; background: #f4f7fa; }
+  .model-gallery-detailed .model-real-poster-shell { width: 124px !important; height: 175px !important; margin: 0 auto; }
+  .model-gallery-detailed .model-real-poster-scale { transform: scale(.156) !important; }
+  .model-gallery-detailed .model-card-copy { border-top: 0 !important; border-left: 1px solid #dfe7f0; margin: 0; padding: 9px 6px 9px 10px !important; height: 100%; display: grid; align-content: center; gap: 7px; background: transparent; }
+  .model-gallery-detailed .model-card-copy > strong { font-size: 14px !important; }
+  .model-gallery-detailed .model-showcase-card p { display: block; font-size: 11px !important; line-height: 1.4; -webkit-line-clamp: unset; }
+  .model-gallery-detailed .model-card-copy button { min-height: 44px !important; font-size: 11px !important; }
+}
