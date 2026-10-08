@@ -50,7 +50,11 @@ for (const page of INDEXABLE_PAGES) {
   expect(sitemap.includes(`<loc>${canonical}</loc>`), `URL ausente do sitemap: ${canonical}`)
   expect(!html.includes('src="./assets/'), `Asset relativo detectado em ${relative}`)
   // Os estilos editoriais devem estar no HTML inicial, antes da hidratação.
-  const editorialStylesheets = [...html.matchAll(/<link\\b[^>]*rel="stylesheet"[^>]*href="(\\/assets\\/[^"]+\\.css)"/g)].map((m) => m[1])
+  const editorialStylesheets = [...html.matchAll(/<link[^>]+>/g)]
+    .map((m) => m[0])
+    .filter((tag) => tag.includes('rel="stylesheet"'))
+    .map((tag) => tag.match(/href="([^"]+\.css)"/)?.[1])
+    .filter((href) => href?.startsWith('/assets/'))
   expect(editorialStylesheets.length > 0, `CSS editorial não incluído em ${relative}`)
   const hasEditorialRules = editorialStylesheets.some((href) => read(href.slice(1)).includes('.retail-guide-catalog-card'))
   expect(hasEditorialRules, `CSS editorial incompleto em ${relative}`)
