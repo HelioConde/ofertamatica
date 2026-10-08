@@ -4,6 +4,7 @@ import PosterVisualQaPage from './pages/PosterVisualQaPage'
 import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
+import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
@@ -127,16 +128,26 @@ const DEFAULT_POSTER_STYLE = {
   limitText: '',
 }
 
-const POSTER_STYLE_PRESETS = [
-  { id: 'classic', name: 'Cartaz raiz', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#101010', priceColor: '#e30613', headerColor: '#ed1c24', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' } },
-  { id: 'curve', name: 'Oferta curva', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#101010', priceColor: '#e30613', headerColor: '#ef3340', headerTextColor: '#ffffff', headerFooterStyle: 'curva-simples' } },
-  { id: 'fresh', name: 'Hortifruti', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#f6f23b', textColor: '#111111', priceColor: '#d71920', headerColor: '#168451', headerTextColor: '#ffffff', headerFooterStyle: 'ondas' } },
-  { id: 'butcher', name: 'Açougue', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ffe05a', textColor: '#401417', priceColor: '#b5091f', headerColor: '#8f1723', headerTextColor: '#ffffff', headerFooterStyle: 'chevron' } },
-  { id: 'impact', name: 'Impacto', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#fff200', textColor: '#111111', priceColor: '#e30613', headerColor: '#d4142d', headerTextColor: '#ffffff', headerFooterStyle: 'imperdivel' } },
-  { id: 'red', name: 'Vermelho', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#ef233c', textColor: '#ffffff', priceColor: '#fff200', headerColor: '#b60925', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
-  { id: 'green', name: 'Verde', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#17a768', textColor: '#071d14', priceColor: '#ffe500', headerColor: '#0b7547', headerTextColor: '#ffffff', headerFooterStyle: 'oval' } },
-  { id: 'premium', name: 'Premium', values: { ...DEFAULT_POSTER_STYLE, backgroundColor: '#141b2d', textColor: '#ffffff', priceColor: '#ffe000', headerColor: '#1d3557', headerTextColor: '#ffffff', headerFooterStyle: 'minimal' } },
-]
+const POSTER_STYLE_PRESETS = POSTER_MODEL_PRESETS.map((preset) => ({
+  id: preset.id,
+  name: preset.name,
+  category: preset.category,
+  values: {
+    ...DEFAULT_POSTER_STYLE,
+    backgroundColor: preset.background,
+    textColor: resolveReadableTextColor(preset.background, preset.text),
+    priceColor: resolveReadablePriceColor(preset.background, preset.price),
+    headerColor: preset.header,
+    headerTextColor: resolveReadableHeaderTextColor(preset.header, preset.headerText),
+    headerStyle: 'retail',
+    headerText: preset.label,
+    headerImage: '',
+    headerFooterStyle: preset.headerFooterStyle || 'moldura',
+    offerMode: preset.offerMode || 'standard',
+    validityText: preset.validityText || '',
+    limitText: '',
+  },
+}))
 
 const HEADER_FOOTER_MODELS = [
   { id: 'moldura', name: 'Moldura clássica', note: 'Borda vermelha forte e placa de OFERTA no topo', preview: 'moldura', headerTextColor: '#ffffff' },
@@ -847,22 +858,22 @@ function StyleSidebar({
         ) : null}
 
         <section className="style-section">
-          <strong>Modelos rápidos</strong>
+          <div className="style-section-title-row">
+            <strong>Modelos rápidos</strong>
+            <small>{POSTER_STYLE_PRESETS.length} modelos · mesmos de /modelos/</small>
+          </div>
           <div className="style-presets">
             {POSTER_STYLE_PRESETS.map((preset) => (
               <button
                 type="button"
                 key={preset.id}
                 data-style-preset={preset.id}
-                onClick={() => onChange({
-                  ...preset.values,
-                  headerImage: style.headerImage,
-                  headerText: style.headerText,
-                  headerStyle: style.headerStyle,
-                  offerMode: style.offerMode || 'standard',
-                  validityText: style.validityText || '',
-                  limitText: style.limitText || '',
-                })}
+                title={`${preset.name} · ${preset.category}`}
+                onClick={() => {
+                  onCustomHeaderChange?.('')
+                  onChange({ ...preset.values, headerImage: '' })
+                  trackProductEvent('ofertamatica_model_preset_selected', { model_id: preset.id, source: 'home-style-sidebar' })
+                }}
               >
                 <span style={{ background: preset.values.backgroundColor, color: preset.values.priceColor }}>Aa</span>
                 <small>{preset.name}</small>
