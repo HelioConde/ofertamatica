@@ -508,11 +508,11 @@ function FormatChooser({ onSelect, draft, onResume }) {
             <span>✓ Lista, Excel, CSV ou TXT</span>
             <span>✓ PDF e impressão no tamanho físico</span>
           </div>
-          <div className="format-size-guide" aria-label="Guia rápido de tamanhos">
-            <span><b>A7 / A6</b><small>Gôndola · economiza papel</small></span>
-            <span><b>A5 / A4</b><small>Balcão · ponta · ilha</small></span>
-            <span><b>A3</b><small>Vitrine · leitura à distância</small></span>
-          </div>
+          <a className="format-paper-guide-link" href="/qual-papel-usar-para-cartaz/">
+            <span aria-hidden="true">▤</span>
+            <span><b>Qual papel usar para imprimir as placas?</b><small>Guia de papel sulfite, gramatura, A4, A5 e A3</small></span>
+            <strong aria-hidden="true">→</strong>
+          </a>
         </header>
 
         {draft?.products?.length ? (
@@ -557,6 +557,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         </div>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Ver modelos</a>
+          <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a>
           <a href="/como-funciona/">Como funciona</a>
           <a href="/guias-para-varejo/">Guias</a>
           <a href="/fale-conosco/">Ajuda</a>
@@ -657,6 +658,7 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
           <span>Use escala de <b>100%</b> e evite “Ajustar à página”.</span>
           <span>Selecione papel <b>{format.paper}</b> e orientação <b>{format.orientationLabel}</b>.</span>
           <span>Desative cabeçalhos e rodapés do navegador para não aparecer URL/data na folha.</span>
+          <a className="print-paper-guide-link" href="/qual-papel-usar-para-cartaz/" target="_blank" rel="noopener noreferrer">Qual papel e gramatura usar? Abrir guia ↗</a>
           {format.paper === 'A3' ? <span className="print-alert">Este trabalho usa tamanho A3; o PDF manterá o tamanho físico configurado.</span> : null}
         </div>
 
