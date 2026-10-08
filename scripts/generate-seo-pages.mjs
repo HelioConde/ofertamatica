@@ -9,6 +9,22 @@ if (!fs.existsSync(indexPath)) process.exit(0)
 
 const baseHtml = fs.readFileSync(indexPath, 'utf8')
 
+// O CSS das páginas editoriais pertence ao chunk lazy do Vite. Se não
+// constar no HTML inicial, os guias podem aparecer momentaneamente sem
+// grid, filtros e cards enquanto o React carrega o módulo assíncrono.
+// Adicione o stylesheet apenas às páginas públicas (a home continua leve).
+const assetDir = path.join(dist, 'assets')
+const marketingCssAsset = fs.readdirSync(assetDir)
+  .filter((name) => name.endsWith('.css'))
+  .find((name) => {
+    const css = fs.readFileSync(path.join(assetDir, name), 'utf8')
+    return css.includes('.retail-guide-catalog-card') && css.includes('.seo-landing')
+  })
+if (!marketingCssAsset) {
+  throw new Error('CSS editorial ausente do build: não é seguro publicar páginas sem estilo')
+}
+const marketingCssHref = '/assets/' + marketingCssAsset
+
 const LEGACY_REDIRECTS = {
   'cartaz-de-supermercado': 'cartaz-para-supermercado',
   'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
@@ -211,6 +227,11 @@ fs.writeFileSync(
 
 for (const page of INDEXABLE_PAGES) {
   let html = replaceMeta(baseHtml, page)
+  // A folha do marketing fica disponível no primeiro paint das rotas diretas.
+  // Evita FOUC mesmo que o bundle JavaScript demore para hidratar a página.
+  if (!html.includes('href="' + marketingCssHref + '"')) {
+    html = html.replace('</head>', '<link rel="stylesheet" data-ofertamatica-editorial href="' + marketingCssHref + '" /></head>')
+  }
   // O schema base descreve a aplicação da home, não cada página interna.
   html = html.replace(/<script id="ofertamatica-page-schema" type="application\/ld\+json">[\s\S]*?<\/script>/, '')
   html = html.replace('</head>', `<script id="ofertamatica-page-schema" type="application/ld+json">${structuredData(page)}</script></head>`)
