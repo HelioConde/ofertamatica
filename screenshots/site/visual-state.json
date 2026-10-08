@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T17:13:35.817Z",
-  "commit": "befa08fb2c006db6042b89d8e4746aaf2d1449c8",
+  "generatedAt": "2026-10-08T17:26:14.605Z",
+  "commit": "a3f18dd8f2e6e7f9e8c78f1027938352704de5ad",
   "routes": [
     [
       "home",
@@ -1499,7 +1499,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1575,
+      "documentHeight": 1553,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1508,26 +1508,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 700,
-          "height": 327
+          "height": 305
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 698,
-          "height": 301
+          "height": 303
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 137,
-          "bottom": 1574.6,
+          "bottom": 1552.6,
           "width": 746,
-          "height": 1437.6
+          "height": 1415.6
         },
         "dialog": {
           "top": 151,
-          "bottom": 1548.6,
+          "bottom": 1526.6,
           "width": 746,
-          "height": 1397.6
+          "height": 1375.6
         },
         "header": {
           "top": 152,
@@ -1543,13 +1543,13 @@
         },
         "ad": {
           "top": 1156.6,
-          "bottom": 1483.6,
+          "bottom": 1461.6,
           "width": 700,
-          "height": 327
+          "height": 305
         },
         "links": {
-          "top": 1491.6,
-          "bottom": 1547.6,
+          "top": 1469.6,
+          "bottom": 1525.6,
           "width": 744,
           "height": 56
         }
@@ -2774,7 +2774,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1745,
+      "documentHeight": 1747,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2783,26 +2783,26 @@
         {
           "className": "format-ad-card format-ad-zone",
           "width": 284,
-          "height": 83
+          "height": 85
         },
         {
           "className": "oferta-ad-unit is-pending",
           "width": 282,
-          "height": 81
+          "height": 83
         }
       ],
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1744.6,
+          "bottom": 1746.6,
           "width": 338,
-          "height": 1641.6
+          "height": 1643.6
         },
         "dialog": {
           "top": 117,
-          "bottom": 1718.6,
+          "bottom": 1720.6,
           "width": 338,
-          "height": 1601.6
+          "height": 1603.6
         },
         "header": {
           "top": 118,
@@ -2818,13 +2818,13 @@
         },
         "ad": {
           "top": 1519.6,
-          "bottom": 1602.6,
+          "bottom": 1604.6,
           "width": 284,
-          "height": 83
+          "height": 85
         },
         "links": {
-          "top": 1614.6,
-          "bottom": 1717.6,
+          "top": 1616.6,
+          "bottom": 1719.6,
           "width": 312,
           "height": 103
         }
