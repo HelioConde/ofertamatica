@@ -37,6 +37,8 @@ function replaceMeta(html, page) {
     .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${esc(page.title)}" />`)
     .replace(/<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${esc(page.description)}" />`)
     .replace(/<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${canonical}" />`)
+    .replace(/<meta property="og:type" content="[^"]*"\s*\/>/, `<meta property="og:type" content="${page.paperChoices ? 'article' : 'website'}" />`)
+    .replace('</head>', `<meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${esc(page.title)}" /><meta name="twitter:description" content="${esc(page.description)}" /></head>`)
 }
 
 function structuredData(page) {
@@ -66,6 +68,18 @@ function structuredData(page) {
     },
   ]
 
+  if (page.paperChoices) {
+    graph.push({
+      '@type': 'Article',
+      headline: page.heading,
+      description: page.description,
+      mainEntityOfPage: canonical,
+      inLanguage: 'pt-BR',
+      author: organization,
+      publisher: organization,
+    })
+  }
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': graph,
@@ -94,6 +108,30 @@ function snapshot(page) {
     </section>`).join('')
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
 
+  const paperChoices = page.paperChoices?.length ? `
+    <section style="margin-top:26px">
+      <h2 style="font-size:24px">Tipo de papel e gramatura para cartazes</h2>
+      <ul style="line-height:1.7">${page.paperChoices.map((item) => `<li><strong>${esc(item.label)}:</strong> ${esc(item.paper)}, ${esc(item.weight)} — ${esc(item.why)}</li>`).join('')}</ul>
+    </section>` : ''
+  const paperFormats = page.formatChoices?.length ? `
+    <section style="margin-top:26px">
+      <h2 style="font-size:24px">Comparação de tamanhos de papel A4, A5 e A3</h2>
+      <table style="width:100%;border-collapse:collapse;text-align:left">
+        <thead><tr><th>Layout</th><th>Folha</th><th>Cartaz</th><th>Onde usar</th></tr></thead>
+        <tbody>${page.formatChoices.map((item) => `<tr><th scope="row">${esc(item.name)}</th><td>${esc(item.sheet)}</td><td>${esc(item.area)}</td><td>${esc(item.use)}</td></tr>`).join('')}</tbody>
+      </table>
+    </section>` : ''
+  const paperPrintSteps = page.printSteps?.length ? `
+    <section style="margin-top:26px">
+      <h2 style="font-size:24px">Passo a passo para imprimir o tamanho certo</h2>
+      <ol style="line-height:1.8">${page.printSteps.map((step) => `<li>${esc(step)}</li>`).join('')}</ol>
+    </section>` : ''
+  const paperFaq = page.faq?.length ? `
+    <section style="margin-top:26px">
+      <h2 style="font-size:24px">Perguntas frequentes sobre papel e impressão</h2>
+      ${page.faq.map((item) => `<h3>${esc(item.q)}</h3><p style="line-height:1.7">${esc(item.a)}</p>`).join('')}
+    </section>` : ''
+
   return `<main style="font-family:Arial,sans-serif;max-width:1080px;margin:60px auto;padding:0 22px;color:#1f2d47">
     <p style="font-weight:700;color:#1d63e9">${esc(page.eyebrow)}</p>
     <h1 style="font-size:48px;line-height:1.05">${esc(page.heading)}</h1>
@@ -101,11 +139,16 @@ function snapshot(page) {
     ${updated}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${paperChoices}
+    ${paperFormats}
+    ${paperPrintSteps}
+    ${paperFaq}
     ${searchContent}
     ${tips}
     ${storeUse}
     ${helpfulLinks}
     <nav style="margin-top:32px;padding-top:20px;border-top:1px solid #e1e7ef">
+      <a href="/qual-papel-usar-para-cartaz/" style="margin-right:16px;color:#1d63e9">Qual papel usar para cartazes</a>
       <a href="/sobre/" style="margin-right:16px;color:#1d63e9">Sobre</a>
       <a href="/fale-conosco/" style="margin-right:16px;color:#1d63e9">Fale conosco</a>
       <a href="/privacidade/" style="margin-right:16px;color:#1d63e9">Privacidade</a>
