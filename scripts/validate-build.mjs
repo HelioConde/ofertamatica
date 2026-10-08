@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
+import { SEARCH_INTENT_CLUSTERS } from '../src/seo/searchIntent.js'
 
 const dist = path.resolve('dist')
 const failures = []
@@ -49,6 +50,22 @@ for (const legacy of ['cartaz-de-supermercado', 'cartaz-para-imprimir', 'gerador
 }
 expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas para açougue'), 'Landing de açougue sem conteúdo específico')
 expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
+// Uma página útil por intenção, não 100 URLs quase iguais ou uma lista de keywords no HTML.
+const terms = SEARCH_INTENT_CLUSTERS.flatMap((topic) => topic.keywords)
+expect(SEARCH_INTENT_CLUSTERS.length === 10, 'Esperados dez grupos de intenção SEO')
+expect(terms.length === 100, 'O inventário deve conter as 100 buscas recebidas')
+expect(new Set(terms).size === 100, 'Existem buscas repetidas no inventário SEO')
+const indexable = new Set(INDEXABLE_PAGES.map((page) => page.slug))
+for (const topic of SEARCH_INTENT_CLUSTERS) {
+  expect(topic.keywords.length === 10, `Grupo incompleto: ${topic.name}`)
+  expect(indexable.has(topic.target), `Destino SEO inexistente: ${topic.target}`)
+  const html = read(`${topic.target}/index.html`)
+  expect(html.includes(topic.title), `Título editorial ausente: ${topic.target}`)
+  expect(html.includes(topic.text), `Conteúdo editorial ausente: ${topic.target}`)
+  expect(html.includes(topic.link), `Link interno ausente: ${topic.target}`)
+}
+expect(read('como-funciona/index.html').includes('inteligência artificial está em desenvolvimento'), 'Não anunciar IA como recurso pronto')
+
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
