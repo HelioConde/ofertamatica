@@ -276,6 +276,7 @@ async function captureViewport(name, viewport, routes) {
         appPreviewClipped,
         clippedFormatCards,
         formatCardsOverlap,
+        formatCardHeights: formatCardRects.map((rect) => Number(rect.height.toFixed(1))),
         adOverlapsFormats,
         linksOverlapAd,
         visibleFormatCards: formatCards.length,
@@ -369,6 +370,9 @@ const failures = state.filter((item) => {
         item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd ||
         item.appPreviewClipped) return true
     if (item.viewport === 'desktop-760-draft' && !item.hasSavedDraft) return true
+    // A home alta deve usar o espaço vertical sem alongar os cartões excessivamente.
+    if (item.viewport === 'desktop' &&
+        item.formatCardHeights.some((height) => height < 220 || height > 290)) return true
     if (item.viewport.startsWith('desktop') && item.documentHeight > item.height + 4) return true
   }
   if (item.viewport === 'desktop' && item.ads.some((ad) => ad.className.includes('is-pending') && ad.height > 180)) return true

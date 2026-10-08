@@ -2445,3 +2445,29 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     align-self: center;
   }
 }
+
+
+/* Auditoria final: ocupar melhor a altura disponível sem alongar cartazes. */
+@media (min-width: 1001px) and (min-height: 880px) {
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    grid-template-rows: repeat(2, clamp(228px, 26dvh, 270px)) !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    height: clamp(228px, 26dvh, 270px) !important;
+    min-height: clamp(228px, 26dvh, 270px) !important;
+    max-height: clamp(228px, 26dvh, 270px) !important;
+  }
+  .format-mode .format-home-refresh .format-thumb {
+    height: clamp(145px, 19dvh, 194px) !important;
+    max-height: clamp(145px, 19dvh, 194px) !important;
+  }
+  .format-mode .format-home-refresh .format-thumb .oferta-format-preview:not(.is-app) {
+    width: min(94px, calc(100% - 8px)) !important;
+    height: 130px !important;
+    max-height: calc(100% - 8px) !important;
+  }
+  .format-mode .format-home-refresh .format-choice[data-format-id="A4X2_APP"] .oferta-format-preview.is-app {
+    width: min(96px, calc(100% - 8px)) !important;
+    max-width: calc(100% - 8px) !important;
+  }
+}
