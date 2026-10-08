@@ -84,6 +84,10 @@ await scenario('Cookies mobile: rejeitar, reabrir e personalizar', { width: 390,
   if (await page.locator('.cookie-banner').count()) throw new Error('Banner não fechou após rejeição')
   const status = await page.evaluate(() => window.ofertaConsent.getState())
   if (status.analyticsEnabled || status.adsEnabled) throw new Error('Rejeição não bloqueou os serviços')
+  const privacyShortcut = await page.locator('.cookie-entry').boundingBox()
+  if (!privacyShortcut || privacyShortcut.width > 50 || privacyShortcut.height > 50) {
+    throw new Error('Atalho de privacidade ainda ocupa espaço excessivo no celular: ' + JSON.stringify(privacyShortcut))
+  }
   await page.getByRole('button', { name: 'Abrir preferências de privacidade e cookies' }).click()
   await check(page, '[role="dialog"][aria-modal="true"]', 'Personalização não abriu')
   if (await page.locator('.cookie-option input[type="checkbox"]:checked').count()) throw new Error('Opções não foram inicializadas desativadas')

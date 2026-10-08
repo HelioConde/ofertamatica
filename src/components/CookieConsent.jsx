@@ -77,7 +77,7 @@ export default function CookieConsent() {
   return (
     <>
       {ready && !banner && !settings ? (
-        <button type="button" className="cookie-entry" onClick={restore}
+        <button type="button" className={'cookie-entry' + ((status.hasChoice || status.cmpApplies) ? ' cookie-entry-compact' : '')} onClick={restore}
           aria-label={minimized && !status.hasChoice && !status.cmpApplies
             ? 'Reabrir aviso de cookies sem registrar escolha'
             : 'Abrir preferências de privacidade e cookies'}>
