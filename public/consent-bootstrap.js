@@ -37,6 +37,10 @@
     wait_for_update: 500
   })
   window.gtag('set', 'ads_data_redaction', true)
+  // API publisher oficial: evitar solicitações até a preferência ficar definida.
+  window.adsbygoogle = window.adsbygoogle || []
+  window.adsbygoogle.pauseAdRequests = 1
+  window.adsbygoogle.requestNonPersonalizedAds = 1
 
   function getState() {
     var european = cmp.known && cmp.gdprApplies === true
@@ -73,6 +77,10 @@
 
   function apply() {
     var state = getState()
+    // Personalização deve ser ajustada antes de liberar as requisições.
+    window.adsbygoogle = window.adsbygoogle || []
+    window.adsbygoogle.requestNonPersonalizedAds = state.personalizationEnabled ? 0 : 1
+    window.adsbygoogle.pauseAdRequests = state.adsEnabled ? 0 : 1
     window.gtag('consent', 'update', {
       ad_storage: state.adsEnabled ? granted : denied,
       analytics_storage: state.analyticsEnabled ? granted : denied,

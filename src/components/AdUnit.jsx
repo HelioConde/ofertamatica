@@ -11,6 +11,7 @@ const ADSENSE_SLOTS = {
 let adsenseLoader = null
 function loadAdsense() {
   if (adsenseLoader) return adsenseLoader
+  if (window.adsbygoogle && !Array.isArray(window.adsbygoogle)) return Promise.resolve()
   adsenseLoader = new Promise((resolve, reject) => {
     const existing = document.querySelector('script[data-ofertamatica-adsense]')
     if (existing?.dataset.loaded === 'true') {
@@ -38,10 +39,22 @@ export function AdUnit({ placement = 'content' }) {
   const isMobileAd = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 700px)').matches
   const adRef = useRef(null)
   const outerRef = useRef(null)
-  const [adState, setAdState] = useState(slot ? 'pending' : 'hidden')
+  const [allowed, setAllowed] = useState(() => window.ofertaConsent?.getState().adsEnabled === true)
+  const [adState, setAdState] = useState(slot && allowed ? 'pending' : 'hidden')
 
   useEffect(() => {
-    if (!slot) {
+    const sync = () => {
+      const next = window.ofertaConsent?.getState().adsEnabled === true
+      setAllowed(next)
+      setAdState(next ? 'pending' : 'hidden')
+    }
+    window.addEventListener('oferta-consent-change', sync)
+    sync()
+    return () => window.removeEventListener('oferta-consent-change', sync)
+  }, [])
+
+  useEffect(() => {
+    if (!slot || !allowed) {
       setAdState('hidden')
       return undefined
     }
@@ -64,13 +77,13 @@ export function AdUnit({ placement = 'content' }) {
     mutation.observe(node, { attributes: true, attributeFilter: ['data-ad-status'] })
 
     const startAd = () => {
-      if (started || disposed) return
+      if (started || disposed || window.ofertaConsent?.getState().adsEnabled !== true) return
       started = true
       // Aguarde tempo ocioso antes de iniciar scripts de terceiros.
       const requestAd = () => {
-        if (disposed || node.hasAttribute('data-adsbygoogle-status')) return
+        if (disposed || window.ofertaConsent?.getState().adsEnabled !== true || node.hasAttribute('data-adsbygoogle-status')) return
         loadAdsense().then(() => {
-          if (disposed || !node.isConnected || node.hasAttribute('data-adsbygoogle-status')) return
+          if (disposed || !node.isConnected || window.ofertaConsent?.getState().adsEnabled !== true || node.hasAttribute('data-adsbygoogle-status')) return
           try { (window.adsbygoogle = window.adsbygoogle || []).push({}) }
           catch { /* O SDK pode ter processado o bloco em paralelo. */ }
         }).catch(() => {
@@ -108,9 +121,9 @@ export function AdUnit({ placement = 'content' }) {
         else window.cancelIdleCallback?.(idleHandle)
       }
     }
-  }, [placement, slot])
+  }, [placement, slot, allowed])
 
-  if (!slot || adState === 'hidden') return null
+  if (!slot || !allowed || adState === 'hidden') return null
 
   return (
     <aside ref={outerRef} className={`oferta-ad-unit ${adState === 'pending' ? 'is-pending' : 'is-filled'}`} data-placement={placement} aria-label="Publicidade" role="complementary">

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo-pages.mjs",
     "preview": "vite preview",
-    "check:build": "node scripts/validate-build.mjs && node scripts/validate-parser.mjs && node scripts/validate-posters.mjs",
+    "check:build": "node scripts/validate-build.mjs && node scripts/validate-consent.mjs && node scripts/validate-parser.mjs && node scripts/validate-posters.mjs",
     "verify": "npm run build && npm run check:build"
   },
   "dependencies": {
