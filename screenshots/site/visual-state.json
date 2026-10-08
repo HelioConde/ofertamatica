@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T17:56:28.545Z",
-  "commit": "6285a5a3035bddd743edb9458bbd57488826ea75",
+  "generatedAt": "2026-10-08T18:01:41.784Z",
+  "commit": "ecc1c8f6497121396cba8e720a460a7aff9b6a16",
   "routes": [
     [
       "home",
@@ -350,7 +350,9 @@
       "id": "como-funciona",
       "viewport": "desktop",
       "errors": [],
-      "ignoredErrors": [],
+      "ignoredErrors": [
+        "int64"
+      ],
       "retailIntroCardCount": 0,
       "retailCatalogCardCount": 0,
       "retailGuideCardsFit": true,
@@ -1704,9 +1706,7 @@
       "id": "guias-para-varejo",
       "viewport": "tablet-768",
       "errors": [],
-      "ignoredErrors": [
-        "int64"
-      ],
+      "ignoredErrors": [],
       "retailIntroCardCount": 3,
       "retailCatalogCardCount": 12,
       "retailGuideCardsFit": true,
@@ -2734,7 +2734,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6506,
+      "documentHeight": 6472,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3941,7 +3941,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 6741,
+      "documentHeight": 6443,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
