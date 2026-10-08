@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import PosterSheet from './components/posters/PosterSheet'
+const PosterSheet = lazy(() => import('./components/posters/PosterSheet'))
 const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 import { AdUnit } from './components/AdUnit'
 import CreatorSeoHead from './components/CreatorSeoHead'
@@ -2426,18 +2426,20 @@ function CreatorApp() {
       {screen === 'editor' ? (
         <>
           <CreatorSeoHead />
-          <Editor
-          formatId={formatId}
-          sourceText={sourceText}
-          setSourceText={setSourceText}
-          products={products}
-          setProducts={setProducts}
-          selectedProductId={selectedProductId}
-          setSelectedProductId={setSelectedProductId}
-          pageIndex={pageIndex}
-          setPageIndex={setPageIndex}
-          onChangeFormat={showFormats}
-        />
+          <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando editor de cartazes...</p></main>}>
+            <Editor
+              formatId={formatId}
+              sourceText={sourceText}
+              setSourceText={setSourceText}
+              products={products}
+              setProducts={setProducts}
+              selectedProductId={selectedProductId}
+              setSelectedProductId={setSelectedProductId}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+              onChangeFormat={showFormats}
+            />
+          </Suspense>
         </>
       ) : seoPage ? (
         <Suspense fallback={<main className="seo-landing"><h1>{seoPage.heading}</h1><p>{seoPage.lead}</p></main>}>
