@@ -2342,3 +2342,25 @@ summary:focus-visible {
 .paper-guide-featured span { color: #1d63e9; font-size: 10px; font-weight: 900; letter-spacing: .07em; }
 .paper-guide-featured strong { color: #253a5b; font-size: 18px; }
 .paper-guide-featured small { color: #5e7698; font-size: 12px; }
+
+
+/* Alvos de toque legíveis nas páginas editoriais: mínimo de 36px no mobile. */
+@media (max-width: 700px) {
+  .seo-landing .store-use-grid article > a,
+  .seo-landing .paper-guide-inline > a,
+  .seo-landing .paper-guide-related-link,
+  .seo-landing .paper-guide-jump > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 7px 2px;
+    box-sizing: border-box;
+    line-height: 1.4;
+  }
+
+  .seo-landing .paper-guide-jump > a {
+    padding: 7px 6px;
+    border-radius: 6px;
+    background: #f1f6ff;
+  }
+}
