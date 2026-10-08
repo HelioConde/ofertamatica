@@ -127,7 +127,7 @@ fs.writeFileSync(
 for (const page of INDEXABLE_PAGES) {
   let html = replaceMeta(baseHtml, page)
   // O schema base descreve a aplicação da home, não cada página interna.
-  html = html.replace(/<script id="ofertamatica-page-schema" type="application\\/ld\\+json">[\\s\\S]*?<\\/script>/, '')
+  html = html.replace(/<script id="ofertamatica-page-schema" type="application\/ld\+json">[\s\S]*?<\/script>/, '')
   html = html.replace('</head>', `<script id="ofertamatica-page-schema" type="application/ld+json">${structuredData(page)}</script></head>`)
   html = html.replace('<div id="root"></div>', `<div id="root">${snapshot(page)}</div>`)
   const dir = path.join(dist, page.slug)
