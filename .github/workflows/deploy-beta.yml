@@ -6,9 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# FTP não é transacional: interromper upload pode deixar index.html apontando
+# para assets ainda não enviados. Nunca cancelar um deploy que já iniciou.
 concurrency:
   group: ofertamatica-v2-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -51,6 +53,10 @@ jobs:
           localDir: "dist/assets"
           remoteDir: "public_html/assets"
 
+      # Só publique o HTML quando JS/CSS do novo build já estiverem no domínio.
+      - name: Verify newly uploaded JS/CSS before switching HTML
+        run: node scripts/verify-live-assets.mjs --assets-only
+
       - name: Deploy app shell after assets
         uses: locaweb/ftp-deploy@1.0.0
         with:
@@ -60,6 +66,9 @@ jobs:
           localDir: "dist"
           remoteDir: "public_html"
           options: "--exclude-glob assets --exclude-glob assets/** --exclude-glob beta --exclude-glob beta/**"
+
+      - name: Verify deployed HTML and JavaScript
+        run: node scripts/verify-live-assets.mjs --html-and-assets
 
       - name: Verify deployed SEO URLs
         run: node scripts/verify-live-seo.mjs
