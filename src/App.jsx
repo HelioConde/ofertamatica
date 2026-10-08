@@ -686,6 +686,7 @@ function StyleSidebar({
   storeLogo = '', onStoreLogoChange, customHeader = '', onCustomHeaderChange,
 }) {
   const [headerSearch, setHeaderSearch] = useState('')
+  const [modelCategory, setModelCategory] = useState('Todos')
   const [logoError, setLogoError] = useState('')
   const [customHeaderError, setCustomHeaderError] = useState('')
   const logoInputRef = useRef(null)
@@ -697,6 +698,18 @@ function StyleSidebar({
     ? HEADER_OPTIONS.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
     : HEADER_OPTIONS
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
+  const modelCategories = ['Todos', ...new Set(POSTER_STYLE_PRESETS.map((preset) => preset.category))]
+  const visibleModelPresets = modelCategory === 'Todos'
+    ? POSTER_STYLE_PRESETS
+    : POSTER_STYLE_PRESETS.filter((preset) => preset.category === modelCategory)
+  const activeModelId = POSTER_STYLE_PRESETS.find((preset) => (
+    preset.values.backgroundColor === style.backgroundColor
+    && preset.values.textColor === style.textColor
+    && preset.values.priceColor === style.priceColor
+    && preset.values.headerColor === style.headerColor
+    && preset.values.headerFooterStyle === style.headerFooterStyle
+    && preset.values.offerMode === (style.offerMode || 'standard')
+  ))?.id || ''
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
     .filter(Boolean)
@@ -857,17 +870,34 @@ function StyleSidebar({
           </>
         ) : null}
 
-        <section className="style-section">
+        <section className="style-section model-preset-section">
           <div className="style-section-title-row">
             <strong>Modelos rápidos</strong>
-            <small>{POSTER_STYLE_PRESETS.length} modelos · mesmos de /modelos/</small>
+            <small>{POSTER_STYLE_PRESETS.length} modelos · sincronizados</small>
           </div>
-          <div className="style-presets">
-            {POSTER_STYLE_PRESETS.map((preset) => (
+
+          <div className="model-category-tabs" role="group" aria-label="Filtrar modelos por categoria">
+            {modelCategories.map((category) => (
+              <button
+                type="button"
+                key={category}
+                className={modelCategory === category ? 'active' : ''}
+                aria-pressed={modelCategory === category}
+                onClick={() => setModelCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className="style-presets style-presets-scroll" aria-label={`Modelos rápidos · ${modelCategory}`}>
+            {visibleModelPresets.map((preset) => (
               <button
                 type="button"
                 key={preset.id}
                 data-style-preset={preset.id}
+                className={activeModelId === preset.id ? 'active' : ''}
+                aria-pressed={activeModelId === preset.id}
                 title={`${preset.name} · ${preset.category}`}
                 onClick={() => {
                   onCustomHeaderChange?.('')
@@ -879,6 +909,11 @@ function StyleSidebar({
                 <small>{preset.name}</small>
               </button>
             ))}
+          </div>
+
+          <div className="model-preset-footer">
+            <span>{visibleModelPresets.length} {visibleModelPresets.length === 1 ? 'modelo' : 'modelos'} nesta categoria</span>
+            <a href="/modelos/">Ver galeria</a>
           </div>
         </section>
 
