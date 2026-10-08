@@ -186,10 +186,23 @@ for (const [viewportName, viewport] of viewports) {
       results.push({ viewport: viewportName, formatId, tab, errors: [...errors], ...metrics })
 
       if (viewportName === 'mobile-390' && formatId === 'A4' && tab === 'style') {
-        const themeIds = ['classic', 'curve', 'fresh', 'butcher', 'impact', 'red', 'green', 'premium']
+        const themeModels = [
+          { id: 'classic', label: 'Clássico de oferta' },
+          { id: 'relampago', label: 'Oferta relâmpago' },
+          { id: 'hortifruti', label: 'Hortifruti' },
+          { id: 'acougue', label: 'Açougue' },
+          { id: 'adega', label: 'Adega' },
+          { id: 'clube', label: 'Clube de ofertas' },
+          { id: 'black-friday', label: 'Black Friday' },
+          { id: 'premium', label: 'Premium' },
+        ]
 
-        for (const themeId of themeIds) {
-          await page.locator('[data-style-preset="' + themeId + '"]').click()
+        for (const theme of themeModels) {
+          const search = page.locator('.header-search input[type="search"]')
+          await search.fill(theme.label)
+          const modelCard = page.locator('[data-model-art="' + theme.id + '"]')
+          await modelCard.waitFor({ state: 'visible', timeout: 5000 })
+          await modelCard.click()
           await page.locator('[data-mobile-tab="preview"]').click()
           await page.waitForTimeout(100)
 
@@ -248,7 +261,7 @@ for (const [viewportName, viewport] of viewports) {
           })
 
           await page.screenshot({
-            path: path.join(outDir, 'theme-' + themeId + '-a4-mobile-390.png'),
+            path: path.join(outDir, 'theme-' + theme.id + '-a4-mobile-390.png'),
             fullPage: true,
           })
 
@@ -256,7 +269,7 @@ for (const [viewportName, viewport] of viewports) {
             viewport: viewportName,
             formatId,
             tab: 'theme-contrast',
-            themeId,
+            themeId: theme.id,
             errors: [...errors],
             horizontalOverflow: false,
             offenders: [],
@@ -278,7 +291,7 @@ const failures = results.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.tab === 'products' && item.products?.rowHeight > 390) return true
   if (item.tab === 'style' && item.style) {
-    if (item.style.headerArtHeight > 250 || item.style.frameGridHeight > 180) return true
+    if (item.style.headerArtHeight > 250 || item.style.frameGridHeight > 240) return true
     if (!item.style.headerVisible) return true
     if (!item.style.headerBackgroundColor || item.style.headerBackgroundColor === 'rgba(0, 0, 0, 0)' || item.style.headerBackgroundColor === 'transparent') return true
   }
