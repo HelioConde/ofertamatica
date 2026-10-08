@@ -3125,3 +3125,32 @@ summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .model-showcase-card, .retail-guide-catalog-card { transition: none !important; }
 }
+
+
+/* Preferências disponíveis de forma permanente na Política de Privacidade,
+   sem botão flutuante cobrindo o criador depois do consentimento. */
+.marketing-footer nav .marketing-footer-privacy-button {
+  display:inline-flex;align-items:center;min-height:30px;padding:4px 0;
+  appearance:none;border:0;background:transparent;color:#52657f;
+  font:inherit;font-size:11px;font-weight:800;text-align:left;cursor:pointer;
+}
+.marketing-footer nav .marketing-footer-privacy-button:hover {color:#1d63e9}
+.marketing-footer nav .marketing-footer-privacy-button:focus-visible,
+.privacy-preferences-panel button:focus-visible {outline:3px solid #f18b32;outline-offset:3px}
+.privacy-preferences-panel {
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 22px;border:1px solid #bfd4f4;border-radius:16px;background:#f3f8ff;
+}
+.privacy-preferences-panel > div {max-width:630px;min-width:0;flex:1 1 320px}
+.privacy-preferences-panel h2 {margin:5px 0 7px;color:#1b365d;font-size:clamp(19px,2.1vw,24px);line-height:1.2}
+.privacy-preferences-panel p {margin:0;color:#4d627f;font-size:13px;line-height:1.6}
+.privacy-preferences-panel button {
+  min-height:44px;padding:10px 17px;border:1px solid #1d63e9;border-radius:10px;
+  background:#1d63e9;color:#fff;font-size:13px;font-weight:800;cursor:pointer;
+}
+.privacy-preferences-panel button:hover {background:#164eae}
+@media(max-width:700px) {
+  .privacy-preferences-panel {padding:16px;align-items:stretch}
+  .privacy-preferences-panel button {width:100%}
+  .marketing-footer nav .marketing-footer-privacy-button {font-size:11px;min-height:32px}
+}

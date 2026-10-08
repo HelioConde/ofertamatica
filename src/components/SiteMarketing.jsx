@@ -232,6 +232,10 @@ function MarketingFooter() {
         <a href="/fale-conosco/">Fale conosco</a>
         <a href="mailto:atendimento@ofertamatica.com.br">E-mail de atendimento</a>
         <a href="/privacidade/">Privacidade</a>
+        <button type="button" className="marketing-footer-privacy-button"
+          onClick={() => window.dispatchEvent(new Event('oferta-open-consent'))}>
+          Preferências de cookies
+        </button>
         <a href="/termos/">Termos</a>
       </nav>
       <small>Grátis · sem cadastro obrigatório para começar</small>
@@ -720,6 +724,20 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
         ) : null}
 
         {isGuides ? <FaqSection /> : null}
+
+        {page.slug === 'privacidade' ? (
+          <section className="marketing-section privacy-preferences-panel" id="preferencias-de-cookies"
+            aria-labelledby="privacy-preferences-heading">
+            <div>
+              <span className="marketing-kicker">CONTROLE DE DADOS</span>
+              <h2 id="privacy-preferences-heading">Gerencie suas preferências de cookies</h2>
+              <p>Você pode revisar, aceitar, rejeitar ou revogar cookies opcionais quando quiser. A ferramenta de criação de cartazes continua disponível mesmo sem aceitar.</p>
+            </div>
+            <button type="button" onClick={() => window.dispatchEvent(new Event('oferta-open-consent'))}>
+              Gerenciar preferências de cookies
+            </button>
+          </section>
+        ) : null}
 
         {['fale-conosco', 'privacidade', 'termos'].includes(page.slug) ? (
           <section className="marketing-section institutional-email" aria-label="Contato oficial">

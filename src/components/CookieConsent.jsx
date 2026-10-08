@@ -76,8 +76,10 @@ export default function CookieConsent() {
 
   return (
     <>
-      {ready && !banner && !settings ? (
-        <button type="button" className={'cookie-entry' + ((status.hasChoice || status.cmpApplies) ? ' cookie-entry-compact' : '')} onClick={restore}
+      {/* Após uma escolha, nenhum botão fica flutuando sobre o editor.
+          Se o aviso foi apenas minimizado, mantemos o atalho: minimizar não é consentir. */}
+      {ready && minimized && !status.hasChoice && !status.cmpApplies && !settings ? (
+        <button type="button" className="cookie-entry" onClick={restore}
           aria-label={minimized && !status.hasChoice && !status.cmpApplies
             ? 'Reabrir aviso de cookies sem registrar escolha'
             : 'Abrir preferências de privacidade e cookies'}>
