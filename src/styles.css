@@ -9319,3 +9319,90 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     max-width: 100% !important;
   }
 }
+
+
+/* Editor desktop — melhor equilíbrio entre produtos, prévia e personalização.
+   A largura da tabela continua funcional; o cartaz e a galeria ganham espaço. */
+@media screen and (min-width: 1360px) {
+  .editor-mode .editor-layout {
+    grid-template-columns: minmax(0, 1fr) 358px 258px !important;
+    gap: 11px !important;
+  }
+
+  .editor-mode .editor-main,
+  .editor-mode .preview-card,
+  .editor-mode .style-sidebar {
+    min-width: 0;
+  }
+
+  .editor-mode .product-row:not(.product-head),
+  .editor-mode .product-row.product-head {
+    grid-template-columns: 27px minmax(0, 1.03fr) minmax(0, 1fr) minmax(0, 1.38fr) minmax(0, .7fr) minmax(0, .68fr) !important;
+    gap: 5px !important;
+  }
+
+  .editor-mode .product-row:not(.product-head) {
+    min-height: 43px;
+    padding: 5px 9px !important;
+  }
+
+  .editor-mode .product-row input {
+    min-height: 29px;
+    padding: 6px 7px !important;
+    font-size: 10px !important;
+    line-height: 1.25;
+  }
+
+  .editor-mode .product-head {
+    font-size: 8px !important;
+    line-height: 1.2;
+  }
+
+  .editor-mode .editor-card > header p,
+  .editor-mode .preview-card > header p {
+    font-size: 9px !important;
+    line-height: 1.4;
+  }
+
+  .editor-mode .section-label {
+    font-size: 8px !important;
+  }
+
+  .editor-mode .preview-card header h2,
+  .editor-mode .editor-card header h2 {
+    font-size: 15px !important;
+  }
+
+  .editor-mode .preview-title,
+  .editor-mode .preview-pager {
+    font-size: 9px !important;
+  }
+
+  .editor-mode .preview-output-actions .print-button,
+  .editor-mode .preview-output-actions .pdf-button {
+    font-size: 10px !important;
+  }
+
+  .editor-mode .style-sidebar-head h2 {
+    font-size: 14px !important;
+  }
+
+  .editor-mode .personalization-tabs button {
+    min-height: 37px;
+    font-size: 11px;
+  }
+
+  .editor-mode .style-sidebar .header-art-grid > button > span:last-child {
+    font-size: 9px !important;
+    line-height: 1.3;
+  }
+
+  .editor-mode .style-sidebar .header-search input {
+    min-height: 38px !important;
+    font-size: 11px !important;
+  }
+
+  .editor-mode .style-sidebar .header-art-grid > button {
+    min-height: 132px !important;
+  }
+}
