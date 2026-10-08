@@ -1,0 +1,33 @@
+# Ofertamática — gerador grátis de cartazes para supermercados
+
+> Ferramenta gratuita no navegador para criar, editar e imprimir placas de preço e cartazes de oferta para mercados, supermercados, açougues, padarias e outros negócios do varejo. Idioma principal: português brasileiro.
+
+## Usar o gerador
+
+- [Criar placas para mercado online](https://ofertamatica.com.br/): escolha o formato, cole produtos e preços, revise e imprima.
+- [Como funciona](https://ofertamatica.com.br/como-funciona/): etapas e recursos do criador, incluindo importação de listas.
+- [Modelos de cartazes](https://ofertamatica.com.br/modelos/): opções personalizáveis para cabeçalhos e tipos de oferta.
+- [Formatos de impressão](https://ofertamatica.com.br/formatos/): A4, A5, A3 e várias placas menores por folha A4.
+
+## Guias e exemplos
+
+- [Guias para varejo](https://ofertamatica.com.br/guias-para-varejo/): materiais educativos e links por assunto.
+- [Qual papel usar](https://ofertamatica.com.br/qual-papel-usar-para-cartaz/): gramatura, tamanho e impressão.
+- [Cartazes de supermercado](https://ofertamatica.com.br/cartaz-para-supermercado/): placas de preço para supermercados.
+- [Cartazes para açougue](https://ofertamatica.com.br/cartazes-para-acougue/): preços por kg e cortes.
+- [Placas para padaria](https://ofertamatica.com.br/placas-para-padaria/): placas para pães, bolos e salgados.
+- [Cartazes a partir de Excel](https://ofertamatica.com.br/cartazes-a-partir-de-excel/): importação e revisão de planilhas.
+
+## Transparência
+
+- [Sobre o Ofertamática](https://ofertamatica.com.br/sobre/)
+- [Privacidade](https://ofertamatica.com.br/privacidade/)
+- [Termos](https://ofertamatica.com.br/termos/)
+- [Contato](https://ofertamatica.com.br/fale-conosco/)
+- [Sitemap](https://ofertamatica.com.br/sitemap.xml)
+
+## Limites
+
+- As páginas informam o uso do site, mas não representam uma API pública de geração de cartazes.
+- Valores e produtos demonstrativos não são preços comerciais válidos.
+- A interpretação avançada por inteligência artificial pode estar em desenvolvimento; consulte os recursos disponíveis no criador.
