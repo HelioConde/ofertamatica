@@ -22,7 +22,7 @@ const ADSENSE_SLOTS = {
 }
 
 const CREATOR_META = {
-  title: 'Ofertamática — Cartaz de oferta pronto em 2 cliques',
+  title: 'Criar Cartaz de Oferta Grátis para Imprimir | Ofertamática',
   description: 'Crie placas de oferta em 2 cliques: escolha o formato, cole sua lista e gere. Grátis, sem cadastro e com personalização opcional para supermercado e varejo.',
   path: '/',
 }
