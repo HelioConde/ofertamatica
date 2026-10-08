@@ -2169,6 +2169,18 @@ function Editor({
               <button type="button" onClick={undoDelete}>Desfazer</button>
             </div>
           ) : null}
+          {products.length > 0 ? (
+            <button
+              className="mobile-preview-shortcut"
+              type="button"
+              onClick={() => {
+                setMobileTab('preview')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            >
+              Ver prévia da placa atual <span aria-hidden="true">→</span>
+            </button>
+          ) : null}
         </div>
 
         <aside className={'preview-card ' + (mobileTab === 'preview' ? 'mobile-panel-active' : 'mobile-panel-hidden')}>

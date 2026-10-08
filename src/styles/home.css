@@ -2383,3 +2383,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 /* HTML de recuperação inicial deve ter geometria equivalente ao componente React. */
 .format-home-refresh .format-choice:focus-visible{outline:3px solid #1d63e9;outline-offset:2px}
 #ofertamatica-load-warning[hidden]{display:none!important}
+
+/* Quando o AdSense ainda não preencheu, não desenhar um falso banner clicável. */
+.format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) .oferta-ad-label {
+  opacity: 0;
+}

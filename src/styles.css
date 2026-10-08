@@ -9747,3 +9747,36 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (max-width: 440px) {
   .public-route-loading-cards { grid-template-columns: 1fr; }
 }
+
+/* UX: acesso à prévia depois de revisar os produtos no celular. */
+.mobile-preview-shortcut { display: none; }
+@media (max-width: 700px) {
+  .mobile-preview-shortcut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 16px;
+    margin: 10px 0 16px;
+    background: #1d63e9;
+    border: 0;
+    border-radius: 11px;
+    color: #fff;
+    font-weight: 850;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .mobile-preview-shortcut:focus-visible { outline: 3px solid #142f6e; outline-offset: 3px; }
+}
+
+/* Quando o AdSense ainda não preencheu, não desenhar um falso banner clicável. */
+.format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.format-mode .format-home-refresh .format-ad-card.format-ad-zone:has(.oferta-ad-unit.is-pending) .oferta-ad-label {
+  opacity: 0;
+}
