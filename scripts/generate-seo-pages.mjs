@@ -8,6 +8,18 @@ if (!fs.existsSync(indexPath)) process.exit(0)
 
 const baseHtml = fs.readFileSync(indexPath, 'utf8')
 
+const LEGACY_REDIRECTS = {
+  'cartaz-de-supermercado': 'cartaz-para-supermercado',
+  'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
+  'gerador-de-placas-com-ia': 'criador-de-cartaz-de-oferta',
+  'cartazes-para-acougue': 'cartaz-para-supermercado',
+  'cartaz-de-oferta-gratis': 'criador-de-cartaz-de-oferta',
+  'cartaz-supermercado-online': 'cartaz-para-supermercado',
+  'placa-de-preco-supermercado': 'cartaz-de-preco-online',
+  'gerador-de-cartaz-com-ia': 'criador-de-cartaz-de-oferta',
+}
+
+
 const esc = (value = '') => String(value)
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -17,6 +29,7 @@ const esc = (value = '') => String(value)
 function replaceMeta(html, page) {
   const canonical = `${SITE_URL}/${page.slug}/`
   return html
+    .replace(/<html lang="pt-BR">/, '<html lang="pt-BR">')
     .replace(/<title>.*?<\/title>/s, `<title>${esc(page.title)}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${esc(page.description)}" />`)
     .replace(/<meta name="keywords" content="[^"]*"\s*\/>/, `<meta name="keywords" content="${esc(page.keywords)}" />`)
@@ -113,11 +126,23 @@ fs.writeFileSync(
 
 for (const page of INDEXABLE_PAGES) {
   let html = replaceMeta(baseHtml, page)
-  html = html.replace('</head>', `<script type="application/ld+json">${structuredData(page)}</script></head>`)
+  // O schema base descreve a aplicação da home, não cada página interna.
+  html = html.replace(/<script id="ofertamatica-page-schema" type="application\\/ld\\+json">[\\s\\S]*?<\\/script>/, '')
+  html = html.replace('</head>', `<script id="ofertamatica-page-schema" type="application/ld+json">${structuredData(page)}</script></head>`)
   html = html.replace('<div id="root"></div>', `<div id="root">${snapshot(page)}</div>`)
   const dir = path.join(dist, page.slug)
   fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(path.join(dir, 'index.html'), html)
+}
+
+// Endereços antigos ainda aparecem como páginas de referência no Search Console.
+// Servir um redirecionamento real no HTML, em vez de devolver silenciosamente a home.
+for (const [legacy, destination] of Object.entries(LEGACY_REDIRECTS)) {
+  const target = `${SITE_URL}/${destination}/`
+  const redirect = `<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${target}"><meta http-equiv="refresh" content="0;url=${target}"><title>Página movida | Ofertamática</title></head><body><main><h1>Página movida</h1><p>O conteúdo mudou de endereço. <a href="${target}">Acesse a página atual</a>.</p></main><script>location.replace(${JSON.stringify(target)})</script></body></html>`
+  const dir = path.join(dist, legacy)
+  fs.mkdirSync(dir, { recursive: true })
+  fs.writeFileSync(path.join(dir, 'index.html'), redirect)
 }
 
 const urls = [
@@ -127,7 +152,7 @@ const urls = [
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...urls.map(({ url, priority }) => `  <url><loc>${url}</loc><changefreq>weekly</changefreq><priority>${priority}</priority></url>`),
+  ...urls.map(({ url }) => `  <url><loc>${url}</loc></url>`),
   '</urlset>',
 ].join('\n')
 
