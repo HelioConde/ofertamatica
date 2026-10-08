@@ -7,7 +7,11 @@ const failures = []
 async function scenario(name, viewport, run) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 })
   const browserErrors = []
-  page.on('pageerror', (error) => browserErrors.push(error.message))
+  page.on('pageerror', (error) => {
+    // Erro conhecido de conversão protobuf emitido pelo SDK do Google Ads.
+    // Reportamos todos os demais erros que afetem a aplicação.
+    if (!/^int64$/i.test(String(error.message || '').trim())) browserErrors.push(error.message)
+  })
   try {
     await run(page)
     if (browserErrors.length) throw new Error('Erros de JavaScript: ' + browserErrors.join(' | '))
