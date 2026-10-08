@@ -114,7 +114,12 @@ export const PUBLIC_PAGES = [
     eyebrow: 'GUIAS PARA VAREJO',
     heading: 'Guias práticos para melhorar a comunicação de ofertas',
     lead: 'Conteúdos práticos sobre criação, preço, formatos, impressão e comunicação de ofertas no varejo.',
-    benefits: ['Conteúdo por necessidade', 'Links internos organizados', 'Acesso direto ao criador'],
+    benefits: ['Tutoriais por necessidade', 'Links para formatos e modelos', 'Acesso gratuito ao criador'],
+    sections: [
+      { title: 'Por onde começar a preparar as placas de preço', text: 'Se você já tem uma lista de produtos, comece pelo criador ou pelo guia de importação de planilhas. Confira nome, peso ou volume, preço e condições da oferta antes de gerar o lote. Para quem trabalha no mercado diariamente, manter um padrão de cabeçalho, contraste e tamanho reduz retrabalho e facilita a conferência da campanha.' },
+      { title: 'Como escolher cartazes para cada setor', text: 'Os guias para supermercado, açougue e padaria tratam da diferença entre preço por kg, por unidade e por embalagem. Ao preparar uma oferta relâmpago, uma placa De/Por ou uma campanha de atacado e varejo, descreva a regra da promoção com clareza e confira se o cliente consegue reconhecer a informação principal.' },
+      { title: 'Papel, tamanho e PDF na rotina da loja', text: 'Antes de imprimir, escolha entre A4, A5 e A3 segundo a distância de leitura e a impressora disponível. O guia de papel explica gramaturas comuns e como evitar escala incorreta, margens inesperadas ou cortes. Você também pode salvar o cartaz como PDF pela impressão do navegador quando essa opção estiver disponível.' },
+    ],
   },
   {
     kind: 'public',
