@@ -6,12 +6,12 @@ const ADSENSE_SLOTS = {
   'format-grid': '7286894770',
 }
 
-// O script do AdSense é compartilhado entre os espaços e só é requisitado
-// quando um anúncio está perto do viewport. Não alterar payload ou cliques.
+// A tag publisher é carregada cedo para oferecer a CMP certificada do Google.
+// Apenas os blocos de anúncio são requisitados sob consentimento e visibilidade.
 let adsenseLoader = null
 function loadAdsense() {
   if (adsenseLoader) return adsenseLoader
-  if (window.adsbygoogle && !Array.isArray(window.adsbygoogle)) return Promise.resolve()
+  if (window.adsbygoogle?.push && window.adsbygoogle.push !== Array.prototype.push) return Promise.resolve()
   adsenseLoader = new Promise((resolve, reject) => {
     const existing = document.querySelector('script[data-ofertamatica-adsense]')
     if (existing?.dataset.loaded === 'true') {
