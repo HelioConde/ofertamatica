@@ -152,6 +152,14 @@ const HEADER_FOOTER_MODELS = [
   { id: 'minimal', name: 'Contorno arredondado', note: 'Header compacto, moldura discreta e rodapé ondulado', preview: 'minimal', headerTextColor: '#ffffff' },
   { id: 'especial', name: 'Oferta especial', note: 'Faixa lateral com escrita Especial', preview: 'especial', headerTextColor: '#fff200' },
 ]
+const FRAME_ART_OPTIONS = HEADER_FOOTER_MODELS.map((frame) => ({
+  ...frame,
+  id: `__frame__${frame.id}`,
+  kind: 'frame',
+  label: frame.name,
+  frameId: frame.id,
+}))
+const ALL_ART_OPTIONS = [...HEADER_OPTIONS, ...FRAME_ART_OPTIONS]
 
 const OFFER_MODES = [
   { id: 'standard', name: 'Padrão', note: 'Produto + preço' },
@@ -678,25 +686,83 @@ function PosterOptionPreview({
   headerText = 'OFERTA',
   headerColor = '#ed1c24',
   headerTextColor = '#ffffff',
+  backgroundColor = '#fff200',
+  textColor = '#111111',
+  priceColor = '#d71920',
   imageUrl = '',
+  offerMode = 'standard',
+  sampleProduct = 'CAFÉ 500g',
+  samplePrice = '9,99',
 }) {
+  // A miniatura usa exatamente PosterSheet e layoutPlan, como a placa impressa.
+  const format = useMemo(() => getPosterFormat('A4'), [])
+  const measure = useMemo(() => createBrowserTextMeasure(), [])
+  const preview = useMemo(() => {
+    const parsed = parseProductList(`${sampleProduct} ${samplePrice}`)[0] || {
+      description: sampleProduct, subdescription: '', complement: '', unit: '', price: samplePrice,
+    }
+    const product = {
+      ...parsed,
+      id: 'personalization-thumbnail',
+      price: samplePrice,
+      regularPrice: '14,90',
+      wholesalePrice: '8,90',
+      wholesaleQuantity: '6',
+      offerQuantity: '3',
+      eachPrice: samplePrice,
+      secondUnitPrice: '7,99',
+    }
+    const template = {
+      ...getDefaultTemplateForFormat('A4'),
+      headerStyle: 'retail',
+      headerText,
+      headerImage: imageUrl,
+      headerFooterStyle: frame,
+      offerMode,
+      validityText: '',
+      limitText: '',
+      showCurrency: true,
+      backgroundImage: '',
+      backgroundVisible: false,
+    }
+    const layoutPlans = createPosterLayouts([product], template, format, measure)
+    return { product, template, layoutPlans }
+  }, [format, measure, headerText, imageUrl, frame, offerMode, sampleProduct, samplePrice])
+
+  const scale = 0.091
+  const naturalWidth = format.widthMm * PX_PER_MM
+  const naturalHeight = format.heightMm * PX_PER_MM
+
   return (
-    <span
-      className={`poster-option-preview poster-option-preview-${frame}`}
-      aria-hidden="true"
-      style={{
-        '--option-header': headerColor,
-        '--option-header-text': headerTextColor,
-      }}
-    >
-      <span className="poster-option-preview-head">
-        {imageUrl
-          ? <img src={imageUrl} alt="" loading="lazy" />
-          : <b>{headerText || 'OFERTA'}</b>}
+    <span className="personalization-live-preview" aria-hidden="true">
+      <span
+        className="personalization-live-stage"
+        style={{
+          width: naturalWidth * scale,
+          height: naturalHeight * scale,
+          '--poster-background': backgroundColor,
+          '--poster-text-color': resolveReadableTextColor(backgroundColor, textColor),
+          '--poster-price-color': resolveReadablePriceColor(backgroundColor, priceColor),
+          '--poster-header-color': headerColor,
+          '--poster-header-text-color': resolveReadableHeaderTextColor(headerColor, headerTextColor),
+          '--poster-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+          '--poster-description-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+          '--poster-price-font-family': '"Futura Price", Impact, "Arial Black", sans-serif',
+        }}
+      >
+        <span
+          className="personalization-live-scale"
+          style={{ width: naturalWidth, height: naturalHeight, transform: `scale(${scale})` }}
+        >
+          <PosterSheet
+            format={format}
+            products={[preview.product]}
+            template={preview.template}
+            layoutPlans={preview.layoutPlans}
+            showBackground
+          />
+        </span>
       </span>
-      <span className="poster-option-preview-copy"><i /><i /></span>
-      <strong><small>R$</small> 9,99</strong>
-      <em />
     </span>
   )
 }
