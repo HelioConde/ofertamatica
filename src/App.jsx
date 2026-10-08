@@ -709,13 +709,15 @@ function StyleSidebar({
   const [customHeaderError, setCustomHeaderError] = useState('')
   const logoInputRef = useRef(null)
   const customHeaderInputRef = useRef(null)
-  const [headerLimit, setHeaderLimit] = useState(8)
+  const [headerLimit, setHeaderLimit] = useState(4)
+  const [frameLimit, setFrameLimit] = useState(4)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
   const filteredHeaders = normalizedSearch
     ? HEADER_OPTIONS.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
     : HEADER_OPTIONS
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
+  const visibleFrameModels = HEADER_FOOTER_MODELS.slice(0, frameLimit)
   const selectedOfferMode = OFFER_MODES.find((mode) => mode.id === (style.offerMode || 'standard')) || OFFER_MODES[0]
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
@@ -1068,7 +1070,7 @@ function StyleSidebar({
               value={headerSearch}
               onChange={(event) => {
                 setHeaderSearch(event.target.value)
-                setHeaderLimit(8)
+                setHeaderLimit(4)
               }}
               placeholder="Ex.: padaria, açougue..."
             />
@@ -1094,6 +1096,7 @@ function StyleSidebar({
                   type="button"
                   key={item.id}
                   className={isActive ? 'active' : ''}
+                  data-model-art={isModel ? item.model.id : undefined}
                   onClick={() => chooseHeader(item.id)}
                   title={isModel ? `${item.label} — modelo completo` : (isPreset ? `${item.text} — cabeçalho pronto` : item.label)}
                 >
@@ -1114,7 +1117,7 @@ function StyleSidebar({
 
           {!filteredHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
           {filteredHeaders.length > visibleHeaders.length ? (
-            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 8)}>
+            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
               Mostrar mais headers ({filteredHeaders.length - visibleHeaders.length})
             </button>
           ) : null}
@@ -1126,7 +1129,7 @@ function StyleSidebar({
             <small>Inspirados nos modelos de cartaz</small>
           </div>
           <div className="poster-frame-style-grid">
-            {HEADER_FOOTER_MODELS.map((model) => (
+            {visibleFrameModels.map((model) => (
               <button
                 type="button"
                 key={model.id}
@@ -1158,6 +1161,11 @@ function StyleSidebar({
               </button>
             ))}
           </div>
+          {HEADER_FOOTER_MODELS.length > visibleFrameModels.length ? (
+            <button type="button" className="header-show-more" onClick={() => setFrameLimit((value) => value + 4)}>
+              Mostrar mais modelos ({HEADER_FOOTER_MODELS.length - visibleFrameModels.length})
+            </button>
+          ) : null}
         </section>
 
         <details className="style-section style-accordion">
