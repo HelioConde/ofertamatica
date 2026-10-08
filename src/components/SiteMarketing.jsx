@@ -734,6 +734,35 @@ export function SeoLanding({ page, onCreate }) {
 
         <SearchTopicSections slug={page.slug} />
 
+        {page.sections?.length ? (
+          <section className="marketing-section" aria-label="Orientações específicas">
+            <div className="marketing-heading">
+              <span className="marketing-kicker">EXEMPLOS E CUIDADOS</span>
+              <h2>Como usar estas placas na loja</h2>
+            </div>
+            <div className="store-use-grid">
+              {page.sections.map((section) => (
+                <article key={section.title}>
+                  <h2>{section.title}</h2>
+                  <p>{section.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {page.links?.length ? (
+          <nav className="related-pages" aria-label="Links úteis para esta página">
+            <span className="marketing-kicker">APRENDA MAIS</span>
+            <h2>Outros recursos úteis</h2>
+            <div>
+              {page.links.map((link) => (
+                <a href={link.href} key={link.href}>{link.label}<span>→</span></a>
+              ))}
+            </div>
+          </nav>
+        ) : null}
+
         <section className="marketing-section practical-section">
           <div className="marketing-heading">
             <span className="marketing-kicker">NA PRÁTICA</span>
