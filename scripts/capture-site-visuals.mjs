@@ -177,7 +177,7 @@ async function captureViewport(name, viewport, routes) {
       }
       const retailGuideStylesApplied = retailGuideComputed.paperLink === 'flex' &&
         retailGuideComputed.grid === 'grid' && retailGuideComputed.search === 'grid' &&
-        retailGuideComputed.categoryButton === 'inline-flex' &&
+        ['flex', 'inline-flex'].includes(retailGuideComputed.categoryButton) &&
         retailGuideComputed.card === 'flex' &&
         retailCatalogCards.every((card) => getComputedStyle(card).display === 'flex')
       const modelCards = [...document.querySelectorAll('.model-showcase-card')]

@@ -2928,3 +2928,15 @@ summary:focus-visible {
   .seo-landing .retail-guide-categories { gap: 6px; }
   .seo-landing .retail-guide-categories > button { min-height: 40px; font-size: 11px; }
 }
+
+/* Final release: readable desktop navigation hit areas without changing mobile grid. */
+@media (min-width: 701px) {
+  .seo-breadcrumb { min-height: 30px; align-items: center; margin-bottom: 20px; }
+  .marketing-footer nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 4px 0;
+    font-size: 11px;
+  }
+}
