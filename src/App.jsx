@@ -4,6 +4,7 @@ import PosterVisualQaPage from './pages/PosterVisualQaPage'
 import { AdUnit, CreatorSeoHead, PublicPage, SeoLanding, getPublicPage, getSeoPage } from './components/SiteMarketing'
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
+import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
@@ -50,7 +51,15 @@ const HEADER_TEXT_PRESETS = [
   { id: '__fim_de_semana__', kind: 'preset', label: 'Fim de semana', text: 'FIM DE SEMANA', headerColor: '#1d63e9', headerTextColor: '#ffffff', headerFooterStyle: 'ondas' },
   { id: '__clube_ofertas__', kind: 'preset', label: 'Clube de ofertas', text: 'CLUBE DE OFERTAS', headerColor: '#113d9d', headerTextColor: '#ffffff', headerFooterStyle: 'moldura' },
 ]
+const MODEL_ART_OPTIONS = POSTER_MODEL_PRESETS.map((model) => ({
+  id: `__model__${model.id}`,
+  kind: 'model',
+  label: model.name,
+  model,
+}))
+
 const HEADER_OPTIONS = [
+  ...MODEL_ART_OPTIONS,
   ...HEADER_TEXT_PRESETS,
   ...HEADER_IMAGES.map((item) => ({ ...item, kind: 'image' })),
 ]
@@ -716,6 +725,27 @@ function StyleSidebar({
     onCustomHeaderChange?.('')
     const option = HEADER_OPTIONS.find((item) => item.id === id)
 
+    if (option?.kind === 'model') {
+      const model = option.model
+      onChange({
+        ...DEFAULT_POSTER_STYLE,
+        backgroundColor: model.background,
+        textColor: resolveReadableTextColor(model.background, model.text),
+        priceColor: resolveReadablePriceColor(model.background, model.price),
+        headerColor: model.header,
+        headerTextColor: resolveReadableHeaderTextColor(model.header, model.headerText),
+        headerStyle: 'retail',
+        headerText: model.label,
+        headerImage: '',
+        headerFooterStyle: model.headerFooterStyle || 'moldura',
+        offerMode: model.offerMode || 'standard',
+        validityText: model.validityText || '',
+        limitText: '',
+      })
+      trackProductEvent('ofertamatica_model_preset_selected', { model_id: model.id, source: 'home-art-library' })
+      return
+    }
+
     if (option?.kind === 'preset') {
       onChange({
         ...style,
@@ -1046,26 +1076,37 @@ function StyleSidebar({
 
           <div className="header-art-grid">
             {visibleHeaders.map((item) => {
+              const isModel = item.kind === 'model'
               const isPreset = item.kind === 'preset'
-              const isActive = isPreset
-                ? (!style.headerImage && !customHeader && style.headerText === item.text)
-                : style.headerImage === item.id
+              const isActive = isModel
+                ? (
+                    !style.headerImage
+                    && !customHeader
+                    && style.headerText === item.model.label
+                    && style.headerFooterStyle === (item.model.headerFooterStyle || 'moldura')
+                    && style.backgroundColor === item.model.background
+                  )
+                : isPreset
+                  ? (!style.headerImage && !customHeader && style.headerText === item.text)
+                  : style.headerImage === item.id
               return (
                 <button
                   type="button"
                   key={item.id}
                   className={isActive ? 'active' : ''}
                   onClick={() => chooseHeader(item.id)}
-                  title={isPreset ? `${item.text} — cabeçalho pronto` : item.label}
+                  title={isModel ? `${item.label} — modelo completo` : (isPreset ? `${item.text} — cabeçalho pronto` : item.label)}
                 >
                   <PosterOptionPreview
-                    frame={isPreset ? (item.headerFooterStyle || 'moldura') : 'moldura'}
-                    headerText={isPreset ? item.text : 'OFERTA'}
-                    headerColor={isPreset ? item.headerColor : '#ed1c24'}
-                    headerTextColor={isPreset ? item.headerTextColor : '#ffffff'}
-                    imageUrl={isPreset ? '' : item.url}
+                    frame={isModel
+                      ? (item.model.headerFooterStyle || 'moldura')
+                      : (isPreset ? (item.headerFooterStyle || 'moldura') : 'moldura')}
+                    headerText={isModel ? item.model.label : (isPreset ? item.text : 'OFERTA')}
+                    headerColor={isModel ? item.model.header : (isPreset ? item.headerColor : '#ed1c24')}
+                    headerTextColor={isModel ? item.model.headerText : (isPreset ? item.headerTextColor : '#ffffff')}
+                    imageUrl={isModel || isPreset ? '' : item.url}
                   />
-                  <span>{item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label}</span>
+                  <span>{isModel ? `Modelo · ${item.label}` : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label)}</span>
                 </button>
               )
             })}
