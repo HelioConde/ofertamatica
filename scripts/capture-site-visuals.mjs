@@ -151,6 +151,22 @@ async function captureViewport(name, viewport, routes) {
         ? getComputedStyle(guideHeading).textAlign === 'center'
         : false
 
+      const howTopicCards = [...document.querySelectorAll('.how-guide-section .store-use-topic')]
+      const howTopicLinksValid = howTopicCards.length === 3 &&
+        howTopicCards.every((card) => {
+          const link = card.querySelector('a[href]')
+          return Boolean(card.querySelector('h3')?.textContent?.trim()) &&
+            Boolean(link && link.getAttribute('href')?.startsWith('/') && link.getAttribute('href') !== '/')
+        }) &&
+        new Set(howTopicCards.map((card) => card.querySelector('a')?.getAttribute('href'))).size === 3
+      const howGuideCardsFit = howTopicCards.every((card) => {
+        const parent = card.closest('.store-use-grid')?.getBoundingClientRect()
+        const rect = card.getBoundingClientRect()
+        return Boolean(parent && rect.left >= parent.left - 2 && rect.right <= parent.right + 2)
+      })
+      const howGuideCardsSameRow = howTopicCards.length === 3 &&
+        howTopicCards.every((card) => Math.abs(card.getBoundingClientRect().top - howTopicCards[0].getBoundingClientRect().top) < 2)
+
       const formatCards = [...document.querySelectorAll('.format-home-refresh .format-choice')]
       const clippedFormatCards = formatCards.flatMap((card) => {
         const bounds = card.getBoundingClientRect()
@@ -181,6 +197,10 @@ async function captureViewport(name, viewport, routes) {
       }))
 
       return {
+        howGuideCardCount: howTopicCards.length,
+        howTopicLinksValid,
+        howGuideCardsFit,
+        howGuideCardsSameRow,
         guideCardCount: guideCards.length,
         formatGuideThumbnailsMatch,
         guideHeadingCentered,
@@ -246,6 +266,11 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.id === 'como-funciona' && (
+    item.howGuideCardCount !== 3 || !item.howTopicLinksValid ||
+    !item.howGuideCardsFit ||
+    (item.viewport === 'desktop' && !item.howGuideCardsSameRow)
+  )) return true
   if (item.id === 'formatos' && (
     item.guideCardCount !== 8 || !item.formatGuideThumbnailsMatch || !item.guideHeadingCentered
   )) return true
