@@ -2417,3 +2417,31 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* Contraste AA para a etiqueta de gratuidade na navegação. */
 .nav-meta .free-pill { color: #09663e !important; }
+
+
+/* Desktop alto: evita cartões de formato esticados em excesso na home. */
+@media (min-width: 1001px) and (min-height: 880px) {
+  .format-mode .format-home-refresh .format-home-chooser {
+    flex: 1 1 auto !important;
+    justify-content: center;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    grid-template-rows: repeat(2, 194px) !important;
+    align-content: center !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    height: 194px !important;
+    min-height: 194px !important;
+    max-height: 194px !important;
+    align-items: center !important;
+  }
+  .format-mode .format-home-refresh .format-thumb {
+    height: 134px !important;
+    min-height: 0 !important;
+    max-height: 134px !important;
+    align-self: center;
+  }
+}

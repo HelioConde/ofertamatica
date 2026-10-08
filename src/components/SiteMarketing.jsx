@@ -418,7 +418,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
-  const [modelView, setModelView] = useState('detalhes')
+  const [modelView, setModelView] = useState('grade')
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
   const [copySupportStatus, setCopySupportStatus] = useState('')
