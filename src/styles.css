@@ -9190,3 +9190,102 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   text-align: center;
   color: #8697ae;
 }
+
+
+/* Home: cartões completos sem colisão com o bloco publicitário, mesmo com rascunho salvo.
+   Substitui os antigos height:0/flex-shrink que encolhiam as duas linhas. */
+@media (min-width: 1001px) {
+  .format-mode .format-home-refresh.format-page {
+    height: auto !important;
+    min-height: calc(100dvh - 68px) !important;
+    padding: 12px 0 !important;
+    overflow: visible !important;
+  }
+  .format-mode .format-home-refresh .format-dialog {
+    height: auto !important;
+    min-height: calc(100dvh - 92px) !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser {
+    flex: 1 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    flex: 1 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(152px, 1fr)) !important;
+    align-content: stretch !important;
+    overflow: visible !important;
+    gap: 11px !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    height: auto !important;
+    min-height: 152px !important;
+    padding: 28px 10px 12px !important;
+  }
+  .format-mode .format-home-refresh .format-thumb {
+    min-height: 98px !important;
+    max-height: none !important;
+  }
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone {
+    position: relative !important;
+    flex: 0 0 56px !important;
+    height: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    margin: 10px auto 3px !important;
+    z-index: 0;
+  }
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit,
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit.is-pending {
+    height: 54px !important;
+    min-height: 0 !important;
+    max-height: 54px !important;
+  }
+  .format-mode .format-home-refresh .format-trust-links {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    min-height: 42px !important;
+    padding-bottom: 9px !important;
+  }
+}
+@media (min-width: 1001px) and (max-height: 780px) {
+  .format-mode .format-home-refresh .format-dialog-head {
+    padding: 12px 17px 8px !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser {
+    flex: 1 0 auto !important;
+    min-height: 0 !important;
+    padding-top: 6px !important;
+  }
+  .format-mode .format-home-refresh .format-home-chooser .format-grid {
+    grid-template-rows: repeat(2, minmax(146px, 1fr)) !important;
+    gap: 9px !important;
+    padding-top: 8px !important;
+    padding-bottom: 5px !important;
+  }
+  .format-mode .format-home-refresh .format-choice {
+    min-height: 146px !important;
+  }
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone {
+    flex-basis: 48px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+    margin-top: 7px !important;
+  }
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit,
+  .format-mode .format-home-refresh .format-ad-card.format-ad-zone .oferta-ad-unit.is-pending {
+    height: 46px !important;
+    max-height: 46px !important;
+  }
+  .format-mode .format-home-refresh .format-trust-links {
+    min-height: 35px !important;
+    padding-bottom: 5px !important;
+  }
+}
