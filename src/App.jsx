@@ -106,11 +106,23 @@ const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
 const RETIRED_CONTENT_REDIRECTS = {
   '/cartaz-de-supermercado': '/cartaz-para-supermercado/',
   '/cartaz-para-imprimir': '/cartaz-de-oferta-para-imprimir/',
-  '/gerador-de-placas-com-ia': '/criador-de-cartaz-de-oferta/',
+  '/gerador-de-placas-com-ia': '/como-funciona/',
   '/cartaz-de-oferta-gratis': '/criador-de-cartaz-de-oferta/',
   '/cartaz-supermercado-online': '/cartaz-para-supermercado/',
   '/placa-de-preco-supermercado': '/cartaz-de-preco-online/',
-  '/gerador-de-cartaz-com-ia': '/criador-de-cartaz-de-oferta/',
+  '/gerador-de-cartaz-com-ia': '/como-funciona/',
+  '/cartazes-para-supermercado': '/cartaz-para-supermercado/',
+  '/cartaz-supermercado': '/cartaz-para-supermercado/',
+  '/cartazes-para-promocao': '/gerador-de-cartaz-de-promocao/',
+  '/gerador-de-placas-promocionais': '/gerador-de-cartaz-de-promocao/',
+  '/gerador-de-cartaz-gratis': '/criador-de-cartaz-de-oferta/',
+  '/como-criar-cartazes-promocionais': '/como-fazer-cartaz-de-oferta/',
+  '/guias': '/guias-para-varejo/',
+  '/faq': '/como-funciona/',
+  '/modelos-de-placas': '/modelos/',
+  '/excel-para-cartazes': '/cartazes-a-partir-de-excel/',
+  '/importar-produtos-excel': '/cartazes-a-partir-de-excel/',
+  '/ia-para-promocoes': '/como-funciona/',
 }
 
 
