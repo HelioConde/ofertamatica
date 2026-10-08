@@ -2048,7 +2048,7 @@ function Editor({
             {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
           </section>
 
-          <section className="editor-card interpreted">
+          <section className={'editor-card interpreted ' + (products.length > 0 && products.length <= 6 ? 'is-short-list' : '')}>
             <header>
               <div>
                 <span className="section-label">PRODUTOS INTERPRETADOS</span>
