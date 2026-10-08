@@ -28,6 +28,10 @@ expect(index.includes('GTM-5RGPM6HD'), 'GTM não encontrado no index.html')
 expect(!index.includes('gtag/js?id=G-K8YWSXBHS7'), 'GA4 direto voltou ao index.html; use o GTM como fonte única')
 expect(index.includes('ca-pub-9514218545388169'), 'Publisher AdSense ausente do index.html')
 expect(index.includes('href="https://ofertamatica.com.br/"'), 'Canonical da raiz incorreto')
+expect(index.includes('Criar Placas de Preço e Cartazes Grátis | Ofertamática'), 'Título atualizado da home ausente')
+expect(index.includes('Escolha modelos, personalize em A4, A5 ou A3'), 'Descrição atualizada da home ausente')
+expect(index.includes('"@type": "WebSite"'), 'Schema WebSite para nome da marca ausente')
+expect(index.includes('sizes="192x192" href="/icons/icon-192.png'), 'Favicon de 192px ausente')
 expect(!index.includes('src="./assets/'), 'Assets relativos detectados no index.html')
 expect(!index.includes('href="./assets/'), 'CSS/assets relativos detectados no index.html')
 expect(!index.includes('ESCOLHA SEU CAMINHO'), 'Copy antiga da landing voltou ao build')
@@ -42,6 +46,7 @@ expect(
 
 const sitemap = read('sitemap.xml')
 expect(sitemap.includes(`<loc>${SITE_URL}/</loc>`), 'Raiz ausente do sitemap')
+expect(!sitemap.includes('/login') && !sitemap.includes('/registro'), 'Páginas de conta removidas não podem entrar no sitemap')
 
 for (const page of INDEXABLE_PAGES) {
   const relative = `${page.slug}/index.html`
@@ -49,6 +54,10 @@ for (const page of INDEXABLE_PAGES) {
   const canonical = `${SITE_URL}/${page.slug}/`
   expect(html.includes(canonical), `Canonical ausente/incorreto em ${relative}`)
   expect(html.includes(page.title), `Title estático ausente em ${relative}`)
+  expect((html.match(/<meta name="twitter:title"/g) || []).length === 1, `Twitter title duplicado em ${relative}`)
+  expect((html.match(/<meta name="twitter:description"/g) || []).length === 1, `Twitter description duplicada em ${relative}`)
+  expect(html.includes(`<meta name="twitter:title" content="${page.title}" />`), `Twitter title divergente em ${relative}`)
+  expect(html.includes('href="/modelos/"') && html.includes('href="/formatos/"'), `Links principais ausentes em ${relative}`)
   expect(sitemap.includes(`<loc>${canonical}</loc>`), `URL ausente do sitemap: ${canonical}`)
   expect(!html.includes('src="./assets/'), `Asset relativo detectado em ${relative}`)
   // Os estilos editoriais devem estar no HTML inicial, antes da hidratação.

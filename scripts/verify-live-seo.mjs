@@ -4,7 +4,9 @@ import { setTimeout as sleep } from 'node:timers/promises'
 // Acompanha principalmente a regressão: URL especializada retornando HTML da home.
 const origin = 'https://ofertamatica.com.br'
 const checks = [
-  { name: 'Home', url: origin + '/', status: 200, contains: ['Placas para Mercado Online Grátis'] },
+  { name: 'Home', url: origin + '/', status: 200, contains: ['Criar Placas de Preço e Cartazes Grátis', '"@type": "WebSite"', '/modelos/', '/formatos/'] },
+  { name: 'Modelos', url: origin + '/modelos/', status: 200, contains: ['Modelos de Placas de Preço Grátis', 'https://ofertamatica.com.br/modelos/'] },
+  { name: 'Formatos', url: origin + '/formatos/', status: 200, contains: ['Cartaz A4, A5 e A3 para Imprimir', 'https://ofertamatica.com.br/formatos/'] },
   { name: 'Guia padaria', url: origin + '/placas-para-padaria/', status: 200, contains: ['Placas de Preço para Padaria Grátis', 'https://ofertamatica.com.br/placas-para-padaria/'] },
   { name: 'Guia Excel', url: origin + '/cartazes-a-partir-de-excel/', status: 200, contains: ['Criar Cartazes a Partir do Excel Grátis', 'https://ofertamatica.com.br/cartazes-a-partir-de-excel/'] },
   { name: 'Hub de guias', url: origin + '/guias-para-varejo/', status: 200, contains: ['/placas-para-padaria/', '/cartazes-a-partir-de-excel/'] },
@@ -18,6 +20,7 @@ const checks = [
   { name: '301 host www', url: 'https://www.ofertamatica.com.br/', status: 301, location: 'https://ofertamatica.com.br/' },
   { name: '404 página inexistente', url: origin + '/rota-inexistente-seo-check-2026/', status: 404 },
   { name: '410 login antigo', url: origin + '/login', status: 410 },
+  { name: '410 cadastro antigo', url: origin + '/registro', status: 410 },
 ]
 
 async function checkPage(check) {

@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
 const SITE_URL = 'https://ofertamatica.com.br'
-const TITLE = 'Placas para Mercado Online Grátis | Ofertamática'
-const DESCRIPTION = 'Crie cartazes de oferta e placas de preço para mercado grátis. Escolha entre 8 formatos A4, A5 e A3, adicione produtos e imprima em PDF sem cadastro.'
+const TITLE = 'Criar Placas de Preço e Cartazes Grátis | Ofertamática'
+const DESCRIPTION = 'Crie placas de preço e cartazes de oferta grátis para supermercados. Escolha modelos, personalize em A4, A5 ou A3 e imprima em PDF sem cadastro.'
 
 function upsertMeta(selector, attr, value, content) {
   let node = document.querySelector(selector)

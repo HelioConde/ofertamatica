@@ -67,7 +67,9 @@ function replaceMeta(html, page) {
     .replace(/<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${esc(page.description)}" />`)
     .replace(/<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${canonical}" />`)
     .replace(/<meta property="og:type" content="[^"]*"\s*\/>/, `<meta property="og:type" content="${page.paperChoices ? 'article' : 'website'}" />`)
-    .replace('</head>', `<meta name="twitter:card" content="summary" /><meta name="twitter:title" content="${esc(page.title)}" /><meta name="twitter:description" content="${esc(page.description)}" /></head>`)
+    // O HTML base já tem Twitter Cards: substitua sem duplicar tags.
+    .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${esc(page.title)}" />`)
+    .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${esc(page.description)}" />`)
 }
 
 function structuredData(page) {
@@ -185,7 +187,12 @@ function snapshot(page) {
     ${tips}
     ${storeUse}
     ${helpfulLinks}
-    <nav style="margin-top:32px;padding-top:20px;border-top:1px solid #e1e7ef">
+    <nav aria-label="Páginas principais da Ofertamática" style="margin-top:32px;padding-top:20px;border-top:1px solid #e1e7ef">
+      <a href="/" style="margin-right:16px;color:#1d63e9">Criar placas</a>
+      <a href="/modelos/" style="margin-right:16px;color:#1d63e9">Modelos de cartazes de oferta</a>
+      <a href="/formatos/" style="margin-right:16px;color:#1d63e9">Formatos para imprimir</a>
+      <a href="/como-funciona/" style="margin-right:16px;color:#1d63e9">Como funciona</a>
+      <a href="/guias-para-varejo/" style="margin-right:16px;color:#1d63e9">Guias para varejo</a>
       <a href="/qual-papel-usar-para-cartaz/" style="margin-right:16px;color:#1d63e9">Qual papel usar para cartazes</a>
       <a href="/sobre/" style="margin-right:16px;color:#1d63e9">Sobre</a>
       <a href="/fale-conosco/" style="margin-right:16px;color:#1d63e9">Fale conosco</a>
