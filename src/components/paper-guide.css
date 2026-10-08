@@ -213,3 +213,9 @@
   }
   .paper-guide-table-hint span { color: #1d63e9; font-size: 20px; }
 }
+
+/* Alvos de toque e teclado acessíveis em desktop, tablet e celular. */
+.paper-guide-jump a { display: inline-flex; min-height: 36px; align-items: center; padding: 6px 5px; }
+.paper-guide-related-link { min-height: 36px; align-items: center; padding: 6px 0; }
+.paper-guide-faq summary { display: flex; align-items: center; min-height: 36px; padding: 8px 0; }
+.paper-guide-jump a:focus-visible,.paper-guide-related-link:focus-visible,.paper-guide-faq summary:focus-visible { outline: 2px solid #1d63e9; outline-offset: 3px; border-radius: 4px; }

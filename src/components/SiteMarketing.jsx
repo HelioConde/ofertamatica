@@ -752,6 +752,51 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   )
 }
 
+
+/* Cada página SEO mostra um exemplo próprio em vez de repetir só caixas de texto.
+   Preços são explicitamente fictícios; a placa é ilustrativa e não substitui a prévia real do editor. */
+const SEO_POSTER_EXAMPLES = {
+  'placas-para-padaria': { header: 'PADARIA', product: 'PÃO FRANCÊS', unit: 'KG', price: '12,90', color: '#fff0c6' },
+  'cartazes-para-acougue': { header: 'AÇOUGUE', product: 'CONTRA FILÉ', unit: 'KG', price: '39,90', color: '#ffe8c9' },
+  'cartazes-a-partir-de-excel': { header: 'OFERTA', product: 'ARROZ TIPO 1', unit: '5 KG', price: '24,90', color: '#fff078' },
+  'cartaz-para-supermercado': { header: 'OFERTA', product: 'CAFÉ TORRADO', unit: '500 G', price: '18,90', color: '#fff078' },
+  'criador-de-cartaz-de-oferta': { header: 'OFERTA', product: 'LEITE INTEGRAL', unit: '1 L', price: '4,99', color: '#fff078' },
+  'gerador-de-cartaz-de-promocao': { header: 'PROMOÇÃO', product: 'BISCOITO', unit: 'PACOTE', price: '3,99', color: '#fff078' },
+  'cartaz-de-preco-online': { header: 'PREÇO BAIXO', product: 'MACARRÃO', unit: '500 G', price: '4,49', color: '#e9fae1', accent: '#147b46' },
+  'cartaz-de-oferta-para-imprimir': { header: 'OFERTA', product: 'AÇÚCAR', unit: '1 KG', price: '3,99', color: '#fff078' },
+  'cartaz-a4': { header: 'OFERTA A4', product: 'FEIJÃO CARIOCA', unit: '1 KG', price: '7,49', color: '#fff078' },
+  'cartaz-de-por': { header: 'OFERTA', product: 'ARROZ TIPO 1', unit: '5 KG', price: '19,90', regular: '24,90', color: '#fff078' },
+  'cartaz-atacado-varejo': { header: 'ATACADO', product: 'REFRIGERANTE', unit: '2 L', price: '7,99', regular: '8,99', wholesale: true, color: '#fff078' },
+  'como-fazer-cartaz-de-oferta': { header: 'OFERTA', product: 'MAMÃO FORMOSA', unit: 'KG', price: '4,99', color: '#fff078' },
+}
+function SeoPosterExample({ page, onCreate }) {
+  const example = SEO_POSTER_EXAMPLES[page.slug]
+  if (!example) return null
+  return (
+    <section className="marketing-section seo-poster-example" aria-label="Exemplo ilustrativo de cartaz">
+      <div className="seo-poster-example-copy">
+        <span className="marketing-kicker">VEJA UM EXEMPLO</span>
+        <h2>Assim pode ficar seu cartaz</h2>
+        <p>O exemplo abaixo usa dados fictícios para mostrar o contraste entre nome do produto, unidade e preço. Personalize seu modelo e confira as medidas no editor antes da impressão.</p>
+        {example.regular ? <p className="seo-example-tip">{example.wholesale ? 'Atacado e varejo precisam indicar claramente a quantidade mínima.' : 'O valor anterior aparece como referência, sem reduzir o destaque da oferta.'}</p> : null}
+        <button type="button" className="seo-example-create" onClick={onCreate}>Criar meu cartaz <span aria-hidden="true">→</span></button>
+      </div>
+      <div className="seo-example-frame">
+        <div className="seo-example-art" style={{ '--example-paper': example.color, '--example-accent': example.accent || '#e21d2e' }} role="img" aria-label={'Exemplo fictício: ' + example.product + ' ' + example.unit + ', R$ ' + example.price}>
+          <div className="seo-example-band">{example.header}</div>
+          <div className="seo-example-product">{example.product}</div>
+          <div className="seo-example-unit">{example.unit}</div>
+          <div className="seo-example-divider" />
+          {example.regular ? <div className="seo-example-regular">{example.wholesale ? 'VAREJO: R$ ' : 'DE R$ '}{example.regular}</div> : null}
+          <div className="seo-example-value"><span>R$</span>{example.price}</div>
+          <div className="seo-example-bottom">{example.wholesale ? 'CONSULTE A QUANTIDADE MÍNIMA' : 'EXEMPLO DEMONSTRATIVO'}</div>
+        </div>
+        <small>Preço ilustrativo, não representa oferta comercial.</small>
+      </div>
+    </section>
+  )
+}
+
 export function SeoLanding({ page, onCreate }) {
   return (
     <>
@@ -772,6 +817,8 @@ export function SeoLanding({ page, onCreate }) {
             {page.benefits.map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
           </aside>
         </section>
+
+        <SeoPosterExample page={page} onCreate={onCreate} />
 
         <SearchTopicSections slug={page.slug} />
 
