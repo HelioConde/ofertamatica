@@ -43,6 +43,7 @@ for (const [label, key] of [
 console.log('')
 console.log('### Oportunidades mobile')
 const opportunities = [
+  ['Resposta sem compactação (gzip/br)', 'uses-text-compression'],
   ['JavaScript não utilizado', 'unused-javascript'],
   ['CSS não utilizado', 'unused-css-rules'],
   ['Recursos que bloqueiam a renderização', 'render-blocking-resources'],

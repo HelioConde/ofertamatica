@@ -89,3 +89,6 @@ jobs:
 
       - name: Verify deployed SEO URLs
         run: node scripts/verify-live-seo.mjs
+
+      - name: Report live HTTP compression
+        run: node scripts/report-live-compression.mjs >> "$GITHUB_STEP_SUMMARY"
