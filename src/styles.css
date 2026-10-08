@@ -7744,3 +7744,430 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     max-height: 330px !important;
   }
 }
+
+
+/* Personalização compacta — 08/10/2026
+   Uma única rolagem, ofertas em select e previews consistentes. */
+.compact-offer-section {
+  gap: 7px;
+}
+
+.offer-mode-select-row {
+  display: grid;
+  gap: 4px;
+}
+
+.offer-mode-select-row select {
+  width: 100%;
+  height: 34px;
+  padding: 0 30px 0 9px;
+  border: 1px solid #cfdceb;
+  border-radius: 8px;
+  background: #fff;
+  color: #334762;
+  font-size: 8.5px;
+  font-weight: 850;
+}
+
+.offer-mode-select-row > small {
+  color: #8795a8;
+  font-size: 6.8px;
+  line-height: 1.25;
+}
+
+.offer-details-disclosure {
+  border-top: 1px solid #edf1f6;
+  padding-top: 6px;
+}
+
+.offer-details-disclosure > summary,
+.style-accordion > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.offer-details-disclosure > summary::-webkit-details-marker,
+.style-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+.offer-details-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 27px;
+  color: #5f7088;
+  font-size: 7.2px;
+  font-weight: 850;
+}
+
+.offer-details-disclosure > summary::after,
+.style-accordion > summary::after {
+  content: '⌄';
+  margin-left: auto;
+  color: #7e8fa6;
+  font-size: 12px;
+  line-height: 1;
+  transition: transform .15s ease;
+}
+
+.offer-details-disclosure[open] > summary::after,
+.style-accordion[open] > summary::after {
+  transform: rotate(180deg);
+}
+
+.offer-details-disclosure > summary span {
+  margin-left: 5px;
+  color: #a0abba;
+  font-size: 6.4px;
+  font-weight: 750;
+}
+
+.offer-details-compact {
+  display: grid;
+  gap: 7px;
+  padding-top: 5px;
+}
+
+.style-accordion {
+  padding: 0 2px !important;
+  gap: 0 !important;
+}
+
+.style-accordion > summary {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #5f7088;
+  font-size: 7.5px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.style-accordion > summary small {
+  color: #a0abba;
+  font-size: 6.2px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.style-accordion[open] {
+  padding-bottom: 10px !important;
+}
+
+.header-library-filter {
+  display: flex;
+  align-items: center;
+}
+
+.header-library-filter > span {
+  min-height: 25px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  border: 1px solid #91b5f2;
+  border-radius: 999px;
+  background: #edf4ff;
+  color: #1559c4;
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.header-art-grid {
+  max-height: none !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-rows: none !important;
+  grid-auto-flow: row !important;
+  grid-auto-columns: auto !important;
+  gap: 6px !important;
+  overflow: visible !important;
+  padding-right: 0 !important;
+}
+
+.header-art-grid > button {
+  width: auto !important;
+  height: auto !important;
+  min-height: 92px !important;
+  grid-template-rows: 68px auto !important;
+  gap: 4px !important;
+}
+
+.poster-option-preview {
+  position: relative;
+  width: 100%;
+  height: 68px;
+  display: block;
+  overflow: hidden;
+  border: 2px solid #e51e31;
+  border-radius: 5px;
+  background: #fff200;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.42);
+}
+
+.poster-option-preview-head {
+  position: absolute;
+  z-index: 3;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--option-header, #ed1c24);
+  color: var(--option-header-text, #fff);
+}
+
+.poster-option-preview-head b {
+  max-width: 94%;
+  overflow: hidden;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
+  font-size: 10px;
+  font-weight: 1000;
+  line-height: .85;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.poster-option-preview-head img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster-option-preview-copy {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 27px;
+  display: grid;
+  gap: 3px;
+}
+
+.poster-option-preview-copy i {
+  height: 3px;
+  border-radius: 99px;
+  background: #171717;
+}
+
+.poster-option-preview-copy i:last-child {
+  width: 68%;
+  justify-self: center;
+}
+
+.poster-option-preview > strong {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 6px;
+  color: #d91b2b;
+  font-family: "Futura Price", Impact, "Arial Black", sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  line-height: .8;
+  text-align: center;
+}
+
+.poster-option-preview > strong small {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 5px;
+  font-style: normal;
+}
+
+.poster-option-preview > em {
+  display: none;
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: -5px;
+  height: 11px;
+  background: var(--option-header, #ed1c24);
+}
+
+.poster-option-preview-imperdivel {
+  border-width: 4px 3px 3px;
+}
+
+.poster-option-preview-promocao .poster-option-preview-head,
+.poster-option-preview-chevron .poster-option-preview-head {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 21px;
+  border-radius: 0;
+  clip-path: polygon(0 0,100% 0,100% 76%,56% 76%,50% 100%,44% 76%,0 76%);
+}
+
+.poster-option-preview-oval .poster-option-preview-head {
+  left: 8px;
+  right: 8px;
+  border-radius: 999px;
+}
+
+.poster-option-preview-curva-simples .poster-option-preview-head,
+.poster-option-preview-divertido .poster-option-preview-head {
+  left: -4px;
+  right: -4px;
+  top: 0;
+  height: 22px;
+  border-radius: 0 0 50% 50% / 0 0 25% 25%;
+}
+
+.poster-option-preview-ondas .poster-option-preview-head,
+.poster-option-preview-rodape-forte .poster-option-preview-head {
+  left: -4px;
+  right: -4px;
+  top: 0;
+  height: 22px;
+  border-radius: 0 0 50% 50% / 0 0 24% 24%;
+}
+
+.poster-option-preview-ondas > em,
+.poster-option-preview-rodape-forte > em {
+  display: block;
+  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+}
+
+.poster-option-preview-rodape-forte > em {
+  height: 16px;
+}
+
+.poster-option-preview-minimal {
+  border-width: 1px;
+  border-radius: 8px;
+}
+
+.poster-option-preview-minimal .poster-option-preview-head {
+  left: 12px;
+  right: 12px;
+  height: 16px;
+  border-radius: 999px;
+}
+
+.poster-option-preview-especial::after {
+  content: 'ESPECIAL';
+  position: absolute;
+  z-index: 4;
+  top: 22px;
+  right: -12px;
+  padding: 2px 12px;
+  transform: rotate(90deg);
+  background: var(--option-header, #ed1c24);
+  color: #fff200;
+  font-size: 5px;
+  font-weight: 1000;
+}
+
+.poster-frame-style-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  grid-template-rows: none !important;
+  grid-auto-columns: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  gap: 6px !important;
+}
+
+.poster-frame-style-grid > button {
+  width: auto !important;
+  height: auto !important;
+  min-height: 104px !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 68px auto !important;
+  align-items: stretch !important;
+  gap: 5px !important;
+  padding: 5px !important;
+}
+
+.poster-frame-style-grid > button > span:last-child b {
+  font-size: 7.3px !important;
+  white-space: normal !important;
+}
+
+.poster-frame-style-grid > button > span:last-child small {
+  display: none !important;
+}
+
+.style-reset-top {
+  border: 0 !important;
+  background: transparent !important;
+  color: #77879d !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (min-width: 1001px) {
+  .style-sidebar-head {
+    padding-block: 8px !important;
+  }
+
+  .style-sidebar-scroll {
+    padding-top: 5px !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .offer-mode-select-row select {
+    height: 42px;
+    font-size: 11px;
+  }
+
+  .offer-mode-select-row > small,
+  .offer-details-disclosure > summary,
+  .style-accordion > summary {
+    font-size: 10px;
+  }
+
+  .style-accordion > summary {
+    min-height: 46px;
+  }
+
+  .header-library-filter > span {
+    min-height: 34px;
+    padding-inline: 12px;
+    font-size: 10px;
+  }
+
+  .header-art-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    grid-template-rows: none !important;
+    grid-auto-columns: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .header-art-grid > button {
+    width: auto !important;
+    height: auto !important;
+    min-height: 112px !important;
+    grid-template-rows: 82px auto !important;
+  }
+
+  .poster-option-preview {
+    height: 82px;
+  }
+
+  .poster-frame-style-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    grid-template-rows: none !important;
+    grid-auto-columns: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .poster-frame-style-grid > button {
+    width: auto !important;
+    height: auto !important;
+    min-height: 126px !important;
+    grid-template-rows: 82px auto !important;
+  }
+}
