@@ -2660,3 +2660,271 @@ summary:focus-visible {
     font-size: 12px;
   }
 }
+
+
+/* Guias para varejo: visão inicial e catálogo sem colunas vazias. */
+.seo-landing .retail-guides-section { padding: clamp(22px, 3vw, 34px); }
+.seo-landing .retail-guides-section > .marketing-heading { max-width: 900px; }
+.seo-landing .retail-guide-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0 0;
+  align-items: stretch;
+}
+.seo-landing .retail-guide-intro-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 288px;
+  padding: 22px;
+  border: 1px solid #dce6f2;
+  border-radius: 15px;
+  background: #f9fbff;
+}
+.seo-landing .retail-guide-step {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 15px;
+  border-radius: 11px;
+  background: #e8f1ff;
+  color: #1459cd;
+  font-size: 13px;
+  font-weight: 900;
+}
+.seo-landing .retail-guide-intro-card h3 {
+  margin: 0 0 10px;
+  color: #243754;
+  font-size: clamp(16px, 1.65vw, 20px);
+  line-height: 1.3;
+  letter-spacing: -.025em;
+}
+.seo-landing .retail-guide-intro-card p {
+  margin: 0 0 16px;
+  color: #5e718c;
+  font-size: 12px;
+  line-height: 1.62;
+}
+.seo-landing .retail-guide-intro-card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  width: fit-content;
+  margin-top: auto;
+  color: #195ccf;
+  font-size: 12px;
+  font-weight: 850;
+  text-decoration: none;
+}
+.seo-landing .retail-guide-intro-card > a:hover { text-decoration: underline; }
+.seo-landing .retail-guide-paper-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 96px;
+  margin: 19px 0 30px;
+  padding: 18px 21px;
+}
+.seo-landing .retail-guide-paper-icon {
+  display: grid;
+  flex: 0 0 46px;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #dceaff;
+  color: #1d63e9;
+  font-size: 25px;
+  line-height: 1;
+}
+.seo-landing .retail-guide-paper-copy { display: grid; flex: 1 1 auto; min-width: 0; gap: 4px; }
+.seo-landing .retail-guide-paper-copy > span {
+  color: #1d63e9;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .07em;
+}
+.seo-landing .retail-guide-paper-copy strong {
+  color: #233c65;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.seo-landing .retail-guide-paper-copy small { color: #647893; font-size: 12px; line-height: 1.4; }
+.seo-landing .retail-guide-paper-link > b { color: #1d63e9; font-size: 23px; }
+.seo-landing .retail-guide-catalog {
+  padding-top: 27px;
+  border-top: 1px solid #dfe7f2;
+}
+.seo-landing .retail-guide-catalog-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.seo-landing .retail-guide-catalog-heading h3 {
+  margin: 0;
+  color: #233753;
+  font-size: clamp(22px, 2.3vw, 29px);
+  line-height: 1.25;
+  letter-spacing: -.03em;
+}
+.seo-landing .retail-guide-catalog-heading p {
+  margin: 8px 0 0;
+  color: #697b94;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.seo-landing .retail-guide-search {
+  flex: 0 1 290px;
+  display: grid;
+  gap: 6px;
+  color: #405979;
+  font-size: 11px;
+  font-weight: 800;
+}
+.seo-landing .retail-guide-search input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 13px;
+  border: 1px solid #cddcf0;
+  border-radius: 10px;
+  background: #fff;
+  color: #233753;
+  font-size: 13px;
+}
+.seo-landing .retail-guide-search input:focus-visible {
+  outline: 2px solid #92b9f8;
+  outline-offset: 1px;
+}
+.seo-landing .retail-guide-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 21px 0 12px;
+}
+.seo-landing .retail-guide-categories > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid #d9e4f2;
+  border-radius: 100px;
+  background: #fff;
+  color: #536d8e;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease;
+}
+.seo-landing .retail-guide-categories > button:hover { border-color: #87b1f2; background: #f1f7ff; }
+.seo-landing .retail-guide-categories > button.active {
+  border-color: #2468e2;
+  background: #eaf3ff;
+  color: #1859c6;
+}
+.seo-landing .retail-guide-results {
+  margin: 0 0 12px;
+  color: #778ba5;
+  font-size: 11px;
+  font-weight: 700;
+}
+.seo-landing .retail-guide-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.seo-landing .retail-guide-catalog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 194px;
+  padding: 20px;
+  border: 1px solid #dce6f2;
+  border-radius: 14px;
+  background: #fbfdff;
+  text-decoration: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.seo-landing .retail-guide-catalog-card:hover {
+  border-color: #96baf0;
+  box-shadow: 0 8px 21px rgba(30, 87, 175, .08);
+  transform: translateY(-1px);
+}
+.seo-landing .retail-guide-card-category {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 100px;
+  background: #edf4ff;
+  color: #1d63e9;
+  font-size: 10px;
+  font-weight: 900;
+}
+.seo-landing .retail-guide-catalog-card h4 {
+  margin: 0;
+  color: #263a58;
+  font-size: 15px;
+  line-height: 1.3;
+  letter-spacing: -.018em;
+}
+.seo-landing .retail-guide-catalog-card p {
+  margin: 0;
+  color: #64778e;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.seo-landing .retail-guide-card-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 29px;
+  margin-top: auto;
+  color: #1b60d6;
+  font-size: 11px;
+  font-weight: 850;
+}
+.seo-landing .retail-guide-empty {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 28px;
+  border: 1px dashed #cbdcf2;
+  border-radius: 14px;
+  color: #405978;
+  text-align: center;
+}
+.seo-landing .retail-guide-empty p { margin: 0; color: #637891; font-size: 12px; }
+.seo-landing .retail-guide-empty button {
+  min-height: 38px;
+  padding: 9px 14px;
+  border: 1px solid #a7c6f4;
+  border-radius: 9px;
+  background: #f0f6ff;
+  color: #1d63e9;
+  font-weight: 800;
+  cursor: pointer;
+}
+@media (max-width: 980px) {
+  .seo-landing .retail-guide-intro-grid { grid-template-columns: 1fr; }
+  .seo-landing .retail-guide-intro-card { min-height: 0; padding: 20px; }
+  .seo-landing .retail-guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .seo-landing .retail-guide-catalog-heading { align-items: stretch; flex-direction: column; }
+  .seo-landing .retail-guide-search { flex: 0 1 auto; }
+  .seo-landing .retail-guide-card-grid { grid-template-columns: 1fr; }
+  .seo-landing .retail-guide-catalog-card { min-height: 0; padding: 19px; }
+  .seo-landing .retail-guide-paper-link { gap: 10px; min-height: 0; padding: 15px; }
+  .seo-landing .retail-guide-paper-icon { flex-basis: 38px; width: 38px; height: 38px; font-size: 20px; }
+  .seo-landing .retail-guide-paper-copy strong { font-size: 15px; }
+  .seo-landing .retail-guide-paper-copy small { font-size: 11px; }
+  .seo-landing .retail-guide-categories { gap: 6px; }
+  .seo-landing .retail-guide-categories > button { min-height: 40px; font-size: 11px; }
+}
