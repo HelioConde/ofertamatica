@@ -136,6 +136,26 @@ export const PUBLIC_PAGES = [
 export const SEO_PAGES = [
   {
     kind: 'seo',
+    group: 'Setores',
+    slug: 'cartazes-para-acougue',
+    title: 'Cartazes para Açougue | Crie Placas de Preço e Ofertas',
+    description: 'Crie cartazes de oferta para açougue com preço por kg, nome do corte e validade. Escolha A4, A5 ou A3 e imprima suas placas gratuitamente.',
+    keywords: 'cartazes para açougue, cartaz de preço carne, placa de oferta açougue',
+    eyebrow: 'CARTAZES PARA AÇOUGUE',
+    heading: 'Cartazes de ofertas para açougue com preço por quilo legível',
+    lead: 'Monte placas para cortes bovinos, suínos e aves, mantendo o nome do corte, a unidade de venda e o preço em destaque. Gere a lista de ofertas e revise cada cartaz antes de imprimir.',
+    benefits: ['Preço por kg e descrição do corte', 'Formatos para balcão e área promocional', 'Várias placas em um único trabalho'],
+    sections: [
+      { title: 'O que colocar no cartaz do açougue', text: 'Escreva o nome do corte, sua apresentação e a unidade de venda, como kg ou bandeja. Confira se o preço apresentado corresponde à unidade anunciada e indique eventuais condições comerciais aplicáveis.' },
+      { title: 'Qual tamanho usar no balcão', text: 'A5 e A4 atendem leituras próximas no balcão. A3 pode ser útil em pontos mais distantes. Escolha o formato conforme o espaço e confira a prévia antes de imprimir.' },
+      { title: 'Como criar várias ofertas de carne', text: 'Cole uma lista com um produto e seu preço por linha, gere as placas e personalize o cabeçalho ou a cor quando necessário. Confira as informações comerciais antes de expor os cartazes.' },
+    ],
+    tips: ['Informe se o preço é por kg ou por unidade.', 'Evite abreviar cortes de maneira ambígua.', 'Revise preços, validade e disponibilidade antes de imprimir.'],
+    storeUse: ['Balcão de carnes: comunicação simples e próxima.', 'Ilhas de congelados: nome e quantidade claramente identificados.', 'Campanhas de fim de semana: placas padronizadas para diferentes cortes.'],
+    links: [{ label: 'Criar cartazes agora', href: '/', note: 'Abra o gerador gratuito.' }, { label: 'Cartazes para supermercado', href: '/cartaz-para-supermercado/', note: 'Explore outras áreas da loja.' }],
+  },
+  {
+    kind: 'seo',
     group: 'Criação',
     slug: 'criador-de-cartaz-de-oferta',
     title: 'Criador de Cartaz de Oferta Grátis em 2 Cliques | Ofertamática',
