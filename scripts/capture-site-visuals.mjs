@@ -153,8 +153,17 @@ async function captureViewport(name, viewport, routes) {
       const lastCardBottom = formatCardRects.length ? Math.max(...formatCardRects.map((rect) => rect.bottom)) : null
       const adOverlapsFormats = Boolean(adRect && lastCardBottom && adRect.top < lastCardBottom - 2)
       const linksOverlapAd = Boolean(adRect && linksRect && linksRect.top < adRect.bottom - 2)
+      const appThumb = document.querySelector('.format-choice[data-format-id="A4X2_APP"] .format-thumb')
+      const appSheets = document.querySelectorAll('.format-choice[data-format-id="A4X2_APP"] .oferta-format-mini')
+      const appThumbRect = appThumb?.getBoundingClientRect()
+      const appPreviewClipped = Boolean(appThumbRect && [...appSheets].some((sheet) => {
+        const rect = sheet.getBoundingClientRect()
+        return rect.left < appThumbRect.left - 2 || rect.right > appThumbRect.right + 2 ||
+          rect.top < appThumbRect.top - 2 || rect.bottom > appThumbRect.bottom + 2
+      }))
 
       return {
+        appPreviewClipped,
         clippedFormatCards,
         formatCardsOverlap,
         adOverlapsFormats,
@@ -214,7 +223,8 @@ const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.id === 'home') {
     if (item.visibleFormatCards !== 8 || item.clippedFormatCards.length ||
-        item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd) return true
+        item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd ||
+        item.appPreviewClipped) return true
     if (item.viewport === 'desktop-760-draft' && !item.hasSavedDraft) return true
     if (item.viewport.startsWith('desktop') && item.documentHeight > item.height + 4) return true
   }
