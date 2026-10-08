@@ -30,7 +30,7 @@ for (const name of assets) {
 const quote = (value) => '"' + String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"'
 function runLftp(commands, label) {
   return new Promise((resolve, reject) => {
-    const proc = spawn('lftp', ['-f', '-'], { stdio: ['pipe', 'pipe', 'pipe'] })
+    const proc = spawn('lftp', ['-f', '/dev/stdin'], { stdio: ['pipe', 'pipe', 'pipe'] })
     let stdout = '', stderr = ''
     proc.stdout.on('data', (chunk) => { stdout += chunk.toString() })
     proc.stderr.on('data', (chunk) => { stderr += chunk.toString() })
