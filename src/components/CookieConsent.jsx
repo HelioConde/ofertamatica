@@ -11,6 +11,7 @@ export default function CookieConsent() {
   const [status, setStatus] = useState(current)
   const [ready, setReady] = useState(false)
   const [settings, setSettings] = useState(false)
+  const [minimized, setMinimized] = useState(false)
   const [draft, setDraft] = useState(empty)
   const dialogRef = useRef(null)
 
@@ -61,17 +62,26 @@ export default function CookieConsent() {
   const save = (value) => {
     window.ofertaConsent?.saveChoice(value)
     setSettings(false)
+    setMinimized(false)
     setStatus(current())
   }
   const open = () => window.dispatchEvent(new Event('oferta-open-consent'))
-  const banner = ready && !status.hasChoice && !status.cmpApplies && !settings
+  // Minimizar não registra consentimento. A escolha continua pendente
+  // e o visitante pode restaurar o aviso pelo atalho persistente.
+  const restore = () => {
+    if (!status.hasChoice && !status.cmpApplies) setMinimized(false)
+    else open()
+  }
+  const banner = ready && !minimized && !status.hasChoice && !status.cmpApplies && !settings
 
   return (
     <>
-      {!banner && !settings ? (
-        <button type="button" className="cookie-entry" onClick={open}
-          aria-label="Abrir preferências de privacidade e cookies">
-          <span aria-hidden="true">◉</span> Privacidade
+      {ready && !banner && !settings ? (
+        <button type="button" className="cookie-entry" onClick={restore}
+          aria-label={minimized && !status.hasChoice && !status.cmpApplies
+            ? 'Reabrir aviso de cookies sem registrar escolha'
+            : 'Abrir preferências de privacidade e cookies'}>
+          <span aria-hidden="true">◉</span> {minimized && !status.hasChoice && !status.cmpApplies ? 'Escolher cookies' : 'Privacidade'}
         </button>
       ) : null}
 
@@ -79,10 +89,14 @@ export default function CookieConsent() {
         <section className="cookie-banner" aria-label="Preferências de privacidade" role="region">
           <div className="cookie-banner-intro">
             <span className="cookie-symbol" aria-hidden="true">✦</span>
-            <div>
-              <h2>Privacidade e cookies</h2>
-              <p>Usamos armazenamento essencial para guardar seus cartazes. Com sua permissão, usamos dados para medir visitas e exibir anúncios. Você pode mudar sua escolha quando quiser.</p>
-              <a href="/privacidade/">Leia a Política de Privacidade</a>
+            <div className="cookie-banner-content">
+              <div className="cookie-banner-heading">
+                <h2>Privacidade e cookies</h2>
+                <button type="button" className="cookie-minimize" onClick={() => setMinimized(true)}
+                  aria-label="Minimizar aviso de cookies sem registrar uma escolha" title="Minimizar aviso">−</button>
+              </div>
+              <p>Usamos armazenamento essencial para seus cartazes. Com sua permissão, usamos dados para estatísticas e anúncios. Você pode mudar sua escolha quando quiser.</p>
+              <a href="/privacidade/">Política de Privacidade</a>
             </div>
           </div>
           <div className="cookie-banner-actions">

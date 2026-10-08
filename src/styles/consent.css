@@ -1,22 +1,32 @@
-/* Controles de privacidade: azul e laranja Ofertamática. */
+/* Consentimento compacto: aviso não bloqueia a grade de formatos. */
 .cookie-banner,.cookie-dialog,.cookie-entry{font-family:inherit;box-sizing:border-box}
 .cookie-banner *,.cookie-dialog *,.cookie-entry *{box-sizing:border-box}
-.cookie-banner{position:fixed;left:18px;right:18px;bottom:16px;z-index:9000;max-width:1180px;margin:auto;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#fff;color:#173354;border:1px solid #bad0f0;border-radius:18px;box-shadow:0 18px 64px rgb(11 30 62 / 22%)}
-.cookie-banner-intro{display:flex;align-items:flex-start;gap:14px;min-width:0}
-.cookie-symbol{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:12px;color:#fff;background:#1765ea;font-size:22px}
-.cookie-banner h2,.cookie-dialog h2{margin:0 0 6px;font-weight:850;letter-spacing:-.03em;line-height:1.17}
-.cookie-banner h2{font-size:18px}
-.cookie-banner p{max-width:610px;font-size:13px;line-height:1.55;margin:0 0 5px;color:#405774}
+.cookie-banner{
+  position:fixed;right:16px;left:auto;bottom:16px;z-index:9000;
+  width:min(456px,calc(100vw - 32px));max-width:456px;max-height:min(420px,calc(100dvh - 32px));
+  margin:0;padding:14px 16px;display:grid;gap:11px;overflow-y:auto;
+  background:#fff;color:#173354;border:1px solid #bad0f0;border-radius:16px;
+  box-shadow:0 14px 42px rgb(11 30 62 / 18%);
+}
+.cookie-banner-intro{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:start;gap:10px;min-width:0}
+.cookie-symbol{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#1765ea;color:#fff;font-size:18px}
+.cookie-banner-content{min-width:0}
+.cookie-banner-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.cookie-banner h2,.cookie-dialog h2{margin:0;font-weight:850;letter-spacing:-.03em;line-height:1.2}
+.cookie-banner h2{font-size:16px}
+.cookie-minimize{border:1px solid #c9d9ed;border-radius:8px;background:#f4f8fd;color:#315a8f;display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;font-size:22px;line-height:1;cursor:pointer}
+.cookie-minimize:hover{background:#e8f0fc}
+.cookie-banner p{font-size:12px;line-height:1.45;margin:0 0 5px;color:#405774}
 .cookie-banner a,.cookie-dialog a{color:#1558c3;text-decoration:underline;text-underline-offset:2px;font-weight:700;font-size:12px}
-.cookie-banner-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px;justify-content:flex-end;flex-shrink:0}
-.cookie-action{min-height:42px;cursor:pointer;border-radius:9px;padding:10px 13px;border:1px solid #9cb9e3;font-weight:800;font-size:13px;line-height:1.2}
+.cookie-banner-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:7px}
+.cookie-action{min-height:40px;cursor:pointer;border-radius:9px;padding:8px 9px;border:1px solid #9cb9e3;font-weight:800;font-size:12px;line-height:1.2}
 .cookie-primary{background:#1265e9;color:#fff;border-color:#1265e9}
 .cookie-primary:hover{background:#0b4fbf}
 .cookie-secondary{background:#eaf2ff;color:#174e9f}
 .cookie-secondary:hover{background:#dae9ff}
 .cookie-neutral{background:#fff;color:#1c436e}
 .cookie-neutral:hover{background:#f1f6fc}
-.cookie-entry{position:fixed;bottom:14px;left:14px;z-index:8500;border:1px solid #b7cdf0;border-radius:100px;background:#fff;color:#194c96;box-shadow:0 4px 15px rgb(17 47 94 / 14%);font-size:12px;line-height:1;font-weight:750;padding:9px 13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.cookie-entry{position:fixed;right:14px;left:auto;bottom:14px;z-index:8500;border:1px solid #b7cdf0;border-radius:100px;background:#fff;color:#194c96;box-shadow:0 4px 15px rgb(17 47 94 / 14%);font-size:12px;line-height:1;font-weight:750;padding:10px 13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
 .cookie-entry:hover{background:#eaf2ff}
 .cookie-entry span{color:#f58931;font-size:15px}
 .cookie-backdrop{position:fixed;inset:0;z-index:9300;display:grid;place-items:center;padding:14px;background:rgb(12 31 58 / 58%);overflow-y:auto}
@@ -37,7 +47,23 @@
 .cookie-dialog .cookie-retention{font-size:11px;margin:15px 0;color:#5c6e84}
 .cookie-dialog-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
 .cookie-revoke{display:block;margin-top:16px;border:0;padding:6px 0;text-decoration:underline;color:#9c3940;cursor:pointer;background:transparent;font-size:12px;font-weight:700}
-.cookie-entry:focus-visible,.cookie-action:focus-visible,.cookie-close:focus-visible,.cookie-revoke:focus-visible,.cookie-option input:focus-visible{outline:3px solid #ed903c;outline-offset:3px}
-@media(max-width:900px){.cookie-banner{flex-direction:column;align-items:stretch;gap:14px;padding:16px}.cookie-banner-actions{justify-content:stretch;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:550px){.cookie-banner{left:8px;right:8px;bottom:8px;padding:12px;border-radius:14px;gap:10px}.cookie-banner-intro{gap:9px}.cookie-symbol{display:none}.cookie-banner h2{font-size:16px}.cookie-banner p{font-size:12px}.cookie-banner-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.cookie-banner-actions .cookie-primary{grid-column:span 2}.cookie-action{font-size:12px;padding:10px 7px;min-height:40px}.cookie-dialog{padding:17px;border-radius:14px}.cookie-dialog h2{font-size:19px}.cookie-option{padding:12px}.cookie-always{max-width:80px;white-space:normal;text-align:right}}
+.cookie-entry:focus-visible,.cookie-minimize:focus-visible,.cookie-action:focus-visible,.cookie-close:focus-visible,.cookie-revoke:focus-visible,.cookie-option input:focus-visible{outline:3px solid #ed903c;outline-offset:3px}
+@media(max-width:600px){
+  .cookie-banner{right:8px;left:8px;bottom:8px;width:auto;max-width:none;max-height:min(48dvh,340px);padding:12px;gap:9px;border-radius:14px}
+  .cookie-banner-intro{grid-template-columns:minmax(0,1fr);gap:0}
+  .cookie-symbol{display:none}
+  .cookie-banner h2{font-size:15px}
+  .cookie-banner p{font-size:11.5px;line-height:1.4}
+  .cookie-banner-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .cookie-banner-actions .cookie-primary{grid-column:span 2}
+  .cookie-action{min-height:40px;padding:8px 7px;font-size:12px}
+  .cookie-entry{right:8px;bottom:8px}
+  .cookie-dialog{padding:17px;border-radius:14px}
+  .cookie-dialog h2{font-size:19px}
+  .cookie-option{padding:12px}
+  .cookie-always{max-width:80px;white-space:normal;text-align:right}
+}
+@media(max-height:550px){
+  .cookie-banner{max-height:52dvh}
+}
 @media(prefers-reduced-motion:reduce){.cookie-action{transition:none}}

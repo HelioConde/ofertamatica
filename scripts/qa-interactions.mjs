@@ -59,9 +59,26 @@ await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem es
   if (await page.locator('.format-ad-card ins.adsbygoogle').count()) throw new Error('Anúncio foi solicitado sem consentimento')
   if (requests.length) throw new Error('Houve requisição de publicidade sem autorização: ' + requests[0])
 })
+await scenario('Cookies desktop: banner compacto, minimizar e restaurar', { width: 1440, height: 900 }, async (page) => {
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.cookie-banner', 'Banner de cookies não apareceu')
+  const size = await page.locator('.cookie-banner').boundingBox()
+  if (!size || size.width > 468 || size.height > 280 || size.x < 900) {
+    throw new Error('Banner desktop ainda ocupa muito espaço: ' + JSON.stringify(size))
+  }
+  await page.getByRole('button', { name: 'Minimizar aviso de cookies sem registrar uma escolha' }).click()
+  if (await page.locator('.cookie-banner').count()) throw new Error('Banner não minimizou')
+  if (await page.evaluate(() => window.ofertaConsent.getState().hasChoice)) throw new Error('Minimizar gravou consentimento sem escolha')
+  await page.getByRole('button', { name: 'Reabrir aviso de cookies sem registrar escolha' }).click()
+  await check(page, '.cookie-banner', 'Banner não retornou após minimizar')
+  await page.getByRole('button', { name: 'Personalizar' }).click()
+  await check(page, '.cookie-dialog[aria-modal="true"]', 'Painel de preferências não abriu')
+})
 await scenario('Cookies mobile: rejeitar, reabrir e personalizar', { width: 390, height: 844 }, async (page) => {
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
   await check(page, '.cookie-banner', 'Banner de privacidade não apareceu')
+  const box = await page.locator('.cookie-banner').boundingBox()
+  if (!box || box.height > 350 || box.width > 400 || box.x < 0) throw new Error('Banner mobile desproporcional: ' + JSON.stringify(box))
   await page.getByRole('button', { name: 'Rejeitar opcionais' }).click()
   await page.waitForFunction(() => window.ofertaConsent?.getState().hasChoice === true)
   if (await page.locator('.cookie-banner').count()) throw new Error('Banner não fechou após rejeição')
