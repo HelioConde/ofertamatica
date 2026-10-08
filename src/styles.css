@@ -8483,12 +8483,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   margin: 0 !important;
   box-shadow: none !important;
 }
-.editor-mode .style-sidebar .header-art-grid .personalization-live-preview img {
-  width: revert-layer;
-  height: revert-layer;
-  object-fit: revert-layer;
-  border-radius: 0;
-  background: transparent;
+.editor-mode .style-sidebar .header-art-grid .personalization-live-preview .ofertamatica-custom-header img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 .editor-mode .style-sidebar .header-show-more {
   min-height: 34px !important;
