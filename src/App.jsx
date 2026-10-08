@@ -459,7 +459,7 @@ function clearPrintPage() {
 function Brand() {
   return (
     <a className="brand" href="/" aria-label="Ofertamática">
-      <span className="brand-mark"><i>✓</i></span>
+      <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />
       <span>Ofertamática</span>
     </a>
   )

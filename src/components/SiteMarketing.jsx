@@ -225,7 +225,10 @@ function MarketingFooter() {
   return (
     <footer className="marketing-footer">
       <div className="marketing-footer-brand">
-        <strong>Ofertamática</strong>
+        <a className="marketing-footer-identity" href="/" aria-label="Ofertamática — página inicial">
+          <img className="marketing-footer-icon" src="/icons/icon-192.png?v=20261008b" width="32" height="32" alt="" decoding="async" />
+          <strong>Ofertamática</strong>
+        </a>
         <span>Da lista de produtos às placas prontas para imprimir.</span>
       </div>
       <nav aria-label="Links institucionais">

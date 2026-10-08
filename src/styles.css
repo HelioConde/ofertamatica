@@ -52,27 +52,14 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.04em;
 }
 
-.brand-mark {
-  position: relative;
+.brand-icon {
+  display: block;
   width: 36px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px 8px 10px 10px;
-  color: #fff;
-  background: linear-gradient(145deg, #1ab86b 0 48%, #1770ec 49% 100%);
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 10px;
+  object-fit: contain;
 }
-.brand-mark::before {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 10px;
-  top: -6px;
-  border: 3px solid #9bd72c;
-  border-bottom: 0;
-  border-radius: 10px 10px 0 0;
-}
-.brand-mark i { font-style: normal; font-size: 12px; }
 
 .main-nav { display: flex; align-items: center; gap: 27px; min-width: 0; }
 .nav-link {
@@ -451,8 +438,7 @@ a { color: inherit; text-decoration: none; }
   color: #74839a;
 }
 .site-footer .brand { font-size: 14px; }
-.site-footer .brand-mark { width: 27px; height: 24px; border-radius: 6px; }
-.site-footer .brand-mark::before { width: 11px; height: 7px; top: -5px; border-width: 2px; }
+.site-footer .brand-icon { width: 28px; height: 28px; flex-basis: 28px; border-radius: 8px; }
 .site-footer p { margin: 0; font-size: 9px; }
 .site-footer nav { display: flex; gap: 16px; font-size: 9px; font-weight: 700; }
 

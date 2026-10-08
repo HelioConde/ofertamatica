@@ -980,6 +980,21 @@ summary:focus-visible {
   gap: 4px;
 }
 
+.marketing-footer-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.marketing-footer-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 9px;
+}
+
 .marketing-footer-brand strong {
   color: #26344f;
   font-size: 15px;
