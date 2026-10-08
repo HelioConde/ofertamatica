@@ -2988,3 +2988,22 @@ summary:focus-visible {
   .model-gallery-detailed .model-showcase-card p { display: block; font-size: 11px !important; line-height: 1.4; -webkit-line-clamp: unset; }
   .model-gallery-detailed .model-card-copy button { min-height: 44px !important; font-size: 11px !important; }
 }
+
+/* As duas visualizações mobile precisam ser realmente distintas. */
+@media (max-width: 600px) {
+  .seo-landing .model-showcase-grid.model-gallery-compact { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  .model-gallery-compact .model-showcase-card-real {
+    display: grid; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: auto 1fr;
+    gap: 8px; padding: 8px; align-items: stretch; background: #f5f8fb;
+  }
+  .model-gallery-compact .model-real-poster-shell { width: min(100%, 112px) !important; height: 158px !important; margin-inline: auto; }
+  .model-gallery-compact .model-real-poster-scale { transform: scale(.14) !important; }
+  .model-gallery-compact .model-card-copy { border-left: 0 !important; border-top: 1px solid #dfe7f0; margin: 0; height: auto; padding: 8px 1px !important; align-content: start; gap: 5px; }
+  .model-gallery-compact .model-card-copy > strong { font-size: 12px !important; }
+  .model-gallery-compact .model-card-copy p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 10px !important; }
+  .model-gallery-compact .model-card-copy button { min-height: 40px !important; font-size: 10px !important; }
+  .seo-landing .model-showcase-grid.model-gallery-detailed { grid-template-columns: minmax(0, 1fr) !important; }
+  .model-gallery-detailed .model-showcase-card-real { grid-template-columns: minmax(136px, .9fr) minmax(0, 1fr) !important; }
+  .model-gallery-detailed .model-real-poster-shell { width: 136px !important; height: 192px !important; }
+  .model-gallery-detailed .model-real-poster-scale { transform: scale(.171) !important; }
+}

@@ -417,7 +417,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
-  const [modelView, setModelView] = useState('grade')
+  const [modelView, setModelView] = useState('detalhes')
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
   const isModels = page.slug === 'modelos'
@@ -522,7 +522,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <button type="button" aria-pressed={modelView === 'grade'} onClick={() => setModelView('grade')}>Grade compacta</button>
                 <button type="button" aria-pressed={modelView === 'detalhes'} onClick={() => setModelView('detalhes')}>Prévia maior</button>
               </div>
-              <div className={'model-showcase-grid' + (modelView === 'detalhes' ? ' model-gallery-detailed' : '')}>
+              <div className={'model-showcase-grid ' + (modelView === 'detalhes' ? 'model-gallery-detailed' : 'model-gallery-compact')}>
                 {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
               </div>
               {visibleModels.length < filteredModels.length ? (
