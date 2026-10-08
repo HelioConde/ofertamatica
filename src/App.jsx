@@ -95,6 +95,9 @@ const STORE_LOGO_KEY = 'ofertamatica:store-logo:v1'
 const CUSTOM_HEADER_KEY = 'ofertamatica:custom-header:v1'
 const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
 const RETIRED_CONTENT_REDIRECTS = {
+  '/cartaz-de-supermercado': '/cartaz-para-supermercado/',
+  '/cartaz-para-imprimir': '/cartaz-de-oferta-para-imprimir/',
+  '/gerador-de-placas-com-ia': '/criador-de-cartaz-de-oferta/',
   '/cartaz-de-oferta-gratis': '/criador-de-cartaz-de-oferta/',
   '/cartaz-supermercado-online': '/cartaz-para-supermercado/',
   '/placa-de-preco-supermercado': '/cartaz-de-preco-online/',
