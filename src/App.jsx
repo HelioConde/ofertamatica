@@ -2278,6 +2278,48 @@ function Editor({
 }
 
 // PRODUCT_RULE_ROOT_IS_CREATOR: a rota / abre diretamente o criador; não inserir landing intermediária.
+// O carregamento das páginas públicas mantém a mesma composição do destino.
+ // Evita exibir título solto sobre uma tela vazia enquanto o bundle da galeria chega.
+function PublicRouteFallback({ page }) {
+  const institutional = Boolean(page.legal || page.trust)
+  const isModels = page.slug === 'modelos'
+
+  return (
+    <main className="public-route-loading" aria-busy="true" aria-label="Carregando página">
+      <section className="public-route-loading-hero">
+        <div>
+          <a className="public-route-loading-breadcrumb" href="/">Ofertamática <span aria-hidden="true">›</span> {page.eyebrow}</a>
+          <span className="public-route-loading-kicker">{page.eyebrow}</span>
+          <h1>{page.heading}</h1>
+          <p>{page.lead}</p>
+          {!institutional ? <span className="public-route-loading-cta" aria-hidden="true" /> : null}
+        </div>
+        {!institutional ? (
+          <aside className="public-route-loading-benefits" aria-hidden="true">
+            <span>OFERTAMÁTICA</span>
+            {(page.benefits || []).map((benefit) => <strong key={benefit}>✓ {benefit}</strong>)}
+          </aside>
+        ) : null}
+      </section>
+      {!institutional ? (
+        <section className="public-route-loading-content" aria-label="Preparando conteúdo">
+          <span className="public-route-loading-line" />
+          <span className="public-route-loading-line short" />
+          <div className="public-route-loading-cards" aria-hidden="true">
+            {Array.from({ length: isModels ? 3 : 2 }, (_, index) => (
+              <div className="public-route-loading-card" key={index}>
+                <span className="public-route-loading-poster" />
+                <span className="public-route-loading-line" />
+                <span className="public-route-loading-line short" />
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
+    </main>
+  )
+}
+
 function CreatorApp() {
   const [routePath, setRoutePath] = useState(() => window.location.pathname || '/')
   const savedDraft = useMemo(() => loadDraft(), [])
@@ -2432,11 +2474,11 @@ function CreatorApp() {
           </Suspense>
         </>
       ) : seoPage ? (
-        <Suspense fallback={<main className="seo-landing"><h1>{seoPage.heading}</h1><p>{seoPage.lead}</p></main>}>
+        <Suspense fallback={<PublicRouteFallback page={seoPage} />}>
           <SeoLanding page={seoPage} onCreate={showFormats} />
         </Suspense>
       ) : publicPage ? (
-        <Suspense fallback={<main className="seo-landing"><h1>{publicPage.heading}</h1><p>{publicPage.lead}</p></main>}>
+        <Suspense fallback={<PublicRouteFallback page={publicPage} />}>
           <PublicPage page={publicPage} onCreate={showFormats} onChooseFormat={choosePublicFormat} />
         </Suspense>
       ) : (
