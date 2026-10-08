@@ -9502,3 +9502,55 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     min-height: 43px;
   }
 }
+
+
+/* Arte aplicada + feedback de processamento para imagens enviadas pelo usuário. */
+.editor-mode .personalization-current-art {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 27px;
+  margin-top: 1px;
+  padding: 4px 8px;
+  border: 1px solid #dbe8f8;
+  border-radius: 7px;
+  background: #f4f8ff;
+}
+.editor-mode .personalization-current-art > span {
+  flex: 0 0 auto;
+  color: #6680a1;
+  font-size: 9px;
+  font-weight: 750;
+}
+.editor-mode .personalization-current-art > strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #225ba8;
+  font-size: 10px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.editor-mode .custom-header-upload[aria-busy="true"],
+.editor-mode .store-logo-upload[aria-busy="true"] {
+  cursor: progress;
+  opacity: .78;
+}
+.editor-mode .custom-header-upload small,
+.editor-mode .store-logo-upload small {
+  line-height: 1.35;
+  white-space: normal;
+}
+.editor-mode .personalization-library-extra .store-logo-error {
+  margin: 6px 8px 2px;
+  color: #ae2b2b;
+  font-size: 10px;
+  line-height: 1.4;
+}
+@media (max-width: 820px) {
+  .editor-mode .personalization-current-art {
+    min-height: 33px;
+  }
+  .editor-mode .personalization-current-art > span,
+  .editor-mode .personalization-current-art > strong { font-size: 11px; }
+}
