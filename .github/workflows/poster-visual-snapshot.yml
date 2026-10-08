@@ -24,6 +24,7 @@ on:
       - 'src/assets/fonts/**'
       - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/capture-site-visuals.mjs'
+      - 'scripts/qa-interactions.mjs'
       - 'scripts/capture-mobile-editor.mjs'
       - 'scripts/capture-desktop-editor.mjs'
       - '.github/workflows/poster-visual-snapshot.yml'
@@ -83,6 +84,11 @@ jobs:
           done
           cat /tmp/ofertamatica-poster-preview.log
           exit 1
+
+      - name: Verify key user journeys
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-interactions.mjs
 
       - name: Capture poster screenshots
         env:
