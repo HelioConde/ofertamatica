@@ -23,8 +23,8 @@ const ADSENSE_SLOTS = {
 }
 
 const CREATOR_META = {
-  title: 'Criar Cartaz de Oferta Grátis para Imprimir | Ofertamática',
-  description: 'Crie placas de oferta em 2 cliques: escolha o formato, cole sua lista e gere. Grátis, sem cadastro e com personalização opcional para supermercado e varejo.',
+  title: 'Placas para Mercado Online Grátis | Ofertamática',
+  description: 'Crie placas para mercado online e cartazes de oferta para supermercado grátis. Importe produtos, escolha A4, A5 ou A3, personalize e imprima sem cadastro.',
   path: '/',
 }
 
