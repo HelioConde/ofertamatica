@@ -64,6 +64,12 @@ for (const formatId of formats) {
     const style = document.querySelector('.style-sidebar')
     const poster = document.querySelector('.real-poster-stage')
     const firstRow = document.querySelector('.product-row:not(.product-head)')
+    const rowInputs = [...(firstRow?.querySelectorAll('input') || [])]
+    const rowBounds = firstRow?.getBoundingClientRect()
+    const clippedInputs = rowInputs.some((input) => {
+      const bounds = input.getBoundingClientRect()
+      return !rowBounds || bounds.width < 40 || bounds.left < rowBounds.left - 2 || bounds.right > rowBounds.right + 2
+    })
 
     const rect = (element) => {
       if (!element) return null
@@ -96,6 +102,8 @@ for (const formatId of formats) {
       style: rect(style),
       poster: rect(poster),
       firstRow: rect(firstRow),
+      clippedInputs,
+      rowInputCount: rowInputs.length,
     }
   })
 
@@ -119,8 +127,10 @@ const failures = results.filter((item) => (
   !item.preview ||
   !item.style ||
   !item.poster ||
-  item.preview.width < 220 ||
-  item.style.width < 200 ||
+  item.preview.width < 340 ||
+  item.style.width < 240 ||
+  item.clippedInputs ||
+  item.rowInputCount < 5 ||
   item.poster.width < 180 ||
   item.layout.right > item.width + 1
 ))
