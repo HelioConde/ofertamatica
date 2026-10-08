@@ -19,7 +19,7 @@ if (!originalHtml.includes(consentTag)) {
 // Evita requisição de JS síncrono antes do primeiro paint. A ordem de execução
 // é preservada: consentimento negado por padrão ANTES das tags do Google.
 // Mantém o arquivo externo no dist para abas antigas com HTML em cache.
-const safeInlineBootstrap = bootstrapCode.replace(/<\\/script/gi, '<\\\\/script')
+const safeInlineBootstrap = bootstrapCode.split('</script').join('<' + String.fromCharCode(92) + '/script')
 const baseHtml = originalHtml.replace(
   consentTag,
   '<script data-ofertamatica-consent-bootstrap="inline">' + safeInlineBootstrap + '</script>',
