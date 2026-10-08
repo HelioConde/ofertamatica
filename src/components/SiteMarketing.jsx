@@ -415,6 +415,8 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelQuery, setModelQuery] = useState('')
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
+  const [guideCategory, setGuideCategory] = useState('Todos')
+  const [guideQuery, setGuideQuery] = useState('')
   const isModels = page.slug === 'modelos'
   const isFormats = page.slug === 'formatos'
   const isPaperGuide = page.slug === 'qual-papel-usar-para-cartaz'
@@ -427,6 +429,16 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
     ;(acc[item.group] ||= []).push(item)
     return acc
   }, {})
+  const guideCategoryNames = Object.keys(guideGroups)
+  const normalizedGuideQuery = guideQuery.trim().toLocaleLowerCase('pt-BR')
+  const visibleGuides = SEO_PAGES.filter((item) => {
+    if (guideCategory !== 'Todos' && item.group !== guideCategory) return false
+    if (!normalizedGuideQuery) return true
+    return [item.heading, item.eyebrow, item.group, item.description, item.lead]
+      .join(' ')
+      .toLocaleLowerCase('pt-BR')
+      .includes(normalizedGuideQuery)
+  })
   const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
   const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
   const filteredModels = MODEL_PRESETS.filter((item) => {
@@ -594,45 +606,94 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
         ) : null}
 
         {isGuides ? (
-          <section className="marketing-section">
+          <section className="marketing-section retail-guides-section">
             <div className="marketing-heading">
-              <span className="marketing-kicker">CONTEÚDO ORGANIZADO</span>
+              <span className="marketing-kicker">COMECE POR AQUI</span>
               <h2>Encontre o guia pela sua necessidade</h2>
-              <p>Os guias abaixo têm objetivos diferentes para evitar páginas repetitivas e facilitar a navegação interna.</p>
+              <p>Da preparação dos produtos à impressão, escolha o assunto que ajuda sua loja agora.</p>
             </div>
+
             {page.sections?.length ? (
-              <div className="guide-groups" aria-label="Introdução aos guias de varejo">
-                <section>
-                  <h3>Antes de criar os cartazes</h3>
-                  {page.sections.map((section) => (
-                    <article key={section.title}>
-                      <h4>{section.title}</h4>
+              <div className="retail-guide-intro-grid" aria-label="Orientações essenciais">
+                {page.sections.map((section, index) => {
+                  const links = [
+                    { href: '/criador-de-cartaz-de-oferta/', label: 'Começar a criar placas' },
+                    { href: '/modelos/', label: 'Explorar modelos' },
+                    { href: '/qual-papel-usar-para-cartaz/', label: 'Ver papel e impressão' },
+                  ]
+                  const link = links[index]
+                  return (
+                    <article className="retail-guide-intro-card" key={section.title}>
+                      <span className="retail-guide-step" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                      <h3>{section.title}</h3>
                       <p>{section.text}</p>
+                      {link ? <a href={link.href}>{link.label} <span aria-hidden="true">→</span></a> : null}
                     </article>
-                  ))}
-                </section>
+                  )
+                })}
               </div>
             ) : null}
-            <a className="paper-guide-featured" href="/qual-papel-usar-para-cartaz/">
-              <span>GUIA DE IMPRESSÃO</span>
-              <strong>Qual papel usar para cartazes de oferta?</strong>
-              <small>Entenda gramatura, folha A4/A5/A3, corte e escala de impressão →</small>
+
+            <a className="paper-guide-featured retail-guide-paper-link" href="/qual-papel-usar-para-cartaz/">
+              <span className="retail-guide-paper-icon" aria-hidden="true">▤</span>
+              <span className="retail-guide-paper-copy">
+                <span>GUIA DE IMPRESSÃO</span>
+                <strong>Qual papel usar para cartazes de oferta?</strong>
+                <small>Compare A4, A5 e A3, gramaturas, margens e escala de impressão</small>
+              </span>
+              <b aria-hidden="true">→</b>
             </a>
-            <div className="guide-groups">
-              {Object.entries(guideGroups).map(([group, items]) => (
-                <section key={group}>
-                  <h3>{group}</h3>
-                  <div>
-                    {items.map((item) => (
-                      <a href={'/' + item.slug + '/'} key={item.slug}>
-                        <span>{item.eyebrow}</span>
-                        <strong>{item.heading}</strong>
-                        <small>Abrir guia →</small>
-                      </a>
-                    ))}
-                  </div>
-                </section>
-              ))}
+
+            <div className="retail-guide-catalog" aria-label="Catálogo de guias para varejo">
+              <div className="retail-guide-catalog-heading">
+                <div>
+                  <span className="marketing-kicker">EXPLORE OS ASSUNTOS</span>
+                  <h3>Guias para cada etapa da sua loja</h3>
+                  <p>Filtre por departamento ou busque um tema específico.</p>
+                </div>
+                <label className="retail-guide-search">
+                  <span>Buscar guia</span>
+                  <input
+                    type="search"
+                    placeholder="Ex.: açougue, A4, preço..."
+                    value={guideQuery}
+                    onChange={(event) => setGuideQuery(event.target.value)}
+                  />
+                </label>
+              </div>
+              <div className="retail-guide-categories" aria-label="Filtrar guias por assunto">
+                {['Todos', ...guideCategoryNames].map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    className={guideCategory === category ? 'active' : ''}
+                    aria-pressed={guideCategory === category}
+                    onClick={() => setGuideCategory(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+              <div className="retail-guide-results" aria-live="polite">
+                {visibleGuides.length} de {SEO_PAGES.length} guias
+              </div>
+              <div className="retail-guide-card-grid">
+                {visibleGuides.map((item) => (
+                  <a className="retail-guide-catalog-card" href={'/' + item.slug + '/'} key={item.slug}>
+                    <span className="retail-guide-card-category">{item.group}</span>
+                    <h4>{item.heading}</h4>
+                    <p>{item.description}</p>
+                    <span className="retail-guide-card-link">Abrir guia <span aria-hidden="true">→</span></span>
+                  </a>
+                ))}
+              </div>
+              {!visibleGuides.length ? (
+                <div className="retail-guide-empty">
+                  <strong>Nenhum guia encontrado.</strong>
+                  <p>Tente outro tema ou veja todos os guias disponíveis.</p>
+                  <button type="button" onClick={() => { setGuideQuery(''); setGuideCategory('Todos') }}>Mostrar todos os guias</button>
+                </div>
+              ) : null}
             </div>
           </section>
         ) : null}
