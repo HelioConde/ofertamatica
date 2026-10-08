@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T14:54:48.147Z",
-  "commit": "56d4cf2b6ad902d31cda7ca4f4db60ff26127933",
+  "generatedAt": "2026-10-08T15:51:59.619Z",
+  "commit": "2ff68f228b6a386ced3fee466f1f71cf17dc397d",
   "results": [
     {
       "formatId": "A4X8",
@@ -45,20 +45,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A4X4",
@@ -103,20 +106,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A4X2_CIMA_BAIXO",
@@ -161,20 +167,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A4X2_INVERTIDO",
@@ -219,20 +228,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A4X2_APP",
@@ -277,20 +289,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 356.4,
+        "top": 348.4,
         "width": 320,
         "height": 226.3,
         "right": 1073,
-        "bottom": 582.6
+        "bottom": 574.6
       },
       "firstRow": {
         "left": 81,
-        "top": 444,
-        "width": 920,
-        "height": 74,
-        "right": 1001,
-        "bottom": 518
-      }
+        "top": 445.2,
+        "width": 640,
+        "height": 113.2,
+        "right": 721,
+        "bottom": 558.4
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 7
     },
     {
       "formatId": "A4",
@@ -335,20 +350,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A5",
@@ -393,20 +411,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 242.5,
+        "top": 234.5,
         "width": 320,
         "height": 454,
         "right": 1073,
-        "bottom": 696.5
+        "bottom": 688.5
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     },
     {
       "formatId": "A3",
@@ -451,20 +472,23 @@
       },
       "poster": {
         "left": 753,
-        "top": 243.2,
+        "top": 235.2,
         "width": 320,
         "height": 452.5,
         "right": 1073,
-        "bottom": 695.8
+        "bottom": 687.8
       },
       "firstRow": {
         "left": 81,
-        "top": 429.4,
+        "top": 473.2,
         "width": 640,
-        "height": 43,
+        "height": 55,
         "right": 721,
-        "bottom": 472.4
-      }
+        "bottom": 528.2
+      },
+      "clippedInputs": false,
+      "hasReadableShortList": true,
+      "rowInputCount": 5
     }
   ],
   "failures": []
