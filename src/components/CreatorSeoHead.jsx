@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 const SITE_URL = 'https://ofertamatica.com.br'
 const TITLE = 'Placas para Mercado Online Grátis | Ofertamática'
-const DESCRIPTION = 'Crie placas para mercado online e cartazes de oferta para supermercado grátis. Importe produtos, escolha A4, A5 ou A3, personalize e imprima sem cadastro.'
+const DESCRIPTION = 'Crie cartazes de oferta e placas de preço para mercado grátis. Escolha entre 8 formatos A4, A5 e A3, adicione produtos e imprima em PDF sem cadastro.'
 
 function upsertMeta(selector, attr, value, content) {
   let node = document.querySelector(selector)
@@ -59,6 +59,14 @@ export default function CreatorSeoHead() {
         logo: SITE_URL + '/icons/icon-192.png',
       },
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
+      featureList: [
+        '8 formatos de placas A4, A5 e A3',
+        'Até 8 cartazes por folha A4',
+        'Entrada de produtos por lista ou arquivo',
+        'Personalização de cartazes de oferta',
+        'Impressão em tamanho físico e exportação PDF',
+        'Grátis e sem cadastro obrigatório',
+      ],
     })
     document.head.appendChild(schema)
     return () => schema.remove()
