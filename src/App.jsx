@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './components/posters/PosterSheet'
-import PosterVisualQaPage from './pages/PosterVisualQaPage'
+const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 import { AdUnit } from './components/AdUnit'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
@@ -2460,7 +2460,11 @@ function CreatorApp() {
 
 function App() {
   if ((window.location.pathname || '/') === '/visual-qa/cartazes') {
-    return <PosterVisualQaPage />
+    return (
+      <Suspense fallback={<main style={{ padding: 24 }}><h1>Carregando testes visuais...</h1></main>}>
+        <PosterVisualQaPage />
+      </Suspense>
+    )
   }
   return <CreatorApp />
 }
