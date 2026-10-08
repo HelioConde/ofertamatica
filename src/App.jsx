@@ -772,20 +772,26 @@ function StyleSidebar({
   storeLogo = '', onStoreLogoChange, customHeader = '', onCustomHeaderChange,
 }) {
   const [headerSearch, setHeaderSearch] = useState('')
+  const [activePanel, setActivePanel] = useState('art')
+  const sidebarScrollRef = useRef(null)
+  function changePanel(nextPanel) {
+    setActivePanel(nextPanel)
+    sidebarScrollRef.current?.scrollTo({ top: 0 })
+  }
   const [offerDetailsOpen, setOfferDetailsOpen] = useState(() => Boolean(style.validityText || style.limitText || style.offerMode === 'near-expiry'))
   const [logoError, setLogoError] = useState('')
   const [customHeaderError, setCustomHeaderError] = useState('')
   const logoInputRef = useRef(null)
   const customHeaderInputRef = useRef(null)
   const [headerLimit, setHeaderLimit] = useState(4)
-  const [frameLimit, setFrameLimit] = useState(4)
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
   const filteredHeaders = normalizedSearch
-    ? HEADER_OPTIONS.filter((item) => item.label.toLocaleLowerCase('pt-BR').includes(normalizedSearch))
-    : HEADER_OPTIONS
+    ? ALL_ART_OPTIONS.filter((item) =>
+        [item.label, item.kind, item.name, item.note, item.model?.category, item.model?.label]
+          .filter(Boolean).join(' ').toLocaleLowerCase('pt-BR').includes(normalizedSearch))
+    : ALL_ART_OPTIONS
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
-  const visibleFrameModels = HEADER_FOOTER_MODELS.slice(0, frameLimit)
   const selectedOfferMode = OFFER_MODES.find((mode) => mode.id === (style.offerMode || 'standard')) || OFFER_MODES[0]
   const recentHeaders = recentHeaderIds
     .map((id) => HEADER_IMAGES.find((item) => item.id === id))
@@ -793,7 +799,20 @@ function StyleSidebar({
 
   function chooseHeader(id) {
     onCustomHeaderChange?.('')
-    const option = HEADER_OPTIONS.find((item) => item.id === id)
+    const option = ALL_ART_OPTIONS.find((item) => item.id === id)
+
+    if (option?.kind === 'frame') {
+      onChange({
+        ...style,
+        headerFooterStyle: option.frameId,
+        headerImage: '',
+        headerStyle: 'retail',
+        headerText: option.frameId === 'promocao' ? 'PROMOÇÃO' : 'OFERTA',
+        headerTextColor: resolveReadableHeaderTextColor(style.headerColor, option.headerTextColor || '#ffffff'),
+      })
+      trackProductEvent('ofertamatica_header_footer_model_selected', { model_id: option.frameId })
+      return
+    }
 
     if (option?.kind === 'model') {
       const model = option.model
@@ -909,11 +928,30 @@ function StyleSidebar({
         <div>
           <span className="section-label">PERSONALIZAÇÃO</span>
           <h2>Estilo da placa</h2>
+          <small className="personalization-autosave">✓ Salvo automaticamente</small>
         </div>
-        <button type="button" className="style-reset-top" onClick={onReset}>Restaurar</button>
+        <button type="button" className="style-reset-top" onClick={onReset} title="Restaurar estilo padrão">Restaurar</button>
       </header>
 
-      <div className="style-sidebar-scroll">
+      <nav className="personalization-tabs" aria-label="Áreas de personalização">
+        {[
+          ['art', 'Artes'],
+          ['offer', 'Oferta'],
+          ['settings', 'Ajustes'],
+        ].map(([tabId, title]) => (
+          <button
+            type="button"
+            key={tabId}
+            className={activePanel === tabId ? 'active' : ''}
+            data-style-tab={tabId}
+            aria-current={activePanel === tabId ? 'page' : undefined}
+            onClick={() => changePanel(tabId)}
+          >{title}</button>
+        ))}
+      </nav>
+
+      <div className="style-sidebar-scroll" ref={sidebarScrollRef}>
+        <div className="personalization-panel" hidden={activePanel !== 'offer'}>
         {!isAppFormat ? (
           <section className="style-section offer-mode-section compact-offer-section">
             <div className="style-section-title-row">
@@ -968,9 +1006,12 @@ function StyleSidebar({
               </div>
             </details>
           </section>
-        ) : null}
+        ) : (
+          <p className="personalization-context-note">O formato de ofertas para App tem configurações próprias. Personalize a arte e os ajustes nas outras abas.</p>
+        )}
+        </div>
 
-
+        <div className="personalization-panel" hidden={activePanel !== 'settings'}>
         <details className="style-section style-accordion">
           <summary>Cores</summary>
           <div className="style-color-list">
@@ -1067,13 +1108,29 @@ function StyleSidebar({
           {logoError ? <p className="store-logo-error" role="alert">{logoError}</p> : null}
         </details>
 
+        </div>
+        <div className="personalization-panel" hidden={activePanel !== 'art'}>
         <section className="style-section header-library-section">
           <div className="style-section-title-row">
-            <strong>Arte do cabeçalho</strong>
-            <small>{HEADER_OPTIONS.length} opções + sua arte</small>
+            <strong>Artes e molduras</strong>
+            <small>{ALL_ART_OPTIONS.length} opções</small>
           </div>
-          <div className="header-library-filter" aria-label="Filtro de artes">
-            <span className="active">Todos</span>
+
+                    <label className="header-search">
+            <span>Buscar arte</span>
+            <input
+              type="search"
+              value={headerSearch}
+              onChange={(event) => {
+                setHeaderSearch(event.target.value)
+                setHeaderLimit(4)
+              }}
+              placeholder="Ex.: padaria, açougue..."
+            />
+          </label>
+          <div className="personalization-gallery-meta">
+            <span>Todos · {filteredHeaders.length} opções</span>
+            <a href="/modelos/">Galeria de modelos →</a>
           </div>
 
           <input
@@ -1102,7 +1159,9 @@ function StyleSidebar({
             </div>
           ) : null}
 
-          <button type="button" className="custom-header-upload" onClick={() => customHeaderInputRef.current?.click()}>
+          <details className="personalization-library-extra">
+            <summary>+ {customHeader ? 'Trocar arte personalizada' : 'Adicionar arte própria'}</summary>
+                      <button type="button" className="custom-header-upload" onClick={() => customHeaderInputRef.current?.click()}>
             <span>＋</span>
             <div>
               <b>{customHeader ? 'Trocar arte personalizada' : 'Usar minha própria arte'}</b>
@@ -1110,10 +1169,11 @@ function StyleSidebar({
             </div>
           </button>
           {customHeaderError ? <p className="store-logo-error" role="alert">{customHeaderError}</p> : null}
+          </details>
 
           {recentHeaders.length ? (
-            <div className="recent-headers">
-              <span>Usados recentemente</span>
+            <details className="recent-headers personalization-library-extra">
+              <summary>Usados recentemente ({recentHeaders.length})</summary>
               <div>
                 {recentHeaders.map((item) => (
                   <button
@@ -1131,24 +1191,16 @@ function StyleSidebar({
             </div>
           ) : null}
 
-          <label className="header-search">
-            <span>Buscar arte</span>
-            <input
-              type="search"
-              value={headerSearch}
-              onChange={(event) => {
-                setHeaderSearch(event.target.value)
-                setHeaderLimit(4)
-              }}
-              placeholder="Ex.: padaria, açougue..."
-            />
-          </label>
+
 
           <div className="header-art-grid">
             {visibleHeaders.map((item) => {
               const isModel = item.kind === 'model'
               const isPreset = item.kind === 'preset'
-              const isActive = isModel
+              const isFrame = item.kind === 'frame'
+              const isActive = isFrame
+                ? (!style.headerImage && !customHeader && style.headerFooterStyle === item.frameId)
+                : isModel
                 ? (
                     !style.headerImage
                     && !customHeader
@@ -1166,76 +1218,40 @@ function StyleSidebar({
                   className={isActive ? 'active' : ''}
                   data-model-art={isModel ? item.model.id : undefined}
                   onClick={() => chooseHeader(item.id)}
-                  title={isModel ? `${item.label} — modelo completo` : (isPreset ? `${item.text} — cabeçalho pronto` : item.label)}
+                  title={isModel ? `${item.label} — modelo completo` : (isFrame ? `${item.label} — moldura` : item.label)}
+                  aria-pressed={isActive}
                 >
                   <PosterOptionPreview
-                    frame={isModel
-                      ? (item.model.headerFooterStyle || 'moldura')
-                      : (isPreset ? (item.headerFooterStyle || 'moldura') : 'moldura')}
-                    headerText={isModel ? item.model.label : (isPreset ? item.text : 'OFERTA')}
-                    headerColor={isModel ? item.model.header : (isPreset ? item.headerColor : '#ed1c24')}
-                    headerTextColor={isModel ? item.model.headerText : (isPreset ? item.headerTextColor : '#ffffff')}
-                    imageUrl={isModel || isPreset ? '' : item.url}
+                    frame={isModel ? (item.model.headerFooterStyle || 'moldura')
+                      : (isFrame ? item.frameId : (isPreset ? (item.headerFooterStyle || 'moldura') : (style.headerFooterStyle || 'moldura')))}
+                    headerText={isModel ? item.model.label : (isPreset ? item.text : (isFrame && item.frameId === 'promocao' ? 'PROMOÇÃO' : (style.headerText || 'OFERTA')))}
+                    headerColor={isModel ? item.model.header : (isPreset ? item.headerColor : style.headerColor)}
+                    headerTextColor={isModel ? item.model.headerText : (isPreset ? item.headerTextColor : (isFrame ? item.headerTextColor : style.headerTextColor))}
+                    backgroundColor={isModel ? item.model.background : style.backgroundColor}
+                    textColor={isModel ? item.model.text : style.textColor}
+                    priceColor={isModel ? item.model.price : style.priceColor}
+                    offerMode={isModel ? item.model.offerMode : style.offerMode}
+                    sampleProduct={isModel ? item.model.product : 'CAFÉ 500g'}
+                    samplePrice={isModel ? item.model.value : '9,99'}
+                    imageUrl={item.kind === 'image' ? item.url : ''}
                   />
-                  <span>{isModel ? `Modelo · ${item.label}` : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label)}</span>
+                  <span>{isModel ? item.label : (isFrame ? item.name : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label))}</span>
                 </button>
               )
             })}
           </div>
 
-          {!filteredHeaders.length ? <p className="header-empty">Nenhum header encontrado.</p> : null}
+          {!filteredHeaders.length ? <p className="header-empty">Nenhuma arte encontrada.</p> : null}
           {filteredHeaders.length > visibleHeaders.length ? (
             <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
-              Mostrar mais headers ({filteredHeaders.length - visibleHeaders.length})
+              Mostrar mais opções ({filteredHeaders.length - visibleHeaders.length})
             </button>
           ) : null}
         </section>
 
-        <section className="style-section poster-frame-style-section">
-          <div className="style-section-title-row">
-            <strong>Header e rodapé</strong>
-            <small>Inspirados nos modelos de cartaz</small>
-          </div>
-          <div className="poster-frame-style-grid">
-            {visibleFrameModels.map((model) => (
-              <button
-                type="button"
-                key={model.id}
-                className={style.headerFooterStyle === model.id ? 'active' : ''}
-                onClick={() => {
-                  onCustomHeaderChange?.('')
-                  onChange({
-                    ...style,
-                    headerFooterStyle: model.id,
-                    headerImage: '',
-                    headerStyle: 'retail',
-                    headerText: model.id === 'promocao' ? 'PROMOÇÃO' : 'OFERTA',
-                    headerTextColor: model.headerTextColor || '#ffffff',
-                  })
-                  trackProductEvent('ofertamatica_header_footer_model_selected', { model_id: model.id })
-                }}
-                title={model.note}
-              >
-                <PosterOptionPreview
-                  frame={model.preview}
-                  headerText={model.id === 'promocao' ? 'PROMOÇÃO' : 'OFERTA'}
-                  headerColor={style.headerColor || '#ed1c24'}
-                  headerTextColor={model.headerTextColor || '#ffffff'}
-                />
-                <span>
-                  <b>{model.name}</b>
-                  <small>{model.note}</small>
-                </span>
-              </button>
-            ))}
-          </div>
-          {HEADER_FOOTER_MODELS.length > visibleFrameModels.length ? (
-            <button type="button" className="header-show-more" onClick={() => setFrameLimit((value) => value + 4)}>
-              Mostrar mais modelos ({HEADER_FOOTER_MODELS.length - visibleFrameModels.length})
-            </button>
-          ) : null}
-        </section>
+        </div>
 
+        <div className="personalization-panel" hidden={activePanel !== 'settings'}>
         <details className="style-section style-accordion">
           <summary>Ajustes do cabeçalho</summary>
           <div className="header-style-switch">
@@ -1278,7 +1294,7 @@ function StyleSidebar({
           </label>
         </details>
 
-        <p className="style-save-note">As alterações ficam salvas automaticamente neste dispositivo.</p>
+        </div>
       </div>
     </aside>
   )
