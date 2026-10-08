@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T14:14:46.917Z",
-  "commit": "301c7be9af8736ba37437db4c80bae50f7d7bc10",
+  "generatedAt": "2026-10-08T14:21:24.646Z",
+  "commit": "9d1254d9da307e82c73d5685b77596508b6af1cf",
   "routes": [
     [
       "home",
@@ -122,15 +122,15 @@
       "creatorGeometry": {
         "page": {
           "top": 69,
-          "bottom": 668.5,
+          "bottom": 738.5,
           "width": 1280,
-          "height": 599.5
+          "height": 669.5
         },
         "dialog": {
           "top": 84,
-          "bottom": 653.5,
+          "bottom": 723.5,
           "width": 1280,
-          "height": 569.5
+          "height": 639.5
         },
         "header": {
           "top": 85,
@@ -140,19 +140,19 @@
         },
         "grid": {
           "top": 259.5,
-          "bottom": 527.5,
+          "bottom": 619.5,
           "width": 1242,
-          "height": 268
+          "height": 360
         },
         "ad": {
-          "top": 532.5,
-          "bottom": 602.5,
+          "top": 602.5,
+          "bottom": 672.5,
           "width": 728,
           "height": 70
         },
         "links": {
-          "top": 604.5,
-          "bottom": 652.5,
+          "top": 674.5,
+          "bottom": 722.5,
           "width": 1278,
           "height": 48
         }
@@ -1157,7 +1157,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 8485,
+      "documentHeight": 8792,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
