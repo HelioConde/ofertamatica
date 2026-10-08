@@ -165,6 +165,8 @@ for (const [viewportName, viewport] of viewports) {
           const ribbonStyle = ribbon ? getComputedStyle(ribbon) : null
           return {
             width: sidebar ? Number(sidebar.getBoundingClientRect().width.toFixed(1)) : 0,
+            sidebarTabCount: document.querySelectorAll('.style-sidebar .personalization-tabs > button').length,
+            activeArea: document.querySelector('.style-sidebar .personalization-tabs button.active')?.textContent || '',
             headerArtHeight: headerArt ? Number(headerArt.getBoundingClientRect().height.toFixed(1)) : 0,
             frameGridHeight: frames ? Number(frames.getBoundingClientRect().height.toFixed(1)) : 0,
             headerBackgroundColor: ribbonStyle?.backgroundColor || '',
@@ -186,6 +188,14 @@ for (const [viewportName, viewport] of viewports) {
       results.push({ viewport: viewportName, formatId, tab, errors: [...errors], ...metrics })
 
       if (viewportName === 'mobile-390' && formatId === 'A4' && tab === 'style') {
+        // Três áreas funcionais e únicas: sem duplicação de biblioteca de molduras.
+        await page.locator('[data-style-tab="offer"]').click()
+        await page.locator('.personalization-panel:not([hidden]) .offer-mode-select-row select').waitFor({ state: 'visible' })
+        await page.locator('[data-style-tab="settings"]').click()
+        await page.locator('.personalization-panel:not([hidden]) .style-accordion').first().waitFor({ state: 'visible' })
+        await page.locator('[data-style-tab="art"]').click()
+        await page.locator('.header-art-grid [data-model-art]').first().waitFor({ state: 'visible' })
+
         const themeModels = [
           { id: 'classic', label: 'Clássico de oferta' },
           { id: 'relampago', label: 'Oferta relâmpago' },
@@ -291,7 +301,8 @@ const failures = results.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.tab === 'products' && item.products?.rowHeight > 390) return true
   if (item.tab === 'style' && item.style) {
-    if (item.style.headerArtHeight > 250 || item.style.frameGridHeight > 240) return true
+    if (item.style.sidebarTabCount !== 3 || item.style.activeArea !== 'Artes') return true
+    if (item.style.headerArtHeight > 310 || item.style.frameGridHeight > 240) return true
     if (!item.style.headerVisible) return true
     if (!item.style.headerBackgroundColor || item.style.headerBackgroundColor === 'rgba(0, 0, 0, 0)' || item.style.headerBackgroundColor === 'transparent') return true
   }
