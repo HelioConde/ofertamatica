@@ -70,6 +70,11 @@ for (const formatId of formats) {
       const bounds = input.getBoundingClientRect()
       return !rowBounds || bounds.width < 40 || bounds.left < rowBounds.left - 2 || bounds.right > rowBounds.right + 2
     })
+    const hasReadableShortList = Boolean(
+      document.querySelector('.interpreted.is-short-list') &&
+      rowBounds && rowBounds.height >= 52 &&
+      rowInputs.every((input) => input.getBoundingClientRect().height >= 35)
+    )
 
     const rect = (element) => {
       if (!element) return null
@@ -103,6 +108,7 @@ for (const formatId of formats) {
       poster: rect(poster),
       firstRow: rect(firstRow),
       clippedInputs,
+      hasReadableShortList,
       rowInputCount: rowInputs.length,
     }
   })
@@ -130,6 +136,7 @@ const failures = results.filter((item) => (
   item.preview.width < 340 ||
   item.style.width < 240 ||
   item.clippedInputs ||
+  !item.hasReadableShortList ||
   item.rowInputCount < 5 ||
   item.poster.width < 180 ||
   item.layout.right > item.width + 1
