@@ -843,8 +843,9 @@
 }
 
 .oferta-ad-label { display: block; padding: 7px 10px 0; color: #9aa7b8; font-size: 8px; font-weight: 850; letter-spacing: .1em; text-align: center; }
-.oferta-ad-unit.is-pending { min-height: 0; margin: 0; border: 0; background: transparent; }
-.oferta-ad-unit.is-pending .oferta-ad-label { display: none; }
+/* Reserve o espaço desde a solicitação: anúncios que preencherem depois não deslocam o conteúdo. */
+.oferta-ad-unit.is-pending { min-height: 120px; margin: 12px 0; border: 1px solid #e3e9f1; background: #fff; }
+.oferta-ad-unit.is-pending .oferta-ad-label { display: block; }
 .oferta-ad-unit:has(.adsbygoogle[data-ad-status="unfilled"]) { display: none; margin: 0; min-height: 0; border: 0; }
 
 button,
