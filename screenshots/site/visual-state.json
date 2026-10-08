@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-08T20:53:16.190Z",
-  "commit": "6154dc80e4291565dacec24285401d32e9f97f5d",
+  "generatedAt": "2026-10-08T20:57:49.072Z",
+  "commit": "a88f6324fc2f45901222b6c7f93ddc3013cc82b6",
   "routes": [
     [
       "home",
@@ -156,10 +156,10 @@
           "height": 132.5
         },
         "grid": {
-          "top": 256.5,
-          "bottom": 943,
+          "top": 392.3,
+          "bottom": 807.3,
           "width": 1242,
-          "height": 686.5
+          "height": 415
         },
         "ad": {
           "top": 0,
@@ -2688,7 +2688,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6517,
+      "documentHeight": 5941,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3884,7 +3884,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 6487,
+      "documentHeight": 5876,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
