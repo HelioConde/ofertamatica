@@ -196,3 +196,20 @@
   .paper-guide-table th,
   .paper-guide-table td { padding: 12px; }
 }
+
+/* Ajuda descoberta da rolagem horizontal e permite navegação por teclado. */
+.paper-guide-table-hint { display: none; }
+.paper-guide-table-wrap:focus-visible { outline: 3px solid #1d63e9; outline-offset: 3px; }
+@media (max-width: 700px) {
+  .paper-guide-table-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0 0;
+    color: #405979;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+  .paper-guide-table-hint span { color: #1d63e9; font-size: 20px; }
+}

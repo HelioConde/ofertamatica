@@ -43,7 +43,8 @@ export default function PaperGuide({ page }) {
           <h2>O tamanho da folha é diferente do tamanho do cartaz</h2>
           <p>Nos modelos divididos, você coloca dois, quatro ou oito cartazes em uma única folha. Abaixo estão os tamanhos físicos usados pelo gerador.</p>
         </div>
-        <div className="paper-guide-table-wrap">
+        <p className="paper-guide-table-hint">Deslize a tabela para os lados para conferir todos os tamanhos e usos <span aria-hidden="true">↔</span></p>
+        <div className="paper-guide-table-wrap" role="region" tabIndex="0" aria-label="Tabela comparativa de formatos; deslize horizontalmente para ver todas as colunas">
           <table className="paper-guide-table">
             <caption>Comparação de folhas, cartazes e usos no mercado</caption>
             <thead><tr><th scope="col">Layout</th><th scope="col">Papel da impressora</th><th scope="col">Tamanho do cartaz</th><th scope="col">Onde usar</th></tr></thead>

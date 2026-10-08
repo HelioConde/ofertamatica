@@ -156,11 +156,13 @@ export const PUBLIC_PAGES = [
       { title: 'Dúvidas sobre o criador', text: 'Se a dúvida é sobre formatos, importação de produtos, personalização ou impressão, consulte Como funciona e os Guias para varejo. As páginas mostram o fluxo sem exigir cadastro.' },
       { title: 'Problemas durante o uso', text: 'Antes de tentar novamente, confirme o formato escolhido, revise os produtos e atualize a página. Se o problema persistir, evite inserir informações confidenciais em qualquer relato de erro.' },
       { title: 'Privacidade e publicidade', text: 'A Política de Privacidade explica armazenamento local, medição de uso e publicidade. Os Termos de Uso apresentam as responsabilidades ao criar e imprimir materiais.' },
+      { title: 'Relatos técnicos e sugestões', text: 'Para problemas e sugestões, abra um relato no GitHub da Ofertamática. Os relatos são públicos e exigem uma conta GitHub. Nunca publique dados pessoais, senhas, listas privadas ou documentos neste canal.' },
     ],
     links: [
       { label: 'Como funciona', href: '/como-funciona/', note: 'Passo a passo para criar, revisar e imprimir.' },
       { label: 'Guias para varejo', href: '/guias-para-varejo/', note: 'Boas práticas de preço, formatos e comunicação.' },
       { label: 'Política de Privacidade', href: '/privacidade/', note: 'Como dados, armazenamento local e anúncios são tratados.' },
+      { label: 'Relatar problema técnico no GitHub', href: 'https://github.com/HelioConde/ofertamatica/issues/new', note: 'Canal público para reportar falhas ou sugerir melhorias. Não envie dados privados.' },
     ],
   },
   {

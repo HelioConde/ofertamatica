@@ -17,7 +17,7 @@ import {
   SITE_URL,
 } from '../seo/seoPages'
 import { searchTopicsFor } from '../seo/searchIntent'
-import '../styles/marketing.css'
+// O CSS editorial é importado pelo entrypoint para evitar flash sem estilo.
 
 const CREATOR_META = {
   title: 'Placas para Mercado Online Grátis | Ofertamática',
@@ -719,7 +719,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 </div>
                 <div className="contact-link-grid">
                   {page.links.map((link) => (
-                    <a href={link.href} key={link.href}>
+                    <a href={link.href} key={link.href} target={link.href.startsWith('https://') ? '_blank' : undefined} rel={link.href.startsWith('https://') ? 'noopener noreferrer' : undefined}>
                       <strong>{link.label}</strong>
                       <span>{link.note}</span>
                       <b>Abrir →</b>

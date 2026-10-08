@@ -57,6 +57,27 @@ async function captureViewport(name, viewport, routes) {
     await page.locator('#root').waitFor({ state: 'visible', timeout: 10_000 })
     await page.waitForTimeout(300)
 
+    // content-visibility:auto economiza renderização no site, mas deixa áreas
+    // vazias em screenshots fullPage do Playwright. Só no navegador de QA,
+    // forçamos a pintura de todos os modelos antes de fotografar.
+    if (id === 'modelos') {
+      await page.addStyleTag({ content: '.model-showcase-card { content-visibility: visible !important; contain-intrinsic-size: auto !important; }' })
+      await page.evaluate(async () => {
+        await document.fonts.ready
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+      })
+    }
+
+    // Rotas editoriais devem ter CSS carregado, não só HTML hidratado.
+    // Se houver regressão real, o diagnóstico abaixo registrará cada estilo.
+    if (id === 'guias-para-varejo') {
+      await page.waitForFunction(() => {
+        const grid = document.querySelector('.retail-guide-card-grid')
+        const card = document.querySelector('.retail-guide-catalog-card')
+        return grid && card && getComputedStyle(grid).display === 'grid' && getComputedStyle(card).display === 'flex'
+      }, null, { timeout: 6000 }).catch(() => {})
+    }
+
     const metrics = await page.evaluate(() => {
       const root = document.documentElement
       const body = document.body
@@ -147,13 +168,25 @@ async function captureViewport(name, viewport, routes) {
       const retailCardGrid = document.querySelector('.retail-guide-card-grid')
       const retailGuideSearch = document.querySelector('.retail-guide-search')
       const retailCategoryButton = document.querySelector('.retail-guide-categories button')
-      const retailGuideStylesApplied = Boolean(
-        retailPaperLink && getComputedStyle(retailPaperLink).display === 'flex' &&
-        retailCardGrid && getComputedStyle(retailCardGrid).display === 'grid' &&
-        retailGuideSearch && getComputedStyle(retailGuideSearch).display === 'grid' &&
-        retailCategoryButton && getComputedStyle(retailCategoryButton).display === 'inline-flex' &&
+      const retailGuideComputed = {
+        paperLink: retailPaperLink ? getComputedStyle(retailPaperLink).display : null,
+        grid: retailCardGrid ? getComputedStyle(retailCardGrid).display : null,
+        search: retailGuideSearch ? getComputedStyle(retailGuideSearch).display : null,
+        categoryButton: retailCategoryButton ? getComputedStyle(retailCategoryButton).display : null,
+        card: retailCatalogCards[0] ? getComputedStyle(retailCatalogCards[0]).display : null,
+      }
+      const retailGuideStylesApplied = retailGuideComputed.paperLink === 'flex' &&
+        retailGuideComputed.grid === 'grid' && retailGuideComputed.search === 'grid' &&
+        retailGuideComputed.categoryButton === 'inline-flex' &&
+        retailGuideComputed.card === 'flex' &&
         retailCatalogCards.every((card) => getComputedStyle(card).display === 'flex')
-      )
+      const modelCards = [...document.querySelectorAll('.model-showcase-card')]
+      const modelVisualCount = modelCards.length
+      const modelVisualReady = modelCards.every((card) => {
+        const poster = card.querySelector('.model-real-poster-shell')
+        return Boolean(poster && poster.getBoundingClientRect().height > 120 &&
+          getComputedStyle(card).contentVisibility !== 'auto')
+      })
 
       const guideCards = [...document.querySelectorAll('.format-guide-section [data-format-id]')]
       const guideFormatCounts = {
@@ -224,6 +257,9 @@ async function captureViewport(name, viewport, routes) {
         retailGuideCardsFit,
         retailGuideNoEmptyColumns,
         retailGuideStylesApplied,
+        retailGuideComputed,
+        modelVisualCount,
+        modelVisualReady,
         howGuideCardCount: howTopicCards.length,
         howTopicLinksValid,
         howGuideCardsFit,
@@ -307,6 +343,7 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
+  if (item.id === 'modelos' && (item.modelVisualCount !== 12 || !item.modelVisualReady)) return true
   if (item.id === 'guias-para-varejo' && (
     item.retailIntroCardCount !== 3 ||
     item.retailCatalogCardCount !== SEO_PAGES.length ||

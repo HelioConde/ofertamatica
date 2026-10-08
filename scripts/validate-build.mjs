@@ -50,12 +50,10 @@ for (const page of INDEXABLE_PAGES) {
   expect(sitemap.includes(`<loc>${canonical}</loc>`), `URL ausente do sitemap: ${canonical}`)
   expect(!html.includes('src="./assets/'), `Asset relativo detectado em ${relative}`)
   // Os estilos editoriais devem estar no HTML inicial, antes da hidratação.
-  const editorialCss = html.match(/<link\b[^>]*data-ofertamatica-editorial[^>]*href="(\/assets\/[^"]+\.css)"/)?.[1]
-  expect(Boolean(editorialCss), `CSS editorial não incluído em ${relative}`)
-  if (editorialCss) {
-    const css = read(editorialCss.slice(1))
-    expect(css.includes('.retail-guide-catalog-card'), `CSS editorial incompleto em ${relative}`)
-  }
+  const editorialStylesheets = [...html.matchAll(/<link\\b[^>]*rel="stylesheet"[^>]*href="(\\/assets\\/[^"]+\\.css)"/g)].map((m) => m[1])
+  expect(editorialStylesheets.length > 0, `CSS editorial não incluído em ${relative}`)
+  const hasEditorialRules = editorialStylesheets.some((href) => read(href.slice(1)).includes('.retail-guide-catalog-card'))
+  expect(hasEditorialRules, `CSS editorial incompleto em ${relative}`)
 }
 
 for (const legacy of ['cartaz-de-supermercado', 'cartaz-para-imprimir', 'gerador-de-placas-com-ia']) {
