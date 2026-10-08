@@ -397,7 +397,7 @@ function SearchTopicSections({ slug }) {
         <h2>{isHow ? 'Da planilha à impressão, sem complicação' : 'Escolha o tipo de cartaz certo para sua loja'}</h2>
         <p>{isHow ? 'Explore recursos que ajudam a preparar, personalizar e imprimir placas no tamanho certo.' : 'Dicas de criação, formatos e aplicação no dia a dia do varejo.'}</p>
       </div>
-      <div className="store-use-grid">
+      <div className={'store-use-grid' + (topics.length === 1 ? ' store-use-grid-single' : '')}>
         {topics.map((topic, index) => (
           <article className="store-use-topic" key={topic.name}>
             <span className="store-use-topic-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
