@@ -52,6 +52,9 @@ jobs:
           password: ${{ secrets.PASS }}
           localDir: "dist/assets"
           remoteDir: "public_html/assets"
+          # Assets têm hash no nome: imutáveis. Evita retransmitir centenas de MB
+          # a cada publicação e sobrecarregar a hospedagem compartilhada.
+          options: "--only-missing"
 
       # Só publique o HTML quando JS/CSS do novo build já estiverem no domínio.
       - name: Verify newly uploaded JS/CSS before switching HTML

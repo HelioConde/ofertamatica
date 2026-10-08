@@ -80,7 +80,9 @@ async function attemptCheck() {
   return problems
 }
 
-const MAX_ATTEMPTS = 8
+// Alguns caches/CDNs de hospedagem compartilhada demoram a expor
+// novos hashes, mesmo após o FTP confirmar o envio.
+const MAX_ATTEMPTS = 18
 for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
   const problems = await attemptCheck()
   if (!problems.length) {
@@ -89,7 +91,7 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     process.exit(0)
   }
   console.warn('Verificação ' + attempt + '/' + MAX_ATTEMPTS + ': ' + problems.join(' | '))
-  if (attempt < MAX_ATTEMPTS) await sleep(8000)
+  if (attempt < MAX_ATTEMPTS) await sleep(10000)
 }
 console.error('Deploy inseguro: falta JS/CSS ou o HTML referencia outra versão. Interrompendo.')
 process.exitCode = 1
