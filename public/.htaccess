@@ -1,20 +1,39 @@
 RewriteEngine On
 
-# Consolidated content routes: keep old URLs working without duplicate pages.
+# One canonical HTTPS host. Preserve the full request path.
+RewriteCond %{HTTP_HOST} ^www\.ofertamatica\.com\.br$ [NC]
+RewriteRule ^ https://ofertamatica.com.br%{REQUEST_URI} [R=301,L,NE]
+
+# Canonicalise legacy URLs that still receive impressions from Google.
+RewriteRule ^criar-placas/?$ / [R=301,L]
 RewriteRule ^cartaz-de-oferta-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
 RewriteRule ^cartaz-supermercado-online/?$ /cartaz-para-supermercado/ [R=301,L]
 RewriteRule ^placa-de-preco-supermercado/?$ /cartaz-de-preco-online/ [R=301,L]
-RewriteRule ^gerador-de-cartaz-com-ia/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
-
-# Previously indexed URLs now resolve to the current, dedicated pages.
+RewriteRule ^gerador-de-cartaz-com-ia/?$ /como-funciona/ [R=301,L]
 RewriteRule ^cartaz-de-supermercado/?$ /cartaz-para-supermercado/ [R=301,L]
 RewriteRule ^cartaz-para-imprimir/?$ /cartaz-de-oferta-para-imprimir/ [R=301,L]
-RewriteRule ^gerador-de-placas-com-ia/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^gerador-de-placas-com-ia/?$ /como-funciona/ [R=301,L]
+RewriteRule ^cartazes-para-supermercado/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^cartaz-supermercado/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^cartazes-para-promocao/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^gerador-de-placas-promocionais/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^gerador-de-cartaz-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^como-criar-cartazes-promocionais/?$ /como-fazer-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^guias/?$ /guias-para-varejo/ [R=301,L]
+RewriteRule ^faq/?$ /como-funciona/ [R=301,L]
+RewriteRule ^modelos-de-placas/?$ /modelos/ [R=301,L]
+RewriteRule ^modelos/[^/]+/?$ /modelos/ [R=301,L]
+RewriteRule ^excel-para-cartazes/?$ /cartazes-a-partir-de-excel/ [R=301,L]
+RewriteRule ^importar-produtos-excel/?$ /cartazes-a-partir-de-excel/ [R=301,L]
+RewriteRule ^ia-para-promocoes/?$ /como-funciona/ [R=301,L]
 
-# Preserve existing files and directories, including APIs and assets.
+# Old account pages are no longer functional: do not serve a misleading home page.
+RewriteRule ^(login|registro)/?$ - [G,L]
+
+# Existing SEO pages, assets, service-worker files and API files are served normally.
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Send SEO routes to the React entrypoint.
-RewriteRule ^ index.html [L]
+# Unknown paths must return a real 404, not an HTTP 200 with homepage canonical.
+RewriteRule ^ - [R=404,L]
