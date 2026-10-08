@@ -50,7 +50,7 @@ for (const page of INDEXABLE_PAGES) {
   expect(sitemap.includes(`<loc>${canonical}</loc>`), `URL ausente do sitemap: ${canonical}`)
   expect(!html.includes('src="./assets/'), `Asset relativo detectado em ${relative}`)
   // Os estilos editoriais devem estar no HTML inicial, antes da hidratação.
-  const editorialCss = html.match(/<link\\b[^>]*data-ofertamatica-editorial[^>]*href="(\\/assets\\/[^"]+\\.css)"/)?.[1]
+  const editorialCss = html.match(/<link\b[^>]*data-ofertamatica-editorial[^>]*href="(\/assets\/[^"]+\.css)"/)?.[1]
   expect(Boolean(editorialCss), `CSS editorial não incluído em ${relative}`)
   if (editorialCss) {
     const css = read(editorialCss.slice(1))
