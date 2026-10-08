@@ -559,10 +559,10 @@ function FormatChooser({ onSelect, draft, onResume }) {
               </span>
             </button>
           ))}
-          <aside className="format-ad-card" aria-label="Publicidade">
-            <AdUnit placement="format-grid" />
-          </aside>
         </div>
+        <aside className="format-ad-card format-ad-zone" aria-label="Publicidade separada dos formatos">
+          <AdUnit placement="format-grid" />
+        </aside>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Ver modelos</a>
           <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a>
