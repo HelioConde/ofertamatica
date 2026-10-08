@@ -48,20 +48,7 @@ for (const legacy of ['cartaz-de-supermercado', 'cartaz-para-imprimir', 'gerador
   expect(!sitemap.includes(`<loc>${SITE_URL}/${legacy}/</loc>`), `URL antiga indevida no sitemap: ${legacy}`)
 }
 expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas para açougue'), 'Landing de açougue sem conteúdo específico')
-expect(read('.htaccess').includes('^cartaz-para-imprimir/?, '.htaccess não foi copiado para dist')
-expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
-expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
-expect(fs.existsSync(path.join(dist, 'icons', 'icon-192.png')), 'Ícone PWA 192x192 não foi copiado para dist')
-expect(fs.existsSync(path.join(dist, 'icons', 'icon-512.png')), 'Ícone PWA 512x512 não foi copiado para dist')
-
-if (failures.length) {
-  console.error('\nFalhas de validação do build:')
-  failures.forEach((failure) => console.error(' - ' + failure))
-  process.exit(1)
-}
-
-console.log(`Build validado: raiz + ${INDEXABLE_PAGES.length} páginas, sitemap, ads.txt, GTM e assets OK.`)
-), '301 para URL antiga de impressão ausente')
+expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
