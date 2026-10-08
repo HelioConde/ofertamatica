@@ -17,7 +17,9 @@ import {
   SITE_URL,
 } from '../seo/seoPages'
 import { searchTopicsFor } from '../seo/searchIntent'
-// O CSS editorial é importado pelo entrypoint para evitar flash sem estilo.
+// Estilos editoriais só são necessários nas páginas públicas.
+// O gerador de SEO adiciona a mesma folha ao HTML destas rotas para evitar FOUC.
+import '../styles/marketing.css'
 
 const CREATOR_META = {
   title: 'Placas para Mercado Online Grátis | Ofertamática',
