@@ -23,6 +23,22 @@ const state = []
 
 async function captureViewport(name, viewport, routes) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 })
+  if (name === 'desktop-760-draft') {
+    // Reproduz a home do usuário com o banner "Continuar último trabalho" visível.
+    await page.addInitScript(() => {
+      localStorage.setItem('ofertamatica:draft:v1', JSON.stringify({
+        formatId: 'A3',
+        sourceText: 'Café 500g 9,99',
+        products: [
+          { id: 'qa-1', description: 'CAFÉ 500G', price: '9,99' },
+          { id: 'qa-2', description: 'ARROZ 5KG', price: '19,90' },
+          { id: 'qa-3', description: 'LEITE 1L', price: '4,99' },
+          { id: 'qa-4', description: 'FEIJÃO 1KG', price: '7,99' },
+        ],
+        savedAt: Date.now(),
+      }))
+    })
+  }
 
   for (const [id, route] of routes) {
     const errors = []
@@ -117,7 +133,34 @@ async function captureViewport(name, viewport, routes) {
         }
       }
 
+      const formatCards = [...document.querySelectorAll('.format-home-refresh .format-choice')]
+      const clippedFormatCards = formatCards.flatMap((card) => {
+        const bounds = card.getBoundingClientRect()
+        const action = card.querySelector('.format-card-action')?.getBoundingClientRect()
+        return action && (action.bottom > bounds.bottom - 3 || action.top < bounds.top + 3)
+          ? [card.getAttribute('data-format-id')]
+          : []
+      })
+      const formatCardRects = formatCards.map((card) => card.getBoundingClientRect())
+      const formatCardsOverlap = formatCardRects.some((card, index) =>
+        formatCardRects.slice(index + 1).some((other) =>
+          Math.min(card.right, other.right) - Math.max(card.left, other.left) > 3 &&
+          Math.min(card.bottom, other.bottom) - Math.max(card.top, other.top) > 3
+        )
+      )
+      const adRect = document.querySelector('.format-home-refresh .format-ad-card')?.getBoundingClientRect()
+      const linksRect = document.querySelector('.format-home-refresh .format-trust-links')?.getBoundingClientRect()
+      const lastCardBottom = formatCardRects.length ? Math.max(...formatCardRects.map((rect) => rect.bottom)) : null
+      const adOverlapsFormats = Boolean(adRect && lastCardBottom && adRect.top < lastCardBottom - 2)
+      const linksOverlapAd = Boolean(adRect && linksRect && linksRect.top < adRect.bottom - 2)
+
       return {
+        clippedFormatCards,
+        formatCardsOverlap,
+        adOverlapsFormats,
+        linksOverlapAd,
+        visibleFormatCards: formatCards.length,
+        hasSavedDraft: Boolean(document.querySelector('.resume-work')),
         title: document.title,
         width: window.innerWidth,
         height: window.innerHeight,
@@ -151,6 +194,7 @@ async function captureViewport(name, viewport, routes) {
 }
 
 await captureViewport('desktop', { width: 1440, height: 1000 }, desktopRoutes)
+await captureViewport('desktop-760-draft', { width: 1600, height: 760 }, [['home', '/']])
 await captureViewport('mobile-360', { width: 360, height: 800 }, allRoutes)
 await captureViewport('mobile-412', { width: 412, height: 915 }, allRoutes)
 
@@ -168,7 +212,12 @@ await fs.writeFile(
 
 const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
-  if (item.id === 'home' && item.viewport === 'desktop' && item.documentHeight > item.height + 4) return true
+  if (item.id === 'home') {
+    if (item.visibleFormatCards !== 8 || item.clippedFormatCards.length ||
+        item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd) return true
+    if (item.viewport === 'desktop-760-draft' && !item.hasSavedDraft) return true
+    if (item.viewport.startsWith('desktop') && item.documentHeight > item.height + 4) return true
+  }
   if (item.viewport === 'desktop' && item.ads.some((ad) => ad.className.includes('is-pending') && ad.height > 180)) return true
   if (!item.viewport.startsWith('mobile')) return false
   if (item.navClipped) return true
