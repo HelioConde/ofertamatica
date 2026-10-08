@@ -788,13 +788,13 @@
 @font-face {
   font-family: "Burbank Big Cd Bk";
   src: url("../assets/fonts/primor-cartazes.otf") format("opentype"), local("Burbank Big Cd Bk");
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Futura Price";
   src: url("../assets/fonts/futura-extra-black-condensed-italic.otf") format("opentype");
-  font-display: block;
+  font-display: swap;
 }
 
 
