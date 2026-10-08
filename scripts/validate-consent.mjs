@@ -48,6 +48,9 @@ assert.equal(european.api.getState().cmpApplies, true)
 let revocations = 0
 european.window.googlefc.showRevocationMessage = () => { revocations++ }
 european.api.showGoogleChoices()
+// O fixture mantém a fila em um Array; a CMP real executa este callback
+// assim que CONSENT_API_READY está disponível.
+european.window.googlefc.callbackQueue[1].CONSENT_API_READY()
 assert.equal(revocations, 1)
 european.window.googlefc.getGoogleConsentModeValues = () => ({ adStoragePurposeConsentStatus: 1, adUserDataPurposeConsentStatus: 1, adPersonalizationPurposeConsentStatus: 2, analyticsStoragePurposeConsentStatus: 1 })
 european.window.googlefc.callbackQueue[0].CONSENT_MODE_DATA_READY()
