@@ -48,6 +48,16 @@ for (const legacy of ['cartaz-de-supermercado', 'cartaz-para-imprimir', 'gerador
   expect(html.includes('http-equiv="refresh"'), `Redirecionamento HTML ausente: ${legacy}`)
   expect(!sitemap.includes(`<loc>${SITE_URL}/${legacy}/</loc>`), `URL antiga indevida no sitemap: ${legacy}`)
 }
+// O guia de papel precisa ser uma página única com conteúdo indexável no HTML inicial.
+const paperGuideHtml = read('qual-papel-usar-para-cartaz/index.html')
+expect(paperGuideHtml.includes('Qual papel usar para imprimir cartazes de oferta?'), 'Guia de papel sem H1 específico')
+expect(paperGuideHtml.includes('75–90 g/m²'), 'Guia de papel sem orientação de gramatura')
+expect(paperGuideHtml.includes('8 cartazes A7'), 'Guia de papel sem comparação de folhas A4 e cartazes menores')
+expect(paperGuideHtml.includes('Qual a melhor gramatura de papel'), 'FAQ de papel ausente do HTML indexável')
+expect(paperGuideHtml.includes('"@type":"Article"'), 'Schema Article ausente do guia de papel')
+expect(paperGuideHtml.includes('name="twitter:description"'), 'Social metadata ausente do guia de papel')
+expect(sitemap.includes('qual-papel-usar-para-cartaz'), 'Guia de papel ausente do sitemap')
+
 expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas para açougue'), 'Landing de açougue sem conteúdo específico')
 expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
 // Uma página útil por intenção, não 100 URLs quase iguais ou uma lista de keywords no HTML.
