@@ -3036,3 +3036,34 @@ summary:focus-visible {
   .institutional-email-address { font-size: 13px; }
   .institutional-email-hint { max-width: none; }
 }
+
+/* Endereço disponível tanto via mailto quanto por cópia direta. */
+.institutional-email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.institutional-email-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border: 1px solid #96b7ed;
+  border-radius: 10px;
+  padding: 11px 16px;
+  background: #fff;
+  color: #1552bf;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.institutional-email-copy:hover { background: #eaf2ff; }
+.institutional-email-copy:focus-visible { outline: 3px solid #103c84; outline-offset: 3px; }
+.institutional-copy-status { font-size: 12px; font-weight: 700; color: #1b6447; }
+.institutional-copy-status:empty { display: none; }
+@media (max-width: 700px) {
+  .institutional-email-actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .institutional-email-copy { width: 100%; }
+}

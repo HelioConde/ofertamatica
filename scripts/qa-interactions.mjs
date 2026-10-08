@@ -86,6 +86,12 @@ await scenario('SEO: cartaz De/Por com exemplo e CTA', { width: 390, height: 844
   await check(page, '.format-grid .format-choice', 'CTA do guia não abriu o criador')
 })
 await scenario('Contato oficial: e-mail nas páginas institucionais', { width: 390, height: 844 }, async (page) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: async (value) => { window.__supportEmailCopied = value } },
+    })
+  })
   for (const slug of ['fale-conosco', 'privacidade', 'termos']) {
     await page.goto(origin + '/' + slug + '/', { waitUntil: 'domcontentloaded' })
     const link = page.locator('.institutional-email-address')
@@ -93,6 +99,11 @@ await scenario('Contato oficial: e-mail nas páginas institucionais', { width: 3
     const href = await link.getAttribute('href')
     if (!href?.startsWith('mailto:atendimento@ofertamatica.com.br')) throw new Error('E-mail inválido em ' + slug)
     if (!(await page.locator('main').innerText()).includes('atendimento@ofertamatica.com.br')) throw new Error('E-mail não aparece em ' + slug)
+    await page.getByRole('button', { name: 'Copiar e-mail' }).click()
+    await page.getByRole('status').getByText('E-mail copiado para a área de transferência.').waitFor()
+    if (await page.evaluate(() => window.__supportEmailCopied) !== 'atendimento@ofertamatica.com.br') {
+      throw new Error('Botão não copiou endereço oficial em ' + slug)
+    }
   }
 })
 await browser.close()

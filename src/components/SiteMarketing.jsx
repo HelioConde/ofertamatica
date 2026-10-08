@@ -421,6 +421,19 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelView, setModelView] = useState('detalhes')
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
+  const [copySupportStatus, setCopySupportStatus] = useState('')
+  const copySupportEmail = async () => {
+    if (!navigator.clipboard?.writeText) {
+      setCopySupportStatus('Cópia automática indisponível. Selecione o endereço acima para copiar.')
+      return
+    }
+    try {
+      await navigator.clipboard.writeText('atendimento@ofertamatica.com.br')
+      setCopySupportStatus('E-mail copiado para a área de transferência.')
+    } catch {
+      setCopySupportStatus('Não foi possível copiar automaticamente. Selecione o endereço acima.')
+    }
+  }
   const isModels = page.slug === 'modelos'
   const isFormats = page.slug === 'formatos'
   const isPaperGuide = page.slug === 'qual-papel-usar-para-cartaz'
@@ -718,9 +731,13 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 : page.slug === 'termos'
                   ? 'Envie dúvidas sobre os termos de uso ou o funcionamento da Ofertamática.'
                   : 'Dúvidas, problemas, sugestões e assuntos privados podem ser encaminhados diretamente para nossa equipe.'}</p>
-              <a className="institutional-email-address" href={'mailto:atendimento@ofertamatica.com.br?subject=' + (page.slug === 'privacidade' ? 'Privacidade%20-%20Ofertam%C3%A1tica' : page.slug === 'termos' ? 'Termos%20de%20Uso%20-%20Ofertam%C3%A1tica' : 'Atendimento%20Ofertam%C3%A1tica')}>
-                atendimento@ofertamatica.com.br <span aria-hidden="true">↗</span>
-              </a>
+              <div className="institutional-email-actions">
+                <a className="institutional-email-address" href={'mailto:atendimento@ofertamatica.com.br?subject=' + (page.slug === 'privacidade' ? 'Privacidade%20-%20Ofertam%C3%A1tica' : page.slug === 'termos' ? 'Termos%20de%20Uso%20-%20Ofertam%C3%A1tica' : 'Atendimento%20Ofertam%C3%A1tica')}>
+                  atendimento@ofertamatica.com.br <span aria-hidden="true">↗</span>
+                </a>
+                <button className="institutional-email-copy" type="button" onClick={copySupportEmail}>Copiar e-mail</button>
+              </div>
+              <span className="institutional-copy-status" role="status" aria-live="polite">{copySupportStatus}</span>
             </div>
             <span className="institutional-email-hint">O botão abre o aplicativo de e-mail configurado no dispositivo.</span>
           </section>
