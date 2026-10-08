@@ -218,13 +218,11 @@ export function AdUnit({ placement = 'content' }) {
       // O elemento pode já ter sido processado pelo AdSense em desenvolvimento.
     }
 
-    const timeout = window.setTimeout(() => {
-      if (syncStatus() !== 'filled') setAdState('hidden')
-    }, 8000)
-
+    // Não descartar anúncios ainda pendentes por um cronômetro arbitrário.
+    // O próprio AdSense sinaliza o preenchimento com data-ad-status.
+    syncStatus()
     return () => {
       observer?.disconnect()
-      window.clearTimeout(timeout)
     }
   }, [placement, slot])
 
@@ -668,6 +666,19 @@ export function PublicPage({ page, onCreate }) {
               <h2>Encontre o guia pela sua necessidade</h2>
               <p>Os guias abaixo têm objetivos diferentes para evitar páginas repetitivas e facilitar a navegação interna.</p>
             </div>
+            {page.sections?.length ? (
+              <div className="guide-groups" aria-label="Introdução aos guias de varejo">
+                <section>
+                  <h3>Antes de criar os cartazes</h3>
+                  {page.sections.map((section) => (
+                    <article key={section.title}>
+                      <h4>{section.title}</h4>
+                      <p>{section.text}</p>
+                    </article>
+                  ))}
+                </section>
+              </div>
+            ) : null}
             <a className="paper-guide-featured" href="/qual-papel-usar-para-cartaz/">
               <span>GUIA DE IMPRESSÃO</span>
               <strong>Qual papel usar para cartazes de oferta?</strong>
