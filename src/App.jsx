@@ -8,8 +8,8 @@ import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
 // Páginas editoriais e galeria de modelos só são carregadas nas suas rotas.
 const PublicPage = lazy(() => import('./components/SiteMarketing').then((m) => ({ default: m.PublicPage })))
 const SeoLanding = lazy(() => import('./components/SiteMarketing').then((m) => ({ default: m.SeoLanding })))
-const getPublicPage = (pathname) => PUBLIC_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/\\/+$/, '')) || null
-const getSeoPage = (pathname) => SEO_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/\\/+$/, '')) || null
+const getPublicPage = (pathname) => PUBLIC_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/[/]+$/, '')) || null
+const getSeoPage = (pathname) => SEO_PAGES.find((page) => '/' + page.slug === String(pathname || '/').replace(/[/]+$/, '')) || null
 
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
