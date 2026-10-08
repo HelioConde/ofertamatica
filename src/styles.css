@@ -8531,3 +8531,35 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .personalization-gallery-meta a,
   .personalization-library-extra > summary { font-size: 11px; }
 }
+
+
+/* Compatibilidade: publicidade separada da grade de formatos no desktop. */
+@media (min-width: 1001px) {
+  .format-mode .format-grid {
+    flex: 1 1 auto !important;
+    height: 0 !important;
+    min-height: 160px !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  .format-mode .format-ad-card.format-ad-zone {
+    flex: 0 0 86px !important;
+    width: min(728px, calc(100% - 44px)) !important;
+    height: 86px !important;
+    min-height: 86px !important;
+    max-height: 86px !important;
+    margin: 5px auto !important;
+  }
+
+  .format-mode .format-ad-card.format-ad-zone .oferta-ad-unit,
+  .format-mode .format-ad-card.format-ad-zone .oferta-ad-unit.is-pending {
+    width: 100% !important;
+    height: 84px !important;
+    min-height: 0 !important;
+    max-height: 84px !important;
+  }
+}
