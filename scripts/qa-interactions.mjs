@@ -37,13 +37,37 @@ await scenario('Home e escolha de formato desktop', { width: 1440, height: 900 }
   await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]', 'Editor não abriu após a seleção')
   if (!(await page.locator('.editor-context').innerText()).includes('A4')) throw new Error('Formato A4 não foi preservado')
 })
-await scenario('Publicidade mobile: adiar carregamento até aproximar anúncio', { width: 390, height: 844 }, async (page) => {
+await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
   await page.locator('.format-grid .format-choice').first().waitFor({ state: 'visible' })
-  await page.waitForTimeout(350)
-  if (await page.locator('script[data-ofertamatica-adsense]').count()) throw new Error('O script do AdSense iniciou fora da tela')
+  await page.waitForFunction(() => Boolean(window.ofertaConsent), null, { timeout: 8000 })
+  const result = await page.evaluate(() => ({
+    publisherCode: !!document.querySelector('script[data-ofertamatica-adsense]'),
+    paused: window.adsbygoogle?.pauseAdRequests === 1,
+    defaultDenied: window.ofertaConsent.getState().adsEnabled === false,
+    adUnitCount: document.querySelectorAll('.format-ad-card ins.adsbygoogle').length,
+    gtmCount: document.querySelectorAll('script[data-ofertamatica-gtm]').length
+  }))
+  if (!result.publisherCode) throw new Error('Código publisher da CMP não carregou')
+  if (!result.paused) throw new Error('Solicitações de publicidade não começam pausadas')
+  if (!result.defaultDenied || result.adUnitCount !== 0 || result.gtmCount !== 0) throw new Error('Serviços opcionais iniciaram antes da escolha')
   await page.locator('.format-ad-card').scrollIntoViewIfNeeded()
-  await page.waitForFunction(() => Boolean(document.querySelector('script[data-ofertamatica-adsense]')), null, { timeout: 8000 })
+  await page.waitForTimeout(350)
+  if (await page.locator('.format-ad-card ins.adsbygoogle').count()) throw new Error('Anúncio foi solicitado sem consentimento')
+})
+await scenario('Cookies mobile: rejeitar, reabrir e personalizar', { width: 390, height: 844 }, async (page) => {
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.cookie-banner', 'Banner de privacidade não apareceu')
+  await page.getByRole('button', { name: 'Rejeitar opcionais' }).click()
+  await page.waitForFunction(() => window.ofertaConsent?.getState().hasChoice === true)
+  if (await page.locator('.cookie-banner').count()) throw new Error('Banner não fechou após rejeição')
+  const status = await page.evaluate(() => window.ofertaConsent.getState())
+  if (status.analyticsEnabled || status.adsEnabled) throw new Error('Rejeição não bloqueou os serviços')
+  await page.getByRole('button', { name: 'Abrir preferências de privacidade e cookies' }).click()
+  await check(page, '[role="dialog"][aria-modal="true"]', 'Personalização não abriu')
+  if (await page.locator('.cookie-option input[type="checkbox"]:checked').count()) throw new Error('Opções não foram inicializadas desativadas')
+  await page.getByRole('button', { name: 'Salvar escolhas' }).click()
+  if (await page.locator('[role="dialog"]').count()) throw new Error('Painel de preferências não fechou')
 })
 await scenario('Editor mobile: gerar, prévia e voltar', { width: 390, height: 844 }, async (page) => {
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
