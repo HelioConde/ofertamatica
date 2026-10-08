@@ -117,9 +117,9 @@ function snapshot(page) {
 
 function creatorSnapshot() {
   return `<main style="font-family:Arial,sans-serif;max-width:1120px;margin:34px auto;padding:0 22px;color:#1f2d47">
-    <p style="font-weight:800;color:#168451;letter-spacing:.06em">2 CLIQUES · PLACA PRONTA</p>
-    <h1 style="font-size:44px;line-height:1.05;margin:10px 0">Escolha o formato, cole a lista e gere suas placas</h1>
-    <p style="font-size:17px;line-height:1.65;max-width:820px">O Ofertamática abre direto no gerador: primeiro você escolhe o formato e depois cola ou importa a lista para gerar. Grátis, sem cadastro obrigatório e com personalização opcional depois do resultado.</p>
+    <p style="font-weight:800;color:#168451;letter-spacing:.06em">CARTAZ DE OFERTA PRONTO EM 2 CLIQUES</p>
+    <h1 style="font-size:44px;line-height:1.05;margin:10px 0">Escolha o tamanho da sua placa.</h1>
+    <p style="font-size:17px;line-height:1.65;max-width:820px">Crie placas para mercado online e cartazes de oferta grátis. Do A7 para gôndola ao A3 para vitrine, escolha o formato, cole sua lista e gere as placas.</p>
     <ul style="line-height:1.8"><li>Primeira placa pronta em 2 cliques</li><li>Criação em lote para supermercado e varejo</li><li>Importação TXT, CSV e Excel</li><li>A4, A5 e A3</li></ul>
   </main>`
 }
