@@ -132,6 +132,15 @@ for (const manifestPath of ['ai-catalog.json', '.well-known/ai-catalog.json']) {
 expect(cssContents.includes('font-display:swap'), 'Fontes ainda podem bloquear o texto inicial')
 expect(!cssContents.includes('font-display:block'), 'Fonte está configurada com font-display:block')
 
+// O CSS de prévias e as páginas de marketing devem ficar fora do carregamento inicial.
+const entrySource = fs.readFileSync('src/main.jsx', 'utf8')
+const appSource = fs.readFileSync('src/App.jsx', 'utf8')
+const posterSheetSource = fs.readFileSync('src/components/posters/PosterSheet.jsx', 'utf8')
+expect(!entrySource.includes("import './styles/posters.css'"), 'CSS de impressão voltou para a home')
+expect(posterSheetSource.includes("import '../../styles/posters.css'"), 'CSS de impressão não acompanha o PosterSheet')
+expect(appSource.includes("lazy(() => import('./components/SiteMarketing')"), 'Marketing deve carregar por rota')
+expect(appSource.includes("lazy(() => import('./components/posters/PosterSheet')"), 'Prévia de impressão deve carregar sob demanda')
+
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')
