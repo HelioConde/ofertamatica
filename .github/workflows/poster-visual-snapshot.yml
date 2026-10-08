@@ -15,6 +15,7 @@ on:
       - 'src/styles.css'
       - 'src/styles/marketing.css'
       - 'src/components/SiteMarketing.jsx'
+      - 'src/components/FormatOptionCard.jsx'
       - 'src/pages/PosterVisualQaPage.jsx'
       - 'src/App.jsx'
       - 'src/assets/fonts/**'
