@@ -53,7 +53,8 @@ await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem es
   }))
   if (!result.publisherCode) throw new Error('Código publisher da CMP não carregou')
   if (!result.defaultDenied || result.adUnitCount !== 0 || result.gtmCount !== 0) throw new Error('Serviços opcionais iniciaram antes da escolha')
-  await page.locator('.format-ad-card').scrollIntoViewIfNeeded()
+  // A área pode ser ocultada de propósito enquanto os anúncios estiverem negados.
+  // Não tente fazer scroll em uma seção que já não ocupa layout.
   await page.waitForTimeout(350)
   if (await page.locator('.format-ad-card ins.adsbygoogle').count()) throw new Error('Anúncio foi solicitado sem consentimento')
   if (requests.length) throw new Error('Houve requisição de publicidade sem autorização: ' + requests[0])
