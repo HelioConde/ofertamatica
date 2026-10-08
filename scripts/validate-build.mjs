@@ -22,6 +22,8 @@ for (const reference of [...moduleJsAssets, ...stylesheetAssets]) {
   expect(fs.existsSync(path.join(dist, reference.slice(1))), 'Bundle ausente no dist: ' + reference)
 }
 expect(index.includes('ofertamatica-load-warning'), 'Falta aviso de recuperação caso o gerador não inicie')
+expect(index.includes('class="format-grid"'), 'A Home precisa renderizar os formatos no HTML inicial, sem piscada')
+expect(index.includes('href="/?formato=A4"'), 'Formatos no HTML inicial devem funcionar antes da hidratação')
 expect(index.includes('GTM-5RGPM6HD'), 'GTM não encontrado no index.html')
 expect(!index.includes('gtag/js?id=G-K8YWSXBHS7'), 'GA4 direto voltou ao index.html; use o GTM como fonte única')
 expect(index.includes('ca-pub-9514218545388169'), 'Publisher AdSense ausente do index.html')

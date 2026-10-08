@@ -162,7 +162,11 @@ function FormatChooser({ onSelect, draft, onResume }) {
 }
 
 function App() {
-  const [entry, setEntry] = useState(null)
+  const [entry, setEntry] = useState(() => {
+    // Links do HTML inicial continuam utilizáveis mesmo antes do bundle React.
+    const format = new URLSearchParams(window.location.search).get('formato')
+    return POSTER_FORMAT_OPTIONS.some((option) => option.id === format) ? { formatId: format } : null
+  })
   const [savedDraft] = useState(loadDraft)
   const path = window.location.pathname || '/'
   const onHome = path === '/' || path === '/criar-placas' || path === '/criar-placas/'

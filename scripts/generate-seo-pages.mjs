@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { INDEXABLE_PAGES, SEO_PAGES, SEO_FAQS, SITE_URL } from '../src/seo/seoPages.js'
 import { searchTopicsFor } from '../src/seo/searchIntent.js'
+import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -195,27 +196,55 @@ function snapshot(page) {
   </main>`
 }
 
+// HTML inicial usa as MESMAS classes/estrutura visível da tela React.
+// Em 4G lento não mostramos uma página provisória completamente diferente.
 function creatorSnapshot() {
-  return `<main style="font-family:Arial,sans-serif;max-width:1120px;margin:34px auto;padding:0 22px;color:#1f2d47">
-    <p style="font-weight:800;color:#168451;letter-spacing:.06em">CARTAZ DE OFERTA PRONTO EM 2 CLIQUES</p>
-    <h1 style="font-size:44px;line-height:1.05;margin:10px 0">Escolha o tamanho da sua placa.</h1>
-    <p style="font-size:17px;line-height:1.65;max-width:820px">Crie placas para mercado online e cartazes de oferta grátis. Do A7 para gôndola ao A3 para vitrine, escolha o formato, cole sua lista e gere as placas.</p>
-    <ul style="line-height:1.8"><li>Primeira placa pronta em 2 cliques</li><li>Criação em lote para supermercado e varejo</li><li>Importação TXT, CSV e Excel</li><li>A4, A5 e A3</li></ul>
-    <nav aria-label="Guias e modelos para cartazes"><a href="/modelos/">Modelos de placas</a> · <a href="/formatos/">Formatos</a> ·
-      <a href="/cartaz-para-supermercado/">Supermercado</a> · <a href="/guias-para-varejo/">Guias</a> ·
-      <a href="/qual-papel-usar-para-cartaz/">Qual papel usar</a></nav>
-    <aside id="ofertamatica-load-warning" hidden role="alert" style="margin-top:24px;padding:18px 22px;border:1px solid #bcd2f5;border-radius:12px;background:#fff">
-      <strong style="font-size:18px">O gerador ainda não carregou.</strong>
-      <p style="font-size:15px">Pode ser uma atualização do site em andamento. Tente recarregar esta página para abrir o criador de placas.</p>
-      <button type="button" onclick="window.location.reload()" style="cursor:pointer;padding:12px 20px;border:0;border-radius:8px;color:#fff;background:#1d63e9;font-weight:800">Recarregar gerador</button>
-    </aside>
-    <script>
-      window.setTimeout(function () {
-        var warning = document.getElementById('ofertamatica-load-warning');
-        if (warning) warning.hidden = false;
-      }, 7000);
-    </script>
-  </main>`
+  const display = {
+    A4X8: ['8 cartazes A7', 'Imprime em 1 folha A4', 'Etiquetas grandes e gôndolas'],
+    A4X4: ['4 cartazes A6', 'Imprime em 1 folha A4', 'Gôndolas e ofertas do dia'],
+    A4X2_CIMA_BAIXO: ['2 cartazes por folha', 'Imprime em 1 folha A4', 'Balcão e ponta de gôndola'],
+    A4X2_INVERTIDO: ['2 cartazes invertidos', 'Imprime em 1 folha A4', 'Dobra e exposição frente e verso'],
+    A4X2_APP: ['2 ofertas de App', 'Folha A4 na horizontal', 'Preço exclusivo do aplicativo'],
+    A4: ['1 cartaz A4', 'Folha A4 inteira', 'Ponta de gôndola e destaque'],
+    A5: ['1 cartaz A5', 'Folha A5 inteira', 'Balcão e gôndolas menores'],
+    A3: ['1 cartaz A3', 'Impressora compatível com A3', 'Vitrine e leitura à distância'],
+  }
+  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias']]
+  const cards = POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => {
+    const details = display[format.id]
+    if (!details) return ''
+    const isSplit = format.postersPerSheet === 2 && format.rows === 2
+    const isApp = format.specialLayout === 'app-offer'
+    const classes = ['oferta-format-preview', isSplit ? 'is-split' : '', isApp ? 'is-app' : '', format.postersPerSheet === 4 ? 'is-four' : '', format.postersPerSheet === 8 ? 'is-eight' : ''].filter(Boolean).join(' ')
+    const minis = Array.from({ length: format.postersPerSheet }, (_, i) =>
+      '<div class="oferta-format-mini' + (format.invertedSlots.includes(i) ? ' is-inverted' : '') + '"><span>OFERTA</span><i></i><b><small>R$</small><em>4,99</em></b></div>'
+    ).join('')
+    const badge = format.id === 'A4X8' ? '<span class="format-economy">Economiza papel</span>' :
+      format.id === 'A4X4' ? '<span class="format-recommended">Mais usado</span>' :
+      format.id === 'A3' ? '<span class="format-impact">Maior destaque</span>' : ''
+    return '<a class="format-choice ' + (format.id === 'A4X4' ? 'is-recommended ' : '') + '" href="/?formato=' + encodeURIComponent(format.id) + '" data-format-id="' + format.id + '" aria-label="Selecionar ' + details[0] + '">' +
+      '<span class="format-choice-badges">' + badge + '</span><span class="format-thumb"><span class="' + classes + '">' + minis + '</span></span>' +
+      '<span class="format-copy"><strong>' + details[0] + '</strong><small class="format-sheet">' + details[1] + '</small><span class="format-use">' + details[2] + '</span>' +
+      '<span class="format-meta">' + format.cartSize + ' por cartaz</span><span class="format-card-action">Selecionar <span aria-hidden="true">→</span></span></span></a>'
+  }).join('')
+  return '<div class="app format-mode"><header class="site-header"><div class="nav-shell">' +
+    '<a class="brand" href="/" aria-label="Ofertamática"><img class="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt=""><span>Ofertamática</span></a>' +
+    '<nav class="main-nav" aria-label="Navegação principal">' + nav.map(([href, label, short], i) => '<a class="nav-link' + (i === 0 ? ' active' : '') + '" href="' + href + '"' + (i === 0 ? ' aria-current="page"' : '') + '><span class="nav-label-full">' + label + '</span><span class="nav-label-mobile">' + short + '</span></a>').join('') + '</nav>' +
+    '<div class="nav-meta"><span class="free-pill">Grátis</span><span class="nav-note">sem cadastro</span></div></div></header>' +
+    '<main class="format-page format-home-refresh" id="formatos"><section class="format-dialog">' +
+    '<header class="format-dialog-head format-dialog-head-clean"><div class="format-home-intro"><div class="format-home-intro-copy">' +
+    '<span class="eyebrow two-click-kicker">GERADOR GRÁTIS DE CARTAZES PARA VAREJO</span><h1>Escolha o formato da sua placa de oferta</h1>' +
+    '<p>Selecione o tamanho, adicione seus produtos e imprima cartazes de preço em A4, A5 ou A3. Sem cadastro.</p>' +
+    '<div class="format-trust-row" aria-label="Vantagens do Ofertamática"><span>Grátis e sem cadastro</span><span>Lista, Excel, CSV ou TXT</span><span>PDF no tamanho correto</span></div></div>' +
+    '<a class="format-paper-guide-link" href="/qual-papel-usar-para-cartaz/"><span class="format-paper-icon" aria-hidden="true">▤</span><span><b>Dúvida sobre o papel?</b><small>Confira folhas, gramaturas e impressão</small></span><strong aria-hidden="true">→</strong></a>' +
+    '</div></header>' +
+    '<section class="format-home-chooser" aria-labelledby="format-picker-title"><div class="format-home-section-title"><div><h2 id="format-picker-title">Selecione o tamanho do cartaz</h2><p>8 opções de impressão · clique em uma para começar</p></div><span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span></div>' +
+    '<div class="format-grid">' + cards + '</div></section>' +
+    '<aside class="format-ad-card format-ad-zone" aria-label="Área de publicidade"></aside>' +
+    '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
+    '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section></main>' +
+    '<aside id="ofertamatica-load-warning" hidden role="alert" style="position:fixed;bottom:12px;left:12px;right:12px;z-index:9999;margin:auto;max-width:600px;padding:14px;border:1px solid #afc9f3;border-radius:12px;background:white;box-shadow:0 6px 36px #0002"><strong>O criador está demorando para carregar.</strong> <a href="/" style="color:#1d63e9;font-weight:800">Recarregar</a></aside></div>' +
+    '<script>window.setTimeout(function(){var e=document.getElementById("ofertamatica-load-warning");if(e)e.hidden=false},12000)</script>'
 }
 
 // A raiz continua sendo o criador. O snapshot existe apenas no HTML inicial para
