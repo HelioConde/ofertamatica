@@ -66,6 +66,7 @@ XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(rows), 'Produtos'
 const inputs = [
   { name: 'produtos.txt', mimeType: 'text/plain', buffer: Buffer.from('Café Melitta 500 g 18,90\nLeite Integral 1 L 4,99') },
   { name: 'produtos.csv', mimeType: 'text/csv', buffer: Buffer.from('Produto;Marca;Unidade;Preço\nCafé;Melitta;500 g;18,90\nLeite;Integral;1 L;4,99') },
+  { name: 'produtos-virgula.csv', mimeType: 'text/csv', buffer: Buffer.from('Produto,Marca,Unidade,Preço\nCafé,Melitta,500 g,"18,90"\nLeite,Integral,1 L,"4,99"') }
   { name: 'produtos.xlsx', mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', buffer: Buffer.from(XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' })) },
   { name: 'produtos.xls', mimeType: 'application/vnd.ms-excel', buffer: Buffer.from(XLSX.write(workbook, { type: 'buffer', bookType: 'xls' })) },
 ]
