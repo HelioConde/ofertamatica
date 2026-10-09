@@ -1719,7 +1719,10 @@ function Editor({
         importedSource = await file.text()
       } else if (extension === 'csv' || extension === 'xls' || extension === 'xlsx') {
         const XLSX = await import('@e965/xlsx')
-        const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array' })
+        // CSV do varejo usa vírgula decimal. Sem raw, o parser pode converter
+        // '18,90' para 1890 antes da normalização, imprimindo um preço errado.
+        // Arquivos XLS/XLSX mantêm seus tipos explícitos normalmente.
+        const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array', raw: extension === 'csv' })
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
         importedSource = spreadsheetRowsToSource(XLSX.utils.sheet_to_json(firstSheet, { header: 1, raw: true, defval: '' }))
       } else {
