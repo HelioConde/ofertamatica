@@ -33,11 +33,23 @@ async function openEditor(page, formatId = 'A4') {
 }
 
 async function checkGenerated(page, price = '18,90') {
-  await page.waitForFunction((expected) => {
-    const context = document.querySelector('.editor-context')?.textContent || ''
-    const list = document.querySelector('.interpreted')?.textContent || ''
-    return context.includes('2 produtos') && list.includes(expected)
-  }, price, { timeout: 15000 })
+  try {
+    await page.waitForFunction((expected) => {
+      const context = document.querySelector('.editor-context')?.textContent || ''
+      // The interpreted prices are editable <input> values, not text nodes.
+      const prices = [...document.querySelectorAll('.interpreted .product-row:not(.product-head) input.price-field')]
+        .map(input => input.value)
+      return context.includes('2 produtos') && prices.some(value => value.includes(expected))
+    }, price, { timeout: 12000 })
+  } catch {
+    const debug = await page.evaluate(() => ({
+      context: document.querySelector('.editor-context')?.textContent,
+      count: document.querySelector('.interpreted .round-count')?.textContent,
+      prices: [...document.querySelectorAll('.interpreted .product-row:not(.product-head) input.price-field')].map(input => input.value),
+      errors: [...document.querySelectorAll('.oferta-import-error')].map(node => node.textContent),
+    }))
+    throw new Error('Produtos não confirmados na interface: ' + JSON.stringify(debug))
+  }
   if (await page.locator('.oferta-import-error').count()) {
     throw new Error('Erro de importação: ' + await page.locator('.oferta-import-error').innerText())
   }
