@@ -5,6 +5,17 @@ export const SITE_URL = 'https://ofertamatica.com.br'
 export const PUBLIC_PAGES = [
   {
     kind: 'public',
+    slug: 'editor-livre',
+    title: 'Editor Livre de Placas de Oferta para Imprimir | Ofertamática',
+    description: 'Crie seu próprio cartaz de supermercado grátis. Arraste, redimensione e edite caixas de descrição, preço e textos. Personalize cores e fontes em A4, A5 ou A3 e imprima em PDF.',
+    keywords: 'editor de cartaz de oferta, personalizar cartaz supermercado, criar placa de oferta, arrastar texto e preço, editar cartaz para imprimir',
+    eyebrow: 'EDITOR LIVRE',
+    heading: 'Crie sua placa personalizada com o editor livre',
+    lead: 'Mova as caixas, adicione textos, personalize suas fontes e imprima no tamanho exato sem cadastro.',
+    benefits: ['Arrastar e redimensionar caixas', 'Preço, textos e cores personalizados', 'Prévia e impressão em PDF'],
+  },
+  {
+    kind: 'public',
     slug: 'modelos',
     title: 'Modelos de Placas de Preço Grátis para Mercado | Ofertamática',
     description: 'Escolha modelos de cartazes para mercado e supermercado. Personalize preço, cores, cabeçalho e logo da loja e prepare placas prontas para imprimir.',

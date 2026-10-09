@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState }
 import './styles.css'
 const PosterSheet = lazy(() => import('./components/posters/PosterSheet'))
 const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
+const FreePosterEditor = lazy(() => import('./components/FreePosterEditor'))
 import { AdUnit } from './components/AdUnit'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
@@ -475,6 +476,7 @@ function Navigation({ routePath, screen, onInstall }) {
   const links = [
     ['/', 'Criar placas', 'Criar'],
     ['/modelos', 'Modelos', 'Modelos'],
+    ['/editor-livre', 'Editor livre', 'Editor'],
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
@@ -577,6 +579,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         </aside>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Modelos de cartazes</a>
+          <a href="/editor-livre/">Editor livre: monte sua própria placa</a>
           <a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a>
           <a href="/como-funciona/">Como funciona</a>
           <details className="format-more-links">
@@ -2541,15 +2544,20 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
 
   const seoPage = getSeoPage(routePath)
   const publicPage = getPublicPage(routePath)
+  const isFreeEditor = String(routePath || '/').replace(/\/+$/, '') === '/editor-livre'
 
-  const appModeClass = screen === 'editor'
+  const appModeClass = isFreeEditor ? 'public-mode free-editor-mode' : screen === 'editor'
     ? 'editor-mode'
     : (seoPage || publicPage ? 'public-mode' : 'format-mode')
 
   return (
     <div className={'app ' + appModeClass}>
       <Navigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
-      {screen === 'editor' ? (
+      {isFreeEditor ? (
+        <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando o editor livre de cartazes...</p></main>}>
+          <FreePosterEditor />
+        </Suspense>
+      ) : screen === 'editor' ? (
         <>
           <CreatorSeoHead />
           <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando editor de cartazes...</p></main>}>

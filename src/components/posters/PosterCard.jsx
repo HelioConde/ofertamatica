@@ -179,7 +179,7 @@ export function PosterBackground({ template, widthMm, heightMm, className = 'pos
   )
 }
 
-export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect, backgroundOnly = false }) {
+export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect, backgroundOnly = false, extraBoxes = [], selectedExtraId = '', onExtraPointerDown }) {
   const plan = layoutPlan
   const paperStockMode = template.headerFooterStyle === 'preimpresso'
   const noFooterMode = paperStockMode || template.headerFooterStyle === 'header-transparente'
@@ -206,6 +206,19 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         {!backgroundOnly ? <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} /> : null}
         {!paperStockMode && !backgroundOnly ? <OfferMeta product={product} template={template} /> : null}
         {!backgroundOnly ? <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} /> : null}
+        {!backgroundOnly ? extraBoxes.map((box) => (
+          <div key={box.id}
+            className={`free-extra-box ${selectedExtraId === box.id ? 'is-selected' : ''}`}
+            style={{
+              left: `${box.x}%`, top: `${box.y}%`, width: `${box.width}%`, height: `${box.height}%`,
+              color: box.color || '#111111', fontSize: `${box.fontSizeMm || 8}mm`,
+              fontFamily: box.fontFamily || 'Impact, sans-serif',
+            }}
+            onPointerDown={editable ? (event) => onExtraPointerDown?.(box.id, 'move', event) : undefined}>
+            <span>{box.text || ''}</span>
+            {editable ? <button type="button" className="free-extra-handle" aria-label="Redimensionar texto" onPointerDown={(event) => onExtraPointerDown?.(box.id, 'resize', event)} /> : null}
+          </div>
+        )) : null}
         {template.storeLogo && !noFooterMode ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
         {!noFooterMode && !backgroundOnly ? <OfferFooter template={template} /> : null}
       </div>

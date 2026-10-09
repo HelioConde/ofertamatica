@@ -3,7 +3,7 @@ import PosterCard, { PosterBackground } from './PosterCard'
 import AppPosterCard from './AppPosterCard'
 import { createBackgroundSlots } from '../../poster-engine/backgroundPrinting'
 
-export default function PosterSheet({ format, products, template, layoutPlans, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, className = '', showBadges = false, startIndex = 0, selectedProductId = null, onSelectProduct, backgroundOnly = false }) {
+export default function PosterSheet({ format, products, template, layoutPlans, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, className = '', showBadges = false, startIndex = 0, selectedProductId = null, onSelectProduct, backgroundOnly = false, extraBoxes = [], selectedExtraId = '', onExtraPointerDown }) {
   const slots = backgroundOnly ? createBackgroundSlots(format) : Array.from({ length: format.postersPerSheet }, (_, index) => products[index] || null)
   const paperStockMode = template.headerFooterStyle === 'preimpresso'
 
@@ -28,6 +28,9 @@ export default function PosterSheet({ format, products, template, layoutPlans, s
             <PosterCard
               product={product}
               backgroundOnly={backgroundOnly}
+              extraBoxes={extraBoxes}
+              selectedExtraId={selectedExtraId}
+              onExtraPointerDown={onExtraPointerDown}
               format={format}
               template={template}
               layoutPlan={layoutPlans?.[product.id]}

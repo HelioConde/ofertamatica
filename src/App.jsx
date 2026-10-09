@@ -42,6 +42,7 @@ function Navigation({ routePath, screen, onInstall }) {
   const links = [
     ['/', 'Criar placas', 'Criar'],
     ['/modelos', 'Modelos', 'Modelos'],
+    ['/editor-livre', 'Editor livre', 'Editor'],
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
@@ -144,6 +145,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         </aside>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Modelos de cartazes</a>
+          <a href="/editor-livre/">Editor livre: monte sua própria placa</a>
           <a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a>
           <a href="/como-funciona/">Como funciona</a>
           <details className="format-more-links">
