@@ -155,6 +155,7 @@ async function captureViewport(name, viewport, routes) {
 
       const retailIntroCards = [...document.querySelectorAll('.retail-guide-intro-card')]
       const retailCatalogCards = [...document.querySelectorAll('.retail-guide-catalog-card')]
+      const retailGuideShowMore = document.querySelector('.retail-guide-show-more')
       const retailGuideCardsFit = [...retailIntroCards, ...retailCatalogCards].every((card) => {
         const rect = card.getBoundingClientRect()
         const parent = card.parentElement?.getBoundingClientRect()
@@ -260,6 +261,7 @@ async function captureViewport(name, viewport, routes) {
       return {
         retailIntroCardCount: retailIntroCards.length,
         retailCatalogCardCount: retailCatalogCards.length,
+        retailGuideShowMoreVisible: Boolean(retailGuideShowMore && retailGuideShowMore.getBoundingClientRect().height > 0),
         retailGuideCardsFit,
         retailGuideNoEmptyColumns,
         retailGuideStylesApplied,
@@ -306,6 +308,17 @@ async function captureViewport(name, viewport, routes) {
       path: path.join(outDir, id + '-' + name + '.png'),
       fullPage: true,
     })
+    if (id === 'guias-para-varejo' && name === 'mobile-360') {
+      await page.getByRole('button', { name: /Ver todos os guias/ }).click()
+      const expandedCount = await page.locator('.retail-guide-catalog-card').count()
+      if (expandedCount !== SEO_PAGES.length) {
+        throw new Error('Expandir o catálogo não mostrou todos os guias: ' + expandedCount)
+      }
+      await page.getByRole('button', { name: /Mostrar menos guias/ }).click()
+      if (await page.locator('.retail-guide-catalog-card').count() !== 6) {
+        throw new Error('Recolher catálogo não restaurou os seis guias iniciais.')
+      }
+    }
     if (id === 'guias-para-varejo' && name === 'desktop') {
       await page.getByRole('button', { name: 'Setores', exact: true }).click()
       const filteredCategories = await page.locator('.retail-guide-card-category').allTextContents()
@@ -353,7 +366,8 @@ const failures = state.filter((item) => {
   if (item.id === 'modelos' && (item.modelVisualCount !== 12 || !item.modelVisualReady)) return true
   if (item.id === 'guias-para-varejo' && (
     item.retailIntroCardCount !== 3 ||
-    item.retailCatalogCardCount !== SEO_PAGES.length ||
+    item.retailCatalogCardCount !== (item.width <= 650 ? Math.min(6, SEO_PAGES.length) : SEO_PAGES.length) ||
+    (item.width <= 650 && SEO_PAGES.length > 6 && !item.retailGuideShowMoreVisible) ||
     !item.retailGuideCardsFit || !item.retailGuideNoEmptyColumns ||
     !item.retailGuideStylesApplied
   )) return true

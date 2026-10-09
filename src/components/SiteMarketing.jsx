@@ -425,6 +425,11 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelView, setModelView] = useState('grade')
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
+  // Mostra seis opções de início em telas pequenas; filtros sempre exibem
+  // todos os resultados correspondentes e o catálogo completo continua acessível.
+  const [guideLimit, setGuideLimit] = useState(() =>
+    window.matchMedia('(max-width: 650px)').matches ? 6 : SEO_PAGES.length
+  )
   const [copySupportStatus, setCopySupportStatus] = useState('')
   const copySupportEmail = async () => {
     if (!navigator.clipboard?.writeText) {
@@ -460,6 +465,9 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
       .toLocaleLowerCase('pt-BR')
       .includes(normalizedGuideQuery)
   })
+  const guideFiltered = guideCategory !== 'Todos' || Boolean(normalizedGuideQuery)
+  const displayedGuides = guideFiltered ? visibleGuides : visibleGuides.slice(0, guideLimit)
+  const remainingGuides = Math.max(0, visibleGuides.length - displayedGuides.length)
   const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
   const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
   const filteredModels = MODEL_PRESETS.filter((item) => {
@@ -520,6 +528,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 </label>
                 <strong>{visibleModels.length} de {filteredModels.length} encontrados · {MODEL_PRESETS.length} no total</strong>
               </div>
+              <p className="model-filter-swipe-hint">Deslize para ver mais categorias <span aria-hidden="true">→</span></p>
               <div className="model-category-strip" aria-label="Filtrar modelos por categoria">
                 {modelCategories.map((category) => (
                   <button
@@ -700,10 +709,11 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 ))}
               </div>
               <div className="retail-guide-results" aria-live="polite">
-                {visibleGuides.length} de {SEO_PAGES.length} guias
+                {displayedGuides.length} de {SEO_PAGES.length} guias visíveis
+                {guideFiltered ? ' · busca e filtros aplicados' : ''}
               </div>
               <div className="retail-guide-card-grid">
-                {visibleGuides.map((item) => (
+                {displayedGuides.map((item) => (
                   <a className="retail-guide-catalog-card" href={'/' + item.slug + '/'} key={item.slug}>
                     <span className="retail-guide-card-category">{item.group}</span>
                     <h4>{item.heading}</h4>
@@ -712,6 +722,15 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                   </a>
                 ))}
               </div>
+              {!guideFiltered && remainingGuides > 0 ? (
+                <button type="button" className="retail-guide-show-more" onClick={() => setGuideLimit(SEO_PAGES.length)}>
+                  Ver todos os guias <span aria-hidden="true">→</span>
+                  <small>Mais {remainingGuides} conteúdos</small>
+                </button>
+              ) : null}
+              {!guideFiltered && guideLimit > 6 && window.matchMedia('(max-width: 650px)').matches ? (
+                <button type="button" className="retail-guide-show-less" onClick={() => setGuideLimit(6)}>Mostrar menos guias <span aria-hidden="true">↑</span></button>
+              ) : null}
               {!visibleGuides.length ? (
                 <div className="retail-guide-empty">
                   <strong>Nenhum guia encontrado.</strong>

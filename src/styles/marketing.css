@@ -3154,3 +3154,81 @@ summary:focus-visible {
   .privacy-preferences-panel button {width:100%}
   .marketing-footer nav .marketing-footer-privacy-button {font-size:11px;min-height:32px}
 }
+
+/* Auditoria UX 2026-10: Guias mobile mais rápidos de explorar e filtros de Modelos acessíveis. */
+.model-filter-swipe-hint { display: none; }
+.retail-guide-show-more,
+.retail-guide-show-less {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  margin: 17px auto 0;
+  padding: 11px 22px;
+  border: 1px solid #99bdf3;
+  border-radius: 11px;
+  background: #edf4ff;
+  color: #1558c4;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.retail-guide-show-more { display: flex; width: min(100%, 410px); }
+.retail-guide-show-more small { color: #496eab; font-size: 11px; font-weight: 700; }
+.retail-guide-show-less { display: flex; border-color: transparent; background: transparent; }
+.retail-guide-show-more:hover,
+.retail-guide-show-less:hover { background: #ddeafe; }
+.retail-guide-show-more:focus-visible,
+.retail-guide-show-less:focus-visible { outline: 3px solid #1d63e9; outline-offset: 3px; }
+@media (max-width: 650px) {
+  /* Blocos de orientação menores, sem descartar o texto na página. */
+  .seo-landing .retail-guides-section { padding: 19px 15px; }
+  .seo-landing .retail-guide-intro-grid { gap: 8px; margin-top: 15px; }
+  .seo-landing .retail-guide-intro-card {
+    min-height: 0; padding: 14px 16px; gap: 5px;
+  }
+  .seo-landing .retail-guide-step {
+    width: 29px; height: 29px; margin-bottom: 3px; border-radius: 8px; font-size: 11px;
+  }
+  .seo-landing .retail-guide-intro-card h3 {
+    font-size: 16px; line-height: 1.3; margin-bottom: 3px;
+  }
+  .seo-landing .retail-guide-intro-card p {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    overflow: hidden; font-size: 12px; line-height: 1.48; margin: 0 0 2px;
+  }
+  .seo-landing .retail-guide-intro-card > a { min-height: 44px; font-size: 12px; }
+  .seo-landing .retail-guide-paper-link { margin: 12px 0 18px; }
+  .seo-landing .retail-guide-catalog { padding-top: 19px; }
+  .seo-landing .retail-guide-card-grid { gap: 9px; }
+  .seo-landing .retail-guide-catalog-card {
+    padding: 15px 16px; gap: 6px; min-height: 0;
+  }
+  .seo-landing .retail-guide-catalog-card p {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    overflow: hidden; font-size: 12.5px; line-height: 1.5;
+  }
+  .seo-landing .retail-guide-catalog-card h4 { font-size: 16px; line-height: 1.35; }
+  .seo-landing .retail-guide-categories {
+    flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity; scrollbar-width: thin; margin: 12px 0;
+    padding: 2px 2px 8px;
+  }
+  .seo-landing .retail-guide-categories > button {
+    flex: 0 0 auto; scroll-snap-align: start; min-height: 44px; font-size: 12px;
+    padding-inline: 14px;
+  }
+  .model-filter-swipe-hint {
+    display: block; margin: 10px 0 -8px; color: #4d6481; font-size: 12px; line-height: 1.35;
+  }
+  .seo-landing .model-category-strip { gap: 7px; padding-bottom: 9px; }
+  .seo-landing .model-category-strip button {
+    min-height: 44px; font-size: 12px; padding: 0 15px;
+  }
+  .seo-landing .model-category-strip::after { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .retail-guide-show-more, .retail-guide-show-less { transition: none; }
+}
