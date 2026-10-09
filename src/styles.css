@@ -9878,10 +9878,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .review-modal > footer { flex-wrap: wrap; }
 }
 @media print {
-  body.poster-printing .poster-print-root-complete { display: block !important; }
-  body.poster-printing .poster-print-root-backgrounds { display: none !important; }
-  body.poster-printing.poster-printing-backgrounds .poster-print-root-complete { display: none !important; }
-  body.poster-printing.poster-printing-backgrounds .poster-print-root-backgrounds { display: block !important; }
+  /* Seletores mais específicos que os estilos genéricos de impressão em posters.css. */
+  body.poster-printing .editor-page > .poster-print-root.poster-print-root-complete { display: block !important; }
+  body.poster-printing .editor-page > .poster-print-root.poster-print-root-backgrounds { display: none !important; }
+  body.poster-printing.poster-printing-backgrounds .editor-page > .poster-print-root.poster-print-root-complete { display: none !important; }
+  body.poster-printing.poster-printing-backgrounds .editor-page > .poster-print-root.poster-print-root-backgrounds { display: block !important; }
   body.poster-printing.poster-printing-backgrounds .poster-slot { border: 0 !important; }
   body.poster-printing.poster-printing-backgrounds .poster-background-layer,
   body.poster-printing.poster-printing-backgrounds .poster-sheet-background { display: block !important; }
