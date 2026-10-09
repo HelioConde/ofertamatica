@@ -4,10 +4,11 @@ import AppPosterCard from './AppPosterCard'
 
 export default function PosterSheet({ format, products, template, layoutPlans, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, className = '', showBadges = false, startIndex = 0, selectedProductId = null, onSelectProduct }) {
   const slots = Array.from({ length: format.postersPerSheet }, (_, index) => products[index] || null)
+  const paperStockMode = template.headerFooterStyle === 'preimpresso'
 
   return (
     <section
-      className={`poster-sheet ${format.specialLayout === 'app-offer' ? 'poster-sheet-app' : ''} ${format.backgroundScope === 'sheet' && showBackground ? 'poster-sheet-has-background' : ''} ${className}`.trim()}
+      className={`poster-sheet ${format.specialLayout === 'app-offer' ? 'poster-sheet-app' : ''} ${paperStockMode ? 'poster-sheet-paper-stock' : ''} ${format.backgroundScope === 'sheet' && showBackground ? 'poster-sheet-has-background' : ''} ${className}`.trim()}
       aria-label={`Folha ${format.label}`}
       data-poster-format={format.id}
       style={{
@@ -17,7 +18,7 @@ export default function PosterSheet({ format, products, template, layoutPlans, s
         '--sheet-rows': format.rows,
       }}
     >
-      {format.backgroundScope === 'sheet' && showBackground ? <PosterBackground template={template} widthMm={format.widthMm} heightMm={format.heightMm} className="poster-sheet-background" /> : null}
+      {format.backgroundScope === 'sheet' && showBackground && !paperStockMode ? <PosterBackground template={template} widthMm={format.widthMm} heightMm={format.heightMm} className="poster-sheet-background" /> : null}
       {slots.map((product, index) => (
         <div className={`poster-slot ${product ? '' : 'poster-slot-empty'}`} key={product?.id || `empty-${index}`}>
           {product ? format.specialLayout === 'app-offer' ? (
@@ -28,7 +29,7 @@ export default function PosterSheet({ format, products, template, layoutPlans, s
               format={format}
               template={template}
               layoutPlan={layoutPlans?.[product.id]}
-              showBackground={showBackground && format.backgroundScope === 'card'}
+              showBackground={showBackground && !paperStockMode && format.backgroundScope === 'card'}
               showLayoutDebug={showLayoutDebug}
               editable={editable}
               onBoxPointerDown={onBoxPointerDown}

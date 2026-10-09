@@ -185,7 +185,7 @@ const FRAME_ART_OPTIONS = HEADER_FOOTER_MODELS.map((frame) => ({
   frameId: frame.id,
 }))
 // Variedade real já nos primeiros quatro cards; os 24 modelos continuam acessíveis.
-const FEATURED_MODEL_IDS = ['classic', 'hortifruti', 'acougue', 'premium']
+const FEATURED_MODEL_IDS = ['preimpresso', 'classic', 'hortifruti', 'acougue']
 const ALL_ART_OPTIONS = [
   ...FEATURED_MODEL_IDS
     .map((id) => MODEL_ART_OPTIONS.find((item) => item.model.id === id))
@@ -263,7 +263,7 @@ function loadPosterStyle() {
           : (saved.headerTextColor || DEFAULT_POSTER_STYLE.headerTextColor),
       ),
       headerFooterStyle: normalizedHeaderFooterStyle,
-      headerImage: HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : '',
+      headerImage: normalizedHeaderFooterStyle === 'preimpresso' ? '' : (HEADER_IMAGE_BY_ID[migratedHeader] ? migratedHeader : ''),
     }
   } catch {
     return DEFAULT_POSTER_STYLE
@@ -817,7 +817,7 @@ function StyleSidebar({
     !style.headerImage &&
     model.background === style.backgroundColor &&
     resolveReadablePriceColor(model.background, model.price) === style.priceColor &&
-    model.label === style.headerText &&
+    (model.headerFooterStyle === 'preimpresso' || model.label === style.headerText) &&
     (model.headerFooterStyle || 'moldura') === style.headerFooterStyle
   )
   const currentArtLabel = customHeader
@@ -1217,7 +1217,7 @@ function StyleSidebar({
                 ? (
                     !style.headerImage
                     && !customHeader
-                    && style.headerText === item.model.label
+                    && (item.model.headerFooterStyle === 'preimpresso' || style.headerText === item.model.label)
                     && style.headerFooterStyle === (item.model.headerFooterStyle || 'moldura')
                     && style.backgroundColor === item.model.background
                   )

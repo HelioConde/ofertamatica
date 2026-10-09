@@ -32,6 +32,7 @@ function styleFor(box, textStyle, text) {
 }
 
 export default function AppPosterCard({ product, template, editable, showLayoutDebug, onBoxPointerDown, badgeLabel, selected, onSelect }) {
+  const paperStockMode = template.headerFooterStyle === 'preimpresso'
   const headerText = template.headerText || 'OFERTA APP'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   const values = {
@@ -42,9 +43,9 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
     regularPrice: product.regularPrice ? `${template.showCurrency ? 'R$ ' : ''}${product.regularPrice}` : '',
   }
   return (
-    <article className={`poster-card poster-app-card ofertamatica-app-card ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
+    <article className={`poster-card poster-app-card ofertamatica-app-card ${paperStockMode ? 'poster-app-card-paper-stock' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
-      <div className={`ofertamatica-app-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
+      {!paperStockMode ? <div className={`ofertamatica-app-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
         {template.headerImage ? (
           <div className="ofertamatica-custom-header ofertamatica-custom-header-app">
             <img src={template.headerImage} alt="" />
@@ -55,9 +56,9 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
         <div className="ofertamatica-app-frame" />
         <div className="ofertamatica-footer-decoration" />
         <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
-      </div>
-      {template.storeLogo ? <div className="poster-store-logo poster-store-logo-app"><img src={template.storeLogo} alt="" /></div> : null}
-      {APP_BOXES.map(([boxName, styleName, valueName]) => {
+      </div> : null}
+      {template.storeLogo && !paperStockMode ? <div className="poster-store-logo poster-store-logo-app"><img src={template.storeLogo} alt="" /></div> : null}
+      {APP_BOXES.filter(([boxName]) => !paperStockMode || ['appTitleBox', 'appPriceBox'].includes(boxName)).map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
         return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle, values[valueName])} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>

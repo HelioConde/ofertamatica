@@ -1204,3 +1204,21 @@
   .poster-visual-qa-grid { grid-template-columns: 1fr; }
   .poster-visual-qa-header h1 { font-size: 24px; }
 }
+
+/* Papel pré-impresso de gráfica: só letras e números recebem tinta. Sem fundo, marca, moldura, divisor ou linhas de corte, na prévia e na impressão. */
+.poster-card-paper-stock .poster-card-layers,
+.poster-app-card-paper-stock {
+  background: #fff !important;
+}
+.poster-card-paper-stock .poster-card-layers::after,
+.poster-app-card-paper-stock::after {
+  content: none !important;
+  display: none !important;
+}
+.poster-sheet-paper-stock .poster-slot {
+  border-color: transparent !important;
+}
+.poster-sheet-paper-stock .poster-sheet-background,
+.poster-sheet-paper-stock .poster-background-layer {
+  display: none !important;
+}

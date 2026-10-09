@@ -181,13 +181,14 @@ export function PosterBackground({ template, widthMm, heightMm, className = 'pos
 
 export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect }) {
   const plan = layoutPlan
+  const paperStockMode = template.headerFooterStyle === 'preimpresso'
   const headerText = template.headerText || 'OFERTA'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   return (
-    <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
+    <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${paperStockMode ? 'poster-card-paper-stock' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
       <div className="poster-card-layers">
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
-        <div className={`ofertamatica-poster-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
+        {!paperStockMode ? <div className={`ofertamatica-poster-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
           {template.headerImage ? (
             <div className="ofertamatica-custom-header">
               <img src={template.headerImage} alt="" />
@@ -198,14 +199,14 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
           <div className="ofertamatica-inner-frame" />
           <div className="ofertamatica-footer-decoration" />
           <div className="ofertamatica-poster-signature">OFERTAMÁTICA</div>
-        </div>
-        {showBackground ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
+        </div> : null}
+        {showBackground && !paperStockMode ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
         {showLayoutDebug ? <div className="poster-safe-area" style={{ inset: `${template.safeArea}%` }} aria-hidden="true" /> : null}
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
-        <OfferMeta product={product} template={template} />
+        {!paperStockMode ? <OfferMeta product={product} template={template} /> : null}
         <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
-        {template.storeLogo ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
-        <OfferFooter template={template} />
+        {template.storeLogo && !paperStockMode ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
+        {!paperStockMode ? <OfferFooter template={template} /> : null}
       </div>
     </article>
   )
