@@ -131,6 +131,13 @@ async function captureViewport(name, viewport, routes) {
           const rect = element.getBoundingClientRect()
           if (rect.width <= 0 || rect.height <= 0) return false
           if (element.closest('.poster-card, .model-poster-standard, .format-diagram')) return false
+          // Checkboxes remain visually compact, but an associated label is the actual touch target.
+          // Require that label to provide an accessible hit area instead of suppressing the check.
+          if (element.matches('input[type="checkbox"], input[type="radio"]') &&
+              [...(element.labels || [])].some((label) => {
+                const hit = label.getBoundingClientRect()
+                return hit.width >= 28 && hit.height >= 28
+              })) return false
           return rect.height < 28
         })
         .slice(0, 12)
