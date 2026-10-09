@@ -60,6 +60,21 @@ export default function PaperGuide({ page }) {
             </tbody>
           </table>
         </div>
+        <div className="paper-guide-mobile-formats" aria-label="Comparação de tamanhos de cartaz no celular">
+          {page.formatChoices.map((format) => (
+            <details className="paper-guide-mobile-format" key={format.id}>
+              <summary>
+                <strong>{format.name}</strong>
+                <small>{format.area}</small>
+              </summary>
+              <dl>
+                <div><dt>Folha da impressora</dt><dd>{format.sheet}</dd></div>
+                <div><dt>Tamanho do cartaz</dt><dd>{format.area}</dd></div>
+                <div><dt>Onde usar</dt><dd>{format.use}</dd></div>
+              </dl>
+            </details>
+          ))}
+        </div>
         <div className="paper-guide-tip">
           <strong>Importante:</strong> os cartazes A6 e A7 da ferramenta saem em uma folha <b>A4</b>. Você não precisa comprar papel A6 ou A7 para esses layouts: imprima a A4 e recorte.
         </div>

@@ -332,6 +332,15 @@ async function captureViewport(name, viewport, routes) {
         throw new Error('Limpar filtros não restaurou todos os guias do catálogo.')
       }
     }
+    if (id === 'qual-papel-usar-para-cartaz' && name === 'mobile-360') {
+      const cards = page.locator('.paper-guide-mobile-format')
+      if (await cards.count() !== 6) throw new Error('Guia mobile deve mostrar seis opções de papel e formato.')
+      if (await page.locator('.paper-guide-table-wrap').isVisible()) throw new Error('Tabela horizontal ainda ocupa espaço na versão móvel.')
+      await cards.first().locator('summary').click()
+      if (!(await cards.first().locator('dd').first().isVisible())) {
+        throw new Error('Cartão mobile não expande a descrição do formato.')
+      }
+    }
     if (id === 'formatos' && name === 'desktop') {
       await page.locator('.format-guide-section [data-format-id="A4X4"]').click()
       await page.locator('.editor-layout').waitFor({ state: 'visible', timeout: 10000 })
