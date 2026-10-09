@@ -269,6 +269,8 @@ async function captureViewport(name, viewport, routes) {
         modelVisualCount,
         modelVisualReady,
         howGuideCardCount: howTopicCards.length,
+        howRedundantBenefitCards: document.querySelectorAll('.compact-info-grid article').length,
+        howRetainsDraftHint: Boolean(document.querySelector('.how-retention-note')?.textContent?.includes('salvo neste dispositivo')),
         howTopicLinksValid,
         howGuideCardsFit,
         howGuideCardsSameRow,
@@ -382,6 +384,7 @@ const failures = state.filter((item) => {
   )) return true
   if (item.id === 'como-funciona' && (
     item.howGuideCardCount !== 3 || !item.howTopicLinksValid ||
+    item.howRedundantBenefitCards !== 0 || !item.howRetainsDraftHint ||
     !item.howGuideCardsFit ||
     (item.viewport === 'desktop' && !item.howGuideCardsSameRow)
   )) return true
@@ -393,6 +396,7 @@ const failures = state.filter((item) => {
         item.formatCardsOverlap || item.adOverlapsFormats || item.linksOverlapAd ||
         item.appPreviewClipped) return true
     if (item.viewport === 'desktop-760-draft' && !item.hasSavedDraft) return true
+    if (item.viewport === 'mobile-360' && item.creatorGeometry.header?.height > 335) return true
     // A home alta deve usar o espaço vertical sem alongar os cartões excessivamente.
     if (item.viewport === 'desktop' &&
         item.formatCardHeights.some((height) => height < 220 || height > 290)) return true

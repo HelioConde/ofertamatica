@@ -3232,3 +3232,20 @@ summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .retail-guide-show-more, .retail-guide-show-less { transition: none; }
 }
+
+/* Como funciona: a explicação mantém quatro passos e evita repetir três cards
+   já cobertos pelo hero, pela revisão e pela memória local do editor. */
+.seo-landing .how-retention-note {
+  margin: 0;
+  padding: 14px 20px;
+  border: 1px solid #d4e3f4;
+  border-radius: 12px;
+  background: #f2f7ff;
+  color: #365a80;
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .seo-landing .how-retention-note { padding: 12px 14px; font-size: 12px; }
+}

@@ -631,11 +631,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <article><span>✓</span><strong>Revise e imprima</strong><p>Confira papel, orientação e preços antes de enviar para a impressora.</p></article>
               </div>
             </section>
-            <section className="marketing-section compact-info-grid">
-              <article><strong>Sem cadastro para começar</strong><p>O usuário entra direto no gerador, sem formulário antes da primeira placa.</p></article>
-              <article><strong>Histórico salvo localmente</strong><p>Retome o último trabalho ou reaproveite listas recentes no mesmo dispositivo.</p></article>
-              <article><strong>Revisão antes da impressão</strong><p>Preço, quantidade, papel e orientação ficam visíveis antes de imprimir.</p></article>
-            </section>
+            <p className="how-retention-note">Sem cadastro para começar. Seu último trabalho fica salvo neste dispositivo para continuar depois.</p>
           </>
         ) : null}
 

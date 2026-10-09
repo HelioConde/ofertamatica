@@ -93,9 +93,9 @@ function FormatChooser({ onSelect, draft, onResume }) {
         <header className="format-dialog-head format-dialog-head-clean">
           <div className="format-home-intro">
             <div className="format-home-intro-copy">
-              <span className="eyebrow two-click-kicker">GERADOR GRÁTIS DE CARTAZES PARA VAREJO</span>
+              <span className="eyebrow two-click-kicker">CARTAZES DE OFERTA GRÁTIS</span>
               <h1>Escolha o formato da sua placa de oferta</h1>
-              <p>Selecione o tamanho, adicione seus produtos e imprima cartazes de preço em A4, A5 ou A3. Sem cadastro.</p>
+              <p>Escolha A4, A5 ou A3, cole seus produtos e imprima suas ofertas. Sem cadastro.</p>
               <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
                 <span>Grátis e sem cadastro</span>
                 <span>Lista, Excel, CSV ou TXT</span>

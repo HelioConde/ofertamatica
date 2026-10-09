@@ -2471,3 +2471,46 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     max-width: calc(100% - 8px) !important;
   }
 }
+
+/* UX final: primeiro cartão de formatos deve aparecer mais cedo no celular,
+   sem esconder formatos, vantagens ou o acesso ao guia de impressão. */
+@media (max-width: 600px) {
+  .format-mode .format-home-refresh .format-dialog-head {
+    padding: 12px 14px 9px !important;
+  }
+  .format-mode .format-home-refresh .format-home-intro {
+    gap: 8px !important;
+  }
+  .format-mode .format-home-refresh .two-click-kicker {
+    margin-bottom: 3px !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    letter-spacing: .05em !important;
+  }
+  .format-mode .format-home-refresh .format-dialog-head-clean h1 {
+    margin: 0 !important;
+    font-size: clamp(23px, 6vw, 27px) !important;
+    line-height: 1.16 !important;
+  }
+  .format-mode .format-home-refresh .format-home-intro-copy > p {
+    margin-top: 5px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+  .format-mode .format-home-refresh .format-trust-row {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    margin-top: 7px !important;
+    gap: 3px 12px !important;
+  }
+  .format-mode .format-home-refresh .format-trust-row span {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+  .format-mode .format-home-refresh .format-paper-guide-link {
+    min-height: 52px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px;
+  }
+  .format-mode .format-home-refresh .format-home-chooser { padding-top: 10px !important; }
+}
