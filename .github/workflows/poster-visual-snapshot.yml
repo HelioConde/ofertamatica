@@ -67,6 +67,9 @@ jobs:
       - name: Validate product parser
         run: node scripts/validate-parser.mjs
 
+      - name: Validate release QA syntax
+        run: node --check scripts/qa-release-print-import.mjs
+
       - name: Install Playwright for visual capture
         run: npm install --no-save playwright@1.55.0
 
