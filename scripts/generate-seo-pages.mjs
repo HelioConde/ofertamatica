@@ -261,8 +261,8 @@ function creatorSnapshot() {
     '<div class="nav-meta"><span class="free-pill">Grátis</span><span class="nav-note">sem cadastro</span></div></div></header>' +
     '<main class="format-page format-home-refresh" id="formatos"><section class="format-dialog">' +
     '<header class="format-dialog-head format-dialog-head-clean"><div class="format-home-intro"><div class="format-home-intro-copy">' +
-    '<span class="eyebrow two-click-kicker">GERADOR GRÁTIS DE CARTAZES PARA VAREJO</span><h1>Escolha o formato da sua placa de oferta</h1>' +
-    '<p>Selecione o tamanho, adicione seus produtos e imprima cartazes de preço em A4, A5 ou A3. Sem cadastro.</p>' +
+    '<span class="eyebrow two-click-kicker">CARTAZES DE OFERTA GRÁTIS</span><h1>Escolha o formato da sua placa de oferta</h1>' +
+    '<p>Escolha A4, A5 ou A3, cole seus produtos e imprima suas ofertas. Sem cadastro.</p>' +
     '<div class="format-trust-row" aria-label="Vantagens do Ofertamática"><span>Grátis e sem cadastro</span><span>Lista, Excel, CSV ou TXT</span><span>PDF no tamanho correto</span></div></div>' +
     '<a class="format-paper-guide-link" href="/qual-papel-usar-para-cartaz/"><span class="format-paper-icon" aria-hidden="true">▤</span><span><b>Dúvida sobre o papel?</b><small>Confira folhas, gramaturas e impressão</small></span><strong aria-hidden="true">→</strong></a>' +
     '</div></header>' +
