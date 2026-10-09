@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-09T01:37:15.410Z",
-  "commit": "12584e04cf219a77b85dd47692b1e168d8b9e302",
+  "generatedAt": "2026-10-09T01:43:15.420Z",
+  "commit": "0d6ed9b856f3e8214b4335959c6a7f96d4830df4",
   "results": [
     {
       "formatId": "A4X8",
@@ -45,11 +45,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
@@ -106,11 +106,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
@@ -167,11 +167,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
@@ -228,11 +228,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
@@ -289,11 +289,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 348.4,
+        "top": 307.2,
         "width": 320,
         "height": 226.3,
         "right": 1073,
-        "bottom": 574.6
+        "bottom": 533.5
       },
       "firstRow": {
         "left": 81,
@@ -350,11 +350,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
@@ -411,11 +411,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 234.5,
+        "top": 193.3,
         "width": 320,
         "height": 454,
         "right": 1073,
-        "bottom": 688.5
+        "bottom": 647.4
       },
       "firstRow": {
         "left": 81,
@@ -472,11 +472,11 @@
       },
       "poster": {
         "left": 753,
-        "top": 235.2,
+        "top": 194.1,
         "width": 320,
         "height": 452.5,
         "right": 1073,
-        "bottom": 687.8
+        "bottom": 646.6
       },
       "firstRow": {
         "left": 81,
