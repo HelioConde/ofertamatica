@@ -9855,3 +9855,37 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   background: transparent !important;
   box-shadow: 0 0 2mm rgba(240, 145, 21, .19) !important;
 }
+
+
+/* Ferramenta para imprimir a arte como papel pré-impresso, sem dados comerciais. */
+.preview-background-action { display: grid; gap: 4px; margin: 8px 9px 10px; }
+.preview-background-action > button { min-height: 36px; border: 1px solid #b8cde5; background: #f7fbff; color: #24547f; border-radius: 8px; font-size: 10px; font-weight: 850; cursor: pointer; }
+.preview-background-action > button:hover { background: #edf6ff; border-color: #7eaadf; }
+.preview-background-action > small { color: #687b90; font-size: 9px; line-height: 1.35; text-align: center; }
+.review-background-settings { display: grid; grid-template-columns: minmax(0, 1fr) 190px; align-items: center; gap: 14px; margin: 0 18px 10px; padding: 12px; border: 1px solid #dce6f2; border-radius: 9px; background: #fbfdff; }
+.review-background-settings-copy { display: grid; gap: 8px; min-width: 0; }
+.review-background-settings-copy strong { font-size: 12px; color: #253e5b; }
+.review-background-settings-copy p, .review-background-settings-copy small { margin: 0; color: #5e728a; font-size: 10px; line-height: 1.45; }
+.review-background-settings-copy label { display: grid; gap: 5px; max-width: 160px; }
+.review-background-settings-copy label span { font-size: 10px; font-weight: 800; color: #344967; }
+.review-background-settings-copy input { width: 100%; height: 38px; padding: 0 10px; border: 1px solid #b8cce4; border-radius: 7px; background: #fff; color: #203850; font-size: 15px; font-weight: 850; }
+.review-background-empty-note { padding: 8px; border: 1px solid #eab4a9; border-radius: 7px; background: #fff7f2; color: #8c3321; font-size: 10px; line-height: 1.4; }
+.review-background-settings .preview-stage.real-poster-preview.review-background-preview { width: 100% !important; height: 176px !important; min-height: 0 !important; max-height: 176px !important; margin: 0 !important; padding: 8px !important; display: grid !important; place-items: center !important; background: #eaf0f6; border: 1px solid #e0e7ef; border-radius: 7px; }
+@media (max-width: 600px) {
+  .review-background-settings { grid-template-columns: 1fr; }
+  .review-background-settings .preview-stage.real-poster-preview.review-background-preview { height: 165px !important; max-height: 165px !important; }
+  .preview-background-action { margin-inline: 13px; }
+  .review-modal > footer { flex-wrap: wrap; }
+}
+@media print {
+  body.poster-printing .poster-print-root-complete { display: block !important; }
+  body.poster-printing .poster-print-root-backgrounds { display: none !important; }
+  body.poster-printing.poster-printing-backgrounds .poster-print-root-complete { display: none !important; }
+  body.poster-printing.poster-printing-backgrounds .poster-print-root-backgrounds { display: block !important; }
+  body.poster-printing.poster-printing-backgrounds .poster-slot { border: 0 !important; }
+  body.poster-printing.poster-printing-backgrounds .poster-background-layer,
+  body.poster-printing.poster-printing-backgrounds .poster-sheet-background { display: block !important; }
+  body.poster-printing.poster-printing-backgrounds .poster-sheet,
+  body.poster-printing.poster-printing-backgrounds .poster-card,
+  body.poster-printing.poster-printing-backgrounds .poster-card-layers { print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
+}

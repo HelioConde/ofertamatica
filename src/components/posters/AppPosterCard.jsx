@@ -31,7 +31,7 @@ function styleFor(box, textStyle, text) {
   }
 }
 
-export default function AppPosterCard({ product, template, editable, showLayoutDebug, onBoxPointerDown, badgeLabel, selected, onSelect }) {
+export default function AppPosterCard({ product, template, editable, showLayoutDebug, onBoxPointerDown, badgeLabel, selected, onSelect, backgroundOnly = false }) {
   const paperStockMode = template.headerFooterStyle === 'preimpresso'
   const noFooterMode = paperStockMode || template.headerFooterStyle === 'header-transparente'
   const headerText = template.headerText || 'OFERTA APP'
@@ -59,7 +59,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
         <div className="ofertamatica-app-signature">OFERTAMÁTICA</div>
       </div> : null}
       {template.storeLogo && !noFooterMode ? <div className="poster-store-logo poster-store-logo-app"><img src={template.storeLogo} alt="" /></div> : null}
-      {APP_BOXES.filter(([boxName]) => !noFooterMode || ['appTitleBox', 'appPriceBox'].includes(boxName)).map(([boxName, styleName, valueName]) => {
+      {APP_BOXES.filter(([boxName]) => !backgroundOnly && (!noFooterMode || ['appTitleBox', 'appPriceBox'].includes(boxName))).map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
         return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle, values[valueName])} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>

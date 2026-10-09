@@ -18,6 +18,7 @@ import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/p
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
+import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount } from './poster-engine/backgroundPrinting'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from './utils/posterColorContrast'
@@ -443,7 +444,7 @@ function preservePromotionFields(nextProducts, previousProducts) {
   })
 }
 
-function applyPrintPage(format) {
+function applyPrintPage(format, mode = 'complete') {
   let style = document.getElementById(PRINT_STYLE_ID)
   if (!style) {
     style = document.createElement('style')
@@ -452,11 +453,12 @@ function applyPrintPage(format) {
   }
   style.textContent = '@page { size: ' + format.widthMm + 'mm ' + format.heightMm + 'mm; margin: 0; }'
   document.body.classList.add('poster-printing')
+  document.body.classList.toggle('poster-printing-backgrounds', mode === 'backgrounds')
 }
 
 function clearPrintPage() {
   document.getElementById(PRINT_STYLE_ID)?.remove()
-  document.body.classList.remove('poster-printing')
+  document.body.classList.remove('poster-printing', 'poster-printing-backgrounds')
 }
 
 function Brand() {
@@ -592,7 +594,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
   )
 }
 
-function PosterViewport({ format, products, template, layoutPlans, selectedProductId, onSelectProduct, className = '' }) {
+function PosterViewport({ format, products, template, layoutPlans, selectedProductId, onSelectProduct, className = '', backgroundOnly = false }) {
   const hostRef = useRef(null)
   const [scale, setScale] = useState(0.25)
 
@@ -629,6 +631,7 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
             products={products}
             template={template}
             layoutPlans={layoutPlans}
+            backgroundOnly={backgroundOnly}
             showBackground
             selectedProductId={selectedProductId}
             onSelectProduct={onSelectProduct}
@@ -639,22 +642,25 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
   )
 }
 
-function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint, intent = 'print' }) {
+function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint, intent = 'print', mode = 'complete', template, backgroundSheetCount, onBackgroundSheetCountChange }) {
   const savingPdf = intent === 'pdf'
+  const backgroundOnly = mode === 'backgrounds'
+  const blankTemplate = backgroundOnly && template.headerFooterStyle === 'preimpresso'
+  const totalSheets = backgroundOnly ? backgroundSheetCount : pageCount
   return (
     <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <section className="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
         <header>
           <div>
-            <span className="section-label">{savingPdf ? 'SALVAR COMO PDF' : 'REVISÃO DE IMPRESSÃO'}</span>
-            <h2 id="review-title">{savingPdf ? 'Confira antes de gerar o PDF' : 'Confira antes de imprimir'}</h2>
+            <span className="section-label">{backgroundOnly ? 'FUNDO PARA IMPRESSÃO' : (savingPdf ? 'SALVAR COMO PDF' : 'REVISÃO DE IMPRESSÃO')}</span>
+            <h2 id="review-title">{backgroundOnly ? 'Imprimir placas sem descrição e preço' : (savingPdf ? 'Confira antes de gerar o PDF' : 'Confira antes de imprimir')}</h2>
           </div>
           <button type="button" className="review-close" onClick={onClose} aria-label="Fechar revisão">×</button>
         </header>
 
         <div className="review-summary">
-          <article><small>Produtos</small><strong>{products.length}</strong></article>
-          <article><small>Folhas</small><strong>{pageCount}</strong></article>
+          <article><small>{backgroundOnly ? 'Fundos de placa' : 'Produtos'}</small><strong>{backgroundOnly ? format.postersPerSheet * totalSheets : products.length}</strong></article>
+          <article><small>Folhas</small><strong>{totalSheets}</strong></article>
           <article><small>Formato</small><strong>{format.shortLabel}</strong></article>
           <article><small>Papel</small><strong>{format.paper}</strong></article>
         </div>
@@ -666,7 +672,24 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
           <span>{format.postersPerSheet} {format.postersPerSheet === 1 ? 'cartaz' : 'cartazes'} por folha</span>
         </div>
 
-        {warnings.length ? (
+        {backgroundOnly ? (
+          <section className="review-background-settings" aria-label="Configurar impressão dos fundos">
+            <div className="review-background-settings-copy">
+              <strong>Somente a arte do cartaz</strong>
+              <p>Imprime cores, cabeçalho e moldura do modelo escolhido. Nomes, descrições, unidades e preços não aparecem.</p>
+              <label>
+                <span>Quantidade de folhas</span>
+                <input type="number" inputMode="numeric" min="1" max={MAX_BACKGROUND_SHEETS}
+                  value={backgroundSheetCount}
+                  onChange={(event) => onBackgroundSheetCountChange(normalizeBackgroundSheetCount(event.target.value))}
+                  aria-label="Quantidade de folhas de fundo" />
+              </label>
+              <small>{format.postersPerSheet} {format.postersPerSheet === 1 ? 'fundo por folha' : 'fundos por folha'} · até {MAX_BACKGROUND_SHEETS} folhas</small>
+              {blankTemplate ? <div className="review-background-empty-note" role="alert">O modelo “Papel pré-impresso” não tem arte de fundo. Escolha um modelo colorido na Personalização.</div> : null}
+            </div>
+            <PosterViewport className="review-background-preview" format={format} products={[]} template={template} layoutPlans={{}} backgroundOnly />
+          </section>
+        ) : warnings.length ? (
           <div className="review-warnings" role="alert">
             <strong>Revise estes pontos</strong>
             {warnings.map((warning) => <span key={warning}>• {warning}</span>)}
@@ -681,15 +704,23 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
           <span>Use escala de <b>100%</b> e evite “Ajustar à página”.</span>
           <span>Selecione papel <b>{format.paper}</b> e orientação <b>{format.orientationLabel}</b>.</span>
           <span>Desative cabeçalhos e rodapés do navegador para não aparecer URL/data na folha.</span>
+          {backgroundOnly ? <span><b>Ative gráficos de fundo</b> nas opções do navegador para manter cores e artes.</span> : null}
           <a className="print-paper-guide-link" href="/qual-papel-usar-para-cartaz/" target="_blank" rel="noopener noreferrer">Qual papel e gramatura usar? Abrir guia ↗</a>
           {format.paper === 'A3' ? <span className="print-alert">Este trabalho usa tamanho A3; o PDF manterá o tamanho físico configurado.</span> : null}
         </div>
 
         <footer>
           <button type="button" className="quiet-button review-back" onClick={onClose}>Voltar e corrigir</button>
-          <button type="button" className="generate-button review-print" onClick={onPrint}>
-            {savingPdf ? 'Abrir para salvar PDF' : 'Imprimir agora'}
-          </button>
+          {backgroundOnly ? (
+            <>
+              <button type="button" className="quiet-button review-back" disabled={blankTemplate} onClick={() => onPrint('pdf')}>Salvar fundo em PDF</button>
+              <button type="button" className="generate-button review-print" disabled={blankTemplate} onClick={() => onPrint('print')}>Imprimir somente fundos</button>
+            </>
+          ) : (
+            <button type="button" className="generate-button review-print" onClick={() => onPrint(intent)}>
+              {savingPdf ? 'Abrir para salvar PDF' : 'Imprimir agora'}
+            </button>
+          )}
         </footer>
       </section>
     </div>
@@ -1320,6 +1351,8 @@ function Editor({
   const [expanded, setExpanded] = useState(false)
   const [reviewOpen, setReviewOpen] = useState(false)
   const [reviewIntent, setReviewIntent] = useState('print')
+  const [reviewMode, setReviewMode] = useState('complete')
+  const [backgroundSheetCount, setBackgroundSheetCount] = useState(1)
   const [importError, setImportError] = useState('')
   const [clipboardError, setClipboardError] = useState('')
   const [draggingFile, setDraggingFile] = useState(false)
@@ -1826,18 +1859,22 @@ function Editor({
     return () => document.removeEventListener('keydown', handleEditorShortcuts)
   }, [expanded, reviewOpen, products.length, format.id])
 
-  function openPrintReview(source = 'preview', intent = 'print') {
+  function openPrintReview(source = 'preview', intent = 'print', mode = 'complete') {
+    if (mode !== 'backgrounds' && !products.length) return
+    setReviewMode(mode)
     setReviewIntent(intent)
-    trackProductEvent(intent === 'pdf' ? 'ofertamatica_pdf_review' : 'ofertamatica_print_review', {
+    trackProductEvent(mode === 'backgrounds' ? 'ofertamatica_background_print_review' : (intent === 'pdf' ? 'ofertamatica_pdf_review' : 'ofertamatica_print_review'), {
       source,
       format_id: format.id,
       product_count: products.length,
-      page_count: pageCount,
+      page_count: mode === 'backgrounds' ? backgroundSheetCount : pageCount,
+      print_mode: mode,
     })
     setReviewOpen(true)
   }
 
-  async function printPosters() {
+  async function printPosters(intent = reviewIntent) {
+    if (reviewMode === 'backgrounds' && posterStyle.headerFooterStyle === 'preimpresso') return
     if (document.fonts?.ready) {
       try {
         await document.fonts.ready
@@ -1846,13 +1883,15 @@ function Editor({
       }
     }
 
-    trackProductEvent(reviewIntent === 'pdf' ? 'ofertamatica_pdf_started' : 'ofertamatica_print_started', {
+    trackProductEvent(reviewMode === 'backgrounds' ? 'ofertamatica_background_print_started' : (intent === 'pdf' ? 'ofertamatica_pdf_started' : 'ofertamatica_print_started'), {
       format_id: format.id,
       product_count: products.length,
-      page_count: pageCount,
+      page_count: reviewMode === 'backgrounds' ? backgroundSheetCount : pageCount,
+      print_mode: reviewMode,
+      output_destination: intent,
     })
     setReviewOpen(false)
-    applyPrintPage(format)
+    applyPrintPage(format, reviewMode)
     const cleanup = () => {
       clearPrintPage()
       window.removeEventListener('afterprint', cleanup)
@@ -2234,6 +2273,12 @@ function Editor({
             <button className="pdf-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview', 'pdf')}>Salvar PDF</button>
             <button className="print-button" type="button" disabled={!products.length} onClick={() => openPrintReview('preview', 'print')}>Revisar e imprimir</button>
           </div>
+          <div className="preview-background-action">
+            <button type="button" onClick={() => openPrintReview('preview-background', 'print', 'backgrounds')}>
+              <span aria-hidden="true">▧</span> Imprimir somente o fundo
+            </button>
+            <small>Crie folhas pré-impressas sem produtos ou preços, mesmo com a lista vazia.</small>
+          </div>
         </aside>
 
         <StyleSidebar
@@ -2249,7 +2294,7 @@ function Editor({
         />
       </section>
 
-      <div className="poster-print-root" aria-hidden="true">
+      <div className="poster-print-root poster-print-root-complete" aria-hidden="true">
         {pages.map((productsForPage, index) => (
           <PosterSheet
             key={'print-' + index}
@@ -2260,6 +2305,21 @@ function Editor({
             layoutPlans={layoutPlans}
             showBackground
             startIndex={index * format.postersPerSheet}
+          />
+        ))}
+      </div>
+
+      <div className="poster-print-root poster-print-root-backgrounds" aria-hidden="true">
+        {Array.from({ length: backgroundSheetCount }, (_, index) => (
+          <PosterSheet
+            key={'background-print-' + index}
+            className="poster-print-sheet"
+            format={format}
+            products={[]}
+            template={template}
+            layoutPlans={{}}
+            backgroundOnly
+            showBackground
           />
         ))}
       </div>
@@ -2298,6 +2358,10 @@ function Editor({
           onClose={() => setReviewOpen(false)}
           onPrint={printPosters}
           intent={reviewIntent}
+          mode={reviewMode}
+          template={template}
+          backgroundSheetCount={backgroundSheetCount}
+          onBackgroundSheetCountChange={setBackgroundSheetCount}
         />
       ) : null}
     </main>

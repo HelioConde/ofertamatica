@@ -1,5 +1,6 @@
 import { POSTER_FORMATS } from '../src/config/posterFormats.js'
 import { getDefaultTemplateForFormat } from '../src/config/posterTemplates.js'
+import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount, createBackgroundSlots } from '../src/poster-engine/backgroundPrinting.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 import { createPosterLayouts } from '../src/poster-engine/layoutPlan.js'
 import { estimateTextMeasure } from '../src/poster-engine/textMeasure.js'
@@ -34,6 +35,9 @@ for (const formatId of publicFormats) {
   expect(Boolean(template), `Template padrão ausente: ${formatId}`)
   if (!format || !template) continue
 
+  const blanks = createBackgroundSlots(format)
+  expect(blanks.length === format.postersPerSheet, `${formatId}: fundos não preenchem todas as posições`)
+  expect(blanks.every((blank) => blank.price === '' && blank.description === ''), `${formatId}: fundo contém descrição/preço`)
   const layouts = createPosterLayouts(samples, template, format, estimateTextMeasure)
 
   for (const sample of samples) {
@@ -61,6 +65,10 @@ for (const formatId of publicFormats) {
     )
   }
 }
+
+expect(normalizeBackgroundSheetCount(0) === 1, 'A impressão de fundos requer ao menos uma folha')
+expect(normalizeBackgroundSheetCount(1000) === MAX_BACKGROUND_SHEETS, 'Limite máximo de folhas não respeitado')
+expect(normalizeBackgroundSheetCount('3') === 3, 'Quantidade válida de folhas alterada')
 
 if (failures.length) {
   console.error('\nFalhas de validação dos cartazes:')

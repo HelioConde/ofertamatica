@@ -179,7 +179,7 @@ export function PosterBackground({ template, widthMm, heightMm, className = 'pos
   )
 }
 
-export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect }) {
+export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect, backgroundOnly = false }) {
   const plan = layoutPlan
   const paperStockMode = template.headerFooterStyle === 'preimpresso'
   const noFooterMode = paperStockMode || template.headerFooterStyle === 'header-transparente'
@@ -203,11 +203,11 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         </div> : null}
         {showBackground && !paperStockMode ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
         {showLayoutDebug ? <div className="poster-safe-area" style={{ inset: `${template.safeArea}%` }} aria-hidden="true" /> : null}
-        <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
-        {!paperStockMode ? <OfferMeta product={product} template={template} /> : null}
-        <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
+        {!backgroundOnly ? <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} /> : null}
+        {!paperStockMode && !backgroundOnly ? <OfferMeta product={product} template={template} /> : null}
+        {!backgroundOnly ? <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} /> : null}
         {template.storeLogo && !noFooterMode ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
-        {!noFooterMode ? <OfferFooter template={template} /> : null}
+        {!noFooterMode && !backgroundOnly ? <OfferFooter template={template} /> : null}
       </div>
     </article>
   )
