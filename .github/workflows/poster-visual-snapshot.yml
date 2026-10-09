@@ -27,6 +27,8 @@ on:
       - 'src/styles/consent.css'
       - 'index.html'
       - 'src/styles/home.css'
+      - 'src/styles/free-editor.css'
+      - 'src/components/FreePosterEditor.jsx'
       - 'src/assets/fonts/**'
       - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/capture-site-visuals.mjs'
