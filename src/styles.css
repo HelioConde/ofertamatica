@@ -9783,3 +9783,75 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* Contraste AA para a etiqueta de gratuidade na navegação. */
 .nav-meta .free-pill { color: #09663e !important; }
+
+
+/* OFERTA SEM FAIXA — cabeçalho transparente (texto direto no amarelo).
+   Mesmo layout para miniaturas, editor, PDF e impressão. */
+.poster-frame-header-transparente.ofertamatica-poster-background,
+.poster-frame-header-transparente.ofertamatica-app-background {
+  background: var(--poster-background, #f9e557) !important;
+}
+.poster-frame-header-transparente.ofertamatica-poster-background::before,
+.poster-frame-header-transparente.ofertamatica-poster-background::after,
+.poster-frame-header-transparente.ofertamatica-app-background::before,
+.poster-frame-header-transparente.ofertamatica-app-background::after {
+  content: none !important;
+  display: none !important;
+}
+.poster-frame-header-transparente .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-header-transparente .ofertamatica-app-ribbon.header-retail {
+  left: 2% !important;
+  right: 2% !important;
+  top: 1% !important;
+  width: 96% !important;
+  height: 17.5% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: var(--poster-header-text-color, #d71920) !important;
+  font-size: clamp(7mm, 15.3cqi, 35mm) !important;
+  letter-spacing: -.045em !important;
+  line-height: .9 !important;
+  overflow: visible !important;
+}
+.poster-frame-header-transparente .ofertamatica-offer-ribbon > b,
+.poster-frame-header-transparente .ofertamatica-app-ribbon > b {
+  max-width: 100% !important;
+  width: 100% !important;
+  font-weight: 1000 !important;
+  line-height: .9 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  text-overflow: clip !important;
+  color: inherit !important;
+}
+.poster-frame-header-transparente .ofertamatica-offer-ribbon::before,
+.poster-frame-header-transparente .ofertamatica-offer-ribbon::after,
+.poster-frame-header-transparente .ofertamatica-app-ribbon::before,
+.poster-frame-header-transparente .ofertamatica-app-ribbon::after,
+.poster-frame-header-transparente .ofertamatica-header-mark,
+.poster-frame-header-transparente .ofertamatica-footer-decoration,
+.poster-frame-header-transparente .ofertamatica-poster-signature,
+.poster-frame-header-transparente .ofertamatica-app-signature {
+  content: none !important;
+  display: none !important;
+}
+.poster-frame-header-transparente .ofertamatica-inner-frame,
+.poster-frame-header-transparente .ofertamatica-app-frame {
+  display: block !important;
+  left: 4.5% !important;
+  right: 4.5% !important;
+  top: 20% !important;
+  bottom: 2.3% !important;
+  border: .65mm solid rgba(221, 146, 34, .74) !important;
+  border-radius: 5mm !important;
+  background: transparent !important;
+  box-shadow: 0 0 2mm rgba(240, 145, 21, .19) !important;
+}

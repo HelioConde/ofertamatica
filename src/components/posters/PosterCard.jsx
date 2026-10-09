@@ -182,6 +182,7 @@ export function PosterBackground({ template, widthMm, heightMm, className = 'pos
 export default function PosterCard({ product, format, template, layoutPlan, inverted = false, showBackground = false, showLayoutDebug = false, editable = false, onBoxPointerDown, badgeLabel, selected = false, onSelect }) {
   const plan = layoutPlan
   const paperStockMode = template.headerFooterStyle === 'preimpresso'
+  const noFooterMode = paperStockMode || template.headerFooterStyle === 'header-transparente'
   const headerText = template.headerText || 'OFERTA'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   return (
@@ -205,8 +206,8 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} />
         {!paperStockMode ? <OfferMeta product={product} template={template} /> : null}
         <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} />
-        {template.storeLogo && !paperStockMode ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
-        {!paperStockMode ? <OfferFooter template={template} /> : null}
+        {template.storeLogo && !noFooterMode ? <div className="poster-store-logo"><img src={template.storeLogo} alt="" /></div> : null}
+        {!noFooterMode ? <OfferFooter template={template} /> : null}
       </div>
     </article>
   )

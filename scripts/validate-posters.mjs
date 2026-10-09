@@ -1,5 +1,6 @@
 import { POSTER_FORMATS } from '../src/config/posterFormats.js'
 import { getDefaultTemplateForFormat } from '../src/config/posterTemplates.js'
+import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 import { createPosterLayouts } from '../src/poster-engine/layoutPlan.js'
 import { estimateTextMeasure } from '../src/poster-engine/textMeasure.js'
 
@@ -14,6 +15,15 @@ const samples = [
   { id: 'uva', description: 'UVA', subdescription: 'VERMELHA', complement: 'SEM SEMENTE', unit: '500G', price: '5,99' },
   { id: 'longo', description: 'BISCOITO RECHEADO', subdescription: 'CHOCOLATE TRADICIONAL', complement: 'PACOTE ECONÔMICO', unit: '350G', price: '12,99' },
 ]
+
+// Garante que os dois modelos destinados à impressão tradicional permaneçam destacados.
+const firstModels = POSTER_MODEL_PRESETS.slice(0, 2).map((item) => item.id)
+expect(firstModels[0] === 'preimpresso', 'Papel pré-impresso deve permanecer como primeiro modelo')
+expect(firstModels[1] === 'oferta-transparente', 'Oferta sem faixa deve permanecer como segundo modelo')
+const transparentHeaderModel = POSTER_MODEL_PRESETS.find((item) => item.id === 'oferta-transparente')
+expect(transparentHeaderModel?.headerFooterStyle === 'header-transparente', 'Falta configuração do cabeçalho sem faixa')
+expect(transparentHeaderModel?.offerMode === 'standard', 'Modelo sem faixa não deve gerar rodapé de oferta')
+expect(transparentHeaderModel?.headerText === '#d71920', 'OFERTA deve ser escrita em vermelho')
 
 const publicFormats = ['A4X4', 'A4X2_CIMA_BAIXO', 'A4X2_INVERTIDO', 'A4X2_APP', 'A4', 'A5', 'A3']
 

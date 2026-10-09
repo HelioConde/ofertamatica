@@ -185,7 +185,7 @@ const FRAME_ART_OPTIONS = HEADER_FOOTER_MODELS.map((frame) => ({
   frameId: frame.id,
 }))
 // Variedade real já nos primeiros quatro cards; os 24 modelos continuam acessíveis.
-const FEATURED_MODEL_IDS = ['preimpresso', 'classic', 'hortifruti', 'acougue']
+const FEATURED_MODEL_IDS = ['preimpresso', 'oferta-transparente', 'classic', 'hortifruti']
 const ALL_ART_OPTIONS = [
   ...FEATURED_MODEL_IDS
     .map((id) => MODEL_ART_OPTIONS.find((item) => item.model.id === id))
