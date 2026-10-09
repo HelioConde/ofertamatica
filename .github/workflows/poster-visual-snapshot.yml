@@ -33,6 +33,7 @@ on:
       - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/capture-site-visuals.mjs'
       - 'scripts/qa-interactions.mjs'
+      - 'scripts/qa-release-print-import.mjs'
       - 'scripts/capture-mobile-editor.mjs'
       - 'scripts/capture-desktop-editor.mjs'
       - '.github/workflows/poster-visual-snapshot.yml'
@@ -97,6 +98,11 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-interactions.mjs
+
+      - name: Verify real imports and PDF physical dimensions
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-release-print-import.mjs
 
       - name: Capture poster screenshots
         env:
