@@ -1,10 +1,14 @@
 {
-  "generatedAt": "2026-10-09T01:41:52.637Z",
-  "commit": "0d6ed9b856f3e8214b4335959c6a7f96d4830df4",
+  "generatedAt": "2026-10-09T08:52:56.349Z",
+  "commit": "72acd9fa5ebf034eed8da5451dcde87acc7d4621",
   "routes": [
     [
       "home",
       "/"
+    ],
+    [
+      "editor-livre",
+      "/editor-livre/"
     ],
     [
       "modelos",
@@ -186,6 +190,63 @@
           "width": 1278,
           "height": 45
         }
+      }
+    },
+    {
+      "route": "/editor-livre/",
+      "id": "editor-livre",
+      "viewport": "desktop",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideShowMoreVisible": false,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
+      "howGuideCardCount": 0,
+      "howRedundantBenefitCards": 0,
+      "howRetainsDraftHint": false,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "formatCardHeights": [],
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Editor Livre de Cartazes de Oferta | Ofertamática",
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "documentHeight": 1199,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
       }
     },
     {
@@ -1587,6 +1648,63 @@
       }
     },
     {
+      "route": "/editor-livre/",
+      "id": "editor-livre",
+      "viewport": "tablet-768",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideShowMoreVisible": false,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
+      "howGuideCardCount": 0,
+      "howRedundantBenefitCards": 0,
+      "howRetainsDraftHint": false,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "formatCardHeights": [],
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Editor Livre de Cartazes de Oferta | Ofertamática",
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "documentHeight": 1397,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
+      }
+    },
+    {
       "route": "/modelos/",
       "id": "modelos",
       "viewport": "tablet-768",
@@ -2843,7 +2961,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 1862,
+      "documentHeight": 1944,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2852,15 +2970,15 @@
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1861.6,
+          "bottom": 1943.6,
           "width": 338,
-          "height": 1758.6
+          "height": 1840.6
         },
         "dialog": {
           "top": 117,
-          "bottom": 1835.6,
+          "bottom": 1917.6,
           "width": 338,
-          "height": 1718.6
+          "height": 1800.6
         },
         "header": {
           "top": 118,
@@ -2882,10 +3000,67 @@
         },
         "links": {
           "top": 1731.6,
-          "bottom": 1834.6,
+          "bottom": 1916.6,
           "width": 312,
-          "height": 103
+          "height": 185
         }
+      }
+    },
+    {
+      "route": "/editor-livre/",
+      "id": "editor-livre",
+      "viewport": "mobile-360",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideShowMoreVisible": false,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
+      "howGuideCardCount": 0,
+      "howRedundantBenefitCards": 0,
+      "howRetainsDraftHint": false,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "formatCardHeights": [],
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Editor Livre de Cartazes de Oferta | Ofertamática",
+      "width": 360,
+      "height": 800,
+      "scrollWidth": 360,
+      "documentHeight": 2154,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
       }
     },
     {
@@ -4145,7 +4320,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 1716,
+      "documentHeight": 1798,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4154,15 +4329,15 @@
       "creatorGeometry": {
         "page": {
           "top": 103,
-          "bottom": 1715.5,
+          "bottom": 1797.5,
           "width": 390,
-          "height": 1612.5
+          "height": 1694.5
         },
         "dialog": {
           "top": 117,
-          "bottom": 1689.5,
+          "bottom": 1771.5,
           "width": 390,
-          "height": 1572.5
+          "height": 1654.5
         },
         "header": {
           "top": 118,
@@ -4184,10 +4359,67 @@
         },
         "links": {
           "top": 1585.5,
-          "bottom": 1688.5,
+          "bottom": 1770.5,
           "width": 364,
-          "height": 103
+          "height": 185
         }
+      }
+    },
+    {
+      "route": "/editor-livre/",
+      "id": "editor-livre",
+      "viewport": "mobile-412",
+      "errors": [],
+      "ignoredErrors": [],
+      "retailIntroCardCount": 0,
+      "retailCatalogCardCount": 0,
+      "retailGuideShowMoreVisible": false,
+      "retailGuideCardsFit": true,
+      "retailGuideNoEmptyColumns": true,
+      "retailGuideStylesApplied": false,
+      "retailGuideComputed": {
+        "paperLink": null,
+        "grid": null,
+        "search": null,
+        "categoryButton": null,
+        "card": null
+      },
+      "modelVisualCount": 0,
+      "modelVisualReady": true,
+      "howGuideCardCount": 0,
+      "howRedundantBenefitCards": 0,
+      "howRetainsDraftHint": false,
+      "howTopicLinksValid": false,
+      "howGuideCardsFit": true,
+      "howGuideCardsSameRow": false,
+      "guideCardCount": 0,
+      "formatGuideThumbnailsMatch": false,
+      "guideHeadingCentered": false,
+      "appPreviewClipped": false,
+      "clippedFormatCards": [],
+      "formatCardsOverlap": false,
+      "formatCardHeights": [],
+      "adOverlapsFormats": false,
+      "linksOverlapAd": false,
+      "visibleFormatCards": 0,
+      "hasSavedDraft": false,
+      "title": "Editor Livre de Cartazes de Oferta | Ofertamática",
+      "width": 412,
+      "height": 915,
+      "scrollWidth": 412,
+      "documentHeight": 2132,
+      "horizontalOverflow": false,
+      "visibleOverflow": [],
+      "navClipped": false,
+      "tinyTargets": [],
+      "ads": [],
+      "creatorGeometry": {
+        "page": null,
+        "dialog": null,
+        "header": null,
+        "grid": null,
+        "ad": null,
+        "links": null
       }
     },
     {
