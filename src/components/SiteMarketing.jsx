@@ -426,7 +426,12 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
   const [modelView, setModelView] = useState('grade')
-  const [modelMode, setModelMode] = useState('filled')
+  const [modelMode, setModelMode] = useState(() => window.location.hash === '#fundos-para-imprimir' ? 'backgrounds' : 'filled')
+  function chooseModelMode(mode) {
+    setModelMode(mode)
+    // Hash permite compartilhar um atalho direto sem criar página duplicada para SEO.
+    window.history.replaceState(window.history.state, '', mode === 'backgrounds' ? '/modelos/#fundos-para-imprimir' : '/modelos/')
+  }
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
   // Mostra seis opções de início em telas pequenas; filtros sempre exibem
@@ -511,11 +516,11 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
 
         {isModels ? (
           <nav className="model-mode-switch" aria-label="Escolha como usar os modelos">
-            <button type="button" aria-pressed={modelMode === 'filled'} onClick={() => setModelMode('filled')}>
+            <button type="button" aria-pressed={modelMode === 'filled'} onClick={() => chooseModelMode('filled')}>
               <strong>Modelos com preço</strong>
               <small>Escolha uma arte para gerar cartazes com descrição e preço.</small>
             </button>
-            <button type="button" aria-pressed={modelMode === 'backgrounds'} onClick={() => setModelMode('backgrounds')}>
+            <button type="button" aria-pressed={modelMode === 'backgrounds'} onClick={() => chooseModelMode('backgrounds')}>
               <strong>Fundos prontos para imprimir</strong>
               <small>Imprima a arte sem produtos nem preços e use como folha pré-impressa.</small>
             </button>
