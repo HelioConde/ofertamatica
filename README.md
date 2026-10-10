@@ -126,6 +126,14 @@ A página `/modelos/` oferece dois caminhos independentes: **Modelos com preço*
 
 A implementação reutiliza `PosterSheet` com `backgroundOnly` e a lógica de `src/poster-engine/backgroundPrinting.js`, garantindo coerência com a impressão do criador. O modelo "Papel pré-impresso" é omitido da lista de fundos porque não possui arte de fundo. A página de modelos mantém filtros e modelos completos no outro caminho.
 
+## Tutoriais e SEO de impressão
+
+- Em `/modelos/`, a aba **Fundos prontos para imprimir** exibe quatro passos claros, prévia real e orientações de PDF e impressão.
+- Em `/editor-livre/`, **Como usar o editor** abre um guia interativo de quatro passos, com destaque dos controles reais de formato, produto, caixas e impressão.
+- O editor também disponibiliza uma captura real, carregada somente se o usuário expandir a opção. O build copia `screenshots/site/editor-livre-desktop.png` para `dist/tutorials/`.
+- Ambas as páginas têm os tutoriais no HTML estático e dados estruturados HowTo, sincronizados em `src/seo/seoPages.js`. Dados estruturados não garantem resultados especiais no Google.
+- A captura automatizada também verifica o tutorial aberto e a seleção de fundos, gerando `modelos-fundos-*.png` e `editor-livre-tutorial-*.png`.
+
 ## Inteligência artificial
 
 **“Crie seu cartaz com IA” fica oficialmente na V2 e não bloqueia o encerramento do produto principal.**
