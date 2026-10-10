@@ -45,7 +45,7 @@ No desktop, a Home e o workspace do criador devem se comportar como uma ferramen
 ## Rotas principais
 
 - `/` — criação de placas / seletor de formatos;
-- `/modelos/` — modelos e estilos;
+- `/modelos/` — duas opções separadas: modelos com preço e fundos prontos para imprimir (sem descrição nem preço);
 - `/formatos/` — A4, A5, A3 e divisões por folha;
 - `/como-funciona/` — fluxo de criação;
 - `/guias-para-varejo/` — central de guias;
@@ -119,6 +119,12 @@ Formatos principais disponíveis:
 - A3;
 
 A impressão usa as medidas físicas do formato em milímetros. O SRA3 permanece apenas como compatibilidade interna legada e não é oferecido para novos trabalhos.
+
+## Fundos prontos para imprimir
+
+A página `/modelos/` oferece dois caminhos independentes: **Modelos com preço** e **Fundos prontos para imprimir**. No segundo, o usuário escolhe a arte, o tamanho e a quantidade de folhas (até 50), visualiza uma prévia do fundo real e imprime diretamente ou seleciona "Salvar como PDF" no navegador. Não é necessário cadastrar produtos.
+
+A implementação reutiliza `PosterSheet` com `backgroundOnly` e a lógica de `src/poster-engine/backgroundPrinting.js`, garantindo coerência com a impressão do criador. O modelo "Papel pré-impresso" é omitido da lista de fundos porque não possui arte de fundo. A página de modelos mantém filtros e modelos completos no outro caminho.
 
 ## Inteligência artificial
 
