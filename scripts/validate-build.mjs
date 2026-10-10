@@ -96,6 +96,18 @@ for (const legacy of ['cartaz-de-supermercado', 'cartaz-para-imprimir', 'gerador
   expect(html.includes('http-equiv="refresh"'), `Redirecionamento HTML ausente: ${legacy}`)
   expect(!sitemap.includes(`<loc>${SITE_URL}/${legacy}/</loc>`), `URL antiga indevida no sitemap: ${legacy}`)
 }
+// Os tutoriais reais aparecem no HTML inicial, não dependem de indexação de JS.
+for (const [slug, expectedStep, expectedTitle] of [
+  ['editor-livre', 'Arraste e redimensione as caixas', 'Como usar o editor livre de cartazes de oferta'],
+  ['modelos', 'Imprima ou salve em PDF', 'Como imprimir somente o fundo de um cartaz de oferta'],
+]) {
+  const html = read(slug + '/index.html')
+  expect(html.includes(expectedStep) && html.includes(expectedTitle), 'Tutorial ausente do HTML inicial: ' + slug)
+  expect(html.includes('"@type":"HowTo"'), 'HowTo estruturado ausente de ' + slug)
+  expect(html.includes('rel="canonical" href="https://ofertamatica.com.br/' + slug + '/"'), 'Canonical incorreto de ' + slug)
+}
+expect(fs.existsSync(path.join(dist, 'tutorials/editor-livre-desktop.png')), 'Captura do editor ausente dos assets do tutorial')
+
 // O guia de papel precisa ser uma página única com conteúdo indexável no HTML inicial.
 const paperGuideHtml = read('qual-papel-usar-para-cartaz/index.html')
 expect(paperGuideHtml.includes('Qual papel usar para imprimir cartazes de oferta?'), 'Guia de papel sem H1 específico')
