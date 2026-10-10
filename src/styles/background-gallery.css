@@ -1,0 +1,50 @@
+.bg-gallery { scroll-margin-top: 90px; }
+.bg-gallery-workspace { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(290px, .85fr); align-items: start; gap: 20px; }
+.bg-gallery-selection, .bg-gallery-settings { min-width: 0; padding: 22px; border: 1px solid #dce5f1; border-radius: 17px; background: #fff; box-shadow: 0 12px 32px rgba(28, 54, 95, .045); }
+.bg-gallery-search, .bg-gallery-fields label { display: grid; gap: 7px; color: #385171; font-size: 12px; font-weight: 800; }
+.bg-gallery-search input, .bg-gallery-fields select, .bg-gallery-fields input { width: 100%; min-width: 0; min-height: 43px; padding: 9px 12px; border: 1px solid #cddbeb; border-radius: 9px; background: #fff; color: #172e50; font: inherit; }
+.bg-gallery-search input:focus-visible, .bg-gallery-fields select:focus-visible, .bg-gallery-fields input:focus-visible { outline: 3px solid #a9c7ff; outline-offset: 2px; }
+.bg-gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 17px; }
+.bg-gallery-card { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; padding: 13px 9px 11px; border: 2px solid #e1e9f4; border-radius: 12px; background: #fcfdff; color: #233955; text-align: center; }
+.bg-gallery-card:hover { border-color: #8cb2f2; background: #f8fbff; }
+.bg-gallery-card.is-selected { border-color: #1d63e9; background: #f1f6ff; }
+.bg-gallery-card:focus-visible, .bg-gallery-actions button:focus-visible, .bg-gallery-more:focus-visible, .model-mode-switch button:focus-visible { outline: 3px solid #84abef; outline-offset: 3px; }
+.bg-gallery-card strong { font-size: 12px; line-height: 1.25; overflow-wrap: anywhere; }
+.bg-gallery-card small { color: #667a99; font-size: 10px; }
+.bg-gallery-card > span { margin-top: auto; color: #1c5bcf; font-size: 11px; font-weight: 800; }
+.bg-gallery-paper { position: relative; display: block; margin: auto; overflow: hidden; background: #fff; box-shadow: 0 6px 18px rgba(19, 40, 80, .16); pointer-events: none; }
+.bg-gallery-paper-scale { position: absolute; left: 0; top: 0; transform-origin: top left; }
+.bg-gallery-paper-small { margin: 0 auto 7px; }
+.bg-gallery-more { display: block; margin: 18px auto 0; padding: 10px 15px; border: 1px solid #cbdcf6; border-radius: 8px; background: #f4f8ff; color: #205cc8; font-weight: 800; }
+.bg-gallery-empty { padding: 16px; color: #64748b; }
+.bg-gallery-settings { position: sticky; top: 85px; }
+.bg-gallery-settings h3 { margin: 0 0 5px; font-size: 19px; color: #233955; }
+.bg-gallery-selected-name { margin: 0 0 15px; color: #60728d; font-size: 12px; }
+.bg-gallery-selected-name strong { color: #21395b; }
+.bg-gallery-fields { display: grid; gap: 13px; grid-template-columns: minmax(0, 1fr) 130px; }
+.bg-gallery-quantity { color: #205bc4; font-size: 12px; font-weight: 850; }
+.bg-gallery-preview { display: grid; place-items: center; padding: 15px 8px; min-height: 290px; border: 1px solid #e4eaf4; border-radius: 11px; background: #f3f7fc; overflow: hidden; }
+.bg-gallery-actions { display: grid; gap: 9px; margin-top: 15px; grid-template-columns: 1fr 1fr; }
+.bg-gallery-actions button { min-height: 45px; padding: 9px; border-radius: 9px; font-size: 12px; font-weight: 850; }
+.bg-gallery-primary { border: 1px solid #1d63e9; background: #1d63e9; color: #fff; }
+.bg-gallery-secondary { border: 1px solid #98b8ef; background: #edf4ff; color: #1c56ad; }
+.bg-gallery-help { margin: 12px 0 0; font-size: 11px; line-height: 1.6; color: #5f718d; }
+.model-mode-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 22px; }
+.model-mode-switch button { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-height: 76px; padding: 15px 20px; border: 2px solid #dce6f4; border-radius: 13px; background: #fff; color: #263d5a; text-align: left; }
+.model-mode-switch button strong { font-size: 16px; }
+.model-mode-switch button small { font-size: 12px; color: #62748c; line-height: 1.4; }
+.model-mode-switch button[aria-pressed="true"] { border-color: #1d63e9; background: #edf4ff; }
+.model-background-print-root { display: none; }
+@media (max-width: 1100px) { .bg-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .bg-gallery-workspace { grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr); } }
+@media (max-width: 800px) { .bg-gallery-workspace { grid-template-columns: minmax(0, 1fr); } .bg-gallery-settings { position: static; } .bg-gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 550px) { .bg-gallery-selection, .bg-gallery-settings { padding: 14px; } .bg-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bg-gallery-fields, .bg-gallery-actions, .model-mode-switch { grid-template-columns: 1fr; } .model-mode-switch button { min-height: 0; } .bg-gallery-preview { min-height: 250px; } }
+@media print {
+  body.model-background-printing { margin: 0 !important; padding: 0 !important; background: #fff !important; overflow: visible !important; }
+  body.model-background-printing #root, body.model-background-printing > *:not(.model-background-print-root) { display: none !important; }
+  body.model-background-printing .model-background-print-root { display: block !important; position: static !important; width: auto !important; margin: 0 !important; padding: 0 !important; }
+  body.model-background-printing .model-background-print-sheet { margin: 0 !important; padding: 0 !important; break-after: page !important; page-break-after: always !important; }
+  body.model-background-printing .model-background-print-sheet:last-child { break-after: auto !important; page-break-after: auto !important; }
+  body.model-background-printing .poster-sheet, body.model-background-printing .poster-card { print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; box-shadow: none !important; }
+  body.model-background-printing .poster-slot { border: 0 !important; }
+  body.model-background-printing .poster-preview-badge, body.model-background-printing .poster-safe-area, body.model-background-printing .poster-layout-box-debug { display: none !important; }
+}
