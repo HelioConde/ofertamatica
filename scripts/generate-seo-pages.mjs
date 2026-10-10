@@ -29,6 +29,15 @@ const baseHtml = originalHtml.replace(
 // constar no HTML inicial, os guias podem aparecer momentaneamente sem
 // grid, filtros e cards enquanto o React carrega o módulo assíncrono.
 // Adicione o stylesheet apenas às páginas públicas (a home continua leve).
+// Captura real usada SOMENTE quando o usuário expande o tutorial do editor.
+// Reaproveita a imagem de QA versionada: não há dependência de host externo.
+const editorScreenshot = path.resolve('screenshots/site/editor-livre-desktop.png')
+if (fs.existsSync(editorScreenshot)) {
+  const tutorialDir = path.join(dist, 'tutorials')
+  fs.mkdirSync(tutorialDir, { recursive: true })
+  fs.copyFileSync(editorScreenshot, path.join(tutorialDir, 'editor-livre-desktop.png'))
+}
+
 const assetDir = path.join(dist, 'assets')
 const marketingCssAsset = fs.readdirSync(assetDir)
   .filter((name) => name.endsWith('.css'))
