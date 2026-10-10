@@ -2,28 +2,46 @@
 // PRODUCT_DECISION_AI_UPCOMING: IA é próxima implementação; não anunciar como recurso disponível.
 export const SITE_URL = 'https://ofertamatica.com.br'
 
+// Orientações sincronizadas entre os tutoriais visuais e o HTML indexável.
+// Não usar passos que dependam de recursos ainda não disponíveis.
+export const FREE_EDITOR_TUTORIAL = [
+  { title: 'Escolha o formato e o modelo', text: 'Selecione A4, A5, A3 ou uma divisão da folha A4. Em Modelo visual, escolha a arte que servirá de base.', target: 'format' },
+  { title: 'Edite o produto e o preço', text: 'Troque nome, marca, unidade e valor nos campos à esquerda. A prévia é atualizada enquanto você digita.', target: 'product' },
+  { title: 'Arraste e redimensione as caixas', text: 'Selecione Descrição ou Preço, arraste a caixa na prévia e use o círculo do canto para ajustar o tamanho. O botão + Texto insere uma caixa adicional.', target: 'boxes' },
+  { title: 'Confira e imprima', text: 'Confira a prévia e clique em Revisar e imprimir ou Salvar PDF. Na janela do navegador, use escala 100% e ative gráficos de fundo.', target: 'output' },
+]
+
+export const BACKGROUND_PRINT_TUTORIAL = [
+  { title: 'Escolha Fundos prontos', text: 'Na página Modelos, selecione a opção Fundos prontos para imprimir, separada dos cartazes que já contêm preços.' },
+  { title: 'Selecione a arte', text: 'Escolha Oferta, Hortifruti, Padaria ou outro fundo e confira a prévia real sem descrição e sem valores.' },
+  { title: 'Defina formato e folhas', text: 'Escolha A4, A5 ou A3, inclusive divisões de uma folha A4, e informe quantas folhas deseja imprimir.' },
+  { title: 'Imprima ou salve em PDF', text: 'Clique em Imprimir somente fundos ou Salvar fundo em PDF. Na janela do navegador, use escala 100%, sem margens nem cabeçalhos, e ative gráficos de fundo.' },
+]
+
 export const PUBLIC_PAGES = [
   {
     kind: 'public',
     slug: 'editor-livre',
-    title: 'Editor Livre de Placas de Oferta para Imprimir | Ofertamática',
-    description: 'Crie seu próprio cartaz de supermercado grátis. Arraste, redimensione e edite caixas de descrição, preço e textos. Personalize cores e fontes em A4, A5 ou A3 e imprima em PDF.',
-    keywords: 'editor de cartaz de oferta, personalizar cartaz supermercado, criar placa de oferta, arrastar texto e preço, editar cartaz para imprimir',
+    title: 'Editor de Cartaz de Oferta Grátis: Arraste e Imprima | Ofertamática',
+    description: 'Aprenda a usar o editor livre de cartazes de oferta: personalize preços, arraste textos, redimensione caixas e imprima placas A4, A5 ou A3 em PDF grátis.',
+    keywords: 'editor de cartaz de oferta grátis, editor de placa de preço, cartaz supermercado editável, como editar cartaz de oferta, arrastar preço e texto, imprimir cartaz A4 PDF',
     eyebrow: 'EDITOR LIVRE',
     heading: 'Crie sua placa personalizada com o editor livre',
-    lead: 'Mova as caixas, adicione textos, personalize suas fontes e imprima no tamanho exato sem cadastro.',
+    lead: 'Edite descrições e preços, arraste e redimensione caixas diretamente na prévia e imprima seu cartaz em PDF. Veja um tutorial rápido para começar.',
     benefits: ['Arrastar e redimensionar caixas', 'Preço, textos e cores personalizados', 'Prévia e impressão em PDF'],
+    howTo: { title: 'Como usar o editor livre de cartazes de oferta', steps: FREE_EDITOR_TUTORIAL },
   },
   {
     kind: 'public',
     slug: 'modelos',
-    title: 'Modelos de Placas de Preço Grátis para Mercado | Ofertamática',
+    title: 'Fundos de Cartazes para Imprimir e Modelos Grátis | Ofertamática',
     description: 'Escolha modelos de cartazes de oferta para supermercado ou imprima somente fundos prontos sem preço nem descrição em A4, A5 ou A3. Grátis e sem cadastro.',
     keywords: 'modelos de cartaz de oferta, fundo de cartaz para imprimir, cartaz de oferta sem preço, modelo cartaz supermercado, modelo placa de preço',
     eyebrow: 'MODELOS',
-    heading: 'Modelos para destacar cada tipo de oferta',
+    heading: 'Modelos de cartazes e fundos prontos para imprimir',
     lead: 'Escolha modelos completos para preencher com preços ou imprima fundos prontos, sem texto e sem valores, em uma opção separada.',
     benefits: ['Cartazes completos com preço', 'Fundos prontos para imprimir', 'A4, A5 e A3 sem cadastro'],
+    howTo: { title: 'Como imprimir somente o fundo de um cartaz de oferta', steps: BACKGROUND_PRINT_TUTORIAL },
   },
   {
     kind: 'public',
