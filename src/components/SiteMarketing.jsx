@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './posters/PosterSheet'
 import { AdUnit } from './AdUnit'
 import PaperGuide from './PaperGuide'
@@ -20,6 +20,9 @@ import { searchTopicsFor } from '../seo/searchIntent'
 // Estilos editoriais só são necessários nas páginas públicas.
 // O gerador de SEO adiciona a mesma folha ao HTML destas rotas para evitar FOUC.
 import '../styles/marketing.css'
+import '../styles/background-gallery.css'
+
+const PrintableBackgroundGallery = lazy(() => import('./PrintableBackgroundGallery'))
 
 const CREATOR_META = {
   title: 'Placas para Mercado Online Grátis | Ofertamática',
@@ -423,6 +426,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
   const [modelView, setModelView] = useState('grade')
+  const [modelMode, setModelMode] = useState('filled')
   const [guideCategory, setGuideCategory] = useState('Todos')
   const [guideQuery, setGuideQuery] = useState('')
   // Mostra seis opções de início em telas pequenas; filtros sempre exibem
@@ -506,6 +510,25 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
         </section>
 
         {isModels ? (
+          <nav className="model-mode-switch" aria-label="Escolha como usar os modelos">
+            <button type="button" aria-pressed={modelMode === 'filled'} onClick={() => setModelMode('filled')}>
+              <strong>Modelos com preço</strong>
+              <small>Escolha uma arte para gerar cartazes com descrição e preço.</small>
+            </button>
+            <button type="button" aria-pressed={modelMode === 'backgrounds'} onClick={() => setModelMode('backgrounds')}>
+              <strong>Fundos prontos para imprimir</strong>
+              <small>Imprima a arte sem produtos nem preços e use como folha pré-impressa.</small>
+            </button>
+          </nav>
+        ) : null}
+
+        {isModels && modelMode === 'backgrounds' ? (
+          <Suspense fallback={<section className="marketing-section"><p>Preparando fundos para impressão...</p></section>}>
+            <PrintableBackgroundGallery />
+          </Suspense>
+        ) : null}
+
+        {isModels && modelMode === 'filled' ? (
           <>
             <section className="marketing-section">
               <div className="marketing-heading">
