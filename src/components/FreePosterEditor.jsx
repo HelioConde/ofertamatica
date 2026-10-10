@@ -3,6 +3,7 @@ import PosterSheet from './posters/PosterSheet'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
+import { FREE_EDITOR_TUTORIAL } from '../seo/seoPages'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
@@ -112,7 +113,19 @@ export default function FreePosterEditor() {
   const [selected, setSelected] = useState('contentBox')
   const [saved, setSaved] = useState(false)
   const [printHint, setPrintHint] = useState('')
+  const [guideFocus, setGuideFocus] = useState('')
   const dragCleanup = useRef(null)
+  function showGuide() {
+    const help = document.getElementById('guia-editor-livre')
+    if (help) {
+      help.open = true
+      help.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  }
+  function focusGuide(target) {
+    setGuideFocus(target)
+    window.requestAnimationFrame(() => document.querySelector(`[data-guide-section="${target}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }))
+  }
   const format = getPosterFormat(state.formatId)
   const model = POSTER_MODEL_PRESETS.find((item) => item.id === state.modelId) || POSTER_MODEL_PRESETS[0]
   const base = getDefaultTemplateForFormat(state.formatId)
@@ -295,6 +308,7 @@ export default function FreePosterEditor() {
           <p>Edite seus cartazes como no painel de gestão: mova caixas, ajuste tamanhos, crie textos e imprima.</p>
         </div>
         <div className="free-editor-top-actions">
+          <button type="button" className="free-editor-guide-trigger" onClick={showGuide}>? Como usar o editor</button>
           <span aria-live="polite">{saved ? '✓ Projeto salvo neste dispositivo' : 'Projeto em edição'}</span>
           <button type="button" onClick={() => {
             if (!window.confirm('Restaurar o editor livre? Os ajustes deste projeto serão perdidos.')) return
@@ -305,8 +319,22 @@ export default function FreePosterEditor() {
       </header>
       <div className="free-editor-layout">
         <section className="free-editor-controls" aria-label="Controles do cartaz">
+          <details id="guia-editor-livre" className="free-editor-quick-guide" onToggle={(event) => { if (!event.currentTarget.open) setGuideFocus('') }}>
+            <summary><span>Como usar o Editor livre?</span><small>Mini tutorial · 4 passos (1 minuto)</small></summary>
+            <p className="free-guide-intro">Clique em “Ver controle” para localizar cada parte do editor na própria tela.</p>
+            <ol className="free-guide-steps">
+              {FREE_EDITOR_TUTORIAL.map((step, index) => (
+                <li key={step.title}>
+                  <span aria-hidden="true">{index + 1}</span>
+                  <div><strong>{step.title}</strong><p>{step.text}</p>
+                    <button type="button" aria-label={`Ver controle: ${step.title}`} onClick={() => focusGuide(step.target)}>Ver controle →</button>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </details>
           <div className="free-editor-control-heading"><h2>Personalizar cartaz</h2><span>1. Configure</span></div>
-          <label className="free-editor-field"><span>Formato de impressão</span>
+          <label className="free-editor-field" data-guide-section="format" data-guide-focused={guideFocus === 'format' ? 'true' : undefined}><span>Formato de impressão</span>
             <select value={state.formatId} onChange={(event) => changeFormat(event.target.value)}>
               {POSTER_FORMAT_OPTIONS.filter((x) => ALLOWED_FORMATS.includes(x.id)).map((x) => <option key={x.id} value={x.id}>{x.shortLabel} · {x.paper}</option>)}
             </select></label>
@@ -314,7 +342,7 @@ export default function FreePosterEditor() {
             <select value={model.id} onChange={(event) => selectModel(event.target.value)}>
               {POSTER_MODEL_PRESETS.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
             </select></label>
-          <div className="free-editor-fields-grid">
+          <div className="free-editor-fields-grid" data-guide-section="product" data-guide-focused={guideFocus === 'product' ? 'true' : undefined}>
             <label className="free-editor-field"><span>Nome do produto</span><input value={state.product.description} maxLength="65" onChange={(e) => updateProduct('description', e.target.value.toLocaleUpperCase('pt-BR'))} /></label>
             <label className="free-editor-field"><span>Marca / detalhe</span><input value={state.product.subdescription} maxLength="65" onChange={(e) => updateProduct('subdescription', e.target.value.toLocaleUpperCase('pt-BR'))} /></label>
             <label className="free-editor-field"><span>Complemento</span><input value={state.product.complement} maxLength="65" onChange={(e) => updateProduct('complement', e.target.value.toLocaleUpperCase('pt-BR'))} /></label>
@@ -340,7 +368,7 @@ export default function FreePosterEditor() {
             <label className="free-editor-field"><span>Fonte da descrição</span><select value={state.descriptionFont} onChange={(e) => update('descriptionFont', e.target.value)}>{FONT_CHOICES.map(x=><option key={x.value} value={x.value}>{x.label}</option>)}</select></label>
             <label className="free-editor-field"><span>Fonte do preço</span><select value={state.priceFont} onChange={(e) => update('priceFont', e.target.value)}>{PRICE_FONTS.map(x=><option key={x.value} value={x.value}>{x.label}</option>)}</select></label>
           </details>
-          <section className="free-editor-box-control">
+          <section className="free-editor-box-control" data-guide-section="boxes" data-guide-focused={guideFocus === 'boxes' ? 'true' : undefined}>
             <div className="free-editor-control-heading"><h3>Caixas e posições</h3><span>2. Arraste</span></div>
             <div className="free-editor-box-tabs">
               <button type="button" className={selected === 'contentBox' ? 'active' : ''} onClick={() => setSelected('contentBox')}>Descrição</button>
@@ -375,7 +403,7 @@ export default function FreePosterEditor() {
           <FreeBoard format={format} template={template} products={products} layouts={layouts}
             extras={extras} selected={selected} onSelect={()=>{}}
             onStartBoxDrag={beginDrag} onStartExtraDrag={beginDrag} />
-          <div className="free-canvas-bottom">
+          <div className="free-canvas-bottom" data-guide-section="output" data-guide-focused={guideFocus === 'output' ? 'true' : undefined}>
             <p>O mesmo layout é usado na impressão. Os contornos de edição e os controles de arrastar não aparecem no papel.</p>
             <div className="free-editor-print-buttons">
               <button type="button" onClick={()=>print('pdf')}>Salvar PDF</button>
