@@ -5,6 +5,7 @@ import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
 import { POSTER_FORMAT_OPTIONS, getPosterFormat } from '../config/posterFormats'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount } from '../poster-engine/backgroundPrinting'
+import { BACKGROUND_PRINT_TUTORIAL } from '../seo/seoPages'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
 import '../styles/background-gallery.css'
 
@@ -119,12 +120,26 @@ export default function PrintableBackgroundGallery() {
   )
 
   return (
-    <section className="marketing-section bg-gallery" aria-labelledby="bg-gallery-title">
+    <section id="fundos-para-imprimir" className="marketing-section bg-gallery" aria-labelledby="bg-gallery-title">
       <div className="marketing-heading">
         <span className="marketing-kicker">IMPRESSÃO DE FUNDOS PRONTOS</span>
         <h2 id="bg-gallery-title">Imprima a arte agora, preencha o preço depois</h2>
         <p>Escolha uma das artes, o tamanho do papel e a quantidade de folhas. A impressão sai com cabeçalho e fundo, mas sem descrição, produto ou preço. Não precisa cadastrar produtos.</p>
       </div>
+      <section className="bg-gallery-tutorial" aria-labelledby="bg-gallery-how-title">
+        <div className="bg-gallery-tutorial-head">
+          <div><span className="marketing-kicker">TUTORIAL RÁPIDO</span><h3 id="bg-gallery-how-title">Como imprimir somente o fundo da placa</h3></div>
+          <small>4 passos · sem cadastrar produtos</small>
+        </div>
+        <ol className="bg-gallery-tutorial-steps">
+          {BACKGROUND_PRINT_TUTORIAL.map((step, index) => (
+            <li key={step.title}>
+              <span className="bg-gallery-step-number" aria-hidden="true">{index + 1}</span>
+              <div><strong>{step.title}</strong><p>{step.text}</p></div>
+            </li>
+          ))}
+        </ol>
+      </section>
       <div className="bg-gallery-workspace">
         <div className="bg-gallery-selection">
           <label className="bg-gallery-search">
@@ -160,6 +175,7 @@ export default function PrintableBackgroundGallery() {
             </label>
           </div>
           <p className="bg-gallery-quantity">{sheetCount} {sheetCount === 1 ? 'folha' : 'folhas'} · {sheetCount * format.postersPerSheet} {sheetCount * format.postersPerSheet === 1 ? 'fundo pronto' : 'fundos prontos'}</p>
+          <p className="bg-gallery-preview-explainer">A prévia abaixo usa o mesmo desenho e proporções da folha impressa, sem produto e sem preço.</p>
           <div className="bg-gallery-preview" role="img" aria-label={`Prévia do fundo ${selected.name} no formato ${format.label}, sem descrição e sem preço`}>
             <BackgroundPreview model={selected} format={format} template={template} />
           </div>
@@ -169,6 +185,17 @@ export default function PrintableBackgroundGallery() {
           </div>
           <p className="bg-gallery-help">Para salvar PDF, escolha “Salvar como PDF” na janela de impressão. Use escala 100%, margens nenhuma, sem cabeçalhos/rodapés e ative “Gráficos de fundo” para manter as cores.</p>
         </div>
+      </div>
+      <div className="bg-gallery-more-help">
+        <details>
+          <summary>Qual opção escolher na janela de impressão?</summary>
+          <p>Para imprimir, selecione sua impressora. Para baixar um PDF, selecione “Salvar como PDF” como destino. Em ambos os casos, confira papel, orientação, escala 100%, margens nenhuma e “Gráficos de fundo” ativado.</p>
+        </details>
+        <details>
+          <summary>Posso imprimir vários fundos na mesma folha?</summary>
+          <p>Sim. Em “Tamanho e divisão da folha”, escolha A4 com 2, 4 ou 8 cartazes. O número de folhas controla a quantidade total de impressões.</p>
+        </details>
+        <a href="/qual-papel-usar-para-cartaz/">Veja também: qual papel usar para os cartazes →</a>
       </div>
       {createPortal(printRoot, document.body)}
     </section>
