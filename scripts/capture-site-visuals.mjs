@@ -317,6 +317,46 @@ async function captureViewport(name, viewport, routes) {
       path: path.join(outDir, id + '-' + name + '.png'),
       fullPage: true,
     })
+    // Capturas dos tutoriais abertos, para revisar usabilidade além da primeira tela.
+    // Essas imagens também documentam o percurso real após a hidratação do React.
+    if (id === 'modelos' && (name === 'desktop' || name === 'mobile-360')) {
+      const backgroundTab = page.getByRole('button', { name: /Fundos prontos para imprimir/ })
+      await backgroundTab.waitFor({ state: 'visible', timeout: 15_000 })
+      await backgroundTab.click()
+      await page.locator('.bg-gallery-grid .bg-gallery-card').first().waitFor({ state: 'visible', timeout: 10_000 })
+      if (await page.locator('.bg-gallery-preview .poster-layout-box').count()) {
+        throw new Error('Prévia de fundo não pode exibir texto ou preço.')
+      }
+      if (await page.locator('.bg-gallery-tutorial-steps li').count() !== 4) {
+        throw new Error('O tutorial de impressão deve ter quatro passos.')
+      }
+      await page.screenshot({
+        path: path.join(outDir, 'modelos-fundos-' + name + '.png'),
+        fullPage: true,
+      })
+      await page.locator('.bg-gallery-fields select').selectOption('A4X4')
+      await page.locator('.bg-gallery-fields input[type="number"]').fill('2')
+      if (!(await page.locator('.bg-gallery-quantity').innerText()).includes('8 fundos prontos')) {
+        throw new Error('Quantidade de fundos não corresponde a duas folhas A4 com quatro cartazes.')
+      }
+    }
+    if (id === 'editor-livre' && (name === 'desktop' || name === 'mobile-360')) {
+      const guideButton = page.getByRole('button', { name: /Como usar o editor/ })
+      await guideButton.waitFor({ state: 'visible', timeout: 15_000 })
+      await guideButton.click()
+      await page.locator('#guia-editor-livre[open]').waitFor({ state: 'visible' })
+      if (await page.locator('.free-guide-steps li').count() !== 4) {
+        throw new Error('Tutorial do Editor livre deve ter quatro passos.')
+      }
+      await page.locator('.free-guide-steps button').first().click()
+      if (await page.locator('[data-guide-focused="true"]').count() !== 1) {
+        throw new Error('O tutorial não destacou o controle escolhido no editor.')
+      }
+      await page.screenshot({
+        path: path.join(outDir, 'editor-livre-tutorial-' + name + '.png'),
+        fullPage: true,
+      })
+    }
     if (id === 'guias-para-varejo' && name === 'mobile-360') {
       await page.getByRole('button', { name: /Ver todos os guias/ }).click()
       const expandedCount = await page.locator('.retail-guide-catalog-card').count()
