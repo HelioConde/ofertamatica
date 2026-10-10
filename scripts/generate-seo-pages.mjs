@@ -120,6 +120,23 @@ function structuredData(page) {
     },
   ]
 
+  if (page.howTo?.steps?.length) {
+    // Schema.org descreve conteúdo que também fica visível na página.
+    // Não há garantia de rich result: o objetivo é consistência semântica.
+    graph.push({
+      '@type': 'HowTo',
+      name: page.howTo.title,
+      inLanguage: 'pt-BR',
+      step: page.howTo.steps.map((item, index) => ({
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: item.title,
+        text: item.text,
+        url: canonical + (page.slug === 'modelos' ? '#fundos-para-imprimir' : '#guia-editor-livre'),
+      })),
+    })
+  }
+
   if (page.paperChoices) {
     graph.push({
       '@type': 'Article',
@@ -145,6 +162,13 @@ function snapshot(page) {
       <h2 style="font-size:24px;margin-bottom:8px">${esc(section.title)}</h2>
       <p style="font-size:16px;line-height:1.7">${esc(section.text)}</p>
     </section>`).join('')
+  const howToContent = page.howTo?.steps?.length
+    ? `<section id="${page.slug === 'modelos' ? 'fundos-para-imprimir' : 'guia-editor-livre'}" style="margin-top:26px" aria-label="${esc(page.howTo.title)}">
+        <h2 style="font-size:24px">${esc(page.howTo.title)}</h2>
+        <ol style="line-height:1.8">${page.howTo.steps.map((step) => `<li><strong>${esc(step.title)}</strong> — ${esc(step.text)}</li>`).join('')}</ol>
+        <p>${page.slug === 'modelos' ? '<a href="/modelos/#fundos-para-imprimir">Abrir a impressão de fundos prontos</a>' : '<a href="/editor-livre/#guia-editor-livre">Abrir o editor e seguir o tutorial</a>'}</p>
+      </section>`
+    : ''
   const tips = (page.tips || []).length
     ? `<section style="margin-top:28px"><h2 style="font-size:24px">Pontos práticos</h2><ul style="line-height:1.8">${page.tips.map((tip) => `<li>${esc(tip)}</li>`).join('')}</ul></section>`
     : ''
@@ -199,6 +223,7 @@ function snapshot(page) {
     ${updated}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${howToContent}
     ${guideIndex}
     ${paperChoices}
     ${paperFormats}
