@@ -332,6 +332,13 @@ export default function FreePosterEditor() {
                 </li>
               ))}
             </ol>
+            <details className="free-guide-screenshot">
+              <summary>Ver captura real do editor (exemplo visual)</summary>
+              <a href="/tutorials/editor-livre-desktop.png" target="_blank" rel="noopener noreferrer" aria-label="Abrir captura de tela completa do Editor livre">
+                <img src="/tutorials/editor-livre-desktop.png" alt="Captura de tela do Editor livre mostrando os campos à esquerda e a prévia da placa à direita" loading="lazy" decoding="async" width="1509" height="745" />
+              </a>
+              <small>Clique na imagem para ampliar. Siga os controles destacados no editor atual.</small>
+            </details>
           </details>
           <div className="free-editor-control-heading"><h2>Personalizar cartaz</h2><span>1. Configure</span></div>
           <label className="free-editor-field" data-guide-section="format" data-guide-focused={guideFocus === 'format' ? 'true' : undefined}><span>Formato de impressão</span>
