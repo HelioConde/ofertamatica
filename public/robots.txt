@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /monitoramento/
+Disallow: /api/
 
 Sitemap: https://ofertamatica.com.br/sitemap.xml

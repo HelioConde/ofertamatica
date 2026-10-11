@@ -124,7 +124,7 @@ export default function CookieConsent() {
                 <span className="cookie-always">Sempre ativos</span>
               </div>
               <label className="cookie-option">
-                <div><strong>Estatísticas</strong><p>Google Analytics para compreender o uso e melhorar a experiência.</p></div>
+                <div><strong>Estatísticas</strong><p>Estatísticas próprias da Ofertamática e Google Analytics para compreender acessos e melhorar a experiência.</p></div>
                 <input type="checkbox" checked={draft.analytics} onChange={(event) => setDraft((d) => ({ ...d, analytics: event.target.checked }))} />
               </label>
               <label className="cookie-option">

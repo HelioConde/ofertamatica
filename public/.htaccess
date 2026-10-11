@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Biblioteca de funções PHP usada apenas por includes internos.
+RewriteRule ^api/_stats\.php$ - [F,L]
+
 # Compactação HTTP: o Lighthouse detectou JS/CSS servidos sem gzip/br.
 # mod_deflate é opcional na hospedagem: não falha caso o módulo não exista.
 <IfModule mod_deflate.c>

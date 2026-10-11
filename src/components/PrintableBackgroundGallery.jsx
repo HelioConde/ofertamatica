@@ -6,6 +6,7 @@ import { POSTER_FORMAT_OPTIONS, getPosterFormat } from '../config/posterFormats'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount } from '../poster-engine/backgroundPrinting'
 import { BACKGROUND_PRINT_TUTORIAL } from '../seo/seoPages'
+import { trackEvent } from '../utils/telemetry'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
 import '../styles/background-gallery.css'
 
@@ -84,6 +85,7 @@ export default function PrintableBackgroundGallery() {
   async function openPrintDialog() {
     if (printingRef.current) return
     printingRef.current = true
+    trackEvent('gallery_background_print')
     setIsPrinting(true)
     let style = document.getElementById(PRINT_STYLE_ID)
     if (!style) {

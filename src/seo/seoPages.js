@@ -161,7 +161,7 @@ export const PUBLIC_PAGES = [
     lead: 'O Ofertamática simplifica a criação de placas de preço e materiais promocionais para supermercados, mercados e outros negócios do varejo.',
     benefits: ['Ferramenta focada em uso real', 'Criação sem cadastro obrigatório', 'Evolução guiada por clareza e produtividade'],
     trust: true,
-    updatedAt: 'Atualizado em 8 de outubro de 2026',
+    updatedAt: 'Atualizado em 11 de outubro de 2026',
     sections: [
       { title: 'Por que o Ofertamática existe', text: 'Criar dezenas de cartazes manualmente consome tempo e aumenta a chance de inconsistências. O Ofertamática foi pensado para transformar uma lista de produtos em placas prontas para revisão, mantendo preço, produto e leitura como prioridade.' },
       { title: 'Para quem é a ferramenta', text: 'O foco são equipes de supermercado, mercados, mercearias, atacarejos e outros negócios que precisam comunicar ofertas com frequência. O fluxo também pode ser usado por pequenos lojistas que querem preparar materiais diretamente no navegador.' },
@@ -209,7 +209,7 @@ export const PUBLIC_PAGES = [
     sections: [
       { title: 'Rascunhos e preferências', text: 'O editor usa o armazenamento local do navegador para manter o último trabalho, listas recentes, formato escolhido e preferências de personalização no dispositivo. Esses dados não formam um cadastro de conta e podem ser apagados limpando os dados do site no navegador.' },
       { title: 'Arquivos importados', text: 'Arquivos TXT, CSV, XLS ou XLSX selecionados no editor são lidos para preencher a lista de produtos. O fluxo atual não exige uma conta para essa importação e a ferramenta foi projetada para realizar essa preparação no navegador.' },
-      { title: 'Medição de uso e desempenho', text: 'O site pode usar ferramentas de medição para entender quais páginas são acessadas, como os recursos são utilizados e onde a experiência pode melhorar. Essas medições não criam uma conta no Ofertamática.' },
+      { title: 'Medição de uso e desempenho', text: 'Com autorização para estatísticas, a Ofertamática registra em servidor próprio a página visitada (sem parâmetros), horário, categoria da origem, ações iniciadas de impressão/PDF e identificador aleatório limitado à aba do navegador. Os registros são guardados por até 90 dias em armazenamento privado, sem persistir IP, URL completa de referência, texto dos cartazes ou user-agent. O site também pode usar Google Analytics quando autorizado. Sessões com estatísticas rejeitadas não participam da contagem própria.' },
       { title: 'Publicidade e cookies', text: 'O Google AdSense pode apresentar anúncios quando houver autorização e condições de consentimento válidas. Oferecemos controles separados para estatísticas, anúncios e personalização. Nos locais com regulamentação europeia, a CMP certificada do Google controla essas escolhas.' },
       { title: 'Preferências e revogação', text: 'Depois de escolher aceitar ou rejeitar, o aviso e o botão flutuante desaparecem. Para revisar, personalizar ou revogar permissões opcionais, use Gerenciar preferências de cookies nesta página ou Preferências de cookies nos links institucionais. Sua escolha local fica salva por até 180 dias. A revogação desabilita novas solicitações opcionais; cookies de terceiros também podem exigir controles do provedor ou do navegador.' },
       { title: 'Serviços externos', text: 'Serviços de medição e publicidade podem processar informações técnicas do navegador e do dispositivo de acordo com suas próprias políticas e requisitos legais.' },

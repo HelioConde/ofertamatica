@@ -5,6 +5,7 @@ const PosterSheet = lazy(() => import('./components/posters/PosterSheet'))
 const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 const FreePosterEditor = lazy(() => import('./components/FreePosterEditor'))
 import { AdUnit } from './components/AdUnit'
+import { trackEvent } from './utils/telemetry'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
 import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
@@ -145,6 +146,13 @@ function trackProductEvent(event, details = {}) {
   if (typeof window === 'undefined') return
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({ event, ...details })
+  const localEvent = {
+    ofertamatica_print_started: 'print_started',
+    ofertamatica_pdf_started: 'pdf_started',
+    ofertamatica_background_print_started: 'background_print_started',
+    ofertamatica_format_selected: 'format_selected',
+  }[event]
+  if (localEvent) trackEvent(localEvent)
 }
 
 const DEFAULT_POSTER_STYLE = {

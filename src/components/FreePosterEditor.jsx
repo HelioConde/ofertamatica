@@ -4,6 +4,7 @@ import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
 import { FREE_EDITOR_TUTORIAL } from '../seo/seoPages'
+import { trackEvent } from '../utils/telemetry'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
@@ -277,6 +278,7 @@ export default function FreePosterEditor() {
       setPrintHint('Este modelo não possui elementos para imprimir.')
       return
     }
+    trackEvent(mode === 'pdf' ? 'free_editor_pdf' : 'free_editor_print')
     setPrintHint(mode === 'pdf' ? 'Na janela de impressão, selecione “Salvar como PDF”.' : 'Use escala 100% e ative os gráficos de fundo para conservar as cores.')
     try { await document.fonts?.ready } catch { /* Mantém impressão mesmo com fonte indisponível. */ }
     let page = document.getElementById('ofertamatica-free-page-style')

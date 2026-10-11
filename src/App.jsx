@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState } from 'react'
 import { AdUnit } from './components/AdUnit'
+import { trackEvent } from './utils/telemetry'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
@@ -192,6 +193,7 @@ function App() {
         onSelect={(formatId) => {
           window.dataLayer = window.dataLayer || []
           window.dataLayer.push({ event: 'ofertamatica_format_selected', format_id: formatId })
+          trackEvent('format_selected')
           setEntry({ formatId })
         }}
         draft={savedDraft}
