@@ -58,6 +58,39 @@ RewriteRule ^excel-para-cartazes/?$ /cartazes-a-partir-de-excel/ [R=301,L]
 RewriteRule ^importar-produtos-excel/?$ /cartazes-a-partir-de-excel/ [R=301,L]
 RewriteRule ^ia-para-promocoes/?$ /como-funciona/ [R=301,L]
 
+# Recuperação de endereços antigos identificados no Search Console (soft 404 em 12/10/2026).
+# Usar 301 somente quando há conteúdo equivalente, evitando levar todo tráfego para a home.
+RewriteRule ^ferramenta-para-cartazes/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^como-fazer-cartaz-de-supermercado/?$ /como-fazer-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^cartaz-promocional/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^cartaz-padaria/?$ /placas-para-padaria/ [R=301,L]
+RewriteRule ^placa-para-imprimir/?$ /cartaz-de-oferta-para-imprimir/ [R=301,L]
+RewriteRule ^cartaz-para-imprimir-gratis/?$ /cartaz-de-oferta-para-imprimir/ [R=301,L]
+RewriteRule ^placa-promocional/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^placa-mercado/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^como-criar-placas-de-oferta/?$ /como-fazer-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^placas-hortifruti/?$ /placas-para-hortifruti/ [R=301,L]
+RewriteRule ^cartaz-mercado/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^cartaz-online-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^cartaz-a4-1x1/?$ /cartaz-a4/ [R=301,L]
+RewriteRule ^cartazes-prontos-para-impressao/?$ /modelos/ [R=301,L]
+RewriteRule ^cartazes-prontos/?$ /modelos/ [R=301,L]
+RewriteRule ^cartaz-promocional-gratis/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^placa-de-preco/?$ /cartaz-de-preco-online/ [R=301,L]
+RewriteRule ^modelos-de-cartazes/?$ /modelos/ [R=301,L]
+RewriteRule ^placas-prontas-para-impressao/?$ /modelos/ [R=301,L]
+RewriteRule ^placa-de-oferta/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^automacao-de-cartazes/?$ /cartazes-a-partir-de-excel/ [R=301,L]
+RewriteRule ^placa-de-promocao/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^placa-promocional-gratis/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^cartaz-a4-4x1/?$ /cartaz-a4/ [R=301,L]
+RewriteRule ^placa-supermercado/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^cartaz-amarelo/?$ /modelos/ [R=301,L]
+RewriteRule ^cartaz-promocao/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+
+# Campanha descontinuada sem conteúdo equivalente: HTTP 410 real (não soft 404).
+RewriteRule ^cartaz-copa-do-mundo/?$ - [G,L]
+
 # Old account pages are no longer functional: do not serve a misleading home page.
 RewriteRule ^(login|registro)/?$ - [G,L]
 
