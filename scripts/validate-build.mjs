@@ -121,6 +121,27 @@ expect(sitemap.includes('qual-papel-usar-para-cartaz'), 'Guia de papel ausente d
 
 expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas para açougue'), 'Landing de açougue sem conteúdo específico')
 expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
+// Corrige páginas identificadas como ainda desconhecidas pelo Google com conteúdo útil,
+ // específico da intenção e links para páginas canônicas realmente publicadas.
+const canonicalRoutes = new Set(['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')])
+for (const page of INDEXABLE_PAGES) {
+  for (const link of page.links || []) {
+    const path = String(link.href || '').split(/[?#]/)[0] || '/'
+    expect(canonicalRoutes.has(path), 'Link SEO interno com rota desconhecida: ' + page.slug + ' -> ' + link.href)
+  }
+}
+for (const [slug, sectionTitle] of [
+  ['criador-de-cartaz-de-oferta', 'Como criar placas com uma lista de produtos'],
+  ['cartaz-para-supermercado', 'Escolha o cartaz pelo local onde o cliente encontra a oferta'],
+  ['cartaz-de-oferta-para-imprimir', 'Como imprimir cartazes de oferta sem cortar informações'],
+  ['cartaz-a4', 'Quatro A6 ou oito A7 em uma única folha A4'],
+]) {
+  const page = INDEXABLE_PAGES.find((entry) => entry.slug === slug)
+  expect((page?.sections?.length || 0) >= 3, 'Conteúdo explicativo insuficiente: ' + slug)
+  expect((page?.links?.length || 0) >= 3, 'Links úteis insuficientes: ' + slug)
+  expect(read(slug + '/index.html').includes(sectionTitle), 'Guia SEO não foi renderizado em HTML: ' + slug)
+}
+
 // Uma página útil por intenção, não 100 URLs quase iguais ou uma lista de keywords no HTML.
 const terms = SEARCH_INTENT_CLUSTERS.flatMap((topic) => topic.keywords)
 expect(SEARCH_INTENT_CLUSTERS.length === 10, 'Esperados dez grupos de intenção SEO')
