@@ -39,6 +39,7 @@ expect(!index.includes('<script async src="https://pagead2.googlesyndication.com
 expect(fs.readFileSync('src/components/AdUnit.jsx', 'utf8').includes('IntersectionObserver'), 'Lazy loading de anúncios fora da tela ausente')
 expect(index.includes('href="https://ofertamatica.com.br/"'), 'Canonical da raiz incorreto')
 expect(index.includes('"contactType": "customer support"'), 'Contato oficial ausente no schema da Home')
+expect(index.includes('"logo": "https://ofertamatica.com.br/icons/icon-192.png"'), 'Logo da organização ausente do schema principal')
 expect(index.includes('atendimento@ofertamatica.com.br'), 'E-mail oficial ausente do schema da Home')
 expect(index.includes('Criar Placas de Preço e Cartazes Grátis | Ofertamática'), 'Título atualizado da home ausente')
 expect(index.includes('Escolha modelos, personalize em A4, A5 ou A3'), 'Descrição atualizada da home ausente')
@@ -190,6 +191,13 @@ for (const manifestPath of ['ai-catalog.json', '.well-known/ai-catalog.json']) {
     expect(false, 'JSON de catálogo inválido: ' + manifestPath)
   }
 }
+// Área de clique do tutorial mobile: regressão real identificada nas capturas visuais.
+const freeEditorCss = fs.readFileSync('src/styles/free-editor.css', 'utf8')
+expect(freeEditorCss.includes('.free-guide-steps button { display:inline-flex;') && freeEditorCss.includes('min-height:44px'),
+  'Ações do tutorial do Editor livre precisam ter alvo de toque com pelo menos 44px')
+expect(freeEditorCss.includes('.free-guide-screenshot summary { display:flex;') && freeEditorCss.includes('min-height:44px'),
+  'A expansão da captura do tutorial precisa ter alvo de toque com pelo menos 44px')
+
 expect(cssContents.includes('font-display:swap'), 'Fontes ainda podem bloquear o texto inicial')
 expect(!cssContents.includes('font-display:block'), 'Fonte está configurada com font-display:block')
 
