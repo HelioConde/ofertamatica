@@ -18,6 +18,8 @@ const checks = [
   { name: 'Catálogo agentes well-known', url: origin + '/.well-known/ai-catalog.json', status: 200, contains: ['"specVersion": "1.0"', '"entries"'] },
   { name: '301 legado supermercado', url: origin + '/cartazes-para-supermercado', status: 301, location: '/cartaz-para-supermercado/' },
   { name: '301 legado Excel', url: origin + '/excel-para-cartazes', status: 301, location: '/cartazes-a-partir-de-excel/' },
+  { name: '301 legado açougue', url: origin + '/placas-para-acougue/', status: 301, location: '/cartazes-para-acougue/' },
+  { name: '301 legado placas para supermercado', url: origin + '/placas-para-supermercado/', status: 301, location: '/cartaz-para-supermercado/' },
   { name: '301 host www', url: 'https://www.ofertamatica.com.br/', status: 301, location: 'https://ofertamatica.com.br/' },
   { name: '404 página inexistente', url: origin + '/rota-inexistente-seo-check-2026/', status: 404 },
   { name: '410 login antigo', url: origin + '/login', status: 410 },
