@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# Erros reais com conteúdo útil: preserva HTTP 404/410, sem redirecionar para a home.
+# O ErrorDocument interno mantém o status original para Googlebot e navegador.
+ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
+
 # Biblioteca de funções PHP usada apenas por includes internos.
 RewriteRule ^api/_stats\.php$ - [F,L]
 

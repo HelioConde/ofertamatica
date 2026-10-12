@@ -209,6 +209,21 @@ expect(marketingSource.includes("import '../styles/marketing.css'"), 'As página
 expect(entrySource.includes('CookieConsent'), 'Banner de consentimento não está na raiz')
 expect(cssContents.includes('cookie-banner'), 'CSS de preferências de cookies ausente')
 
+// A página de erro precisa ajudar o usuário SEM mascarar um 404 como HTTP 200.
+const errorPage = read('404.html')
+expect(errorPage.includes('<html lang="pt-BR">'), 'Página 404 precisa estar em português')
+expect(errorPage.includes('name="robots" content="noindex, follow"'), 'Página 404 não pode ser indexada como conteúdo')
+expect(errorPage.includes('name="viewport"'), 'Página 404 precisa ser responsiva')
+expect(errorPage.includes('Onde você quer continuar?'), 'Página 404 precisa mostrar rotas de recuperação')
+for (const path of ['/', '/modelos/', '/editor-livre/', '/formatos/', '/guias-para-varejo/', '/fale-conosco/', '/modelos/#fundos-para-imprimir']) {
+  expect(errorPage.includes('href="' + path + '"'), '404 sem caminho útil: ' + path)
+}
+const errorHtaccess = read('.htaccess')
+expect(errorHtaccess.includes('ErrorDocument 404 /404.html'), 'Apache precisa servir erro 404 personalizado, preservando status')
+expect(errorHtaccess.includes('ErrorDocument 410 /404.html'), 'Páginas removidas também precisam oferecer navegação')
+expect(errorHtaccess.includes('RewriteRule ^ - [R=404,L]'), 'Rotas inexistentes não podem redirecionar para home')
+expect(!sitemap.includes('/404.html'), 'Página 404 não pode constar do sitemap')
+
 expect(fs.existsSync(path.join(dist, '.htaccess')), '.htaccess não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'manifest.webmanifest')), 'manifest.webmanifest não foi copiado para dist')
 expect(fs.existsSync(path.join(dist, 'sw.js')), 'sw.js não foi copiado para dist')

@@ -24,11 +24,12 @@ const checks = [
   { name: 'Nova página farmácia', url: origin + '/cartazes-para-farmacia/', status: 200, contains: ['Cartazes de preço para farmácia e perfumaria', 'https://ofertamatica.com.br/cartazes-para-farmacia/'] },
   { name: 'Nova página hortifruti', url: origin + '/placas-para-hortifruti/', status: 200, contains: ['Placas de preço para frutas, verduras e legumes', 'https://ofertamatica.com.br/placas-para-hortifruti/'] },
   { name: 'Página Black Friday restaurada', url: origin + '/cartaz-black-friday/', status: 200, contains: ['Cartaz de Black Friday com preço legível', 'https://ofertamatica.com.br/cartaz-black-friday/'] },
-  { name: '410 antiga Copa do Mundo', url: origin + '/cartaz-copa-do-mundo', status: 410 },
+  { name: '410 antiga Copa do Mundo com navegação', url: origin + '/cartaz-copa-do-mundo', status: 410, contains: ['Essa página saiu de linha. Suas ofertas, não.', '/fale-conosco/'] },
   { name: '301 legado açougue', url: origin + '/placas-para-acougue/', status: 301, location: '/cartazes-para-acougue/' },
   { name: '301 legado placas para supermercado', url: origin + '/placas-para-supermercado/', status: 301, location: '/cartaz-para-supermercado/' },
   { name: '301 host www', url: 'https://www.ofertamatica.com.br/', status: 301, location: 'https://ofertamatica.com.br/' },
-  { name: '404 página inexistente', url: origin + '/rota-inexistente-seo-check-2026/', status: 404 },
+  { name: '404 página inexistente com navegação', url: origin + '/rota-inexistente-seo-check-2026/', status: 404, contains: ['Essa página saiu de linha. Suas ofertas, não.', 'name="robots" content="noindex, follow"', '/editor-livre/', '/guias-para-varejo/'] },
+  { name: '404 URL aleatória com navegação', url: origin + '/rota-que-nao-existe-oferta-2026/', status: 404, contains: ['Onde você quer continuar?', '/modelos/'] },
   { name: '410 login antigo', url: origin + '/login', status: 410 },
   { name: '410 cadastro antigo', url: origin + '/registro', status: 410 },
 ]
@@ -45,7 +46,7 @@ async function checkPage(check) {
     const location = response.headers.get('location') || ''
     if (!location.includes(check.location)) errors.push('Location inesperado: ' + (location || '(ausente)'))
   }
-  if (check.contains && response.status === 200) {
+  if (check.contains && response.status === check.status) {
     const html = await response.text()
     for (const term of check.contains) if (!html.includes(term)) errors.push('Não contém: ' + term)
   } else {
