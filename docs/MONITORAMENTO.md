@@ -12,7 +12,7 @@ O projeto usa React/Vite hospedado por FTP em Apache/Locaweb. O Vite copia \`pub
    \`php -r "echo password_hash('SENHA_FORTE_ESCOLHIDA', PASSWORD_DEFAULT), PHP_EOL;"\`
    Se o PHP local não estiver disponível, use um gerador confiável de bcrypt/PHP password_hash em ambiente sob seu controle, nunca um site público de hashes.
 4. No gerenciador de arquivos/FTP, crie \`ofertamatica-stats/admin.password\` **fora de public_html**, contendo apenas o hash gerado (uma linha). Permissão 0600 quando possível. A conta PHP precisa conseguir ler este arquivo.
-5. Acesse \`https://ofertamatica.com.br/monitoramento/\` via HTTPS. Login HTTP Basic: usuário qualquer (por exemplo, \`admin\`), senha forte definida acima.
+5. Acesse \`https://ofertamatica.com.br/monitoramento/\` via HTTPS. Login HTTP Basic: usuário obrigatório \`admin\`, senha forte definida acima.
 6. No navegador, aceite **Estatísticas** e acesse algumas páginas. Verifique que \`/api/telemetria.php\` responde 204 à requisição POST consentida. Rejeite estatísticas e confirme que a requisição deixa de ocorrer. O painel deve indicar os números depois da primeira coleta.
 
 O login fica **inoperante (HTTP 503)** até existir um arquivo válido. Não há senha padrão.

@@ -44,15 +44,20 @@ function stats_require_admin(): void {
         exit;
     }
     $hash = trim((string) @file_get_contents($file));
+    $username = $_SERVER['PHP_AUTH_USER'] ?? null;
     $password = $_SERVER['PHP_AUTH_PW'] ?? null;
-    if ($password === null) {
+    if (!is_string($username) || !is_string($password)) {
         $auth = (string) ($_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '');
         if (stripos($auth, 'Basic ') === 0) {
             $plain = base64_decode(substr($auth, 6), true);
-            if ($plain !== false && strpos($plain, ':') !== false) $password = substr($plain, strpos($plain, ':') + 1);
+            if ($plain !== false && strpos($plain, ':') !== false) {
+                [$username, $password] = explode(':', $plain, 2);
+            }
         }
     }
-    if (!is_string($password) || !password_verify($password, $hash)) {
+    // Nome de usuário fixo e hash privado no servidor. Nenhuma credencial no GitHub.
+    if (!is_string($username) || !hash_equals('admin', $username) ||
+        !is_string($password) || !password_verify($password, $hash)) {
         header('WWW-Authenticate: Basic realm="Ofertamatica - painel privado", charset="UTF-8"');
         http_response_code(401);
         header('Content-Type: text/plain; charset=utf-8');

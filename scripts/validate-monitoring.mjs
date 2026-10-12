@@ -21,6 +21,7 @@ assert.match(collector, /FILE_APPEND \| LOCK_EX/, 'Gravação concorrente precis
 assert.doesNotMatch(collector, /REMOTE_ADDR/, 'Não gravar IP no registro próprio')
 assert.match(stats, /dirname\(\$root\)/, 'Registros precisam ficar fora de public_html')
 assert.match(stats, /password_verify/, 'Painel privado precisa autenticação')
+assert.match(stats, /hash_equals\('admin', \$username\)/, 'Painel privado só pode aceitar usuário admin')
 assert.match(dashboard, /stats_require_admin\(\)/, 'Dashboard não pode ser público')
 assert.match(report, /stats_require_admin\(\)/, 'API do dashboard não pode ser pública')
 assert.match(privacy, /Com autorização para estatísticas/, 'A Política de Privacidade precisa informar a nova coleta')
