@@ -354,4 +354,4 @@ const sitemap = [
 ].join('\n')
 
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
-fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`)
+fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /monitoramento/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`)
