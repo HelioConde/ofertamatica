@@ -22,7 +22,10 @@ export function createBrowserTextMeasure() {
   return createTextMeasurer((text, style) => {
     const sizePx = Number(style.fontSizeMm || 1) * PX_PER_MM
     const fontFamily = style.fontFamily || POSTER_DESCRIPTION_FONT
-    context.font = `${style.fontWeight || 900} ${sizePx}px ${fontFamily}`
+    // A Futura Price distribuída no projeto é a variante itálica.
+    // Medir a mesma variante usada no CSS evita diferenças na prévia/PDF.
+    const slant = fontFamily.includes('Futura Price') ? 'italic ' : ''
+    context.font = `${slant}${style.fontWeight || 900} ${sizePx}px ${fontFamily}`
 
     const metrics = context.measureText(text)
     const rawHeightPx = (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) || (sizePx * 0.84)
