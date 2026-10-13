@@ -1242,3 +1242,13 @@
 .poster-app-appRegularPrice > span {
   overflow: visible;
 }
+
+/* A4 2x1 / invertido: a ink box da Futura Price passava ~7px da borda
+   inferior de cada meio-cartaz. Recuo óptico específico preserva os demais
+   tamanhos, a proporção do preço e os 210x297 mm da folha. Para o cartaz
+   invertido a rotação do pai mantém o recuo dirigido ao centro da folha. */
+.poster-card-format-a4x2-cima-baixo .poster-price-value,
+.poster-card-format-a4x2-invertido .poster-price-value {
+  transform: translateY(-1mm) scale(.95);
+  transform-origin: center center;
+}
