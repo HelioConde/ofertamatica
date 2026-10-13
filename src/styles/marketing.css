@@ -3249,3 +3249,51 @@ summary:focus-visible {
 @media (max-width: 700px) {
   .seo-landing .how-retention-note { padding: 12px 14px; font-size: 12px; }
 }
+
+/* Modelos no celular: escolher entre placas com preço e fundos vem antes de
+   uma introdução de marketing longa. Escopo só /modelos/, sem afetar guias. */
+@media (max-width: 700px) {
+  .seo-landing.models-page .seo-hero {
+    padding: 16px 15px !important;
+    margin: 8px 0 12px !important;
+    gap: 0 !important;
+  }
+  .seo-landing.models-page .seo-breadcrumb {
+    display: none !important;
+  }
+  .seo-landing.models-page .seo-hero h1 {
+    font-size: clamp(25px, 7.2vw, 30px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -.03em;
+    margin-bottom: 0;
+  }
+  .seo-landing.models-page .seo-hero > div > p {
+    margin-top: 9px !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+  .seo-landing.models-page .seo-benefit-card,
+  .seo-landing.models-page .seo-hero-actions {
+    display: none !important;
+  }
+  .seo-landing.models-page .model-mode-switch {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0 0 13px;
+  }
+  .seo-landing.models-page .model-mode-switch button {
+    align-items: center;
+    justify-content: center;
+    min-height: 68px;
+    padding: 10px 8px;
+    text-align: center;
+    gap: 0;
+  }
+  .seo-landing.models-page .model-mode-switch button strong {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+  .seo-landing.models-page .model-mode-switch button small {
+    display: none;
+  }
+}
