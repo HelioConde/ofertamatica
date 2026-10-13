@@ -1,11 +1,13 @@
+import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from './posterTypography.js'
+
 export const LAYOUT_CONFIG_VERSION = 10
 
 const baseTextStyles = {
-  description: { fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
-  subdescription: { fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
-  complement: { fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
-  unit: { fontMin: 3, fontMax: 15, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 0.76 },
-  price: { fontMin: 8, fontMax: 40, fontWeight: 900, lineHeight: 0.84, letterSpacing: 0, scale: 1, fontFamily: '"Futura Price"' },
+  description: { fontFamily: POSTER_DESCRIPTION_FONT, fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  subdescription: { fontFamily: POSTER_DESCRIPTION_FONT, fontMin: 3.4, fontMax: 36, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  complement: { fontFamily: POSTER_DESCRIPTION_FONT, fontMin: 3.2, fontMax: 32, fontWeight: 900, lineHeight: 0.92, letterSpacing: 0, scale: 1 },
+  unit: { fontFamily: POSTER_DESCRIPTION_FONT, fontMin: 3, fontMax: 15, fontWeight: 900, lineHeight: 0.94, letterSpacing: 0, scale: 0.76 },
+  price: { fontMin: 8, fontMax: 40, fontWeight: 900, lineHeight: 0.84, letterSpacing: 0, scale: 1, fontFamily: POSTER_PRICE_FONT },
 }
 
 function textStyles(textScale = 1, scales = {}) {
