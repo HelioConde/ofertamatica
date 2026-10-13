@@ -1226,3 +1226,19 @@
 .poster-sheet-paper-stock .poster-background-layer {
   display: none !important;
 }
+
+/* Correção de impressão: a altura de linha compacta da Burbank e da Futura
+   pode ter glifos mais altos que a caixa CSS. As caixas de layout continuam
+   medindo o mesmo tamanho físico; permitimos a tinta ultrapassar APENAS as
+   caixas internas. O cartaz e a folha seguem com overflow:hidden nas bordas
+   físicas, evitando vazamento para outra folha. */
+.poster-content-box,
+.poster-price-box,
+.poster-content-box .poster-content-stack,
+.poster-price-box .poster-price-content,
+.poster-app-appPrice,
+.poster-app-appRegularPrice,
+.poster-app-appPrice > span,
+.poster-app-appRegularPrice > span {
+  overflow: visible;
+}
