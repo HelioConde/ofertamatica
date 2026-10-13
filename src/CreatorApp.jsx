@@ -567,12 +567,12 @@ function FormatChooser({ onSelect, draft, onResume }) {
           <div className="format-home-section-title">
             <div>
               <h2 id="format-picker-title">Selecione o tamanho do cartaz</h2>
-              <p>8 opções de impressão · clique em uma para começar</p>
+              <p>9 opções de impressão · clique em uma para começar</p>
             </div>
             <span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span>
           </div>
           <div className="format-grid">
-            {POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => (
+            {POSTER_FORMAT_OPTIONS.map((format) => (
               <FormatOptionCard
                 key={format.id}
                 format={format}
@@ -714,10 +714,11 @@ function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint,
           {savingPdf ? <span>Escolha <b>Salvar como PDF</b> como destino da impressão.</span> : null}
           <span>Use escala de <b>100%</b> e evite “Ajustar à página”.</span>
           <span>Selecione papel <b>{format.paper}</b> e orientação <b>{format.orientationLabel}</b>.</span>
+          <span>Configure <b>margens: nenhuma</b> e ative <b>gráficos de fundo</b> para imprimir a arte completa.</span>
           <span>Desative cabeçalhos e rodapés do navegador para não aparecer URL/data na folha.</span>
-          {backgroundOnly ? <span><b>Ative gráficos de fundo</b> nas opções do navegador para manter cores e artes.</span> : null}
           <a className="print-paper-guide-link" href="/qual-papel-usar-para-cartaz/" target="_blank" rel="noopener noreferrer">Qual papel e gramatura usar? Abrir guia ↗</a>
-          {format.paper === 'A3' ? <span className="print-alert">Este trabalho usa tamanho A3; o PDF manterá o tamanho físico configurado.</span> : null}
+          {format.paper === 'A3' ? <span className="print-alert">Este trabalho usa tamanho A3 (297 × 420 mm); o PDF manterá essas dimensões.</span> : null}
+          {format.paper === 'SRA3' ? <span className="print-alert">SRA3: folha 320 × 450 mm, com a mesma arte do A3 preenchendo a folha. Selecione SRA3 no driver da impressora. A impressão até as bordas depende do suporte da impressora a margens zero.</span> : null}
         </div>
 
         <footer>
@@ -1357,7 +1358,7 @@ function StyleSidebar({
 
 function Editor({
   formatId, sourceText, setSourceText, products, setProducts, selectedProductId,
-  setSelectedProductId, pageIndex, setPageIndex, onChangeFormat,
+  setSelectedProductId, pageIndex, setPageIndex, onChangeFormat, onSelectFormat,
 }) {
   const [expanded, setExpanded] = useState(false)
   const [reviewOpen, setReviewOpen] = useState(false)
@@ -1924,10 +1925,21 @@ function Editor({
             {products.length ? '✓ 2/2 · pronto para imprimir' : '2º clique · cole e gere'}
           </em>
         </div>
-        <button className="change-format" type="button" onClick={onChangeFormat} title="Seus produtos serão preservados ao trocar o formato.">
-          <span>{format.shortLabel}</span>
-          <b>Alterar formato</b>
-        </button>
+        <div className="editor-paper-controls">
+          {(format.id === 'A3' || format.id === 'SRA3') ? (
+            <label className="editor-large-paper-select">
+              <span>Tamanho do papel · mesmo fundo</span>
+              <select value={format.id} onChange={(event) => onSelectFormat(event.target.value)} aria-label="Tamanho da folha para impressão">
+                <option value="A3">A3 · 29,7 × 42 cm</option>
+                <option value="SRA3">SRA3 · 32 × 45 cm</option>
+              </select>
+            </label>
+          ) : null}
+          <button className="change-format" type="button" onClick={onChangeFormat} title="Seus produtos serão preservados ao trocar o formato.">
+            <span>{format.shortLabel}</span>
+            <b>Alterar formato</b>
+          </button>
+        </div>
       </div>
 
       <div className="mobile-editor-tabs" role="tablist" aria-label="Alternar área do editor" onKeyDown={(event) => {
@@ -2583,6 +2595,7 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
               pageIndex={pageIndex}
               setPageIndex={setPageIndex}
               onChangeFormat={showFormats}
+              onSelectFormat={startWithFormat}
             />
           </Suspense>
         </>

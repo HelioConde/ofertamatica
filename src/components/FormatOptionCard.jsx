@@ -11,6 +11,7 @@ export const FORMAT_DISPLAY_DETAILS = {
   A4: { title: '1 cartaz A4', sheet: 'Folha A4 inteira', use: 'Ponta de gôndola e destaque' },
   A5: { title: '1 cartaz A5', sheet: 'Folha A5 inteira', use: 'Balcão e gôndolas menores' },
   A3: { title: '1 cartaz A3', sheet: 'Impressora compatível com A3', use: 'Vitrine e leitura à distância' },
+  SRA3: { title: '1 cartaz SRA3', sheet: 'Folha 32 × 45 cm · mesmo fundo do A3', use: 'Preencher papel SRA3 sem reduzir para A3' },
 }
 
 export function FormatPreview({ format }) {

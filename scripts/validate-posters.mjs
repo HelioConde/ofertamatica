@@ -26,7 +26,7 @@ expect(transparentHeaderModel?.headerFooterStyle === 'header-transparente', 'Fal
 expect(transparentHeaderModel?.offerMode === 'standard', 'Modelo sem faixa não deve gerar rodapé de oferta')
 expect(transparentHeaderModel?.headerText === '#d71920', 'OFERTA deve ser escrita em vermelho')
 
-const publicFormats = ['A4X4', 'A4X2_CIMA_BAIXO', 'A4X2_INVERTIDO', 'A4X2_APP', 'A4', 'A5', 'A3']
+const publicFormats = ['A4X4', 'A4X2_CIMA_BAIXO', 'A4X2_INVERTIDO', 'A4X2_APP', 'A4', 'A5', 'A3', 'SRA3']
 
 for (const formatId of publicFormats) {
   const format = POSTER_FORMATS[formatId]
@@ -65,6 +65,16 @@ for (const formatId of publicFormats) {
     )
   }
 }
+
+// SRA3 mantém a composição do A3, mas ocupa a folha física maior.
+expect(POSTER_FORMATS.SRA3.widthMm === 320 && POSTER_FORMATS.SRA3.heightMm === 450, 'Dimensão SRA3 incorreta')
+expect(POSTER_FORMATS.A3.widthMm === 297 && POSTER_FORMATS.A3.heightMm === 420, 'Dimensão A3 alterada')
+expect(POSTER_FORMATS.SRA3.postersPerSheet === 1, 'SRA3 precisa imprimir um cartaz por folha')
+const a3Layout = getDefaultTemplateForFormat('A3')
+const sra3Layout = getDefaultTemplateForFormat('SRA3')
+expect(JSON.stringify(a3Layout.contentBox) === JSON.stringify(sra3Layout.contentBox), 'SRA3 deve usar a mesma posição da descrição do A3')
+expect(JSON.stringify(a3Layout.priceBox) === JSON.stringify(sra3Layout.priceBox), 'SRA3 deve usar a mesma posição do preço do A3')
+expect(POSTER_FORMATS.A3.backgroundScope === POSTER_FORMATS.SRA3.backgroundScope, 'SRA3 deve usar o mesmo modo de fundo do A3')
 
 expect(normalizeBackgroundSheetCount(0) === 1, 'A impressão de fundos requer ao menos uma folha')
 expect(normalizeBackgroundSheetCount(1000) === MAX_BACKGROUND_SHEETS, 'Limite máximo de folhas não respeitado')
