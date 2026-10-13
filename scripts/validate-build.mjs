@@ -126,8 +126,11 @@ expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL ant
 const canonicalRoutes = new Set(['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')])
 for (const page of INDEXABLE_PAGES) {
   for (const link of page.links || []) {
-    const path = String(link.href || '').split(/[?#]/)[0] || '/'
-    expect(canonicalRoutes.has(path), 'Link SEO interno com rota desconhecida: ' + page.slug + ' -> ' + link.href)
+    const href = String(link.href || '').trim()
+    // Contatos e destinos externos são links válidos, mas não rotas internas do site.
+    if (/^(?:https?:\/\/|mailto:|tel:)/i.test(href)) continue
+    const targetPath = href.split(/[?#]/)[0] || '/'
+    expect(targetPath.startsWith('/') && canonicalRoutes.has(targetPath), 'Link SEO interno com rota desconhecida: ' + page.slug + ' -> ' + link.href)
   }
 }
 for (const [slug, sectionTitle] of [
