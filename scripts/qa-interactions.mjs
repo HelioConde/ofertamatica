@@ -178,6 +178,34 @@ await scenario('Contato oficial: e-mail nas páginas institucionais', { width: 3
     }
   }
 })
+await scenario('Cartaz A4: MAÇÃ em Burbank e preço em Futura Price', { width: 1440, height: 900 }, async (page) => {
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await page.locator('.format-choice[data-format-id="A4"]').click()
+  const input = page.locator('textarea[aria-label="Lista de produtos, uma linha por produto"]')
+  await input.waitFor({ state: 'visible' })
+  await input.fill('MAÇÃ FUJI KG 6,99')
+  await input.press('Control+Enter')
+  await page.locator('.poster-field-description').first().waitFor({ state: 'visible', timeout: 20000 })
+  await page.locator('.poster-price-value').first().waitFor({ state: 'visible', timeout: 20000 })
+  await page.evaluate(async () => {
+    await Promise.all([
+      document.fonts.load('900 16px "Burbank Big Cd Bk"'),
+      document.fonts.load('italic 900 16px "Futura Price"'),
+    ])
+  })
+  const fonts = await page.evaluate(() => ({
+    description: getComputedStyle(document.querySelector('.poster-field-description')).fontFamily,
+    price: getComputedStyle(document.querySelector('.poster-price-value')).fontFamily,
+    burbankReady: document.fonts.check('900 16px "Burbank Big Cd Bk"'),
+    futuraReady: document.fonts.check('italic 900 16px "Futura Price"'),
+  }))
+  if (!fonts.description.includes('Burbank Big Cd Bk') || !fonts.price.includes('Futura Price')) {
+    throw new Error('Fonte visual divergente: ' + JSON.stringify(fonts))
+  }
+  if (!fonts.burbankReady || !fonts.futuraReady) {
+    throw new Error('Arquivos de fontes locais indisponíveis: ' + JSON.stringify(fonts))
+  }
+})
 await browser.close()
 console.log('\nResultado: ' + findings.length + ' cenários aprovados, ' + failures.length + ' falhas.')
 if (failures.length) {

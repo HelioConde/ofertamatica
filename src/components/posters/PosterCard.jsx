@@ -1,16 +1,11 @@
+import { POSTER_DESCRIPTION_FONT } from '../../config/posterTypography.js'
 import PriceValue from './PriceValue'
 
-const PRIMARY_POSTER_FONT = '"Burbank Big Cd Bk"'
-const ACCENT_POSTER_FONT = 'Impact, "Arial Black", sans-serif'
 const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
 
 function hasAccent(text) {
   const value = String(text || '')
   return ACCENT_PATTERN.test(value) || ACCENT_PATTERN.test(value.normalize('NFD'))
-}
-
-function fontFamilyForText(text) {
-  return hasAccent(text) ? ACCENT_POSTER_FONT : PRIMARY_POSTER_FONT
 }
 
 
@@ -26,7 +21,7 @@ function plannedFieldStyle(line, box) {
     height: `${line.height}%`,
     fontSize: `${line.fontSizeMm}mm`,
     fontWeight: line.style.fontWeight,
-    fontFamily: line.style.fontFamily || fontFamilyForText(line.text),
+    fontFamily: line.style.fontFamily || POSTER_DESCRIPTION_FONT,
     lineHeight: line.style.lineHeight,
     letterSpacing: `${line.style.letterSpacing}mm`,
     textAlign: box.alignX || 'center',
@@ -212,7 +207,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
             style={{
               left: `${box.x}%`, top: `${box.y}%`, width: `${box.width}%`, height: `${box.height}%`,
               color: box.color || '#111111', fontSize: `${box.fontSizeMm || 8}mm`,
-              fontFamily: box.fontFamily || 'Impact, sans-serif',
+              fontFamily: box.fontFamily || POSTER_DESCRIPTION_FONT,
             }}
             onPointerDown={editable ? (event) => onExtraPointerDown?.(box.id, 'move', event) : undefined}>
             <span>{box.text || ''}</span>

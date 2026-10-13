@@ -59,6 +59,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: npm run qa:design
+      - name: Verify poster typography, consent and key interactions
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-interactions.mjs
       - name: Upload design audit report and screenshots
         if: always()
         uses: actions/upload-artifact@v4

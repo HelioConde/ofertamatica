@@ -38,6 +38,15 @@ A identidade de cartazes inclui amarelo, vermelho, laranja e alto contraste **de
 - Preço da placa: preservar tipografia própria e ajuste automático de texto. Nunca trocar a fonte do preço ao refinar a UI.
 - Conteúdo não deve ser cortado: acentos, moedas, centavos, unidade e validade precisam caber inteiros.
 
+### Tipografia oficial dos cartazes
+
+- **Descrição, unidade e textos adicionais:** Burbank Big Cd Bk (`primor-cartazes.otf`), inclusive com acentos.
+- **Preços:** Futura Price (`futura-extra-black-condensed-italic.otf`), também nos cartazes de App.
+- Tokens: `src/config/posterTypography.js`. Arquivos `@font-face`: `src/styles/posters.css`.
+- Preservar escolhas de fonte feitas manualmente pelo usuário; Burbank/Futura são os padrões para novas placas.
+- A tipografia de navegação e formulários continua Inter/system-ui.
+- Validar `MAÇÃ`, `PÃO`, `AÇAÍ`, `PROMOÇÃO` na prévia, sem troca automática de família.
+
 ## 4. Componentes e estados
 
 - Seletor de formato: mostrar miniatura real, nome do formato, subdivisões e uso. Todos os cartões devem ser botões nativos e funcionar com Enter/Espaço.
