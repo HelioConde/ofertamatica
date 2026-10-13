@@ -63,6 +63,23 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-interactions.mjs
+      # CLI oficial: snapshots semânticos e capturas reais, complementares
+      # aos testes automatizados via API Playwright acima.
+      - name: Install Microsoft Playwright CLI
+        run: npm install -g @playwright/cli@latest
+
+      - name: Inspect mobile models using Playwright CLI
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/design-audit
+          trap 'playwright-cli -s=oferta-design close >/dev/null 2>&1 || true' EXIT
+          playwright-cli -s=oferta-design open http://127.0.0.1:5183/modelos/
+          playwright-cli -s=oferta-design resize 390 844
+          playwright-cli -s=oferta-design snapshot --filename=artifacts/design-audit/cli-modelos-mobile.yaml
+          playwright-cli -s=oferta-design screenshot --filename=artifacts/design-audit/cli-modelos-mobile.png
+          test -s artifacts/design-audit/cli-modelos-mobile.yaml
+          test -s artifacts/design-audit/cli-modelos-mobile.png
+
       - name: Upload design audit report and screenshots
         if: always()
         uses: actions/upload-artifact@v4
