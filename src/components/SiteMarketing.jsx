@@ -546,6 +546,8 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                   <span>Buscar modelo</span>
                   <input
                     type="search"
+                    name="modelo"
+                    autoComplete="off"
                     value={modelQuery}
                     placeholder="Ex.: hortifruti, atacado, oferta..."
                     onChange={(event) => {
