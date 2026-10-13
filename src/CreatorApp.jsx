@@ -1388,7 +1388,7 @@ function Editor({
   const baseTemplate = getDefaultTemplateForFormat(formatId)
   const template = useMemo(() => {
     const descriptionFontChoice = posterStyle.descriptionFontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
-    const descriptionFontFamily = descriptionFontChoice === 'auto' ? undefined : descriptionFontChoice
+    const descriptionFontFamily = descriptionFontChoice === 'auto' ? POSTER_DESCRIPTION_FONT : descriptionFontChoice
     const priceFontFamily = posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily
 
     return {

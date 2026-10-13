@@ -1226,3 +1226,29 @@
 .poster-sheet-paper-stock .poster-background-layer {
   display: none !important;
 }
+
+/* Correção de impressão: a altura de linha compacta da Burbank e da Futura
+   pode ter glifos mais altos que a caixa CSS. As caixas de layout continuam
+   medindo o mesmo tamanho físico; permitimos a tinta ultrapassar APENAS as
+   caixas internas. O cartaz e a folha seguem com overflow:hidden nas bordas
+   físicas, evitando vazamento para outra folha. */
+.poster-content-box,
+.poster-price-box,
+.poster-content-box .poster-content-stack,
+.poster-price-box .poster-price-content,
+.poster-app-appPrice,
+.poster-app-appRegularPrice,
+.poster-app-appPrice > span,
+.poster-app-appRegularPrice > span {
+  overflow: visible;
+}
+
+/* A4 2x1 / invertido: a ink box da Futura Price passava ~7px da borda
+   inferior de cada meio-cartaz. Recuo óptico específico preserva os demais
+   tamanhos, a proporção do preço e os 210x297 mm da folha. Para o cartaz
+   invertido a rotação do pai mantém o recuo dirigido ao centro da folha. */
+.poster-card-format-a4x2-cima-baixo .poster-price-value,
+.poster-card-format-a4x2-invertido .poster-price-value {
+  transform: translateY(-1mm) scale(.95);
+  transform-origin: center center;
+}

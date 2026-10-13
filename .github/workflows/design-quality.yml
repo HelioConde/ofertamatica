@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
+      - 'scripts/qa-release-print-import.mjs'
       - 'package.json'
       - 'DESIGN.md'
       - 'AGENTS.md'
@@ -65,6 +66,11 @@ jobs:
         run: node scripts/qa-interactions.mjs
       # CLI oficial: snapshots semânticos e capturas reais, complementares
       # aos testes automatizados via API Playwright acima.
+      - name: Verify A4 A3 SRA3 and App PDF physical print
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-release-print-import.mjs
+
       - name: Install Microsoft Playwright CLI
         run: npm install -g @playwright/cli@latest
 
@@ -85,6 +91,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ofertamatica-design-audit
-          path: artifacts/design-audit/
+          path: |
+            artifacts/design-audit/
+            screenshots/print-qa/
           if-no-files-found: warn
           retention-days: 30
