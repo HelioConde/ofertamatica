@@ -1,15 +1,10 @@
 import PriceValue from './PriceValue'
+import { POSTER_DESCRIPTION_FONT } from '../../config/posterTypography.js'
 
-const PRIMARY_POSTER_FONT = '"Burbank Big Cd Bk"'
-const ACCENT_POSTER_FONT = 'Impact, "Arial Black", sans-serif'
-const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
-
-function fontFamilyForText(text, explicitFont) {
-  if (explicitFont) return explicitFont
-  const value = String(text || '')
-  return ACCENT_PATTERN.test(value) || ACCENT_PATTERN.test(value.normalize('NFD'))
-    ? ACCENT_POSTER_FONT
-    : PRIMARY_POSTER_FONT
+// Evita a antiga troca automática para Impact em MAÇÃ, PÃO e AÇAÍ.
+// Respeita fontes personalizadas quando foram escolhidas pelo usuário.
+function fontFamilyForText(_text, explicitFont) {
+  return explicitFont || POSTER_DESCRIPTION_FONT
 }
 
 const APP_BOXES = [
