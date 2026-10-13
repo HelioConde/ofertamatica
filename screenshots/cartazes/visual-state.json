@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-13T10:29:59.538Z",
-  "commit": "0dfda9f05ef1e023b7abdff10f020f325a64eeba",
+  "generatedAt": "2026-10-13T11:19:24.180Z",
+  "commit": "d70f37ce7f4ef2ee178277a6ad26ce2c52b337bc",
   "desktopErrors": [],
   "mobileErrors": [],
   "fontState": {
@@ -64,28 +64,28 @@
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 23.12,
+        "x": 23.59,
         "y": 20.99,
-        "width": 53.75,
-        "height": 14.19,
-        "fontPx": 43.2983,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "width": 52.82,
+        "height": 14.27,
+        "fontPx": 43.5439,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
-        "x": 22.89,
-        "y": 35.52,
-        "width": 54.21,
-        "height": 12.21,
-        "fontPx": 37.251,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "x": 23.32,
+        "y": 35.6,
+        "width": 53.35,
+        "height": 12.12,
+        "fontPx": 37.0016,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 44.06,
+        "x": 43.62,
         "y": 48.07,
-        "width": 11.86,
+        "width": 12.74,
         "height": 6.93,
         "fontPx": 20.6816,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
         "x": 25.72,
@@ -143,7 +143,7 @@
         "width": 79,
         "height": 15.23,
         "fontPx": 161.299,
-        "fontFamily": "Impact, \"Arial Black\", sans-serif"
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
@@ -151,22 +151,22 @@
         "width": 79,
         "height": 10.06,
         "fontPx": 122.71,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 44.09,
+        "x": 44.3,
         "y": 52.48,
-        "width": 11.82,
+        "width": 11.4,
         "height": 5.05,
         "fontPx": 60.3213,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.7,
-        "y": 66.24,
-        "width": 82.59,
-        "height": 27.52,
-        "fontPx": 395.323,
+        "x": 12.37,
+        "y": 67.44,
+        "width": 75.26,
+        "height": 25.12,
+        "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -213,27 +213,27 @@
       },
       "description": {
         "x": 10.5,
-        "y": 25.49,
+        "y": 25.35,
         "width": 79,
-        "height": 11.01,
-        "fontPx": 134.381,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 11.28,
+        "fontPx": 137.662,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 12.66,
-        "y": 38.69,
+        "y": 38.83,
         "width": 74.67,
         "height": 20.15,
         "fontPx": 213.347,
-        "fontFamily": "Impact, \"Arial Black\", sans-serif"
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": null,
       "price": {
-        "x": 8.7,
-        "y": 66.24,
-        "width": 82.59,
-        "height": 27.52,
-        "fontPx": 395.323,
+        "x": 12.37,
+        "y": 67.44,
+        "width": 75.26,
+        "height": 25.12,
+        "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -280,27 +280,27 @@
       },
       "description": {
         "x": 10.5,
-        "y": 33.92,
+        "y": 33.67,
         "width": 79,
-        "height": 9.25,
-        "fontPx": 112.879,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 9.74,
+        "fontPx": 118.828,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": null,
       "unit": {
-        "x": 44.09,
-        "y": 44.03,
-        "width": 11.82,
+        "x": 44.3,
+        "y": 44.27,
+        "width": 11.4,
         "height": 5.05,
         "fontPx": 60.3213,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.7,
-        "y": 66.24,
-        "width": 82.59,
-        "height": 27.52,
-        "fontPx": 395.323,
+        "x": 12.37,
+        "y": 67.44,
+        "width": 75.26,
+        "height": 25.12,
+        "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -346,35 +346,35 @@
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 20.85,
-        "y": 20.4,
-        "width": 58.28,
+        "x": 20.86,
+        "y": 20.17,
+        "width": 58.27,
         "height": 18.55,
         "fontPx": 160.01,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
-        "y": 39.81,
-        "width": 78.99,
-        "height": 8.7,
-        "fontPx": 75.0501,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "y": 39.58,
+        "width": 79,
+        "height": 9.13,
+        "fontPx": 78.7616,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 40.79,
-        "y": 57.24,
-        "width": 18.42,
+        "x": 40.11,
+        "y": 57.47,
+        "width": 19.78,
         "height": 5.36,
         "fontPx": 45.2409,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.63,
-        "y": 66.28,
-        "width": 82.73,
-        "height": 27.43,
-        "fontPx": 278.453,
+        "x": 12.17,
+        "y": 67.47,
+        "width": 75.66,
+        "height": 25.05,
+        "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -420,35 +420,35 @@
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 10.49,
-        "y": 27.72,
-        "width": 79.01,
-        "height": 9.22,
-        "fontPx": 79.5704,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "x": 10.5,
+        "y": 27.27,
+        "width": 79,
+        "height": 9.71,
+        "fontPx": 83.7392,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
-        "x": 10.49,
-        "y": 37.81,
+        "x": 10.5,
+        "y": 37.83,
         "width": 79,
-        "height": 11.25,
-        "fontPx": 97.0394,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 11.67,
+        "fontPx": 100.721,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 43.7,
-        "y": 49.92,
-        "width": 12.58,
+        "x": 43.93,
+        "y": 50.37,
+        "width": 12.13,
         "height": 5.36,
         "fontPx": 45.2409,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.63,
-        "y": 66.28,
-        "width": 82.73,
-        "height": 27.43,
-        "fontPx": 278.453,
+        "x": 12.17,
+        "y": 67.47,
+        "width": 75.66,
+        "height": 25.05,
+        "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -495,34 +495,34 @@
       },
       "description": {
         "x": 10.49,
-        "y": 24.37,
+        "y": 23.6,
         "width": 79,
-        "height": 13.22,
-        "fontPx": 80.6589,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 13.61,
+        "fontPx": 83.0211,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.49,
-        "y": 38.42,
+        "y": 38.05,
         "width": 79,
-        "height": 12.73,
-        "fontPx": 77.6882,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 13.88,
+        "fontPx": 84.6803,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 43.42,
-        "y": 52,
-        "width": 13.16,
+        "x": 43.65,
+        "y": 52.77,
+        "width": 12.69,
         "height": 5.63,
         "fontPx": 33.6076,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 9.71,
-        "y": 65.05,
-        "width": 80.57,
-        "height": 26.89,
-        "fontPx": 192.797,
+        "x": 13.25,
+        "y": 66.22,
+        "width": 73.49,
+        "height": 24.55,
+        "fontPx": 176.031,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -568,12 +568,12 @@
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 21.32,
+        "x": 20.95,
         "y": 19,
-        "width": 57.35,
+        "width": 58.09,
         "height": 17.44,
         "fontPx": 106.413,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 27.91,
@@ -581,15 +581,15 @@
         "width": 44.18,
         "height": 17.44,
         "fontPx": 106.413,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 45.69,
+        "x": 45.85,
         "y": 55.64,
-        "width": 8.61,
+        "width": 8.3,
         "height": 7.36,
         "fontPx": 43.9483,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
         "x": 28.73,
@@ -643,34 +643,34 @@
       },
       "description": {
         "x": 10.5,
-        "y": 25.42,
+        "y": 25.06,
         "width": 79,
-        "height": 13.22,
-        "fontPx": 228.098,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 13.61,
+        "fontPx": 234.792,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
-        "y": 39.5,
+        "y": 39.53,
         "width": 79,
-        "height": 12.07,
-        "fontPx": 208.248,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 12.39,
+        "fontPx": 213.819,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 43.97,
-        "y": 52.43,
-        "width": 12.06,
+        "x": 44.18,
+        "y": 52.78,
+        "width": 11.63,
         "height": 5.15,
         "fontPx": 87.035,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.71,
-        "y": 66.24,
-        "width": 82.58,
-        "height": 27.52,
-        "fontPx": 559.31,
+        "x": 12.31,
+        "y": 67.44,
+        "width": 75.37,
+        "height": 25.12,
+        "fontPx": 510.618,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -717,34 +717,34 @@
       },
       "description": {
         "x": 13.41,
-        "y": 25.81,
+        "y": 25.64,
         "width": 73.16,
         "height": 20.15,
         "fontPx": 213.347,
-        "fontFamily": "Impact, \"Arial Black\", sans-serif"
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
-        "y": 45.49,
+        "y": 45.31,
         "width": 79,
-        "height": 7.12,
-        "fontPx": 86.8309,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 7.46,
+        "fontPx": 91.0488,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 41.34,
-        "y": 53.46,
-        "width": 17.31,
+        "x": 40.7,
+        "y": 53.64,
+        "width": 18.59,
         "height": 5.05,
         "fontPx": 60.3213,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.52,
-        "y": 69.33,
-        "width": 82.95,
-        "height": 21.33,
-        "fontPx": 306.467,
+        "x": 12.22,
+        "y": 70.29,
+        "width": 75.55,
+        "height": 19.41,
+        "fontPx": 278.82,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -791,34 +791,34 @@
       },
       "description": {
         "x": 10.5,
-        "y": 22.95,
+        "y": 22.77,
         "width": 79,
-        "height": 14.23,
-        "fontPx": 173.65,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 14.46,
+        "fontPx": 176.398,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
-        "y": 38.04,
+        "y": 38.09,
         "width": 79,
-        "height": 16.09,
-        "fontPx": 196.29,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 16.22,
+        "fontPx": 197.972,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
-        "x": 42.19,
-        "y": 54.99,
+        "x": 42.18,
+        "y": 55.17,
         "width": 15.62,
         "height": 5.05,
         "fontPx": 60.3213,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.52,
-        "y": 69.33,
-        "width": 82.95,
-        "height": 21.33,
-        "fontPx": 306.467,
+        "x": 12.22,
+        "y": 70.29,
+        "width": 75.55,
+        "height": 19.41,
+        "fontPx": 278.82,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
@@ -864,35 +864,35 @@
         "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
       },
       "description": {
-        "x": 10.5,
-        "y": 24.89,
-        "width": 79,
-        "height": 16.81,
-        "fontPx": 205.13,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "x": 11.92,
+        "y": 24.34,
+        "width": 76.16,
+        "height": 17.48,
+        "fontPx": 213.347,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "subdescription": {
         "x": 10.5,
-        "y": 42.56,
+        "y": 42.69,
         "width": 79,
-        "height": 9.64,
-        "fontPx": 117.57,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "height": 10.06,
+        "fontPx": 122.71,
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "unit": {
         "x": 45.56,
-        "y": 53.06,
+        "y": 53.6,
         "width": 8.87,
         "height": 5.05,
         "fontPx": 60.3213,
-        "fontFamily": "\"Burbank Big Cd Bk\""
+        "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 8.7,
-        "y": 66.24,
-        "width": 82.59,
-        "height": 27.52,
-        "fontPx": 395.323,
+        "x": 12.37,
+        "y": 67.44,
+        "width": 75.26,
+        "height": 25.12,
+        "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
       "overflow": false
