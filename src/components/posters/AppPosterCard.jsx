@@ -15,13 +15,29 @@ const APP_BOXES = [
   ['appRegularPriceBox', 'appRegularPrice', 'regularPrice'],
 ]
 
-function styleFor(box, textStyle, text) {
+// A medida fisica de cada meio-cartaz e fixa; escala apenas textos longos.
+// Os nomes curtos e precos comuns usam o maior corpo disponivel.
+function scaleForContent(field, text, scale = 1) {
+  const value = String(text || '')
+  if (field === 'appTitle') {
+    const lines = value.split('\n').filter(Boolean)
+    const longest = Math.max(1, ...lines.map((line) => line.trim().length))
+    return scale * Math.max(0.46, Math.min(1, 25 / longest, 4 / Math.max(lines.length, 1)))
+  }
+  if (field === 'appPrice' || field === 'appRegularPrice') {
+    const integer = value.replace(/^R\$\s*/i, '').split(/[,.]/)[0].replace(/\D/g, '')
+    return scale * Math.max(0.58, Math.min(1, 3.2 / Math.max(integer.length, 1)))
+  }
+  return scale
+}
+
+function styleFor(box, textStyle, text, field) {
   const alignX = { left: 'flex-start', center: 'center', right: 'flex-end' }[box.alignX] || 'center'
   const alignY = { top: 'flex-start', center: 'center', bottom: 'flex-end' }[box.alignY] || 'center'
   return {
     left: `${box.x}%`, top: `${box.y}%`, width: `${box.width}%`, height: `${box.height}%`,
     '--app-font-min': `${textStyle.fontMin}mm`, '--app-font-max': `${textStyle.fontMax}mm`,
-    '--app-scale': textStyle.scale || 1, '--app-align-x': alignX, '--app-align-y': alignY,
+    '--app-scale': scaleForContent(field, text, textStyle.scale ?? 1), '--app-align-x': alignX, '--app-align-y': alignY,
     fontFamily: fontFamilyForText(text, textStyle.fontFamily),
   }
 }
@@ -57,7 +73,7 @@ export default function AppPosterCard({ product, template, editable, showLayoutD
       {APP_BOXES.filter(([boxName]) => !backgroundOnly && (!noFooterMode || ['appTitleBox', 'appPriceBox'].includes(boxName))).map(([boxName, styleName, valueName]) => {
         const box = template[boxName]
         const textStyle = template.textStyles[styleName]
-        return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle, values[valueName])} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>
+        return <div key={boxName} className={`poster-app-box poster-app-${styleName} ${showLayoutDebug ? 'poster-layout-box-debug' : ''}`} data-layout-box={boxName} style={styleFor(box, textStyle, values[valueName], styleName)} onPointerDown={editable ? (event) => onBoxPointerDown?.(boxName, 'move', event) : undefined}>
           <span>{['appPrice', 'regularPrice'].includes(valueName) ? <PriceValue value={values[valueName]} /> : (values[valueName] || '\u00a0')}</span>
           {showLayoutDebug ? <small>{boxName}</small> : null}
           {editable ? <button type="button" className="poster-resize-handle" aria-label={`Redimensionar ${boxName}`} onPointerDown={(event) => onBoxPointerDown?.(boxName, 'resize', event)} /> : null}
