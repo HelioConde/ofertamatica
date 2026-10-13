@@ -153,6 +153,26 @@ try {
           if (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440') {
             await page.screenshot({ path: path.join(outDir, `${route.slug}-${viewport.label}.png`), fullPage: false })
           }
+          if (route.path === '/modelos/' && viewport.width <= 390) {
+            const strip = page.locator('.model-category-strip')
+            const pseudo = await strip.evaluate(el => ({
+              display: getComputedStyle(el, '::after').display,
+              content: getComputedStyle(el, '::after').content,
+            }))
+            if (pseudo.display !== 'none' && pseudo.content !== 'none') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Filtro mobile possui sobreposição decorativa que pode cobrir texto',
+                details: pseudo })
+            }
+            const lastFilter = page.locator('.model-category-strip button').last()
+            await lastFilter.scrollIntoViewIfNeeded()
+            await lastFilter.click()
+            if (await lastFilter.getAttribute('aria-pressed') !== 'true') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Último filtro de modelos não pôde ser selecionado por toque' })
+            }
+          }
+
           if (route.path === '/') {
             // Testa a partir do início do tab-order do navegador real.
             await page.keyboard.press('Tab')
