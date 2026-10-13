@@ -47,6 +47,16 @@ playwright-cli snapshot
 playwright-cli screenshot
 ```
 
-O relatório `artifacts/design-audit/report.json` é produzido no GitHub Actions pela auditoria e publicado como artefato. Problemas novos devem ser corrigidos; achados existentes são registrados como diagnóstico, não disfarçados por pontuações inventadas.
+O relatório `artifacts/design-audit/report.json`, o snapshot semântico `cli-modelos-mobile.yaml` e a captura `cli-modelos-mobile.png` são produzidos no GitHub Actions. A CLI é executada de verdade no job Design Quality (apenas para desenvolvimento), sem ser incluída no site publicado. Problemas novos devem ser corrigidos; achados existentes são registrados como diagnóstico, não disfarçados por pontuações inventadas.
 
 Se o objetivo for mudar a interface a partir de uma imagem, documentar as diferenças entre a referência e a implementação antes de aprovar o resultado. Nunca supor que o screenshot visual representa as regras reais de impressão.
+
+## Histórico verificável de aplicação
+
+- Taste Skill v2: regras de auditoria antes de redesenho, preservação da identidade do produto e redução de adornos que não ajudam a tarefa (ex.: seta que cobria filtros no celular). É uma revisão guiada pelas instruções públicas da skill, não uma execução automatizada do pacote.
+- Web Design Guidelines: auditoria real por teclado, nomes acessíveis, contornos, overflow, alvos de toque e estados responsivos via `scripts/qa-design-guidelines.mjs`.
+- Awesome Design: `DESIGN.md` documenta paleta, tipografia, componentes, densidade, interação e restrições físicas.
+- Image to Code: screenshot real do modelo mobile foi inspecionado antes da correção da faixa de categorias; implementação direta em CSS/React existente (sem gerar mockup novo).
+- Playwright CLI: execução real no GitHub Actions, com captura e snapshot nomeados. A API Playwright também continua cobrindo os fluxos funcionais.
+
+Não considerar uma ferramenta externa "executada" quando apenas suas orientações forem aplicadas. A instalação local de skills é opcional e exige um agente que leia seus arquivos.

@@ -153,6 +153,37 @@ try {
           if (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440') {
             await page.screenshot({ path: path.join(outDir, `${route.slug}-${viewport.label}.png`), fullPage: false })
           }
+          if (route.path === '/modelos/' && viewport.width <= 390) {
+            const search = page.locator('.model-search input[type="search"]')
+            const meta = await search.evaluate(el => ({
+              fontSize: Number.parseFloat(getComputedStyle(el).fontSize),
+              name: el.getAttribute('name'),
+              autocomplete: el.autocomplete,
+            }))
+            if (meta.fontSize < 16 || !meta.name || meta.autocomplete !== 'off') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Busca de modelos pode acionar zoom iOS ou não possui metadados de formulário',
+                details: meta })
+            }
+            const strip = page.locator('.model-category-strip')
+            const pseudo = await strip.evaluate(el => ({
+              display: getComputedStyle(el, '::after').display,
+              content: getComputedStyle(el, '::after').content,
+            }))
+            if (pseudo.display !== 'none' && pseudo.content !== 'none') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Filtro mobile possui sobreposição decorativa que pode cobrir texto',
+                details: pseudo })
+            }
+            const lastFilter = page.locator('.model-category-strip button').last()
+            await lastFilter.scrollIntoViewIfNeeded()
+            await lastFilter.click()
+            if (await lastFilter.getAttribute('aria-pressed') !== 'true') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Último filtro de modelos não pôde ser selecionado por toque' })
+            }
+          }
+
           if (route.path === '/') {
             // Testa a partir do início do tab-order do navegador real.
             await page.keyboard.press('Tab')

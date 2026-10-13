@@ -3297,3 +3297,27 @@ summary:focus-visible {
     display: none;
   }
 }
+
+/* Auditoria por screenshot (390px): a seta sticky de categorias cobria
+   parcialmente o último botão visível. O texto de ajuda acima já explica
+   o gesto; não sobrepor ornamentos a alvos de toque. */
+@media (max-width: 700px) {
+  .seo-landing.models-page .model-category-strip {
+    padding-right: 6px !important;
+    scrollbar-width: thin;
+    scrollbar-color: #a8c3ea transparent;
+  }
+  .seo-landing.models-page .model-category-strip::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* Vercel Web Interface Guidelines: ao focar a busca no iOS, 16px evita
+   zoom involuntário. Apenas a busca de modelos, sem afetar as placas. */
+@media (max-width: 700px) {
+  .seo-landing.models-page .model-search input {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+}
