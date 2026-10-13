@@ -90,7 +90,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
   })()
 
   return (
-    <main className="format-page format-home-refresh" id="formatos">
+    <main className="format-page format-home-refresh" id="formatos" tabIndex={-1}>
       <section className="format-dialog">
         <header className="format-dialog-head format-dialog-head-clean">
           <div className="format-home-intro">
@@ -187,6 +187,7 @@ function App() {
   }
   return (
     <div className="app format-mode">
+      <a className="skip-to-content" href="#formatos">Pular para o conteúdo principal</a>
       <Navigation routePath="/" screen="formats" />
       <CreatorSeoHead />
       <FormatChooser
