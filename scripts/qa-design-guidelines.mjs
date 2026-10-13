@@ -154,6 +154,17 @@ try {
             await page.screenshot({ path: path.join(outDir, `${route.slug}-${viewport.label}.png`), fullPage: false })
           }
           if (route.path === '/modelos/' && viewport.width <= 390) {
+            const search = page.locator('.model-search input[type="search"]')
+            const meta = await search.evaluate(el => ({
+              fontSize: Number.parseFloat(getComputedStyle(el).fontSize),
+              name: el.getAttribute('name'),
+              autocomplete: el.autocomplete,
+            }))
+            if (meta.fontSize < 16 || !meta.name || meta.autocomplete !== 'off') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Busca de modelos pode acionar zoom iOS ou não possui metadados de formulário',
+                details: meta })
+            }
             const strip = page.locator('.model-category-strip')
             const pseudo = await strip.evaluate(el => ({
               display: getComputedStyle(el, '::after').display,
