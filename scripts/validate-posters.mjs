@@ -1,5 +1,6 @@
 import { POSTER_FORMATS } from '../src/config/posterFormats.js'
 import { getDefaultTemplateForFormat } from '../src/config/posterTemplates.js'
+import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from '../src/config/posterTypography.js'
 import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount, createBackgroundSlots } from '../src/poster-engine/backgroundPrinting.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 import { createPosterLayouts } from '../src/poster-engine/layoutPlan.js'
@@ -34,6 +35,18 @@ for (const formatId of publicFormats) {
   expect(Boolean(format), `Formato ausente: ${formatId}`)
   expect(Boolean(template), `Template padrão ausente: ${formatId}`)
   if (!format || !template) continue
+  for (const field of ['description', 'subdescription', 'complement', 'unit']) {
+    expect(template.textStyles[field].fontFamily === POSTER_DESCRIPTION_FONT, `${formatId}/${field}: fonte padrão deve ser Burbank Big Cd Bk`)
+  }
+  expect(template.textStyles.price.fontFamily === POSTER_PRICE_FONT, `${formatId}: preço deve usar Futura Price`)
+  if (format.specialLayout === 'app-offer') {
+    for (const field of ['appTitle', 'appValidity', 'appRegularLabel']) {
+      expect(template.textStyles[field].fontFamily === POSTER_DESCRIPTION_FONT, `${formatId}/${field}: deve usar Burbank`)
+    }
+    for (const field of ['appPrice', 'appRegularPrice']) {
+      expect(template.textStyles[field].fontFamily === POSTER_PRICE_FONT, `${formatId}/${field}: deve usar Futura Price`)
+    }
+  }
 
   const blanks = createBackgroundSlots(format)
   expect(blanks.length === format.postersPerSheet, `${formatId}: fundos não preenchem todas as posições`)
@@ -51,6 +64,7 @@ for (const formatId of publicFormats) {
       expect(line.x + line.width <= 100.5, `${formatId}/${sample.id}/${line.field}: estoura largura`)
       expect(line.y + line.height <= 100.5, `${formatId}/${sample.id}/${line.field}: estoura altura`)
       expect(line.fontSizeMm > 0, `${formatId}/${sample.id}/${line.field}: fonte inválida`)
+      expect(line.style.fontFamily === POSTER_DESCRIPTION_FONT, `${formatId}/${sample.id}/${line.field}: texto deve usar Burbank, inclusive com acentos`)
     }
 
     const price = layout.price
