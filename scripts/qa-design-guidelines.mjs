@@ -70,6 +70,12 @@ async function inspect(page) {
         height: Math.round(el.getBoundingClientRect().height),
         html: el.outerHTML.slice(0, 180),
       }))
+    const modelModeButtons = [...document.querySelectorAll('.model-mode-switch button')].map(el => ({
+      label: el.querySelector('strong')?.textContent?.trim() || '',
+      top: Math.round(el.getBoundingClientRect().top),
+      left: Math.round(el.getBoundingClientRect().left),
+      width: Math.round(el.getBoundingClientRect().width),
+    }))
     const navClipped = [...document.querySelectorAll('.main-nav .nav-link')].some((link) => {
       const box = link.getBoundingClientRect()
       return box.left < -2 || box.right > innerWidth + 2
@@ -83,6 +89,7 @@ async function inspect(page) {
         document.documentElement.scrollWidth, document.body.scrollWidth
       ) - innerWidth)),
       navClipped,
+      modelModeButtons,
       interactiveCount: visible.length,
       missingAccessibleNames: noAccessibleName,
       tinyTouchTargets,
@@ -128,6 +135,17 @@ try {
           }
           if (result.horizontalOverflowPx > 8 || result.navClipped) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Overflow ou navegação cortada', details: { overflowPx: result.horizontalOverflowPx, navClipped: result.navClipped } })
+          }
+          if (route.path === '/modelos/' && viewport.label === 'mobile-390') {
+            const [first, second] = result.modelModeButtons
+            if (!first || !second || first.top > 600 || Math.abs(first.top - second.top) > 8) {
+              critical.push({
+                route: route.path,
+                viewport: viewport.label,
+                reason: 'O seletor de modelos/fundos ficou abaixo da primeira dobra ou quebrou em duas linhas',
+                details: result.modelModeButtons,
+              })
+            }
           }
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
