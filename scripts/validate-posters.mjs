@@ -46,6 +46,15 @@ for (const formatId of publicFormats) {
     for (const field of ['appPrice', 'appRegularPrice']) {
       expect(template.textStyles[field].fontFamily === POSTER_PRICE_FONT, `${formatId}/${field}: deve usar Futura Price`)
     }
+    // A oferta do App precisa ter hierarquia semelhante aos cartazes normais.
+    expect(template.textStyles.appTitle.fontMax >= 18, 'App: descricao pequena demais')
+    expect(template.textStyles.appPrice.fontMax >= 35, 'App: preco principal pequeno demais')
+    expect(template.textStyles.appRegularPrice.fontMax >= 15, 'App: preco fora do aplicativo pequeno demais')
+    const orderedBoxes = ['appTitleBox', 'appPriceBox', 'appValidityBox', 'appRegularLabelBox', 'appRegularPriceBox']
+      .map((name) => template[name])
+    expect(orderedBoxes.every((box) => box.x >= 0 && box.y >= 0 && box.x + box.width <= 100 && box.y + box.height <= 100), 'App: caixas extrapolam o cartaz')
+    expect(orderedBoxes.every((box, index) => index === 0 || orderedBoxes[index - 1].y + orderedBoxes[index - 1].height <= box.y), 'App: caixas de texto e preco se sobrepoem')
+    expect(format.widthMm / format.columns >= 148 && format.heightMm / format.rows === 210, 'App: medidas fisicas A5 alteradas')
   }
 
   const blanks = createBackgroundSlots(format)
