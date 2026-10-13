@@ -1,3 +1,4 @@
+import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from '../config/posterTypography.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PosterSheet from './posters/PosterSheet'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
@@ -15,13 +16,14 @@ const START_MODEL = 'oferta-transparente'
 const ALLOWED_FORMATS = ['A4', 'A4X2_CIMA_BAIXO', 'A4X4', 'A4X8', 'A5', 'A3']
 const PX_PER_MM = 96 / 25.4
 const FONT_CHOICES = [
-  { value: 'auto', label: 'Cartazista (padrão)' },
+  { value: 'auto', label: 'Burbank Big Cd Bk (padrão)' },
+  { value: POSTER_DESCRIPTION_FONT, label: 'Burbank Big Cd Bk' },
   { value: 'Impact, "Arial Black", sans-serif', label: 'Impact' },
   { value: 'Arial, sans-serif', label: 'Arial' },
   { value: 'Georgia, serif', label: 'Georgia' },
 ]
 const PRICE_FONTS = [
-  { value: '"Futura Price", Impact, "Arial Black", sans-serif', label: 'Futura (padrão)' },
+  { value: POSTER_PRICE_FONT, label: 'Futura Price (padrão)' },
   { value: 'Impact, "Arial Black", sans-serif', label: 'Impact' },
   { value: 'Arial, sans-serif', label: 'Arial' },
 ]
@@ -153,7 +155,7 @@ export default function FreePosterEditor() {
       ...base.textStyles,
       ...Object.fromEntries(['description', 'subdescription', 'complement', 'unit'].map((field) => [field, {
         ...base.textStyles[field],
-        fontFamily: state.descriptionFont === 'auto' ? undefined : state.descriptionFont,
+        fontFamily: state.descriptionFont === 'auto' ? POSTER_DESCRIPTION_FONT : state.descriptionFont,
       }])),
       price: { ...base.textStyles.price, fontFamily: state.priceFont },
     },
@@ -177,7 +179,7 @@ export default function FreePosterEditor() {
     '--poster-price-color': resolveReadablePriceColor(palette.background, palette.price),
     '--poster-header-color': model.headerFooterStyle === 'header-transparente' ? 'transparent' : model.header,
     '--poster-header-text-color': resolveReadableHeaderTextColor(model.headerFooterStyle === 'header-transparente' ? palette.background : model.header, palette.header),
-    '--poster-description-font-family': state.descriptionFont === 'auto' ? '"Burbank Big Cd Bk", Impact, sans-serif' : state.descriptionFont,
+    '--poster-description-font-family': state.descriptionFont === 'auto' ? POSTER_DESCRIPTION_FONT : state.descriptionFont,
     '--poster-price-font-family': state.priceFont,
   }
 
@@ -230,7 +232,7 @@ export default function FreePosterEditor() {
   function addText() {
     if (state.extras.length >= 12) return
     const id = 'extra-' + Date.now().toString(36)
-    setState((current) => ({ ...current, extras: [...current.extras, { id, text: 'NOVO TEXTO', x: 18, y: 49, width: 64, height: 12, fontSizeMm: 8, fontFamily: 'Impact, sans-serif', color: '#111111' }] }))
+    setState((current) => ({ ...current, extras: [...current.extras, { id, text: 'NOVO TEXTO', x: 18, y: 49, width: 64, height: 12, fontSizeMm: 8, fontFamily: POSTER_DESCRIPTION_FONT, color: '#111111' }] }))
     setSelected(id)
   }
   function beginDrag(id, mode, event) {
@@ -395,7 +397,7 @@ export default function FreePosterEditor() {
                   <div className="free-editor-extra-edit">
                     <label className="free-editor-field"><span>Texto adicional</span><textarea rows={2} maxLength={90} value={chosenExtra.text} onChange={(e)=>updateExtra(selected,{text:e.target.value})} /></label>
                     <NumericSetting label="Tamanho da fonte (mm)" value={chosenExtra.fontSizeMm || 8} min={2} max={40} onChange={(v)=>updateExtra(selected,{fontSizeMm:clamp(v,2,40)})}/>
-                    <label className="free-editor-field"><span>Fonte</span><select value={chosenExtra.fontFamily || 'Impact, sans-serif'} onChange={(e)=>updateExtra(selected,{fontFamily:e.target.value})}>{FONT_CHOICES.filter(x=>x.value!=='auto').map(x=><option key={x.value} value={x.value}>{x.label}</option>)}</select></label>
+                    <label className="free-editor-field"><span>Fonte</span><select value={chosenExtra.fontFamily || POSTER_DESCRIPTION_FONT} onChange={(e)=>updateExtra(selected,{fontFamily:e.target.value})}>{FONT_CHOICES.filter(x=>x.value!=='auto').map(x=><option key={x.value} value={x.value}>{x.label}</option>)}</select></label>
                     <label className="free-editor-color-extra"><span>Cor do texto</span><input type="color" value={chosenExtra.color || '#111111'} onChange={(e)=>updateExtra(selected,{color:e.target.value})}/></label>
                     <button className="free-editor-danger" type="button" onClick={()=>{setState(current=>({...current,extras:current.extras.filter(x=>x.id!==selected)}));setSelected('contentBox')}}>Excluir esta caixa</button>
                   </div>
