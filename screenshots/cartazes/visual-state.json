@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-13T11:54:15.973Z",
-  "commit": "68a08b3bfe011114b83f3480295fde3e232ac73f",
+  "generatedAt": "2026-10-13T12:19:08.431Z",
+  "commit": "01bca5aaca81abc62f1c7a2a7dd2d0a8387d61bd",
   "desktopErrors": [],
   "mobileErrors": [],
   "fontState": {
@@ -95,7 +95,7 @@
         "fontPx": 116.039,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "mamao-moldura-a4",
@@ -169,7 +169,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "abacaxi-imperdivel-a4",
@@ -236,7 +236,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "melancia-promocao-a4",
@@ -303,7 +303,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "uva-chevron-a5",
@@ -377,7 +377,7 @@
         "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "mexerica-oval-a5",
@@ -451,7 +451,7 @@
         "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "manga-curva-a4x4",
@@ -525,7 +525,7 @@
         "fontPx": 176.031,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "banana-ondas-a4x2",
@@ -592,14 +592,14 @@
         "fontFamily": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif"
       },
       "price": {
-        "x": 28.73,
-        "y": 65.34,
-        "width": 42.53,
-        "height": 28.3,
+        "x": 29.8,
+        "y": 65.38,
+        "width": 40.4,
+        "height": 26.88,
         "fontPx": 202.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "manga-divertida-a3",
@@ -673,7 +673,7 @@
         "fontPx": 510.618,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     },
     {
       "sample": "cafe-contorno-a4",
@@ -895,7 +895,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
-      "overflow": false
+      "overflow": true
     }
   ]
 }

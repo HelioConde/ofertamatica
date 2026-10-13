@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-10-13T12:19:04.270Z",
+  "formats": [
+    {
+      "format": "A4X8",
+      "widthMm": 210,
+      "heightMm": 297,
+      "sheetWidthPx": 793.6875,
+      "sheetHeightPx": 1122.515625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A4X4",
+      "widthMm": 210,
+      "heightMm": 297,
+      "sheetWidthPx": 793.6875,
+      "sheetHeightPx": 1122.515625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A4X2_CIMA_BAIXO",
+      "widthMm": 210,
+      "heightMm": 297,
+      "sheetWidthPx": 793.6875,
+      "sheetHeightPx": 1122.515625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A4X2_INVERTIDO",
+      "widthMm": 210,
+      "heightMm": 297,
+      "sheetWidthPx": 793.6875,
+      "sheetHeightPx": 1122.515625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A4X2_APP",
+      "widthMm": 297,
+      "heightMm": 210,
+      "sheetWidthPx": 1122.515625,
+      "sheetHeightPx": 793.6875,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A4",
+      "widthMm": 210,
+      "heightMm": 297,
+      "sheetWidthPx": 793.6875,
+      "sheetHeightPx": 1122.515625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A5",
+      "widthMm": 148,
+      "heightMm": 210,
+      "sheetWidthPx": 559.359375,
+      "sheetHeightPx": 793.6875,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "A3",
+      "widthMm": 297,
+      "heightMm": 420,
+      "sheetWidthPx": 1122.515625,
+      "sheetHeightPx": 1587.390625,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    },
+    {
+      "format": "SRA3",
+      "widthMm": 320,
+      "heightMm": 450,
+      "sheetWidthPx": 1209.4375,
+      "sheetHeightPx": 1700.78125,
+      "descriptionFont": "\"Burbank Big Cd Bk\", Impact, \"Arial Black\", sans-serif",
+      "priceFont": "\"Futura Price\", Impact, \"Arial Black\", sans-serif",
+      "burbankLoaded": true,
+      "futuraLoaded": true,
+      "clipped": []
+    }
+  ],
+  "failures": []
+}
