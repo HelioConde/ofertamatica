@@ -1,16 +1,11 @@
+import { POSTER_DESCRIPTION_FONT } from '../config/posterTypography.js'
 import { createTextMeasurer, estimateTextMeasure } from '../poster-engine/textMeasure.js'
 
 const PX_PER_MM = 96 / 25.4
-const PRIMARY_POSTER_FONT = '"Burbank Big Cd Bk"'
-const ACCENT_POSTER_FONT = 'Impact, "Arial Black", sans-serif'
 const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ]/
 
 function hasAccent(text) {
   return ACCENT_PATTERN.test(String(text || ''))
-}
-
-function fontFamilyForText(text) {
-  return hasAccent(text) ? ACCENT_POSTER_FONT : PRIMARY_POSTER_FONT
 }
 
 function accentPaddingMm(fontSizeMm, text) {
@@ -26,7 +21,7 @@ export function createBrowserTextMeasure() {
 
   return createTextMeasurer((text, style) => {
     const sizePx = Number(style.fontSizeMm || 1) * PX_PER_MM
-    const fontFamily = style.fontFamily || fontFamilyForText(text)
+    const fontFamily = style.fontFamily || POSTER_DESCRIPTION_FONT
     context.font = `${style.fontWeight || 900} ${sizePx}px ${fontFamily}`
 
     const metrics = context.measureText(text)
