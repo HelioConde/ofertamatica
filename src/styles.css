@@ -5127,7 +5127,7 @@ textarea:focus-visible {
   border-radius: 999px;
   background: #fff200;
   color: var(--poster-header-color, #e51e31);
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
   font-size: 2.2mm;
   font-style: italic;
   transform: rotate(-7deg);
@@ -6791,7 +6791,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   left: 6%;
   top: 7%;
   color: #fff200;
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
   font-size: .22em;
   font-weight: 900;
   letter-spacing: .02em;
@@ -7217,7 +7217,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   padding: 1.05mm 2.6mm;
   border-radius: 999px;
   color: #fff;
-  font-family: Impact, "Arial Black", sans-serif;
+  font-family: var(--poster-font-family, "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif);
   font-size: 3.1mm;
   letter-spacing: .01em;
   box-shadow: 0 .45mm 1.1mm rgba(65, 30, 0, .15);
