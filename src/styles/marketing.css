@@ -3312,3 +3312,12 @@ summary:focus-visible {
     display: none !important;
   }
 }
+
+/* Vercel Web Interface Guidelines: ao focar a busca no iOS, 16px evita
+   zoom involuntário. Apenas a busca de modelos, sem afetar as placas. */
+@media (max-width: 700px) {
+  .seo-landing.models-page .model-search input {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+}
