@@ -158,10 +158,31 @@ for (const format of POSTER_FORMAT_OPTIONS) {
           return rect.left < bounds.left - 3 || rect.right > bounds.right + 3 ||
             rect.top < bounds.top - 3 || rect.bottom > bounds.bottom + 3
         })
-        .map(el => ({
-          className: el.className, text: el.textContent?.slice(0, 60),
-          clientHeight: el.clientHeight, scrollHeight: el.scrollHeight,
-        }))
+        .map(el => {
+          const range = document.createRange()
+          range.selectNodeContents(el)
+          const rect = range.getBoundingClientRect()
+          const card = el.closest('.poster-card')?.getBoundingClientRect()
+          const clippingAncestors = []
+          for (let parent = el.parentElement; parent && parent !== sheet; parent = parent.parentElement) {
+            const style = getComputedStyle(parent)
+            if (['hidden', 'clip'].includes(style.overflowX) || ['hidden', 'clip'].includes(style.overflowY)) {
+              const bounds = parent.getBoundingClientRect()
+              clippingAncestors.push({ className: parent.className,
+                left: Math.round(bounds.left), right: Math.round(bounds.right),
+                top: Math.round(bounds.top), bottom: Math.round(bounds.bottom) })
+            }
+          }
+          return {
+            className: el.className, text: el.textContent?.slice(0, 60),
+            clientHeight: el.clientHeight, scrollHeight: el.scrollHeight,
+            ink: { left: Math.round(rect.left), right: Math.round(rect.right),
+              top: Math.round(rect.top), bottom: Math.round(rect.bottom) },
+            card: card && { left: Math.round(card.left), right: Math.round(card.right),
+              top: Math.round(card.top), bottom: Math.round(card.bottom) },
+            clippingAncestors,
+          }
+        })
       return {
         sheetWidthPx: sheetRect.width,
         sheetHeightPx: sheetRect.height,
