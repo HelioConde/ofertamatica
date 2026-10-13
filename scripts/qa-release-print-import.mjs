@@ -127,21 +127,41 @@ for (const format of POSTER_FORMAT_OPTIONS) {
       const description = get('.poster-field-description, .poster-app-appTitle > span')
       const price = get('.poster-price-value')
       const ink = [...sheet.querySelectorAll('.poster-field-description, .poster-field-subdescription, .poster-field-complement, .poster-field-unit, .poster-app-appTitle > span, .poster-price-value')]
+      // A Futura itálica usa line-height visualmente compacto (.78): seu
+      // scrollHeight costuma superar clientHeight mesmo quando overflow:visible.
+      // Apenas reportamos corte quando o bloco de texto extravasa um ANCESTRAL
+      // com overflow hidden/clip, ou quando sai dos limites físicos do cartaz.
       const clipped = ink
-        .filter((el) => {
-          const box = el.getBoundingClientRect()
-          const parent = el.closest('.poster-content-box, .poster-price-box, .poster-app-box')
-          if (!parent) return false
-          const parentRect = parent.getBoundingClientRect()
-          const widthOverflow = el.scrollWidth > el.clientWidth + 3
-          const heightOverflow = el.scrollHeight > el.clientHeight + 3
-          const rectOverflow = box.left < parentRect.left - 3 || box.right > parentRect.right + 3
-            || box.top < parentRect.top - 3 || box.bottom > parentRect.bottom + 3
-          return widthOverflow || heightOverflow || rectOverflow
+        .filter(el => {
+          if (!el.textContent?.trim()) return false
+          const range = document.createRange()
+          range.selectNodeContents(el)
+          const inkRect = range.getBoundingClientRect()
+          const rect = inkRect.width && inkRect.height ? inkRect : el.getBoundingClientRect()
+          let parent = el.parentElement
+          while (parent && parent !== sheet) {
+            const overflow = getComputedStyle(parent)
+            const clipX = ['hidden', 'clip'].includes(overflow.overflowX)
+            const clipY = ['hidden', 'clip'].includes(overflow.overflowY)
+            if (clipX || clipY) {
+              const bounds = parent.getBoundingClientRect()
+              if ((clipX && (rect.left < bounds.left - 3 || rect.right > bounds.right + 3)) ||
+                  (clipY && (rect.top < bounds.top - 3 || rect.bottom > bounds.bottom + 3))) {
+                return true
+              }
+            }
+            parent = parent.parentElement
+          }
+          const card = el.closest('.poster-card')
+          if (!card) return false
+          const bounds = card.getBoundingClientRect()
+          return rect.left < bounds.left - 3 || rect.right > bounds.right + 3 ||
+            rect.top < bounds.top - 3 || rect.bottom > bounds.bottom + 3
         })
-        .map(el => ({ className: el.className, text: el.textContent?.slice(0, 60),
-          width: el.clientWidth, scrollWidth: el.scrollWidth,
-          height: el.clientHeight, scrollHeight: el.scrollHeight }))
+        .map(el => ({
+          className: el.className, text: el.textContent?.slice(0, 60),
+          clientHeight: el.clientHeight, scrollHeight: el.scrollHeight,
+        }))
       return {
         sheetWidthPx: sheetRect.width,
         sheetHeightPx: sheetRect.height,
