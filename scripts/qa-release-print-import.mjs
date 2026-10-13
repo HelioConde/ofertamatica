@@ -1,4 +1,6 @@
 import { chromium } from 'playwright'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import * as XLSX from '@e965/xlsx'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 
@@ -6,6 +8,9 @@ const origin = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
 const browser = await chromium.launch({ headless: true })
 const results = []
 const failures = []
+const printReports = []
+const printOutDir = path.resolve('screenshots/print-qa')
+await fs.mkdir(printOutDir, { recursive: true })
 
 async function run(name, callback) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
@@ -91,9 +96,15 @@ for (const source of [
   })
 }
 
-for (const format of POSTER_FORMAT_OPTIONS.filter(item => item.id !== 'SRA3')) {
+for (const format of POSTER_FORMAT_OPTIONS) {
   await run('PDF real ' + format.id + ' (' + format.widthMm + 'x' + format.heightMm + 'mm)', async (page) => {
-    await openEditor(page, format.id)
+    // SRA3 é opção profissional no seletor A3; não aparece na Home.
+    // Testá-lo pelo fluxo real é mais fiel do que fingir haver um card SRA3.
+    await openEditor(page, format.id === 'SRA3' ? 'A3' : format.id)
+    if (format.id === 'SRA3') {
+      await page.getByRole('combobox', { name: 'Tamanho da folha para impressão' }).selectOption('SRA3')
+      await page.waitForFunction(() => document.querySelector('.editor-context')?.textContent?.includes('SRA3'))
+    }
     await page.locator('textarea[aria-label="Lista de produtos, uma linha por produto"]')
       .fill('Café Melitta 500 g 18,90\nLeite Integral 1 L 4,99')
     await page.locator('.editor-actions .generate-button').click()
@@ -106,6 +117,59 @@ for (const format of POSTER_FORMAT_OPTIONS.filter(item => item.id !== 'SRA3')) {
       .some(style => style.textContent.includes('@page { size: ' + width + 'mm ' + height + 'mm; margin: 0; }')),
     { width: format.widthMm, height: format.heightMm })
     if (!hasRightPageSize) throw new Error('CSS @page não corresponde ao tamanho físico solicitado')
+    // Valida o conteúdo da folha efetivamente impressa, e não só a prévia na tela.
+    await page.emulateMedia({ media: 'print' })
+    const printSheet = page.locator('.poster-print-root-complete .poster-sheet').first()
+    await printSheet.waitFor({ state: 'visible', timeout: 12000 })
+    const rendered = await printSheet.evaluate((sheet) => {
+      const get = (selector) => sheet.querySelector(selector)
+      const sheetRect = sheet.getBoundingClientRect()
+      const description = get('.poster-field-description, .poster-app-appTitle > span')
+      const price = get('.poster-price-value')
+      const ink = [...sheet.querySelectorAll('.poster-field-description, .poster-field-subdescription, .poster-field-complement, .poster-field-unit, .poster-app-appTitle > span, .poster-price-value')]
+      const clipped = ink
+        .filter((el) => {
+          const box = el.getBoundingClientRect()
+          const parent = el.closest('.poster-content-box, .poster-price-box, .poster-app-box')
+          if (!parent) return false
+          const parentRect = parent.getBoundingClientRect()
+          const widthOverflow = el.scrollWidth > el.clientWidth + 3
+          const heightOverflow = el.scrollHeight > el.clientHeight + 3
+          const rectOverflow = box.left < parentRect.left - 3 || box.right > parentRect.right + 3
+            || box.top < parentRect.top - 3 || box.bottom > parentRect.bottom + 3
+          return widthOverflow || heightOverflow || rectOverflow
+        })
+        .map(el => ({ className: el.className, text: el.textContent?.slice(0, 60),
+          width: el.clientWidth, scrollWidth: el.scrollWidth,
+          height: el.clientHeight, scrollHeight: el.scrollHeight }))
+      return {
+        sheetWidthPx: sheetRect.width,
+        sheetHeightPx: sheetRect.height,
+        descriptionFont: description ? getComputedStyle(description).fontFamily : '',
+        priceFont: price ? getComputedStyle(price).fontFamily : '',
+        burbankLoaded: document.fonts.check('900 16px "Burbank Big Cd Bk"'),
+        futuraLoaded: document.fonts.check('italic 900 16px "Futura Price"'),
+        clipped,
+      }
+    })
+    const expectedWidth = format.widthMm * 96 / 25.4
+    const expectedHeight = format.heightMm * 96 / 25.4
+    if (Math.abs(rendered.sheetWidthPx - expectedWidth) > 2 ||
+        Math.abs(rendered.sheetHeightPx - expectedHeight) > 2) {
+      throw new Error('Folha impressa não ocupa o tamanho solicitado: ' + JSON.stringify(rendered))
+    }
+    if (!rendered.descriptionFont.includes('Burbank Big Cd Bk') ||
+        !rendered.priceFont.includes('Futura Price') ||
+        !rendered.burbankLoaded || !rendered.futuraLoaded) {
+      throw new Error('Fonte incorreta ou arquivo ausente no PDF: ' + JSON.stringify(rendered))
+    }
+    if (rendered.clipped.length) {
+      throw new Error('Texto ou preço extrapolando a área de impressão: ' + JSON.stringify(rendered.clipped))
+    }
+    if (['A4', 'A3', 'SRA3', 'A4X2_APP'].includes(format.id)) {
+      await printSheet.screenshot({ path: path.join(printOutDir, format.id + '-impressao.png'), animations: 'disabled' })
+    }
+    printReports.push({ format: format.id, widthMm: format.widthMm, heightMm: format.heightMm, ...rendered })
     const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false })
     if (pdf.length < 2000 || !pdf.subarray(0, 5).toString().startsWith('%PDF-')) throw new Error('O navegador não gerou um PDF válido')
     const mediaBox = pdf.toString('latin1').match(/\/MediaBox\s*\[\s*0\s+0\s+([\d.]+)\s+([\d.]+)\s*\]/)
@@ -118,6 +182,7 @@ for (const format of POSTER_FORMAT_OPTIONS.filter(item => item.id !== 'SRA3')) {
   })
 }
 await browser.close()
+await fs.writeFile(path.join(printOutDir, 'report.json'), JSON.stringify({ generatedAt: new Date().toISOString(), formats: printReports, failures }, null, 2) + '\n')
 console.log('QA de lançamento: ' + results.length + ' aprovações, ' + failures.length + ' falhas.')
 if (failures.length) {
   console.error(JSON.stringify(failures, null, 2))
