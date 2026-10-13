@@ -38,12 +38,15 @@ export const DEFAULT_POSTER_LAYOUTS = {
 }
 
 const appBox = (x, y, width, height) => ({ x, y, width, height, ...centered })
+// O cartaz App ocupa metade de um A4 paisagem (148,5 x 210 mm).
+// Reservar o centro para o preco principal e empilhar as informacoes
+// secundarias evita reduzir tudo para caber em uma linha inferior.
 const APP_LAYOUT = {
-  appTitleBox: appBox(8, 21, 84, 34),
-  appPriceBox: appBox(10, 57, 80, 17),
-  appValidityBox: appBox(12, 75, 76, 6),
-  appRegularLabelBox: appBox(11, 83, 45, 9),
-  appRegularPriceBox: appBox(57, 83, 32, 9),
+  appTitleBox: appBox(7, 17, 86, 32),
+  appPriceBox: appBox(7, 49, 86, 29),
+  appValidityBox: appBox(8, 79, 84, 5),
+  appRegularLabelBox: appBox(8, 85, 84, 4.5),
+  appRegularPriceBox: appBox(8, 89.5, 84, 6.5),
 }
 
 function createTemplate({ id, name, format, specialLayout }) {
@@ -78,11 +81,11 @@ function createTemplate({ id, name, format, specialLayout }) {
     template.appRegularLabel = 'Preço fora do aplicativo'
     template.textStyles = {
       ...template.textStyles,
-      appTitle: { ...baseTextStyles.description, fontMin: 3, fontMax: 12, scale: 1 },
-      appPrice: { ...baseTextStyles.price, fontMin: 6, fontMax: 20, scale: 1 },
-      appValidity: { ...baseTextStyles.unit, fontMin: 2.1, fontMax: 5, scale: 1 },
-      appRegularLabel: { ...baseTextStyles.unit, fontMin: 2.3, fontMax: 5, scale: 1 },
-      appRegularPrice: { ...baseTextStyles.price, fontMin: 4, fontMax: 10, scale: 1 },
+      appTitle: { ...baseTextStyles.description, fontMin: 3, fontMax: 19, scale: 1 },
+      appPrice: { ...baseTextStyles.price, fontMin: 6, fontMax: 38, scale: 1 },
+      appValidity: { ...baseTextStyles.unit, fontMin: 2.1, fontMax: 6.2, scale: 1 },
+      appRegularLabel: { ...baseTextStyles.unit, fontMin: 2.3, fontMax: 6.5, scale: 1 },
+      appRegularPrice: { ...baseTextStyles.price, fontMin: 4, fontMax: 16, scale: 1 },
     }
   }
 
