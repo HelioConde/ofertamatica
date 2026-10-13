@@ -18,6 +18,7 @@ const getSeoPage = (pathname) => SEO_PAGES.find((page) => '/' + page.slug === St
 
 import { getPageCount, getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 import { getDefaultTemplateForFormat } from './config/posterTemplates'
+import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from './config/posterTypography'
 import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
 import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount } from './poster-engine/backgroundPrinting'
@@ -161,9 +162,9 @@ const DEFAULT_POSTER_STYLE = {
   priceColor: '#d91b2b',
   headerColor: '#e51e31',
   headerTextColor: '#ffffff',
-  fontFamily: '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
+  fontFamily: POSTER_DESCRIPTION_FONT,
   descriptionFontFamily: 'auto',
-  priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
+  priceFontFamily: POSTER_PRICE_FONT,
   headerStyle: 'retail',
   headerText: 'OFERTA',
   headerImage: '',
@@ -254,7 +255,7 @@ function loadPosterStyle() {
       ...saved,
       descriptionFontFamily: (() => {
         const legacy = saved.descriptionFontFamily || saved.fontFamily || DEFAULT_POSTER_STYLE.descriptionFontFamily
-        return legacy === '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif' ? 'auto' : legacy
+        return legacy === POSTER_DESCRIPTION_FONT ? 'auto' : legacy
       })(),
       priceFontFamily: saved.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
       textColor: resolveReadableTextColor(
@@ -803,9 +804,9 @@ function PosterOptionPreview({
           '--poster-price-color': resolveReadablePriceColor(backgroundColor, priceColor),
           '--poster-header-color': headerColor,
           '--poster-header-text-color': resolveReadableHeaderTextColor(headerColor, headerTextColor),
-          '--poster-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
-          '--poster-description-font-family': '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif',
-          '--poster-price-font-family': '"Futura Price", Impact, "Arial Black", sans-serif',
+          '--poster-font-family': POSTER_DESCRIPTION_FONT,
+          '--poster-description-font-family': POSTER_DESCRIPTION_FONT,
+          '--poster-price-font-family': POSTER_PRICE_FONT,
         }}
       >
         <div
@@ -1107,13 +1108,13 @@ function StyleSidebar({
               onChange={(event) => onChange({
                 ...style,
                 fontFamily: event.target.value === 'auto'
-                  ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+                  ? POSTER_DESCRIPTION_FONT
                   : event.target.value,
                 descriptionFontFamily: event.target.value,
               })}
             >
-              <option value="auto">Varejo condensada · acentos automáticos</option>
-              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada · forçar fonte</option>
+              <option value="auto">Burbank Big Cd Bk (padrão)</option>
+              <option value={POSTER_DESCRIPTION_FONT}>Burbank Big Cd Bk</option>
               <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
               <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
               <option value={'Arial, sans-serif'}>Arial</option>
@@ -1125,13 +1126,13 @@ function StyleSidebar({
               value={style.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily}
               onChange={(event) => onChange({ ...style, priceFontFamily: event.target.value })}
             >
-              <option value={'"Futura Price", Impact, "Arial Black", sans-serif'}>Futura preço</option>
-              <option value={'"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'}>Varejo condensada</option>
+              <option value={POSTER_PRICE_FONT}>Futura Price (padrão)</option>
+              <option value={POSTER_DESCRIPTION_FONT}>Burbank Big Cd Bk</option>
               <option value={'Impact, "Arial Black", sans-serif'}>Impact</option>
               <option value={'"Arial Black", Arial, sans-serif'}>Arial Black</option>
             </select>
           </label>
-          <p className="typography-help">O padrão usa a mesma combinação das placas de referência: descrição condensada e preço Futura.</p>
+          <p className="typography-help">Padrão: Burbank Big Cd Bk nos textos, inclusive com acentos, e Futura Price nos valores.</p>
         </details>
 
         <details className="style-section style-accordion store-brand-section">
@@ -1444,10 +1445,10 @@ function Editor({
     '--poster-header-color': posterStyle.headerColor,
     '--poster-header-text-color': resolvedHeaderTextColor,
     '--poster-font-family': posterStyle.descriptionFontFamily === 'auto'
-      ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+      ? POSTER_DESCRIPTION_FONT
       : (posterStyle.descriptionFontFamily || posterStyle.fontFamily),
     '--poster-description-font-family': posterStyle.descriptionFontFamily === 'auto'
-      ? '"Burbank Big Cd Bk", Impact, "Arial Black", sans-serif'
+      ? POSTER_DESCRIPTION_FONT
       : (posterStyle.descriptionFontFamily || posterStyle.fontFamily),
     '--poster-price-font-family': posterStyle.priceFontFamily || DEFAULT_POSTER_STYLE.priceFontFamily,
   }
@@ -1508,13 +1509,13 @@ function Editor({
     let active = true
     if (!document.fonts) return undefined
     Promise.all([
-      document.fonts.load('16px "Burbank Big Cd Bk"'),
-      document.fonts.load('16px "Futura Price"'),
+      document.fonts.load('900 16px "Burbank Big Cd Bk"'),
+      document.fonts.load('italic 900 16px "Futura Price"'),
     ]).then(() => {
       if (active) {
         setFontReady(
-          document.fonts.check('16px "Burbank Big Cd Bk"') &&
-          document.fonts.check('16px "Futura Price"'),
+          document.fonts.check('900 16px "Burbank Big Cd Bk"') &&
+          document.fonts.check('italic 900 16px "Futura Price"'),
         )
       }
     }).catch(() => {
