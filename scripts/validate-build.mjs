@@ -118,6 +118,13 @@ expect(paperGuideHtml.includes('Qual a melhor gramatura de papel'), 'FAQ de pape
 expect(paperGuideHtml.includes('"@type":"Article"'), 'Schema Article ausente do guia de papel')
 expect(paperGuideHtml.includes('name="twitter:description"'), 'Social metadata ausente do guia de papel')
 expect(sitemap.includes('qual-papel-usar-para-cartaz'), 'Guia de papel ausente do sitemap')
+const practicalGuide = read('como-fazer-cartaz-de-oferta/index.html')
+expect(practicalGuide.includes('Monte a descrição e a unidade de venda'), 'Guia prático sem instruções detalhadas no HTML estático')
+expect(practicalGuide.includes('Exemplo prático: prepare doze ofertas'), 'Guia prático sem cálculo de exemplo')
+expect(practicalGuide.includes('Erros frequentes e como evitar'), 'Guia prático sem revisão de erros')
+const retailGuides = read('guias-para-varejo/index.html')
+expect(retailGuides.includes('Calcule o lote de impressão'), 'Central de guias sem cálculo de lotes no HTML estático')
+expect(retailGuides.includes('Valide o PDF e a impressão física'), 'Central de guias sem procedimento de revisão de impressão')
 
 expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas para açougue'), 'Landing de açougue sem conteúdo específico')
 expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
