@@ -145,9 +145,19 @@ export const PUBLIC_PAGES = [
     lead: 'Conteúdos práticos sobre criação, preço, formatos, impressão e comunicação de ofertas no varejo.',
     benefits: ['Tutoriais por necessidade', 'Links para formatos e modelos', 'Acesso gratuito ao criador'],
     sections: [
-      { title: 'Por onde começar a preparar as placas de preço', text: 'Se você já tem uma lista de produtos, comece pelo criador ou pelo guia de importação de planilhas. Confira nome, peso ou volume, preço e condições da oferta antes de gerar o lote. Para quem trabalha no mercado diariamente, manter um padrão de cabeçalho, contraste e tamanho reduz retrabalho e facilita a conferência da campanha.' },
-      { title: 'Como escolher cartazes para cada setor', text: 'Os guias para supermercado, açougue e padaria tratam da diferença entre preço por kg, por unidade e por embalagem. Ao preparar uma oferta relâmpago, uma placa De/Por ou uma campanha de atacado e varejo, descreva a regra da promoção com clareza e confira se o cliente consegue reconhecer a informação principal.' },
-      { title: 'Papel, tamanho e PDF na rotina da loja', text: 'Antes de imprimir, escolha entre A4, A5 e A3 segundo a distância de leitura e a impressora disponível. O guia de papel explica gramaturas comuns e como evitar escala incorreta, margens inesperadas ou cortes. Você também pode salvar o cartaz como PDF pela impressão do navegador quando essa opção estiver disponível.' },
+      { title: '1. Faça a conferência da lista antes de gerar os cartazes', text: 'Trabalhe com uma lista por campanha e confirme para cada linha: descrição reconhecível, marca quando relevante, quantidade, unidade de venda (kg, g, L, mL ou unidade), preço e período de validade. Exemplo fictício para conferir a digitação: Banana nanica | kg | R$ 5,99. Não misture preço por quilo e preço por embalagem. Se a lista veio do ERP ou do Excel, revise especialmente valores com vírgula decimal e cabeçalhos copiados por engano antes de imprimir.' },
+      { title: '2. Escolha o tamanho pelo local de exposição', text: 'Para gôndolas próximas ao cliente, quatro ou oito cartazes menores por folha A4 podem economizar papel, desde que a descrição continue legível. Para balcão e ponta de gôndola, compare duas placas por folha com uma A4 inteira. Para vitrines e comunicação mais distante, teste A3 quando houver impressora compatível. A4 mede 21 × 29,7 cm e A3 mede 29,7 × 42 cm; na dúvida, imprima uma prova e leia o preço da distância real do comprador.' },
+      { title: '3. Adapte a informação ao setor, não apenas a cor', text: 'No hortifruti e no açougue, evidencie quando o preço é por kg; na padaria, deixe clara a diferença entre unidade e peso; em bebidas e mercearia, indique o volume ou a quantidade por embalagem. Exemplo fictício: Refrigerante 2 L | unidade | R$ 8,49. Uma placa bonita com unidade ausente pode confundir o consumidor. Confira também condições de clube, aplicativo, quantidade mínima e limites por cliente com as regras da sua campanha.' },
+      { title: '4. Calcule o lote de impressão antes de gastar papel', text: 'Para estimar folhas, divida o número de cartazes pela quantidade de placas por folha e arredonde para cima. Exemplo: 37 ofertas em layout de quatro por A4 exigem 10 folhas (37 ÷ 4 = 9,25; arredonda para 10). O resultado não inclui reimpressões, perdas nem páginas de teste. Faça primeiro uma folha de prova e confirme se o navegador não está aplicando “Ajustar à página”.' },
+      { title: '5. Revise o contraste e a hierarquia visual', text: 'O nome do produto deve ser identificável, mas o preço precisa ser lido rapidamente. Use o tamanho do preço como destaque principal, mantenha a unidade ao lado e evite fundos que reduzam o contraste. Em campanhas De/Por, identifique claramente o preço anterior e confira se a comparação usa o mesmo produto e quantidade. Para ofertas de atacado e varejo, escreva a quantidade mínima junto da condição especial.' },
+      { title: '6. Valide o PDF e a impressão física', text: 'Antes de imprimir em lote, confirme papel, orientação, margens e escala de 100% na janela do navegador; desative cabeçalhos e rodapés e ative gráficos de fundo quando a arte exigir. Se o cartaz sair cortado, compare a área imprimível da impressora com o formato escolhido e faça outra prova. Salvar como PDF não substitui a revisão visual: abra o arquivo e confira preço, unidade, validade e qualidade da arte.' },
+      { title: '7. Padronize a atualização das campanhas', text: 'Use uma rotina simples: preparar a lista, revisar condições, gerar o lote, conferir uma amostra impressa, distribuir por setor e retirar materiais vencidos. Registre internamente quem aprovou os preços e a data da troca; o Ofertamática não valida automaticamente o cadastro do ERP nem a legislação aplicável à promoção. Os exemplos numéricos deste guia são ilustrativos, não ofertas reais.' },
+    ],
+    links: [
+      { label: 'Escolher o formato de impressão', href: '/formatos/', note: 'Compare tamanho físico e quantidade por folha.' },
+      { label: 'Ver tipos de cartaz e fundos', href: '/modelos/', note: 'Escolha modelos ou imprima somente fundos.' },
+      { label: 'Entender o papel adequado', href: '/qual-papel-usar-para-cartaz/', note: 'Gramatura e impressão sem escala incorreta.' },
+      { label: 'Começar a criar as placas', href: '/', note: 'Abra diretamente o seletor de formatos.' },
     ],
   },
   {
@@ -566,6 +576,24 @@ export const SEO_PAGES = [
     lead: 'Organize a descrição, destaque preço e unidade, escolha o formato pela distância de leitura e mantenha um padrão entre as ofertas.',
     benefits: ['Descrição curta e reconhecível', 'Preço e unidade com hierarquia clara', 'Formato adequado ao ponto de exposição'],
     tips: ['Comece pela informação que o cliente precisa reconhecer.', 'Deixe o preço como maior elemento do cartaz.', 'Mantenha campanhas da mesma ação visualmente consistentes.'],
+    sections: [
+      { title: 'Monte a descrição e a unidade de venda', text: 'Antes de pensar na cor da placa, escreva uma descrição curta e inequívoca: nome do produto, marca quando relevante e peso ou volume da embalagem. Exemplo ilustrativo: Café torrado e moído 500 g, pacote, R$ 19,90. Se o produto for vendido a granel, indique claramente kg em vez de unidade. O preço e a descrição devem corresponder ao mesmo cadastro e à mesma embalagem.' },
+      { title: 'Escolha o cartaz certo para a distância de leitura', text: 'Na gôndola, placas menores ocupam menos espaço, mas exigem pouco texto. Em ponta de gôndola e balcão, duas ofertas por folha A4 podem equilibrar tamanho e economia. Para vitrines, um cartaz A4 inteiro ou A3 pode facilitar a leitura, dependendo da distância. O formato A3 exige impressora compatível; não basta ampliar um PDF A4 sem conferir as dimensões.' },
+      { title: 'Exemplo prático: prepare doze ofertas', text: 'Suponha uma campanha ilustrativa com 12 produtos. Em formato de quatro cartazes por folha A4, são necessárias três folhas (12 ÷ 4 = 3), antes das provas e perdas. Em formato de duas placas por A4, são seis folhas. Compare o gasto com papel e tinta com a legibilidade necessária. Para quantidades que não sejam múltiplas do layout, arredonde sempre o número de folhas para cima.' },
+      { title: 'Destaque o preço sem esconder as condições', text: 'Uma oferta De/Por precisa identificar o valor anterior e o promocional para o mesmo produto. Em atacado e varejo, apresente a quantidade mínima ou a regra de compra perto do preço correspondente. Se a promoção só vale no aplicativo ou para clientes cadastrados, deixe essa condição visível. Inclua validade e limite por cliente quando aplicáveis à campanha.' },
+      { title: 'Gere e revise o arquivo antes de distribuir', text: 'Abra o criador, escolha o formato, cole os produtos ou importe a lista e gere os cartazes. Depois revise os dados individualmente. Para imprimir, selecione a folha e a orientação corretas, mantenha escala de 100% quando precisar de tamanho físico e faça uma prova. Confira se descrições, preços e cabeçalhos não foram cortados antes de imprimir o lote completo.' },
+      { title: 'Erros frequentes e como evitar', text: 'Preço por kg apresentado como preço por unidade, embalagem sem peso, excesso de texto, contraste fraco e margens cortadas são falhas comuns de comunicação. Corrija primeiro a informação comercial e só depois o visual. Faça uma conferência cruzada com a lista aprovada pela loja; a ferramenta não substitui a validação dos preços no sistema de vendas.' },
+    ],
+    faq: [
+      { q: 'Quantas folhas A4 preciso para 12 cartazes?', a: 'Com quatro cartazes por folha são três A4; com dois por folha são seis A4. Separe papel extra para teste ou reimpressão.' },
+      { q: 'Posso salvar um cartaz em PDF?', a: 'Sim. Use a revisão de impressão e a opção de salvar como PDF oferecida pelo navegador; confira a escala e o tamanho da página.' },
+      { q: 'Posso imprimir A3 numa impressora A4?', a: 'Não em tamanho A3 real. É preciso impressora A3 ou serviço de impressão compatível. Reduzir o arquivo altera o tamanho final.' },
+    ],
+    links: [
+      { label: 'Criar um cartaz agora', href: '/', note: 'Abra diretamente o seletor de formatos.' },
+      { label: 'Conferir os formatos', href: '/formatos/', note: 'Compare A4, A5 e A3.' },
+      { label: 'Escolher papel e gramatura', href: '/qual-papel-usar-para-cartaz/', note: 'Evite cortes e problemas de impressão.' },
+    ],
   },
 ]
 
