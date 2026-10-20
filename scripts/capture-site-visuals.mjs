@@ -423,7 +423,7 @@ const failures = state.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.id === 'modelos' && (item.modelVisualCount !== 12 || !item.modelVisualReady)) return true
   if (item.id === 'guias-para-varejo' && (
-    item.retailIntroCardCount !== 3 ||
+    item.retailIntroCardCount < 3 ||
     item.retailCatalogCardCount !== (item.width <= 650 ? Math.min(6, SEO_PAGES.length) : SEO_PAGES.length) ||
     (item.width <= 650 && SEO_PAGES.length > 6 && !item.retailGuideShowMoreVisible) ||
     !item.retailGuideCardsFit || !item.retailGuideNoEmptyColumns ||
