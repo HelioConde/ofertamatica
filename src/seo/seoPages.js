@@ -576,6 +576,24 @@ export const SEO_PAGES = [
     lead: 'Organize a descrição, destaque preço e unidade, escolha o formato pela distância de leitura e mantenha um padrão entre as ofertas.',
     benefits: ['Descrição curta e reconhecível', 'Preço e unidade com hierarquia clara', 'Formato adequado ao ponto de exposição'],
     tips: ['Comece pela informação que o cliente precisa reconhecer.', 'Deixe o preço como maior elemento do cartaz.', 'Mantenha campanhas da mesma ação visualmente consistentes.'],
+    sections: [
+      { title: 'Monte a descrição e a unidade de venda', text: 'Antes de pensar na cor da placa, escreva uma descrição curta e inequívoca: nome do produto, marca quando relevante e peso ou volume da embalagem. Exemplo ilustrativo: Café torrado e moído 500 g, pacote, R$ 19,90. Se o produto for vendido a granel, indique claramente kg em vez de unidade. O preço e a descrição devem corresponder ao mesmo cadastro e à mesma embalagem.' },
+      { title: 'Escolha o cartaz certo para a distância de leitura', text: 'Na gôndola, placas menores ocupam menos espaço, mas exigem pouco texto. Em ponta de gôndola e balcão, duas ofertas por folha A4 podem equilibrar tamanho e economia. Para vitrines, um cartaz A4 inteiro ou A3 pode facilitar a leitura, dependendo da distância. O formato A3 exige impressora compatível; não basta ampliar um PDF A4 sem conferir as dimensões.' },
+      { title: 'Exemplo prático: prepare doze ofertas', text: 'Suponha uma campanha ilustrativa com 12 produtos. Em formato de quatro cartazes por folha A4, são necessárias três folhas (12 ÷ 4 = 3), antes das provas e perdas. Em formato de duas placas por A4, são seis folhas. Compare o gasto com papel e tinta com a legibilidade necessária. Para quantidades que não sejam múltiplas do layout, arredonde sempre o número de folhas para cima.' },
+      { title: 'Destaque o preço sem esconder as condições', text: 'Uma oferta De/Por precisa identificar o valor anterior e o promocional para o mesmo produto. Em atacado e varejo, apresente a quantidade mínima ou a regra de compra perto do preço correspondente. Se a promoção só vale no aplicativo ou para clientes cadastrados, deixe essa condição visível. Inclua validade e limite por cliente quando aplicáveis à campanha.' },
+      { title: 'Gere e revise o arquivo antes de distribuir', text: 'Abra o criador, escolha o formato, cole os produtos ou importe a lista e gere os cartazes. Depois revise os dados individualmente. Para imprimir, selecione a folha e a orientação corretas, mantenha escala de 100% quando precisar de tamanho físico e faça uma prova. Confira se descrições, preços e cabeçalhos não foram cortados antes de imprimir o lote completo.' },
+      { title: 'Erros frequentes e como evitar', text: 'Preço por kg apresentado como preço por unidade, embalagem sem peso, excesso de texto, contraste fraco e margens cortadas são falhas comuns de comunicação. Corrija primeiro a informação comercial e só depois o visual. Faça uma conferência cruzada com a lista aprovada pela loja; a ferramenta não substitui a validação dos preços no sistema de vendas.' },
+    ],
+    faq: [
+      { q: 'Quantas folhas A4 preciso para 12 cartazes?', a: 'Com quatro cartazes por folha são três A4; com dois por folha são seis A4. Separe papel extra para teste ou reimpressão.' },
+      { q: 'Posso salvar um cartaz em PDF?', a: 'Sim. Use a revisão de impressão e a opção de salvar como PDF oferecida pelo navegador; confira a escala e o tamanho da página.' },
+      { q: 'Posso imprimir A3 numa impressora A4?', a: 'Não em tamanho A3 real. É preciso impressora A3 ou serviço de impressão compatível. Reduzir o arquivo altera o tamanho final.' },
+    ],
+    links: [
+      { label: 'Criar um cartaz agora', href: '/', note: 'Abra diretamente o seletor de formatos.' },
+      { label: 'Conferir os formatos', href: '/formatos/', note: 'Compare A4, A5 e A3.' },
+      { label: 'Escolher papel e gramatura', href: '/qual-papel-usar-para-cartaz/', note: 'Evite cortes e problemas de impressão.' },
+    ],
   },
 ]
 
