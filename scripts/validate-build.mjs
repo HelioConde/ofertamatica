@@ -185,6 +185,7 @@ for (const [legacy, target] of [
   expect(!sitemap.includes('<loc>' + SITE_URL + '/' + legacy + '/</loc>'), 'URL antiga no sitemap: ' + legacy)
 }
 expect(read('guias-para-varejo/index.html').includes('/placas-para-padaria/'), 'Hub sem link para padaria')
+expect(read('guias-para-varejo/index.html').includes('<a href="/editor-livre/">'), 'Hub sem link HTML rastreável para editor livre')
 expect(read('guias-para-varejo/index.html').includes('/cartazes-a-partir-de-excel/'), 'Hub sem link para Excel')
 expect(read('placas-para-padaria/index.html').includes('Como escrever o preço do pão'), 'Guia de padaria incompleto')
 expect(read('cartazes-a-partir-de-excel/index.html').includes('Prepare a planilha'), 'Guia de Excel incompleto')

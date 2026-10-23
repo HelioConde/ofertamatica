@@ -194,6 +194,7 @@ function snapshot(page) {
   const guideIndex = page.slug === 'guias-para-varejo'
     ? `<section aria-label="Guias por assunto"><h2>Guias para criar e imprimir cartazes</h2>
         <p>Veja orientações práticas de preço, formato, setor e impressão.</p>
+        <p>Quer passar da orientação para a prática? <a href="/editor-livre/">Abra o editor livre de cartazes</a> para ajustar textos e preços ou <a href="/modelos/">escolha um modelo para imprimir</a>. Ambos funcionam sem cadastro.</p>
         <ul>${SEO_PAGES.map((guide) => `<li><a href="/${esc(guide.slug)}/">${esc(guide.heading)}</a> — ${esc(guide.lead)}</li>`).join('')}</ul>
         <h2>Dúvidas frequentes</h2>
         ${SEO_FAQS.slice(0, 8).map((faq) => `<h3>${esc(faq.q)}</h3><p>${esc(faq.a)}</p>`).join('')}
