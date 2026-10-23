@@ -200,6 +200,7 @@ function snapshot(page) {
         ${SEO_FAQS.slice(0, 8).map((faq) => `<h3>${esc(faq.q)}</h3><p>${esc(faq.a)}</p>`).join('')}
       </section>`
     : ''
+  const toolCta = page.slug === 'validade-zero' ? '<p><a href="https://helioconde.github.io/validade_zero/" style="display:inline-block;background:#1d63e9;color:#fff;padding:12px 18px;border-radius:9px;font-weight:700">Abrir Validade Zero ↗</a> <span>Aplicativo independente · teste sem login</span></p>' : ''
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
 
   const paperChoices = page.paperChoices?.length ? `
@@ -231,6 +232,7 @@ function snapshot(page) {
     <h1 style="font-size:48px;line-height:1.05">${esc(page.heading)}</h1>
     <p style="font-size:18px;line-height:1.7">${esc(page.lead)}</p>
     ${updated}
+    ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
     ${howToContent}
@@ -249,6 +251,7 @@ function snapshot(page) {
       <a href="/formatos/" style="margin-right:16px;color:#1d63e9">Formatos para imprimir</a>
       <a href="/como-funciona/" style="margin-right:16px;color:#1d63e9">Como funciona</a>
       <a href="/guias-para-varejo/" style="margin-right:16px;color:#1d63e9">Guias para varejo</a>
+      <a href="/validade-zero/" style="margin-right:16px;color:#1d63e9">Validade Zero</a>
       <a href="/qual-papel-usar-para-cartaz/" style="margin-right:16px;color:#1d63e9">Qual papel usar para cartazes</a>
       <a href="/sobre/" style="margin-right:16px;color:#1d63e9">Sobre</a>
       <a href="/fale-conosco/" style="margin-right:16px;color:#1d63e9">Fale conosco</a>
@@ -272,7 +275,7 @@ function creatorSnapshot() {
     A5: ['1 cartaz A5', 'Folha A5 inteira', 'Balcão e gôndolas menores'],
     A3: ['1 cartaz A3', 'Impressora compatível com A3', 'Vitrine e leitura à distância'],
   }
-  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias']]
+  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias'], ['/validade-zero/', 'Validade Zero', 'Validades']]
   const cards = POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => {
     const details = display[format.id]
     if (!details) return ''
@@ -304,7 +307,7 @@ function creatorSnapshot() {
     '<section class="format-home-chooser" aria-labelledby="format-picker-title"><div class="format-home-section-title"><div><h2 id="format-picker-title">Selecione o tamanho do cartaz</h2><p>8 opções de impressão · clique em uma para começar</p></div><span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span></div>' +
     '<div class="format-grid">' + cards + '</div></section>' +
     '<aside class="format-ad-card format-ad-zone" aria-label="Área de publicidade"></aside>' +
-    '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
+    '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/validade-zero/">Controle de validades</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
     '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section></main>' +
     '<aside id="ofertamatica-load-warning" hidden role="alert" style="position:fixed;bottom:12px;left:12px;right:12px;z-index:9999;margin:auto;max-width:600px;padding:14px;border:1px solid #afc9f3;border-radius:12px;background:white;box-shadow:0 6px 36px #0002"><strong>O criador está demorando para carregar.</strong> <a href="/" style="color:#1d63e9;font-weight:800">Recarregar</a></aside></div>' +
     '<script>window.setTimeout(function(){var e=document.getElementById("ofertamatica-load-warning");if(e)e.hidden=false},12000)</script>'
