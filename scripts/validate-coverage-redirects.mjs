@@ -32,6 +32,14 @@ const redirects = {
   "cartaz-amarelo": "modelos",
   "cartaz-promocao": "gerador-de-cartaz-de-promocao"
 }
+// Exportação adicional de 404 em 22/10/2026: redirecionar apenas intenções equivalentes.
+const notFoundRedirects = {
+  "placas-promocionais": "gerador-de-cartaz-de-promocao",
+  "cartaz-de-oferta": "criador-de-cartaz-de-oferta",
+  "placas-para-farmacia": "cartazes-para-farmacia",
+  "placa-2x1": "formatos"
+}
+const legitimatelyMissing = ["ia-para-varejo", "placa-sra3", "ia-para-supermercado"]
 const restored = ["cartazes-para-farmacia","cartaz-black-friday"]
 const gone = ["cartaz-copa-do-mundo"]
 const alreadyCanonical = ["cartaz-a4"]
@@ -47,6 +55,16 @@ for (const [oldSlug, target] of Object.entries(redirects)) {
   assert.ok(ht.includes('RewriteRule ^' + oldSlug + '/?$ /' + target + '/ [R=301,L]'), '301 ausente: ' + oldSlug)
   assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + oldSlug + '/</loc>'), 'URL antiga no sitemap: ' + oldSlug)
 }
+for (const [oldSlug, target] of Object.entries(notFoundRedirects)) {
+  assert.ok(pages.has(target), 'Destino 404 não indexável: ' + target)
+  assert.ok(ht.includes('RewriteRule ^' + oldSlug + '/?$ /' + target + '/ [R=301,L]'), '301 de recuperação ausente: ' + oldSlug)
+  assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + oldSlug + '/</loc>'), '404 antiga no sitemap: ' + oldSlug)
+}
+for (const slug of legitimatelyMissing) {
+  assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + slug + '/</loc>'), 'Página não publicada no sitemap: ' + slug)
+  assert.ok(!ht.includes('RewriteRule ^' + slug + '/?$ /'), 'Redirecionamento sem equivalência: ' + slug)
+}
+assert.ok(ht.includes('RewriteRule ^(login|registro)/?$ - [G,L]'), 'Conta desativada deve manter 410')
 for (const slug of restored) {
   assert.ok(pages.has(slug), 'Página restaurada ausente: ' + slug)
   assert.ok(fs.existsSync('dist/' + slug + '/index.html'), 'HTML restaurado ausente: ' + slug)
@@ -63,4 +81,4 @@ for (const slug of alreadyCanonical) {
 const html = fs.readFileSync('dist/placas-para-hortifruti/index.html', 'utf8')
 assert.ok(html.includes('Preço por quilo não é preço por unidade'), 'Conteúdo original de hortifruti ausente')
 assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/placas-hortifruti/</loc>'), 'Slug antigo hortifruti indevido')
-console.log('Cobertura: 31 URLs verificadas; 27 redirecionamentos, 3 páginas indexáveis e 1 HTTP 410.')
+console.log('Cobertura: 31 URLs soft 404 e 9 URLs 404 auditadas; 4 redirecionamentos equivalentes adicionais, sem redirecionamentos artificiais de IA/SRA3.')
