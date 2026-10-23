@@ -93,6 +93,13 @@ RewriteRule ^placa-supermercado/?$ /cartaz-para-supermercado/ [R=301,L]
 RewriteRule ^cartaz-amarelo/?$ /modelos/ [R=301,L]
 RewriteRule ^cartaz-promocao/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
 
+# URLs equivalentes identificadas na exportação GSC de 22/10/2026 (404).
+# Não redirecionar páginas de IA/SRA3 sem conteúdo equivalente publicado.
+RewriteRule ^placas-promocionais/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^cartaz-de-oferta/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^placas-para-farmacia/?$ /cartazes-para-farmacia/ [R=301,L]
+RewriteRule ^placa-2x1/?$ /formatos/ [R=301,L]
+
 # Campanha descontinuada sem conteúdo equivalente: HTTP 410 real (não soft 404).
 RewriteRule ^cartaz-copa-do-mundo/?$ - [G,L]
 
