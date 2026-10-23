@@ -47,6 +47,7 @@ function Navigation({ routePath, screen, onInstall }) {
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
+    ['/validade-zero', 'Validade Zero', 'Validades'],
   ]
 
   return (
@@ -147,6 +148,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Modelos de cartazes</a>
           <a href="/editor-livre/">Editor livre: monte sua própria placa</a>
+          <a href="/validade-zero/">Controle de validades</a>
           <a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a>
           <a href="/como-funciona/">Como funciona</a>
           <details className="format-more-links">

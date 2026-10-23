@@ -162,6 +162,28 @@ export const PUBLIC_PAGES = [
   },
   {
     kind: 'public',
+    slug: 'validade-zero',
+    title: 'Validade Zero: Controle de Vencimentos no Varejo | Ofertamática',
+    description: 'Conheça o Validade Zero, ferramenta de controle de vencimentos para supermercados com scanner EAN, leitura de validade por câmera e cadastro de lotes.',
+    keywords: 'controle de validade de produtos, validade zero, gestão de vencimentos supermercado, scanner EAN, controle de lotes',
+    eyebrow: 'FERRAMENTA PARA O VAREJO',
+    heading: 'Validade Zero: controle de vencimentos mais prático',
+    lead: 'Identifique produtos por código de barras, registre lotes e confira o que está próximo de vencer. Experimente a ferramenta no navegador, mesmo sem criar uma conta.',
+    benefits: ['Teste local sem cadastro', 'Leitura de EAN e validade por câmera', 'Avisos de vencimento com conta e permissão'],
+    trust: true,
+    sections: [
+      { title: 'Como funciona o Validade Zero', text: 'Escaneie o código EAN ou informe o código manualmente. Quando o catálogo reconhecer o produto, confira o nome e o setor, registre o lote, a quantidade e a data de validade. A câmera também pode sugerir datas por OCR, sempre com confirmação manual.' },
+      { title: 'Experimente sem login', text: 'No modo local, seus registros ficam apenas no navegador utilizado e não são sincronizados com outros dispositivos. Exporte backups periodicamente: limpar os dados do navegador pode apagar os lotes locais.' },
+      { title: 'Salvamento na nuvem e notificações', text: 'Com uma conta, o Validade Zero pode salvar lotes no Supabase e oferecer notificações Push após autorização. A integração com equipes e o uso em produção ainda exigem testes e validação operacional.' },
+      { title: 'Aplicativos independentes', text: 'O acesso é oferecido pelo Ofertamática, mas o Validade Zero abre em endereço próprio e possui login, armazenamento e política operacional separados. Os produtos e os dados cadastrados não são transferidos automaticamente entre as duas ferramentas.' },
+    ],
+    links: [
+      { label: 'Abrir Validade Zero — versão web', href: 'https://helioconde.github.io/validade_zero/', note: 'Acesse o aplicativo em uma nova aba. Você pode começar sem login.' },
+      { label: 'Criar cartazes com Ofertamática', href: '/', note: 'Continue criando e imprimindo placas promocionais.' },
+    ],
+  },
+  {
+    kind: 'public',
     slug: 'sobre',
     title: 'Sobre o Ofertamática | Ferramenta para Cartazes de Oferta',
     description: 'Conheça o propósito do Ofertamática, como a ferramenta foi pensada para o varejo e os princípios usados no desenvolvimento do produto.',

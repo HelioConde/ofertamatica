@@ -17,6 +17,7 @@ import {
   SITE_URL,
 } from '../seo/seoPages'
 import { searchTopicsFor } from '../seo/searchIntent'
+import '../styles/validade-zero.css'
 // Estilos editoriais só são necessários nas páginas públicas.
 // O gerador de SEO adiciona a mesma folha ao HTML destas rotas para evitar FOUC.
 import '../styles/marketing.css'
@@ -230,6 +231,7 @@ function MarketingFooter() {
         <a href="/">Criar placas</a>
         <a href="/como-funciona/">Como funciona</a>
         <a href="/guias-para-varejo/">Guias</a>
+        <a href="/validade-zero/">Validade Zero</a>
         <a href="/qual-papel-usar-para-cartaz/">Papel para cartazes</a>
         <a href="/sobre/">Sobre</a>
         <a href="/fale-conosco/">Fale conosco</a>
@@ -457,6 +459,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const isPaperGuide = page.slug === 'qual-papel-usar-para-cartaz'
   const isHow = page.slug === 'como-funciona'
   const isGuides = page.slug === 'guias-para-varejo'
+  const isValidadeZero = page.slug === 'validade-zero'
   const isLegal = Boolean(page.legal)
   const isTrust = Boolean(page.trust)
   const isInstitutional = isLegal || isTrust
@@ -499,6 +502,14 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
             <span className="marketing-kicker">{page.eyebrow}</span>
             <h1>{page.heading}</h1>
             <p>{page.lead}</p>
+            {isValidadeZero ? (
+              <div className="seo-hero-actions validade-zero-hero-actions">
+                <a className="validade-zero-open" href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer">
+                  Abrir Validade Zero <span aria-hidden="true">↗</span>
+                </a>
+                <span>Teste no navegador · aplicativo independente</span>
+              </div>
+            ) : null}
             {!isInstitutional ? (
               <div className="seo-hero-actions">
                 <button type="button" onClick={onCreate}>Criar meu cartaz grátis</button>

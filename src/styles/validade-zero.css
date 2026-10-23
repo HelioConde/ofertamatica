@@ -1,0 +1,37 @@
+/* Integração leve: esta folha só é carregada nas páginas públicas. */
+.validade-zero-hero-actions {
+  margin-top: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.validade-zero-hero-actions .validade-zero-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #1d63e9;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(29, 99, 233, .16);
+}
+.validade-zero-hero-actions .validade-zero-open:hover {
+  background: #174fbc;
+  color: #fff;
+}
+.validade-zero-hero-actions .validade-zero-open:focus-visible {
+  outline: 3px solid #74a5ff;
+  outline-offset: 3px;
+}
+@media (max-width: 540px) {
+  .validade-zero-hero-actions .validade-zero-open {
+    width: 100%;
+    text-align: center;
+  }
+}
