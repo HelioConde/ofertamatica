@@ -24,7 +24,32 @@ export async function decodeBarcodeFromImageElement(image) {
   try {
     const result = await reader.decodeFromImageElement(image);
     return scannedGtin(typeof result?.getText === 'function' ? result.getText() : result?.text);
-  } catch { return null; }
+  } catch { /* Tentar fotos com código girado. */ }
+
+  // A câmera nativa pode salvar um EAN vertical. ZXing tenta a foto original
+  // e duas rotações; limitar o canvas evita imagens enormes em aparelhos 50MP.
+  const w = image.naturalWidth || image.width;
+  const h = image.naturalHeight || image.height;
+  if (!w || !h) return null;
+  const factor = Math.min(1, 2800 / Math.max(w, h));
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext?.('2d');
+  if (!ctx) return null;
+  for (const angle of [90, 270]) {
+    canvas.width = Math.round(h * factor);
+    canvas.height = Math.round(w * factor);
+    ctx.save();
+    ctx.translate(angle === 90 ? canvas.width : 0, angle === 270 ? canvas.height : 0);
+    ctx.rotate(angle * Math.PI / 180);
+    ctx.drawImage(image, 0, 0, Math.round(w * factor), Math.round(h * factor));
+    ctx.restore();
+    try {
+      const result = reader.decodeFromCanvas(canvas);
+      const value = scannedGtin(typeof result?.getText === 'function' ? result.getText() : result?.text);
+      if (value) return value;
+    } catch { /* Outra orientação pode reconhecer o mesmo EAN. */ }
+  }
+  return null;
 }
 
 export async function readBarcodeFromPhoto(file) {
