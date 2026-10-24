@@ -17,11 +17,14 @@ const appDir = path.join(root, 'dist', 'validade-zero')
 assert.match(home, /Escolha o formato da sua placa de oferta/)
 assert.match(home, /class="format-grid"/)
 for (const src of [indexSrc, editorSrc]) {
-  assert.doesNotMatch(src, /\['\/validade-zero',\s*'Validade Zero'/)
+  assert.match(src, /\['\/validade-zero',\s*'Validade Zero'/)
+  assert.match(src, /target=\{href === '\/validade-zero' \? '_blank' : undefined\}/)
+  assert.match(src, /rel=\{href === '\/validade-zero' \? 'noopener noreferrer' : undefined\}/)
   assert.match(src, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
   assert.match(src, /href="\/conheca-validade-zero\/"/)
 }
 assert.match(home, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
+assert.match(home, /class="main-nav"[\s\S]*?href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
 assert.doesNotMatch(home, /helioconde\.github\.io\/validade_zero/)
 
 // Esta rota é uma aplicação CRA real com arquivos internos, não uma landing/redirect.
@@ -43,7 +46,7 @@ const navbarSource = read('apps/validade-zero/src/components/OfertamaticaHeader.
 const navbarCss = read('apps/validade-zero/src/components/OfertamaticaHeader.css')
 const appSource = read('apps/validade-zero/src/App.js')
 assert.match(appSource, /<OfertamaticaHeader \/>/)
-for (const href of ['/', '/modelos/', '/editor-livre/', '/formatos/', '/como-funciona/', '/guias-para-varejo/']) {
+for (const href of ['/', '/modelos/', '/editor-livre/', '/formatos/', '/como-funciona/', '/guias-para-varejo/', '/validade-zero/']) {
   assert.ok(navbarSource.includes("'"+href+"'"), 'Menu principal ausente no Validade Zero: '+href)
 }
 assert.match(navbarSource, /src="\/icons\/icon-192\.png\?v=20261008b"/)
@@ -51,6 +54,9 @@ assert.match(navbarCss, /max-width: 820px/)
 assert.match(navbarSource, /className="vz-site-brand-copy"/)
 assert.match(navbarSource, /className="vz-site-product">Validade Zero<\/span>/)
 assert.doesNotMatch(navbarSource, /className="vz-site-tool"/)
+assert.match(navbarSource, /aria-current=\{active \? 'page' : undefined\}/)
+assert.match(navbarSource, /href === '\/validade-zero\/'/)
+assert.match(navbarCss, /\.vz-site-nav-link\.is-current::after/)
 assert.doesNotMatch(appSource, /className="brand"/)
 assert.doesNotMatch(appSource, /className="ecosystem-link"/)
 
