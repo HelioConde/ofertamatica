@@ -274,40 +274,36 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
     await eanInput.fill('')
     await check(page,'.vz-site-header .vz-site-brand','Navbar institucional do Ofertamática ausente')
     await check(page,'.vz-site-header .vz-site-brand-icon','Logo do Ofertamática ausente')
-    await check(page,'.vz-site-main-nav','Links do Ofertamática ausentes na rota do Validade Zero')
-    const activeTool = page.locator('.vz-site-main-nav a[href="/validade-zero/"]')
+    const siteNav = page.locator('#vz-site-menu-links')
+    const mobileToggle = page.getByRole('button',{name:'Abrir menu'})
+    if (viewport.width < 821) {
+      await mobileToggle.waitFor({state:'visible'})
+      if (await siteNav.isVisible()) throw new Error('Menu mobile deveria iniciar recolhido')
+      if (await mobileToggle.getAttribute('aria-expanded') !== 'false')
+        throw new Error('Menu mobile não informou estado inicial fechado')
+      await mobileToggle.click()
+      await siteNav.waitFor({state:'visible'})
+      const expanded = page.getByRole('button',{name:'Fechar menu'})
+      if (await expanded.getAttribute('aria-expanded') !== 'true')
+        throw new Error('Menu mobile não informou que foi expandido')
+    } else {
+      await siteNav.waitFor({state:'visible'})
+      if (await page.locator('.vz-site-menu-toggle').isVisible())
+        throw new Error('Botão do menu mobile apareceu no desktop')
+    }
+    const activeTool = siteNav.locator('a[href="/validade-zero/"]')
     if (await activeTool.getAttribute('aria-current') !== 'page')
       throw new Error('Validade Zero não está ativo na navbar')
     if (!(await activeTool.getAttribute('class')).includes('is-current'))
       throw new Error('Validade Zero sem destaque visual na navbar')
     const activeVisible = await page.evaluate(() => {
-      const item = document.querySelector('.vz-site-nav-current')
-      const bounds = item?.getBoundingClientRect()
-      return Boolean(bounds && bounds.left >= -1 && bounds.right <= innerWidth + 1)
+      const menu = document.querySelector('#vz-site-menu-links')?.getBoundingClientRect()
+      const item = document.querySelector('.vz-site-nav-current')?.getBoundingClientRect()
+      return Boolean(menu && item && item.left >= -1 &&
+        item.right <= innerWidth + 1 && item.top >= menu.top - 1 &&
+        item.bottom <= menu.bottom + 1)
     })
-    if (!activeVisible) throw new Error('A aba Validade Zero ficou cortada no celular')
-    if (viewport.width < 821) {
-      const order = await page.evaluate(() => {
-        const current = document.querySelector('.vz-site-nav-current')
-        const scroll = document.querySelector('.vz-site-nav-scroll')
-        const a = current?.getBoundingClientRect()
-        const b = scroll?.getBoundingClientRect()
-        return Boolean(a && b && a.right <= b.left + 2)
-      })
-      if (!order) throw new Error('A aba atual deve aparecer antes dos links roláveis no celular')
-    }
-    if (viewport.width < 821) {
-      const sticky = await page.evaluate(() => {
-        const track = document.querySelector('.vz-site-nav-scroll')
-        const item = document.querySelector('.vz-site-nav-current')
-        if (!track || !item) return false
-        track.scrollLeft = track.scrollWidth
-        const r = item.getBoundingClientRect()
-        track.scrollLeft = 0
-        return r.left >= -1 && r.right <= innerWidth + 1
-      })
-      if (!sticky) throw new Error('A aba Validade Zero some ao deslizar links no mobile')
-    }
+    if (!activeVisible) throw new Error('A opção Validade Zero ficou cortada no menu')
     await check(page,'.vz-site-brand-copy .vz-site-product','Subtítulo Validade Zero não está sob Ofertamática')
     if((await page.locator('.vz-site-brand-copy .vz-site-product').innerText()).trim() !== 'Validade Zero')
       throw new Error('O nome da ferramenta deve ficar diretamente sob Ofertamática')
@@ -320,6 +316,17 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
     const nav = page.getByRole('navigation',{name:'Navegação principal do Ofertamática'})
     for (const label of ['Criar placas','Modelos','Editor livre','Formatos','Como funciona','Guias para varejo']) {
       if (!(await nav.textContent()).includes(label)) throw new Error('Link institucional ausente: '+label)
+    }
+    if (viewport.width < 821) {
+      await page.keyboard.press('Escape')
+      await siteNav.waitFor({state:'hidden'})
+      const toggle = page.getByRole('button',{name:'Abrir menu'})
+      if (await toggle.getAttribute('aria-expanded') !== 'false')
+        throw new Error('Menu mobile não fechou com Escape')
+      await toggle.click()
+      await siteNav.waitFor({state:'visible'})
+      await page.getByRole('button',{name:'Fechar menu'}).click()
+      await siteNav.waitFor({state:'hidden'})
     }
     const headerOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
     if (headerOverflow > 2) throw new Error('Barra superior causou overflow horizontal: '+headerOverflow)
