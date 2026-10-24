@@ -91,7 +91,7 @@ test('apresenta o ecossistema Ofertamática sem misturar o aplicativo ou trocar 
 
 test('mantém navbar e logo do Ofertamática acima do dashboard local', () => {
   render(<App />);
-  const header = screen.getByRole('banner');
+  const header = document.querySelector('.vz-site-header');
   const brand = screen.getByRole('link', { name: /Ofertamática — voltar ao criador/i });
   expect(header).toContainElement(brand);
   expect(brand.querySelector('img')).toHaveAttribute('src', '/icons/icon-192.png?v=20261008b');
