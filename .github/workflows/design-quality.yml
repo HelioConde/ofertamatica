@@ -52,6 +52,11 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build and validate
         run: npm run verify
+      - name: Validade Zero unit tests (local, scanner and login)
+        working-directory: apps/validade-zero
+        env:
+          CI: 'true'
+        run: npm test -- --watchAll=false
       - name: Review indexable content quality
         run: npm run audit:content
       - name: Install browser testing dependency
