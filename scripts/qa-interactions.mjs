@@ -207,58 +207,54 @@ await scenario('Cartaz A4: MAÇÃ em Burbank e preço em Futura Price', { width:
   }
 })
 
-// A ferramenta complementar deve abrir fora do fluxo principal, em outra aba.
-// Interceptamos o destino externo para não depender de rede durante a auditoria.
+// Validade Zero: app completo hospedado no mesmo domínio e nova aba por opção de navegação.
 for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
   const mode = viewport.width === 390 ? 'mobile' : 'desktop'
-  await scenario('Validade Zero: nova aba via Mais informações (' + mode + ')', viewport, async (page) => {
-    await page.context().route('https://helioconde.github.io/validade_zero/**', (route) =>
-      route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Validade Zero</title><h1>App independente</h1>' }))
+  await scenario('Validade Zero integrado: nova aba via Mais informações (' + mode + ')', viewport, async (page) => {
     await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
     await check(page, '.format-home-chooser .format-choice', 'O criador deixou de abrir na Home')
     const navText = await page.locator('.main-nav').innerText()
     if (navText.includes('Validade Zero')) throw new Error('Ferramenta secundária voltou ao menu principal')
     await page.locator('.format-more-links summary').click()
-    const link = page.locator('.format-more-links a[href="https://helioconde.github.io/validade_zero/"]')
+    const link = page.locator('.format-more-links a[href="/validade-zero/"]')
     await link.waitFor({ state: 'visible' })
-    const attrs = await link.evaluate((a) => ({ target: a.target, rel: a.rel, label: a.getAttribute('aria-label') }))
-    if (attrs.target !== '_blank' || !attrs.rel.includes('noopener') || !attrs.rel.includes('noreferrer')
-      || !attrs.label?.includes('nova aba')) {
-      throw new Error('Link externo não está protegido: ' + JSON.stringify(attrs))
-    }
-    const [popup] = await Promise.all([page.waitForEvent('popup'), link.click()])
+    const attrs = await link.evaluate(a => ({ target:a.target,rel:a.rel }))
+    if(attrs.target !== '_blank' || !attrs.rel.includes('noopener') || !attrs.rel.includes('noreferrer'))
+      throw new Error('Link sem segurança para a nova aba: '+JSON.stringify(attrs))
+    const [popup]=await Promise.all([page.waitForEvent('popup'),link.click()])
     try {
-      await popup.waitForLoadState('domcontentloaded')
-      if (popup.url() !== 'https://helioconde.github.io/validade_zero/') {
-        throw new Error('Destino incorreto ao abrir Validade Zero: ' + popup.url())
-      }
-      if (!page.url().endsWith('/')) throw new Error('O criador foi substituído na aba original')
-    } finally {
-      await popup.close()
-    }
+      await popup.locator('.heading h1').waitFor({ state: 'visible', timeout: 20000 })
+      if(new URL(popup.url()).pathname !== '/validade-zero/')
+        throw new Error('Destino incorreto: '+popup.url())
+      await check(popup, '.metrics', 'Aplicação de validade não carregou')
+      if(!page.url().endsWith('/'))throw new Error('A aba do criador foi substituída')
+    } finally { await popup.close() }
   })
 
-  await scenario('Validade Zero: página explicativa e acesso externo (' + mode + ')', viewport, async (page) => {
-    await page.context().route('https://helioconde.github.io/validade_zero/**', (route) =>
-      route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Validade Zero</title><h1>App independente</h1>' }))
-    await page.goto(origin + '/validade-zero/', { waitUntil: 'domcontentloaded' })
-    await check(page, '.validade-zero-hero-actions .validade-zero-open', 'Botão de acesso ao aplicativo ausente')
-    await check(page, '.validade-zero-product-note', 'Explicação sobre aplicativos independentes ausente')
-    const link = page.locator('.validade-zero-hero-actions .validade-zero-open')
-    const attrs = await link.evaluate((a) => ({ target: a.target, rel: a.rel }))
-    if (attrs.target !== '_blank' || !attrs.rel.includes('noopener') || !attrs.rel.includes('noreferrer')) {
-      throw new Error('CTA externo inseguro: ' + JSON.stringify(attrs))
-    }
-    const [popup] = await Promise.all([page.waitForEvent('popup'), link.click()])
+  await scenario('Validade Zero integrado: entrada direta e OCR (' + mode + ')', viewport, async(page)=>{
+    await page.goto(origin+'/validade-zero/',{waitUntil:'domcontentloaded'})
+    await check(page,'.heading h1','Dashboard Validade Zero não carregou')
+    await check(page,'.metrics','Indicadores de vencimento ausentes')
+    await check(page,'.ean-input-camera','Leitor EAN não está disponível')
+    if(new URL(page.url()).pathname !== '/validade-zero/')
+      throw new Error('Aplicativo foi redirecionado para outro endereço')
+    await page.getByRole('button',{name:/Nova entrada/}).click()
+    await check(page,'.entry-form','Formulário de lotes não abriu')
+    await check(page,'.expiry-input-wrap','Leitor de validade OCR ausente')
+  })
+
+  await scenario('Validade Zero: conhecer e abrir em nova aba ('+mode+')',viewport,async(page)=>{
+    await page.goto(origin+'/conheca-validade-zero/',{waitUntil:'domcontentloaded'})
+    await check(page,'.validade-zero-hero-actions .validade-zero-open','CTA informativo ausente')
+    const link=page.locator('.validade-zero-hero-actions .validade-zero-open')
+    const attrs=await link.evaluate(a=>({target:a.target,href:a.getAttribute('href'),rel:a.rel}))
+    if(attrs.href !== '/validade-zero/' || attrs.target !== '_blank' || !attrs.rel.includes('noopener'))
+      throw new Error('CTA do aplicativo não abre em nova aba local')
+    const [popup]=await Promise.all([page.waitForEvent('popup'),link.click()])
     try {
-      await popup.waitForLoadState('domcontentloaded')
-      if (popup.url() !== 'https://helioconde.github.io/validade_zero/') {
-        throw new Error('O CTA abriu o destino errado: ' + popup.url())
-      }
-      if (!page.url().includes('/validade-zero/')) throw new Error('A página explicativa foi substituída')
-    } finally {
-      await popup.close()
-    }
+      await popup.locator('.heading h1').waitFor({state:'visible',timeout:20000})
+      if(new URL(popup.url()).pathname !== '/validade-zero/')throw new Error('CTA não abriu o app')
+    } finally { await popup.close() }
   })
 }
 
