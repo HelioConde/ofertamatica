@@ -385,6 +385,7 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
 
   function searchCatalog(event) {
     event.preventDefault();
+    setScannerOpen(false);
     lookupCatalogCode(catalogCode);
   }
 
@@ -632,7 +633,7 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
                 <div className="ean-input-wrap ean-input-wrap--search">
                   <input id="catalog-code" type="text" inputMode="numeric" autoComplete="off"
                     placeholder="Ex.: 7898276970072" value={catalogCode} maxLength={14}
-                    onChange={event => { setCatalogCode(event.target.value); setCatalogFound(null); setCatalogNotice(''); }}/>
+                    onChange={event => { setScannerOpen(false); setCatalogCode(event.target.value); setCatalogFound(null); setCatalogNotice(''); }}/>
                   <button type="button" className="ean-input-camera"
                     onClick={() => setScannerOpen(true)} title="Escanear EAN com a câmera"
                     aria-label="Escanear EAN com a câmera" aria-expanded={scannerOpen}>
