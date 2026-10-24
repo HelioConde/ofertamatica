@@ -19,7 +19,10 @@ export default function OfertamaticaHeader() {
         <a className="vz-site-brand" href="/" aria-label="Ofertamática — voltar ao criador de cartazes">
           <img className="vz-site-brand-icon"
             src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async"/>
-          <span>Ofertamática</span>
+          <span className="vz-site-brand-copy">
+            <span className="vz-site-brand-name">Ofertamática</span>
+            <span className="vz-site-product">Validade Zero</span>
+          </span>
         </a>
         <nav className="vz-site-main-nav" aria-label="Navegação principal do Ofertamática">
           {LINKS.map(([href, desktop, mobile]) => (
@@ -29,9 +32,6 @@ export default function OfertamaticaHeader() {
             </a>
           ))}
         </nav>
-        <a className="vz-site-tool" href="/validade-zero/" aria-current="page">
-          Validade Zero
-        </a>
       </div>
     </header>
   );
