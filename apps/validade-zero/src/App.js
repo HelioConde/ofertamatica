@@ -523,10 +523,6 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
     <div className="app">
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <aside className="sidebar no-print" aria-label="Menu principal">
-        <div className="brand" translate="no">
-          <span className="brand__mark"><Icon name="leaf" size={23}/></span>
-          <span className="brand__text">Validade<span>Zero</span><small>GESTÃO DE VENCIMENTOS</small></span>
-        </div>
         <div className="sidebar__caption">MENU PRINCIPAL</div>
         <nav className="nav" aria-label="Navegação do sistema">
           <button type="button" onClick={() => chooseFilter('all')} className={'nav__item' + (filter === 'all' && !showForm ? ' is-current' : '')} aria-current={filter === 'all' && !showForm ? 'page' : undefined}>
@@ -546,9 +542,6 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
           <span className="sidebar__footer-icon"><Icon name="shield" size={20}/></span>
           <div><strong>{cloud ? 'Nuvem protegida' : 'Modo local'}</strong><p>{cloud ? 'Dados vinculados à sua conta.' : 'Dados salvos somente neste navegador.'}</p></div>
         </div>
-        <a className="ecosystem-link" href="https://ofertamatica.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Conheça o Ofertamática (abre em nova aba)">
-          Uma ferramenta do ecossistema <strong>Ofertamática ↗</strong>
-        </a>
       </aside>
 
       <div className="workspace">

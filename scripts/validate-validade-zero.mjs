@@ -48,7 +48,11 @@ for (const href of ['/', '/modelos/', '/editor-livre/', '/formatos/', '/como-fun
 }
 assert.match(navbarSource, /src="\/icons\/icon-192\.png\?v=20261008b"/)
 assert.match(navbarCss, /max-width: 820px/)
-assert.match(navbarSource, /aria-current="page"/)
+assert.match(navbarSource, /className="vz-site-brand-copy"/)
+assert.match(navbarSource, /className="vz-site-product">Validade Zero<\/span>/)
+assert.doesNotMatch(navbarSource, /className="vz-site-tool"/)
+assert.doesNotMatch(appSource, /className="brand"/)
+assert.doesNotMatch(appSource, /className="ecosystem-link"/)
 
 assert.match(app, /\/validade-zero\/static\/js\//)
 assert.match(app, /\/validade-zero\/manifest\.json/)

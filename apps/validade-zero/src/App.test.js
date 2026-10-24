@@ -80,12 +80,15 @@ test('a câmera OCR fica dentro do input de validade e pode ser fechada', () => 
   expect(button).toHaveAttribute('aria-expanded', 'false');
 });
 
-test('apresenta o ecossistema Ofertamática sem misturar o aplicativo ou trocar de aba', () => {
+test('usa uma única marca do Ofertamática no painel, sem logo repetida na sidebar', () => {
   render(<App />);
-  const link = screen.getByRole('link', { name: /Conheça o Ofertamática/i });
-  expect(link).toHaveAttribute('href', 'https://ofertamatica.com.br/');
-  expect(link).toHaveAttribute('target', '_blank');
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  const brand = screen.getByRole('link', { name: /Ofertamática — voltar ao criador/i });
+  expect(brand).toHaveAttribute('href', '/');
+  expect(brand.querySelector('.vz-site-product')).toHaveTextContent('Validade Zero');
+  expect(document.querySelectorAll('.vz-site-header .vz-site-brand-icon')).toHaveLength(1);
+  expect(document.querySelector('.sidebar .brand')).toBeNull();
+  expect(document.querySelector('.sidebar .ecosystem-link')).toBeNull();
+  expect(document.querySelector('.vz-site-tool')).toBeNull();
   expect(screen.getByRole('button', { name: /Cadastrar primeiro lote/i })).toBeInTheDocument();
 });
 
@@ -99,6 +102,6 @@ test('mantém navbar e logo do Ofertamática acima do dashboard local', () => {
   for (const label of ['Criar placas', 'Modelos', 'Editor livre', 'Formatos', 'Como funciona', 'Guias para varejo']) {
     expect(nav).toHaveTextContent(label);
   }
-  expect(screen.getByRole('link', { name: 'Validade Zero' })).toHaveAttribute('aria-current', 'page');
+  expect(brand.querySelector('.vz-site-product')).toHaveTextContent('Validade Zero');
   expect(screen.getByText('Seu controle começa aqui')).toBeInTheDocument();
 });
