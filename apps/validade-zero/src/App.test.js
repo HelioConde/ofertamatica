@@ -121,3 +121,24 @@ test('atalho de EAN abre leitor e o fecha ao iniciar cadastro', () => {
   expect(screen.queryByRole('region', { name: 'Leitor de EAN' })).not.toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /Cadastrar novo lote/i })).toBeInTheDocument();
 });
+
+test('digitar EAN manualmente fecha a câmera sem perder o código', () => {
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: 'Escanear EAN' }));
+  expect(screen.getByRole('region', { name: 'Leitor de EAN' })).toBeInTheDocument();
+  const input = screen.getByLabelText('Código EAN / código interno');
+  fireEvent.change(input, { target: { value: '7891991000826' } });
+  expect(input).toHaveValue('7891991000826');
+  expect(screen.queryByRole('region', { name: 'Leitor de EAN' })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Escanear EAN' })).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('orientações do leitor ficam disponíveis sem ocupar a tela toda', () => {
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: 'Escanear EAN' }));
+  const details = screen.getByText('Dicas para melhorar a leitura do EAN').closest('details');
+  expect(details).not.toHaveAttribute('open');
+  fireEvent.click(screen.getByText('Dicas para melhorar a leitura do EAN'));
+  expect(details).toHaveAttribute('open');
+  expect(details).toHaveTextContent('evite reflexos');
+});
