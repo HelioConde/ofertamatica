@@ -66,6 +66,35 @@ Contas Supabase continuam com os mesmos dados protegidos por RLS, desde que o
 usuário entre com a mesma conta. O novo domínio não recebe a sessão do domínio
 anterior: é necessário entrar novamente.
 
+
+## Barra de navegação e identidade oficial
+
+O Validade Zero usa `apps/validade-zero/src/components/OfertamaticaHeader.js`
+e `OfertamaticaHeader.css` para replicar os seis links principais da navbar
+do Ofertamática na mesma ordem, incluindo a logo original em
+`/icons/icon-192.png?v=20261008b`. A navbar fica acima do dashboard e
+continua presente no login Supabase, no modo local e durante a restauração da
+sessão. O menu lateral permanece exclusivo para filtros, lotes e scanner.
+
+O manifesto PWA e as notificações usam a logo oficial do site, sem alterar
+os ícones de categoria/estado dos lotes. CSS com prefixo `vz-site-` evita
+colisões entre o menu institucional e a navegação do sistema.
+
+## Base de SEO compartilhada
+
+A página executável `/validade-zero/` tem título e descrição exclusivos,
+canonical absoluto, tags Open Graph, Twitter Card, robots e idioma pt-BR;
+inclui `Organization`, `WebSite`, `WebApplication` e `BreadcrumbList`
+em JSON-LD. O HTML inicial renderiza um título, explicação da ferramenta e
+links internos úteis antes de carregar o JavaScript; o React substitui esse
+conteúdo pelo dashboard quando inicializa.
+
+O gerador `scripts/generate-seo-pages.mjs` inclui a rota do aplicativo no
+sitemap do Ofertamática, mantendo `/conheca-validade-zero/` como conteúdo
+editorial separado. Os testes do grafo SEO, build, site ao vivo, Jest e
+Playwright protegem canonical, ícones, navbar, indexação e acessibilidade
+responsiva. Isso não altera o banco de dados.
+
 ## Testes
 
 - `npm run verify`: arquivos locais e rotas do build.
