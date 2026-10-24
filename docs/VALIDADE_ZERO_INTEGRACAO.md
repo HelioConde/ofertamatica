@@ -1,17 +1,26 @@
 # Validade Zero no portal Ofertamática
 
-## Integração inicial
+## Integração do ecossistema
 
 Rota pública: `https://ofertamatica.com.br/validade-zero/`.
 
 A página apresenta a ferramenta e liga ao aplicativo já existente em
-`https://helioconde.github.io/validade_zero/`. O usuário pode começar
+`https://helioconde.github.io/validade_zero/`. A nova interface do Validade Zero usa
+o padrão azul, superfícies claras e cartões do Ofertamática. O usuário pode começar
 sem login no modo local e usar uma conta Supabase para salvar na nuvem.
 
 Não duplicamos o código React do Validade Zero nem usamos iframe: a
 aplicação precisa de suas próprias rotas, Service Worker, permissões
 de câmera/notificações e armazenamento do navegador. Abrir em outra
 origem também impede alegações falsas de sessão ou dados compartilhados.
+
+## Regras permanentes
+
+- O Ofertamática continua sendo o produto principal; a Home abre diretamente o criador de cartazes.
+- Validade Zero é ferramenta secundária: não ocupa o menu principal e fica em **Mais informações** e na página institucional.
+- Os links que **abrem o aplicativo** usam outra aba (`target="_blank"`, `rel="noopener noreferrer"`).
+- `/validade-zero/` permanece como página explicativa indexável, sem incorporar o aplicativo.
+- Não copiar ou fazer proxy do código React, Supabase, autenticação ou Service Worker no Ofertamática.
 
 ## Limites
 
@@ -39,10 +48,8 @@ origem também impede alegações falsas de sessão ou dados compartilhados.
 6. Testar Push em aparelho real após permissão explícita; o sucesso do
    Cron sozinho não prova entrega de notificações.
 
-## Futuro
+## Decisão de arquitetura
 
-Se o objetivo for publicar o aplicativo **dentro do mesmo domínio**
-(`ofertamatica.com.br/validade-zero/` com a interface completa),
-é necessária migração controlada de base path, redirect URLs de Auth,
-Service Worker, publicação independente e preservação de dados locais.
-Não fazer apenas um iframe ou cópia do `dist` sem essas verificações.
+O Validade Zero permanece em sua hospedagem própria e abre em aba separada. Mudanças
+futuras de visual/marketing podem ser coordenadas entre os repositórios, mas o
+fluxo de operação, implantação, banco de dados e evolução dos produtos é independente.

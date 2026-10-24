@@ -47,7 +47,6 @@ function Navigation({ routePath, screen, onInstall }) {
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
-    ['/validade-zero', 'Validade Zero', 'Validades'],
   ]
 
   return (
@@ -148,13 +147,14 @@ function FormatChooser({ onSelect, draft, onResume }) {
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Modelos de cartazes</a>
           <a href="/editor-livre/">Editor livre: monte sua própria placa</a>
-          <a href="/validade-zero/">Controle de validades</a>
           <a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a>
           <a href="/como-funciona/">Como funciona</a>
           <details className="format-more-links">
             <summary>Mais informações</summary>
             <div>
               <a href="/guias-para-varejo/">Guias para varejo</a>
+              <a href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a>
+              <a href="/validade-zero/">Conhecer a ferramenta</a>
               <a href="/fale-conosco/">Ajuda e contato</a>
               <a href="/privacidade/">Privacidade</a>
               <a href="/termos/">Termos de uso</a>

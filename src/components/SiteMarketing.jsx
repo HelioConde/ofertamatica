@@ -504,10 +504,21 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
             <p>{page.lead}</p>
             {isValidadeZero ? (
               <div className="seo-hero-actions validade-zero-hero-actions">
-                <a className="validade-zero-open" href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer">
+                <a className="validade-zero-open" href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">
                   Abrir Validade Zero <span aria-hidden="true">↗</span>
                 </a>
-                <span>Teste no navegador · aplicativo independente</span>
+                <span>Teste sem login · abre em uma nova aba</span>
+              </div>
+            ) : null}
+            {isValidadeZero ? (
+              <div className="validade-zero-product-note" role="note">
+                <strong>O mesmo padrão visual do Ofertamática</strong>
+                <p>Interface azul e clara, com foco em leitura rápida no estoque. O Validade Zero funciona separadamente e mantém seus dados e sua conta próprios.</p>
+                <ul aria-label="Recursos do Validade Zero">
+                  <li>EAN por câmera</li>
+                  <li>Leitura de validade</li>
+                  <li>Gestão de lotes</li>
+                </ul>
               </div>
             ) : null}
             {!isInstitutional ? (

@@ -35,3 +35,45 @@
     text-align: center;
   }
 }
+
+/* Apresentação discreta da ferramenta: sem inserir cards na home principal. */
+.validade-zero-product-note {
+  margin-top: 18px;
+  padding: 17px 19px;
+  border: 1px solid #d9e2ee;
+  border-radius: 12px;
+  background: #fff;
+  max-width: 720px;
+}
+.validade-zero-product-note > strong {
+  color: #26344f;
+  font-size: 13px;
+  font-weight: 850;
+}
+.validade-zero-product-note > p {
+  color: #60728e;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 7px 0 10px;
+}
+.validade-zero-product-note ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.validade-zero-product-note li {
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: #edf4ff;
+  color: #174fbc;
+  font-size: 11px;
+  font-weight: 750;
+}
+@media (max-width: 540px) {
+  .validade-zero-product-note { padding: 13px 14px; }
+  .validade-zero-product-note li { font-size: 10px; }
+}
