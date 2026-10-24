@@ -253,3 +253,17 @@ tbody tr:hover { background: #f7faff; }
   .scanner-window .scanner-controls { gap: 7px; }
   .scanner-zoom { min-width: 0; }
 }
+
+/* Captura pela câmera nativa: alternativa confiável ao preview sem controle de foco. */
+.scanner-photo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 14px; }
+.scanner-photo-actions .btn { min-height: 44px; }
+.scanner-photo-input { position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; }
+.scanner-photo-mode { border: 1px solid #cbdcf9; border-radius: 12px;
+  background: #eef4ff; padding: 12px 14px; margin-bottom: 12px; }
+.scanner-photo-mode p { color: #334b72; line-height: 1.5; margin: 0 0 10px; font-size: 12px; }
+.scanner-photo-mode .btn { min-height: 42px; }
+@media (max-width: 620px) {
+  .scanner-photo-actions .btn { width: 100%; justify-content: center; }
+  .scanner-photo-mode .btn { width: 100%; }
+}
