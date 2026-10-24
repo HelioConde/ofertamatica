@@ -10,6 +10,7 @@ const LINKS = [
   ['/formatos/', 'Formatos', 'Formatos'],
   ['/como-funciona/', 'Como funciona', 'Como'],
   ['/guias-para-varejo/', 'Guias para varejo', 'Guias'],
+  ['/validade-zero/', 'Validade Zero', 'Validade Zero'],
 ];
 
 export default function OfertamaticaHeader() {
@@ -25,12 +26,20 @@ export default function OfertamaticaHeader() {
           </span>
         </a>
         <nav className="vz-site-main-nav" aria-label="Navegação principal do Ofertamática">
-          {LINKS.map(([href, desktop, mobile]) => (
-            <a className="vz-site-nav-link" href={href} key={href}>
-              <span className="vz-site-label-full">{desktop}</span>
-              <span className="vz-site-label-mobile">{mobile}</span>
-            </a>
-          ))}
+          {LINKS.map(([href, desktop, mobile]) => {
+            const active = href === '/validade-zero/';
+            return (
+              <a
+                className={'vz-site-nav-link' + (active ? ' is-current' : '')}
+                href={href}
+                key={href}
+                aria-current={active ? 'page' : undefined}
+              >
+                <span className="vz-site-label-full">{desktop}</span>
+                <span className="vz-site-label-mobile">{mobile}</span>
+              </a>
+            );
+          })}
         </nav>
       </div>
     </header>
