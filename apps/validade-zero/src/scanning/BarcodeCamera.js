@@ -131,7 +131,7 @@ export default function BarcodeCamera({ onDetected, onClose }) {
           onChange={event => changeZoom(event.target.value)}/><strong>{zoom.value.toFixed(1)}×</strong></label>}
         {torchSupported && <button type="button" className="btn btn--outline" aria-pressed={torchOn}
           onClick={toggleTorch}>{torchOn ? 'Desligar luz' : 'Ligar luz'}</button>}
-      </div>
+      </div>}
     </>}
     {photoMode && <div className="scanner-photo-mode">
       <p>Use o foco da câmera nativa do celular. A foto é lida aqui no aparelho, sem envio ao servidor.</p>
