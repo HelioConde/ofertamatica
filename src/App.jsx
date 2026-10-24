@@ -47,6 +47,7 @@ function Navigation({ routePath, screen, onInstall }) {
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
+    ['/validade-zero', 'Validade Zero', 'Validade'],
   ]
 
   return (
@@ -62,6 +63,8 @@ function Navigation({ routePath, screen, onInstall }) {
                 className={'nav-link ' + (active ? 'active' : '')}
                 href={target}
                 key={href}
+                target={href === '/validade-zero' ? '_blank' : undefined}
+                rel={href === '/validade-zero' ? 'noopener noreferrer' : undefined}
                 aria-current={active ? 'page' : undefined}
               >
                 <span className="nav-label-full">{label}</span>
