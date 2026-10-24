@@ -1,0 +1,18 @@
+/node_modules
+/coverage
+/build
+/.github/workspace
+/.pnp
+.pnp.js
+.DS_Store
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Playwright local artifacts
+/playwright-report/
+/test-results/
+/node_modules/.cache/
