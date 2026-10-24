@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-24T02:24:02.294Z",
-  "commit": "5fbdc02ca35ad87aade641da3d11c88b75fa8b87",
+  "generatedAt": "2026-10-24T02:48:27.970Z",
+  "commit": "c88a851f0e9b6ff08aced8b93472f2d4f717fcc1",
   "routes": [
     [
       "home",
@@ -31,8 +31,8 @@
       "/guias-para-varejo/"
     ],
     [
-      "validade-zero",
-      "/validade-zero/"
+      "conheca-validade-zero",
+      "/conheca-validade-zero/"
     ],
     [
       "sobre",
@@ -560,8 +560,8 @@
       }
     },
     {
-      "route": "/validade-zero/",
-      "id": "validade-zero",
+      "route": "/conheca-validade-zero/",
+      "id": "conheca-validade-zero",
       "viewport": "desktop",
       "errors": [],
       "ignoredErrors": [],
@@ -2243,8 +2243,8 @@
       }
     },
     {
-      "route": "/validade-zero/",
-      "id": "validade-zero",
+      "route": "/conheca-validade-zero/",
+      "id": "conheca-validade-zero",
       "viewport": "tablet-768",
       "errors": [],
       "ignoredErrors": [],
@@ -2284,7 +2284,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2195,
+      "documentHeight": 2174,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3830,8 +3830,8 @@
       }
     },
     {
-      "route": "/validade-zero/",
-      "id": "validade-zero",
+      "route": "/conheca-validade-zero/",
+      "id": "conheca-validade-zero",
       "viewport": "mobile-360",
       "errors": [],
       "ignoredErrors": [],
@@ -5417,8 +5417,8 @@
       }
     },
     {
-      "route": "/validade-zero/",
-      "id": "validade-zero",
+      "route": "/conheca-validade-zero/",
+      "id": "conheca-validade-zero",
       "viewport": "mobile-412",
       "errors": [],
       "ignoredErrors": [],
@@ -5458,7 +5458,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2489,
+      "documentHeight": 2511,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
