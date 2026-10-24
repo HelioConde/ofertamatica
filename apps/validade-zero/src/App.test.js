@@ -88,3 +88,17 @@ test('apresenta o ecossistema Ofertamática sem misturar o aplicativo ou trocar 
   expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   expect(screen.getByRole('button', { name: /Cadastrar primeiro lote/i })).toBeInTheDocument();
 });
+
+test('mantém navbar e logo do Ofertamática acima do dashboard local', () => {
+  render(<App />);
+  const header = screen.getByRole('banner');
+  const brand = screen.getByRole('link', { name: /Ofertamática — voltar ao criador/i });
+  expect(header).toContainElement(brand);
+  expect(brand.querySelector('img')).toHaveAttribute('src', '/icons/icon-192.png?v=20261008b');
+  const nav = screen.getByRole('navigation', { name: 'Navegação principal do Ofertamática' });
+  for (const label of ['Criar placas', 'Modelos', 'Editor livre', 'Formatos', 'Como funciona', 'Guias para varejo']) {
+    expect(nav).toHaveTextContent(label);
+  }
+  expect(screen.getByRole('link', { name: 'Validade Zero' })).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByText('Seu controle começa aqui')).toBeInTheDocument();
+});
