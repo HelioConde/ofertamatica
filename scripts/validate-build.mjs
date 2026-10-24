@@ -192,7 +192,8 @@ expect(read('cartazes-a-partir-de-excel/index.html').includes('Prepare a planilh
 expect(read('placas-para-padaria/index.html').includes('/icons/icon-192.png'), 'Logo institucional ausente')
 expect(index.includes('/guias-para-varejo/'), 'Home sem links HTML para os guias')
 const sitemapUrls = sitemap.split('<loc>').slice(1).map((chunk) => chunk.split('</loc>')[0])
-expect(sitemapUrls.length === INDEXABLE_PAGES.length + 1, 'Quantidade incorreta de URLs no sitemap')
+expect(sitemapUrls.length === INDEXABLE_PAGES.length + 2, 'Quantidade incorreta de URLs no sitemap (inclui aplicativo Validade Zero)')
+expect(sitemapUrls.includes(SITE_URL + '/validade-zero/'), 'App Validade Zero ausente do sitemap')
 expect(new Set(sitemapUrls).size === sitemapUrls.length, 'O sitemap contém URLs duplicadas')
 const assetDir = path.join(dist, 'assets')
 let cssContents = ''
