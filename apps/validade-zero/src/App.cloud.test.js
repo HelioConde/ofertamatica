@@ -90,3 +90,11 @@ test('migra lote e catálogo sem sobrescrever dados existentes na nuvem', async 
   expect(JSON.parse(window.localStorage.getItem(STORAGE_KEY))).toHaveLength(1);
   expect(JSON.parse(window.localStorage.getItem(CATALOG_STORAGE_KEY)).products).toHaveLength(1);
 });
+
+test('navbar institucional permanece acessível no login do Supabase', () => {
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: /Entrar na nuvem/ }));
+  expect(screen.getByRole('navigation', { name: 'Navegação principal do Ofertamática' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /Ofertamática — voltar ao criador/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /Entrar no Validade Zero/i })).toBeInTheDocument();
+});
