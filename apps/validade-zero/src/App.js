@@ -298,11 +298,13 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
 
   function chooseFilter(value) {
     if (!closeForm()) return;
+    setScannerOpen(false);
     setFilter(value);
   }
 
   function openForm(entry = null, fromProduct = null) {
     if (!closeForm()) return;
+    setScannerOpen(false);
     setEditing(entry);
     setPrefill(fromProduct);
     setFormDirty(false);
