@@ -595,8 +595,8 @@ function FormatChooser({ onSelect, draft, onResume }) {
             <summary>Mais informações</summary>
             <div>
               <a href="/guias-para-varejo/">Guias para varejo</a>
-              <a href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a>
-              <a href="/validade-zero/">Conhecer a ferramenta</a>
+              <a href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a>
+              <a href="/conheca-validade-zero/">Conhecer a ferramenta</a>
               <a href="/fale-conosco/">Ajuda e contato</a>
               <a href="/privacidade/">Privacidade</a>
               <a href="/termos/">Termos de uso</a>
