@@ -236,3 +236,20 @@ tbody tr:hover { background: #f7faff; }
 @media (max-width: 350px) {
   .heading__actions { grid-template-columns: 1fr; }
 }
+
+/* Leitor EAN no celular: a imagem ocupa a área de leitura, sem laterais pretas
+   que afastam a moldura do código mostrado ao usuário. */
+.scanner-tips { margin: 8px 0 12px; }
+.scanner-tips summary { color: var(--brand-hover); font-size: 12px; font-weight: 750;
+  cursor: pointer; width: fit-content; padding: 5px 0; }
+.scanner-tips summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.scanner-tips .scanner-hint { margin-top: 4px; }
+@media (max-width: 620px) {
+  .barcode-viewfinder > .scanner-video { aspect-ratio: 5 / 4; min-height: 0;
+    max-height: 275px; object-fit: cover; object-position: center; }
+  .scanner-window { padding: 14px; }
+  .scanner-window__heading { margin-bottom: 9px; }
+  .scanner-window .scanner-focus-info { margin: 8px 0; line-height: 1.45; }
+  .scanner-window .scanner-controls { gap: 7px; }
+  .scanner-zoom { min-width: 0; }
+}

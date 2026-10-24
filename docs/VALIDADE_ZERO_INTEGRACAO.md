@@ -113,6 +113,24 @@ muito estreitos). O cabeçalho institucional permanece único.
 Não houve alteração no Supabase, nos lotes, no esquema de dados ou no fluxo de
 confirmação de validade por OCR.
 
+
+## Ajustes para celular — navegação e leitura EAN
+
+Em telas estreitas, os links institucionais podem rolar horizontalmente,
+mas a aba atual **Validade Zero** permanece visível na extremidade direita.
+O app continua utilizando apenas a logo oficial do Ofertamática.
+
+Na leitura EAN por câmera, a prévia é preenchida para alinhar o vídeo à moldura
+mostrada ao usuário, as dicas detalhadas ficam expansíveis e o aviso de
+foco indisponível é objetivo. Se o EAN for digitado ou enviado manualmente, o
+leitor fecha e libera a câmera. Uma leitura reconhecida automaticamente também
+fecha a câmera, conforme o comportamento já implementado.
+
+O foco automático ou manual depende de capacidades expostas pelo aparelho e
+navegador; o aplicativo não consegue garantir foco quando o navegador não
+disponibiliza esses controles. É possível usar o zoom, ajustar a distância
+ou digitar o EAN como alternativa.
+
 ## Testes
 
 - `npm run verify`: arquivos locais e rotas do build.

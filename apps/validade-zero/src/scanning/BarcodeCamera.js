@@ -25,12 +25,12 @@ export default function BarcodeCamera({ onDetected, onClose }) {
       setCanRefocus(options.focusSupported);
       setFocusInfo(options.autofocus
         ? 'Foco automático contínuo ativado. Mantenha o EAN no centro.'
-        : 'O navegador não permite ajustar o foco. Afaste ou aproxime a câmera lentamente até a imagem ficar nítida.');
+        : 'Foco manual indisponível neste navegador. Ajuste a distância ou use o zoom, se disponível.');
       setZoom(options.zoom);
       setTorchSupported(options.torch);
     }).then(cleanup => {
       if (disposed) cleanup();
-      else { stop = cleanup; setStatus('Aponte o código de barras para a câmera.'); }
+      else { stop = cleanup; setStatus('Enquadre o EAN no centro. Ao reconhecer, a câmera fecha automaticamente.'); }
     }).catch(cause => {
       if (!disposed) {
         setError(cameraError(cause));
@@ -81,7 +81,10 @@ export default function BarcodeCamera({ onDetected, onClose }) {
     </div>}
     {status && <p role="status">{status}</p>}
     {error && <p className="scanner-error" role="alert">{error}</p>}
-    <p className="scanner-hint">Mantenha o código EAN dentro da moldura, na horizontal e com boa iluminação. Se ficar borrado, afaste o celular alguns centímetros, use zoom quando disponível ou reajuste o foco. A leitura preenche o campo automaticamente.</p>
+    <details className="scanner-tips">
+      <summary>Dicas para melhorar a leitura do EAN</summary>
+      <p className="scanner-hint">Mantenha o código EAN inteiro dentro da moldura e evite reflexos. Se estiver borrado, afaste o celular alguns centímetros, use zoom quando disponível ou ajuste a iluminação. Quando reconhecido, o código é consultado automaticamente.</p>
+    </details>
     <button type="button" className="btn btn--outline" onClick={onClose}>Voltar para digitação</button>
   </section>;
 }
