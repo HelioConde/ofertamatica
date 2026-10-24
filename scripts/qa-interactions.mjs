@@ -241,7 +241,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
     if (!(await logo.getAttribute('src')).startsWith('/icons/icon-192.png')) throw new Error('Ícone da marca incorreto')
     const nav = page.getByRole('navigation',{name:'Navegação principal do Ofertamática'})
     for (const label of ['Criar placas','Modelos','Editor livre','Formatos','Como funciona','Guias para varejo']) {
-      if (!(await nav.innerText()).includes(label)) throw new Error('Link institucional ausente: '+label)
+      if (!(await nav.textContent()).includes(label)) throw new Error('Link institucional ausente: '+label)
     }
     const headerOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
     if (headerOverflow > 2) throw new Error('Barra superior causou overflow horizontal: '+headerOverflow)
