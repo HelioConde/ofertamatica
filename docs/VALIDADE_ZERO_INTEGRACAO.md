@@ -145,9 +145,13 @@ tenta a imagem girada em 90° e 270° para rótulos na vertical, limitando as
 dimensões do canvas no celular. Ao ler o GTIN, o app consulta o catálogo pelo
 fluxo já existente; se falhar, oferece nova foto, vídeo ao vivo ou digitação.
 
-No celular, a aba ativa **Validade Zero** fica fixa na esquerda da navbar,
-enquanto as outras opções do Ofertamática rolam à direita. A marca principal
-permanece única e nenhuma estrutura do Supabase é modificada.
+No celular, os links da navbar institucional ficam **recolhidos** por padrão.
+Um botão "Menu" no cabeçalho abre uma lista vertical acessível, com todos
+os destinos do Ofertamática e "Validade Zero" destacado como página atual.
+A lista pode ser fechada pelo mesmo botão, pela tecla Escape, ao tocar fora
+ou ao selecionar um link. No desktop a navegação continua horizontal.
+O cabeçalho fechado ocupa menos altura e mantém uma única logo oficial.
+Nenhuma estrutura do Supabase é modificada.
 
 ## Testes
 
