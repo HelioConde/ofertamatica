@@ -255,6 +255,12 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
     await page.getByRole('button',{name:'Fechar leitor de EAN'}).click()
     if (await page.locator('#catalog-scanner').count())
       throw new Error('Leitor EAN não liberou a câmera ao fechar')
+    await scanShortcut.click()
+    const eanInput = page.getByLabel('Código EAN / código interno')
+    await eanInput.fill('7891991000826')
+    if (await page.locator('#catalog-scanner').count())
+      throw new Error('Digitação manual não fechou o leitor de EAN')
+    await eanInput.fill('')
     await check(page,'.vz-site-header .vz-site-brand','Navbar institucional do Ofertamática ausente')
     await check(page,'.vz-site-header .vz-site-brand-icon','Logo do Ofertamática ausente')
     await check(page,'.vz-site-main-nav','Links do Ofertamática ausentes na rota do Validade Zero')
@@ -263,6 +269,24 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
       throw new Error('Validade Zero não está ativo na navbar')
     if (!(await activeTool.getAttribute('class')).includes('is-current'))
       throw new Error('Validade Zero sem destaque visual na navbar')
+    const activeVisible = await page.evaluate(() => {
+      const item = document.querySelector('.vz-site-nav-current')
+      const bounds = item?.getBoundingClientRect()
+      return Boolean(bounds && bounds.left >= -1 && bounds.right <= innerWidth + 1)
+    })
+    if (!activeVisible) throw new Error('A aba Validade Zero ficou cortada no celular')
+    if (viewport.width < 821) {
+      const sticky = await page.evaluate(() => {
+        const track = document.querySelector('.vz-site-nav-scroll')
+        const item = document.querySelector('.vz-site-nav-current')
+        if (!track || !item) return false
+        track.scrollLeft = track.scrollWidth
+        const r = item.getBoundingClientRect()
+        track.scrollLeft = 0
+        return r.left >= -1 && r.right <= innerWidth + 1
+      })
+      if (!sticky) throw new Error('A aba Validade Zero some ao deslizar links no mobile')
+    }
     await check(page,'.vz-site-brand-copy .vz-site-product','Subtítulo Validade Zero não está sob Ofertamática')
     if((await page.locator('.vz-site-brand-copy .vz-site-product').innerText()).trim() !== 'Validade Zero')
       throw new Error('O nome da ferramenta deve ficar diretamente sob Ofertamática')
