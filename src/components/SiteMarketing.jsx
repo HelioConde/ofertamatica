@@ -459,7 +459,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const isPaperGuide = page.slug === 'qual-papel-usar-para-cartaz'
   const isHow = page.slug === 'como-funciona'
   const isGuides = page.slug === 'guias-para-varejo'
-  const isValidadeZero = page.slug === 'validade-zero'
+  const isValidadeZero = page.slug === 'conheca-validade-zero'
   const isLegal = Boolean(page.legal)
   const isTrust = Boolean(page.trust)
   const isInstitutional = isLegal || isTrust
@@ -504,7 +504,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
             <p>{page.lead}</p>
             {isValidadeZero ? (
               <div className="seo-hero-actions validade-zero-hero-actions">
-                <a className="validade-zero-open" href="https://helioconde.github.io/validade_zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">
+                <a className="validade-zero-open" href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">
                   Abrir Validade Zero <span aria-hidden="true">↗</span>
                 </a>
                 <span>Teste sem login · abre em uma nova aba</span>
@@ -513,7 +513,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
             {isValidadeZero ? (
               <div className="validade-zero-product-note" role="note">
                 <strong>O mesmo padrão visual do Ofertamática</strong>
-                <p>Interface azul e clara, com foco em leitura rápida no estoque. O Validade Zero funciona separadamente e mantém seus dados e sua conta próprios.</p>
+                <p>Interface azul e clara, com foco em leitura rápida no estoque. O Validade Zero abre diretamente neste domínio, com seus dados e sua conta próprios.</p>
                 <ul aria-label="Recursos do Validade Zero">
                   <li>EAN por câmera</li>
                   <li>Leitura de validade</li>
