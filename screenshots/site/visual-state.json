@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-23T09:27:20.438Z",
-  "commit": "f21f24e07288d97c80fd8450fb9f279e1f5d3f18",
+  "generatedAt": "2026-10-24T01:10:07.499Z",
+  "commit": "eb05006be038a08c0f73bfa367ad8ac08c287387",
   "routes": [
     [
       "home",
@@ -601,7 +601,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 1553,
+      "documentHeight": 1754,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1846,7 +1846,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 1268,
+      "documentHeight": 1230,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1855,15 +1855,15 @@
       "creatorGeometry": {
         "page": {
           "top": 137,
-          "bottom": 1267.6,
+          "bottom": 1229.6,
           "width": 746,
-          "height": 1130.6
+          "height": 1092.6
         },
         "dialog": {
           "top": 151,
-          "bottom": 1241.6,
+          "bottom": 1203.6,
           "width": 746,
-          "height": 1090.6
+          "height": 1052.6
         },
         "header": {
           "top": 152,
@@ -1885,9 +1885,9 @@
         },
         "links": {
           "top": 1146.6,
-          "bottom": 1240.6,
+          "bottom": 1202.6,
           "width": 744,
-          "height": 94
+          "height": 56
         }
       }
     },
@@ -2284,7 +2284,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2021,
+      "documentHeight": 2195,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3871,7 +3871,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 2329,
+      "documentHeight": 2623,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5458,7 +5458,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 2255,
+      "documentHeight": 2489,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
