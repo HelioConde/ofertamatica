@@ -5,7 +5,7 @@
 - **Criador de cartazes:** `https://ofertamatica.com.br/` (React/Vite, arquivo raiz).
 - **Controle de vencimentos:** `https://ofertamatica.com.br/validade-zero/` (React/CRA, aplicativo completo).
 - **Sobre a ferramenta:** `https://ofertamatica.com.br/conheca-validade-zero/` (página editorial SEO).
-- O clique em Validade Zero na área «Mais informações» abre **outra aba**. Digitar a URL do sistema abre o dashboard imediatamente, sem tela promocional, redirect ou iframe.
+- O link Validade Zero na **navbar principal** e na área «Mais informações» abre **outra aba** quando acessado pelo criador. Digitar a URL do sistema abre o dashboard imediatamente, sem tela promocional, redirect ou iframe.
 - Todos os fontes, testes, assets e configuração de compilação do Validade Zero estão no repositório `HelioConde/ofertamatica`, no diretório `apps/validade-zero/`.
 - O aplicativo utiliza o **Supabase existente** do Validade Zero (banco, RLS, Auth, Storage, Edge Function Push). Mover os arquivos Git não duplica nem migra o banco.
 
@@ -70,11 +70,13 @@ anterior: é necessário entrar novamente.
 ## Barra de navegação e identidade oficial
 
 O Validade Zero usa `apps/validade-zero/src/components/OfertamaticaHeader.js`
-e `OfertamaticaHeader.css` para replicar os seis links principais da navbar
-do Ofertamática na mesma ordem, incluindo a logo original em
+e `OfertamaticaHeader.css` para replicar os links principais da navbar
+do Ofertamática na mesma ordem, com **Validade Zero** ao final, incluindo a logo original em
 `/icons/icon-192.png?v=20261008b`. A navbar fica acima do dashboard e
 continua presente no login Supabase, no modo local e durante a restauração da
-sessão. O menu lateral permanece exclusivo para filtros, lotes e scanner.
+sessão. O link Validade Zero tem `aria-current="page"` e destaque azul na rota
+`/validade-zero/`; a marca oficial continua única, com «Validade Zero» sob
+«Ofertamática». O menu lateral permanece exclusivo para filtros, lotes e scanner.
 
 O manifesto PWA e as notificações usam a logo oficial do site, sem alterar
 os ícones de categoria/estado dos lotes. CSS com prefixo `vz-site-` evita
