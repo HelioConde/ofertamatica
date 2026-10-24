@@ -43,7 +43,7 @@ if(mode==='--html-and-assets'){
   const response=await fetch(origin+'/validade-zero/',{redirect:'manual',signal:AbortSignal.timeout(15000)})
   const live=await response.text()
   if(response.status!==200)throw new Error('Validade Zero HTTP '+response.status+' (esperado 200, sem redirecionar).')
-  for(const expected of [...urls,'id="root"','/validade-zero/manifest.json','<title>Validade Zero | Controle de vencimentos</title>']){
+  for(const expected of [...urls,'id="root"','/validade-zero/manifest.json','<title>Validade Zero | Controle de vencimentos | Ofertamática</title>', 'name="robots" content="index,follow', 'property="og:url"', 'application/ld+json']){
     if(!live.includes(expected))throw new Error('HTML publicado não contém: '+expected)
   }
   if(live.includes('helioconde.github.io/validade_zero/'))throw new Error('Página ainda aponta para GitHub Pages.')
