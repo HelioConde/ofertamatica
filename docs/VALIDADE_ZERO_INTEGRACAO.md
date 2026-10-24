@@ -131,6 +131,24 @@ navegador; o aplicativo não consegue garantir foco quando o navegador não
 disponibiliza esses controles. É possível usar o zoom, ajustar a distância
 ou digitar o EAN como alternativa.
 
+## Scanner EAN por foto nativa
+
+Em Android e celulares compatíveis, o leitor oferece o botão **Tirar foto do EAN**.
+O campo `<input type="file" accept="image/*" capture="environment">` solicita a
+câmera traseira nativa para produzir uma imagem mais nítida quando o preview
+WebRTC não consegue controlar foco. O usuário pode optar por uma foto salva
+conforme os recursos oferecidos pelo navegador.
+
+A foto é processada **localmente**: tenta BarcodeDetector e, quando preciso,
+o mesmo ZXing já utilizado pelo leitor ao vivo. O decodificador também
+tenta a imagem girada em 90° e 270° para rótulos na vertical, limitando as
+dimensões do canvas no celular. Ao ler o GTIN, o app consulta o catálogo pelo
+fluxo já existente; se falhar, oferece nova foto, vídeo ao vivo ou digitação.
+
+No celular, a aba ativa **Validade Zero** fica fixa na esquerda da navbar,
+enquanto as outras opções do Ofertamática rolam à direita. A marca principal
+permanece única e nenhuma estrutura do Supabase é modificada.
+
 ## Testes
 
 - `npm run verify`: arquivos locais e rotas do build.

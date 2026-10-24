@@ -250,6 +250,17 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
     const scanShortcut = page.getByRole('button',{name:'Escanear EAN',exact:true})
     await scanShortcut.click()
     await check(page,'#catalog-scanner .scanner-window','Atalho EAN não abriu o leitor de câmera')
+    const photoButton = page.getByRole('button',{name:'Tirar foto do EAN'})
+    await photoButton.waitFor({state:'visible'})
+    const captureInput = page.getByLabel('Foto do código EAN')
+    if (await captureInput.getAttribute('capture') !== 'environment')
+      throw new Error('Modo foto deve usar a câmera traseira do celular')
+    await photoButton.click()
+    await check(page,'.scanner-photo-mode','Modo de foto nativa não abriu')
+    if(await page.locator('#catalog-scanner video').count())
+      throw new Error('Vídeo deveria liberar a câmera durante a foto nativa')
+    await page.getByRole('button',{name:'Voltar ao leitor ao vivo'}).click()
+    await check(page,'#catalog-scanner video','Não retornou ao vídeo ao vivo após modo foto')
     if (await scanShortcut.getAttribute('aria-expanded') !== 'true')
       throw new Error('Atalho de câmera não indicou estado expandido')
     await page.getByRole('button',{name:'Fechar leitor de EAN'}).click()
@@ -275,6 +286,16 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
       return Boolean(bounds && bounds.left >= -1 && bounds.right <= innerWidth + 1)
     })
     if (!activeVisible) throw new Error('A aba Validade Zero ficou cortada no celular')
+    if (viewport.width < 821) {
+      const order = await page.evaluate(() => {
+        const current = document.querySelector('.vz-site-nav-current')
+        const scroll = document.querySelector('.vz-site-nav-scroll')
+        const a = current?.getBoundingClientRect()
+        const b = scroll?.getBoundingClientRect()
+        return Boolean(a && b && a.right <= b.left + 2)
+      })
+      if (!order) throw new Error('A aba atual deve aparecer antes dos links roláveis no celular')
+    }
     if (viewport.width < 821) {
       const sticky = await page.evaluate(() => {
         const track = document.querySelector('.vz-site-nav-scroll')
