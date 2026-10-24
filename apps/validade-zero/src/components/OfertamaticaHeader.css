@@ -19,7 +19,9 @@
 .vz-site-main-nav { display: flex; align-items: center; min-width: 0; gap: 27px; }
 .vz-site-nav-link { position: relative; display: inline-flex; align-items: center; padding: 24px 0 22px;
   color: #566780; font-size: 12px; font-weight: 700; white-space: nowrap; text-decoration: none; }
-.vz-site-nav-link:hover { color: #1d63e9; }
+.vz-site-nav-link:hover, .vz-site-nav-link.is-current { color: #1d63e9; }
+.vz-site-nav-link.is-current::after { content: ""; position: absolute; bottom: 0;
+  left: 0; right: 0; height: 2px; background: #1d63e9; }
 .vz-site-label-mobile { display: none; }
 .vz-site-header a:focus-visible { outline: 3px solid #1d63e9; outline-offset: 3px; border-radius: 5px; }
 @media(max-width: 1100px) {
