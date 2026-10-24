@@ -2,39 +2,52 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
 
-// Valida a integração sem acessar o aplicativo externo nem dados privados.
 const root = process.cwd()
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8')
-
 const home = read('dist/index.html')
-const landing = read('dist/validade-zero/index.html')
+const app = read('dist/validade-zero/index.html')
+const about = read('dist/conheca-validade-zero/index.html')
 const sitemap = read('dist/sitemap.xml')
-const homepage = read('src/App.jsx')
-const creator = read('src/CreatorApp.jsx')
+const indexSrc = read('src/App.jsx')
+const editorSrc = read('src/CreatorApp.jsx')
 const marketing = read('src/components/SiteMarketing.jsx')
-const appUrl = 'https://helioconde.github.io/validade_zero/'
+const appDir = path.join(root, 'dist', 'validade-zero')
 
-// O Ofertamática deve continuar abrindo no criador, sem uma landing obrigatória.
+// O Ofertamática segue sendo o criador de cartazes; o sistema de validades é secundário.
 assert.match(home, /Escolha o formato da sua placa de oferta/)
 assert.match(home, /class="format-grid"/)
-
-// O app secundário não ocupa mais espaço na navegação principal.
-for (const source of [homepage, creator]) {
-  assert.doesNotMatch(source, /\['\/validade-zero',\s*'Validade Zero'/)
-  assert.match(source, /<details className="format-more-links">/)
-  assert.match(source, /href="https:\/\/helioconde\.github\.io\/validade_zero\/" target="_blank" rel="noopener noreferrer"/)
+for (const src of [indexSrc, editorSrc]) {
+  assert.doesNotMatch(src, /\['\/validade-zero',\s*'Validade Zero'/)
+  assert.match(src, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
+  assert.match(src, /href="\/conheca-validade-zero\/"/)
 }
-const mainNav = home.match(/<nav class="main-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || ''
-assert.doesNotMatch(mainNav, /Validade Zero/)
-assert.match(home, /Validade Zero ↗/)
-assert.match(home, /target="_blank" rel="noopener noreferrer"/)
+assert.match(home, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
+assert.doesNotMatch(home, /helioconde\.github\.io\/validade_zero/)
 
-// A página explicativa continua indexável; abrir o app nunca mistura origens.
-assert.match(sitemap, /\/validade-zero\//)
-assert.match(landing, /Validade Zero/)
-assert.ok(landing.includes(appUrl), 'CTA do aplicativo ausente no HTML estático')
-assert.match(landing, /target="_blank" rel="noopener noreferrer"/)
-assert.match(marketing, /aria-label="Abrir Validade Zero em nova aba"/)
-assert.match(marketing, /O mesmo padrão visual do Ofertamática/)
+// Esta rota é uma aplicação CRA real com arquivos internos, não uma landing/redirect.
+assert.match(app, /<title>Validade Zero \| Controle de vencimentos<\/title>/)
+assert.match(app, /id="root"/)
+assert.match(app, /\/validade-zero\/static\/js\//)
+assert.match(app, /\/validade-zero\/manifest\.json/)
+assert.match(app, /https:\/\/ofertamatica\.com\.br\/validade-zero\//)
+assert.doesNotMatch(app, /http-equiv="refresh"|window\.location\s*=|helioconde\.github\.io/)
+for (const item of ['push-sw.js','manifest.json','favicon.ico','logo192.png','logo512.png','asset-manifest.json']) {
+  assert.ok(fs.existsSync(path.join(appDir,item)), 'Arquivo do aplicativo ausente: '+item)
+}
+const assets = JSON.parse(read('dist/validade-zero/asset-manifest.json'))
+assert.ok(Array.isArray(assets.entrypoints) && assets.entrypoints.some(x=>x.includes('.js')), 'JS do aplicativo não compilado')
+for (const entry of assets.entrypoints) {
+  const resource = entry.replace(/^\/validade-zero\//, '')
+  assert.ok(fs.existsSync(path.join(appDir,resource)), 'Asset do Validade Zero não encontrado: ' + entry)
+}
+const manifest=JSON.parse(read('dist/validade-zero/manifest.json'))
+assert.equal(manifest.theme_color,'#1d63e9')
+assert.equal(manifest.display,'standalone')
 
-console.log('Validade Zero: integração secundária, SEO e acesso em nova aba — PASS')
+// Página de apresentação separada e indexável; nenhuma page duplicada com canonical incorreto.
+assert.match(about,/https:\/\/ofertamatica\.com\.br\/conheca-validade-zero\//)
+assert.match(sitemap,/\/conheca-validade-zero\//)
+assert.match(marketing,/href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
+assert.match(read('dist/.htaccess'), /camera=\(self\)/)
+
+console.log('Validade Zero: aplicativo completo em /validade-zero/, SEO e navegação secundária — PASS')
