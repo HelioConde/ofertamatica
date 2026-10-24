@@ -97,6 +97,22 @@ editorial separado. Os testes do grafo SEO, build, site ao vivo, Jest e
 Playwright protegem canonical, ícones, navbar, indexação e acessibilidade
 responsiva. Isso não altera o banco de dados.
 
+## Experiência operacional do painel
+
+A visão geral prioriza o cadastro e a consulta dos lotes: indicadores de
+vencimento e ações rápidas vêm **antes** da chamada de teste local. O
+banner foi reduzido e mantém a orientação de backup sempre visível; informações
+detalhadas sobre armazenamento são expansíveis sem bloquear os indicadores.
+
+O botão **Escanear EAN** na área de ações abre o leitor no formulário de
+identificação do catálogo e posiciona essa seção na tela. Ao navegar para
+outros filtros ou cadastrar um lote, o leitor fecha e libera a câmera.
+Em telas pequenas, os botões se adaptam em duas colunas (ou uma em celulares
+muito estreitos). O cabeçalho institucional permanece único.
+
+Não houve alteração no Supabase, nos lotes, no esquema de dados ou no fluxo de
+confirmação de validade por OCR.
+
 ## Testes
 
 - `npm run verify`: arquivos locais e rotas do build.
