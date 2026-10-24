@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-24T03:55:45.941Z",
-  "commit": "9f521aab5a818c8eba22c68f378ee71680ea0ace",
+  "generatedAt": "2026-10-24T04:13:46.552Z",
+  "commit": "c5e1107028e17347cd28e2aa0f7baeee06640877",
   "results": [
     {
       "viewport": "mobile-360",
@@ -10,7 +10,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -24,7 +31,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -46,7 +60,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -67,7 +88,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -81,7 +109,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -103,7 +138,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -124,7 +166,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -138,7 +187,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -160,7 +216,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -181,7 +244,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -195,7 +265,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -217,7 +294,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -238,7 +322,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 231.2,
         "fieldCount": 7
@@ -252,7 +343,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -274,7 +372,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -295,7 +400,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -309,7 +421,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -331,7 +450,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -352,7 +478,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -366,7 +499,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -388,7 +528,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
@@ -409,7 +556,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -423,7 +577,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -445,7 +606,14 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [],
+      "offenders": [
+        {
+          "tag": "span",
+          "className": "nav-label-mobile",
+          "left": 294.4,
+          "right": 362.1
+        }
+      ],
       "style": {
         "width": 344,
         "sidebarTabCount": 3,
