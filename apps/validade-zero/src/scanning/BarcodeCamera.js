@@ -20,7 +20,10 @@ export default function BarcodeCamera({ onDetected, onClose }) {
   const [torchSupported, setTorchSupported] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
   useEffect(() => { detectedRef.current = onDetected; }, [onDetected]);
-  useEffect(() => () => { mountedRef.current = false; }, []);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
   useEffect(() => {
     if (photoMode) return undefined;
     let disposed = false;
