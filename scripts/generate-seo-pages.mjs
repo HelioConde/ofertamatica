@@ -275,7 +275,7 @@ function creatorSnapshot() {
     A5: ['1 cartaz A5', 'Folha A5 inteira', 'Balcão e gôndolas menores'],
     A3: ['1 cartaz A3', 'Impressora compatível com A3', 'Vitrine e leitura à distância'],
   }
-  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/editor-livre/', 'Editor livre', 'Editor'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias'], ['/validade-zero/', 'Validade Zero', 'Validade']]
+  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/editor-livre/', 'Editor livre', 'Editor'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias'], ['/validade-zero/', 'Validade Zero', 'Validade Zero']]
   const cards = POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => {
     const details = display[format.id]
     if (!details) return ''
