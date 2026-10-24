@@ -98,3 +98,19 @@ test('navbar institucional permanece acessível no login do Supabase', () => {
   expect(screen.getByRole('link', { name: /Ofertamática — voltar ao criador/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /Entrar no Validade Zero/i })).toBeInTheDocument();
 });
+
+test('mostra indicadores antes da apresentação local e mantém aviso de backup visível', () => {
+  render(<App />);
+  const indicators = screen.getByRole('region', { name: 'Indicadores de vencimento' });
+  const banner = screen.getByRole('region', { name: 'Modo de demonstração local' });
+  expect(indicators.compareDocumentPosition(banner) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(banner).toHaveTextContent('Os dados ficam neste navegador; faça backup regularmente.');
+  expect(banner).toHaveTextContent('Use o Validade Zero sem cadastro');
+  const summary = screen.getByText('Entenda os recursos e o armazenamento local');
+  expect(summary.closest('details')).not.toHaveAttribute('open');
+  fireEvent.click(summary);
+  expect(summary.closest('details')).toHaveAttribute('open');
+  expect(banner).toHaveTextContent('A limpeza dos dados do navegador pode apagar seus registros.');
+  expect(screen.getByRole('button', { name: 'Salvar na nuvem' })).toBeInTheDocument();
+});
+

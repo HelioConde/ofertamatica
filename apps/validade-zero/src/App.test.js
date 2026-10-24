@@ -109,3 +109,15 @@ test('mantém navbar e logo do Ofertamática acima do dashboard local', () => {
   expect(toolLink).toHaveClass('is-current');
   expect(screen.getByText('Seu controle começa aqui')).toBeInTheDocument();
 });
+
+test('atalho de EAN abre leitor e o fecha ao iniciar cadastro', () => {
+  render(<App />);
+  const scan = screen.getByRole('button', { name: 'Escanear EAN' });
+  expect(scan).toHaveAttribute('aria-expanded', 'false');
+  fireEvent.click(scan);
+  expect(scan).toHaveAttribute('aria-expanded', 'true');
+  expect(screen.getByRole('region', { name: 'Leitor de EAN' })).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Nova entrada' }));
+  expect(screen.queryByRole('region', { name: 'Leitor de EAN' })).not.toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /Cadastrar novo lote/i })).toBeInTheDocument();
+});

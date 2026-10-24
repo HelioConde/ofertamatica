@@ -248,6 +248,7 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
   const [catalogNotice, setCatalogNotice] = useState('');
   const [prefill, setPrefill] = useState(null);
   const catalogInputRef = useRef(null);
+  const catalogSearchRef = useRef(null);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [sector, setSector] = useState('all');
@@ -297,11 +298,13 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
 
   function chooseFilter(value) {
     if (!closeForm()) return;
+    setScannerOpen(false);
     setFilter(value);
   }
 
   function openForm(entry = null, fromProduct = null) {
     if (!closeForm()) return;
+    setScannerOpen(false);
     setEditing(entry);
     setPrefill(fromProduct);
     setFormDirty(false);
@@ -555,24 +558,20 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
         </header>
         <main id="conteudo" className="main" tabIndex={-1}>
           {cloud && user?.id && <PushSettings cloud={cloud} user={user}/>}
-          {!cloud && onActivateCloud && <section className="demo-banner no-print" aria-label="Modo de demonstração local">
-            <div className="demo-banner__copy">
-              <span className="demo-banner__eyebrow"><Icon name="check" size={15}/> ACESSO LIVRE, SEM CADASTRO</span>
-              <h2>Teste o Validade Zero antes de criar uma conta.</h2>
-              <p>Cadastre lotes, importe um catálogo CSV, experimente o EAN pela câmera e leia a validade por OCR. Tudo começa aqui, sem login.</p>
-              <p className="demo-banner__disclaimer"><Icon name="info" size={15}/> Os dados ficam apenas neste navegador. Se limpar os dados do navegador, você pode perdê-los. Faça backup. Fotos permanentes e sincronização exigem conta.</p>
-            </div>
-            <div className="demo-banner__actions">
-              <button type="button" className="btn btn--light" onClick={onActivateCloud}><Icon name="shield" size={17}/> Salvar na nuvem</button>
-              <span>Gostou? Crie uma conta e migre seus registros.</span>
-            </div>
-          </section>}
           <header className="heading">
             <div><div className="eyebrow"><span className="eyebrow__line"/> PAINEL DE ESTOQUE</div>
               <h1>Visão geral <span className="heading__accent">.</span></h1>
               <p className="heading__intro">Mais visibilidade sobre seus produtos. Menos perdas por vencimento.</p>
             </div>
-            <button type="button" className="btn btn--primary btn--new no-print" onClick={() => openForm()}><Icon name="plus" size={19}/> Nova entrada</button>
+            <div className="heading__actions no-print">
+              <button type="button" className="btn btn--outline btn--scan" onClick={() => {
+                setScannerOpen(true);
+                catalogSearchRef.current?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+              }} aria-controls="catalog-scanner" aria-expanded={scannerOpen}>
+                <Icon name="scan" size={19}/> Escanear EAN
+              </button>
+              <button type="button" className="btn btn--primary btn--new" onClick={() => openForm()}><Icon name="plus" size={19}/> Nova entrada</button>
+            </div>
           </header>
 
           <section className="metrics" aria-label="Indicadores de vencimento">
@@ -582,6 +581,20 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
             <Metric name="De 8 a 30 dias" value={counts.attention} detail="Acompanhar de perto" icon="calendar" kind="info" onClick={() => chooseFilter('attention')}/>
           </section>
 
+          {!cloud && onActivateCloud && <section className="demo-banner demo-banner--compact no-print" aria-label="Modo de demonstração local">
+            <div className="demo-banner__copy">
+              <span className="demo-banner__eyebrow"><Icon name="check" size={15}/> TESTE LOCAL ATIVO</span>
+              <h2>Use o Validade Zero sem cadastro</h2>
+              <p>Você já pode registrar lotes e escanear produtos. <strong>Os dados ficam neste navegador; faça backup regularmente.</strong></p>
+              <details className="demo-banner__details">
+                <summary>Entenda os recursos e o armazenamento local</summary>
+                <p>Você pode cadastrar lotes, importar CSV, ler EAN e conferir datas com OCR. A limpeza dos dados do navegador pode apagar seus registros. Fotos permanentes e sincronização entre dispositivos exigem conta.</p>
+              </details>
+            </div>
+            <div className="demo-banner__actions">
+              <button type="button" className="btn btn--light" onClick={onActivateCloud}><Icon name="shield" size={17}/> Salvar na nuvem</button>
+            </div>
+          </section>}
           <section className={'insight insight--' + (atRisk ? 'warning' : 'clear')} aria-label="Resumo de prioridades">
             <div className="insight__icon"><Icon name={atRisk ? 'alert' : 'check'} size={22}/></div>
             <div className="insight__copy"><strong>{atRisk ? atRisk + ' lote(s) precisam de atenção' : 'Tudo organizado por prioridade'}</strong>
@@ -613,7 +626,7 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
               </div>
             </div>
             <p className="catalog-server-label"><Icon name="check" size={15}/> {canSearchCentralCatalog() ? 'Busca no catálogo central online disponível sem login' : 'Busca local — servidor não configurado neste ambiente'}</p>
-            <form className="catalog-search" onSubmit={searchCatalog}>
+            <form ref={catalogSearchRef} className="catalog-search" onSubmit={searchCatalog}>
               <label htmlFor="catalog-code">Código EAN / código interno</label>
               <div className="catalog-search__controls">
                 <div className="ean-input-wrap ean-input-wrap--search">
@@ -629,7 +642,7 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
                 <button className="btn btn--primary" type="submit" disabled={catalogSearching}><Icon name="search" size={17}/>{catalogSearching ? 'Pesquisando…' : 'Buscar produto'}</button>
               </div>
             </form>
-            {scannerOpen && <BarcodeCamera onDetected={onBarcodeDetected} onClose={() => setScannerOpen(false)}/>}
+            {scannerOpen && <div id="catalog-scanner"><BarcodeCamera onDetected={onBarcodeDetected} onClose={() => setScannerOpen(false)}/></div>}
             {catalogNotice && <p className="catalog-notice" role="status" aria-live="polite">{catalogNotice}</p>}
             {catalogFound && <div className="catalog-match" aria-label="Produto encontrado">
               <div><strong>{catalogFound.name}</strong><small>Código: {catalogFound.code} · Setor: {catalogFound.sector || 'não informado'}</small>
