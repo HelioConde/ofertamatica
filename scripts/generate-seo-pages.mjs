@@ -349,6 +349,7 @@ for (const [legacy, destination] of Object.entries(LEGACY_REDIRECTS)) {
 const urls = [
   { url: SITE_URL + '/', priority: '1.0' },
   ...INDEXABLE_PAGES.map((page) => ({ url: `${SITE_URL}/${page.slug}/`, priority: page.kind === 'public' ? '0.9' : '0.8' })),
+  { url: SITE_URL + '/validade-zero/', priority: '0.7' },
 ]
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
