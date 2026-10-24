@@ -7,10 +7,10 @@ import assert from 'node:assert/strict'
 import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
 
 const dist = path.resolve('dist')
-const routes = ['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')]
+const routes = ['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/'), '/validade-zero/']
 const routeSet = new Set(routes)
-// O aplicativo é acessível, mas não é uma página editorial do sitemap.
-const allowedLinks = new Set([...routes, '/validade-zero/'])
+// O app integra o mesmo sitemap/SEO, com HTML inicial próprio e canonical direto.
+const allowedLinks = routeSet
 assert.equal(routeSet.size, routes.length, 'Slugs SEO duplicados')
 const htmlFor = (route) => path.join(dist, route === '/' ? 'index.html' : route.slice(1) + 'index.html')
 const canonicalFor = (route) => SITE_URL + route

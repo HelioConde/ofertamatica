@@ -196,3 +196,15 @@ tbody tr:hover { background: #f7faff; }
 @media print {
   body { color: #111; background: white; }
 }
+
+/* A navbar institucional ocupa seu próprio espaço acima do dashboard. */
+.app { min-height: calc(100vh - 68px); }
+.sidebar { min-height: calc(100vh - 68px); }
+.auth-screen { min-height: calc(100vh - 68px); }
+.skip-link:focus { top: 76px; }
+@media (max-width: 820px) {
+  .app { min-height: calc(100vh - 102px); }
+  .sidebar { min-height: auto; }
+  .auth-screen { min-height: calc(100vh - 102px); }
+  .skip-link:focus { top: 108px; }
+}

@@ -234,6 +234,18 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 
   await scenario('Validade Zero integrado: entrada direta e OCR (' + mode + ')', viewport, async(page)=>{
     await page.goto(origin+'/validade-zero/',{waitUntil:'domcontentloaded'})
     await check(page,'.heading h1','Dashboard Validade Zero não carregou')
+    await check(page,'.vz-site-header .vz-site-brand','Navbar institucional do Ofertamática ausente')
+    await check(page,'.vz-site-header .vz-site-brand-icon','Logo do Ofertamática ausente')
+    await check(page,'.vz-site-main-nav','Links do Ofertamática ausentes na rota do Validade Zero')
+    const logo = page.locator('.vz-site-brand-icon')
+    if (!(await logo.getAttribute('src')).startsWith('/icons/icon-192.png')) throw new Error('Ícone da marca incorreto')
+    const nav = page.getByRole('navigation',{name:'Navegação principal do Ofertamática'})
+    for (const label of ['Criar placas','Modelos','Editor livre','Formatos','Como funciona','Guias para varejo']) {
+      if (!(await nav.textContent()).includes(label)) throw new Error('Link institucional ausente: '+label)
+    }
+    const headerOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+    if (headerOverflow > 2) throw new Error('Barra superior causou overflow horizontal: '+headerOverflow)
+
     await check(page,'.metrics','Indicadores de vencimento ausentes')
     await check(page,'.ean-input-camera','Leitor EAN não está disponível')
     if(new URL(page.url()).pathname !== '/validade-zero/')

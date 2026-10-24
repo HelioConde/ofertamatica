@@ -1,0 +1,38 @@
+import React from 'react';
+import './OfertamaticaHeader.css';
+
+// Mesma ordem, títulos e ícone do menu do Ofertamática.
+// Os links voltam ao criador; o Validade Zero permanece app independente na rota atual.
+const LINKS = [
+  ['/', 'Criar placas', 'Criar'],
+  ['/modelos/', 'Modelos', 'Modelos'],
+  ['/editor-livre/', 'Editor livre', 'Editor'],
+  ['/formatos/', 'Formatos', 'Formatos'],
+  ['/como-funciona/', 'Como funciona', 'Como'],
+  ['/guias-para-varejo/', 'Guias para varejo', 'Guias'],
+];
+
+export default function OfertamaticaHeader() {
+  return (
+    <header className="vz-site-header no-print">
+      <div className="vz-site-nav-shell">
+        <a className="vz-site-brand" href="/" aria-label="Ofertamática — voltar ao criador de cartazes">
+          <img className="vz-site-brand-icon"
+            src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async"/>
+          <span>Ofertamática</span>
+        </a>
+        <nav className="vz-site-main-nav" aria-label="Navegação principal do Ofertamática">
+          {LINKS.map(([href, desktop, mobile]) => (
+            <a className="vz-site-nav-link" href={href} key={href}>
+              <span className="vz-site-label-full">{desktop}</span>
+              <span className="vz-site-label-mobile">{mobile}</span>
+            </a>
+          ))}
+        </nav>
+        <a className="vz-site-tool" href="/validade-zero/" aria-current="page">
+          Validade Zero
+        </a>
+      </div>
+    </header>
+  );
+}
