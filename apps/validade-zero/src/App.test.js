@@ -103,5 +103,9 @@ test('mantém navbar e logo do Ofertamática acima do dashboard local', () => {
     expect(nav).toHaveTextContent(label);
   }
   expect(brand.querySelector('.vz-site-product')).toHaveTextContent('Validade Zero');
+  const toolLink = nav.querySelector('a[href="/validade-zero/"]');
+  expect(toolLink).toHaveTextContent('Validade Zero');
+  expect(toolLink).toHaveAttribute('aria-current', 'page');
+  expect(toolLink).toHaveClass('is-current');
   expect(screen.getByText('Seu controle começa aqui')).toBeInTheDocument();
 });
