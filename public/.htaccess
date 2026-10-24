@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# O scanner do Validade Zero precisa da câmera; nas placas ela continua bloqueada.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/validade-zero(/|$)" VZ_CAMERA_ALLOWED=1
+</IfModule>
+
 # Erros reais com conteúdo útil: preserva HTTP 404/410, sem redirecionar para a home.
 # O ErrorDocument interno mantém o status original para Googlebot e navegador.
 ErrorDocument 404 /404.html
@@ -23,7 +28,8 @@ RewriteRule ^api/_stats\.php$ - [F,L]
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()" env=!VZ_CAMERA_ALLOWED
+  Header always set Permissions-Policy "geolocation=(), camera=(self), microphone=()" env=VZ_CAMERA_ALLOWED
   Header always set Strict-Transport-Security "max-age=31536000"
   <FilesMatch "-[A-Za-z0-9_-]{8,}\.(js|css|png|jpg|jpeg|webp|woff2?|otf)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
