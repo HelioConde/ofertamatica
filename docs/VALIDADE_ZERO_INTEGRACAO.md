@@ -40,9 +40,12 @@ origem também impede alegações falsas de sessão ou dados compartilhados.
    diretamente `https://helioconde.github.io/validade_zero/` em celular.
 2. No Ofertamática, executar `npm run verify` e `npm run qa:design`.
 3. Abrir `/validade-zero/` em desktop e celular: título, link externo,
-   informação de privacidade e botão de retorno ao criador.
+   informação de privacidade e botão de retorno ao criador. A rota agora faz parte de
+   `scripts/qa-design-guidelines.mjs` nos tamanhos 360, 390, 768 e 1440 px.
 4. Verificar o HTML estático e o sitemap gerados para a rota, bem como
-   o link descobrível a partir da home, sem causar páginas órfãs.
+   o link descobrível a partir da home, sem causar páginas órfãs. O script
+   `scripts/qa-interactions.mjs` simula clique e abertura em nova aba no desktop/mobile;
+   `scripts/verify-live-seo.mjs` confere o HTML real após deploy Locaweb.
 5. Testar no Validade Zero: modo local, login Supabase, cadastro de lote,
    câmera com permissão e confirmação manual do OCR.
 6. Testar Push em aparelho real após permissão explícita; o sucesso do
