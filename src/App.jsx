@@ -47,7 +47,7 @@ function Navigation({ routePath, screen, onInstall }) {
     ['/formatos', 'Formatos', 'Formatos'],
     ['/como-funciona', 'Como funciona', 'Como'],
     ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
-    ['/validade-zero', 'Validade Zero', 'Validade'],
+    ['/validade-zero', 'Validade Zero', 'Validade Zero'],
   ]
 
   return (
