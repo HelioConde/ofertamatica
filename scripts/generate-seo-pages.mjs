@@ -275,7 +275,7 @@ function creatorSnapshot() {
     A5: ['1 cartaz A5', 'Folha A5 inteira', 'Balcão e gôndolas menores'],
     A3: ['1 cartaz A3', 'Impressora compatível com A3', 'Vitrine e leitura à distância'],
   }
-  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias']]
+  const nav = [['/', 'Criar placas', 'Criar'], ['/modelos/', 'Modelos', 'Modelos'], ['/editor-livre/', 'Editor livre', 'Editor'], ['/formatos/', 'Formatos', 'Formatos'], ['/como-funciona/', 'Como funciona', 'Como'], ['/guias-para-varejo/', 'Guias para varejo', 'Guias'], ['/validade-zero/', 'Validade Zero', 'Validade']]
   const cards = POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3').map((format) => {
     const details = display[format.id]
     if (!details) return ''
@@ -295,7 +295,7 @@ function creatorSnapshot() {
   }).join('')
   return '<div class="app format-mode"><header class="site-header"><div class="nav-shell">' +
     '<a class="brand" href="/" aria-label="Ofertamática"><img class="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt=""><span>Ofertamática</span></a>' +
-    '<nav class="main-nav" aria-label="Navegação principal">' + nav.map(([href, label, short], i) => '<a class="nav-link' + (i === 0 ? ' active' : '') + '" href="' + href + '"' + (i === 0 ? ' aria-current="page"' : '') + '><span class="nav-label-full">' + label + '</span><span class="nav-label-mobile">' + short + '</span></a>').join('') + '</nav>' +
+    '<nav class="main-nav" aria-label="Navegação principal">' + nav.map(([href, label, short], i) => '<a class="nav-link' + (i === 0 ? ' active' : '') + '" href="' + href + '"' + (i === 0 ? ' aria-current="page"' : '') + (href === '/validade-zero/' ? ' target="_blank" rel="noopener noreferrer"' : '') + '><span class="nav-label-full">' + label + '</span><span class="nav-label-mobile">' + short + '</span></a>').join('') + '</nav>' +
     '<div class="nav-meta"><span class="free-pill">Grátis</span><span class="nav-note">sem cadastro</span></div></div></header>' +
     '<main class="format-page format-home-refresh" id="formatos"><section class="format-dialog">' +
     '<header class="format-dialog-head format-dialog-head-clean"><div class="format-home-intro"><div class="format-home-intro-copy">' +
