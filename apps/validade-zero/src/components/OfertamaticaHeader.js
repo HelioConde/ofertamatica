@@ -26,20 +26,19 @@ export default function OfertamaticaHeader() {
           </span>
         </a>
         <nav className="vz-site-main-nav" aria-label="Navegação principal do Ofertamática">
-          {LINKS.map(([href, desktop, mobile]) => {
-            const active = href === '/validade-zero/';
-            return (
-              <a
-                className={'vz-site-nav-link' + (active ? ' is-current' : '')}
-                href={href}
-                key={href}
-                aria-current={active ? 'page' : undefined}
-              >
+          <span className="vz-site-nav-scroll">
+            {LINKS.filter(([href]) => href !== '/validade-zero/').map(([href, desktop, mobile]) => (
+              <a className="vz-site-nav-link" href={href} key={href}>
                 <span className="vz-site-label-full">{desktop}</span>
                 <span className="vz-site-label-mobile">{mobile}</span>
               </a>
-            );
-          })}
+            ))}
+          </span>
+          <a className="vz-site-nav-link vz-site-nav-current is-current"
+            href="/validade-zero/" aria-current="page">
+            <span className="vz-site-label-full">Validade Zero</span>
+            <span className="vz-site-label-mobile">Validade Zero</span>
+          </a>
         </nav>
       </div>
     </header>
