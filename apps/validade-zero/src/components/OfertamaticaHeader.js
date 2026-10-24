@@ -10,7 +10,7 @@ const LINKS = [
   ['/formatos/', 'Formatos', 'Formatos'],
   ['/como-funciona/', 'Como funciona', 'Como'],
   ['/guias-para-varejo/', 'Guias para varejo', 'Guias'],
-  ['/validade-zero/', 'Validade Zero', 'Validade'],
+  ['/validade-zero/', 'Validade Zero', 'Validade Zero'],
 ];
 
 export default function OfertamaticaHeader() {
