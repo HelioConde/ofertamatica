@@ -1,0 +1,23 @@
+name: Diagnose Locaweb public origin
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/diagnose-public-origin.mjs'
+      - '.github/workflows/diagnose-origin.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-origin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect public origin responses without credentials
+        run: node scripts/diagnose-public-origin.mjs
