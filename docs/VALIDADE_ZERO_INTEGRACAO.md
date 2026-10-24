@@ -1,58 +1,79 @@
-# Validade Zero no portal Ofertamática
+# Validade Zero integrado ao Ofertamática
 
-## Integração do ecossistema
+## Arquitetura definitiva
 
-Rota pública: `https://ofertamatica.com.br/validade-zero/`.
+- **Criador de cartazes:** `https://ofertamatica.com.br/` (React/Vite, arquivo raiz).
+- **Controle de vencimentos:** `https://ofertamatica.com.br/validade-zero/` (React/CRA, aplicativo completo).
+- **Sobre a ferramenta:** `https://ofertamatica.com.br/conheca-validade-zero/` (página editorial SEO).
+- O clique em Validade Zero na área «Mais informações» abre **outra aba**. Digitar a URL do sistema abre o dashboard imediatamente, sem tela promocional, redirect ou iframe.
+- Todos os fontes, testes, assets e configuração de compilação do Validade Zero estão no repositório `HelioConde/ofertamatica`, no diretório `apps/validade-zero/`.
+- O aplicativo utiliza o **Supabase existente** do Validade Zero (banco, RLS, Auth, Storage, Edge Function Push). Mover os arquivos Git não duplica nem migra o banco.
 
-A página apresenta a ferramenta e liga ao aplicativo já existente em
-`https://helioconde.github.io/validade_zero/`. A nova interface do Validade Zero usa
-o padrão azul, superfícies claras e cartões do Ofertamática. O usuário pode começar
-sem login no modo local e usar uma conta Supabase para salvar na nuvem.
+## Build e publicação (Locaweb)
 
-Não duplicamos o código React do Validade Zero nem usamos iframe: a
-aplicação precisa de suas próprias rotas, Service Worker, permissões
-de câmera/notificações e armazenamento do navegador. Abrir em outra
-origem também impede alegações falsas de sessão ou dados compartilhados.
+`npm run build` executa:
+1. Vite para o criador Ofertamática, no `dist/`.
+2. Geração das páginas SEO em HTML estático, inclusive `/conheca-validade-zero/`.
+3. Instalação isolada de dependências CRA via `npm ci` **quando necessário**, compilação usando `PUBLIC_URL=/validade-zero`, e cópia para `dist/validade-zero/`.
 
-## Regras permanentes
+`npm run verify` confere o build, links e assets do novo aplicativo. O workflow
+`.github/workflows/deploy-beta.yml` entrega primeiro os assets imutáveis em
+`public_html/validade-zero/static/` e só depois publica `index.html`, o manifesto e o Service Worker.
 
-- O Ofertamática continua sendo o produto principal; a Home abre diretamente o criador de cartazes.
-- Validade Zero é ferramenta secundária: não ocupa o menu principal e fica em **Mais informações** e na página institucional.
-- Os links que **abrem o aplicativo** usam outra aba (`target="_blank"`, `rel="noopener noreferrer"`).
-- `/validade-zero/` permanece como página explicativa indexável, sem incorporar o aplicativo.
-- Não copiar ou fazer proxy do código React, Supabase, autenticação ou Service Worker no Ofertamática.
+A rotina `scripts/verify-live-validade-zero.mjs` confere assets e, após deploy, o
+HTTP 200 direto em `/validade-zero/`, o JS atualizado e o cabeçalho de câmera.
 
-## Limites
+## Segurança, câmera e Push
 
-- É uma integração **por navegação**, não uma incorporação do app no domínio.
-- O banco do Validade Zero e a conta do Ofertamática são independentes.
-- Dados do modo local ficam na origem do aplicativo e não são migrados
-  automaticamente para o Ofertamática.
-- Não expor credenciais secretas, JWTs ou URL com tokens em links.
-- O Validade Zero está em validação para uso operacional; a página não
-  o apresenta como sistema de produção homologado.
-- O fluxo principal de cartazes em `/` continua com seletor primeiro,
-  sem landing obrigatória e sem novos blocos pesados.
+O Ofertamática bloqueia câmera e microfone na maior parte do site. A regra
+`public/.htaccess` **autoriza somente a câmera na rota `/validade-zero/`**,
+mantendo o bloqueio em todas as rotas de cartazes e outras ferramentas.
 
-## Checklist de publicação
+O Push Worker do Validade Zero vive em `/validade-zero/push-sw.js`,
+com escopo `/validade-zero/`. Não substituir o `/sw.js` do Ofertamática.
+O manifesto PWA possui `start_url`, `scope` e ícones próprios dessa rota.
 
-1. Verificar que o GitHub Pages do Validade Zero está publicado, abrindo
-   diretamente `https://helioconde.github.io/validade_zero/` em celular.
-2. No Ofertamática, executar `npm run verify` e `npm run qa:design`.
-3. Abrir `/validade-zero/` em desktop e celular: título, link externo,
-   informação de privacidade e botão de retorno ao criador. A rota agora faz parte de
-   `scripts/qa-design-guidelines.mjs` nos tamanhos 360, 390, 768 e 1440 px.
-4. Verificar o HTML estático e o sitemap gerados para a rota, bem como
-   o link descobrível a partir da home, sem causar páginas órfãs. O script
-   `scripts/qa-interactions.mjs` simula clique e abertura em nova aba no desktop/mobile;
-   `scripts/verify-live-seo.mjs` confere o HTML real após deploy Locaweb.
-5. Testar no Validade Zero: modo local, login Supabase, cadastro de lote,
-   câmera com permissão e confirmação manual do OCR.
-6. Testar Push em aparelho real após permissão explícita; o sucesso do
-   Cron sozinho não prova entrega de notificações.
+As credenciais publicáveis do Supabase já existentes em
+`apps/validade-zero/.env.production` são usadas no bundle. **Nunca**
+incluir `sb_secret_`, `service_role`, VAPID privada ou `VZ_CRON_TOKEN`
+no Git, nos bundles ou nos scripts de build. Os segredos do Push e o Cron
+continuam exclusivamente no Supabase.
 
-## Decisão de arquitetura
+## Passo obrigatório no Supabase Auth
 
-O Validade Zero permanece em sua hospedagem própria e abre em aba separada. Mudanças
-futuras de visual/marketing podem ser coordenadas entre os repositórios, mas o
-fluxo de operação, implantação, banco de dados e evolução dos produtos é independente.
+No painel do projeto `bnlvvsjgpywpbfhwdcan`:
+**Authentication → URL Configuration → Redirect URLs** → permitir exatamente
+`https://ofertamatica.com.br/validade-zero/`.
+
+Preservar o endereço anterior durante o período de transição, caso haja
+usuários ainda acessando o GitHub Pages. O frontend já calcula o
+`redirect_to` com a origem e o caminho atuais. Se o template de confirmação
+usar `{{ .SiteURL }}` em vez de `{{ .RedirectTo }}`, ajustar o template para
+que o link de confirmação respeite o endereço do cadastro. Não alterar
+URLs de outros aplicativos hospedados no mesmo Supabase inadvertidamente.
+
+## Dados e transição de domínio
+
+**LocalStorage, IndexedDB e Push são separados por origem.** Os dados locais
+salvos em `helioconde.github.io` NÃO aparecem automaticamente em
+`ofertamatica.com.br`. Usuários do modo local devem:
+1. Abrir o site antigo e exportar backup JSON do inventário.
+2. Abrir `ofertamatica.com.br/validade-zero/` e restaurar o backup
+   explicitamente. Também transferir manualmente fotografias locais se necessário.
+3. Reautorizar notificações Push na nova origem; a assinatura anterior não migra.
+
+Contas Supabase continuam com os mesmos dados protegidos por RLS, desde que o
+usuário entre com a mesma conta. O novo domínio não recebe a sessão do domínio
+anterior: é necessário entrar novamente.
+
+## Testes
+
+- `npm run verify`: arquivos locais e rotas do build.
+- `npm run qa:design`: capturas desktop/mobile de `/validade-zero/`
+  e `/conheca-validade-zero/`.
+- `node scripts/qa-interactions.mjs`: dashboard, scanner/cadastro e links em outra aba.
+- Smoke test Locaweb pós-FTP: `scripts/verify-live-validade-zero.mjs`
+  e `scripts/verify-live-seo.mjs`.
+- Validar fisicamente no celular as permissões de câmera, OCR, login Supabase,
+  Push e a passagem de dados por backup. Testes automatizados não substituem
+  a aprovação dessas permissões no aparelho do usuário.

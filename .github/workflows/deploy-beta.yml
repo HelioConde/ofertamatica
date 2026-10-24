@@ -58,6 +58,15 @@ jobs:
           # a cada publicação e sobrecarregar a hospedagem compartilhada.
           # Sem flag experimental: reproduz o comportamento que já passou em produção.
 
+      - name: Deploy Validade Zero immutable assets before app HTML
+        uses: locaweb/ftp-deploy@1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          localDir: "dist/validade-zero/static"
+          remoteDir: "public_html/validade-zero/static"
+
       # Se o FTP de terceiros não enviou todos os hashes, confere e reenvia
       # diretamente, com diagnóstico distinto entre FTP e entrega HTTP/CDN.
       - name: Install FTP diagnostic client
@@ -74,6 +83,9 @@ jobs:
       - name: Verify newly uploaded JS/CSS before switching HTML
         run: node scripts/verify-live-assets.mjs --assets-only
 
+      - name: Verify Validade Zero JS/CSS before switching HTML
+        run: node scripts/verify-live-validade-zero.mjs --assets-only
+
       - name: Deploy app shell after assets
         uses: locaweb/ftp-deploy@1.0.0
         with:
@@ -82,10 +94,13 @@ jobs:
           password: ${{ secrets.PASS }}
           localDir: "dist"
           remoteDir: "public_html"
-          options: "--exclude-glob assets --exclude-glob assets/** --exclude-glob beta --exclude-glob beta/**"
+          options: "--exclude-glob assets --exclude-glob assets/** --exclude-glob validade-zero/static --exclude-glob validade-zero/static/** --exclude-glob beta --exclude-glob beta/**"
 
       - name: Verify deployed HTML and JavaScript
         run: node scripts/verify-live-assets.mjs --html-and-assets
+
+      - name: Verify Validade Zero deployed app and camera policy
+        run: node scripts/verify-live-validade-zero.mjs --html-and-assets
 
       - name: Verify deployed SEO URLs
         run: node scripts/verify-live-seo.mjs

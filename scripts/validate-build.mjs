@@ -130,7 +130,7 @@ expect(read('cartazes-para-acougue/index.html').includes('Cartazes de ofertas pa
 expect(read('.htaccess').includes('^cartaz-para-imprimir/?$'), '301 para URL antiga de impressão ausente')
 // Corrige páginas identificadas como ainda desconhecidas pelo Google com conteúdo útil,
  // específico da intenção e links para páginas canônicas realmente publicadas.
-const canonicalRoutes = new Set(['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')])
+const canonicalRoutes = new Set(['/', '/validade-zero/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')])
 for (const page of INDEXABLE_PAGES) {
   for (const link of page.links || []) {
     const href = String(link.href || '').trim()

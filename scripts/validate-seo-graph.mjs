@@ -9,6 +9,8 @@ import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
 const dist = path.resolve('dist')
 const routes = ['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/')]
 const routeSet = new Set(routes)
+// O aplicativo é acessível, mas não é uma página editorial do sitemap.
+const allowedLinks = new Set([...routes, '/validade-zero/'])
 assert.equal(routeSet.size, routes.length, 'Slugs SEO duplicados')
 const htmlFor = (route) => path.join(dist, route === '/' ? 'index.html' : route.slice(1) + 'index.html')
 const canonicalFor = (route) => SITE_URL + route
@@ -48,8 +50,8 @@ for (const route of routes) {
     if (!href.startsWith('/')) continue
     const target = new URL(href, SITE_URL)
     const pathname = target.pathname
-    assert.ok(routeSet.has(pathname), 'Link interno quebra navegação: ' + route + ' -> ' + href)
-    outbound.add(pathname)
+    assert.ok(allowedLinks.has(pathname), 'Link interno quebra navegação: ' + route + ' -> ' + href)
+    if (routeSet.has(pathname)) outbound.add(pathname)
     linksChecked++
   }
   graph.set(route, outbound)

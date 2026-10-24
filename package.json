@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo-pages.mjs",
+    "build": "vite build && node scripts/generate-seo-pages.mjs && node scripts/build-validade-zero.mjs",
     "preview": "vite preview",
     "check:build": "node scripts/validate-build.mjs && node scripts/validate-consent.mjs && node scripts/validate-parser.mjs && node scripts/validate-posters.mjs && node scripts/validate-monitoring.mjs && node scripts/validate-coverage-redirects.mjs && node scripts/validate-seo-graph.mjs && node scripts/validate-validade-zero.mjs",
     "verify": "npm run build && npm run check:build",
     "qa:design": "node scripts/qa-design-guidelines.mjs",
-    "audit:content": "node scripts/audit-content.mjs"
+    "audit:content": "node scripts/audit-content.mjs",
+    "test:validade-zero": "npm test -- --watchAll=false"
   },
   "dependencies": {
     "@e965/xlsx": "^0.20.3",

@@ -15,7 +15,8 @@ const routes = [
   { path: '/formatos/', slug: 'formatos', ready: '.seo-landing h1' },
   { path: '/como-funciona/', slug: 'como-funciona', ready: '.seo-landing h1' },
   { path: '/editor-livre/', slug: 'editor-livre', ready: '.free-poster-editor h1' },
-  { path: '/validade-zero/', slug: 'validade-zero', ready: '.validade-zero-hero-actions .validade-zero-open' },
+  { path: '/validade-zero/', slug: 'validade-zero-app', ready: '.heading h1' },
+  { path: '/conheca-validade-zero/', slug: 'conheca-validade-zero', ready: '.validade-zero-hero-actions .validade-zero-open' },
 ]
 const viewports = [
   { label: 'mobile-360', width: 360, height: 800 },
