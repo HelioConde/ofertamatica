@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import './styles/ofertamatica-theme.css';
 import Icon from './components/Icon';
+import OfertamaticaHeader from './components/OfertamaticaHeader';
 import BarcodeCamera from './scanning/BarcodeCamera';
 import ProductPhoto from './components/ProductPhoto';
 import PushSettings from './components/PushSettings';
@@ -791,10 +792,21 @@ export default function App() {
     return () => { active = false; };
   }, [screen]);
 
-  if (screen === 'checking') return <main className="auth-screen"><p role="status">Verificando sua sessão…</p></main>;
-  if (screen === 'cloud' || screen === 'login') return <CloudEntry key={screen} initialUser={restoredUser}
-    onTryLocal={() => { setRestoredUser(null); setScreen('local'); }}/>;
-  return <InventoryApp key="local" onActivateCloud={CLOUD_ENABLED
-    ? () => { setRestoredUser(null); setScreen('login'); }
-    : null}/>;
+  let content;
+  if (screen === 'checking') {
+    content = <main className="auth-screen"><p role="status">Verificando sua sessão…</p></main>;
+  } else if (screen === 'cloud' || screen === 'login') {
+    content = <CloudEntry key={screen} initialUser={restoredUser}
+      onTryLocal={() => { setRestoredUser(null); setScreen('local'); }}/>;
+  } else {
+    content = <InventoryApp key="local" onActivateCloud={CLOUD_ENABLED
+      ? () => { setRestoredUser(null); setScreen('login'); }
+      : null}/>;
+  }
+  return (
+    <>
+      <OfertamaticaHeader />
+      {content}
+    </>
+  );
 }
