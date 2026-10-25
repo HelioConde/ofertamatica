@@ -1,4 +1,23 @@
-# Ofertamática
+# Ofertamática — Cartazes promocionais sem complicação
+
+**Editor web para criar e imprimir placas de ofertas para supermercados e varejo, com foco em produtividade.**
+
+[**Abrir o editor**](https://ofertamatica.com.br/) · [**Modelos**](https://ofertamatica.com.br/modelos/) · [**Formatos**](https://ofertamatica.com.br/formatos/)
+
+![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white) ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-64748b)
+
+## Comece aqui
+
+1. Acesse o site: a página inicial já abre o criador.
+2. Escolha o formato do cartaz.
+3. Cole uma lista de produtos ou importe uma planilha, gere as placas e ajuste o resultado.
+4. Imprima ou salve como PDF.
+
+**Para desenvolver localmente:** use Node.js compatível com a versão do Vite, execute `npm install` e `npm run dev`. Rode `npm run verify` para compilar e verificar as validações do projeto.
+
+**Documentação nesta página:** [princípios do produto](#regra-obrigatória-de-entrada-do-produto) · [fluxo do criador](#criador) · [rotas](#rotas-principais). As regras abaixo servem como referência para quem mantém o projeto.
+
+---
 
 Ofertamática é uma ferramenta web para criação de placas e cartazes promocionais para supermercados, mercados, atacarejos e outros negócios do varejo.
 
