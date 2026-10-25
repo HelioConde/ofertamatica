@@ -1,315 +1,131 @@
-# Ofertamática — Cartazes promocionais sem complicação
+<div align="center">
 
-**Editor web para criar e imprimir placas de ofertas para supermercados e varejo, com foco em produtividade.**
+<h1>🛒 Ofertamática</h1>
 
-[**Abrir o editor**](https://ofertamatica.com.br/) · [**Modelos**](https://ofertamatica.com.br/modelos/) · [**Formatos**](https://ofertamatica.com.br/formatos/)
+<strong>Cartazes promocionais para o varejo, sem perder tempo com diagramação</strong>
 
-![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white) ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-64748b)
+<p>Escolha um formato, cole produtos e gere placas prontas para revisar e imprimir.</p>
 
-## Comece aqui
+<a href="https://ofertamatica.com.br/"><img alt="Abrir Ofertamática" src="https://img.shields.io/badge/CRIAR%20PLACAS-Acessar%20site-1d63e9?style=for-the-badge"></a>
+<a href="https://github.com/HelioConde/ofertamatica"><img alt="React e Vite" src="https://img.shields.io/badge/React%20%2B%20Vite-Frontend-149ECA?style=for-the-badge"></a>
 
-1. Acesse o site: a página inicial já abre o criador.
-2. Escolha o formato do cartaz.
-3. Cole uma lista de produtos ou importe uma planilha, gere as placas e ajuste o resultado.
-4. Imprima ou salve como PDF.
+<p><a href="https://ofertamatica.com.br/"><strong>Abrir o criador</strong></a> · <a href="https://ofertamatica.com.br/modelos/"><strong>Modelos</strong></a> · <a href="https://ofertamatica.com.br/formatos/"><strong>Formatos</strong></a></p>
 
-**Para desenvolver localmente:** use Node.js compatível com a versão do Vite, execute `npm install` e `npm run dev`. Rode `npm run verify` para compilar e verificar as validações do projeto.
-
-**Documentação nesta página:** [princípios do produto](#regra-obrigatória-de-entrada-do-produto) · [fluxo do criador](#criador) · [rotas](#rotas-principais). As regras abaixo servem como referência para quem mantém o projeto.
+</div>
 
 ---
 
-Ofertamática é uma ferramenta web para criação de placas e cartazes promocionais para supermercados, mercados, atacarejos e outros negócios do varejo.
+## O que é Ofertamática?
 
-## Regra obrigatória de entrada do produto
+A **Ofertamática** é uma ferramenta web de comunicação visual para supermercados, mercados e outros negócios do varejo. O objetivo é converter listas de produtos em **cartazes promocionais legíveis**, nos tamanhos corretos, sem depender de um programa complexo de design.
 
-> **Ao acessar `https://ofertamatica.com.br/`, o usuário deve cair diretamente na criação de placas, começando pelo seletor de formatos.**
+A experiência prioriza produtividade, impressão e poucos passos, com opções avançadas disponíveis **depois** de gerar a primeira placa.
 
-Esta é uma regra permanente:
+## Como criar cartazes
 
-- `/` é a Home e o ponto de entrada do criador;
-- não criar landing intermediária antes do criador;
-- o logo e **Criar placas** levam para `/`;
-- `/criar-placas/` é apenas um alias legado e é normalizado para `/`;
-- Modelos, Formatos, Como funciona e Guias permanecem em páginas separadas;
-- se uma mudança futura conflitar com esta regra, a entrada direta no criador tem prioridade.
+1. **Escolha o formato** — A4, A5, A3 ou subdivisões de folhas, conforme disponível.
+2. **Informe os produtos** — cole uma lista, arraste um arquivo ou importe planilhas.
+3. **Gere e revise** — confira preço, unidade, descrição e personalizações opcionais.
+4. **Imprima ou salve como PDF** — respeitando dimensões físicas do papel.
 
-## Diferencial principal: 2 cliques
+O produto suporta modelos de preço comuns no varejo, incluindo ofertas tradicionais e tipos promocionais específicos.
 
-> **A primeira placa deve poder ficar pronta em 2 cliques: escolher o formato e gerar a partir da lista de produtos.**
+### Regras essenciais do produto
 
-Essa é uma regra de produto tão importante quanto a entrada direta no criador:
+Estas decisões são **requisitos do projeto**, não apenas sugestões de layout:
 
-- não inserir uma etapa obrigatória de escolha de modelo, campanha, cadastro ou personalização antes da geração;
-- tipos de oferta especiais, headers, cores, fontes e outros ajustes entram depois do resultado;
-- novos recursos devem preservar o caminho rápido por padrão;
-- quando uma funcionalidade avançada aumentar a burocracia, ela deve ficar como opção, não como etapa obrigatória;
-- o objetivo é reduzir o tempo entre entrar no site e ver a primeira placa pronta;
-- quando a área de transferência estiver disponível, o segundo clique pode ser literalmente **Colar e gerar**.
+| Princípio | Regra |
+| --- | --- |
+| **Entrada direta** | A rota `/` abre o criador, começando pela escolha do formato — nunca uma landing intermediária |
+| **Primeira placa em dois cliques** | Formato e geração da lista são o fluxo principal; detalhes avançados são opcionais |
+| **Desktop compacto** | Home e workspace devem caber em `100dvh` e usar rolagem **interna** quando preciso |
+| **Prévia disponível** | A prévia deve continuar visível enquanto o usuário configura placas no desktop |
+| **Sem dados fictícios involuntários** | Exemplos e modelos não devem aparecer como trabalho real do primeiro acesso |
+| **Impressão fiel** | Ajustes visuais não devem modificar proporção nem tamanho físico das placas |
 
-## Regra de viewport e retenção
+As decisões técnicas detalhadas foram preservadas em [documentação de referência](docs/README_REFERENCE_2026-10-25.md) e no [design system](DESIGN.md).
 
-No desktop, a Home e o workspace do criador devem se comportar como uma ferramenta instalada:
+## Funcionalidades
 
-- a rota `/` deve caber em `100dvh` sem exigir rolagem vertical global;
-- o editor também deve caber em `100dvh`;
-- quando houver conteúdo maior que a área disponível, a rolagem deve acontecer dentro do componente (lista de produtos, biblioteca de headers, configurações etc.);
-- a prévia deve permanecer visível durante a edição no desktop;
-- não inserir hero, depoimentos, artigos ou landing antes do seletor de formatos;
-- mensagens de valor devem ser compactas e ficar integradas ao próprio fluxo de criação;
-- o primeiro acesso deve começar vazio; exemplos são opt-in e não podem aparecer como rascunho real do usuário;
-- retenção deve vir da produtividade: menos passos, autosave, retomada do último trabalho e reutilização de escolhas recentes;
-- histórico recente, atalhos e importação rápida devem ficar dentro do fluxo existente, sem criar nova tela obrigatória.
+- Entrada por lista de produtos, com reconhecimento de colagens tabuladas e formatos comuns de CSV/planilha.
+- Edição de descrição, complemento, unidade e preço após a importação.
+- Formatos para impressões individuais e múltiplos cartazes por folha.
+- Modelos de oferta como padrão, de/por, atacado/varejo e outras variações disponíveis no editor.
+- Personalização de fontes, cores, logos, cabeçalhos, validade e limites por cliente.
+- Pré-visualização e impressão, com opção de salvar como PDF na janela de impressão.
+- Recursos de produtividade local, como histórico recente e instalação como app quando suportada pelo navegador.
 
-## Rotas principais
+**Importante:** recursos de inteligência artificial, integrações externas e algumas experiências complementares dependem do escopo/configuração documentados no código e **não devem ser presumidos como obrigatórios para gerar cartazes**.
 
-- `/` — criação de placas / seletor de formatos;
-- `/modelos/` — duas opções separadas: modelos com preço e fundos prontos para imprimir (sem descrição nem preço);
-- `/formatos/` — A4, A5, A3 e divisões por folha;
-- `/como-funciona/` — fluxo de criação;
-- `/guias-para-varejo/` — central de guias;
-- `/sobre/` — propósito e transparência do projeto;
-- `/fale-conosco/` — suporte, contato e sugestões;
-- `/privacidade/` — política de privacidade;
-- `/termos/` — termos de uso;
-- páginas SEO específicas ficam em URLs próprias.
+## Para desenvolvedores
 
-As definições de páginas, titles, descriptions e sitemap são centralizadas em:
+### Tecnologias
 
-`src/seo/seoPages.js`
+**Frontend:** React 19, Vite 8, JavaScript e CSS.  
+**Planilhas:** `@e965/xlsx`.  
+**Publicação e SEO:** geração de páginas, validações automatizadas e scripts de build.  
+**Qualidade:** rotinas próprias de QA de design, parser, impressão, SEO e integrações.
 
-Não duplicar listas de páginas em outros arquivos.
-
-## Criador
-
-O fluxo atual permite:
-
-1. escolher o formato;
-2. colar produtos, usar “Colar e gerar”, arrastar arquivo ou importar planilha;
-3. revisar descrição, complemento, unidade e preço;
-4. personalizar modelo, cores, fonte da descrição, fonte do preço e cabeçalho;
-5. visualizar o cartaz;
-6. revisar papel/orientação;
-7. salvar como PDF ou imprimir.
-
-Depois da geração, o usuário também pode mudar o tipo de oferta sem recomeçar o fluxo:
-
-- Padrão;
-- De / Por — pode calcular automaticamente o percentual de desconto;
-- Leve X por Y — pode mostrar também o preço unitário “cada”;
-- Atacado / Varejo — pode informar a quantidade mínima do atacado;
-- Clube / App;
-- 2ª unidade;
-- Oferta de App no formato dedicado.
-
-Essas opções são deliberadamente **opcionais** e não criam uma nova etapa antes da primeira placa.
-
-Atalhos de produtividade no editor:
-
-- Ctrl+Enter (ou Cmd+Enter) gera as placas quando há conteúdo;
-- TXT, CSV, XLS e XLSX podem ser arrastados para a entrada rápida;
-- colagens vindas de Excel/ERP aceitam tabulação, ponto e vírgula e pipe;
-- cabeçalhos comuns como Produto / Unidade / Preço são ignorados automaticamente;
-- até cinco listas recentes ficam salvas localmente, com acesso compacto pelo menu “+”.
-
-Retorno recorrente:
-
-- o site possui manifest, service worker e ícones 192/512 para instalação como app quando o navegador oferecer suporte;
-- o botão “Instalar app” só aparece quando o navegador disponibiliza o prompt;
-- a instalação é opcional e não altera a regra dos 2 cliques.
-
-Outros ajustes opcionais disponíveis depois da geração:
-
-- tipografia separada para descrição e preço, com padrão varejo condensado + Futura para preço;
-- validade da oferta;
-- limite por cliente;
-- logo da loja salva localmente no dispositivo;
-- header personalizado da loja/campanha, enviado em PNG, JPG ou WebP e salvo localmente;
-- salvar como PDF usando o destino PDF da janela de impressão.
-
-Formatos principais disponíveis:
-
-- A4 com 4 cartazes;
-- A4 com 2 cartazes;
-- A4 com 2 cartazes invertido;
-- A4 com 2 ofertas de App;
-- A4;
-- A5;
-- A3;
-
-A impressão usa as medidas físicas do formato em milímetros. O SRA3 permanece apenas como compatibilidade interna legada e não é oferecido para novos trabalhos.
-
-## Fundos prontos para imprimir
-
-A página `/modelos/` oferece dois caminhos independentes: **Modelos com preço** e **Fundos prontos para imprimir**. No segundo, o usuário escolhe a arte, o tamanho e a quantidade de folhas (até 50), visualiza uma prévia do fundo real e imprime diretamente ou seleciona "Salvar como PDF" no navegador. Não é necessário cadastrar produtos.
-
-A implementação reutiliza `PosterSheet` com `backgroundOnly` e a lógica de `src/poster-engine/backgroundPrinting.js`, garantindo coerência com a impressão do criador. O modelo "Papel pré-impresso" é omitido da lista de fundos porque não possui arte de fundo. A página de modelos mantém filtros e modelos completos no outro caminho.
-
-## Tutoriais e SEO de impressão
-
-- Em `/modelos/`, a aba **Fundos prontos para imprimir** exibe quatro passos claros, prévia real e orientações de PDF e impressão.
-- Em `/editor-livre/`, **Como usar o editor** abre um guia interativo de quatro passos, com destaque dos controles reais de formato, produto, caixas e impressão.
-- O editor também disponibiliza uma captura real, carregada somente se o usuário expandir a opção. O build copia `screenshots/site/editor-livre-desktop.png` para `dist/tutorials/`.
-- Ambas as páginas têm os tutoriais no HTML estático e dados estruturados HowTo, sincronizados em `src/seo/seoPages.js`. Dados estruturados não garantem resultados especiais no Google.
-- A captura automatizada também verifica o tutorial aberto e a seleção de fundos, gerando `modelos-fundos-*.png` e `editor-livre-tutorial-*.png`.
-
-## Inteligência artificial
-
-**“Crie seu cartaz com IA” fica oficialmente na V2 e não bloqueia o encerramento do produto principal.**
-
-Não anunciar IA como recurso disponível no MVP atual. O criador principal é considerado funcional sem IA: continua gratuito, sem cadastro obrigatório para começar e preserva a regra dos 2 cliques.
-
-## Páginas institucionais e confiança
-
-Para transparência com usuários e revisão de monetização, o site mantém páginas indexáveis e acessíveis no footer:
-
-- Sobre;
-- Fale Conosco;
-- Política de Privacidade;
-- Termos de Uso.
-
-Essas páginas não recebem anúncios manuais e devem permanecer claras, atualizadas e acessíveis sem cadastro.
-
-## Publicidade
-
-Google AdSense publisher:
-
-`ca-pub-9514218545388169`
-
-Slots manuais:
-
-- seletor de formatos: `7286894770`;
-- páginas de conteúdo/SEO: `5483033524`.
-
-O slot antigo `3215962830` não faz parte do fluxo atual porque a raiz é o criador, não uma landing de conteúdo.
-
-Regras:
-
-- não colocar anúncio manual dentro do editor;
-- anúncio bloqueado ou não preenchido não deve reservar espaço vazio;
-- Auto Ads permanece conservador/desligado enquanto usamos posições manuais;
-- nunca clicar em anúncios próprios para teste.
-
-O arquivo `/ads.txt` deve conter somente:
-
-```text
-google.com, pub-9514218545388169, DIRECT, f08c47fec0942fa0
-```
-
-A aprovação/recrawl do AdSense depende do Google e não do deploy.
-
-## Analytics
-
-- Google Tag Manager: `GTM-5RGPM6HD`;
-- GA4 de referência: `G-K8YWSXBHS7`.
-
-O HTML carrega **somente o GTM**. A instalação direta de `gtag.js` foi removida para evitar pageviews duplicados.
-
-Eventos de produto enviados ao `dataLayer`:
-
-- `ofertamatica_creator_view`;
-- `ofertamatica_format_selected`;
-- `ofertamatica_draft_resumed`;
-- `ofertamatica_print_review`;
-- `ofertamatica_print_started`;
-- `ofertamatica_first_generation` — mede o tempo até a primeira geração de placas na sessão;
-- `ofertamatica_offer_mode_selected` — registra quando o usuário escolhe um tipo de oferta opcional;
-- `ofertamatica_store_logo_added` — registra o uso da logo da loja;
-- `ofertamatica_custom_header_added` — registra o uso de um header personalizado;
-- `ofertamatica_pdf_review`;
-- `ofertamatica_pdf_started`;
-- `ofertamatica_clipboard_generate` — mede o uso do fluxo literal “Colar e gerar”;
-- `ofertamatica_keyboard_generate` — uso do atalho Ctrl/Cmd+Enter;
-- `ofertamatica_keyboard_print_review` — uso de Ctrl/Cmd+P para abrir a revisão de impressão;
-- `ofertamatica_file_import` — importação pelo seletor;
-- `ofertamatica_drag_import` — importação por arrastar e soltar;
-- `ofertamatica_recent_job_reused` — reutilização de um trabalho recente salvo localmente;
-- `ofertamatica_install_prompt_result` — resultado do prompt de instalação do app;
-- `ofertamatica_app_installed` — instalação concluída.
-
-O container GTM pode usar esses eventos para tags/relatórios sem adicionar outro loader de GA4 ao código.
-
-## SEO
-
-O build gera páginas estáticas para as páginas públicas e SEO, além de:
-
-- canonical individual;
-- title e description individuais;
-- Open Graph;
-- JSON-LD;
-- breadcrumbs;
-- FAQ estruturada;
-- `sitemap.xml`;
-- `robots.txt`.
-
-A raiz continua sendo o criador e não é substituída por uma landing SEO.
-
-## QA visual automatizado
-
-O repositório mantém uma rota interna `/visual-qa/cartazes` e capturas Playwright para comparar as placas com referências físicas. O QA verifica carregamento das fontes, overflow, composição do preço e páginas principais do site em desktop/mobile.
-
-Arquivos principais:
-
-- `scripts/capture-poster-visuals.mjs`;
-- `scripts/capture-site-visuals.mjs`;
-- `scripts/validate-posters.mjs`;
-- `.github/workflows/poster-visual-snapshot.yml`.
-
-## Desenvolvimento
+### Executar localmente
 
 ```bash
+git clone https://github.com/HelioConde/ofertamatica.git
+cd ofertamatica
 npm install
 npm run dev
 ```
 
-Build:
+### Construção e validação
 
 ```bash
 npm run build
-```
-
-Validação do build e parser de listas:
-
-```bash
-npm run check:build
-```
-
-A validação cobre também entradas simples e colagens de Excel/ERP com cabeçalho, tabulação, ponto e vírgula e pipe.
-
-Build + validação:
-
-```bash
 npm run verify
+npm run qa:design
+npm run audit:content
 ```
 
-## Deploy de produção
+O comando `verify` executa o build e uma sequência de verificações automatizadas. Elas ajudam a detectar regressões, mas não substituem conferir manualmente a impressão física.
 
-Pushes em `main` executam `.github/workflows/deploy-beta.yml`.
+### Organização
 
-O nome do arquivo é histórico; o workflow atual publica **produção** na Locaweb em:
+```text
+src/          Aplicação e componentes
+public/       Recursos públicos
+img/          Imagens do projeto
+Fundo/        Fundos e materiais de cartazes
+scripts/      Build, SEO e ferramentas de validação
+apps/         Experiências e integrações
+docs/         Documentação técnica, SEO e regras
+DESIGN.md     Padrão visual da aplicação
+AGENTS.md     Orientações para manutenção
+```
 
-`public_html`
+## Rotas e recursos relacionados
 
-Antes do FTP, o workflow executa build e validações automáticas. O deploy envia assets primeiro e depois o restante do app.
+| Endereço | Finalidade |
+| --- | --- |
+| [`/`](https://ofertamatica.com.br/) | Criador de cartazes |
+| [`/modelos/`](https://ofertamatica.com.br/modelos/) | Biblioteca de modelos e fundos |
+| [`/formatos/`](https://ofertamatica.com.br/formatos/) | Opções de tamanho e subdivisões |
+| [`/como-funciona/`](https://ofertamatica.com.br/como-funciona/) | Tutorial de uso |
+| [`/guias-para-varejo/`](https://ofertamatica.com.br/guias-para-varejo/) | Conteúdo de apoio |
+| [Validade Zero](https://ofertamatica.com.br/validade-zero/) | Experiência relacionada de controle de vencimentos |
 
-## Segurança
+O produto evolui com outras experiências para o varejo, mas o **criador de cartazes continua sendo a entrada principal do site**.
 
-- nunca versionar senhas, tokens ou arquivos `.env`;
-- FTP usa GitHub Secrets;
-- não colocar credenciais privadas no frontend;
-- mudanças de monetização, Analytics ou rota raiz devem preservar as regras deste README.
+## Documentação para manutenção
 
+- [Identidade visual e diretrizes de UI](DESIGN.md)
+- [Requisitos detalhados e histórico técnico](docs/README_REFERENCE_2026-10-25.md)
+- [Consentimento e privacidade](docs/CONSENTIMENTO.md)
+- [Auditoria de conteúdo para anúncios](docs/ADSENSE_CONTENT_REVIEW.md)
+- [Integração Validade Zero](docs/VALIDADE_ZERO_INTEGRACAO.md)
+- [Monitoramento](docs/MONITORAMENTO.md)
 
-## Status do MVP principal
+## Estado do projeto
 
-> **MVP principal tecnicamente concluído em 07/10/2026.** A partir daqui, o foco é QA real de impressão/uso e dependências externas de monetização, não expansão de escopo.
+**Aplicação web publicada e em evolução.** O foco do produto é preservar seu fluxo rápido, legibilidade dos preços, clareza das ações e confiabilidade da impressão. Alterações de design e novas funções não devem comprometer esses critérios.
 
-Gate final de validação:
-- revisar todos os formatos de impressão;
-- testar colagens reais de Excel/ERP;
-- testar PDF/impressão em Chrome, Edge e impressora física;
-- confirmar `100dvh` e ausência de scroll global indevido no desktop;
-- manter somente GTM no HTML, sem loader `gtag.js` duplicado;
-- manter `/ads.txt` correto e acompanhar o recrawl/aprovação do AdSense.
+---
 
-**IA, novas automações e recursos avançados ficam para V2.**
+<div align="center"><strong>Criado por <a href="https://github.com/HelioConde">Hélio Conde</a></strong></div>
