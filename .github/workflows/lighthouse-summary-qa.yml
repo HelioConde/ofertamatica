@@ -1,0 +1,30 @@
+name: Ofertamatica Lighthouse — validar relatorio
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/summarize-lighthouse.mjs"
+      - "scripts/test-summarize-lighthouse.mjs"
+      - ".github/workflows/lighthouse-summary-qa.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/summarize-lighthouse.mjs"
+      - "scripts/test-summarize-lighthouse.mjs"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  report-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar parser e testes sem acesso ao site de produção
+        run: |
+          node --check scripts/summarize-lighthouse.mjs
+          node --check scripts/test-summarize-lighthouse.mjs
+          node scripts/test-summarize-lighthouse.mjs
