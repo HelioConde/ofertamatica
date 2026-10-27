@@ -33,25 +33,39 @@ jobs:
 
       - name: Verificar sumario Lighthouse com fixtures
         run: node scripts/test-summarize-lighthouse.mjs
+      - name: Testar validacao de HTML sem rede
+        run: python3 -m unittest discover -s scripts -p 'test_check_production_html.py'
 
-      - name: Check Chrome and production
+      - name: Check Chrome and production (retry full HTML validation)
         run: |
           google-chrome --version
-          # Falhas temporárias de rede são tentadas novamente; o texto do H1 pode mudar
-          # com atualizações editoriais, sem representar indisponibilidade real.
-          curl --fail --location --compressed --silent --show-error \
-            --retry 5 --retry-delay 4 --retry-all-errors \
-            --max-time 30 https://ofertamatica.com.br/ \
-            --output /tmp/ofertamatica-production.html
-          python3 - <<'PY'
-          from pathlib import Path
-          import unicodedata
-          body = Path("/tmp/ofertamatica-production.html").read_text(encoding="utf-8",errors="replace")
-          body = "".join(c for c in unicodedata.normalize("NFKD",body.lower()) if not unicodedata.combining(c))
-          if "<html" not in body or "ofertamatica" not in body:
-              raise SystemExit("Página inesperada na produção (HTML/identidade não encontrados).")
-          print("PASS: produção responde com HTML da Ofertamática; Lighthouse verificará a experiência renderizada.")
-          PY
+          mkdir -p performance
+          ready=0
+          for attempt in 1 2 3 4; do
+            echo "Verificando HTML de produção: tentativa $attempt/4."
+            if curl --fail --location --compressed --silent --show-error \
+              --connect-timeout 15 --max-time 30 \
+              --retry 2 --retry-delay 2 --retry-all-errors \
+              --header 'Accept: text/html' \
+              https://ofertamatica.com.br/ \
+              --output /tmp/ofertamatica-production.html; then
+              if python3 scripts/check-production-html.py \
+                /tmp/ofertamatica-production.html \
+                "performance/production-readiness-$attempt.json"; then
+                ready=1
+                echo "Produção confirmada na tentativa $attempt." >> "$GITHUB_STEP_SUMMARY"
+                break
+              fi
+            else
+              echo "::warning::Solicitação HTTPS falhou na tentativa $attempt."
+            fi
+            if [ "$attempt" -lt 4 ]; then sleep "$((attempt * 4))"; fi
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo "::error title=Produção indisponível ou inesperada::As quatro tentativas não retornaram HTML válido da aplicação. Verifique os relatórios production-readiness-N.json; Lighthouse não foi executado."
+            echo "Falha de disponibilidade/identidade após quatro tentativas; não confundir com score Lighthouse." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
 
       - name: Install Lighthouse
         run: npm install --no-save --no-audit --no-fund lighthouse@12
