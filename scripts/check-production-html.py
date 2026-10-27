@@ -13,8 +13,8 @@ def inspect_production_html(html: str) -> dict:
         char for char in unicodedata.normalize("NFKD", html.lower())
         if not unicodedata.combining(char)
     )
-    has_html = re.search(r"<html(?:\\s|>)", normalized) is not None
-    has_root = re.search(r"""<div\\s+id=(["'])root\\1""", html, re.IGNORECASE) is not None
+    has_html = re.search(r"<html(?:\s|>)", normalized) is not None
+    has_root = re.search(r"""<div\s+id=(["'])root\1""", html, re.IGNORECASE) is not None
     has_brand = "ofertamatica" in normalized
     title = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
     title_text = re.sub(r"<[^>]+>", "", title.group(1)).strip()[:120] if title else ""
