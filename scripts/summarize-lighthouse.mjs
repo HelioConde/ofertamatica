@@ -65,3 +65,29 @@ for (const [label, key] of opportunities) {
 if (!shown) console.log('- Nenhuma oportunidade relevante detectada entre as verificações selecionadas.')
 console.log('')
 console.log('As notas são estimativas de laboratório e variam entre execuções. Não são Core Web Vitals de usuários reais.')
+
+
+console.log('### JavaScript não utilizado por origem (celular)')
+const unusedItems = mobile.audits?.['unused-javascript']?.details?.items || []
+const perHost = new Map()
+for (const item of unusedItems) {
+  const bytes = Number(item.wastedBytes)
+  if (!Number.isFinite(bytes) || bytes <= 0) continue
+  let host = 'desconhecido'
+  try { host = new URL(item.url).hostname } catch { /* Relatório parcial. */ }
+  perHost.set(host, (perHost.get(host) || 0) + bytes)
+}
+const fmtKiB = (bytes) => (bytes / 1024).toFixed(1) + ' KiB'
+const localWaste = [...perHost.entries()]
+  .filter(([host]) => host === 'ofertamatica.com.br' || host.endsWith('.ofertamatica.com.br'))
+  .reduce((sum, [, bytes]) => sum + bytes, 0)
+const thirdWaste = [...perHost.entries()]
+  .filter(([host]) => !(host === 'ofertamatica.com.br' || host.endsWith('.ofertamatica.com.br')))
+  .reduce((sum, [, bytes]) => sum + bytes, 0)
+console.log('- Código do próprio site: ' + fmtKiB(localWaste) + ' estimados.')
+console.log('- Código de terceiros: ' + fmtKiB(thirdWaste) + ' estimados.')
+for (const [host, bytes] of [...perHost.entries()].sort((a,b) => b[1]-a[1]).slice(0, 5)) {
+  console.log('  - ' + esc(host) + ': ' + fmtKiB(bytes))
+}
+console.log('')
+console.log('**Interpretação:** JavaScript não usado é estimativa do Lighthouse, não transferência efetiva ou erro do código. Priorizamos mudanças de primeira parte; otimizações em anúncios não podem quebrar AdSense, CMP ou consentimento.')

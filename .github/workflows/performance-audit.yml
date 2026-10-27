@@ -31,6 +31,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Verificar sumario Lighthouse com fixtures
+        run: node scripts/test-summarize-lighthouse.mjs
+
       - name: Check Chrome and production
         run: |
           google-chrome --version
