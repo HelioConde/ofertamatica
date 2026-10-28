@@ -1,5 +1,4 @@
 import { lazy, Suspense, useState } from 'react'
-import { AdUnit } from './components/AdUnit'
 import { trackEvent } from './utils/telemetry'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
@@ -145,9 +144,6 @@ function FormatChooser({ onSelect, draft, onResume }) {
             ))}
           </div>
         </section>
-        <aside className="format-ad-card format-ad-zone" aria-label="Publicidade separada dos formatos">
-          <AdUnit placement="format-grid" />
-        </aside>
         <nav className="format-trust-links" aria-label="Atalhos e informações">
           <a href="/modelos/">Modelos de cartazes</a>
           <a href="/editor-livre/">Editor livre: monte sua própria placa</a>

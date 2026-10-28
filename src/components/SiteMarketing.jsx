@@ -899,7 +899,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
 
         {!isInstitutional ? <SearchTopicSections slug={page.slug} /> : null}
 
-        {(!isLegal && !isTrust) ? <AdUnit placement={'seo-' + page.slug} /> : null}
+        {/* Páginas institucionais, catálogo, guias e navegação não solicitam anúncios. */}
 
         <section className="marketing-final-cta">
           <div>
@@ -1047,7 +1047,11 @@ export function SeoLanding({ page, onCreate }) {
           </section>
         ) : null}
 
-        <AdUnit placement={'seo-' + page.slug} />
+        {/* Somente guias com explicações específicas e exemplos poderão exibir anúncios,
+            quando o AdSense estiver aprovado e a flag de produção estiver habilitada. */}
+        {page.sections?.length >= 2 && page.tips?.length >= 3 && page.storeUse?.length >= 2
+          ? <AdUnit placement={'seo-' + page.slug} />
+          : null}
 
         <section className="related-pages">
           <span className="marketing-kicker">CONTINUE</span>
