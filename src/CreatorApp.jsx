@@ -11,6 +11,7 @@ import { useModelPopularity } from './utils/useModelPopularity'
 import './styles/model-popularity.css'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
+import PriceValue from './components/posters/PriceValue'
 import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
 
 // Páginas editoriais e galeria de modelos só são carregadas nas suas rotas.
@@ -825,6 +826,12 @@ function PosterOptionPreview({
             showBackground
           />
         </div>
+        {/* A miniatura é pequena demais para a tipografia física do A4.
+            Este preço exemplificativo usa o mesmo valor, fonte e cor da placa,
+            mas é ampliado só na UI do seletor; não altera impressão/exportação. */}
+        <div className="model-thumbnail-price" data-sample-price={samplePrice} aria-hidden="true">
+          <PriceValue value={`R$ ${samplePrice}`} />
+        </div>
       </div>
     </div>
   )
@@ -1264,7 +1271,8 @@ function StyleSidebar({
                   className={isActive ? 'active' : ''}
                   data-model-art={isModel ? item.model.id : undefined}
                   onClick={() => chooseHeader(item.id)}
-                  title={isModel ? `${item.label} — modelo completo` : (isFrame ? `${item.label} — moldura` : item.label)}
+                  title={isModel ? `${item.label} — modelo completo, preço ilustrativo R$ ${item.model.value}` : (isFrame ? `${item.label} — moldura` : item.label)}
+                  aria-label={isModel ? `${item.label}, preço ilustrativo R$ ${item.model.value}` : item.label}
                   aria-pressed={isActive}
                 >
                   {isModel && modelPopularityBadge(item.model.id, globalCounts) ? (
