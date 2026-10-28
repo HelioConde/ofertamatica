@@ -24,11 +24,12 @@ async function fetchPopularity() {
   return pending
 }
 
-export function useModelPopularity() {
+export function useModelPopularity(enabled = true) {
   const [personalCounts, setPersonalCounts] = useState(readPersonalModelCounts)
   const [globalCounts, setGlobalCounts] = useState(() => Date.now() < cacheExpires ? cachedGlobal : {})
 
   useEffect(() => {
+    if (!enabled) return undefined
     let mounted = true
     fetchPopularity().then((counts) => { if (mounted) setGlobalCounts(counts) })
     const update = () => setPersonalCounts(readPersonalModelCounts())
@@ -39,7 +40,7 @@ export function useModelPopularity() {
       window.removeEventListener('ofertamatica-model-usage', update)
       window.removeEventListener('storage', update)
     }
-  }, [])
+  }, [enabled])
 
   return { personalCounts, globalCounts }
 }
