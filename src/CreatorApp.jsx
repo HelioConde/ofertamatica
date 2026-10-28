@@ -5,6 +5,7 @@ const PosterSheet = lazy(() => import('./components/posters/PosterSheet'))
 const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 const FreePosterEditor = lazy(() => import('./components/FreePosterEditor'))
 import { AdUnit } from './components/AdUnit'
+import HomePrintHelp from './components/HomePrintHelp'
 import { trackEvent } from './utils/telemetry'
 import { modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } from './utils/modelPopularity'
 import { useModelPopularity } from './utils/useModelPopularity'
@@ -612,6 +613,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
           </details>
         </nav>
       </section>
+      <HomePrintHelp />
     </main>
   )
 }
