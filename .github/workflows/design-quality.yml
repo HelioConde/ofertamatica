@@ -5,6 +5,9 @@ on:
     paths:
       - 'apps/validade-zero/**'
       - 'scripts/generate-seo-pages.mjs'
+      - 'scripts/probe-public-access.py'
+      - 'scripts/test_probe_public_access.py'
+      - '.github/workflows/public-crawl-health.yml'
       - 'scripts/validate-seo-graph.mjs'
       - 'scripts/validate-validade-zero.mjs'
       - 'scripts/qa-interactions.mjs'
@@ -21,6 +24,9 @@ on:
     paths:
       - 'apps/validade-zero/**'
       - 'scripts/generate-seo-pages.mjs'
+      - 'scripts/probe-public-access.py'
+      - 'scripts/test_probe_public_access.py'
+      - '.github/workflows/public-crawl-health.yml'
       - 'scripts/validate-seo-graph.mjs'
       - 'scripts/validate-validade-zero.mjs'
       - 'scripts/qa-interactions.mjs'
@@ -54,6 +60,8 @@ jobs:
         run: |
           php -l public/api/telemetria.php
           php -l public/api/modelos-populares.php
+      - name: Verificar diagnóstico de acesso externo sem rede
+        run: python3 -m unittest discover -s scripts -p 'test_probe_public_access.py'
       - name: Build and validate
         run: npm run verify
       - name: Validade Zero unit tests (local, scanner and login)
@@ -92,6 +100,11 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-release-print-import.mjs
+
+      - name: Check four editor tabs and mobile navigation at 360px
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/capture-mobile-editor.mjs
 
       - name: Capture public pages and check unclipped format cards
         env:

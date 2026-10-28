@@ -1,0 +1,33 @@
+name: Ofertamática — disponibilidade pública
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 07:15 America/Sao_Paulo (10:15 UTC; São Paulo atualmente UTC-3)
+    - cron: '15 10 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ofertamatica-public-access
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Testar detector de desafio (sem rede)
+        run: python3 -m unittest discover -s scripts -p 'test_probe_public_access.py'
+      - name: Verificar acesso público de outra rede
+        run: python3 scripts/probe-public-access.py
+      - name: Salvar evidências sem IP nem conteúdo bruto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ofertamatica-public-access
+          path: performance/public-access/public-crawl-health.json
+          retention-days: 30
+          if-no-files-found: warn
