@@ -101,6 +101,11 @@ jobs:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-release-print-import.mjs
 
+      - name: Check four editor tabs and mobile navigation at 360px
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/capture-mobile-editor.mjs
+
       - name: Capture public pages and check unclipped format cards
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
