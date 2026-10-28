@@ -10,6 +10,9 @@ import { createPosterLayouts } from '../poster-engine/layoutPlan'
 import { parseProductList } from '../poster-engine/parseProduct'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
+import { modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } from '../utils/modelPopularity'
+import { useModelPopularity } from '../utils/useModelPopularity'
+import { trackEvent } from '../utils/telemetry'
 import {
   PUBLIC_PAGES,
   SEO_FAQS,
@@ -22,6 +25,7 @@ import '../styles/validade-zero.css'
 // O gerador de SEO adiciona a mesma folha ao HTML destas rotas para evitar FOUC.
 import '../styles/marketing.css'
 import '../styles/background-gallery.css'
+import '../styles/model-popularity.css'
 
 const PrintableBackgroundGallery = lazy(() => import('./PrintableBackgroundGallery'))
 
@@ -248,7 +252,7 @@ function MarketingFooter() {
   )
 }
 
-function ModelCard({ item, onCreate }) {
+function ModelCard({ item, onCreate, badge }) {
   const headerFooterStyle = item.headerFooterStyle || 'moldura'
   const offerMode = item.offerMode || 'standard'
 
@@ -319,6 +323,8 @@ function ModelCard({ item, onCreate }) {
     } catch {
       // Mesmo sem armazenamento local, o usuário ainda pode abrir o criador.
     }
+    recordPersonalModelSelection(item.id)
+    trackEvent('model_selected', { modelId: item.id })
     onCreate()
   }
 
@@ -329,6 +335,7 @@ function ModelCard({ item, onCreate }) {
 
   return (
     <article className="model-showcase-card model-showcase-card-real">
+      {badge ? <span className="model-showcase-badge">{badge}</span> : null}
       <div
         className="model-real-poster-shell"
         style={{
@@ -428,6 +435,8 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
   const [modelView, setModelView] = useState('grade')
+  const [modelSort, setModelSort] = useState('featured')
+  const { globalCounts, personalCounts } = useModelPopularity(page.slug === 'modelos')
   const [modelMode, setModelMode] = useState(() => window.location.hash === '#fundos-para-imprimir' ? 'backgrounds' : 'filled')
   function chooseModelMode(mode) {
     setModelMode(mode)
@@ -482,7 +491,8 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const remainingGuides = Math.max(0, visibleGuides.length - displayedGuides.length)
   const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
   const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
-  const filteredModels = MODEL_PRESETS.filter((item) => {
+  const rankedModels = sortPosterModels(MODEL_PRESETS, { globalCounts, personalCounts, mode: modelSort })
+  const filteredModels = rankedModels.filter((item) => {
     const matchesCategory = modelCategory === 'Todos' || item.category === modelCategory
     const haystack = [item.name, item.category, item.label, item.product, item.note]
       .join(' ')
@@ -580,6 +590,21 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 </label>
                 <strong>{visibleModels.length} de {filteredModels.length} encontrados · {MODEL_PRESETS.length} no total</strong>
               </div>
+              <div className="model-popularity-toolbar">
+                <div className="model-popularity-sort" role="group" aria-label="Ordenar modelos da galeria">
+                  {[
+                    ['featured', 'Destaques'], ['personal', 'Meus mais usados'], ['original', 'Ordem original'],
+                  ].map(([id, label]) => (
+                    <button type="button" key={id} aria-pressed={modelSort === id}
+                      onClick={() => { setModelSort(id); setModelLimit(12) }}>{label}</button>
+                  ))}
+                </div>
+                <small>{modelSort === 'personal'
+                  ? 'Prioriza suas escolhas neste navegador; sem histórico, aparecem os destaques.'
+                  : modelSort === 'featured'
+                    ? 'Primeiro os modelos de maior destaque; o uso agregado pode ajustar a ordem.'
+                    : 'Ordem original do catálogo.'}</small>
+              </div>
               <p className="model-filter-swipe-hint">Deslize para ver mais categorias <span aria-hidden="true">→</span></p>
               <div className="model-category-strip" aria-label="Filtrar modelos por categoria">
                 {modelCategories.map((category) => (
@@ -602,7 +627,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <button type="button" aria-pressed={modelView === 'detalhes'} onClick={() => setModelView('detalhes')}>Prévia maior</button>
               </div>
               <div className={'model-showcase-grid ' + (modelView === 'detalhes' ? 'model-gallery-detailed' : 'model-gallery-compact')}>
-                {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} key={item.id} />)}
+                {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} badge={modelPopularityBadge(item.id, globalCounts)} key={item.id} />)}
               </div>
               {visibleModels.length < filteredModels.length ? (
                 <button
