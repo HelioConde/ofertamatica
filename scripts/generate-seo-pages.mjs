@@ -6,6 +6,7 @@ import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 import { calculatorStaticExample } from '../src/seo/retailCalculators.js'
+import { inspectRetailList, REVIEW_SAMPLE } from '../src/seo/retailListReview.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -192,6 +193,23 @@ function modelExamplesSnapshot() {
     '<p><a href="/?formato=A4">Criar um cartaz A4 com foto</a></p></section>'
 }
 
+function listReviewSnapshot(page) {
+  if (page.slug !== 'cartazes-a-partir-de-excel') return ''
+  const report = inspectRetailList(REVIEW_SAMPLE)
+  const rows = report.rows.map((row) => '<tr><th scope="row" style="text-align:left;padding:8px">' + esc(row.name) +
+    '</th><td style="padding:8px">' + esc(row.unit) + '</td><td style="padding:8px">' + esc(row.price) +
+    '</td><td style="padding:8px">' + esc(row.ready ? 'Sem alertas' : row.issues.join(', ')) + '</td></tr>').join('')
+  return '<section aria-labelledby="review-list-title" style="margin-top:30px;padding:20px;border:1px solid #d9e4f2;border-radius:12px">' +
+    '<h2 id="review-list-title">Teste uma lista do Excel antes de gerar os cartazes</h2>' +
+    '<p>O verificador usa o mesmo interpretador do editor para sinalizar preços ausentes, unidades não definidas e possíveis produtos repetidos. Funciona localmente no navegador e não consulta preços do caixa.</p>' +
+    '<p><strong>Exemplo ilustrativo:</strong> ' + report.total + ' produtos reconhecidos, ' + report.ready +
+    ' sem alertas e ' + report.attention + ' para revisão.</p>' +
+    '<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:550px">' +
+    '<thead><tr><th>Produto</th><th>Unidade</th><th>Preço</th><th>Conferência</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+    '<p>Ative o JavaScript para colar a sua própria lista e verificar os itens antes de abrir o gerador.</p>' +
+    '<p><a href="/?formato=A4">Abrir criador de cartazes A4</a></p></section>'
+}
+
 function retailCalculatorSnapshot(page) {
   const example = calculatorStaticExample(page.slug)
   if (!example) return ''
@@ -276,6 +294,7 @@ function snapshot(page) {
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
     ${retailCalculatorSnapshot(page)}
+    ${listReviewSnapshot(page)}
     ${howToContent}
     ${page.slug === 'modelos' ? modelExamplesSnapshot() : ''}
     ${guideIndex}
