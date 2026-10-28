@@ -4,6 +4,7 @@ import { INDEXABLE_PAGES, SEO_PAGES, SEO_FAQS, SITE_URL } from '../src/seo/seoPa
 import { searchTopicsFor } from '../src/seo/searchIntent.js'
 import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/homePrintHelp.js'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
+import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -165,6 +166,31 @@ function structuredData(page) {
   }).replaceAll('<', '\\u003c')
 }
 
+
+function modelExamplesSnapshot() {
+  const priority = [
+    'foto-esquerda', 'foto-direita', 'foto-central',
+    'oferta-dia', 'hortifruti', 'padaria', 'de-por', 'atacado',
+  ]
+  const cards = priority.map((id) => POSTER_MODEL_PRESETS.find((model) => model.id === id))
+    .filter(Boolean)
+    .map((model) =>
+      '<li style="padding:17px;border:1px solid #dce6f4;border-radius:10px;min-width:0;display:block">' +
+      (model.sampleImage ? '<img src="' + esc(model.sampleImage) + '" alt="Ilustração de ' + esc(model.product) + '" loading="lazy" width="95" height="95" style="object-fit:contain;float:right;margin-left:10px"/>' : '') +
+      '<strong style="display:block;font-size:17px">' + esc(model.name) + '</strong>' +
+      '<p style="font-size:13px;color:#52647e">' + esc(model.category) + ' · Exemplo fictício: ' + esc(model.product) + ' — R$ ' + esc(model.value) + '</p>' +
+      '<p style="font-size:14px;line-height:1.6">' + esc(model.note) + '</p>' +
+      '</li>'
+    ).join('')
+  return '<section style="margin-top:30px" aria-labelledby="modelos-exemplos">' +
+    '<h2 id="modelos-exemplos">Exemplos de modelos com produto, preço e finalidade</h2>' +
+    '<p>O catálogo permite comparar estilos de cartaz antes de criar uma oferta. Os produtos e preços exibidos abaixo são apenas exemplos: não representam promoções reais. No editor, substitua por sua lista e confira os valores.</p>' +
+    '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
+    '<h2>Cartazes com foto do produto</h2>' +
+    '<p>Você pode escolher um modelo com imagem à esquerda, à direita ou centralizada. Após abrir o editor, selecione o produto na tabela, entre em Estilo e Fotos e envie PNG, JPG ou WebP. A foto é processada localmente no navegador. Confira se o preço continua visível e use somente imagens que você tem autorização para utilizar.</p>' +
+    '<p><a href="/?formato=A4">Criar um cartaz A4 com foto</a></p></section>'
+}
+
 function snapshot(page) {
   const benefits = page.benefits.map((item) => `<li>${esc(item)}</li>`).join('')
   const sections = (page.sections || []).map((section) => `
@@ -237,6 +263,7 @@ function snapshot(page) {
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
     ${howToContent}
+    ${page.slug === 'modelos' ? modelExamplesSnapshot() : ''}
     ${guideIndex}
     ${paperChoices}
     ${paperFormats}
