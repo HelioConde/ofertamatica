@@ -107,3 +107,13 @@
     overflow: visible !important;
   }
 }
+
+/* Todos os links novos permanecem acessíveis ao toque no celular. */
+.home-print-plan > a,
+.home-print-boundary nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 5px 0;
+  line-height: 1.4;
+}
