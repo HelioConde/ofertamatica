@@ -57,6 +57,40 @@ await scenario('Home útil: calculadora e conteúdo sem bloquear o gerador', { w
     'O guia não pode impedir a abertura direta do editor')
 })
 
+// Conteúdo diferenciador das páginas de setor: cálculos funcionais sem backend.
+for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 }]) {
+  await scenario('Guia hortifruti: preço por peso (' + viewport.width + 'px)', viewport, async (page) => {
+    await page.goto(origin + '/placas-para-hortifruti/', { waitUntil: 'domcontentloaded' })
+    await check(page, '.retail-calculator-fields', 'Simulador de preço por peso ausente')
+    const inputs = page.locator('.retail-calculator-fields input')
+    await inputs.nth(0).fill('14,90')
+    await inputs.nth(1).fill('350')
+    if (!(await page.locator('.retail-calculator-result').innerText()).includes('5,22'))
+      throw new Error('R$ 14,90/kg por 350 g deveria ser R$ 5,22')
+    await inputs.nth(1).fill('0')
+    if (!(await page.locator('.retail-calculator-result').innerText()).includes('Informe um preço válido'))
+      throw new Error('Peso zero deveria mostrar mensagem de validação')
+    await page.locator('.retail-calculator-fields button').click()
+    if (await inputs.nth(1).inputValue() !== '350') throw new Error('Botão Restaurar exemplo falhou')
+    const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)
+    if (horizontalOverflow) throw new Error('Simulador causa rolagem horizontal')
+  })
+}
+await scenario('Guia De/Por: economia e desconto', { width: 390, height: 844 }, async (page) => {
+  await page.goto(origin + '/cartaz-de-por/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.retail-calculator-fields', 'Comparador de descontos ausente')
+  const inputs = page.locator('.retail-calculator-fields input')
+  await inputs.nth(0).fill('24,90')
+  await inputs.nth(1).fill('19,90')
+  let output = await page.locator('.retail-calculator-result').innerText()
+  if (!output.includes('5,00') || !output.includes('20,1%'))
+    throw new Error('Economia incorreta: ' + output)
+  await inputs.nth(0).fill('19,90')
+  await inputs.nth(1).fill('24,90')
+  output = await page.locator('.retail-calculator-result').innerText()
+  if (!output.includes('O preço anterior deve ser maior')) throw new Error('Desconto inválido não foi bloqueado')
+})
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {

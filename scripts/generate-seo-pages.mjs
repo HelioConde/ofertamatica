@@ -5,6 +5,7 @@ import { searchTopicsFor } from '../src/seo/searchIntent.js'
 import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/homePrintHelp.js'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
+import { calculatorStaticExample } from '../src/seo/retailCalculators.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -191,6 +192,18 @@ function modelExamplesSnapshot() {
     '<p><a href="/?formato=A4">Criar um cartaz A4 com foto</a></p></section>'
 }
 
+function retailCalculatorSnapshot(page) {
+  const example = calculatorStaticExample(page.slug)
+  if (!example) return ''
+  return '<section class="retail-calculator-fallback" style="margin-top:26px;padding:18px;border:1px solid #d8e5f5;border-radius:12px" aria-label="Simulação de preço em uma oferta">' +
+    '<h2>' + esc(example.title) + '</h2>' +
+    '<p>' + esc(example.input) + '</p>' +
+    '<p><strong>' + esc(example.output) + '</strong></p>' +
+    '<p>' + esc(example.note) + '</p>' +
+    '<p>Abra esta página com JavaScript habilitado para alterar os números e fazer sua própria simulação.</p>' +
+    '</section>'
+}
+
 function snapshot(page) {
   const benefits = page.benefits.map((item) => `<li>${esc(item)}</li>`).join('')
   const sections = (page.sections || []).map((section) => `
@@ -262,6 +275,7 @@ function snapshot(page) {
     ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${retailCalculatorSnapshot(page)}
     ${howToContent}
     ${page.slug === 'modelos' ? modelExamplesSnapshot() : ''}
     ${guideIndex}
