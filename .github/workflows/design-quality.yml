@@ -50,6 +50,10 @@ jobs:
           node-version: 22
       - name: Install project dependencies
         run: npm install --no-audit --no-fund
+      - name: Check PHP analytics endpoints
+        run: |
+          php -l public/api/telemetria.php
+          php -l public/api/modelos-populares.php
       - name: Build and validate
         run: npm run verify
       - name: Validade Zero unit tests (local, scanner and login)
