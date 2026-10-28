@@ -1,13 +1,13 @@
 import { useId, useState } from 'react'
 import {
   calculateDiscount, calculatePriceByWeight, calculatorKindForSlug,
-  formatBrl, RETAIL_CALCULATOR_EXAMPLES,
+  formatBrl, RETAIL_CALCULATOR_EXAMPLES, RETAIL_CALCULATOR_PAGE_EXAMPLES,
 } from '../seo/retailCalculators'
 import '../styles/retail-calculators.css'
 
 export default function RetailCalculator({ slug }) {
   const kind = calculatorKindForSlug(slug)
-  const defaults = RETAIL_CALCULATOR_EXAMPLES[kind]
+  const defaults = kind ? { ...RETAIL_CALCULATOR_EXAMPLES[kind], ...RETAIL_CALCULATOR_PAGE_EXAMPLES[slug] } : null
   const baseId = useId()
   const [first, setFirst] = useState(defaults?.primary || '')
   const [second, setSecond] = useState(defaults?.secondary || '')
@@ -18,7 +18,7 @@ export default function RetailCalculator({ slug }) {
       <div className="retail-calculator-intro">
         <span className="marketing-kicker">FERRAMENTA PRÁTICA E GRATUITA</span>
         <h2 id={baseId + '-title'}>{defaults.heading}</h2>
-        <p>{defaults.lead}</p>
+        <p>{defaults.lead} Exemplo inicial: <strong>{defaults.product}</strong>.</p>
       </div>
       <div className="retail-calculator-layout">
         <div className="retail-calculator-fields">
