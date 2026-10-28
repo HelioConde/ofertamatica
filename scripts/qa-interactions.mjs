@@ -37,6 +37,26 @@ await scenario('Home e escolha de formato desktop', { width: 1440, height: 900 }
   await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]', 'Editor não abriu após a seleção')
   if (!(await page.locator('.editor-context').innerText()).includes('A4')) throw new Error('Formato A4 não foi preservado')
 })
+await scenario('Home útil: calculadora e conteúdo sem bloquear o gerador', { width: 390, height: 844 }, async (page) => {
+  const response = await page.request.get(origin + '/')
+  const html = await response.text()
+  if (!html.includes('Planeje suas placas sem desperdiçar papel') || !html.includes('10 folhas A4'))
+    throw new Error('A home sem JavaScript não entrega o guia de impressão')
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.format-grid .format-choice', 'Gerador inicial indisponível')
+  await check(page, '.home-print-plan', 'Calculadora de folhas ausente')
+  await page.locator('.home-print-plan-fields input').fill('37')
+  await page.locator('.home-print-plan-fields select').selectOption('A4X4')
+  if (!(await page.locator('.home-print-plan-result').innerText()).includes('10 folhas A4'))
+    throw new Error('Cálculo 37 cartazes não deu 10 folhas A4')
+  await page.locator('.home-print-plan-fields select').selectOption('A4X8')
+  if (!(await page.locator('.home-print-plan-result').innerText()).includes('5 folhas A4'))
+    throw new Error('Cálculo de oito por folha falhou')
+  await page.locator('.format-choice[data-format-id="A4"]').click()
+  await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]',
+    'O guia não pode impedir a abertura direta do editor')
+})
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {
