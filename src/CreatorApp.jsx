@@ -6,7 +6,7 @@ const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 const FreePosterEditor = lazy(() => import('./components/FreePosterEditor'))
 import { AdUnit } from './components/AdUnit'
 import { trackEvent } from './utils/telemetry'
-import { FEATURED_MODEL_IDS, modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } from './utils/modelPopularity'
+import { modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } from './utils/modelPopularity'
 import { useModelPopularity } from './utils/useModelPopularity'
 import './styles/model-popularity.css'
 import CreatorSeoHead from './components/CreatorSeoHead'
@@ -1290,6 +1290,12 @@ function StyleSidebar({
             })}
           </div>
 
+          {!filteredHeaders.length ? <p className="header-empty">Nenhuma arte encontrada.</p> : null}
+          {filteredHeaders.length > visibleHeaders.length ? (
+            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
+              Mostrar mais opções ({filteredHeaders.length - visibleHeaders.length})
+            </button>
+          ) : null}
           <details className="personalization-library-extra">
             <summary>+ {customHeader ? 'Trocar arte personalizada' : 'Adicionar arte própria'}</summary>
             <button type="button" className="custom-header-upload" disabled={headerUploading} aria-busy={headerUploading} onClick={() => customHeaderInputRef.current?.click()}>
@@ -1323,12 +1329,6 @@ function StyleSidebar({
           ) : null}
 
 
-          {!filteredHeaders.length ? <p className="header-empty">Nenhuma arte encontrada.</p> : null}
-          {filteredHeaders.length > visibleHeaders.length ? (
-            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
-              Mostrar mais opções ({filteredHeaders.length - visibleHeaders.length})
-            </button>
-          ) : null}
         </section>
 
         </div>
