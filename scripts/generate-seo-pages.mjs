@@ -2,7 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { INDEXABLE_PAGES, SEO_PAGES, SEO_FAQS, SITE_URL } from '../src/seo/seoPages.js'
 import { searchTopicsFor } from '../src/seo/searchIntent.js'
+import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/homePrintHelp.js'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
+import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 
 const dist = path.resolve('dist')
 const indexPath = path.join(dist, 'index.html')
@@ -164,6 +166,31 @@ function structuredData(page) {
   }).replaceAll('<', '\\u003c')
 }
 
+
+function modelExamplesSnapshot() {
+  const priority = [
+    'foto-esquerda', 'foto-direita', 'foto-central',
+    'oferta-dia', 'hortifruti', 'padaria', 'de-por', 'atacado',
+  ]
+  const cards = priority.map((id) => POSTER_MODEL_PRESETS.find((model) => model.id === id))
+    .filter(Boolean)
+    .map((model) =>
+      '<li style="padding:17px;border:1px solid #dce6f4;border-radius:10px;min-width:0;display:block">' +
+      (model.sampleImage ? '<img src="' + esc(model.sampleImage) + '" alt="Ilustração de ' + esc(model.product) + '" loading="lazy" width="95" height="95" style="object-fit:contain;float:right;margin-left:10px"/>' : '') +
+      '<strong style="display:block;font-size:17px">' + esc(model.name) + '</strong>' +
+      '<p style="font-size:13px;color:#52647e">' + esc(model.category) + ' · Exemplo fictício: ' + esc(model.product) + ' — R$ ' + esc(model.value) + '</p>' +
+      '<p style="font-size:14px;line-height:1.6">' + esc(model.note) + '</p>' +
+      '</li>'
+    ).join('')
+  return '<section style="margin-top:30px" aria-labelledby="modelos-exemplos">' +
+    '<h2 id="modelos-exemplos">Exemplos de modelos com produto, preço e finalidade</h2>' +
+    '<p>O catálogo permite comparar estilos de cartaz antes de criar uma oferta. Os produtos e preços exibidos abaixo são apenas exemplos: não representam promoções reais. No editor, substitua por sua lista e confira os valores.</p>' +
+    '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
+    '<h2>Cartazes com foto do produto</h2>' +
+    '<p>Você pode escolher um modelo com imagem à esquerda, à direita ou centralizada. Após abrir o editor, selecione o produto na tabela, entre em Estilo e Fotos e envie PNG, JPG ou WebP. A foto é processada localmente no navegador. Confira se o preço continua visível e use somente imagens que você tem autorização para utilizar.</p>' +
+    '<p><a href="/?formato=A4">Criar um cartaz A4 com foto</a></p></section>'
+}
+
 function snapshot(page) {
   const benefits = page.benefits.map((item) => `<li>${esc(item)}</li>`).join('')
   const sections = (page.sections || []).map((section) => `
@@ -236,6 +263,7 @@ function snapshot(page) {
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
     ${howToContent}
+    ${page.slug === 'modelos' ? modelExamplesSnapshot() : ''}
     ${guideIndex}
     ${paperChoices}
     ${paperFormats}
@@ -260,6 +288,34 @@ function snapshot(page) {
     </nav>
     <p><a href="/" style="color:#1d63e9;font-weight:700">Criar meu cartaz no Ofertamática</a></p>
   </main>`
+}
+
+
+function homePrintHelpSnapshot() {
+  const plan = calculatePrintPlan(37, 'A4X4')
+  const steps = HOME_GUIDANCE.map((item) =>
+    '<li><strong>' + esc(item.title) + '</strong><p>' + esc(item.text) + '</p></li>'
+  ).join('')
+  return '<section class="home-print-help" aria-labelledby="home-print-help-title">' +
+    '<header class="home-print-help-heading"><span>ANTES DE IMPRIMIR</span>' +
+    '<h2 id="home-print-help-title">Planeje suas placas sem desperdiçar papel</h2>' +
+    '<p>Um guia rápido para quem prepara dezenas de ofertas: calcule as folhas, confira os dados e imprima no tamanho certo. O gerador continua disponível logo acima, sem cadastro.</p></header>' +
+    '<div class="home-print-help-grid"><div class="home-print-plan">' +
+    '<h3>Quantas folhas preciso para minhas ofertas?</h3>' +
+    '<div class="home-print-plan-result"><span>Exemplo: ' + plan.quantity + ' cartazes, quatro por folha A4</span>' +
+    '<strong>' + plan.sheets + ' folhas ' + plan.option.paper + '</strong>' +
+    '<small>' + plan.freeSlots + ' posições ficam livres na última folha.</small></div>' +
+    '<p>Faça a conta dividindo a quantidade de ofertas pelo número de cartazes por folha e arredondando para cima. A estimativa não inclui provas ou reimpressões.</p>' +
+    '<a href="/qual-papel-usar-para-cartaz/">Veja quais papéis e gramaturas são adequados</a></div>' +
+    '<div class="home-print-guide"><h3>Da lista do estoque ao cartaz impresso</h3>' +
+    '<ol>' + steps + '</ol></div></div>' +
+    '<aside class="home-print-boundary"><strong>O que a ferramenta faz — e o que você deve conferir</strong>' +
+    '<p>' + esc(HOME_LIMITATIONS) + '</p>' +
+    '<nav aria-label="Continuar aprendendo a criar cartazes">' +
+    '<a href="/como-funciona/">Como funciona</a> ' +
+    '<a href="/placas-para-hortifruti/">Preços por kg no hortifruti</a> ' +
+    '<a href="/placas-para-padaria/">Placas para padaria</a>' +
+    '</nav></aside></section>'
 }
 
 // HTML inicial usa as MESMAS classes/estrutura visível da tela React.
@@ -308,7 +364,7 @@ function creatorSnapshot() {
     '<div class="format-grid">' + cards + '</div></section>' +
     '<aside class="format-ad-card format-ad-zone" aria-label="Área de publicidade"></aside>' +
     '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
-    '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a><a href="/conheca-validade-zero/">Conhecer a ferramenta</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section></main>' +
+    '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a><a href="/conheca-validade-zero/">Conhecer a ferramenta</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section>' + homePrintHelpSnapshot() + '</main>' +
     '<aside id="ofertamatica-load-warning" hidden role="alert" style="position:fixed;bottom:12px;left:12px;right:12px;z-index:9999;margin:auto;max-width:600px;padding:14px;border:1px solid #afc9f3;border-radius:12px;background:white;box-shadow:0 6px 36px #0002"><strong>O criador está demorando para carregar.</strong> <a href="/" style="color:#1d63e9;font-weight:800">Recarregar</a></aside></div>' +
     '<script>window.setTimeout(function(){var e=document.getElementById("ofertamatica-load-warning");if(e)e.hidden=false},12000)</script>'
 }

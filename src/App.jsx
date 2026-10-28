@@ -3,6 +3,7 @@ import { AdUnit } from './components/AdUnit'
 import { trackEvent } from './utils/telemetry'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
+import HomePrintHelp from './components/HomePrintHelp'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 
 // A Home usa somente navegação e seletor: o editor completo e suas dependências
@@ -165,6 +166,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
           </details>
         </nav>
       </section>
+      <HomePrintHelp />
     </main>
   )
 }
