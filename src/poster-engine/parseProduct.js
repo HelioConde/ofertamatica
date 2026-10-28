@@ -8,6 +8,8 @@ const UNIT_PATTERN = new RegExp(`^(?:${UNIT_CHUNK_PATTERN})(?:\\s*\\+\\s*(?:${UN
 const TRAILING_UNIT_PATTERN = new RegExp(`(?:^|[\\s,;|\\t])((?:${UNIT_CHUNK_PATTERN})(?:\\s*\\+\\s*(?:${UNIT_CHUNK_PATTERN}))*)\\s*$`, 'i')
 
 const COMPOUND_DESCRIPTIONS = [
+  ['PAO', 'DE', 'QUEIJO'],
+  ['ARROZ', 'TIPO', '1'],
   ['SUPLEMENTO', 'HIDROTONICO'],
   ['KIT', 'ELSEVE'],
   ['KIT', 'SHAMPOO', '+', 'CONDICIONADOR'],
