@@ -79,8 +79,8 @@
 
   function pagePath() {
     var path = window.location.pathname || '/'
-    if (!/^\\/[a-zA-Z0-9/_-]{0,180}$/.test(path)) return null
-    if (/^\\/(api|monitoramento)(\\/|$)/.test(path)) return null
+    if (!/^\/[a-zA-Z0-9/_-]{0,180}$/.test(path)) return null
+    if (/^\/(api|monitoramento)(\/|$)/.test(path)) return null
     return path
   }
 
