@@ -1,3 +1,4 @@
+import { safeProductImageSrc } from '../../poster-engine/productPhotoLayout.js'
 import { POSTER_DESCRIPTION_FONT } from '../../config/posterTypography.js'
 import PriceValue from './PriceValue'
 
@@ -198,7 +199,12 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
         </div> : null}
         {showBackground && !paperStockMode ? <PosterBackground template={template} widthMm={format.widthMm / format.columns} heightMm={format.heightMm / format.rows} /> : null}
         {showLayoutDebug ? <div className="poster-safe-area" style={{ inset: `${template.safeArea}%` }} aria-hidden="true" /> : null}
-        {!backgroundOnly ? <ContentBox plan={plan} box={template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} /> : null}
+        {!backgroundOnly && plan?.photo && safeProductImageSrc(product.imageDataUrl) ? (
+          <div className="poster-product-photo" style={boxStyle(plan.photo.box)} data-photo-layout={template.photoLayout} aria-hidden="true">
+            <img src={safeProductImageSrc(product.imageDataUrl)} alt="" decoding="async" />
+          </div>
+        ) : null}
+        {!backgroundOnly ? <ContentBox plan={plan} box={plan?.content?.box || template.contentBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} /> : null}
         {!paperStockMode && !backgroundOnly ? <OfferMeta product={product} template={template} /> : null}
         {!backgroundOnly ? <PriceBox plan={plan} box={template.priceBox} showDebug={showLayoutDebug} editable={editable} onBoxPointerDown={onBoxPointerDown} showCurrency={template.showCurrency} /> : null}
         {!backgroundOnly ? extraBoxes.map((box) => (
