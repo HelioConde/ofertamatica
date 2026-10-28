@@ -93,6 +93,11 @@ jobs:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-release-print-import.mjs
 
+      - name: Capture public pages and check unclipped format cards
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/capture-site-visuals.mjs
+
       - name: Install Microsoft Playwright CLI
         run: npm install -g @playwright/cli@latest
 
