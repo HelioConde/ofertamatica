@@ -141,7 +141,12 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
     await dialog.getByRole('button', { name: 'Confirmar troca' }).click()
     await dialog.waitFor({ state: 'hidden' })
     if (await textarea.inputValue() !== original) throw new Error('Lista anterior não foi recuperada')
+    await page.waitForFunction((expected) => {
+      try { return JSON.parse(localStorage.getItem('ofertamatica:draft:v1') || '{}').sourceText === expected } catch { return false }
+    }, original)
     await page.reload({ waitUntil: 'domcontentloaded' })
+    await page.locator('.format-choice[data-format-id="A4"]').click()
+    await textarea.waitFor({ state: 'visible' })
     if (await textarea.inputValue() !== original) throw new Error('Rascunho não restaurou a lista carregada')
     await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
     await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
