@@ -1,6 +1,7 @@
 // Curadoria inicial de alto contraste. Dados agregados só promovem modelos com amostra suficiente.
 export const FEATURED_MODEL_IDS = [
   'oferta-dia', 'super-oferta', 'relampago', 'hortifruti',
+  'foto-esquerda', 'foto-direita', 'foto-central',
   'classic', 'oferta-transparente', 'de-por', 'atacado',
 ]
 export const MIN_GLOBAL_SELECTIONS = 5

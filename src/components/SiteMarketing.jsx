@@ -26,6 +26,7 @@ import '../styles/validade-zero.css'
 import '../styles/marketing.css'
 import '../styles/background-gallery.css'
 import '../styles/model-popularity.css'
+import '../styles/product-photo.css'
 
 const PrintableBackgroundGallery = lazy(() => import('./PrintableBackgroundGallery'))
 
@@ -277,6 +278,7 @@ function ModelCard({ item, onCreate, badge }) {
       ...parsed,
       id: `model-${item.id}`,
       price: item.value,
+      imageDataUrl: item.sampleImage || '',
       regularPrice: ['de-por', 'clube', 'app'].includes(item.id) ? '24,90' : parsed.regularPrice,
       offerQuantity: item.id === 'leve-mais' ? '3' : parsed.offerQuantity,
       eachPrice: item.id === 'leve-mais' ? item.value : parsed.eachPrice,
@@ -293,6 +295,7 @@ function ModelCard({ item, onCreate, badge }) {
       validityText: item.validityText || '',
       limitText: '',
       showCurrency: true,
+      photoLayout: item.photoLayout || 'off',
       backgroundImage: '',
       backgroundVisible: false,
     }
@@ -317,6 +320,7 @@ function ModelCard({ item, onCreate, badge }) {
         headerFooterStyle,
         showCurrency: true,
         offerMode,
+        photoLayout: item.photoLayout || 'off',
         validityText: item.validityText || '',
         limitText: '',
       }))

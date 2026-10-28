@@ -245,6 +245,63 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
   })
 }
 
+// Cartazes com foto: upload local, composições, persistência e prévia/impressão.
+for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 }]) {
+  await scenario('Placas com foto real em A4 (' + viewport.width + 'px)', viewport, async (page) => {
+    await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+    await page.locator('.format-choice[data-format-id="A4"]').click()
+    const input = page.locator('textarea[aria-label="Lista de produtos, uma linha por produto"]')
+    await input.waitFor({ state: 'visible' })
+    await input.fill('Arroz Tipo 1 5kg 24,90')
+    await input.press('Control+Enter')
+    await page.locator('.product-row:not(.product-head)').first().waitFor({ state: 'visible' })
+    if (viewport.width < 821) await page.locator('[data-mobile-tab="style"]').click()
+    await page.locator('.personalization-tabs button[data-style-tab="photo"]').click()
+    await page.locator('input[aria-label="Escolher imagem do produto"]').setInputFiles({
+      name: 'arroz.png', mimeType: 'image/png',
+      buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO/aWxkAAAAASUVORK5CYII=', 'base64'),
+    })
+    await page.locator('.photo-poster-uploaded img').waitFor({ state: 'visible' })
+    for (const [layout, label] of [['left', 'Foto à esquerda'], ['right', 'Foto à direita'], ['center', 'Foto central']]) {
+      await page.getByRole('button', { name: label, exact: true }).click()
+      if (viewport.width < 821) await page.locator('[data-mobile-tab="preview"]').click()
+      const photo = page.locator('.preview-card .poster-product-photo')
+      await photo.waitFor({ state: 'visible' })
+      const result = await page.evaluate(() => {
+        const card = document.querySelector('.preview-card .poster-card')
+        const photo = card?.querySelector('.poster-product-photo')
+        const content = card?.querySelector('.poster-content-box')
+        const price = card?.querySelector('.poster-price-box')
+        const printed = document.querySelector('.poster-print-root-complete .poster-product-photo')
+        if (!photo || !content || !price) return null
+        const intersects = (a, b) => {
+          const x = a.getBoundingClientRect()
+          const y = b.getBoundingClientRect()
+          return x.left < y.right - 1 && x.right > y.left + 1 && x.top < y.bottom - 1 && x.bottom > y.top + 1
+        }
+        return {
+          layout: photo.dataset.photoLayout,
+          src: photo.querySelector('img')?.getAttribute('src') || '',
+          overlapsContent: intersects(photo, content),
+          overlapsPrice: intersects(photo, price),
+          printPhoto: Boolean(printed?.querySelector('img')?.getAttribute('src')?.startsWith('data:image/')),
+        }
+      })
+      if (!result || result.layout !== layout || !result.src.startsWith('data:image/') ||
+        result.overlapsContent || result.overlapsPrice || !result.printPhoto) {
+        throw new Error('Foto ou layout inválido: ' + JSON.stringify(result))
+      }
+      if (viewport.width < 821) await page.locator('[data-mobile-tab="style"]').click()
+    }
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:draft:v1') || '{}'))
+    if (!saved.products?.[0]?.imageDataUrl?.startsWith('data:image/')) throw new Error('Foto não persistiu no rascunho')
+    await page.reload({ waitUntil: 'domcontentloaded' })
+    await page.locator('.format-choice[data-format-id="A4"]').click()
+    if (viewport.width < 821) await page.locator('[data-mobile-tab="preview"]').click()
+    await page.locator('.preview-card .poster-product-photo').waitFor({ state: 'visible' })
+  })
+}
+
 // Validade Zero: app completo hospedado no mesmo domínio e nova aba por opção de navegação.
 for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
   const mode = viewport.width === 390 ? 'mobile' : 'desktop'
