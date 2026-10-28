@@ -101,3 +101,29 @@
 @media (prefers-reduced-motion: reduce) {
   .model-popularity-sort button { transition: none !important; }
 }
+
+/* Preço de exemplo legível nas miniaturas: apenas no seletor, nunca na impressão. */
+.personalization-live-stage .poster-price-box .poster-field-price {
+  visibility: hidden;
+}
+.personalization-live-stage > .model-thumbnail-price {
+  position: absolute;
+  z-index: 9;
+  inset: 64% 2.5% 7% 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  color: var(--poster-price-color, #d91b2b);
+  font-family: var(--poster-price-font-family, "Futura Price", Impact, "Arial Black", sans-serif);
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  pointer-events: none;
+}
+.personalization-live-stage > .model-thumbnail-price .poster-price-value {
+  max-width: 100%;
+  -webkit-text-stroke: .15px rgba(0, 0, 0, .22);
+  paint-order: stroke fill;
+}
