@@ -2541,3 +2541,27 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   .skip-to-content { transition: none; }
 }
+
+/* Formatos com nomes longos precisam reservar espaço real ao CTA.
+   A visualização da folha pode encolher; o texto e o botão não devem ser cortados. */
+@media (min-width: 1001px) and (min-height: 880px) {
+  .format-mode .format-home-refresh .format-choice:is(
+    [data-format-id="A4X2_CIMA_BAIXO"],
+    [data-format-id="A4X2_INVERTIDO"],
+    [data-format-id="A4"]
+  ) .format-thumb {
+    height: min(142px, 16dvh) !important;
+    min-height: 105px !important;
+    max-height: 142px !important;
+  }
+  .format-mode .format-home-refresh .format-choice:is(
+    [data-format-id="A4X2_CIMA_BAIXO"],
+    [data-format-id="A4X2_INVERTIDO"],
+    [data-format-id="A4"]
+  ) .format-copy {
+    flex: 1 1 auto !important;
+    justify-content: end;
+    min-height: 0;
+    padding-bottom: 5px !important;
+  }
+}

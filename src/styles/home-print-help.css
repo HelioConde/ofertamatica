@@ -102,8 +102,25 @@
     overflow: visible !important;
   }
   .format-mode .format-home-refresh.format-page:has(.home-print-help) {
+    display: block !important;
     height: auto !important;
     min-height: calc(100dvh - 68px) !important;
     overflow: visible !important;
   }
+}
+
+/* Todos os links novos permanecem acessíveis ao toque no celular. */
+.home-print-plan > a,
+.home-print-boundary nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 5px 0;
+  line-height: 1.4;
+}
+
+/* O guia é um bloco abaixo do seletor, nunca uma segunda coluna do desktop. */
+.format-home-refresh.format-page:has(.home-print-help) > .format-dialog {
+  width: 100% !important;
+  max-width: 100%;
 }
