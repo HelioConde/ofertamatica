@@ -91,9 +91,12 @@ export function trackEvent(event, details = {}) {
       cache: 'no-store',
     }).catch(() => {})
   } catch { /* Estatísticas nunca bloqueiam o editor. */ }
+  if (event !== 'page_view') window.ofertaAnalytics?.event(event)
 }
 
 function pageView() {
+  // O GA4 cuida do page_view da SPA; a telemetria local continua independente.
+  window.ofertaAnalytics?.pageView()
   if (!enabled()) {
     lastView = ''
     memorySession = ''

@@ -1,5 +1,5 @@
 /* Ofertamática | Consent Mode v2, Google Privacy & Messaging / IAB TCF.
- * Carregado antes de qualquer tag. Sem consentimento válido, nenhum GTM ou
+ * Carregado antes de qualquer tag. Sem consentimento válido, nenhum GA4 ou
  * bloco de anúncios é iniciado. A CMP certificada governa o tráfego GDPR.
  */
 (function () {
@@ -7,9 +7,12 @@
   var KEY = 'ofertamatica:privacy-consent:v1'
   var VERSION = 1
   var MAX_AGE = 180 * 24 * 60 * 60 * 1000
-  var GTM_ID = 'GTM-5RGPM6HD'
+  // Uma única implementação de GA4. O antigo contêiner GTM fica desativado
+  // para evitar page_view duplo sem acesso à configuração interna do GTM.
+  var GA4_ID = 'G-K8YWSXBHS7'
   var saved = null
-  var gtmStarted = false
+  var ga4Started = false
+  var lastGa4Path = ''
   var cmp = { known: false, gdprApplies: null, analytics: false, ads: false, personalized: false }
   var denied = 'denied'
   var granted = 'granted'
@@ -60,20 +63,53 @@
     window.dispatchEvent(new Event('oferta-consent-change'))
   }
 
-  function startGtm() {
-    if (gtmStarted) return
-    gtmStarted = true
-    // Não envie eventos coletados antes da escolha quando a tag iniciar.
-    window.dataLayer = window.dataLayer.filter(function (entry) {
-      return !entry || !entry.event || entry.event === 'gtm.js'
-    })
-    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' })
+  function startGa4() {
+    if (ga4Started) return
+    ga4Started = true
+    // Não é necessário GTM + Google tag juntos: contaríamos visitas em dobro
+    // caso a configuração publicada no contêiner também tenha GA4.
+    window.gtag('js', new Date())
+    window.gtag('config', GA4_ID, { send_page_view: false })
     var script = document.createElement('script')
     script.async = true
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID
-    script.setAttribute('data-ofertamatica-gtm', 'true')
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID
+    script.setAttribute('data-ofertamatica-ga4', 'true')
     document.head.appendChild(script)
   }
+
+  function pagePath() {
+    var path = window.location.pathname || '/'
+    if (!/^\/[a-zA-Z0-9/_-]{0,180}$/.test(path)) return null
+    if (/^\/(api|monitoramento)(\/|$)/.test(path)) return null
+    return path
+  }
+
+  function trackGa4PageView() {
+    if (!getState().analyticsEnabled) {
+      lastGa4Path = ''
+      return
+    }
+    var path = pagePath()
+    if (!path || path === lastGa4Path) return
+    startGa4()
+    lastGa4Path = path
+    // Não enviar busca, UTM ou conteúdo de produtos como parâmetros de página.
+    // SPA: um page_view por caminho após consentimento.
+    var origin = window.location.origin || ('https://' + window.location.hostname)
+    window.gtag('event', 'page_view', {
+      send_to: GA4_ID,
+      page_path: path,
+      page_location: origin + path,
+      page_title: document.title || 'Ofertamática'
+    })
+  }
+
+  function trackGa4Event(name) {
+    if (!getState().analyticsEnabled || !/^(format_selected|print_started|pdf_started|model_selected)$/.test(name)) return
+    startGa4()
+    window.gtag('event', name, { send_to: GA4_ID })
+  }
+
 
   function apply() {
     var state = getState()
@@ -90,7 +126,7 @@
       functionality_storage: granted,
       security_storage: granted
     })
-    if (state.analyticsEnabled) startGtm()
+    trackGa4PageView()
     announce()
   }
 
@@ -142,6 +178,14 @@
       }
     })
     return true
+  }
+
+  window.ofertaAnalytics = {
+    pageView: trackGa4PageView,
+    event: trackGa4Event,
+    status: function () {
+      return { measurementId: GA4_ID, consented: getState().analyticsEnabled, started: ga4Started, lastPath: lastGa4Path }
+    }
   }
 
   window.ofertaConsent = {
