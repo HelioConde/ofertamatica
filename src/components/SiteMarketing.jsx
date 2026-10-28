@@ -126,7 +126,14 @@ function usePageHead(page, { creator = false } = {}) {
       name: page.heading || page.title,
       description: page.description,
       url: canonical,
-      dateModified: page.updatedAt ? '2026-10-04' : undefined,
+      dateModified: page.updatedAt ? (() => {
+        const names = { janeiro: '01', fevereiro: '02', março: '03', abril: '04', maio: '05', junho: '06',
+          julho: '07', agosto: '08', setembro: '09', outubro: '10', novembro: '11', dezembro: '12' }
+        const match = page.updatedAt.match(/(\\d{1,2}) de ([a-zç]+) de (\\d{4})/i)
+        return match && names[match[2].toLocaleLowerCase('pt-BR')]
+          ? `${match[3]}-${names[match[2].toLocaleLowerCase('pt-BR')]}-${match[1].padStart(2, '0')}`
+          : undefined
+      })() : undefined,
       publisher: organization,
       isPartOf: { '@type': 'WebSite', name: 'Ofertamática', url: SITE_URL + '/', publisher: organization },
       breadcrumb: {
