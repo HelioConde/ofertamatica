@@ -1,3 +1,4 @@
+import { withPhotoLayout } from './productPhotoLayout.js'
 import { getPosterGeometry } from './formatGeometry.js'
 import { effectiveMax, fitSingleLine, lineHeightMm } from './textFit.js'
 import { estimateTextMeasure } from './textMeasure.js'
@@ -361,6 +362,7 @@ function relativeToBox(line, box, geometry) {
 }
 
 export function createPosterLayout({ product, template, format, measure = estimateTextMeasure }) {
+  template = withPhotoLayout(product, template, format)
   const geometry = getPosterGeometry(format)
   const contentBox = toMmBox(template.contentBox, geometry)
   const priceBox = toMmBox(template.priceBox, geometry)
@@ -370,6 +372,7 @@ export function createPosterLayout({ product, template, format, measure = estima
     version: 1,
     productId: product.id,
     geometry,
+    photo: template.photoBox ? { box: template.photoBox } : null,
     content: { ...content, box: template.contentBox, lines: content.lines.map((line) => relativeToBox(line, contentBox, geometry)) },
     price: { ...price, box: template.priceBox, ...relativeToBox(price, priceBox, geometry) },
   }
