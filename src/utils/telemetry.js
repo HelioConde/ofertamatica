@@ -13,6 +13,7 @@ const sourceKey = 'ofertamatica:telemetry-source:v1'
 const events = new Set([
   'page_view', 'format_selected', 'print_started', 'pdf_started',
   'background_print_started', 'free_editor_print', 'free_editor_pdf', 'gallery_background_print',
+  'model_selected',
 ])
 
 function enabled() {
@@ -70,11 +71,15 @@ function pathOnly() {
   return /^[a-zA-Z0-9/_-]{0,120}$/.test(pathname) ? pathname : '/'
 }
 
-export function trackEvent(event) {
+export function trackEvent(event, details = {}) {
   if (!started || !enabled() || !events.has(event) || typeof window === 'undefined') return
   const path = pathOnly()
   if (!path) return
-  const payload = JSON.stringify({ consented: true, event, path, source: channel(), session: sessionId() })
+  const modelId = event === 'model_selected' && /^[a-z0-9][a-z0-9-]{0,47}$/.test(details.modelId || '')
+    ? details.modelId : ''
+  if (event === 'model_selected' && !modelId) return
+  const payload = JSON.stringify({ consented: true, event, path, source: channel(), session: sessionId(),
+    ...(modelId ? { model_id: modelId } : {}) })
   // A própria requisição não transporta cookies; nenhum rastreamento externo.
   try {
     fetch('/api/telemetria.php', {

@@ -6,6 +6,9 @@ const PosterVisualQaPage = lazy(() => import('./pages/PosterVisualQaPage'))
 const FreePosterEditor = lazy(() => import('./components/FreePosterEditor'))
 import { AdUnit } from './components/AdUnit'
 import { trackEvent } from './utils/telemetry'
+import { modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } from './utils/modelPopularity'
+import { useModelPopularity } from './utils/useModelPopularity'
+import './styles/model-popularity.css'
 import CreatorSeoHead from './components/CreatorSeoHead'
 import FormatOptionCard from './components/FormatOptionCard'
 import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
@@ -195,13 +198,9 @@ const FRAME_ART_OPTIONS = HEADER_FOOTER_MODELS.map((frame) => ({
   label: frame.name,
   frameId: frame.id,
 }))
-// Variedade real já nos primeiros quatro cards; os 24 modelos continuam acessíveis.
-const FEATURED_MODEL_IDS = ['preimpresso', 'oferta-transparente', 'classic', 'hortifruti']
+// A ordem de modelos do catálogo é ajustada pela popularidade no próprio componente.
 const ALL_ART_OPTIONS = [
-  ...FEATURED_MODEL_IDS
-    .map((id) => MODEL_ART_OPTIONS.find((item) => item.model.id === id))
-    .filter(Boolean),
-  ...MODEL_ART_OPTIONS.filter((item) => !FEATURED_MODEL_IDS.includes(item.model.id)),
+  ...MODEL_ART_OPTIONS,
   ...FRAME_ART_OPTIONS,
   ...HEADER_TEXT_PRESETS,
   ...HEADER_IMAGES.map((item) => ({ ...item, kind: 'image' })),
@@ -850,13 +849,20 @@ function StyleSidebar({
   const logoInputRef = useRef(null)
   const customHeaderInputRef = useRef(null)
   const [headerLimit, setHeaderLimit] = useState(4)
+  const [artSort, setArtSort] = useState('featured')
+  const { globalCounts, personalCounts } = useModelPopularity()
   const [recentHeaderIds, setRecentHeaderIds] = useState(loadRecentHeaders)
   const normalizedSearch = headerSearch.trim().toLocaleLowerCase('pt-BR')
+  const orderedModels = sortPosterModels(POSTER_MODEL_PRESETS, { globalCounts, personalCounts, mode: artSort })
+  const orderedArtOptions = [
+    ...orderedModels.map((model) => MODEL_ART_OPTIONS.find((item) => item.model.id === model.id)).filter(Boolean),
+    ...ALL_ART_OPTIONS.filter((item) => item.kind !== 'model'),
+  ]
   const filteredHeaders = normalizedSearch
-    ? ALL_ART_OPTIONS.filter((item) =>
+    ? orderedArtOptions.filter((item) =>
         [item.label, item.kind, item.name, item.note, item.model?.category, item.model?.label]
           .filter(Boolean).join(' ').toLocaleLowerCase('pt-BR').includes(normalizedSearch))
-    : ALL_ART_OPTIONS
+    : orderedArtOptions
   const visibleHeaders = filteredHeaders.slice(0, headerLimit)
   const selectedOfferMode = OFFER_MODES.find((mode) => mode.id === (style.offerMode || 'standard')) || OFFER_MODES[0]
   const recentHeaders = recentHeaderIds
@@ -911,7 +917,9 @@ function StyleSidebar({
         validityText: model.validityText || '',
         limitText: '',
       })
+      recordPersonalModelSelection(model.id)
       trackProductEvent('ofertamatica_model_preset_selected', { model_id: model.id, source: 'home-art-library' })
+      trackEvent('model_selected', { modelId: model.id })
       return
     }
 
@@ -1189,8 +1197,16 @@ function StyleSidebar({
             />
           </label>
           <div className="personalization-gallery-meta">
-            <span>Todos · {filteredHeaders.length} opções</span>
+            <span>{artSort === 'personal' ? 'Seus mais usados' : artSort === 'original' ? 'Catálogo completo' : 'Em destaque'} · {filteredHeaders.length} opções</span>
             <a href="/modelos/">Galeria de modelos →</a>
+          </div>
+          <div className="model-popularity-sort" role="group" aria-label="Ordenar artes">
+            {[
+              ['featured', 'Destaques'], ['personal', 'Meus usados'], ['original', 'Todas'],
+            ].map(([id, label]) => (
+              <button type="button" key={id} aria-pressed={artSort === id}
+                onClick={() => { setArtSort(id); setHeaderLimit(4) }}>{label}</button>
+            ))}
           </div>
           <div className="personalization-current-art" role="status" aria-live="polite">
             <span>Em uso</span>
@@ -1223,6 +1239,63 @@ function StyleSidebar({
             </div>
           ) : null}
 
+          <div className="header-art-grid">
+            {visibleHeaders.map((item) => {
+              const isModel = item.kind === 'model'
+              const isPreset = item.kind === 'preset'
+              const isFrame = item.kind === 'frame'
+              const isActive = isFrame
+                ? (!style.headerImage && !customHeader && style.headerFooterStyle === item.frameId)
+                : isModel
+                ? (
+                    !style.headerImage
+                    && !customHeader
+                    && (item.model.headerFooterStyle === 'preimpresso' || style.headerText === item.model.label)
+                    && style.headerFooterStyle === (item.model.headerFooterStyle || 'moldura')
+                    && style.backgroundColor === item.model.background
+                  )
+                : isPreset
+                  ? (!style.headerImage && !customHeader && style.headerText === item.text)
+                  : style.headerImage === item.id
+              return (
+                <button
+                  type="button"
+                  key={item.id}
+                  className={isActive ? 'active' : ''}
+                  data-model-art={isModel ? item.model.id : undefined}
+                  onClick={() => chooseHeader(item.id)}
+                  title={isModel ? `${item.label} — modelo completo` : (isFrame ? `${item.label} — moldura` : item.label)}
+                  aria-pressed={isActive}
+                >
+                  {isModel && modelPopularityBadge(item.model.id, globalCounts) ? (
+                    <span className="model-pick-badge">{modelPopularityBadge(item.model.id, globalCounts)}</span>
+                  ) : null}
+                  <PosterOptionPreview
+                    frame={isModel ? (item.model.headerFooterStyle || 'moldura')
+                      : (isFrame ? item.frameId : (isPreset ? (item.headerFooterStyle || 'moldura') : (style.headerFooterStyle || 'moldura')))}
+                    headerText={isModel ? item.model.label : (isPreset ? item.text : (isFrame && item.frameId === 'promocao' ? 'PROMOÇÃO' : (style.headerText || 'OFERTA')))}
+                    headerColor={isModel ? item.model.header : (isPreset ? item.headerColor : style.headerColor)}
+                    headerTextColor={isModel ? item.model.headerText : (isPreset ? item.headerTextColor : (isFrame ? item.headerTextColor : style.headerTextColor))}
+                    backgroundColor={isModel ? item.model.background : style.backgroundColor}
+                    textColor={isModel ? item.model.text : style.textColor}
+                    priceColor={isModel ? item.model.price : style.priceColor}
+                    offerMode={isModel ? item.model.offerMode : style.offerMode}
+                    sampleProduct={isModel ? item.model.product : 'CAFÉ 500g'}
+                    samplePrice={isModel ? item.model.value : '9,99'}
+                    imageUrl={item.kind === 'image' ? item.url : ''}
+                  />
+                  <span>{isModel ? item.label : (isFrame ? item.name : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label))}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {!filteredHeaders.length ? <p className="header-empty">Nenhuma arte encontrada.</p> : null}
+          {filteredHeaders.length > visibleHeaders.length ? (
+            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
+              Mostrar mais opções ({filteredHeaders.length - visibleHeaders.length})
+            </button>
+          ) : null}
           <details className="personalization-library-extra">
             <summary>+ {customHeader ? 'Trocar arte personalizada' : 'Adicionar arte própria'}</summary>
             <button type="button" className="custom-header-upload" disabled={headerUploading} aria-busy={headerUploading} onClick={() => customHeaderInputRef.current?.click()}>
@@ -1255,60 +1328,7 @@ function StyleSidebar({
             </details>
           ) : null}
 
-          <div className="header-art-grid">
-            {visibleHeaders.map((item) => {
-              const isModel = item.kind === 'model'
-              const isPreset = item.kind === 'preset'
-              const isFrame = item.kind === 'frame'
-              const isActive = isFrame
-                ? (!style.headerImage && !customHeader && style.headerFooterStyle === item.frameId)
-                : isModel
-                ? (
-                    !style.headerImage
-                    && !customHeader
-                    && (item.model.headerFooterStyle === 'preimpresso' || style.headerText === item.model.label)
-                    && style.headerFooterStyle === (item.model.headerFooterStyle || 'moldura')
-                    && style.backgroundColor === item.model.background
-                  )
-                : isPreset
-                  ? (!style.headerImage && !customHeader && style.headerText === item.text)
-                  : style.headerImage === item.id
-              return (
-                <button
-                  type="button"
-                  key={item.id}
-                  className={isActive ? 'active' : ''}
-                  data-model-art={isModel ? item.model.id : undefined}
-                  onClick={() => chooseHeader(item.id)}
-                  title={isModel ? `${item.label} — modelo completo` : (isFrame ? `${item.label} — moldura` : item.label)}
-                  aria-pressed={isActive}
-                >
-                  <PosterOptionPreview
-                    frame={isModel ? (item.model.headerFooterStyle || 'moldura')
-                      : (isFrame ? item.frameId : (isPreset ? (item.headerFooterStyle || 'moldura') : (style.headerFooterStyle || 'moldura')))}
-                    headerText={isModel ? item.model.label : (isPreset ? item.text : (isFrame && item.frameId === 'promocao' ? 'PROMOÇÃO' : (style.headerText || 'OFERTA')))}
-                    headerColor={isModel ? item.model.header : (isPreset ? item.headerColor : style.headerColor)}
-                    headerTextColor={isModel ? item.model.headerText : (isPreset ? item.headerTextColor : (isFrame ? item.headerTextColor : style.headerTextColor))}
-                    backgroundColor={isModel ? item.model.background : style.backgroundColor}
-                    textColor={isModel ? item.model.text : style.textColor}
-                    priceColor={isModel ? item.model.price : style.priceColor}
-                    offerMode={isModel ? item.model.offerMode : style.offerMode}
-                    sampleProduct={isModel ? item.model.product : 'CAFÉ 500g'}
-                    samplePrice={isModel ? item.model.value : '9,99'}
-                    imageUrl={item.kind === 'image' ? item.url : ''}
-                  />
-                  <span>{isModel ? item.label : (isFrame ? item.name : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label))}</span>
-                </button>
-              )
-            })}
-          </div>
 
-          {!filteredHeaders.length ? <p className="header-empty">Nenhuma arte encontrada.</p> : null}
-          {filteredHeaders.length > visibleHeaders.length ? (
-            <button type="button" className="header-show-more" onClick={() => setHeaderLimit((value) => value + 4)}>
-              Mostrar mais opções ({filteredHeaders.length - visibleHeaders.length})
-            </button>
-          ) : null}
         </section>
 
         </div>

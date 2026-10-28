@@ -43,6 +43,15 @@ expect(bread[0]?.subdescription === 'FRANCÊS', 'Pão Francês deve usar FRANCÊ
 expect(bread[0]?.unit === 'KG', 'Pão Francês deve manter KG como unidade')
 expect(bread[0]?.price === '10,90', 'Pão Francês deve manter o preço')
 
+const paoDeQueijo = parseProductList('Pão de queijo kg 20,90')[0]
+expect(paoDeQueijo?.description === 'PÃO DE QUEIJO', 'Pão de queijo não pode separar a descrição em marca')
+expect(paoDeQueijo?.subdescription === '', 'Pão de queijo não tem marca inferida')
+expect(paoDeQueijo?.unit === 'KG', 'Pão de queijo precisa preservar KG')
+const arrozTipo1 = parseProductList('Arroz Tipo 1 5kg 24,90')[0]
+expect(arrozTipo1?.description === 'ARROZ TIPO 1', 'Tipo 1 deve compor o nome do arroz')
+expect(arrozTipo1?.subdescription === '', 'Tipo 1 não pode ser interpretado como marca')
+expect(arrozTipo1?.unit === '5KG', 'Arroz precisa preservar peso')
+
 const headerOnly = parseProductList('Descrição;Marca;Peso;Valor')
 expect(headerOnly.length === 0, 'Cabeçalho isolado não deve virar cartaz')
 

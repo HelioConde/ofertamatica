@@ -36,6 +36,11 @@ jobs:
           node --check scripts/verify-live-assets.mjs
           node --check scripts/check-ftp-assets.mjs
 
+      - name: Validate PHP endpoints
+        run: |
+          php -l public/api/telemetria.php
+          php -l public/api/modelos-populares.php
+
       - name: Build
         run: npm run build
 

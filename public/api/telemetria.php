@@ -33,7 +33,8 @@ if (preg_match('/bot|crawler|spider|headless|lighthouse|pagespeed|curl|wget|pyth
 $allowed = [
     'page_view', 'format_selected',
     'print_started', 'pdf_started', 'background_print_started',
-    'free_editor_print', 'free_editor_pdf', 'gallery_background_print'
+    'free_editor_print', 'free_editor_pdf', 'gallery_background_print',
+    'model_selected'
 ];
 $event = (string) ($data['event'] ?? '');
 if (!in_array($event, $allowed, true)) stats_json(400, ['error' => 'Evento inválido']);
@@ -45,6 +46,11 @@ $source = (string) ($data['source'] ?? '');
 if (!in_array($source, ['Direto', 'Google', 'Bing', 'Outras buscas', 'Redes sociais', 'Campanha', 'Outros sites'], true)) $source = 'Direto';
 $session = (string) ($data['session'] ?? '');
 if (!preg_match('/^[a-f0-9]{24,40}$/D', $session)) stats_json(400, ['error' => 'Sessão inválida']);
+$modelId = '';
+if ($event === 'model_selected') {
+    $modelId = (string) ($data['model_id'] ?? '');
+    if (!preg_match('/^[a-z0-9][a-z0-9-]{0,47}$/D', $modelId)) stats_json(400, ['error' => 'Modelo inválido']);
+}
 $dir = stats_dir();
 if (!$dir) stats_json(503, ['error' => 'Registro indisponível: armazenamento privado']);
 $file = $dir . '/' . date('Y-m-d') . '.ndjson';
@@ -56,6 +62,7 @@ $entry = [
     'source' => $source,
     'session' => $session
 ];
+if ($modelId !== '') $entry['model_id'] = $modelId;
 // Não persistimos IP, identificador de usuário, URL completa, produto ou user-agent.
 if (is_file($file) && filesize($file) > 50 * 1024 * 1024) stats_json(503, ['error' => 'Limite diário de registros']);
 $result = @file_put_contents($file, json_encode($entry, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
