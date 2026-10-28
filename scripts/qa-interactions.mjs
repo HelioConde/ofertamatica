@@ -91,6 +91,24 @@ await scenario('Guia De/Por: economia e desconto', { width: 390, height: 844 }, 
   if (!output.includes('O preço anterior deve ser maior')) throw new Error('Desconto inválido não foi bloqueado')
 })
 
+await scenario('Guia Excel: conferência de lista no celular', { width: 390, height: 844 }, async (page) => {
+  const raw = await page.request.get(origin + '/cartazes-a-partir-de-excel/')
+  const html = await raw.text()
+  if (!html.includes('Teste uma lista do Excel antes de gerar os cartazes') ||
+      !html.includes('Preço ausente')) throw new Error('Sem exemplo indexável da conferência')
+  await page.goto(origin + '/cartazes-a-partir-de-excel/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.retail-review textarea', 'Entrada de lista não carregou')
+  const report = page.locator('.retail-review')
+  if (!(await report.innerText()).includes('3 produtos reconhecidos')) throw new Error('Amostra inicial não foi interpretada')
+  await report.locator('textarea').fill('Pão de queijo KG 20,90\nLeite 1L')
+  if (!(await report.innerText()).includes('Preço ausente')) throw new Error('Alerta de preço ausente não apareceu')
+  if (!(await report.innerText()).includes('PÃO DE QUEIJO')) throw new Error('Descrição composta não preservada')
+  await report.locator('textarea').fill('Café Melitta 500g 18,90\nCafé Melitta 500g 18,90')
+  if (!(await report.innerText()).includes('Possível produto repetido')) throw new Error('Duplicação não detectada')
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)
+  if (overflow) throw new Error('Conferência gera rolagem horizontal')
+})
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {
