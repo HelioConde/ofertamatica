@@ -102,6 +102,7 @@
     overflow: visible !important;
   }
   .format-mode .format-home-refresh.format-page:has(.home-print-help) {
+    display: block !important;
     height: auto !important;
     min-height: calc(100dvh - 68px) !important;
     overflow: visible !important;
@@ -116,4 +117,10 @@
   min-height: 36px;
   padding: 5px 0;
   line-height: 1.4;
+}
+
+/* O guia é um bloco abaixo do seletor, nunca uma segunda coluna do desktop. */
+.format-home-refresh.format-page:has(.home-print-help) > .format-dialog {
+  width: 100% !important;
+  max-width: 100%;
 }
