@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { PHOTO_LAYOUTS } from '../poster-engine/productPhotoLayout'
+import { PHOTO_LAYOUTS, safeProductImageSrc } from '../poster-engine/productPhotoLayout'
 import { optimizePosterImage } from '../utils/optimizePosterImage'
 
 export default function ProductPhotoControls({ selectedProduct, photoLayout = 'off', formatId, onLayoutChange, onImageChange }) {
@@ -47,9 +47,9 @@ export default function ProductPhotoControls({ selectedProduct, photoLayout = 'o
       ) : null}
 
       <input type="file" ref={fileInput} hidden accept="image/png,image/jpeg,image/webp" onChange={upload} aria-label="Escolher imagem do produto" />
-      {selectedProduct?.imageDataUrl ? (
+      {safeProductImageSrc(selectedProduct?.imageDataUrl) ? (
         <div className="photo-poster-uploaded">
-          <img src={selectedProduct.imageDataUrl} alt={`Imagem do produto ${productName}`} />
+          <img src={safeProductImageSrc(selectedProduct.imageDataUrl)} alt={`Imagem do produto ${productName}`} />
           <div>
             <strong>Foto adicionada</strong>
             <span>PNG, JPG ou WebP · processada localmente</span>
