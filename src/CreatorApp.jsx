@@ -762,6 +762,8 @@ function PosterOptionPreview({
   offerMode = 'standard',
   sampleProduct = 'CAFÉ 500g',
   samplePrice = '9,99',
+  sampleImage = '',
+  photoLayout = 'off',
 }) {
   // A miniatura usa exatamente PosterSheet e layoutPlan, como a placa impressa.
   const format = useMemo(() => getPosterFormat('A4'), [])
@@ -774,6 +776,7 @@ function PosterOptionPreview({
       ...parsed,
       id: 'personalization-thumbnail',
       price: samplePrice,
+      imageDataUrl: safeProductImageSrc(sampleImage),
       regularPrice: '14,90',
       wholesalePrice: '8,90',
       wholesaleQuantity: '6',
@@ -791,12 +794,13 @@ function PosterOptionPreview({
       validityText: '',
       limitText: '',
       showCurrency: true,
+      photoLayout,
       backgroundImage: '',
       backgroundVisible: false,
     }
     const layoutPlans = createPosterLayouts([product], template, format, measure)
     return { product, template, layoutPlans }
-  }, [format, measure, headerText, imageUrl, frame, offerMode, sampleProduct, samplePrice])
+  }, [format, measure, headerText, imageUrl, frame, offerMode, sampleProduct, samplePrice, sampleImage, photoLayout])
 
   const scale = 0.091
   const naturalWidth = format.widthMm * PX_PER_MM
@@ -884,6 +888,7 @@ function StyleSidebar({
   const activeModel = MODEL_ART_OPTIONS.find(({ model }) =>
     !style.headerImage &&
     model.background === style.backgroundColor &&
+    (model.photoLayout || 'off') === (style.photoLayout || 'off') &&
     resolveReadablePriceColor(model.background, model.price) === style.priceColor &&
     (model.headerFooterStyle === 'preimpresso' || model.label === style.headerText) &&
     (model.headerFooterStyle || 'moldura') === style.headerFooterStyle
@@ -927,6 +932,7 @@ function StyleSidebar({
         headerImage: '',
         headerFooterStyle: model.headerFooterStyle || 'moldura',
         offerMode: model.offerMode || 'standard',
+        photoLayout: model.photoLayout || 'off',
         validityText: model.validityText || '',
         limitText: '',
       })
@@ -1303,6 +1309,8 @@ function StyleSidebar({
                     offerMode={isModel ? item.model.offerMode : style.offerMode}
                     sampleProduct={isModel ? item.model.product : 'CAFÉ 500g'}
                     samplePrice={isModel ? item.model.value : '9,99'}
+                    sampleImage={isModel ? (item.model.sampleImage || '') : ''}
+                    photoLayout={isModel ? (item.model.photoLayout || 'off') : 'off'}
                     imageUrl={item.kind === 'image' ? item.url : ''}
                   />
                   <span>{isModel ? item.label : (isFrame ? item.name : (item.id === DEFAULT_HEADER_OPTION_ID ? 'Oferta (padrão)' : item.label))}</span>
