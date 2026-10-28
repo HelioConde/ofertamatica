@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 const ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || 'ca-pub-9514218545388169'
+// O site está em análise: manter tag publisher/CMP, mas não abrir slots de anúncio.
+// Habilitar somente após aprovação oficial e revisão das posições.
+const AD_SLOTS_APPROVED = import.meta.env.VITE_ADSENSE_APPROVED === 'true'
 const ADSENSE_SLOTS = {
   'seo-content': '5483033524',
   'format-grid': '7286894770',
@@ -33,9 +36,9 @@ function loadAdsense() {
 }
 
 export function AdUnit({ placement = 'content' }) {
-  const slot = ADSENSE_SLOTS[placement]
-    || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '')
-    || ''
+  const slot = AD_SLOTS_APPROVED
+    ? (ADSENSE_SLOTS[placement] || (placement.startsWith('seo-') ? ADSENSE_SLOTS['seo-content'] : '') || '')
+    : ''
   const isMobileAd = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 700px)').matches
   const adRef = useRef(null)
   const outerRef = useRef(null)
