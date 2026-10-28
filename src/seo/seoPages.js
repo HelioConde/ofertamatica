@@ -193,12 +193,19 @@ export const PUBLIC_PAGES = [
     lead: 'O Ofertamática simplifica a criação de placas de preço e materiais promocionais para supermercados, mercados e outros negócios do varejo.',
     benefits: ['Ferramenta focada em uso real', 'Criação sem cadastro obrigatório', 'Evolução guiada por clareza e produtividade'],
     trust: true,
-    updatedAt: 'Atualizado em 11 de outubro de 2026',
+    updatedAt: 'Atualizado em 28 de outubro de 2026',
     sections: [
       { title: 'Por que o Ofertamática existe', text: 'Criar dezenas de cartazes manualmente consome tempo e aumenta a chance de inconsistências. O Ofertamática foi pensado para transformar uma lista de produtos em placas prontas para revisão, mantendo preço, produto e leitura como prioridade.' },
       { title: 'Para quem é a ferramenta', text: 'O foco são equipes de supermercado, mercados, mercearias, atacarejos e outros negócios que precisam comunicar ofertas com frequência. O fluxo também pode ser usado por pequenos lojistas que querem preparar materiais diretamente no navegador.' },
       { title: 'Como funciona na prática', text: 'O fluxo prioriza poucas etapas: escolher o formato, informar os produtos, revisar o resultado e imprimir. Personalizações continuam opcionais para não atrapalhar a criação rápida.' },
       { title: 'Compromisso com clareza', text: 'O site busca manter orientações simples, conteúdo útil e informações claras sobre impressão, privacidade e uso da ferramenta. Antes de imprimir, revise preços, unidades, validade e condições comerciais.' },
+      { title: 'O que está disponível hoje', text: 'Além de criar cartazes com nome, unidade e preço, você pode escolher modelos para diferentes setores, usar uma lista de produtos, importar planilhas, revisar a prévia e preparar a impressão no formato escolhido. O editor também permite imagens próprias de produtos, inclusive composições com foto à esquerda, à direita e centralizada.' },
+      { title: 'Manutenção e histórico públicos', text: 'O código-fonte público do projeto Ofertamática está disponível no GitHub, incluindo alterações e verificações automáticas do editor, da impressão e da apresentação em dispositivos diferentes. O projeto recebe melhorias de usabilidade e conteúdo; isso não significa que cada sugestão seja implementada imediatamente.' },
+    ],
+    links: [
+      { label: 'Código e histórico no GitHub', href: 'https://github.com/HelioConde/ofertamatica', note: 'Confira as alterações e o desenvolvimento público.' },
+      { label: 'Guias para varejo', href: '/guias-para-varejo/', note: 'Veja orientações práticas para criar e imprimir cartazes.' },
+      { label: 'Fale conosco', href: '/fale-conosco/', note: 'Envie sugestões e relate problemas da ferramenta.' },
     ],
   },
   {
