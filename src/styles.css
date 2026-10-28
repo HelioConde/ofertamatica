@@ -9902,3 +9902,26 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   /* Não imprimir a linha tracejada da prévia no contorno do SRA3. */
   body.poster-printing .poster-sheet[data-poster-format="SRA3"] .poster-slot { border: 0 !important; }
 }
+
+/* Em 360px, sete itens na mesma linha ficavam pequenos demais e cortavam a última etiqueta.
+   Duas linhas são preferíveis a ocultar itens de navegação ou reduzir a fonte a 8px. */
+@media (max-width: 370px) {
+  .main-nav {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+  .main-nav .nav-link {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 36px !important;
+    padding: 4px 2px !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+}
