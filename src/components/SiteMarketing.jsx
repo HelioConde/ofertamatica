@@ -21,6 +21,7 @@ import {
 } from '../seo/seoPages'
 import { searchTopicsFor } from '../seo/searchIntent'
 import RetailCalculator from './RetailCalculator'
+import RetailListReview from './RetailListReview'
 import '../styles/validade-zero.css'
 // Estilos editoriais só são necessários nas páginas públicas.
 // O gerador de SEO adiciona a mesma folha ao HTML destas rotas para evitar FOUC.
@@ -984,6 +985,7 @@ export function SeoLanding({ page, onCreate }) {
         <SeoPosterExample page={page} onCreate={onCreate} />
 
         <RetailCalculator key={page.slug} slug={page.slug} />
+        {page.slug === 'cartazes-a-partir-de-excel' ? <RetailListReview onCreate={onCreate} /> : null}
 
         <SearchTopicSections slug={page.slug} />
 
