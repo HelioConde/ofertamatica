@@ -32,6 +32,7 @@ import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from './utils/posterColorContrast'
 import { optimizePosterImage } from './utils/optimizePosterImage'
 import ProductPhotoControls from './components/ProductPhotoControls'
+import SavedProductListsDialog from './components/SavedProductListsDialog'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
 
@@ -1430,6 +1431,7 @@ function Editor({
   const [mobileTab, setMobileTab] = useState('products')
   const [deletedSnapshot, setDeletedSnapshot] = useState(null)
   const [inputMenuOpen, setInputMenuOpen] = useState(false)
+  const [savedListsOpen, setSavedListsOpen] = useState(false)
   const [posterStyle, setPosterStyle] = useState(loadPosterStyle)
   const [storeLogo, setStoreLogo] = useState(loadStoreLogo)
   const [customHeader, setCustomHeader] = useState(loadCustomHeader)
@@ -2087,6 +2089,10 @@ function Editor({
                       <span className="input-menu-icon">↥</span>
                       <span><b>Importar arquivo</b><small>TXT, CSV ou Excel</small></span>
                     </button>
+                    <button type="button" role="menuitem" onClick={() => { setInputMenuOpen(false); setSavedListsOpen(true) }}>
+                      <span className="input-menu-icon">▣</span>
+                      <span><b>Minhas listas</b><small>Salvar, reabrir e baixar TXT</small></span>
+                    </button>
                     <button type="button" role="menuitem" className={confirmExample ? 'example-confirm-menu' : ''} onClick={chooseExample}>
                       <span className="input-menu-icon">✦</span>
                       <span><b>{confirmExample ? 'Confirmar exemplo' : 'Usar exemplo'}</b><small>{confirmExample ? 'Substitui o conteúdo atual' : 'Preencher uma lista pronta'}</small></span>
@@ -2138,6 +2144,19 @@ function Editor({
             {confirmExample ? <div className="inline-warning">“Usar exemplo” substituirá o texto atual. Clique novamente para confirmar.</div> : null}
             {clipboardError ? <div className="oferta-import-error clipboard-error" role="alert">{clipboardError}</div> : null}
             {importError ? <div className="oferta-import-error" role="alert">{importError}</div> : null}
+            <SavedProductListsDialog
+              open={savedListsOpen}
+              onClose={() => setSavedListsOpen(false)}
+              sourceText={sourceText}
+              formatId={formatId}
+              onLoad={(savedSource) => {
+                setSourceText(savedSource)
+                setConfirmExample(false)
+                setClipboardError('')
+                setImportError('')
+                generateFromSource(savedSource)
+              }}
+            />
           </section>
 
           <section className={'editor-card interpreted ' + (products.length > 0 && products.length <= 6 ? 'is-short-list' : '')}>
