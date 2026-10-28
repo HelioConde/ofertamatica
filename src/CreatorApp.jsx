@@ -30,6 +30,9 @@ import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from './utils/posterColorContrast'
 import { optimizePosterImage } from './utils/optimizePosterImage'
+import ProductPhotoControls from './components/ProductPhotoControls'
+import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
+import './styles/product-photo.css'
 
 const HEADER_IMAGE_MODULES = import.meta.glob('../img/headers/*.png', {
   eager: true,
@@ -174,6 +177,7 @@ const DEFAULT_POSTER_STYLE = {
   headerImage: '',
   headerFooterStyle: 'moldura',
   showCurrency: true,
+  photoLayout: 'off',
   offerMode: 'standard',
   validityText: '',
   limitText: '',
@@ -450,6 +454,7 @@ function preservePromotionFields(nextProducts, previousProducts) {
       wholesalePrice: previous.wholesalePrice || '',
       wholesaleQuantity: previous.wholesaleQuantity || '',
       secondUnitPrice: previous.secondUnitPrice || '',
+      imageDataUrl: safeProductImageSrc(previous.imageDataUrl) || '',
     }
   })
 }
@@ -840,6 +845,7 @@ function PosterOptionPreview({
 function StyleSidebar({
   style, onChange, onReset, mobileActive, isAppFormat = false,
   storeLogo = '', onStoreLogoChange, customHeader = '', onCustomHeaderChange,
+  selectedProduct, onProductPhotoChange, formatId,
 }) {
   const [headerSearch, setHeaderSearch] = useState('')
   const [activePanel, setActivePanel] = useState('art')
@@ -1011,6 +1017,7 @@ function StyleSidebar({
       <nav className="personalization-tabs" aria-label="Áreas de personalização">
         {[
           ['art', 'Artes'],
+          ['photo', 'Fotos'],
           ['offer', 'Oferta'],
           ['settings', 'Ajustes'],
         ].map(([tabId, title]) => (
@@ -1026,6 +1033,12 @@ function StyleSidebar({
       </nav>
 
       <div className="style-sidebar-scroll" ref={sidebarScrollRef}>
+        <div className="personalization-panel" hidden={activePanel !== 'photo'}>
+          <ProductPhotoControls selectedProduct={selectedProduct} formatId={formatId}
+            photoLayout={style.photoLayout || 'off'}
+            onLayoutChange={(photoLayout) => onChange({ ...style, photoLayout })}
+            onImageChange={onProductPhotoChange} />
+        </div>
         <div className="personalization-panel" hidden={activePanel !== 'offer'}>
         {!isAppFormat ? (
           <section className="style-section offer-mode-section compact-offer-section">
@@ -1445,6 +1458,7 @@ function Editor({
       headerImage: customHeader || HEADER_IMAGE_BY_ID[posterStyle.headerImage] || '',
       headerFooterStyle: posterStyle.headerFooterStyle || 'curva-simples',
       offerMode: formatId === 'A4X2_APP' ? 'standard' : (posterStyle.offerMode || 'standard'),
+      photoLayout: PHOTO_LAYOUTS[posterStyle.photoLayout] ? posterStyle.photoLayout : 'off',
       validityText: formatId === 'A4X2_APP' ? '' : (posterStyle.validityText || ''),
       limitText: formatId === 'A4X2_APP' ? '' : (posterStyle.limitText || ''),
       storeLogo,
@@ -1458,6 +1472,7 @@ function Editor({
     posterStyle.headerImage,
     posterStyle.headerFooterStyle,
     posterStyle.offerMode,
+    posterStyle.photoLayout,
     posterStyle.validityText,
     posterStyle.limitText,
     posterStyle.fontFamily,
@@ -1665,6 +1680,10 @@ function Editor({
         ? { ...item, [field]: priceFields.has(field) ? value : value.toLocaleUpperCase('pt-BR') }
         : item
     )))
+  }
+
+  function changeProductPhoto(id, imageDataUrl) {
+    setProducts((items) => items.map((item) => item.id === id ? { ...item, imageDataUrl: safeProductImageSrc(imageDataUrl) } : item))
   }
 
   function finishPrice(id, field, value) {
@@ -2351,6 +2370,9 @@ function Editor({
           onStoreLogoChange={setStoreLogo}
           customHeader={customHeader}
           onCustomHeaderChange={setCustomHeader}
+          selectedProduct={selected}
+          onProductPhotoChange={changeProductPhoto}
+          formatId={formatId}
         />
       </section>
 
