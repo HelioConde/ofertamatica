@@ -207,6 +207,44 @@ await scenario('Cartaz A4: MAÇÃ em Burbank e preço em Futura Price', { width:
   }
 })
 
+// Regressão: as miniaturas da aba Artes não podem mostrar placas sem preço de exemplo.
+for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 }]) {
+  await scenario('Miniaturas com preço visível (' + viewport.width + 'px)', viewport, async (page) => {
+    await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+    await page.locator('.format-choice[data-format-id="A4"]').click()
+    await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]', 'Editor de cartazes indisponível')
+    if (viewport.width <= 390) await page.locator('[data-mobile-tab="style"]').click()
+    const model = page.locator('.header-art-grid [data-model-art="super-oferta"]')
+    await model.waitFor({ state: 'visible', timeout: 20000 })
+    const price = model.locator('.model-thumbnail-price')
+    await price.waitFor({ state: 'visible' })
+    const result = await price.evaluate((element) => {
+      const stage = element.closest('.personalization-live-stage')
+      const text = element.textContent.replace(/\\s+/g, '')
+      const bounds = element.querySelector('.poster-price-value').getBoundingClientRect()
+      const frame = stage.getBoundingClientRect()
+      const style = getComputedStyle(element)
+      return {
+        text, price: element.dataset.samplePrice,
+        fontSize: parseFloat(style.fontSize), visibility: style.visibility,
+        color: style.color,
+        inside: bounds.left >= frame.left - 2 && bounds.right <= frame.right + 2 &&
+          bounds.top >= frame.top - 2 && bounds.bottom <= frame.bottom + 2,
+        ariaLabel: element.closest('button')?.getAttribute('aria-label') || '',
+      }
+    })
+    if (result.price !== '24,90' || !result.text.includes('R$24,90')) {
+      throw new Error('Preço de referência não está completo: ' + JSON.stringify(result))
+    }
+    if (result.visibility !== 'visible' || result.fontSize < 20 || !result.inside) {
+      throw new Error('Preço ilegível ou cortado na miniatura: ' + JSON.stringify(result))
+    }
+    if (!result.ariaLabel.includes('24,90')) {
+      throw new Error('Modelo sem preço ilustrativo para leitores de tela')
+    }
+  })
+}
+
 // Validade Zero: app completo hospedado no mesmo domínio e nova aba por opção de navegação.
 for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
   const mode = viewport.width === 390 ? 'mobile' : 'desktop'
