@@ -38,7 +38,7 @@ const dataUrlBytes = (url) => {
 
 /**
  * @param {File} file
- * @param {{ kind?: 'header' | 'logo' }} options
+ * @param {{ kind?: 'header' | 'logo' | 'product' }} options
  * @returns {Promise<{ dataUrl: string, optimized: boolean }>}
  */
 export async function optimizePosterImage(file, { kind = 'header' } = {}) {
@@ -55,12 +55,13 @@ export async function optimizePosterImage(file, { kind = 'header' } = {}) {
     throw new Error('Não foi possível identificar o tamanho da imagem.')
   }
 
-  const maxWidth = kind === 'logo' ? 720 : 1960
-  const maxHeight = kind === 'logo' ? 720 : 700
+  const maxWidth = kind === 'product' ? 800 : (kind === 'logo' ? 720 : 1960)
+  const maxHeight = kind === 'product' ? 800 : (kind === 'logo' ? 720 : 700)
+  const storedLimit = kind === 'product' ? 180 * 1024 : MAX_STORED_BYTES
   const ratio = Math.min(1, maxWidth / img.naturalWidth, maxHeight / img.naturalHeight)
 
   // Preserve small original files and any transparent pixels without recompression.
-  if (file.size <= MAX_STORED_BYTES && ratio === 1) {
+  if (file.size <= storedLimit && ratio === 1) {
     return { dataUrl: await readDataUrl(file), optimized: false }
   }
 
@@ -82,7 +83,7 @@ export async function optimizePosterImage(file, { kind = 'header' } = {}) {
 
     for (const quality of qualities) {
       const dataUrl = canvas.toDataURL('image/webp', quality)
-      if (dataUrl.startsWith('data:image/webp;') && dataUrlBytes(dataUrl) <= MAX_STORED_BYTES) {
+      if (dataUrl.startsWith('data:image/webp;') && dataUrlBytes(dataUrl) <= storedLimit) {
         canvas.width = 0
         canvas.height = 0
         return { dataUrl, optimized: true }
