@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-28T04:26:07.441Z",
-  "commit": "26f34860104e6f282b1c649157edb0e5f5624727",
+  "generatedAt": "2026-10-28T07:06:50.898Z",
+  "commit": "b8ab6f0b174e8933218013d466fd7b27df6d014d",
   "results": [
     {
       "viewport": "mobile-360",
@@ -10,14 +10,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -31,14 +24,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -60,17 +46,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -88,14 +67,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -109,14 +81,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -138,17 +103,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -166,14 +124,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -187,14 +138,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -216,17 +160,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -244,14 +181,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -265,14 +195,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -294,17 +217,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -322,14 +238,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 231.2,
         "fieldCount": 7
@@ -343,14 +252,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -372,17 +274,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -400,14 +295,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -421,14 +309,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -450,17 +331,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -478,14 +352,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -499,14 +366,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -528,17 +388,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -556,14 +409,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "products": {
         "rowHeight": 176.4,
         "fieldCount": 5
@@ -577,14 +423,7 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "preview": {
         "display": "grid",
         "cardWidth": 344,
@@ -606,17 +445,10 @@
       "width": 360,
       "scrollWidth": 360,
       "horizontalOverflow": false,
-      "offenders": [
-        {
-          "tag": "span",
-          "className": "nav-label-mobile",
-          "left": 294.4,
-          "right": 362.1
-        }
-      ],
+      "offenders": [],
       "style": {
         "width": 344,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -673,7 +505,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -730,7 +562,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -787,7 +619,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -844,7 +676,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -901,7 +733,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -958,7 +790,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1167,7 +999,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1224,7 +1056,7 @@
       "offenders": [],
       "style": {
         "width": 374,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1281,7 +1113,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1338,7 +1170,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1395,7 +1227,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1452,7 +1284,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1509,7 +1341,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1566,7 +1398,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1623,7 +1455,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
@@ -1680,7 +1512,7 @@
       "offenders": [],
       "style": {
         "width": 396,
-        "sidebarTabCount": 3,
+        "sidebarTabCount": 4,
         "activeArea": "Artes",
         "headerArtHeight": 295,
         "frameGridHeight": 0,
