@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo-pages.mjs && node scripts/build-validade-zero.mjs",
     "preview": "vite preview",
-    "check:build": "node scripts/validate-build.mjs && node scripts/validate-consent.mjs && node scripts/validate-parser.mjs && node scripts/validate-posters.mjs && node scripts/validate-monitoring.mjs && node scripts/validate-coverage-redirects.mjs && node scripts/validate-seo-graph.mjs && node scripts/validate-validade-zero.mjs && node scripts/validate-model-popularity.mjs && node scripts/validate-photo-posters.mjs && node scripts/validate-editorial-value.mjs && node scripts/validate-retail-calculators.mjs && node scripts/validate-retail-list-review.mjs",
+    "check:build": "node scripts/validate-build.mjs && node scripts/validate-consent.mjs && node scripts/validate-parser.mjs && node scripts/validate-posters.mjs && node scripts/validate-monitoring.mjs && node scripts/validate-coverage-redirects.mjs && node scripts/validate-seo-graph.mjs && node scripts/validate-validade-zero.mjs && node scripts/validate-model-popularity.mjs && node scripts/validate-photo-posters.mjs && node scripts/validate-editorial-value.mjs && node scripts/validate-retail-calculators.mjs && node scripts/validate-retail-list-review.mjs && node scripts/validate-saved-product-lists.mjs",
     "verify": "npm run build && npm run check:build",
     "qa:design": "node scripts/qa-design-guidelines.mjs",
     "audit:content": "node scripts/audit-content.mjs",
