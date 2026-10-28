@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-28T13:49:50.133Z",
-  "commit": "2b9da3f1c6c5418956d97542327d76b5400a52b7",
+  "generatedAt": "2026-10-28T14:02:01.341Z",
+  "commit": "21f255ef56aedb0a063d76b0e975368d8b758621",
   "routes": [
     [
       "home",
@@ -194,12 +194,7 @@
           "width": 1242,
           "height": 547
         },
-        "ad": {
-          "top": 0,
-          "bottom": 0,
-          "width": 0,
-          "height": 0
-        },
+        "ad": null,
         "links": {
           "top": 943,
           "bottom": 988,
@@ -1781,12 +1776,7 @@
           "width": 1242,
           "height": 422.4
         },
-        "ad": {
-          "top": 0,
-          "bottom": 0,
-          "width": 0,
-          "height": 0
-        },
+        "ad": null,
         "links": {
           "top": 707,
           "bottom": 748,
@@ -1877,12 +1867,7 @@
           "width": 716,
           "height": 748
         },
-        "ad": {
-          "top": 0,
-          "bottom": 0,
-          "width": 0,
-          "height": 0
-        },
+        "ad": null,
         "links": {
           "top": 1146.6,
           "bottom": 1202.6,
@@ -3464,12 +3449,7 @@
           "width": 288,
           "height": 1271.2
         },
-        "ad": {
-          "top": 0,
-          "bottom": 0,
-          "width": 0,
-          "height": 0
-        },
+        "ad": null,
         "links": {
           "top": 1773.6,
           "bottom": 1958.6,
@@ -5051,12 +5031,7 @@
           "width": 340,
           "height": 1155.9
         },
-        "ad": {
-          "top": 0,
-          "bottom": 0,
-          "width": 0,
-          "height": 0
-        },
+        "ad": null,
         "links": {
           "top": 1585.5,
           "bottom": 1770.5,
