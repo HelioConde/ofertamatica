@@ -27,6 +27,14 @@ export const RETAIL_CALCULATOR_EXAMPLES = Object.freeze({
   },
 })
 
+export const RETAIL_CALCULATOR_PAGE_EXAMPLES = Object.freeze({
+  'placas-para-hortifruti': { product: 'BANANA PRATA', primary: '14,90', secondary: '350' },
+  'placas-para-padaria': { product: 'PÃO FRANCÊS', primary: '12,90', secondary: '350' },
+  'cartazes-para-acougue': { product: 'ALCATRA', primary: '49,90', secondary: '750' },
+  'cartaz-de-por': { product: 'ARROZ 5 KG', primary: '24,90', secondary: '19,90' },
+  'cartaz-black-friday': { product: 'CAFÉ TORRADO 500 G', primary: '29,90', secondary: '23,90' },
+})
+
 export function parseBrlCents(value) {
   const raw = String(value ?? '').trim()
   if (!/^\d{1,6}(?:[,.]\d{1,2})?$/.test(raw)) return null
@@ -41,7 +49,8 @@ export function formatBrl(cents) {
 
 export function calculatePriceByWeight(pricePerKg, grams) {
   const cents = parseBrlCents(pricePerKg)
-  const weight = Number(grams)
+  const rawWeight = String(grams ?? '').trim()
+  const weight = /^\d{1,6}$/.test(rawWeight) ? Number(rawWeight) : NaN
   if (cents === null || cents <= 0 || !Number.isInteger(weight) || weight < 1 || weight > 100000) return null
   return {
     centsPerKg: cents,
@@ -68,22 +77,23 @@ export function calculatorKindForSlug(slug) {
 
 export function calculatorStaticExample(slug) {
   const kind = calculatorKindForSlug(slug)
+  const example = RETAIL_CALCULATOR_PAGE_EXAMPLES[slug]
   if (kind === 'weight') {
-    const result = calculatePriceByWeight('14,90', 350)
+    const result = calculatePriceByWeight(example.primary, example.secondary)
     return {
       kind,
       title: 'Simulador de preço por peso: exemplo de conferência',
-      input: 'BANANA PRATA — R$ 14,90 por kg · peso: 350 g',
-      output: 'Total ilustrativo: ' + formatBrl(result.totalCents) + ' pelos 350 g',
-      note: 'Valor fictício, não cotação atual nem preço verificado no caixa. A placa deve informar R$ 14,90/kg e não apenas o valor do peso de exemplo.',
+      input: example.product + ' — ' + formatBrl(result.centsPerKg) + '/kg · peso: ' + result.grams + ' g',
+      output: 'Total ilustrativo: ' + formatBrl(result.totalCents) + ' pelos ' + result.grams + ' g',
+      note: 'Valor fictício, não cotação atual nem preço verificado no caixa. A placa deve informar ' + formatBrl(result.centsPerKg) + '/kg e não apenas o valor do peso de exemplo.',
     }
   }
   if (kind === 'discount') {
-    const result = calculateDiscount('24,90', '19,90')
+    const result = calculateDiscount(example.primary, example.secondary)
     return {
       kind,
       title: 'Comparador De/Por: exemplo de conferência',
-      input: 'Preço anterior: R$ 24,90 · preço da oferta: R$ 19,90',
+      input: example.product + ' — preço anterior: ' + formatBrl(result.oldCents) + ' · preço da oferta: ' + formatBrl(result.offerCents),
       output: 'Economia ilustrativa: ' + formatBrl(result.savedCents) + ' (' + result.percent.toFixed(1).replace('.', ',') + '%)',
       note: 'Preços fictícios. Só anuncie De/Por quando houver comprovação do preço anterior e clareza sobre período e condições da oferta.',
     }
