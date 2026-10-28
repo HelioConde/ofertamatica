@@ -309,7 +309,7 @@ const failures = results.filter((item) => {
   if (item.errors.length || item.horizontalOverflow) return true
   if (item.tab === 'products' && item.products?.rowHeight > 390) return true
   if (item.tab === 'style' && item.style) {
-    if (item.style.sidebarTabCount !== 3 || item.style.activeArea !== 'Artes') return true
+    if (item.style.sidebarTabCount !== 4 || item.style.activeArea !== 'Artes') return true
     if (item.style.headerArtHeight > 310 || item.style.frameGridHeight > 240) return true
     if (!item.style.headerVisible) return true
     if (!item.style.headerBackgroundColor || item.style.headerBackgroundColor === 'rgba(0, 0, 0, 0)' || item.style.headerBackgroundColor === 'transparent') return true
