@@ -91,3 +91,19 @@
   .home-print-plan-fields input, .home-print-plan-fields select { min-height: 44px; }
 }
 @media print { .home-print-help { display: none !important; } }
+
+/* O seletor da Home usa um shell compacto com overflow escondido para caber na tela.
+   Com conteúdo útil abaixo, somente a área do seletor pode ser compacta:
+   o aplicativo inteiro precisa permitir rolagem normal no desktop. */
+@media (min-width: 1001px) {
+  .app.format-mode:has(.home-print-help) {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+  .format-mode .format-home-refresh.format-page:has(.home-print-help) {
+    height: auto !important;
+    min-height: calc(100dvh - 68px) !important;
+    overflow: visible !important;
+  }
+}
