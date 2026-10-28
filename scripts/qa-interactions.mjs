@@ -109,6 +109,51 @@ await scenario('Guia Excel: conferência de lista no celular', { width: 390, hei
   if (overflow) throw new Error('Conferência gera rolagem horizontal')
 })
 
+// Minhas listas: armazenamento permanente e exportação local, sem cadastro.
+for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 }]) {
+  await scenario('Editor: salvar e recuperar listas nomeadas (' + viewport.width + 'px)', viewport, async (page) => {
+    await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+    await page.locator('.format-choice[data-format-id="A4"]').click()
+    const textarea = page.locator('textarea[aria-label="Lista de produtos, uma linha por produto"]')
+    await textarea.waitFor({ state: 'visible' })
+    const original = 'Café Melitta 500g 18,90\nArroz Tipo 1 5kg 24,90'
+    await textarea.fill(original)
+    await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
+    await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
+    let dialog = page.getByRole('dialog', { name: 'Minhas listas de produtos' })
+    await dialog.waitFor({ state: 'visible' })
+    await dialog.getByLabel('Nome da lista').fill('Ofertas da semana')
+    await dialog.getByRole('button', { name: 'Salvar lista atual' }).click()
+    if (!(await dialog.innerText()).includes('Ofertas da semana')) throw new Error('Lista não foi salva')
+    let storageCount = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:saved-product-lists:v1') || '[]').length)
+    if (storageCount !== 1) throw new Error('Lista não persistiu no navegador')
+    const downloadPromise = page.waitForEvent('download')
+    await dialog.getByRole('button', { name: 'Baixar TXT da lista Ofertas da semana' }).click()
+    const download = await downloadPromise
+    if (download.suggestedFilename() !== 'ofertas-da-semana.txt') throw new Error('Arquivo TXT gerado com nome incorreto')
+    await dialog.getByRole('button', { name: 'Fechar Minhas listas' }).click()
+    await textarea.fill('Leite integral 1L 4,99')
+    await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
+    await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
+    dialog = page.getByRole('dialog', { name: 'Minhas listas de produtos' })
+    await dialog.getByRole('button', { name: 'Usar', exact: true }).click()
+    if (!(await dialog.innerText()).includes('substituirá o conteúdo atual')) throw new Error('Troca não pediu confirmação')
+    await dialog.getByRole('button', { name: 'Confirmar troca' }).click()
+    await dialog.waitFor({ state: 'hidden' })
+    if (await textarea.inputValue() !== original) throw new Error('Lista anterior não foi recuperada')
+    await page.reload({ waitUntil: 'domcontentloaded' })
+    if (await textarea.inputValue() !== original) throw new Error('Rascunho não restaurou a lista carregada')
+    await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
+    await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
+    dialog = page.getByRole('dialog', { name: 'Minhas listas de produtos' })
+    await dialog.getByRole('button', { name: 'Excluir lista Ofertas da semana' }).click()
+    if (!(await dialog.innerText()).includes('não pode ser desfeita')) throw new Error('Exclusão sem confirmação')
+    await dialog.getByRole('button', { name: 'Excluir lista Ofertas da semana' }).click()
+    storageCount = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:saved-product-lists:v1') || '[]').length)
+    if (storageCount !== 0) throw new Error('Lista não foi excluída do armazenamento')
+  })
+}
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {
