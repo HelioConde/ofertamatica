@@ -72,3 +72,20 @@
   .saved-list-actions button { min-width: 0; white-space: normal; line-height: 1.35; min-height: 44px; }
 }
 @media print { .saved-lists-dialog { display: none !important; } }
+
+/* No editor desktop, o menu "+" antigo abria para cima e a barra de formato
+   interceptava cliques. Abrimos para baixo dentro da área rolável do editor. */
+@media (min-width: 821px) {
+  .quick-entry-card:has(.input-actions-menu) {
+    overflow: visible !important;
+    z-index: 65;
+  }
+  .input-actions-menu-wrap:has(.input-actions-menu) {
+    z-index: 66;
+  }
+  .input-actions-menu {
+    top: calc(100% + 7px);
+    bottom: auto;
+    max-height: min(32dvh, 255px);
+  }
+}
