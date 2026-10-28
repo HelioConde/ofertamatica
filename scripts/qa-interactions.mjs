@@ -159,6 +159,48 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
   })
 }
 
+await scenario('GA4: ativação consentida e page_view único na SPA', { width: 390, height: 844 }, async (page) => {
+  // Substituir somente scripts externos por respostas vazias neste teste; sem gerar tráfego ao GA4 real.
+  await page.route('https://pagead2.googlesyndication.com/**', (route) => route.abort())
+  await page.route('https://www.googletagmanager.com/gtag/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }))
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await page.waitForFunction(() => Boolean(window.ofertaConsent && window.ofertaAnalytics), null, { timeout: 8000 })
+  const before = await page.evaluate(() => ({
+    state: window.ofertaAnalytics.status(),
+    scripts: document.querySelectorAll('script[data-ofertamatica-ga4]').length,
+    gtm: document.querySelectorAll('script[data-ofertamatica-gtm]').length,
+  }))
+  if (before.state.consented || before.scripts || before.gtm)
+    throw new Error('GA4/GTM não pode iniciar antes do consentimento')
+  const after = await page.evaluate(() => {
+    window.__tcfapi = (_action, _version, callback) => callback({ gdprApplies: false }, true)
+    window.googlefc.callbackQueue[0].CONSENT_API_READY()
+    window.ofertaConsent.saveChoice({ analytics: true, ads: false, personalized: false })
+    const events = () => window.dataLayer.filter((item) => item[0] === 'event' && item[1] === 'page_view')
+    const initial = events().length
+    window.ofertaConsent.refresh()
+    const afterRefresh = events().length
+    history.pushState({}, '', '/modelos/')
+    const afterNavigate = events().length
+    history.replaceState({}, '', '/modelos/')
+    const afterSamePath = events().length
+    return {
+      initial, afterRefresh, afterNavigate, afterSamePath,
+      state: window.ofertaAnalytics.status(),
+      scripts: document.querySelectorAll('script[data-ofertamatica-ga4]').length,
+      gtm: document.querySelectorAll('script[data-ofertamatica-gtm]').length,
+      paths: events().map((item) => item[2].page_path),
+    }
+  })
+  if (!after.state.consented || !after.state.started || after.scripts !== 1 || after.gtm)
+    throw new Error('Tag GA4 não foi iniciada de modo exclusivo após consentimento: ' + JSON.stringify(after))
+  if (after.initial !== 1 || after.afterRefresh !== 1 || after.afterNavigate !== 2 || after.afterSamePath !== 2)
+    throw new Error('Pageview em duplicidade ou ausência de navegação SPA: ' + JSON.stringify(after))
+  if (after.paths.join(',') !== '/,/modelos/')
+    throw new Error('Caminhos coletados incorretamente: ' + JSON.stringify(after.paths))
+})
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {
