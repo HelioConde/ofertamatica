@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-24T10:44:53.864Z",
-  "commit": "3fbc621a0965c113f5c232a01c868a688cdd5da8",
+  "generatedAt": "2026-10-28T03:24:23.231Z",
+  "commit": "d3130a4b0bf8e7d3915dab2f369215bff0a25433",
   "routes": [
     [
       "home",
@@ -307,7 +307,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 4580,
+      "documentHeight": 4638,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -772,7 +772,7 @@
       "width": 1440,
       "height": 1000,
       "scrollWidth": 1440,
-      "documentHeight": 2408,
+      "documentHeight": 2448,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -1990,7 +1990,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 6222,
+      "documentHeight": 6327,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -2455,7 +2455,7 @@
       "width": 768,
       "height": 1024,
       "scrollWidth": 768,
-      "documentHeight": 2971,
+      "documentHeight": 3012,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3591,7 +3591,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 5807,
+      "documentHeight": 5915,
       "horizontalOverflow": false,
       "visibleOverflow": [
         {
@@ -4112,7 +4112,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 3645,
+      "documentHeight": 3747,
       "horizontalOverflow": false,
       "visibleOverflow": [
         {
@@ -5353,7 +5353,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 5726,
+      "documentHeight": 5852,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5818,7 +5818,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 3424,
+      "documentHeight": 3506,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
