@@ -447,7 +447,9 @@ const failures = state.filter((item) => {
     // A home alta deve usar o espaço vertical sem alongar os cartões excessivamente.
     if (item.viewport === 'desktop' &&
         item.formatCardHeights.some((height) => height < 220 || height > 290)) return true
-    if (item.viewport.startsWith('desktop') && item.documentHeight > item.height + 4) return true
+    // A home agora oferece conteúdo original abaixo do seletor.
+    // Ter rolagem vertical é esperado e desejável: impedir rolagem esconderia o guia.
+    // Continuamos verificando sobreposição, corte dos cards e overflow horizontal.
   }
   if (item.viewport === 'desktop' && item.ads.some((ad) => ad.className.includes('is-pending') && ad.height > 180)) return true
   if (!item.viewport.startsWith('mobile')) return false
