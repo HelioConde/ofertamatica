@@ -38,7 +38,7 @@ export default function RetailCalculator({ slug }) {
           </button>
         </div>
         <div className="retail-calculator-result" aria-live="polite" aria-atomic="true">
-          <small>SIMULAÇÃO • VALORES DE EXEMPLO</small>
+          <small>CÁLCULO ILUSTRATIVO • SEM CONSULTA AO CAIXA</small>
           {result ? (
             kind === 'weight' ? (
               <>
@@ -65,7 +65,7 @@ export default function RetailCalculator({ slug }) {
       </div>
       <p className="retail-calculator-disclaimer">
         {kind === 'weight'
-          ? 'O total é uma simulação com valores fictícios; pode haver diferença de arredondamento na balança e no caixa. A ferramenta não consulta preços reais. Revise produto, unidade e valor antes de imprimir.'
+          ? 'O total é uma simulação a partir dos valores informados; pode haver diferença de arredondamento na balança e no caixa. A ferramenta não consulta preços reais. Revise produto, unidade e valor antes de imprimir.'
           : 'O cálculo não comprova que o preço anterior foi praticado nem que uma promoção está em conformidade com regras comerciais. Use somente preços e condições conferidos na loja.'}
       </p>
     </section>
