@@ -4,13 +4,13 @@ export const CURATED_POSTER_COLLECTIONS = {
   'placas-sazonais': {
     heading: 'Cartazes sazonais com modelos que você pode editar',
     intro: 'Escolha Black Friday, Halloween, Natal, verão e aniversário da loja. Cada miniatura usa a mesma arte e geometria do editor; basta trocar produto, preço e unidade de venda.',
-    models: ['black-friday', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
+    models: ['black-friday', 'black-friday-white', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
     note: 'Datas comemorativas não justificam valores antigos, descontos não comprovados nem condições escondidas. Todos os preços mostrados são fictícios.',
   },
   'cartaz-black-friday': {
     heading: 'Três opções prontas para seu cartaz de Black Friday',
     intro: 'Compare o destaque preto e amarelo, um De/Por com preço anterior e uma oferta relâmpago. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
-    models: ['black-friday', 'de-por', 'relampago'],
+    models: ['black-friday', 'black-friday-white', 'de-por', 'relampago'],
     note: 'No De/Por, confirme o preço anterior que realmente foi praticado e informe condições e validade da oferta.',
   },
   'placas-para-hortifruti': {
