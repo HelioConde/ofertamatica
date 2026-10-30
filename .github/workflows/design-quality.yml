@@ -106,7 +106,7 @@ jobs:
             await page.getByRole('button', {name:'Black Friday', exact:true}).click()
             await page.screenshot({path: 'artifacts/design-audit/black-friday-filtrada-' + name + '.png', fullPage: true})
             const visible = await page.locator('.curated-model-grid .model-showcase-card').count()
-            if (visible !== 2) throw new Error('Esperados dois modelos Black Friday, obtidos ' + visible)
+            if (visible !== 3) throw new Error('Esperados três modelos Black Friday, obtidos ' + visible)
             await page.close()
           }
           await browser.close()
