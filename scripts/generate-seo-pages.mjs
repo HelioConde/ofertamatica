@@ -5,6 +5,7 @@ import { searchTopicsFor } from '../src/seo/searchIntent.js'
 import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/homePrintHelp.js'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
+import { curatedModelsForSlug } from '../src/config/modelEditorialCollections.js'
 import { calculatorStaticExample } from '../src/seo/retailCalculators.js'
 import { inspectRetailList, REVIEW_SAMPLE } from '../src/seo/retailListReview.js'
 
@@ -210,6 +211,24 @@ function listReviewSnapshot(page) {
     '<p><a href="/?formato=A4">Abrir criador de cartazes A4</a></p></section>'
 }
 
+function curatedModelsSnapshot(page) {
+  const collection = curatedModelsForSlug(page.slug)
+  if (!collection) return ''
+  const cards = collection.models.map((id) => POSTER_MODEL_PRESETS.find((model) => model.id === id))
+    .filter(Boolean).map((model) =>
+      '<li style="border:1px solid #d7e2ee;border-radius:12px;padding:15px;background:' + esc(model.background) + ';color:' + esc(model.text) + '">' +
+      '<strong style="display:block;background:' + esc(model.header) + ';color:' + esc(model.headerText) + ';padding:8px;font-size:15px">' + esc(model.label) + '</strong>' +
+      '<p style="font-weight:700">' + esc(model.name) + '</p><p>' + esc(model.product) + '</p>' +
+      '<strong style="display:block;font-size:25px;color:' + esc(model.price) + '">R$ ' + esc(model.value) + '</strong>' +
+      '<p style="font-size:12px">' + esc(model.note) + '</p></li>').join('')
+  return '<section aria-labelledby="curated-collection-title" style="margin-top:24px">' +
+    '<h2 id="curated-collection-title">' + esc(collection.heading) + '</h2>' +
+    '<p>' + esc(collection.intro) + '</p>' +
+    '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
+    '<p>' + esc(collection.note) + '</p>' +
+    '<p><a href="/modelos/">Ver todos os modelos e escolher a arte no editor</a></p></section>'
+}
+
 function retailCalculatorSnapshot(page) {
   const example = calculatorStaticExample(page.slug)
   if (!example) return ''
@@ -293,6 +312,7 @@ function snapshot(page) {
     ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${curatedModelsSnapshot(page)}
     ${retailCalculatorSnapshot(page)}
     ${listReviewSnapshot(page)}
     ${howToContent}
