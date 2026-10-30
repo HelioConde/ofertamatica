@@ -29,3 +29,10 @@
 .feedback-nudge button:focus-visible,.feedback-nudge textarea:focus-visible,.feedback-nudge input:focus-visible { outline: 3px solid #2168da; outline-offset: 2px; }
 @media (max-width: 480px) { .feedback-nudge { right: 8px; bottom: 10px; max-height: min(76dvh, 530px); overflow-y: auto; width: min(292px, calc(100vw - 16px)); } }
 @media print { .feedback-nudge { display: none !important; } }
+
+/* A decisão de privacidade sempre tem prioridade. O convite não cobre a CMP. */
+#root:has(.cookie-banner) .feedback-nudge,
+#root:has(.cookie-backdrop) .feedback-nudge,
+#root:has(.cookie-entry) .feedback-nudge,
+.editor-mode .feedback-nudge,
+.free-editor-mode .feedback-nudge { display: none !important; }
