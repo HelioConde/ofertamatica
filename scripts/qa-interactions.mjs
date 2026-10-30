@@ -454,7 +454,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
       const style = getComputedStyle(element)
       return {
         text, price: element.dataset.samplePrice,
-        fontSize: parseFloat(style.fontSize), visibility: style.visibility,
+        fontSize: parseFloat(style.fontSize), majorFontSize: parseFloat(getComputedStyle(element.querySelector('.poster-price-major')).fontSize), decimalFontSize: parseFloat(getComputedStyle(element.querySelector('.poster-price-decimal')).fontSize), visibility: style.visibility,
         color: style.color,
         inside: bounds.left >= frame.left - 2 && bounds.right <= frame.right + 2 &&
           bounds.top >= frame.top - 2 && bounds.bottom <= frame.bottom + 2,
@@ -464,7 +464,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
     if (result.price !== '24,90' || !result.text.includes('R$24,90')) {
       throw new Error('Preço de referência não está completo: ' + JSON.stringify(result))
     }
-    if (result.visibility !== 'visible' || result.fontSize < 20 || !result.inside) {
+    if (result.visibility !== 'visible' || result.fontSize < 20 || result.majorFontSize < 20 || result.decimalFontSize < 12 || !result.inside) {
       throw new Error('Preço ilegível ou cortado na miniatura: ' + JSON.stringify(result))
     }
     if (!result.ariaLabel.includes('24,90')) {

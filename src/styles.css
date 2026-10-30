@@ -9965,3 +9965,38 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .personalization-live-stage .personalization-live-scale .poster-price-box {
   visibility: hidden;
 }
+
+
+/* Miniaturas do seletor: a regra genérica .header-art-grid span reduzia
+   também os dígitos do PriceValue a 6.5px. Isolar a tipografia do preço. */
+.style-sidebar .header-art-grid .personalization-live-stage .model-thumbnail-price .poster-price-value {
+  display: inline-flex !important;
+  width: auto !important;
+  max-width: 100% !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-family: var(--poster-price-font-family, Impact, sans-serif) !important;
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  letter-spacing: -.05em !important;
+  line-height: 1 !important;
+}
+.style-sidebar .header-art-grid .personalization-live-stage .model-thumbnail-price .poster-price-major,
+.style-sidebar .header-art-grid .personalization-live-stage .model-thumbnail-price .poster-price-separator {
+  font-size: 23px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+.style-sidebar .header-art-grid .personalization-live-stage .model-thumbnail-price .poster-price-currency {
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  margin-right: 2px !important;
+  line-height: 1 !important;
+}
+.style-sidebar .header-art-grid .personalization-live-stage .model-thumbnail-price .poster-price-decimal {
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
