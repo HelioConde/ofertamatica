@@ -3,8 +3,8 @@
 export const CURATED_POSTER_COLLECTIONS = {
   'placas-sazonais': {
     heading: 'Modelos de placas sazonais para imprimir grátis',
-    intro: 'Compare Black Friday preto e amarelo ou preto e branco, Halloween, Natal, verão e aniversário da loja. Veja os cabeçalhos ilustrados reais, personalize produto, unidade e preço e imprima em A4, A5 ou A3.',
-    models: ['black-friday', 'black-friday-white', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
+    intro: 'Compare os cabeçalhos clássicos e ilustrados de Black Friday, Halloween, Natal, verão e aniversário da loja. Veja os cabeçalhos ilustrados reais, personalize produto, unidade e preço e imprima em A4, A5 ou A3.',
+    models: ['black-friday', 'black-friday-white', 'black-friday-classico', 'halloween', 'halloween-classico', 'natal', 'natal-classico', 'verao', 'verao-classico', 'aniversario', 'aniversario-classico', 'fim-de-semana'],
     note: 'Datas comemorativas não justificam valores antigos, descontos não comprovados nem condições escondidas. Todos os preços mostrados são fictícios.',
   },
   'cartaz-black-friday': {

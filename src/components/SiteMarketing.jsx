@@ -434,7 +434,7 @@ function CuratedModelSection({ slug, onCreate }) {
   const filtered = !seasonal || seasonFilter === 'todos' ? selected : selected.filter((model) => {
     if (seasonFilter === 'black-friday') return model.id.startsWith('black-friday')
     if (seasonFilter === 'outros') return !model.id.startsWith('black-friday') && !['halloween', 'natal'].includes(model.id)
-    return model.id === seasonFilter
+    return model.id === seasonFilter || model.id === seasonFilter + '-classico'
   })
   return (
     <section className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
