@@ -201,6 +201,63 @@ await scenario('GA4: ativação consentida e page_view único na SPA', { width: 
     throw new Error('Caminhos coletados incorretamente: ' + JSON.stringify(after.paths))
 })
 
+await scenario('Campanhas sazonais: 6 modelos reais e entrada direta no editor', { width: 390, height: 844 }, async (page) => {
+  const response = await page.request.get(origin + '/placas-sazonais/')
+  const html = await response.text()
+  if (!html.includes('HALLOWEEN') || !html.includes('OFERTAS DE NATAL') || !html.includes('curated-collection-title'))
+    throw new Error('A página sazonal precisa ter modelos úteis no HTML inicial')
+  await page.goto(origin + '/placas-sazonais/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.curated-model-grid', 'Galeria sazonal não carregou')
+  if (await page.locator('.curated-model-grid .model-showcase-card').count() !== 6)
+    throw new Error('A galeria sazonal não mostra seis modelos reais')
+  await page.getByRole('button', { name: 'Usar modelo Halloween de ofertas no criador' }).click()
+  await check(page, '.format-grid .format-choice', 'Seleção do modelo não abriu criador')
+  const style = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:poster-style:v1') || '{}'))
+  if (style.headerText !== 'HALLOWEEN' || style.backgroundColor !== '#261237')
+    throw new Error('O estilo Halloween não foi transferido ao criador')
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)
+  if (overflow) throw new Error('Galeria sazonal causa rolagem horizontal')
+})
+await scenario('Consultas com impressões: modelos diretamente nas páginas existentes', { width: 1366, height: 768 }, async (page) => {
+  for (const [slug, expected] of [
+    ['cartaz-black-friday', 3],
+    ['placas-para-hortifruti', 3],
+    ['cartaz-para-supermercado', 4],
+    ['placas-para-padaria', 3],
+    ['cartazes-para-farmacia', 3],
+  ]) {
+    await page.goto(origin + '/' + slug + '/', { waitUntil: 'domcontentloaded' })
+    await check(page, '.curated-model-grid', 'Modelos ausentes de ' + slug)
+    if (await page.locator('.curated-model-grid .model-showcase-card').count() !== expected)
+      throw new Error('Catálogo incompleto em ' + slug)
+  }
+  const response = await page.request.get(origin + '/placas-para-acougue/')
+  if (!(await response.text()).includes('cartazes-para-acougue'))
+    throw new Error('Falta redirecionamento da URL antiga de açougue')
+})
+await scenario('Feedback pequeno: abrir, avaliar, dispensar e respeitar impressão', { width: 390, height: 844 }, async (page) => {
+  await page.clock.install()
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await page.clock.fastForward(17000)
+  await check(page, '.feedback-nudge', 'Convite de feedback não apareceu')
+  await page.getByRole('button', { name: 'Dar minha opinião' }).click()
+  await page.locator('#ofertamatica-feedback-message').fill('Gostaria de mais modelos para hortifruti.')
+  await page.locator('.feedback-nudge-rating input[value="4"]').check()
+  if (!(await page.locator('.feedback-nudge').innerText()).includes('Abrir meu e-mail'))
+    throw new Error('Feedback não oferece ação de envio explícita')
+  const style = await page.evaluate(() => [...document.styleSheets].some((sheet) => {
+    try { return [...sheet.cssRules].some((rule) => rule.cssText.includes('.feedback-nudge') && rule.cssText.includes('print')) } catch { return false }
+  }))
+  if (!style) throw new Error('Feedback precisa ficar oculto na impressão')
+  await page.getByRole('button', { name: /Dispensar convite de feedback/ }).click()
+  if (await page.locator('.feedback-nudge').count()) throw new Error('Feedback não fechou')
+  if (!await page.evaluate(() => Number(localStorage.getItem('ofertamatica:feedback-dismissed-until:v1')) > Date.now()))
+    throw new Error('Dismiss não foi persistido')
+  await page.reload({ waitUntil: 'domcontentloaded' })
+  await page.clock.fastForward(17000)
+  if (await page.locator('.feedback-nudge').count()) throw new Error('Feedback voltou antes do prazo de dispensa')
+})
+
 await scenario('Publicidade mobile: CMP disponível, anúncios bloqueados sem escolha', { width: 390, height: 844 }, async (page) => {
   const requests = []
   page.on('request', (request) => {
