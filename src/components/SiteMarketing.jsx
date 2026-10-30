@@ -39,7 +39,7 @@ const CREATOR_META = {
   path: '/',
 }
 
-const MODEL_HEADER_URLS = Object.fromEntries(Object.entries(import.meta.glob('../img/headers/*.png', { eager: true, query: '?url', import: 'default' })).map(([path, url]) => [path.split('/').pop(), url]))
+const MODEL_HEADER_URLS = Object.fromEntries(Object.entries(import.meta.glob('../../img/headers/*.png', { eager: true, query: '?url', import: 'default' })).map(([path, url]) => [path.split('/').pop(), url]))
 
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
