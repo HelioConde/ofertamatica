@@ -44,12 +44,12 @@ for (const route of routes) {
   assert.ok(html.includes('<meta name="description" content="'), 'Meta descrição ausente: ' + route)
   const titles = [...html.matchAll(/<title>([^<]+)<\/title>/gi)]
   const title = titles[0]?.[1]?.trim() || ''
-  const descriptions = [...html.matchAll(/<meta\\s+name="description"\\s+content="([^"]*)"\\s*\\/?\s*>/gi)]
+  const descriptions = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/gi)]
   assert.equal(descriptions.length, 1, 'Meta descrição duplicada: ' + route)
   const description = descriptions[0]?.[1]?.trim() || ''
   assert.ok(title.length >= 15 && title.length <= 85, 'Título vazio, genérico ou excessivo: ' + route)
   assert.ok(description.length >= 65 && description.length <= 190, 'Descrição insuficiente ou longa demais: ' + route)
-  assert.ok(!/\\b(lorem ipsum|em construção|coming soon)\\b/i.test(html), 'Conteúdo provisório em página indexável: ' + route)
+  assert.ok(!/\b(lorem ipsum|em construção|coming soon)\b/i.test(html), 'Conteúdo provisório em página indexável: ' + route)
   for (const [map, text, label] of [[titlesByText, title, 'Título'], [descriptionsByText, description, 'Descrição']]) {
     const previous = map.get(text.toLocaleLowerCase('pt-BR'))
     assert.ok(!previous, label + ' SEO duplicado entre ' + previous + ' e ' + route)
