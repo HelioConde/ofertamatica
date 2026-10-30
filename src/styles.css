@@ -9944,7 +9944,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   background: var(--poster-background, #fff200) !important;
   color: var(--poster-price-color, #d71920) !important;
   font-family: var(--poster-price-font-family, Impact, sans-serif) !important;
-  font-size: clamp(14px, 2.1vw, 22px) !important;
+  font-size: 22px !important;
   font-weight: 1000 !important;
   letter-spacing: -.055em !important;
   line-height: 1 !important;
