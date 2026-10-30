@@ -3321,3 +3321,16 @@ summary:focus-visible {
     line-height: 1.35;
   }
 }
+
+/* Curadoria por intenção de busca: o modelo real é o destaque, não mais texto de SEO. */
+.curated-model-section { padding: clamp(18px, 3vw, 30px); border: 1px solid #d8e4f3; border-radius: 18px; background: linear-gradient(135deg, #f5f9ff, #fff); }
+.curated-model-section .marketing-heading { margin-bottom: 20px; }
+.curated-model-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: clamp(12px, 1.8vw, 22px); }
+.curated-model-grid > * { min-width: 0; max-width: 100%; }
+.curated-model-note { margin: 18px 0 6px; font-size: 12px; line-height: 1.65; color: #516884; }
+.curated-model-all-link, .curated-seasonal-link a { color: #175bc1; font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.curated-model-all-link { display: inline-flex; padding: 7px 0; min-height: 34px; align-items: center; }
+.curated-seasonal-link { padding: 13px 16px; margin: 14px 0 20px; background: #f1f6ff; border: 1px solid #d8e6f8; border-radius: 10px; color: #2a4566; font-size: 13px; line-height: 1.65; }
+.curated-seasonal-link a { margin-left: 5px; }
+@media (max-width: 900px) { .curated-model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .curated-model-grid { grid-template-columns: minmax(0, 1fr); } .curated-model-section { padding: 14px; } }
