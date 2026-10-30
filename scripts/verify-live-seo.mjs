@@ -1,5 +1,5 @@
 import { setTimeout as sleep } from 'node:timers/promises'
-import { PUBLIC_PAGES } from '../src/seo/seoPages.js'
+import { PUBLIC_PAGES, SEO_PAGES } from '../src/seo/seoPages.js'
 
 // Verificação após o upload FTP. Não depende de serviços pagos nem de navegador.
 // Acompanha principalmente a regressão: URL especializada retornando HTML da home.
@@ -8,7 +8,7 @@ const checks = [
   { name: 'Home', url: origin + '/', status: 200, contains: ['Criar Placas de Preço e Cartazes Grátis', '"@type": "WebSite"', '/modelos/', '/formatos/'] },
   { name: 'Modelos', url: origin + '/modelos/', status: 200, contains: [PUBLIC_PAGES.find((page) => page.slug === 'modelos').title, 'https://ofertamatica.com.br/modelos/'] },
   { name: 'Formatos', url: origin + '/formatos/', status: 200, contains: ['Cartaz A4, A5 e A3 para Imprimir', 'https://ofertamatica.com.br/formatos/'] },
-  { name: 'Guia padaria', url: origin + '/placas-para-padaria/', status: 200, contains: [PUBLIC_PAGES.find((page) => page.slug === 'placas-para-padaria').title, 'https://ofertamatica.com.br/placas-para-padaria/'] },
+  { name: 'Guia padaria', url: origin + '/placas-para-padaria/', status: 200, contains: [SEO_PAGES.find((page) => page.slug === 'placas-para-padaria').title, 'https://ofertamatica.com.br/placas-para-padaria/'] },
   { name: 'Placas sazonais', url: origin + '/placas-sazonais/', status: 200, contains: [PUBLIC_PAGES.find((page) => page.slug === 'placas-sazonais').title, 'https://ofertamatica.com.br/placas-sazonais/'] },
   { name: 'Guia Excel', url: origin + '/cartazes-a-partir-de-excel/', status: 200, contains: ['Criar Cartazes a Partir do Excel Grátis', 'https://ofertamatica.com.br/cartazes-a-partir-de-excel/'] },
   { name: 'Hub de guias', url: origin + '/guias-para-varejo/', status: 200, contains: ['/placas-para-padaria/', '/cartazes-a-partir-de-excel/', 'Calcule o lote de impressão', 'Valide o PDF e a impressão física'] },
