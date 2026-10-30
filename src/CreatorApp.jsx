@@ -962,7 +962,29 @@ function StyleSidebar({
     }
 
     if (!HEADER_IMAGE_BY_ID[id]) return
-    onChange({ ...style, headerImage: id })
+    // A arte ilustrada define também as cores do cartaz, sem alterar
+    // produtos, preços ou as configurações de impressão.
+    const artThemeModelIds = {
+      'black-friday.png': 'black-friday',
+      'halloween.png': 'halloween',
+      'natal.png': 'natal',
+      'padaria.png': 'padaria',
+      'hortifruti.png': 'hortifruti',
+      'feita-do-hortifruti.png': 'hortifruti',
+      'feira-livre.png': 'hortifruti',
+      'verao-de-ofertas.png': 'verao',
+      'aniversario-da-loja.png': 'aniversario',
+    }
+    const themeModel = POSTER_MODEL_PRESETS.find((model) => model.id === artThemeModelIds[id])
+    onChange(themeModel ? {
+      ...style,
+      headerImage: id,
+      backgroundColor: themeModel.background,
+      textColor: resolveReadableTextColor(themeModel.background, themeModel.text),
+      priceColor: resolveReadablePriceColor(themeModel.background, themeModel.price),
+      headerColor: themeModel.header,
+      headerTextColor: resolveReadableHeaderTextColor(themeModel.header, themeModel.headerText),
+    } : { ...style, headerImage: id })
     const next = [id, ...recentHeaderIds.filter((current) => current !== id)].slice(0, 6)
     setRecentHeaderIds(next)
     try {
