@@ -28,6 +28,8 @@ for (const url of entries) {
 }
 
 const graph = new Map()
+const titlesByText = new Map()
+const descriptionsByText = new Map()
 let linksChecked = 0
 for (const route of routes) {
   const file = htmlFor(route)
@@ -40,6 +42,19 @@ for (const route of routes) {
   assert.ok(html.includes('<meta property="og:url" content="' + expectedCanonical + '"'), 'OG URL incorreta: ' + route)
   assert.equal((html.match(/<title>[^<]+<\/title>/gi) || []).length, 1, 'Título único ausente: ' + route)
   assert.ok(html.includes('<meta name="description" content="'), 'Meta descrição ausente: ' + route)
+  const titles = [...html.matchAll(/<title>([^<]+)<\/title>/gi)]
+  const title = titles[0]?.[1]?.trim() || ''
+  const descriptions = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/gi)]
+  assert.equal(descriptions.length, 1, 'Meta descrição duplicada: ' + route)
+  const description = descriptions[0]?.[1]?.trim() || ''
+  assert.ok(title.length >= 15 && title.length <= 85, 'Título vazio, genérico ou excessivo: ' + route)
+  assert.ok(description.length >= 65 && description.length <= 190, 'Descrição insuficiente ou longa demais: ' + route)
+  assert.ok(!/\b(lorem ipsum|em construção|coming soon)\b/i.test(html), 'Conteúdo provisório em página indexável: ' + route)
+  for (const [map, text, label] of [[titlesByText, title, 'Título'], [descriptionsByText, description, 'Descrição']]) {
+    const previous = map.get(text.toLocaleLowerCase('pt-BR'))
+    assert.ok(!previous, label + ' SEO duplicado entre ' + previous + ' e ' + route)
+    map.set(text.toLocaleLowerCase('pt-BR'), route)
+  }
   assert.ok(html.includes('<meta name="robots" content="index,follow'), 'Robots de página pública incorreto: ' + route)
   assert.equal((html.match(/<h1\b/gi) || []).length, 1, 'H1 único ausente do HTML inicial: ' + route)
   // Só <a href> é uma aresta de descoberta; texto em JS, JSON ou imagens
