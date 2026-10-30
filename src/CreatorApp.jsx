@@ -33,6 +33,7 @@ import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReada
 import { optimizePosterImage } from './utils/optimizePosterImage'
 import ProductPhotoControls from './components/ProductPhotoControls'
 import SavedProductListsDialog from './components/SavedProductListsDialog'
+import FeedbackNudge from './components/FeedbackNudge'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
 
@@ -2698,6 +2699,7 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
           <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
         </>
       )}
+      <FeedbackNudge />
     </div>
   )
 }
