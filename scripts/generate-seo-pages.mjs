@@ -226,7 +226,7 @@ function curatedModelsSnapshot(page) {
     '<h2 id="curated-collection-title">' + esc(collection.heading) + '</h2>' +
     '<p>' + esc(collection.intro) + '</p>' +
     '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
-    '<p>' + esc(collection.note) + '</p>' +
+    '<p><strong>Preços fictícios nos exemplos.</strong> ' + esc(collection.note) + '</p>' +
     '<p><a href="/modelos/">Ver todos os modelos e escolher a arte no editor</a></p></section>'
 }
 
@@ -417,7 +417,6 @@ function creatorSnapshot() {
     '</div></header>' +
     '<section class="format-home-chooser" aria-labelledby="format-picker-title"><div class="format-home-section-title"><div><h2 id="format-picker-title">Selecione o tamanho do cartaz</h2><p>8 opções de impressão · clique em uma para começar</p></div><span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span></div>' +
     '<div class="format-grid">' + cards + '</div></section>' +
-    '<aside class="format-ad-card format-ad-zone" aria-label="Área de publicidade"></aside>' +
     '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
     '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a><a href="/conheca-validade-zero/">Conhecer a ferramenta</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section>' + homePrintHelpSnapshot() + '</main>' +
     '<aside id="ofertamatica-load-warning" hidden role="alert" style="position:fixed;bottom:12px;left:12px;right:12px;z-index:9999;margin:auto;max-width:600px;padding:14px;border:1px solid #afc9f3;border-radius:12px;background:white;box-shadow:0 6px 36px #0002"><strong>O criador está demorando para carregar.</strong> <a href="/" style="color:#1d63e9;font-weight:800">Recarregar</a></aside></div>' +
