@@ -934,7 +934,7 @@ function StyleSidebar({
         headerTextColor: resolveReadableHeaderTextColor(model.header, model.headerText),
         headerStyle: 'retail',
         headerText: model.label,
-        headerImage: '',
+        headerImage: model.headerImageId || '',
         headerFooterStyle: model.headerFooterStyle || 'moldura',
         offerMode: model.offerMode || 'standard',
         photoLayout: model.photoLayout || 'off',

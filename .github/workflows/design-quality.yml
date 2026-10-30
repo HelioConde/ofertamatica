@@ -86,6 +86,31 @@ jobs:
           done
           cat /tmp/ofertamatica-design-preview.log
           exit 1
+      - name: Capture seasonal posters on desktop and mobile
+        run: |
+          mkdir -p artifacts/design-audit
+          node --input-type=module <<'EOF'
+          import { chromium } from 'playwright'
+          const browser = await chromium.launch({ headless: true })
+          for (const [name, viewport] of [['desktop', {width: 1440, height: 900}], ['mobile', {width: 390, height: 844}]]) {
+            const page = await browser.newPage({ viewport, deviceScaleFactor: 1 })
+            await page.goto('http://127.0.0.1:5183/placas-sazonais/', {waitUntil:'networkidle'})
+            await page.locator('.curated-model-grid .model-showcase-card').first().waitFor()
+            await page.addStyleTag({content: '.model-showcase-card { content-visibility: visible !important; contain-intrinsic-size: auto !important; }'})
+            await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(img => img.complete ? Promise.resolve() : new Promise(resolve => { img.onload=resolve; img.onerror=resolve }))) })
+            const illustrated = await page.locator('.curated-model-grid .ofertamatica-custom-header img').count()
+            if (illustrated < 6) throw new Error('Cabeçalhos ilustrados ausentes: ' + illustrated)
+            const rejectCookies = page.getByRole('button', {name:/Rejeitar opcionais/i})
+            if (await rejectCookies.isVisible()) await rejectCookies.click()
+            await page.screenshot({path: 'artifacts/design-audit/sazonais-' + name + '.png', fullPage: true})
+            await page.getByRole('button', {name:'Black Friday', exact:true}).click()
+            await page.screenshot({path: 'artifacts/design-audit/black-friday-filtrada-' + name + '.png', fullPage: true})
+            const visible = await page.locator('.curated-model-grid .model-showcase-card').count()
+            if (visible !== 2) throw new Error('Esperados dois modelos Black Friday, obtidos ' + visible)
+            await page.close()
+          }
+          await browser.close()
+          EOF
       - name: Web Design Guidelines - responsive and keyboard audit
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183

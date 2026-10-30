@@ -2,15 +2,15 @@
 // Não apresenta ordem editorial como ranking de buscas; impressões não equivalem a popularidade.
 export const CURATED_POSTER_COLLECTIONS = {
   'placas-sazonais': {
-    heading: 'Cartazes sazonais com modelos que você pode editar',
-    intro: 'Escolha Black Friday, Halloween, Natal, verão e aniversário da loja. Cada miniatura usa a mesma arte e geometria do editor; basta trocar produto, preço e unidade de venda.',
-    models: ['black-friday', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
+    heading: 'Modelos de placas sazonais para imprimir grátis',
+    intro: 'Compare Black Friday preto e amarelo ou preto e branco, Halloween, Natal, verão e aniversário da loja. Veja os cabeçalhos ilustrados reais, personalize produto, unidade e preço e imprima em A4, A5 ou A3.',
+    models: ['black-friday', 'black-friday-white', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
     note: 'Datas comemorativas não justificam valores antigos, descontos não comprovados nem condições escondidas. Todos os preços mostrados são fictícios.',
   },
   'cartaz-black-friday': {
-    heading: 'Três opções prontas para seu cartaz de Black Friday',
-    intro: 'Compare o destaque preto e amarelo, um De/Por com preço anterior e uma oferta relâmpago. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
-    models: ['black-friday', 'de-por', 'relampago'],
+    heading: 'Modelos de cartaz Black Friday com cabeçalho ilustrado',
+    intro: 'Compare Black Friday com preço amarelo, a variação de preço branco no fundo preto, De/Por e oferta relâmpago. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
+    models: ['black-friday', 'black-friday-white', 'de-por', 'relampago'],
     note: 'No De/Por, confirme o preço anterior que realmente foi praticado e informe condições e validade da oferta.',
   },
   'placas-para-hortifruti': {

@@ -3334,3 +3334,17 @@ summary:focus-visible {
 .curated-seasonal-link a { margin-left: 5px; }
 @media (max-width: 900px) { .curated-model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .curated-model-grid { grid-template-columns: minmax(0, 1fr); } .curated-model-section { padding: 14px; } }
+
+/* Galeria sazonal: navegação por intenção, sem criar páginas duplicadas. */
+.seasonal-gallery-toolbar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin:0 0 18px; }
+.seasonal-gallery-filters { display:flex; flex-wrap:wrap; gap:8px; }
+.seasonal-gallery-filters button { min-height:40px; padding:9px 14px; border:1px solid #cbd9ea; border-radius:999px; background:#fff; color:#284563; font-size:12px; font-weight:800; cursor:pointer; }
+.seasonal-gallery-filters button:hover { background:#edf4ff; border-color:#98b9ea; }
+.seasonal-gallery-filters button[aria-pressed="true"] { background:#195ed9; color:#fff; border-color:#195ed9; }
+.seasonal-gallery-filters button:focus-visible { outline:3px solid #89b5ff; outline-offset:2px; }
+.seasonal-gallery-toolbar > span { color:#64748b; font-size:12px; font-weight:700; }
+@media (max-width:560px) {
+ .seasonal-gallery-filters { flex-wrap:nowrap; max-width:100%; overflow-x:auto; padding:2px 2px 8px; scrollbar-width:thin; }
+ .seasonal-gallery-filters button { flex:0 0 auto; }
+ .seasonal-gallery-toolbar { align-items:start; }
+}
