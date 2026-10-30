@@ -57,6 +57,7 @@ const marketingCssHref = '/assets/' + marketingCssAsset
 
 const LEGACY_REDIRECTS = {
   'cartaz-de-supermercado': 'cartaz-para-supermercado',
+  'placas-para-acougue': 'cartazes-para-acougue',
   'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
   'gerador-de-placas-com-ia': 'como-funciona',
   'cartaz-de-oferta-gratis': 'criador-de-cartaz-de-oferta',
