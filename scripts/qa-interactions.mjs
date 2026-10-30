@@ -240,7 +240,13 @@ await scenario('Feedback pequeno: abrir, avaliar, dispensar e respeitar impress�
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
   await check(page, '.format-grid .format-choice', 'Página inicial não carregou antes do convite')
   await page.clock.fastForward(17000)
-  await check(page, '.feedback-nudge', 'Convite de feedback não apareceu')
+  const blocker = page.locator('.cookie-banner')
+  if (await blocker.isVisible()) {
+    if (await page.locator('.feedback-nudge').isVisible())
+      throw new Error('Convite não pode cobrir preferências de privacidade')
+    await blocker.getByRole('button', { name: 'Rejeitar opcionais' }).click()
+  }
+  await check(page, '.feedback-nudge', 'Convite de feedback não apareceu após resolver cookies')
   await page.getByRole('button', { name: 'Dar minha opinião' }).click()
   await page.locator('#ofertamatica-feedback-message').fill('Gostaria de mais modelos para hortifruti.')
   await page.locator('.feedback-nudge-rating input[value="4"]').check()
