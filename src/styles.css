@@ -9925,3 +9925,43 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Preço de leitura rápida nas miniaturas laterais; não afeta o cartaz impresso. */
+.personalization-live-stage .model-thumbnail-price {
+  position: absolute !important;
+  z-index: 12 !important;
+  left: 5% !important;
+  right: 5% !important;
+  bottom: 6% !important;
+  height: 31% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2px !important;
+  margin: 0 !important;
+  border-radius: 3px !important;
+  background: var(--poster-background, #fff200) !important;
+  color: var(--poster-price-color, #d71920) !important;
+  font-family: var(--poster-price-font-family, Impact, sans-serif) !important;
+  font-size: clamp(14px, 2.1vw, 22px) !important;
+  font-weight: 1000 !important;
+  letter-spacing: -.055em !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+.personalization-live-stage .model-thumbnail-price * {
+  color: inherit !important;
+  font-family: inherit !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
+}
+.personalization-live-stage .model-thumbnail-price .poster-price-currency {
+  font-size: .42em !important;
+}
+.personalization-live-stage .personalization-live-scale .poster-price-box {
+  visibility: hidden;
+}
