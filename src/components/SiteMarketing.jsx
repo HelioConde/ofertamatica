@@ -429,7 +429,7 @@ function CuratedModelSection({ slug, onCreate }) {
       <div className="model-showcase-grid curated-model-grid">
         {selected.map((model) => <ModelCard key={model.id} item={model} onCreate={onCreate} />)}
       </div>
-      <p className="curated-model-note">{collection.note}</p>
+      <p className="curated-model-note"><strong>Preços fictícios nas prévias.</strong> {collection.note}</p>
       <a className="curated-model-all-link" href="/modelos/">Comparar todos os modelos de cartazes <span aria-hidden="true">→</span></a>
     </section>
   )
