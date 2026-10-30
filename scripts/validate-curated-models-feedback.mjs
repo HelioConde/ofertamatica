@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync, existsSync } from 'node:fs'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 import { curatedModelsForSlug, CURATED_POSTER_COLLECTIONS } from '../src/config/modelEditorialCollections.js'
-import { getPublicPage, getSeoPage } from '../src/seo/seoPages.js'
+import { INDEXABLE_PAGES } from '../src/seo/seoPages.js'
 
 const ids = new Set(POSTER_MODEL_PRESETS.map((model) => model.id))
 for (const slug of Object.keys(CURATED_POSTER_COLLECTIONS)) {
@@ -10,7 +10,7 @@ for (const slug of Object.keys(CURATED_POSTER_COLLECTIONS)) {
   assert.ok(c.models.length >= 3, 'Mínimo três modelos úteis: ' + slug)
   assert.ok(c.models.every((id) => ids.has(id)), 'Modelo inexistente em ' + slug)
   assert.ok(c.models.every((id) => POSTER_MODEL_PRESETS.find((model) => model.id === id).product), 'Exemplos reais por modelo')
-  assert.ok(getPublicPage('/' + slug) || getSeoPage('/' + slug), 'Página não publicada: ' + slug)
+  assert.ok(INDEXABLE_PAGES.some((page) => page.slug === slug), 'Página não publicada: ' + slug)
   const path = 'dist/' + slug + '/index.html'
   assert.ok(existsSync(path), 'Falta HTML estático de ' + slug)
   const html = readFileSync(path, 'utf8')
