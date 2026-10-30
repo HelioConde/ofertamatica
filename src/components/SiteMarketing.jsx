@@ -6,6 +6,7 @@ import FormatOptionCard from './FormatOptionCard'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
+import { curatedModelsForSlug } from '../config/modelEditorialCollections'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
 import { parseProductList } from '../poster-engine/parseProduct'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
@@ -414,6 +415,26 @@ const HOW_RELATED_GUIDES = [
   },
 ]
 
+function CuratedModelSection({ slug, onCreate }) {
+  const collection = curatedModelsForSlug(slug)
+  if (!collection) return null
+  const selected = collection.models.map((id) => POSTER_MODEL_PRESETS.find((item) => item.id === id)).filter(Boolean)
+  return (
+    <section className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
+      <div className="marketing-heading">
+        <span className="marketing-kicker">EXEMPLOS EDITÁVEIS</span>
+        <h2>{collection.heading}</h2>
+        <p>{collection.intro}</p>
+      </div>
+      <div className="model-showcase-grid curated-model-grid">
+        {selected.map((model) => <ModelCard key={model.id} item={model} onCreate={onCreate} />)}
+      </div>
+      <p className="curated-model-note"><strong>Preços fictícios nas prévias.</strong> {collection.note}</p>
+      <a className="curated-model-all-link" href="/modelos/">Comparar todos os modelos de cartazes <span aria-hidden="true">→</span></a>
+    </section>
+  )
+}
+
 function SearchTopicSections({ slug }) {
   const isHow = slug === 'como-funciona'
   const topics = isHow ? [...searchTopicsFor(slug), ...HOW_RELATED_GUIDES] : searchTopicsFor(slug)
@@ -559,6 +580,8 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
           ) : null}
         </section>
 
+        {page.slug === 'placas-sazonais' ? <CuratedModelSection slug={page.slug} onCreate={onCreate} /> : null}
+
         {isModels ? (
           <nav className="model-mode-switch" aria-label="Escolha como usar os modelos">
             <button type="button" aria-pressed={modelMode === 'filled'} onClick={() => chooseModelMode('filled')}>
@@ -570,6 +593,10 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
               <small>Imprima a arte sem produtos nem preços e use como folha pré-impressa.</small>
             </button>
           </nav>
+        ) : null}
+
+        {isModels ? (
+          <p className="curated-seasonal-link"><strong>Campanhas e datas especiais:</strong> <a href="/placas-sazonais/">Placas Black Friday, Halloween, Natal e verão para imprimir →</a></p>
         ) : null}
 
         {isModels && modelMode === 'backgrounds' ? (
@@ -983,6 +1010,7 @@ export function SeoLanding({ page, onCreate }) {
         </section>
 
         <SeoPosterExample page={page} onCreate={onCreate} />
+        <CuratedModelSection slug={page.slug} onCreate={onCreate} />
 
         <RetailCalculator key={page.slug} slug={page.slug} />
         {page.slug === 'cartazes-a-partir-de-excel' ? <RetailListReview onCreate={onCreate} /> : null}

@@ -1,0 +1,38 @@
+/* Convite leve, sem cobrir o criador nem o conteúdo impresso. */
+.feedback-nudge {
+  position: fixed; right: clamp(12px, 2vw, 22px); bottom: clamp(12px, 2vw, 20px);
+  z-index: 180; width: min(292px, calc(100vw - 24px)); box-sizing: border-box;
+  background: #fff; color: #223754; border: 1px solid #dae5f2;
+  border-radius: 15px; box-shadow: 0 16px 46px rgba(21,43,75,.18);
+  padding: 12px; font-family: system-ui, sans-serif; font-size: 12px;
+}
+.feedback-nudge-open { width: min(336px, calc(100vw - 24px)); }
+.feedback-nudge-top { display: flex; align-items: start; gap: 9px; }
+.feedback-nudge-symbol { display: grid; place-items: center; width: 29px; height: 29px; flex: 0 0 29px; border-radius: 9px; background: #eaf2ff; color: #2869ce; }
+.feedback-nudge-top > div { min-width: 0; flex: 1; display: grid; gap: 3px; }
+.feedback-nudge-top strong { font-size: 13px; line-height: 1.35; }
+.feedback-nudge-top small { font-size: 11px; color: #65778e; line-height: 1.4; }
+.feedback-nudge-close { flex: 0 0 32px; width: 32px; height: 32px; border: 0; background: transparent; border-radius: 9px; color: #60738b; font-size: 22px; line-height: 1; cursor: pointer; }
+.feedback-nudge-cta { display: block; margin: 9px 0 0 38px; padding: 9px 12px; border: 0; border-radius: 9px; font-size: 11px; font-weight: 800; background: #2168da; color: white; cursor: pointer; }
+.feedback-nudge-form { margin-top: 12px; display: grid; gap: 8px; }
+.feedback-nudge-form > p, .feedback-nudge-form > small { margin: 0; font-size: 11px; line-height: 1.6; color: #5d7086; }
+.feedback-nudge-form > label { font-size: 11px; font-weight: 800; }
+.feedback-nudge-form textarea { width: 100%; box-sizing: border-box; padding: 9px 10px; border: 1px solid #bccde2; border-radius: 9px; background: #fff; color: #213d5b; font-size: 13px; resize: vertical; }
+.feedback-nudge-rating { border: 0; padding: 0; margin: 0; display: flex; gap: 5px; flex-wrap: wrap; }
+.feedback-nudge-rating legend { margin: 0 0 6px; font-size: 11px; font-weight: 800; }
+.feedback-nudge-rating label { display: inline-flex; align-items: center; justify-content: center; gap: 3px; min-width: 43px; min-height: 34px; padding: 0 5px; border: 1px solid #d2ddeb; border-radius: 8px; cursor: pointer; }
+.feedback-nudge-rating input { accent-color: #256be6; }
+.feedback-nudge-actions { display: flex; gap: 8px; }
+.feedback-nudge-actions button { min-height: 39px; border-radius: 9px; border: 1px solid #cbdced; padding: 8px 11px; background: #fff; color: #2355a4; font-size: 11px; font-weight: 800; cursor: pointer; }
+.feedback-nudge-actions button[type="submit"] { border-color: #2168da; background: #2168da; color: #fff; }
+.feedback-nudge-actions button:disabled { cursor: not-allowed; opacity: .5; }
+.feedback-nudge button:focus-visible,.feedback-nudge textarea:focus-visible,.feedback-nudge input:focus-visible { outline: 3px solid #2168da; outline-offset: 2px; }
+@media (max-width: 480px) { .feedback-nudge { right: 8px; bottom: 10px; max-height: min(76dvh, 530px); overflow-y: auto; width: min(292px, calc(100vw - 16px)); } }
+@media print { .feedback-nudge { display: none !important; } }
+
+/* A decisão de privacidade sempre tem prioridade. O convite não cobre a CMP. */
+#root:has(.cookie-banner) .feedback-nudge,
+#root:has(.cookie-backdrop) .feedback-nudge,
+#root:has(.cookie-entry) .feedback-nudge,
+.editor-mode .feedback-nudge,
+.free-editor-mode .feedback-nudge { display: none !important; }

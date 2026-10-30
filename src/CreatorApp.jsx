@@ -33,6 +33,7 @@ import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReada
 import { optimizePosterImage } from './utils/optimizePosterImage'
 import ProductPhotoControls from './components/ProductPhotoControls'
 import SavedProductListsDialog from './components/SavedProductListsDialog'
+import FeedbackNudge from './components/FeedbackNudge'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
 
@@ -131,6 +132,7 @@ const CUSTOM_HEADER_KEY = 'ofertamatica:custom-header:v1'
 const RECENT_JOBS_KEY = 'ofertamatica:recent-jobs:v1'
 const RETIRED_CONTENT_REDIRECTS = {
   '/cartaz-de-supermercado': '/cartaz-para-supermercado/',
+  '/placas-para-acougue': '/cartazes-para-acougue/',
   '/cartaz-para-imprimir': '/cartaz-de-oferta-para-imprimir/',
   '/gerador-de-placas-com-ia': '/como-funciona/',
   '/cartaz-de-oferta-gratis': '/criador-de-cartaz-de-oferta/',
@@ -2698,6 +2700,7 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
           <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
         </>
       )}
+      <FeedbackNudge />
     </div>
   )
 }

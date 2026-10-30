@@ -5,6 +5,7 @@ import { searchTopicsFor } from '../src/seo/searchIntent.js'
 import { HOME_GUIDANCE, HOME_LIMITATIONS, calculatePrintPlan } from '../src/seo/homePrintHelp.js'
 import { POSTER_FORMAT_OPTIONS } from '../src/config/posterFormats.js'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
+import { curatedModelsForSlug } from '../src/config/modelEditorialCollections.js'
 import { calculatorStaticExample } from '../src/seo/retailCalculators.js'
 import { inspectRetailList, REVIEW_SAMPLE } from '../src/seo/retailListReview.js'
 
@@ -56,6 +57,7 @@ const marketingCssHref = '/assets/' + marketingCssAsset
 
 const LEGACY_REDIRECTS = {
   'cartaz-de-supermercado': 'cartaz-para-supermercado',
+  'placas-para-acougue': 'cartazes-para-acougue',
   'cartaz-para-imprimir': 'cartaz-de-oferta-para-imprimir',
   'gerador-de-placas-com-ia': 'como-funciona',
   'cartaz-de-oferta-gratis': 'criador-de-cartaz-de-oferta',
@@ -210,6 +212,24 @@ function listReviewSnapshot(page) {
     '<p><a href="/?formato=A4">Abrir criador de cartazes A4</a></p></section>'
 }
 
+function curatedModelsSnapshot(page) {
+  const collection = curatedModelsForSlug(page.slug)
+  if (!collection) return ''
+  const cards = collection.models.map((id) => POSTER_MODEL_PRESETS.find((model) => model.id === id))
+    .filter(Boolean).map((model) =>
+      '<li style="border:1px solid #d7e2ee;border-radius:12px;padding:15px;background:' + esc(model.background) + ';color:' + esc(model.text) + '">' +
+      '<strong style="display:block;background:' + esc(model.header) + ';color:' + esc(model.headerText) + ';padding:8px;font-size:15px">' + esc(model.label) + '</strong>' +
+      '<p style="font-weight:700">' + esc(model.name) + '</p><p>' + esc(model.product) + '</p>' +
+      '<strong style="display:block;font-size:25px;color:' + esc(model.price) + '">R$ ' + esc(model.value) + '</strong>' +
+      '<p style="font-size:12px">' + esc(model.note) + '</p></li>').join('')
+  return '<section aria-labelledby="curated-collection-title" style="margin-top:24px">' +
+    '<h2 id="curated-collection-title">' + esc(collection.heading) + '</h2>' +
+    '<p>' + esc(collection.intro) + '</p>' +
+    '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
+    '<p><strong>Preços fictícios nos exemplos.</strong> ' + esc(collection.note) + '</p>' +
+    '<p><a href="/modelos/">Ver todos os modelos e escolher a arte no editor</a></p></section>'
+}
+
 function retailCalculatorSnapshot(page) {
   const example = calculatorStaticExample(page.slug)
   if (!example) return ''
@@ -293,6 +313,7 @@ function snapshot(page) {
     ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
     ${sections}
+    ${curatedModelsSnapshot(page)}
     ${retailCalculatorSnapshot(page)}
     ${listReviewSnapshot(page)}
     ${howToContent}
@@ -348,6 +369,7 @@ function homePrintHelpSnapshot() {
     '<a href="/como-funciona/">Como funciona</a> ' +
     '<a href="/placas-para-hortifruti/">Preços por kg no hortifruti</a> ' +
     '<a href="/placas-para-padaria/">Placas para padaria</a>' +
+    '<a href="/placas-sazonais/">Placas sazonais para imprimir</a>' +
     '</nav></aside></section>'
 }
 
@@ -395,7 +417,6 @@ function creatorSnapshot() {
     '</div></header>' +
     '<section class="format-home-chooser" aria-labelledby="format-picker-title"><div class="format-home-section-title"><div><h2 id="format-picker-title">Selecione o tamanho do cartaz</h2><p>8 opções de impressão · clique em uma para começar</p></div><span>1. Formato <i aria-hidden="true">→</i> 2. Produtos <i aria-hidden="true">→</i> 3. PDF</span></div>' +
     '<div class="format-grid">' + cards + '</div></section>' +
-    '<aside class="format-ad-card format-ad-zone" aria-label="Área de publicidade"></aside>' +
     '<nav class="format-trust-links" aria-label="Atalhos e informações"><a href="/modelos/">Modelos de cartazes</a><a href="/qual-papel-usar-para-cartaz/">Qual papel usar?</a><a href="/como-funciona/">Como funciona</a>' +
     '<details class="format-more-links"><summary>Mais informações</summary><div><a href="/guias-para-varejo/">Guias para varejo</a><a href="/validade-zero/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Validade Zero em nova aba">Validade Zero ↗</a><a href="/conheca-validade-zero/">Conhecer a ferramenta</a><a href="/fale-conosco/">Ajuda e contato</a><a href="/privacidade/">Privacidade</a><a href="/termos/">Termos de uso</a></div></details></nav></section>' + homePrintHelpSnapshot() + '</main>' +
     '<aside id="ofertamatica-load-warning" hidden role="alert" style="position:fixed;bottom:12px;left:12px;right:12px;z-index:9999;margin:auto;max-width:600px;padding:14px;border:1px solid #afc9f3;border-radius:12px;background:white;box-shadow:0 6px 36px #0002"><strong>O criador está demorando para carregar.</strong> <a href="/" style="color:#1d63e9;font-weight:800">Recarregar</a></aside></div>' +
