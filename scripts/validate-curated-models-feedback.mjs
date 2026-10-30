@@ -23,7 +23,7 @@ for (const slug of Object.keys(CURATED_POSTER_COLLECTIONS)) {
   assert.ok(/fict[ií]ci|demonstrativ|preços de exemplo/i.test(html), 'Falta transparência nos preços demonstrativos: ' + slug)
 }
 const bf = readFileSync('dist/cartaz-black-friday/index.html', 'utf8')
-assert.match(bf, /Cartaz Black Friday e Placa para Imprimir Grátis/)
+assert.match(bf, /Cartaz Black Friday para Imprimir: Modelos com Preço/)
 assert.match(bf, /placas-sazonais/)
 assert.match(readFileSync('dist/placas-sazonais/index.html','utf8'), /HALLOWEEN/)
 assert.match(readFileSync('dist/placas-sazonais/index.html','utf8'), /OFERTAS DE NATAL/)
