@@ -419,9 +419,23 @@ const HOW_RELATED_GUIDES = [
 ]
 
 function CuratedModelSection({ slug, onCreate }) {
+  const [seasonFilter, setSeasonFilter] = useState('todos')
   const collection = curatedModelsForSlug(slug)
   if (!collection) return null
+  const seasonal = slug === 'placas-sazonais'
   const selected = collection.models.map((id) => POSTER_MODEL_PRESETS.find((item) => item.id === id)).filter(Boolean)
+  const filters = [
+    { id: 'todos', label: 'Todas as campanhas' },
+    { id: 'black-friday', label: 'Black Friday' },
+    { id: 'halloween', label: 'Halloween' },
+    { id: 'natal', label: 'Natal' },
+    { id: 'outros', label: 'Outras datas' },
+  ]
+  const filtered = !seasonal || seasonFilter === 'todos' ? selected : selected.filter((model) => {
+    if (seasonFilter === 'black-friday') return model.id.startsWith('black-friday')
+    if (seasonFilter === 'outros') return !model.id.startsWith('black-friday') && !['halloween', 'natal'].includes(model.id)
+    return model.id === seasonFilter
+  })
   return (
     <section className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
       <div className="marketing-heading">
@@ -429,8 +443,17 @@ function CuratedModelSection({ slug, onCreate }) {
         <h2>{collection.heading}</h2>
         <p>{collection.intro}</p>
       </div>
+      {seasonal ? (
+        <div className="seasonal-gallery-toolbar">
+          <div className="seasonal-gallery-filters" role="group" aria-label="Filtrar campanhas">
+            {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={seasonFilter === filter.id}
+              onClick={() => setSeasonFilter(filter.id)}>{filter.label}</button>)}
+          </div>
+          <span role="status" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'modelo disponível' : 'modelos disponíveis'}</span>
+        </div>
+      ) : null}
       <div className="model-showcase-grid curated-model-grid">
-        {selected.map((model) => <ModelCard key={model.id} item={model} onCreate={onCreate} />)}
+        {filtered.map((model) => <ModelCard key={model.id} item={model} onCreate={onCreate} />)}
       </div>
       <p className="curated-model-note"><strong>Preços fictícios nas prévias.</strong> {collection.note}</p>
       <a className="curated-model-all-link" href="/modelos/">Comparar todos os modelos de cartazes <span aria-hidden="true">→</span></a>
