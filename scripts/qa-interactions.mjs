@@ -238,6 +238,7 @@ await scenario('Consultas com impressões: modelos diretamente nas páginas exis
 await scenario('Feedback pequeno: abrir, avaliar, dispensar e respeitar impressão', { width: 390, height: 844 }, async (page) => {
   await page.clock.install()
   await page.goto(origin + '/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.format-grid .format-choice', 'Página inicial não carregou antes do convite')
   await page.clock.fastForward(17000)
   await check(page, '.feedback-nudge', 'Convite de feedback não apareceu')
   await page.getByRole('button', { name: 'Dar minha opinião' }).click()
