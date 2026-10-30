@@ -9925,3 +9925,112 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     overflow-wrap: anywhere;
   }
 }
+
+
+/* Cabeçalhos temáticos: mesma arte no editor, prévia e impressão.
+   Decoração restrita à faixa superior para manter produto/preço legíveis. */
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-setor-hortifruti .ofertamatica-offer-ribbon.header-retail,
+.poster-frame-setor-padaria .ofertamatica-offer-ribbon.header-retail {
+  left: 3% !important;
+  right: 3% !important;
+  top: 2% !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 16% !important;
+  transform: none !important;
+  padding: 0 8% !important;
+  border: .55mm solid rgba(255,255,255,.35) !important;
+  border-radius: 2.5mm 2.5mm 7mm 7mm !important;
+  background: var(--poster-header-color, #b7192d) !important;
+  color: var(--poster-header-text-color, #fff) !important;
+  font-size: clamp(4mm, 7cqi, 14mm) !important;
+  font-weight: 1000 !important;
+  letter-spacing: -.035em !important;
+  text-align: center;
+  box-shadow: 0 1mm 0 rgba(0,0,0,.16) !important;
+}
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail b,
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail b,
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail b,
+.poster-frame-setor-hortifruti .ofertamatica-offer-ribbon.header-retail b,
+.poster-frame-setor-padaria .ofertamatica-offer-ribbon.header-retail b {
+  position: relative;
+  z-index: 2;
+  max-width: 96%;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail {
+  border-color: #ffe000 !important;
+  background: linear-gradient(125deg,#161616 0%,#333 48%,#111 100%) !important;
+  box-shadow: 0 1mm 0 #ffe000 !important;
+}
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail::before,
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail::after {
+  content: "★";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffe000;
+  font-size: .9em;
+}
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail::before { left: 5%; }
+.poster-frame-campanha-black .ofertamatica-offer-ribbon.header-retail::after { right: 5%; }
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail {
+  border-color: #fff16e !important;
+  background: linear-gradient(115deg,#a6450e,#e46a12 50%,#a6450e) !important;
+  box-shadow: 0 1mm 0 #6b3297 !important;
+}
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail::before,
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #261237;
+  font-size: .85em;
+}
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail::before { left: 5%; }
+.poster-frame-campanha-halloween .ofertamatica-offer-ribbon.header-retail::after { right: 5%; }
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail {
+  border-color: #e1bc61 !important;
+  background: linear-gradient(120deg,#095032,#167c4c 50%,#095032) !important;
+  box-shadow: 0 1mm 0 #bd192b !important;
+}
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail::before,
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f3ce78;
+  font-size: .85em;
+}
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail::before { left: 5%; }
+.poster-frame-campanha-natal .ofertamatica-offer-ribbon.header-retail::after { right: 5%; }
+.poster-frame-setor-hortifruti .ofertamatica-offer-ribbon.header-retail {
+  background: linear-gradient(120deg,#085c39,#15945c,#085c39) !important;
+  border-color: #cff7a5 !important;
+}
+.poster-frame-setor-padaria .ofertamatica-offer-ribbon.header-retail {
+  background: linear-gradient(120deg,#663316,#a75e2e,#663316) !important;
+  border-color: #fff0c4 !important;
+}
+.poster-frame-setor-hortifruti .ofertamatica-offer-ribbon.header-retail::after,
+.poster-frame-setor-padaria .ofertamatica-offer-ribbon.header-retail::after {
+  content: "✦";
+  position: absolute;
+  right: 5%;
+  color: currentColor;
+  opacity: .65;
+}
+.poster-frame-campanha-black .ofertamatica-inner-frame,
+.poster-frame-campanha-halloween .ofertamatica-inner-frame,
+.poster-frame-campanha-natal .ofertamatica-inner-frame,
+.poster-frame-setor-hortifruti .ofertamatica-inner-frame,
+.poster-frame-setor-padaria .ofertamatica-inner-frame {
+  top: 21%;
+}
