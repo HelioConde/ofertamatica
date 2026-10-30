@@ -39,6 +39,8 @@ const CREATOR_META = {
   path: '/',
 }
 
+const MODEL_HEADER_URLS = Object.fromEntries(Object.entries(import.meta.glob('../img/headers/*.png', { eager: true, query: '?url', import: 'default' })).map(([path, url]) => [path.split('/').pop(), url]))
+
 const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
 const MODEL_PRESETS = POSTER_MODEL_PRESETS
@@ -300,6 +302,7 @@ function ModelCard({ item, onCreate, badge }) {
       ...getDefaultTemplateForFormat('A4'),
       headerStyle: 'retail',
       headerText: item.label,
+      headerImage: MODEL_HEADER_URLS[item.headerImageId] || '',
       headerFooterStyle,
       offerMode,
       validityText: item.validityText || '',
@@ -326,7 +329,7 @@ function ModelCard({ item, onCreate, badge }) {
         priceFontFamily: '"Futura Price", Impact, "Arial Black", sans-serif',
         headerStyle: 'retail',
         headerText: item.label,
-        headerImage: '',
+        headerImage: item.headerImageId || '',
         headerFooterStyle,
         showCurrency: true,
         offerMode,
