@@ -418,20 +418,32 @@ const HOW_RELATED_GUIDES = [
   },
 ]
 
+// Segmentação por intenção de uso; um cartaz pertence a apenas um grupo.
+const BLACK_FRIDAY_STYLE_FILTERS = [
+  { id: 'todos', label: 'Todos os estilos' },
+  { id: 'classicos', label: 'Clássicos', models: ['black-friday', 'black-friday-white'] },
+  { id: 'preco-direto', label: 'Preço direto', models: ['black-friday-etiqueta', 'black-friday-kit', 'black-friday-premium'] },
+  { id: 'de-por', label: 'De / Por', models: ['black-friday-de-por', 'de-por'] },
+  { id: 'impacto', label: 'Alto impacto', models: ['black-friday-relampago', 'black-friday-estouro', 'relampago'] },
+]
+
 function CuratedModelSection({ slug, onCreate }) {
   const [seasonFilter, setSeasonFilter] = useState('todos')
   const collection = curatedModelsForSlug(slug)
   if (!collection) return null
   const seasonal = slug === 'placas-sazonais'
+  const blackFriday = slug === 'cartaz-black-friday'
   const selected = collection.models.map((id) => POSTER_MODEL_PRESETS.find((item) => item.id === id)).filter(Boolean)
-  const filters = [
+  const filters = seasonal ? [
     { id: 'todos', label: 'Todas as campanhas' },
     { id: 'black-friday', label: 'Black Friday' },
     { id: 'halloween', label: 'Halloween' },
     { id: 'natal', label: 'Natal' },
     { id: 'outros', label: 'Outras datas' },
-  ]
-  const filtered = !seasonal || seasonFilter === 'todos' ? selected : selected.filter((model) => {
+  ] : blackFriday ? BLACK_FRIDAY_STYLE_FILTERS : []
+  const filtered = seasonFilter === 'todos' ? selected : selected.filter((model) => {
+    if (blackFriday) return filters.find((option) => option.id === seasonFilter)?.models?.includes(model.id)
+    if (!seasonal) return true
     if (seasonFilter === 'black-friday') return model.id.startsWith('black-friday')
     if (seasonFilter === 'outros') return !model.id.startsWith('black-friday') && !['halloween', 'natal'].includes(model.id)
     return model.id === seasonFilter
@@ -443,9 +455,9 @@ function CuratedModelSection({ slug, onCreate }) {
         <h2>{collection.heading}</h2>
         <p>{collection.intro}</p>
       </div>
-      {seasonal ? (
+      {filters.length ? (
         <div className="seasonal-gallery-toolbar">
-          <div className="seasonal-gallery-filters" role="group" aria-label="Filtrar campanhas">
+          <div className="seasonal-gallery-filters" role="group" aria-label={seasonal ? 'Filtrar campanhas' : 'Filtrar modelos de Black Friday'}>
             {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={seasonFilter === filter.id}
               onClick={() => setSeasonFilter(filter.id)}>{filter.label}</button>)}
           </div>
