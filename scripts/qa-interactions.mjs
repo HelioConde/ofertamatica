@@ -1,3 +1,4 @@
+import { CURATED_POSTER_COLLECTIONS } from '../src/config/modelEditorialCollections.js'
 import { chromium } from 'playwright'
 
 const origin = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
@@ -201,15 +202,16 @@ await scenario('GA4: ativação consentida e page_view único na SPA', { width: 
     throw new Error('Caminhos coletados incorretamente: ' + JSON.stringify(after.paths))
 })
 
-await scenario('Campanhas sazonais: 7 modelos reais e entrada direta no editor', { width: 390, height: 844 }, async (page) => {
+await scenario('Campanhas sazonais: modelos reais e entrada direta no editor', { width: 390, height: 844 }, async (page) => {
   const response = await page.request.get(origin + '/placas-sazonais/')
   const html = await response.text()
   if (!html.includes('HALLOWEEN') || !html.includes('OFERTAS DE NATAL') || !html.includes('curated-collection-title'))
     throw new Error('A página sazonal precisa ter modelos úteis no HTML inicial')
   await page.goto(origin + '/placas-sazonais/', { waitUntil: 'domcontentloaded' })
   await check(page, '.curated-model-grid', 'Galeria sazonal não carregou')
-  if (await page.locator('.curated-model-grid .model-showcase-card').count() !== 7)
-    throw new Error('A galeria sazonal não mostra sete modelos reais')
+  const expectedSeasonal = CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.length
+  if (await page.locator('.curated-model-grid .model-showcase-card').count() !== expectedSeasonal)
+    throw new Error('A galeria sazonal não mostra todos os ' + expectedSeasonal + ' modelos reais')
   await page.getByRole('button', { name: 'Usar modelo Halloween de ofertas no criador' }).click()
   await check(page, '.format-grid .format-choice', 'Seleção do modelo não abriu criador')
   const style = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:poster-style:v1') || '{}'))
@@ -220,7 +222,7 @@ await scenario('Campanhas sazonais: 7 modelos reais e entrada direta no editor',
 })
 await scenario('Consultas com impressões: modelos diretamente nas páginas existentes', { width: 1366, height: 768 }, async (page) => {
   for (const [slug, expected] of [
-    ['cartaz-black-friday', 4],
+    ['cartaz-black-friday', CURATED_POSTER_COLLECTIONS['cartaz-black-friday'].models.length],
     ['placas-para-hortifruti', 3],
     ['cartaz-para-supermercado', 4],
     ['placas-para-padaria', 3],
