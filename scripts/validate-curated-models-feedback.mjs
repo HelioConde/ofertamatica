@@ -22,7 +22,34 @@ for (const slug of Object.keys(CURATED_POSTER_COLLECTIONS)) {
   assert.ok(html.includes('R$'), 'Falta exemplo visível de preço na prévia de ' + slug)
   assert.ok(/fict[ií]ci|demonstrativ|preços de exemplo/i.test(html), 'Falta transparência nos preços demonstrativos: ' + slug)
 }
+const newBlackFridayModels = [
+  'black-friday-etiqueta',
+  'black-friday-de-por',
+  'black-friday-relampago',
+  'black-friday-kit',
+  'black-friday-premium',
+  'black-friday-estouro',
+]
+const blackFridayCollection = CURATED_POSTER_COLLECTIONS['cartaz-black-friday']
+for (const id of newBlackFridayModels) {
+  const model = POSTER_MODEL_PRESETS.find((preset) => preset.id === id)
+  assert.ok(model, 'Modelo Black Friday não cadastrado: ' + id)
+  assert.ok(blackFridayCollection.models.includes(id), 'Modelo ausente da coleção Black Friday: ' + id)
+  assert.ok(model.headerFooterStyle.startsWith('bf-'), 'Tema editável não associado: ' + id)
+  if (model.offerMode === 'de-por') assert.ok(model.previewRegularPrice, 'De/Por precisa de preço anterior demonstrativo: ' + id)
+}
+const blackFridayCss = readFileSync('src/styles/black-friday-models.css', 'utf8')
+for (const id of newBlackFridayModels) {
+  const theme = POSTER_MODEL_PRESETS.find((preset) => preset.id === id).headerFooterStyle
+  assert.ok(blackFridayCss.includes('data-poster-theme="' + theme + '"'), 'CSS ausente para ' + id)
+}
+assert.ok(readFileSync('src/components/posters/PosterCard.jsx', 'utf8').includes('data-poster-theme'), 'Prévia e impressão devem compartilhar a arte editável')
+
 const bf = readFileSync('dist/cartaz-black-friday/index.html', 'utf8')
+for (const id of newBlackFridayModels) {
+  const model = POSTER_MODEL_PRESETS.find((preset) => preset.id === id)
+  assert.ok(bf.includes(model.name), 'Página Black Friday sem o modelo ' + id)
+}
 assert.match(bf, /Cartaz Black Friday para Imprimir: Modelos com Preço/)
 assert.match(bf, /placas-sazonais/)
 assert.match(readFileSync('dist/placas-sazonais/index.html','utf8'), /HALLOWEEN/)
