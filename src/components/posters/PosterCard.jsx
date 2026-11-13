@@ -182,7 +182,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
   const headerText = template.headerText || 'OFERTA'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
   return (
-    <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${paperStockMode ? 'poster-card-paper-stock' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} onClick={onSelect}>
+    <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${paperStockMode ? 'poster-card-paper-stock' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} data-poster-theme={template.headerFooterStyle || ''} onClick={onSelect}>
       <div className="poster-card-layers">
         {badgeLabel ? <span className="poster-preview-badge">{badgeLabel}</span> : null}
         {!paperStockMode ? <div className={`ofertamatica-poster-background poster-frame-${template.headerFooterStyle || 'curva-simples'}`} aria-hidden="true">
