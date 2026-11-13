@@ -100,6 +100,7 @@ try {
       await button.click()
       await page.waitForFunction(theme => document.querySelector('.preview-card .poster-card')?.dataset.posterTheme === theme,
         model.headerFooterStyle || 'moldura')
+      if (model.headerImageId) await page.locator('.preview-card .ofertamatica-custom-header img').evaluate(img => img.decode())
       const state = await previewState(page)
       assert(state.theme === (model.headerFooterStyle || 'moldura'), 'Tema da prévia incorreto: ' + state.theme)
       assert(state.printTheme === state.theme, 'Tema impresso não coincide com a prévia')
@@ -161,6 +162,7 @@ try {
     const searchMobile = mobile.locator('.header-search input')
     for (const model of POSTER_MODEL_PRESETS.filter(x => x.id.startsWith('black-friday'))) {
       await searchMobile.fill(model.name)
+      await rejectConsent(mobile)
       await mobile.locator('[data-model-art="' + model.id + '"]').click()
       await mobile.locator('[data-mobile-tab="preview"]').click()
       await mobile.locator('.preview-card .poster-card[data-poster-theme="' + model.headerFooterStyle + '"]').waitFor({state: 'visible'})
