@@ -1,4 +1,5 @@
 import '../../styles/posters.css'
+import '../../styles/black-friday-models.css'
 import PosterCard, { PosterBackground } from './PosterCard'
 import AppPosterCard from './AppPosterCard'
 import { createBackgroundSlots } from '../../poster-engine/backgroundPrinting'
