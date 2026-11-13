@@ -202,6 +202,40 @@ await scenario('GA4: ativação consentida e page_view único na SPA', { width: 
     throw new Error('Caminhos coletados incorretamente: ' + JSON.stringify(after.paths))
 })
 
+await scenario('Black Friday: filtro por tipo e aplicação do De/Por', { width: 390, height: 844 }, async (page) => {
+  await page.goto(origin + '/cartaz-black-friday/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.curated-model-grid .model-showcase-card', 'Modelos de Black Friday ausentes')
+  const gallery = page.locator('.curated-model-grid .model-showcase-card')
+  const filter = page.getByRole('group', { name: 'Filtrar modelos de Black Friday' })
+  for (const [label, expected] of [
+    ['Todos os estilos', 10], ['Clássicos', 2], ['Preço direto', 3], ['De / Por', 2], ['Alto impacto', 3],
+  ]) {
+    await filter.getByRole('button', { name: label, exact: true }).click()
+    if (await gallery.count() !== expected) throw new Error(label + ': esperados ' + expected + ' modelos')
+    const status = await page.locator('.seasonal-gallery-toolbar [role=status]').innerText()
+    if (!status.includes(String(expected))) throw new Error('Contador de modelos não acompanha o filtro ' + label)
+  }
+  await filter.getByRole('button', { name: 'De / Por' }).click()
+  await page.getByRole('button', { name: 'Usar modelo Black Friday · De / Por no criador' }).click()
+  await check(page, '.format-grid .format-choice', 'O filtro não permitiu aplicar modelo De/Por')
+  const style = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:poster-style:v1') || '{}'))
+  if (style.headerFooterStyle !== 'bf-depor' || style.offerMode !== 'de-por')
+    throw new Error('Modelo De/Por não foi transferido para o editor')
+})
+
+await scenario('Editor Livre: preço anterior válido e inválido no De/Por', { width: 1366, height: 768 }, async (page) => {
+  await page.goto(origin + '/editor-livre/', { waitUntil: 'domcontentloaded' })
+  await check(page, '.free-poster-editor', 'Editor Livre não abriu')
+  await page.getByLabel('Modelo visual').selectOption('black-friday-de-por')
+  const regular = page.getByLabel('Preço anterior real (R$)')
+  await regular.fill('24,90')
+  await check(page, '.free-poster-editor .poster-offer-meta-depor', 'Preço anterior não aparece na prévia De/Por')
+  await regular.fill('1,00')
+  await page.getByRole('alert').getByText('O preço anterior precisa ser válido e maior que o preço atual.').waitFor()
+  if (await page.locator('.free-poster-editor .poster-offer-meta-depor').count() > 0)
+    throw new Error('Comparação inválida apareceu na placa')
+})
+
 await scenario('Campanhas sazonais: modelos reais e entrada direta no editor', { width: 390, height: 844 }, async (page) => {
   const response = await page.request.get(origin + '/placas-sazonais/')
   const html = await response.text()

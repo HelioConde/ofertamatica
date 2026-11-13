@@ -1,8 +1,20 @@
 import assert from 'node:assert/strict'
 import { readFileSync, existsSync } from 'node:fs'
 import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
+import { brlCents, inspectDePor } from '../src/poster-engine/priceComparison.js'
 import { curatedModelsForSlug, CURATED_POSTER_COLLECTIONS } from '../src/config/modelEditorialCollections.js'
 import { INDEXABLE_PAGES } from '../src/seo/seoPages.js'
+
+// Preços no De/Por devem ser reais, numéricos e estritamente decrescentes.
+assert.equal(brlCents('R$ 1.299,90'), 129990)
+assert.equal(brlCents('19,90'), 1990)
+assert.equal(brlCents('19.90'), 1990)
+assert.equal(brlCents('19abc'), null)
+assert.equal(inspectDePor('24,90', '18,90').valid, true)
+assert.equal(inspectDePor('24,90', '18,90').discountPercent, 24)
+assert.equal(inspectDePor('18,90', '18,90').valid, false)
+assert.equal(inspectDePor('9,90', '18,90').valid, false)
+assert.equal(inspectDePor('abc', '18,90').valid, false)
 
 const ids = new Set(POSTER_MODEL_PRESETS.map((model) => model.id))
 for (const slug of Object.keys(CURATED_POSTER_COLLECTIONS)) {
