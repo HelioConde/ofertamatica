@@ -26,6 +26,7 @@ import { getDefaultTemplateForFormat } from './config/posterTemplates'
 import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from './config/posterTypography'
 import { POSTER_MODEL_PRESETS } from './config/posterModelPresets'
 import { createPosterLayouts } from './poster-engine/layoutPlan'
+import { inspectDePor } from './poster-engine/priceComparison.js'
 import { MAX_BACKGROUND_SHEETS, normalizeBackgroundSheetCount } from './poster-engine/backgroundPrinting'
 import { parseProductList } from './poster-engine/parseProduct'
 import { createBrowserTextMeasure } from './utils/posterBrowserMeasure'
@@ -1637,6 +1638,9 @@ function Editor({
     if (offerMode === 'de-por') {
       const missing = products.filter((product) => !String(product.regularPrice || '').trim()).length
       if (missing) warnings.push(`${missing} produto(s) sem preço anterior no modelo De / Por.`)
+      const invalid = products.filter((product) => String(product.regularPrice || '').trim()
+        && !inspectDePor(product.regularPrice, product.price).valid).length
+      if (invalid) warnings.push(`${invalid} produto(s) com De / Por inválido: o preço anterior deve ser maior que o preço de oferta.`)
     }
     if (offerMode === 'leve-por') {
       const missing = products.filter((product) => !String(product.offerQuantity || '').trim()).length
