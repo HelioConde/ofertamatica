@@ -291,7 +291,7 @@ function ModelCard({ item, onCreate, badge }) {
       id: `model-${item.id}`,
       price: item.value,
       imageDataUrl: item.sampleImage || '',
-      regularPrice: ['de-por', 'clube', 'app'].includes(item.id) ? '24,90' : parsed.regularPrice,
+      regularPrice: item.previewRegularPrice || (['de-por', 'clube', 'app'].includes(item.id) ? '24,90' : parsed.regularPrice),
       offerQuantity: item.id === 'leve-mais' ? '3' : parsed.offerQuantity,
       eachPrice: item.id === 'leve-mais' ? item.value : parsed.eachPrice,
       wholesalePrice: item.id === 'atacado' ? '4,99' : parsed.wholesalePrice,
