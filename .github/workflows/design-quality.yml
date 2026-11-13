@@ -45,7 +45,8 @@ concurrency:
 
 jobs:
   design-audit:
-    runs-on: ubuntu-latest
+    # Playwright 1.55.1 não possui binário Chromium para Ubuntu 26.04 (ubuntu-latest).
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout
