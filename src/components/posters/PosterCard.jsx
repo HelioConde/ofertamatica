@@ -1,6 +1,7 @@
 import { safeProductImageSrc } from '../../poster-engine/productPhotoLayout.js'
 import { POSTER_DESCRIPTION_FONT } from '../../config/posterTypography.js'
 import PriceValue from './PriceValue'
+import { inspectDePor } from '../../poster-engine/priceComparison.js'
 
 const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
 
@@ -46,26 +47,14 @@ function ContentBox({ plan, box, showDebug, editable, onBoxPointerDown }) {
   )
 }
 
-function numericPrice(value) {
-  const raw = String(value || '').trim().replace(/^R\$\s*/i, '').replace(/\s/g, '')
-  if (!raw) return 0
-  const normalized = raw.includes(',')
-    ? raw.replace(/\./g, '').replace(',', '.')
-    : raw
-  const number = Number(normalized.replace(/[^0-9.-]/g, ''))
-  return Number.isFinite(number) ? number : 0
-}
-
 function OfferMeta({ product, template }) {
   const mode = template.offerMode || 'standard'
   if (mode === 'standard') return null
 
   if (mode === 'de-por' && product.regularPrice) {
-    const regular = numericPrice(product.regularPrice)
-    const offer = numericPrice(product.price)
-    const discount = regular > offer && offer > 0
-      ? Math.round(((regular - offer) / regular) * 100)
-      : 0
+    const { valid, discountPercent: discount } = inspectDePor(product.regularPrice, product.price)
+    // Não exibir preço riscado e alegação de desconto sem comparação válida.
+    if (!valid) return null
 
     return (
       <div className="poster-offer-meta poster-offer-meta-depor">
