@@ -1279,3 +1279,21 @@
   transform: translateY(-1mm) scale(.95);
   transform-origin: center center;
 }
+
+
+/* Cabeçalhos de campanhas longos: não esconder parte do anúncio com "..." na impressão.
+   Molduras Ondas e Imperdível aplicam fontes maiores que os ajustes globais. */
+.poster-card .poster-frame-ondas .ofertamatica-offer-ribbon.header-text-xxlong,
+.poster-card .poster-frame-imperdivel .ofertamatica-offer-ribbon.header-text-xlong,
+.poster-card .poster-frame-imperdivel .ofertamatica-offer-ribbon.header-text-xxlong {
+  font-size: clamp(4mm, 5cqi, 9mm) !important;
+  letter-spacing: -.035em !important;
+}
+
+.poster-card .poster-frame-ondas .ofertamatica-offer-ribbon.header-text-xxlong > b,
+.poster-card .poster-frame-imperdivel .ofertamatica-offer-ribbon.header-text-xlong > b,
+.poster-card .poster-frame-imperdivel .ofertamatica-offer-ribbon.header-text-xxlong > b {
+  font-size: 1em !important;
+  transform: scaleX(.96);
+  text-overflow: clip;
+}
