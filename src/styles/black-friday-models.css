@@ -1,0 +1,363 @@
+/*
+ * Seis cartazes Black Friday editáveis inspirados nas referências de 2026.
+ * Apenas molduras, etiquetas e efeitos decorativos são CSS: nome do produto,
+ * unidade, preço e preço anterior continuam sendo campos reais do editor.
+ * A mesma folha é renderizada para prévia e impressão.
+ */
+.poster-card[data-poster-theme^="bf-"] .poster-card-layers,
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-poster-background {
+  background: #0b0b10 !important;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-poster-background {
+  background:
+    radial-gradient(ellipse at 51% -6%, rgba(232, 24, 35, .25), transparent 34%),
+    linear-gradient(145deg, rgba(217, 12, 28, .36) 0 5%, transparent 5.2% 91%, rgba(216, 11, 27, .22) 91.3% 100%),
+    #0b0b10 !important;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-poster-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-inner-frame {
+  left: 4%;
+  right: 4%;
+  top: 19%;
+  bottom: 3%;
+  border: .55mm solid rgba(255, 209, 0, .52);
+  border-radius: 3mm;
+  background: transparent;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-footer-decoration {
+  display: none !important;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-poster-signature {
+  color: rgba(255, 223, 60, .65);
+  font-size: 1.6mm;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-card-layers::after {
+  display: none !important;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-offer-ribbon {
+  left: 6% !important;
+  right: 6% !important;
+  top: 2.5% !important;
+  width: auto !important;
+  height: 14% !important;
+  padding: 0 4% !important;
+  border: .75mm solid #ffe000 !important;
+  border-radius: 3mm !important;
+  background: #131316 !important;
+  color: #fff !important;
+  box-shadow: 0 1.3mm 0 #b8071d, 0 1.8mm 4mm rgba(237, 14, 35, .35) !important;
+  font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  font-size: clamp(6mm, 9cqi, 17mm) !important;
+  letter-spacing: -.015em !important;
+  text-align: center;
+  line-height: .9;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-offer-ribbon > b {
+  display: block;
+  z-index: 1;
+  width: 100%;
+  position: relative;
+  font-weight: 900;
+}
+
+.poster-card[data-poster-theme^="bf-"] .ofertamatica-header-mark {
+  display: none !important;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-content-box {
+  z-index: 3;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-price-box {
+  isolation: isolate;
+  z-index: 3;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-price-box::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-price-content {
+  position: relative;
+  z-index: 1;
+}
+
+.poster-card[data-poster-theme^="bf-"] .poster-field-price {
+  -webkit-text-stroke: .07mm rgba(0, 0, 0, .20) !important;
+  paint-order: stroke fill;
+}
+
+/* 1 · Etiqueta neon: referência Cerveja Long Neck. */
+.poster-card[data-poster-theme="bf-etiqueta"] .ofertamatica-offer-ribbon {
+  top: 3% !important;
+  border: .9mm solid #ff2335 !important;
+  border-radius: 4mm 8mm 4mm 4mm !important;
+  box-shadow: 0 0 2.2mm rgba(255, 36, 53, .9), 0 .9mm 0 #d20a20 !important;
+  color: #ffe000 !important;
+  transform: rotate(-2deg) !important;
+}
+
+.poster-card[data-poster-theme="bf-etiqueta"] .ofertamatica-offer-ribbon::after {
+  content: "";
+  position: absolute;
+  right: 3%;
+  top: 13%;
+  width: 3mm;
+  height: 3mm;
+  border: .7mm solid #ffdd05;
+  border-radius: 50%;
+  background: #0b0b10;
+}
+
+.poster-card[data-poster-theme="bf-etiqueta"] .ofertamatica-poster-background::after {
+  background:
+    linear-gradient(145deg, rgba(255, 18, 22, .90) 0 3%, transparent 3.2% 95%, rgba(255, 18, 22, .65) 95.2%),
+    radial-gradient(ellipse at 50% 10%, rgba(190, 10, 25, .27), transparent 47%);
+}
+
+.poster-card[data-poster-theme="bf-etiqueta"] .poster-price-box::before {
+  inset: 7% -1% 8%;
+  background: #ffe000;
+  clip-path: polygon(4% 7%, 99% 1%, 96% 94%, 1% 100%, 3% 54%, 0 37%);
+  box-shadow: inset 0 -2mm 0 #ec1734;
+}
+
+.poster-card[data-poster-theme="bf-etiqueta"] .poster-field-price {
+  color: #111111 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* 2 · De/Por: a etiqueta anterior é mostrada somente se o valor é preenchido. */
+.poster-card[data-poster-theme="bf-depor"] .ofertamatica-offer-ribbon {
+  background: #d81629 !important;
+  border-color: #ffe000 !important;
+  transform: skew(-3deg) !important;
+}
+
+.poster-card[data-poster-theme="bf-depor"] .ofertamatica-poster-background::after {
+  background:
+    radial-gradient(ellipse at 95% 90%, rgba(241, 12, 34, .4), transparent 30%),
+    linear-gradient(160deg, rgba(249, 38, 41, .4) 0 4%, transparent 4.2% 93%, rgba(249, 38, 41, .25) 93.3%);
+}
+
+.poster-card[data-poster-theme="bf-depor"] .poster-price-box::before {
+  inset: 9% -2% 3%;
+  border-radius: 4mm;
+  background: #ffe000;
+  transform: skew(-2deg);
+  box-shadow: 0 1.3mm 0 #e21529;
+}
+
+.poster-card[data-poster-theme="bf-depor"] .poster-field-price {
+  color: #d20c22 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.poster-card[data-poster-theme="bf-depor"] .poster-offer-meta-depor {
+  top: 60.6%;
+  left: 8%;
+  right: 8%;
+  min-height: 3.6%;
+  gap: 2mm;
+  color: #fff;
+  font-size: 3.2mm;
+  white-space: nowrap;
+}
+
+.poster-card[data-poster-theme="bf-depor"] .poster-offer-meta-depor b {
+  padding: .8mm 2mm;
+  border-radius: 1mm;
+  background: #e21a2c;
+  color: #fff;
+}
+
+.poster-card[data-poster-theme="bf-depor"] .poster-offer-meta-depor .poster-discount-badge {
+  color: #ffe000;
+}
+
+/* 3 · Relâmpago: a arte não inventa data ou prazo da promoção. */
+.poster-card[data-poster-theme="bf-relampago"] .ofertamatica-offer-ribbon {
+  border-color: #ffe000 !important;
+  background: linear-gradient(115deg, #b00e1d, #e32221) !important;
+  color: #fff200 !important;
+  box-shadow: 0 1mm 0 #ffe000 !important;
+}
+
+.poster-card[data-poster-theme="bf-relampago"] .ofertamatica-offer-ribbon::after {
+  content: "";
+  position: absolute;
+  right: -5%;
+  top: 80%;
+  width: 12%;
+  height: 72%;
+  background: #ffdd00;
+  clip-path: polygon(62% 0, 100% 0, 54% 50%, 74% 50%, 9% 100%, 32% 50%, 14% 50%);
+  filter: drop-shadow(.4mm .3mm 0 #e01319);
+}
+
+.poster-card[data-poster-theme="bf-relampago"] .ofertamatica-poster-background::after {
+  background:
+    repeating-conic-gradient(from 0deg at 50% 0%, rgba(228, 0, 18, .28) 0deg 7deg, transparent 7deg 22deg);
+  mask-image: linear-gradient(to bottom, #000, transparent 50%);
+}
+
+.poster-card[data-poster-theme="bf-relampago"] .poster-price-box::before {
+  inset: 6% 0 8%;
+  background: linear-gradient(180deg, rgba(255, 224, 0, .09), transparent);
+  border-top: 1.2mm solid #ed1d26;
+  border-bottom: 1.2mm solid #ed1d26;
+  transform: skew(-2deg);
+}
+
+/* 4 · Kit: faixas limpas e vermelho para kits/combo. */
+.poster-card[data-poster-theme="bf-kit"] .ofertamatica-offer-ribbon {
+  border-color: #ee1d2d !important;
+  color: #ffe000 !important;
+  box-shadow: 0 1mm 0 #ffe000 !important;
+}
+
+.poster-card[data-poster-theme="bf-kit"] .ofertamatica-inner-frame {
+  border-color: #ee1d2d;
+}
+
+.poster-card[data-poster-theme="bf-kit"] .ofertamatica-poster-background::after {
+  background:
+    linear-gradient(135deg, #e1162c 0 2%, transparent 2.1%),
+    linear-gradient(315deg, #e1162c 0 3%, transparent 3.1%);
+}
+
+.poster-card[data-poster-theme="bf-kit"] .poster-price-box::before {
+  inset: 10% 0 10%;
+  border-bottom: 1mm solid #f11f30;
+  border-top: .5mm solid rgba(255, 221, 0, .7);
+}
+
+.poster-card[data-poster-theme="bf-kit"] .poster-price-box::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 12%;
+  right: 12%;
+  bottom: 2%;
+  height: .8mm;
+  background: #f21b29;
+  border-radius: 99px;
+}
+
+/* 5 · Premium: moldura dourada com preço em faixa amarela. */
+.poster-card[data-poster-theme="bf-premium"] .ofertamatica-poster-background {
+  background:
+    linear-gradient(130deg, rgba(255,255,255,.08), transparent 25% 75%, rgba(255,190,0,.12)),
+    #0e1014 !important;
+}
+
+.poster-card[data-poster-theme="bf-premium"] .ofertamatica-poster-background::after {
+  inset: 2%;
+  border: .6mm solid #ffcf27;
+  border-radius: 5mm;
+}
+
+.poster-card[data-poster-theme="bf-premium"] .ofertamatica-offer-ribbon {
+  left: 18% !important;
+  right: 18% !important;
+  top: 4% !important;
+  height: 12% !important;
+  border-color: #ffd32a !important;
+  border-radius: 6mm 2mm 6mm 2mm !important;
+  color: #ffdb32 !important;
+  box-shadow: none !important;
+}
+
+.poster-card[data-poster-theme="bf-premium"] .ofertamatica-inner-frame {
+  border: none;
+}
+
+.poster-card[data-poster-theme="bf-premium"] .poster-price-box::before {
+  inset: 7% 0 9%;
+  border: .6mm solid #ffde47;
+  border-radius: 4mm;
+  background: #ffdc29;
+}
+
+.poster-card[data-poster-theme="bf-premium"] .poster-field-price {
+  color: #111111 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* 6 · Explosão: placa com selo e preço sobre estrela amarela. */
+.poster-card[data-poster-theme="bf-estouro"] .ofertamatica-poster-background::after {
+  background: repeating-conic-gradient(from 0deg at 50% -15%, rgba(219, 4, 24, .32) 0deg 6deg, transparent 6deg 22deg);
+  mask-image: linear-gradient(#000, transparent 60%);
+}
+
+.poster-card[data-poster-theme="bf-estouro"] .ofertamatica-offer-ribbon {
+  background: #ca101f !important;
+  border-color: #ffdc00 !important;
+  color: #ffe000 !important;
+  box-shadow: 0 1mm 0 #a20716, 0 0 3mm rgba(231, 21, 25, .6) !important;
+}
+
+.poster-card[data-poster-theme="bf-estouro"] .ofertamatica-inner-frame {
+  border-color: #d51a23;
+}
+
+.poster-card[data-poster-theme="bf-estouro"] .ofertamatica-inner-frame::before {
+  content: "IMPERDÍVEL!";
+  position: absolute;
+  top: -1%;
+  left: 32%;
+  right: 32%;
+  min-height: 5%;
+  display: grid;
+  place-items: center;
+  border: .5mm solid #ffe000;
+  border-radius: 1.5mm;
+  background: #d91223;
+  color: #fff;
+  font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  font-size: clamp(3mm, 4cqi, 7mm);
+  font-weight: 900;
+  transform: rotate(-2deg);
+}
+
+.poster-card[data-poster-theme="bf-estouro"] .poster-price-box::before {
+  inset: 0 -3% 2%;
+  background: #ffe000;
+  clip-path: polygon(3% 14%, 16% 18%, 11% 0, 30% 15%, 42% 3%, 54% 15%, 70% 0, 75% 17%, 95% 9%, 86% 37%, 100% 54%, 89% 65%, 98% 91%, 74% 84%, 66% 100%, 51% 89%, 35% 100%, 24% 85%, 2% 92%, 14% 64%, 0 50%, 14% 35%);
+  filter: drop-shadow(0 1mm 0 #e51929);
+}
+
+.poster-card[data-poster-theme="bf-estouro"] .poster-field-price {
+  color: #09090a !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media print {
+  .poster-card[data-poster-theme^="bf-"],
+  .poster-card[data-poster-theme^="bf-"] .ofertamatica-poster-background,
+  .poster-card[data-poster-theme^="bf-"] .poster-price-box,
+  .poster-card[data-poster-theme^="bf-"] .ofertamatica-offer-ribbon {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
