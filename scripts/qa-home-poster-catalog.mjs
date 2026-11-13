@@ -42,7 +42,7 @@ async function begin(page, format) {
   await page.locator('.format-choice[data-format-id="' + format + '"]').click()
   await page.locator('.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]').waitFor()
   await page.locator('.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]').fill(inputText)
-  await page.getByRole('button', { name: 'Gerar placas', exact: true }).click()
+  await page.locator('.editor-page button.generate-button:not(.paste-generate-button)').click()
   await page.locator('.preview-card .real-poster-preview .poster-card, .preview-card .real-poster-preview .poster-app-card').first().waitFor()
   await page.evaluate(() => document.fonts.ready)
 }
