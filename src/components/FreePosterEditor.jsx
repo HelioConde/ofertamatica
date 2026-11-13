@@ -7,6 +7,7 @@ import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
 import { FREE_EDITOR_TUTORIAL } from '../seo/seoPages'
 import { trackEvent } from '../utils/telemetry'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
+import { inspectDePor } from '../poster-engine/priceComparison.js'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
 import '../styles/free-editor.css'
@@ -33,7 +34,7 @@ const round = (num) => Math.round(num * 10) / 10
 const initial = () => ({
   formatId: 'A4',
   modelId: START_MODEL,
-  product: { description: 'ÁGUA MINERAL', subdescription: 'CRYSTAL', complement: 'COM GÁS', unit: '500 ML', price: '1,69' },
+  product: { description: 'ÁGUA MINERAL', subdescription: 'CRYSTAL', complement: 'COM GÁS', unit: '500 ML', price: '1,69', regularPrice: '' },
   showDescription: true, showPrice: true, showCurrency: true,
   headerText: 'OFERTA', showHeader: true,
   descriptionFont: 'auto', priceFont: PRICE_FONTS[0].value,
@@ -148,8 +149,8 @@ export default function FreePosterEditor() {
     headerText: title || 'OFERTA',
     headerStyle: state.showHeader ? 'retail' : 'hidden',
     headerFooterStyle: model.headerFooterStyle,
-    offerMode: 'standard',
-    validityText: '', limitText: '',
+    offerMode: model.offerMode || 'standard',
+    validityText: model.validityText || '', limitText: '',
     headerImage: '',
     textStyles: {
       ...base.textStyles,
@@ -161,7 +162,7 @@ export default function FreePosterEditor() {
     },
   }), [base, boxes.contentBox.x, boxes.contentBox.y, boxes.contentBox.width, boxes.contentBox.height,
     boxes.priceBox.x, boxes.priceBox.y, boxes.priceBox.width, boxes.priceBox.height,
-    state.showCurrency, state.showHeader, title, state.descriptionFont, state.priceFont, model.headerFooterStyle])
+    state.showCurrency, state.showHeader, title, state.descriptionFont, state.priceFont, model.headerFooterStyle, model.offerMode, model.validityText])
   const products = useMemo(() => Array.from({ length: format.postersPerSheet }, (_, index) => ({
     ...state.product,
     description: state.showDescription ? state.product.description : '',
@@ -169,6 +170,7 @@ export default function FreePosterEditor() {
     complement: state.showDescription ? state.product.complement : '',
     unit: state.showDescription ? state.product.unit : '',
     price: state.showPrice ? money(state.product.price) : '',
+    regularPrice: state.showPrice ? money(state.product.regularPrice) : '',
     id: 'free-editor-product-' + index,
   })), [format.postersPerSheet, state.product, state.showDescription, state.showPrice])
   const layouts = useMemo(() => createPosterLayouts(products, template, format, measure), [products, template, format, measure])
@@ -361,6 +363,15 @@ export default function FreePosterEditor() {
           </div>
           <label className="free-editor-field free-editor-price-input"><span>Preço (R$)</span>
             <input inputMode="decimal" value={state.product.price} onChange={(e) => updateProduct('price', money(e.target.value))} placeholder="Ex.: 9,99" /></label>
+          {model.offerMode === 'de-por' ? (
+            <label className="free-editor-field free-editor-price-input"><span>Preço anterior real (R$)</span>
+              <input inputMode="decimal" value={state.product.regularPrice || ''} onChange={(e) => updateProduct('regularPrice', money(e.target.value))} placeholder="Ex.: 24,90" />
+              <small>Confirme o preço anterior praticado. O desconto só aparece quando o valor anterior é maior.</small>
+              {state.product.regularPrice && !inspectDePor(state.product.regularPrice, state.product.price).valid
+                ? <span role="alert">O preço anterior precisa ser válido e maior que o preço atual.</span>
+                : null}
+            </label>
+          ) : null}
           <div className="free-editor-checks">
             <label><input type="checkbox" checked={state.showDescription} onChange={(e) => update('showDescription', e.target.checked)} /> Mostrar descrição</label>
             <label><input type="checkbox" checked={state.showPrice} onChange={(e) => update('showPrice', e.target.checked)} /> Mostrar preço</label>
