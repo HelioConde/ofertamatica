@@ -11,6 +11,7 @@ on:
       - 'scripts/validate-seo-graph.mjs'
       - 'scripts/validate-validade-zero.mjs'
       - 'scripts/qa-interactions.mjs'
+      - 'scripts/qa-home-poster-catalog.mjs'
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
       - 'scripts/audit-content.mjs'
@@ -125,6 +126,10 @@ jobs:
         run: node scripts/qa-interactions.mjs
       # CLI oficial: snapshots semânticos e capturas reais, complementares
       # aos testes automatizados via API Playwright acima.
+      - name: Verify every home generator poster (desktop, mobile, print)
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-home-poster-catalog.mjs
       - name: Verify A4 A3 SRA3 and App PDF physical print
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
