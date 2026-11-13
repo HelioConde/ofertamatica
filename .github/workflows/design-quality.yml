@@ -45,7 +45,8 @@ concurrency:
 
 jobs:
   design-audit:
-    runs-on: ubuntu-latest
+    # Playwright 1.55.1 não possui binário Chromium para Ubuntu 26.04 (ubuntu-latest).
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout
@@ -106,7 +107,10 @@ jobs:
             await page.getByRole('button', {name:'Black Friday', exact:true}).click()
             await page.screenshot({path: 'artifacts/design-audit/black-friday-filtrada-' + name + '.png', fullPage: true})
             const visible = await page.locator('.curated-model-grid .model-showcase-card').count()
-            if (visible !== 2) throw new Error('Esperados dois modelos Black Friday, obtidos ' + visible)
+            // A coleção recebe novas artes sem exigir atualização manual deste teste.
+            const { CURATED_POSTER_COLLECTIONS } = await import('./src/config/modelEditorialCollections.js')
+            const expected = CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.filter(id => id.startsWith('black-friday')).length
+            if (visible !== expected) throw new Error('Esperados ' + expected + ' modelos Black Friday, obtidos ' + visible)
             await page.close()
           }
           await browser.close()
