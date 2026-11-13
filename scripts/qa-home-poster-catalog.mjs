@@ -43,7 +43,7 @@ async function begin(page, format) {
   await page.locator('.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]').waitFor()
   await page.locator('.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]').fill(inputText)
   await page.locator('.editor-page button.generate-button:not(.paste-generate-button)').click()
-  await page.locator('.preview-card .real-poster-preview .poster-card, .preview-card .real-poster-preview .poster-app-card').first().waitFor()
+  await page.locator('.preview-card .real-poster-preview .poster-card, .preview-card .real-poster-preview .poster-app-card').first().waitFor({state: 'attached'})
   await page.evaluate(() => document.fonts.ready)
 }
 
@@ -72,6 +72,9 @@ async function previewState(page) {
       hasVisiblePrice: within(rp) && getComputedStyle(price).visibility !== 'hidden',
       hasDescription: within(rd) && (description?.innerText.trim().length || 0) > 0,
       headerImageOk: !image || (image.complete && image.naturalWidth > 0),
+      headerClipped: Boolean(card?.querySelector('.ofertamatica-offer-ribbon > b') &&
+        card.querySelector('.ofertamatica-offer-ribbon > b').scrollWidth >
+        card.querySelector('.ofertamatica-offer-ribbon > b').clientWidth + 1),
       noHeader: !card?.querySelector('.ofertamatica-poster-background'),
       horizontalOverflow: document.documentElement.scrollWidth > innerWidth + 2,
     }
@@ -93,6 +96,7 @@ try {
       await search.fill(model.name)
       const button = page.locator('[data-model-art="' + model.id + '"]')
       await button.waitFor({ state: 'visible', timeout: 12000 })
+      await rejectConsent(page)
       await button.click()
       await page.waitForFunction(theme => document.querySelector('.preview-card .poster-card')?.dataset.posterTheme === theme,
         model.headerFooterStyle || 'moldura')
@@ -103,6 +107,7 @@ try {
       assert(state.hasDescription, 'Nome/descrição invisível ou fora da placa')
       assert(state.price.includes('18,90') && state.printedPrice.includes('18,90'), 'Preço da lista não foi preservado na prévia/impressão')
       assert(state.headerImageOk, 'Cabeçalho artístico não carregou')
+      assert(!state.headerClipped, 'Cabeçalho cortado ou com reticências na prévia')
       assert(state.noHeader === (model.headerFooterStyle === 'preimpresso'), 'Modo de papel pré-impresso inconsistente')
       assert(!state.horizontalOverflow, 'Rolagem horizontal indevida')
       const style = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:poster-style:v1') || '{}'))
