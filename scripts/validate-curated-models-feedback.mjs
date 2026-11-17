@@ -62,7 +62,9 @@ for (const id of newBlackFridayModels) {
   const model = POSTER_MODEL_PRESETS.find((preset) => preset.id === id)
   assert.ok(bf.includes(model.name), 'Página Black Friday sem o modelo ' + id)
 }
-assert.match(bf, /Cartaz Black Friday para Imprimir: Modelos com Preço/)
+const blackFridayPage = INDEXABLE_PAGES.find((page) => page.slug === 'cartaz-black-friday')
+assert.ok(blackFridayPage, 'Página Black Friday não cadastrada')
+assert.ok(bf.includes('<title>' + blackFridayPage.title + '</title>'), 'HTML Black Friday deve usar o título do catálogo SEO')
 assert.match(bf, /placas-sazonais/)
 assert.match(readFileSync('dist/placas-sazonais/index.html','utf8'), /HALLOWEEN/)
 assert.match(readFileSync('dist/placas-sazonais/index.html','utf8'), /OFERTAS DE NATAL/)
