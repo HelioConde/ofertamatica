@@ -369,7 +369,8 @@ function homePrintHelpSnapshot() {
     '<a href="/como-funciona/">Como funciona</a> ' +
     '<a href="/placas-para-hortifruti/">Preços por kg no hortifruti</a> ' +
     '<a href="/placas-para-padaria/">Placas para padaria</a>' +
-    '<a href="/placas-sazonais/">Placas sazonais para imprimir</a>' +
+    '<a href="/placas-sazonais/">Placas sazonais para imprimir</a> ' +
+    '<a href="/cartaz-black-friday/">Modelos de cartaz Black Friday grátis</a>' +
     '</nav></aside></section>'
 }
 

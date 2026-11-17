@@ -47,6 +47,11 @@ for (const route of routes) {
   const descriptions = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/gi)]
   assert.equal(descriptions.length, 1, 'Meta descrição duplicada: ' + route)
   const description = descriptions[0]?.[1]?.trim() || ''
+  if (route === '/') assert.ok(html.includes('<a href="/cartaz-black-friday/">Modelos de cartaz Black Friday grátis</a>'), 'Home sem link indexável para Black Friday')
+  if (route === '/cartaz-black-friday/') {
+    assert.ok(title.includes('Black Friday') && title.includes('Imprimir Grátis'), 'Título Black Friday sem intenção de busca')
+    assert.ok(description.includes('10 modelos editáveis') && description.includes('Sem cadastro'), 'Descrição Black Friday não destaca o produto real')
+  }
   assert.ok(title.length >= 15 && title.length <= 85, 'Título vazio, genérico ou excessivo: ' + route)
   assert.ok(description.length >= 65 && description.length <= 190, 'Descrição insuficiente ou longa demais: ' + route)
   assert.ok(!/\b(lorem ipsum|em construção|coming soon)\b/i.test(html), 'Conteúdo provisório em página indexável: ' + route)
