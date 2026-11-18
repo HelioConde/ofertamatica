@@ -3,15 +3,15 @@
 export const CURATED_POSTER_COLLECTIONS = {
   'placas-sazonais': {
     heading: 'Modelos de placas sazonais para imprimir grátis',
-    intro: 'Compare modelos Black Friday em seis estilos novos, além de Halloween, Natal, verão e aniversário da loja. Veja os cabeçalhos ilustrados reais, personalize produto, unidade e preço e imprima em A4, A5 ou A3.',
-    models: ['black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
+    intro: 'Compare modelos Black Friday com opções econômicas de fundo branco e quatro estilos de Esquenta Black Friday, além de Halloween, Natal, verão e aniversário da loja. Veja os cabeçalhos ilustrados reais, personalize produto, unidade e preço e imprima em A4, A5 ou A3.',
+    models: ['black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial', 'halloween', 'natal', 'verao', 'aniversario', 'fim-de-semana'],
     note: 'Datas comemorativas não justificam valores antigos, descontos não comprovados nem condições escondidas. Todos os preços mostrados são fictícios.',
   },
   'cartaz-black-friday': {
     heading: 'Modelos de cartaz Black Friday com cabeçalho ilustrado',
-    intro: 'Compare dez estilos editáveis de Black Friday: etiqueta neon, De/Por, relâmpago, kit, premium, preço explosivo e opções clássicas. Confira produto, preço e condições antes de imprimir. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
-    models: ['black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'de-por', 'relampago'],
-    note: 'No De/Por, confirme o preço anterior que realmente foi praticado e informe condições e validade da oferta.',
+    intro: 'Compare 16 estilos editáveis: Black Friday clássica e econômica de fundo branco, além de quatro opções de Esquenta Black Friday, De/Por, kit e mais. Confira produto, preço e condições antes de imprimir. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
+    models: ['black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial', 'de-por', 'relampago'],
+    note: 'As versões econômicas usam fundo branco e detalhes pretos para poupar tinta. No De/Por, confirme o preço anterior que realmente foi praticado e informe condições e validade da oferta.',
   },
   'placas-para-hortifruti': {
     heading: 'Placas de hortifruti para imprimir: exemplos de modelos',

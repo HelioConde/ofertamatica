@@ -62,6 +62,23 @@ for (const id of newBlackFridayModels) {
   const model = POSTER_MODEL_PRESETS.find((preset) => preset.id === id)
   assert.ok(bf.includes(model.name), 'Página Black Friday sem o modelo ' + id)
 }
+
+const economicalModels = ["black-friday-economico","black-friday-branco-impacto","esquenta-black-friday-antecipada","esquenta-black-friday-de-por","esquenta-black-friday-semana","esquenta-black-friday-especial"]
+assert.ok(economicalModels.filter((id) => id.startsWith('esquenta-black-friday-')).length >= 4, 'Mínimo de quatro opções Esquenta Black Friday')
+for (const id of economicalModels) {
+  const model = POSTER_MODEL_PRESETS.find((item) => item.id === id)
+  assert.ok(model, 'Modelo econômico não cadastrado: ' + id)
+  assert.equal(model.background.toLowerCase(), '#ffffff', 'Fundo branco obrigatório: ' + id)
+  assert.equal(model.price.toLowerCase(), '#111111', 'Preço preto obrigatório: ' + id)
+  assert.equal(model.text.toLowerCase(), '#111111', 'Texto preto obrigatório: ' + id)
+  assert.ok(model.headerFooterStyle.startsWith('bf-eco-'), 'Modelo não usa tema econômico: ' + id)
+  assert.ok(blackFridayCss.includes('data-poster-theme="' + model.headerFooterStyle + '"'), 'CSS econômico não encontrado: ' + id)
+  assert.ok(blackFridayCollection.models.includes(id), 'Modelo não está na galeria de Black Friday: ' + id)
+  assert.ok(CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.includes(id), 'Modelo não está em placas sazonais: ' + id)
+  assert.ok(bf.includes(model.name), 'Modelo econômico não publicado no HTML: ' + id)
+}
+assert.equal(POSTER_MODEL_PRESETS.find((item) => item.id === 'esquenta-black-friday-de-por').offerMode, 'de-por')
+
 const blackFridayPage = INDEXABLE_PAGES.find((page) => page.slug === 'cartaz-black-friday')
 assert.ok(blackFridayPage, 'Página Black Friday não cadastrada')
 assert.ok(bf.includes('<title>' + blackFridayPage.title + '</title>'), 'HTML Black Friday deve usar o título do catálogo SEO')

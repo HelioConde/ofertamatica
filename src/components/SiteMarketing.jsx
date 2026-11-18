@@ -422,8 +422,10 @@ const HOW_RELATED_GUIDES = [
 const BLACK_FRIDAY_STYLE_FILTERS = [
   { id: 'todos', label: 'Todos os estilos' },
   { id: 'classicos', label: 'Clássicos', models: ['black-friday', 'black-friday-white'] },
+  { id: 'economicos', label: 'Fundo branco · econômico', models: ['black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial'] },
+  { id: 'esquenta', label: 'Esquenta Black Friday', models: ['esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial'] },
   { id: 'preco-direto', label: 'Preço direto', models: ['black-friday-etiqueta', 'black-friday-kit', 'black-friday-premium'] },
-  { id: 'de-por', label: 'De / Por', models: ['black-friday-de-por', 'de-por'] },
+  { id: 'de-por', label: 'De / Por', models: ['black-friday-de-por', 'esquenta-black-friday-de-por', 'de-por'] },
   { id: 'impacto', label: 'Alto impacto', models: ['black-friday-relampago', 'black-friday-estouro', 'relampago'] },
 ]
 
@@ -444,7 +446,7 @@ function CuratedModelSection({ slug, onCreate }) {
   const filtered = seasonFilter === 'todos' ? selected : selected.filter((model) => {
     if (blackFriday) return filters.find((option) => option.id === seasonFilter)?.models?.includes(model.id)
     if (!seasonal) return true
-    if (seasonFilter === 'black-friday') return model.id.startsWith('black-friday')
+    if (seasonFilter === 'black-friday') return model.id.startsWith('black-friday') || model.id.startsWith('esquenta-black-friday')
     if (seasonFilter === 'outros') return !model.id.startsWith('black-friday') && !['halloween', 'natal'].includes(model.id)
     return model.id === seasonFilter
   })
