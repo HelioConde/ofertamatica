@@ -50,7 +50,7 @@ for (const route of routes) {
   if (route === '/') assert.ok(html.includes('<a href="/cartaz-black-friday/">Modelos de cartaz Black Friday grátis</a>'), 'Home sem link indexável para Black Friday')
   if (route === '/cartaz-black-friday/') {
     assert.ok(title.includes('Black Friday') && title.includes('Imprimir Grátis'), 'Título Black Friday sem intenção de busca')
-    assert.ok(description.includes('10 modelos editáveis') && description.includes('Sem cadastro'), 'Descrição Black Friday não destaca o produto real')
+    assert.ok(description.includes('16 modelos editáveis') && description.includes('Sem cadastro'), 'Descrição Black Friday não destaca o produto real')
   }
   assert.ok(title.length >= 15 && title.length <= 85, 'Título vazio, genérico ou excessivo: ' + route)
   assert.ok(description.length >= 65 && description.length <= 190, 'Descrição insuficiente ou longa demais: ' + route)
