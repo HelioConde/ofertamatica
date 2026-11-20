@@ -2,6 +2,30 @@
 
 Leia primeiro `README.md` e `DESIGN.md`. O projeto tem contratos não negociáveis: Home abre diretamente no seletor, primeira placa pronta em dois cliques, fluxo grátis sem cadastro, editor desktop em uma viewport e impressão física fiel. Não editar configurações de FTP, chaves, consentimento ou SEO sem motivo relacionado à tarefa.
 
+## Skill específica de acessibilidade (seleção de 20/11/2026)
+
+A lista de skills de acessibilidade foi reduzida a **três referências complementares**: `accessibility` (addyosmani/web-quality-skills) para auditoria WCAG, `fixing-accessibility` (ibelick/ui-skills) para correções pontuais e `a11y-debugging` (ChromeDevTools/chrome-devtools-mcp) para validação em navegador, quando o MCP existir. `wcag-audit-patterns` (wshobson/agents) é apenas segunda revisão opcional; não empilhar skills com funções idênticas.
+
+**Codex:** usar a skill local [`ofertamatica-a11y`](.agents/skills/ofertamatica-a11y/SKILL.md) ao criar/alterar menus, botões, formulários, tabs, modais, foco, contraste ou experiências mobile. A seleção e os links das fontes estão em [`docs/SKILLS_ACESSIBILIDADE_2026-11-20.md`](docs/SKILLS_ACESSIBILIDADE_2026-11-20.md).
+
+A skill local é utilizável sem instalar pacotes de terceiros. Não confundir referências documentadas com skills instaladas ou auditorias já executadas. Não sacrificar funcionalidade, consentimento, impressão ou performance para inflar um score de acessibilidade.
+
+### Instalação opcional no computador/agente de desenvolvimento
+
+Estas skills são ferramentas de **desenvolvimento**, não dependências carregadas pelo site em produção. No diretório do projeto (Node.js 20+):
+
+```bash
+npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
+npx skills add https://github.com/Leonxlnx/taste-skill --skill image-to-code
+npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines
+# Awesome Design: consultar catálogo e adaptar, não clonar uma identidade inteira.
+# https://github.com/VoltAgent/awesome-design-md
+npm install -g @playwright/cli@latest
+playwright-cli install --skills
+```
+
+Não executar scripts externos sem revisar seu conteúdo. Essas instalações exigem acesso à internet e não são necessárias no build de produção. O Playwright de testes é instalado no workflow do GitHub Actions.
+
 ## Ferramentas históricas de design (referências, não instaladores)
 
 1. **Taste Skill (legado; não executar)** — https://github.com/Leonxlnx/taste-skill. Referência histórica das auditorias anteriores; a política atual desaconselha adoção automática pelo risco de mudar a identidade do produto.

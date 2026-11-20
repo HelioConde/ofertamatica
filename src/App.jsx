@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { trackEvent } from './utils/telemetry'
 import CreatorSeoHead from './components/CreatorSeoHead'
+import SiteNavigation from './components/SiteNavigation'
 import FormatOptionCard from './components/FormatOptionCard'
 import HomePrintHelp from './components/HomePrintHelp'
 import FeedbackNudge from './components/FeedbackNudge'
@@ -28,60 +29,6 @@ function loadDraft() {
     }
     return draft
   } catch { return null }
-}
-
-function Brand() {
-  return (
-    <a className="brand" href="/" aria-label="Ofertamática">
-      <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />
-      <span>Ofertamática</span>
-    </a>
-  )
-}
-
-function Navigation({ routePath, screen, onInstall }) {
-  const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
-  const links = [
-    ['/', 'Criar placas', 'Criar'],
-    ['/modelos', 'Modelos', 'Modelos'],
-    ['/editor-livre', 'Editor livre', 'Editor'],
-    ['/formatos', 'Formatos', 'Formatos'],
-    ['/como-funciona', 'Como funciona', 'Como'],
-    ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
-    ['/validade-zero', 'Validade Zero', 'Validade Zero'],
-  ]
-
-  return (
-    <header className="site-header">
-      <div className="nav-shell">
-        <Brand />
-        <nav className="main-nav" aria-label="Navegação principal">
-          {links.map(([href, label, mobileLabel]) => {
-            const active = cleanPath === href || (label === 'Criar placas' && screen === 'editor')
-            const target = href === '/' ? '/' : href + '/'
-            return (
-              <a
-                className={'nav-link ' + (active ? 'active' : '')}
-                href={target}
-                key={href}
-                target={href === '/validade-zero' ? '_blank' : undefined}
-                rel={href === '/validade-zero' ? 'noopener noreferrer' : undefined}
-                aria-current={active ? 'page' : undefined}
-              >
-                <span className="nav-label-full">{label}</span>
-                <span className="nav-label-mobile">{mobileLabel}</span>
-              </a>
-            )
-          })}
-        </nav>
-        <div className={'nav-meta ' + (onInstall ? 'has-install' : '')}>
-          {onInstall ? <button type="button" className="install-app-button" onClick={onInstall}>Instalar app</button> : null}
-          <span className="free-pill">Grátis</span>
-          <span className="nav-note">sem cadastro</span>
-        </div>
-      </div>
-    </header>
-  )
 }
 
 function FormatChooser({ onSelect, draft, onResume }) {
@@ -181,7 +128,7 @@ function App() {
     return (
       <Suspense fallback={
         <div className="app format-mode" aria-live="polite">
-          <Navigation routePath={path} screen="formats" />
+          <SiteNavigation routePath={path} screen="formats" />
           <main className="format-page"><div className="format-dialog" style={{padding:24}}>Preparando {entry ? 'editor' : 'página'} da Ofertamática...</div></main>
         </div>
       }>
@@ -192,7 +139,7 @@ function App() {
   return (
     <div className="app format-mode">
       <a className="skip-to-content" href="#formatos">Pular para o conteúdo principal</a>
-      <Navigation routePath="/" screen="formats" />
+      <SiteNavigation routePath="/" screen="formats" />
       <CreatorSeoHead />
       <FormatChooser
         onSelect={(formatId) => {

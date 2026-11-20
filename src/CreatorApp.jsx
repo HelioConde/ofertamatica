@@ -11,6 +11,7 @@ import { modelPopularityBadge, recordPersonalModelSelection, sortPosterModels } 
 import { useModelPopularity } from './utils/useModelPopularity'
 import './styles/model-popularity.css'
 import CreatorSeoHead from './components/CreatorSeoHead'
+import SiteNavigation from './components/SiteNavigation'
 import FormatOptionCard from './components/FormatOptionCard'
 import PriceValue from './components/posters/PriceValue'
 import { PUBLIC_PAGES, SEO_PAGES } from './seo/seoPages'
@@ -479,60 +480,6 @@ function applyPrintPage(format, mode = 'complete') {
 function clearPrintPage() {
   document.getElementById(PRINT_STYLE_ID)?.remove()
   document.body.classList.remove('poster-printing', 'poster-printing-backgrounds')
-}
-
-function Brand() {
-  return (
-    <a className="brand" href="/" aria-label="Ofertamática">
-      <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />
-      <span>Ofertamática</span>
-    </a>
-  )
-}
-
-function Navigation({ routePath, screen, onInstall }) {
-  const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
-  const links = [
-    ['/', 'Criar placas', 'Criar'],
-    ['/modelos', 'Modelos', 'Modelos'],
-    ['/editor-livre', 'Editor livre', 'Editor'],
-    ['/formatos', 'Formatos', 'Formatos'],
-    ['/como-funciona', 'Como funciona', 'Como'],
-    ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
-    ['/validade-zero', 'Validade Zero', 'Validade Zero'],
-  ]
-
-  return (
-    <header className="site-header">
-      <div className="nav-shell">
-        <Brand />
-        <nav className="main-nav" aria-label="Navegação principal">
-          {links.map(([href, label, mobileLabel]) => {
-            const active = cleanPath === href || (label === 'Criar placas' && screen === 'editor')
-            const target = href === '/' ? '/' : href + '/'
-            return (
-              <a
-                className={'nav-link ' + (active ? 'active' : '')}
-                href={target}
-                key={href}
-                target={href === '/validade-zero' ? '_blank' : undefined}
-                rel={href === '/validade-zero' ? 'noopener noreferrer' : undefined}
-                aria-current={active ? 'page' : undefined}
-              >
-                <span className="nav-label-full">{label}</span>
-                <span className="nav-label-mobile">{mobileLabel}</span>
-              </a>
-            )
-          })}
-        </nav>
-        <div className={'nav-meta ' + (onInstall ? 'has-install' : '')}>
-          {onInstall ? <button type="button" className="install-app-button" onClick={onInstall}>Instalar app</button> : null}
-          <span className="free-pill">Grátis</span>
-          <span className="nav-note">sem cadastro</span>
-        </div>
-      </div>
-    </header>
-  )
 }
 
 function FormatChooser({ onSelect, draft, onResume }) {
@@ -2666,7 +2613,7 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
 
   return (
     <div className={'app ' + appModeClass}>
-      <Navigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
+      <SiteNavigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
       {isFreeEditor ? (
         <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando o editor livre de cartazes...</p></main>}>
           <FreePosterEditor />
