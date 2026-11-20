@@ -36,7 +36,7 @@ import { optimizePosterImage } from './utils/optimizePosterImage'
 import ProductPhotoControls from './components/ProductPhotoControls'
 import SavedProductListsDialog from './components/SavedProductListsDialog'
 import useModalFocus from './utils/useModalFocus'
-import FeedbackNudge from './components/FeedbackNudge'
+import DeferredFeedbackNudge from './components/DeferredFeedbackNudge'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
 import './styles/interface-refresh.css'
@@ -2659,7 +2659,7 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
           <FormatChooser onSelect={startWithFormat} draft={draftAvailable} onResume={resumeDraft} />
         </>
       )}
-      <FeedbackNudge />
+      <DeferredFeedbackNudge />
     </div>
   )
 }
