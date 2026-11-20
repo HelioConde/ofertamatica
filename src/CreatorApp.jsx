@@ -39,6 +39,7 @@ import useModalFocus from './utils/useModalFocus'
 import FeedbackNudge from './components/FeedbackNudge'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
+import './styles/interface-refresh.css'
 
 const HEADER_IMAGE_MODULES = import.meta.glob('../img/headers/*.png', {
   eager: true,
