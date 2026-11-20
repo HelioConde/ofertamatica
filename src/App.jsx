@@ -47,7 +47,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
           <div className="format-home-intro">
             <div className="format-home-intro-copy">
               <span className="eyebrow two-click-kicker">CARTAZES DE OFERTA GRÁTIS</span>
-              <h1>Escolha o formato da sua placa de oferta</h1>
+              <h1>Escolha o formato da sua <span className="format-headline-accent">placa de oferta</span></h1>
               <p>Escolha A4, A5 ou A3, cole seus produtos e imprima suas ofertas. Sem cadastro.</p>
               <div className="format-trust-row" aria-label="Vantagens do Ofertamática">
                 <span>Grátis e sem cadastro</span>
