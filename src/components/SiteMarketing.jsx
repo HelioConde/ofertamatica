@@ -426,8 +426,8 @@ const HOW_RELATED_GUIDES = [
 // Segmentação por intenção de uso; um cartaz pertence a apenas um grupo.
 const BLACK_FRIDAY_STYLE_FILTERS = [
   { id: 'todos', label: 'Todos os estilos' },
-  { id: 'classicos', label: 'Clássicos', models: ['black-friday', 'black-friday-white'] },
   { id: 'economicos', label: 'Fundo branco · econômico', models: ['black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial'] },
+  { id: 'classicos', label: 'Clássicos', models: ['black-friday', 'black-friday-white'] },
   { id: 'esquenta', label: 'Esquenta Black Friday', models: ['esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial'] },
   { id: 'preco-direto', label: 'Preço direto', models: ['black-friday-etiqueta', 'black-friday-kit', 'black-friday-premium'] },
   { id: 'de-por', label: 'De / Por', models: ['black-friday-de-por', 'esquenta-black-friday-de-por', 'de-por'] },
@@ -456,7 +456,7 @@ function CuratedModelSection({ slug, onCreate }) {
     return model.id === seasonFilter
   })
   return (
-    <section className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
+    <section id={blackFriday ? 'modelos-black-friday' : undefined} className="marketing-section curated-model-section" aria-label={blackFriday ? 'Escolher um dos 16 modelos Black Friday para imprimir' : 'Modelos para usar nesta página'}>
       <div className="marketing-heading">
         <span className="marketing-kicker">EXEMPLOS EDITÁVEIS</span>
         <h2>{collection.heading}</h2>
@@ -641,7 +641,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
         ) : null}
 
         {isModels ? (
-          <p className="curated-seasonal-link"><strong>Campanhas e datas especiais:</strong> <a href="/placas-sazonais/">Placas Black Friday, Halloween, Natal e verão para imprimir →</a></p>
+          <p className="curated-seasonal-link"><strong>Campanhas e datas especiais:</strong> <a href="/cartaz-black-friday/">16 modelos Black Friday, incluindo fundo branco →</a> <span aria-hidden="true">·</span> <a href="/placas-sazonais/">Halloween, Natal e outras placas sazonais →</a></p>
         ) : null}
 
         {isModels && modelMode === 'backgrounds' ? (
@@ -1042,10 +1042,11 @@ function SeoPosterExample({ page, onCreate }) {
 }
 
 export function SeoLanding({ page, onCreate }) {
+  const isBlackFriday = page.slug === 'cartaz-black-friday'
   return (
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
-      <main id="conteudo-principal" tabIndex={-1} className="seo-landing">
+      <main id="conteudo-principal" tabIndex={-1} className={'seo-landing' + (isBlackFriday ? ' black-friday-landing' : '')}>
         <section className="seo-hero seo-hero-guide">
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
@@ -1053,8 +1054,17 @@ export function SeoLanding({ page, onCreate }) {
             <h1>{page.heading}</h1>
             <p>{page.lead}</p>
             <div className="seo-hero-actions">
-              <button type="button" onClick={onCreate}>Criar cartaz</button>
-              <a href="/guias-para-varejo/">Ver todos os guias</a>
+              {isBlackFriday ? (
+                <>
+                  <a className="black-friday-hero-models" href="#modelos-black-friday">Ver 16 modelos de cartaz <span aria-hidden="true">↓</span></a>
+                  <button type="button" onClick={onCreate}>Criar cartaz sem modelo</button>
+                </>
+              ) : (
+                <>
+                  <button type="button" onClick={onCreate}>Criar cartaz</button>
+                  <a href="/guias-para-varejo/">Ver todos os guias</a>
+                </>
+              )}
             </div>
           </div>
           <aside className="seo-benefit-card">
@@ -1062,7 +1072,9 @@ export function SeoLanding({ page, onCreate }) {
           </aside>
         </section>
 
-        <SeoPosterExample page={page} onCreate={onCreate} />
+        {/* A página Black Friday é uma coleção para escolher, não um tutorial genérico.
+            Os cartazes reais são a primeira coisa após a apresentação da campanha. */}
+        {!isBlackFriday ? <SeoPosterExample page={page} onCreate={onCreate} /> : null}
         <CuratedModelSection slug={page.slug} onCreate={onCreate} />
 
         <RetailCalculator key={page.slug} slug={page.slug} />
