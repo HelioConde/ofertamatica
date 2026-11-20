@@ -222,7 +222,7 @@ function curatedModelsSnapshot(page) {
       '<p style="font-weight:700">' + esc(model.name) + '</p><p>' + esc(model.product) + '</p>' +
       '<strong style="display:block;font-size:25px;color:' + esc(model.price) + '">R$ ' + esc(model.value) + '</strong>' +
       '<p style="font-size:12px">' + esc(model.note) + '</p></li>').join('')
-  return '<section aria-labelledby="curated-collection-title" style="margin-top:24px">' +
+  return '<section' + (page.slug === 'cartaz-black-friday' ? ' id="modelos-black-friday"' : '') + ' aria-labelledby="curated-collection-title" style="margin-top:24px">' +
     '<h2 id="curated-collection-title">' + esc(collection.heading) + '</h2>' +
     '<p>' + esc(collection.intro) + '</p>' +
     '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
@@ -244,6 +244,14 @@ function retailCalculatorSnapshot(page) {
 
 function snapshot(page) {
   const benefits = page.benefits.map((item) => `<li>${esc(item)}</li>`).join('')
+  const prioritizeBlackFriday = page.slug === 'cartaz-black-friday'
+  // O HTML pré-renderizado e a experiência React devem apresentar a galeria
+  // de Black Friday antes dos textos de apoio, sem duplicar a coleção.
+  const blackFridayQuickLinks = prioritizeBlackFriday
+    ? '<p style="margin:20px 0"><a href="#modelos-black-friday" style="display:inline-block;padding:12px 16px;border-radius:10px;background:#1d63e9;color:#fff;font-weight:800">Ver 16 modelos de Black Friday</a> <a href="/?formato=A4" style="display:inline-block;padding:12px 8px;color:#1d63e9">Criar cartaz sem escolher modelo</a></p>'
+    : ''
+  const blackFridayCollection = prioritizeBlackFriday ? curatedModelsSnapshot(page) : ''
+  const otherCollection = prioritizeBlackFriday ? '' : curatedModelsSnapshot(page)
   const sections = (page.sections || []).map((section) => `
     <section style="margin-top:24px">
       <h2 style="font-size:24px;margin-bottom:8px">${esc(section.title)}</h2>
@@ -312,8 +320,10 @@ function snapshot(page) {
     ${updated}
     ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
+    ${blackFridayQuickLinks}
+    ${blackFridayCollection}
     ${sections}
-    ${curatedModelsSnapshot(page)}
+    ${otherCollection}
     ${retailCalculatorSnapshot(page)}
     ${listReviewSnapshot(page)}
     ${howToContent}
