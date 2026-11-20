@@ -317,6 +317,151 @@
   .free-poster-editor .free-editor-field textarea { border-radius: 11px; border-color: #cdddf0; }
   .free-poster-editor .free-editor-print-main { border-radius: 12px; box-shadow: 0 8px 18px rgba(29,99,233,.16); }
 
+  /* Skill design-review: o trabalho salvo é uma ação de continuidade,
+     não um metadado minúsculo. Também vale para quem usa teclado. */
+  .format-home-refresh .resume-work {
+    gap: 18px;
+    min-height: 76px;
+    padding: 14px 18px;
+    margin: 14px 22px 0;
+    border: 1px solid #b9dcca;
+    border-radius: 15px;
+    background: linear-gradient(110deg, #ebf9f2, #f8fefa 80%);
+    box-shadow: 0 8px 22px rgba(24, 90, 65, .07);
+  }
+  .format-home-refresh .resume-work > div {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .format-home-refresh .resume-work span {
+    color: #1e704a;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: .055em;
+  }
+  .format-home-refresh .resume-work strong {
+    color: #19432e;
+    font-size: 15px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .format-home-refresh .resume-work button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    height: auto;
+    max-width: none;
+    padding: 11px 18px;
+    border: 1px solid #176e46;
+    border-radius: 11px;
+    background: #167449;
+    color: white;
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 850;
+  }
+  .format-home-refresh .resume-work button:hover {
+    background: #105b3a;
+    box-shadow: 0 7px 18px rgba(16, 91, 58, .18);
+  }
+
+  /* Skill a11y + design-system: filtros com feedback e saída visível. */
+  .seo-landing.models-page .model-gallery-search-row {
+    display: flex;
+    align-items: end;
+    gap: 9px;
+    min-width: 0;
+  }
+  .seo-landing.models-page .model-gallery-search-row .model-search {
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+  .seo-landing.models-page .model-search-clear,
+  .seo-landing .bg-gallery-search-clear {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 9px 13px;
+    border: 1px solid #adc8eb;
+    border-radius: 11px;
+    background: #eef5ff;
+    color: #174d98;
+    font-size: 12px;
+    font-weight: 850;
+    line-height: 1.35;
+  }
+  .seo-landing.models-page .model-search-clear:hover,
+  .seo-landing .bg-gallery-search-clear:hover {
+    background: #dcecff;
+    border-color: #76a9ee;
+  }
+  .seo-landing.models-page .model-gallery-tools > strong[role="status"] {
+    color: #375777;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.45;
+  }
+  .seo-landing .bg-gallery-search-row {
+    display: flex;
+    align-items: end;
+    gap: 9px;
+    min-width: 0;
+  }
+  .seo-landing .bg-gallery-search-row .bg-gallery-search {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+  .seo-landing .bg-gallery-results-status {
+    margin: 11px 0 15px;
+    color: #45617d;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.45;
+  }
+  .seo-landing .bg-gallery-search-row input {
+    min-width: 0;
+    font-size: 14px;
+  }
+
+  @media (max-width: 820px) {
+    .format-home-refresh .resume-work {
+      margin: 12px 15px 0 !important;
+      padding: 13px 15px;
+      min-height: 68px;
+    }
+  }
+  @media (max-width: 600px) {
+    .format-home-refresh .resume-work {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 11px;
+      margin: 11px 12px 0 !important;
+      padding: 13px;
+    }
+    .format-home-refresh .resume-work strong {
+      font-size: 14px;
+      white-space: normal;
+      text-overflow: clip;
+    }
+    .format-home-refresh .resume-work button {
+      display: block;
+      width: 100%;
+      max-width: none !important;
+      min-height: 44px;
+      height: auto !important;
+      font-size: 13px !important;
+    }
+    .seo-landing.models-page .model-gallery-search-row,
+    .seo-landing .bg-gallery-search-row {
+      flex-wrap: wrap;
+    }
+    .seo-landing.models-page .model-search-clear,
+    .seo-landing .bg-gallery-search-clear {
+      flex: 1 1 auto;
+      min-width: 110px;
+    }
+    .seo-landing .bg-gallery-search-row input { font-size: 16px; }
+  }
+
   /* A preferência por movimento reduzido prevalece sobre as transições. */
   @media (prefers-reduced-motion: reduce) {
     .format-home-refresh .format-choice,
