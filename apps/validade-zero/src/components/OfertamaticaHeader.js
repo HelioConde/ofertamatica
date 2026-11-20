@@ -20,12 +20,13 @@ export default function OfertamaticaHeader() {
   useEffect(() => {
     if (!menuOpen) return undefined;
     const onKeyDown = event => {
-      if (event.key !== 'Escape') return;
-      const focusInHeader = headerRef.current?.contains(document.activeElement);
-      setMenuOpen(false);
-      if (focusInHeader || document.activeElement === document.body) {
-        event.preventDefault();
-        toggleRef.current?.focus();
+      if (event.key === 'Escape') {
+        const focusInHeader = headerRef.current?.contains(document.activeElement);
+        setMenuOpen(false);
+        if (focusInHeader || document.activeElement === document.body) {
+          event.preventDefault();
+          toggleRef.current?.focus();
+        }
       }
     };
     const onPointerDown = event => {
