@@ -111,3 +111,50 @@
 .free-guide-steps button:focus-visible,.free-editor-top-actions .free-editor-guide-trigger:focus-visible { outline:3px solid #96bbf7; outline-offset:2px; }
 .free-poster-editor [data-guide-focused="true"] { position:relative; outline:3px solid #2974f6 !important; outline-offset:3px; border-radius:8px; scroll-margin:95px; box-shadow:0 0 0 6px rgba(41,116,246,.1); }
 @media(max-width:650px){ .free-guide-steps { grid-template-columns:1fr; }.free-guide-steps button { width:100%; }.free-editor-quick-guide > summary small { width:100%; }.free-editor-quick-guide > summary { padding:9px 0; } }
+
+/* Acessibilidade mobile do Editor Livre: a prévia e a impressão não são alteradas.
+   Campos editáveis de 16px evitam zoom automático no Safari iOS. */
+.free-editor-price-input input[aria-invalid="true"] {
+  border-color: #b42318;
+  background: #fffafa;
+}
+@media screen and (max-width: 760px) {
+  .free-poster-editor .free-editor-field:not(.free-editor-price-input) input:not([type="color"]),
+  .free-poster-editor .free-editor-field select,
+  .free-poster-editor .free-editor-field textarea,
+  .free-poster-editor .free-number-setting input {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .free-poster-editor .free-editor-price-input input,
+  .free-poster-editor .free-editor-top-actions button,
+  .free-poster-editor .free-editor-top-actions a,
+  .free-poster-editor .free-editor-box-tabs button,
+  .free-poster-editor .free-extra-picker button,
+  .free-poster-editor .free-editor-danger,
+  .free-poster-editor .free-editor-small-reset,
+  .free-poster-editor .free-editor-print-buttons button {
+    min-height: 44px;
+  }
+  .free-poster-editor .free-editor-checks label,
+  .free-poster-editor .free-editor-checkbox,
+  .free-poster-editor .free-editor-disclosure summary {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .free-poster-editor .free-editor-checks input,
+  .free-poster-editor .free-editor-checkbox input {
+    width: 20px;
+    height: 20px;
+  }
+  .free-poster-editor .free-editor-field > span,
+  .free-poster-editor .free-number-setting > span,
+  .free-poster-editor .free-editor-help {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .free-poster-editor .free-editor-box-tabs button,
+  .free-poster-editor .free-extra-picker button {
+    font-size: 13px;
+  }
+}
