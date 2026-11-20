@@ -3348,3 +3348,39 @@ summary:focus-visible {
  .seasonal-gallery-filters button { flex:0 0 auto; }
  .seasonal-gallery-toolbar { align-items:start; }
 }
+
+/* WCAG 2.2 AA — contraste da interface publicado em guias, modelos e rodapé.
+   Baseado no relatório axe de 37 combinações mobile/desktop (#44680119023).
+   Escopo screen: não modifica as cores e as fontes dos cartazes impressos. */
+@media screen {
+  .seo-landing .marketing-heading p,
+  .seo-landing .workflow-grid p,
+  .seo-landing .compact-info-grid p,
+  .seo-landing .legal-content p,
+  .seo-landing .store-use-grid p,
+  .seo-landing .trust-content article p,
+  .seo-landing .faq-grid p,
+  .seo-landing .practical-grid p,
+  .seo-landing .seo-explainer p,
+  .seo-landing .retail-guide-catalog-heading p,
+  .seo-landing .retail-guide-results,
+  .seo-landing .paper-guide-inline p,
+  .seo-landing .model-gallery-tools > strong,
+  .seo-landing .model-showcase-card p,
+  .seo-landing .model-card-copy p,
+  .seo-landing .contact-link-grid span,
+  .seo-landing .trust-updated,
+  .marketing-footer .marketing-footer-brand > span,
+  .marketing-footer > small,
+  .privacy-preferences-panel .marketing-kicker {
+    color: #526781;
+  }
+  .seo-landing .model-mode-switch button small,
+  .seo-landing .retail-guide-paper-copy small {
+    color: #526781;
+  }
+  .seo-landing .marketing-final-cta .marketing-kicker,
+  .seo-landing .marketing-final-cta p {
+    color: #ffffff;
+  }
+}
