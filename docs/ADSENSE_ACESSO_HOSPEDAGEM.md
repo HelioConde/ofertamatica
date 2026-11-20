@@ -49,3 +49,16 @@ Isso reforça que o desafio para algumas redes externas é **recorrente**, não 
 A Action diária de disponibilidade pública agora inclui também **`/cartaz-black-friday/`** além de Home, Modelos, Hortifruti, robots.txt e ads.txt. É a página de campanha que precisa permanecer diretamente acessível para quem chega da busca. A resposta HTTP 200 só é considerada válida quando há o HTML real da aplicação; uma página de desafio com HTTP 200 é classificada como `security_challenge`.
 
 **Para o suporte da hospedagem:** anexar os horários e o link da execução, solicitar identificação da regra WAF/anti-bot que substituiu o HTML e revisar falsos positivos para redes externas e rastreadores legítimos. Preservar a segurança normal da hospedagem. A validação definitiva é testar acesso externo sem desafio e inspecionar a URL publicada no Search Console.
+
+
+## Falha de publicação de assets em 20/11/2026
+
+A [Action de deploy #44738060143](https://github.com/HelioConde/ofertamatica/actions/runs/44738060143) confirmou que o **FTP encontrou os dois arquivos de entrada JS/CSS** em `public_html/assets`, mas na primeira tentativa de publicação a checagem externa respondeu **HTTP 200 com Content-Type text/html**, tanto para `/assets/index-CG_iWKh0.js` quanto para `/assets/index-50Ymrs8u.css`, durante todas as 18 tentativas. A publicação interrompeu-se **antes** de trocar o HTML principal, corretamente.
+
+O código de checagem usava `?build-check=<timestamp>` em cada URL de asset; como o nome do arquivo já traz um hash único, esse parâmetro é desnecessário e pode acionar filtros anti-bot que um navegador comum não acionaria. A alteração proposta testa as URLs **exatamente como os navegadores solicitam** (sem parâmetros aleatórios), com `Cache-Control: no-cache`. Continua exigindo MIME JavaScript e CSS e preserva o bloqueio de deploy quando há HTML ou resposta incorreta.
+
+Um HTTP 200 com `text/html` no caminho de um arquivo JS/CSS não basta para afirmar que o WAF foi a causa. Também pode ser uma regra de rewrite, uma página fallback ou erro de roteamento. A nova checagem classifica o corpo recebido **sem registrar HTML, cookies ou IP** para ajudar a diferenciar essas causas.
+
+**Solicitação ao suporte, se persistir:** investigar `/assets/*.js` e `/assets/*.css`, verificar se a CDN/hospedagem entrega arquivos existentes no `public_html/assets` com MIME correto em redes externas e sem desafio de segurança; conferir regras de rewrite antes de aplicar qualquer exceção pontual. Não desligar o WAF nem alterar HTML para ignorar os erros.
+
+A segunda tentativa da Action estava em andamento na consulta de 20/11/2026. A publicação só estará confirmada quando o job concluir com sucesso, incluindo `--assets-only`, `--html-and-assets` e verificação de SEO.
