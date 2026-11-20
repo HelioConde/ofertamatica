@@ -36,6 +36,11 @@ try {
 
       const gallery = page.locator('.seo-black-friday-page #modelos-black-friday')
       await gallery.locator('.model-showcase-card-real').first().waitFor({ state: 'visible', timeout: 25000 })
+      const galleryBeforeExample = await gallery.evaluate((element) => {
+        const example = document.querySelector('.seo-black-friday-page .seo-poster-example')
+        return !example || Boolean(element.compareDocumentPosition(example) & Node.DOCUMENT_POSITION_FOLLOWING)
+      })
+      assert.ok(galleryBeforeExample, 'A galeria deve vir antes do exemplo genérico após a hidratação')
       await page.evaluate(() => document.fonts.ready)
       assert.match(await page.locator('h1').first().innerText(), /16 modelos de cartaz Black Friday/i)
       assert.equal(await gallery.locator('.model-showcase-card-real').count(), 16, 'Galeria deve oferecer 16 modelos reais')
