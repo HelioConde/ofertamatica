@@ -21,7 +21,12 @@ try {
     const page = await context.newPage()
     try {
       const response = await page.goto(base + '/cartaz-black-friday/', { waitUntil: 'domcontentloaded' })
-      assert(response && response.status() < 400, 'Erro HTTP na landing')
+      assert(response?.status() === 200, 'Página Black Friday deve responder HTTP 200')
+      const html = await response.text()
+      assert(html.includes('<title>Cartaz Black Friday: 16 Modelos para Imprimir Grátis</title>'), 'Título SEO não entregue no HTML inicial')
+      assert(html.includes('href="#modelos-black-friday"') && html.includes('id="modelos-black-friday"'), 'Galeria não aparece no HTML rastreável')
+      assert(html.indexOf('id="modelos-black-friday"') < html.indexOf('Como criar um cartaz Black Friday grátis, passo a passo'),
+        'Modelos devem aparecer antes dos textos longos no HTML')
       const gallery = page.locator('#modelos-black-friday')
       await gallery.locator('.model-showcase-card').first().waitFor({ state: 'visible', timeout: 30000 })
       const cards = gallery.locator('.model-showcase-card')
@@ -40,14 +45,16 @@ try {
 
       const anchor = page.locator('.black-friday-hero-models')
       assert(await anchor.getAttribute('href') === '#modelos-black-friday', 'CTA não aponta à galeria')
+      assert(await gallery.getAttribute('tabindex') === '-1', 'Galeria sem destino focável para teclado')
       const dimensions = await anchor.evaluate(el => {
         const r = el.getBoundingClientRect()
         return { h: r.height, font: Number.parseFloat(getComputedStyle(el).fontSize) }
       })
       assert(dimensions.h >= 44 && dimensions.font >= 13, 'CTA de modelos pequeno demais')
       if (width !== 390) await page.screenshot({ path: output + '/black-friday-' + width + '.png' })
-      await anchor.click()
-      assert(await page.evaluate(() => location.hash === '#modelos-black-friday'), 'CTA não navega para os modelos')
+      await anchor.focus()
+      await page.keyboard.press('Enter')
+      assert(await page.evaluate(() => location.hash === '#modelos-black-friday'), 'Enter na CTA não navega para os modelos')
       const economic = gallery.getByRole('button', { name: /Fundo branco · econômico/i })
       await economic.click()
       assert(await cards.count() === 6, 'Filtro econômico precisa exibir seis modelos')
@@ -60,7 +67,11 @@ try {
         Math.max(document.body.scrollWidth, document.documentElement.scrollWidth) - window.innerWidth
       )
       assert(overflow <= 8, 'Overflow horizontal em ' + width + 'px: ' + overflow)
-      console.log('[black-friday] ' + width + 'px: 16 modelos, economia, filtros, CTA, metadados e overflow OK')
+      // Uma escolha real de modelo deve chegar ao gerador sem perder o estilo.
+      await cards.first().getByRole('button', { name: /Usar modelo/i }).click()
+      const selected = await page.evaluate(() => localStorage.getItem('ofertamatica:poster-style:v1'))
+      assert(selected && JSON.parse(selected).headerText, 'Modelo escolhido não foi salvo para o criador')
+      console.log('[black-friday] ' + width + 'px: HTML inicial, 16 modelos, teclado, filtros, escolha e overflow OK')
     } finally {
       await context.close()
     }
