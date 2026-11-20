@@ -17,6 +17,14 @@ class TestPublicAccess(unittest.TestCase):
         self.assertEqual(result["outcome"], "ok")
         self.assertNotIn("body", result)
 
+    def test_black_friday_direct_html(self):
+        html = '<!doctype html><html><title>Ofertamática — Black Friday</title><div id="root"></div></html>'
+        self.assertEqual(classify("/cartaz-black-friday/", 200, "text/html", html.encode())["outcome"], "ok")
+
+    def test_black_friday_security_challenge(self):
+        html = '<html><head><title>Verificação de segurança</title></head><body>Confira seu navegador</body></html>'
+        self.assertEqual(classify("/cartaz-black-friday/", 200, "text/html", html.encode())["outcome"], "security_challenge")
+
     def test_challenge_returns_200(self):
         html = '<html><head><title>Verificação de segurança</title></head><body>Confira seu navegador</body></html>'
         self.assertEqual(classify("/", 200, "text/html", html.encode())["outcome"], "security_challenge")
