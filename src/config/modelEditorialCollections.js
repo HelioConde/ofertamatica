@@ -8,9 +8,9 @@ export const CURATED_POSTER_COLLECTIONS = {
     note: 'Datas comemorativas não justificam valores antigos, descontos não comprovados nem condições escondidas. Todos os preços mostrados são fictícios.',
   },
   'cartaz-black-friday': {
-    heading: 'Modelos de cartaz Black Friday com cabeçalho ilustrado',
-    intro: 'Compare 16 estilos editáveis: Black Friday clássica e econômica de fundo branco, além de quatro opções de Esquenta Black Friday, De/Por, kit e mais. Confira produto, preço e condições antes de imprimir. O melhor modelo é o que deixa preço, produto e condições fáceis de conferir.',
-    models: ['black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial', 'de-por', 'relampago'],
+    heading: '16 modelos de cartaz Black Friday para imprimir grátis',
+    intro: 'Escolha a arte antes de montar a oferta. As seis primeiras opções têm fundo branco para economizar tinta, incluindo quatro modelos de Esquenta Black Friday. Há também estilos preto e amarelo, De/Por, kit e outros. As prévias usam preços fictícios: confira produto, preço anterior e condições antes de imprimir.',
+    models: ['black-friday-economico', 'black-friday-branco-impacto', 'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por', 'esquenta-black-friday-semana', 'esquenta-black-friday-especial', 'black-friday', 'black-friday-white', 'black-friday-etiqueta', 'black-friday-de-por', 'black-friday-relampago', 'black-friday-kit', 'black-friday-premium', 'black-friday-estouro', 'de-por', 'relampago'],
     note: 'As versões econômicas usam fundo branco e detalhes pretos para poupar tinta. No De/Por, confirme o preço anterior que realmente foi praticado e informe condições e validade da oferta.',
   },
   'placas-para-hortifruti': {
