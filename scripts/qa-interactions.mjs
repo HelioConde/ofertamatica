@@ -208,7 +208,9 @@ await scenario('Black Friday: filtro por tipo e aplicação do De/Por', { width:
   const gallery = page.locator('.curated-model-grid .model-showcase-card')
   const filter = page.getByRole('group', { name: 'Filtrar modelos de Black Friday' })
   for (const [label, expected] of [
-    ['Todos os estilos', 10], ['Clássicos', 2], ['Preço direto', 3], ['De / Por', 2], ['Alto impacto', 3],
+    ['Todos os estilos', CURATED_POSTER_COLLECTIONS['cartaz-black-friday'].models.length],
+    ['Clássicos', 2], ['Fundo branco · econômico', 6], ['Esquenta Black Friday', 4],
+    ['Preço direto', 3], ['De / Por', 3], ['Alto impacto', 3],
   ]) {
     await filter.getByRole('button', { name: label, exact: true }).click()
     if (await gallery.count() !== expected) throw new Error(label + ': esperados ' + expected + ' modelos')
