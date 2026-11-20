@@ -222,7 +222,7 @@ function curatedModelsSnapshot(page) {
       '<p style="font-weight:700">' + esc(model.name) + '</p><p>' + esc(model.product) + '</p>' +
       '<strong style="display:block;font-size:25px;color:' + esc(model.price) + '">R$ ' + esc(model.value) + '</strong>' +
       '<p style="font-size:12px">' + esc(model.note) + '</p></li>').join('')
-  return '<section aria-labelledby="curated-collection-title" style="margin-top:24px">' +
+  return '<section' + (page.slug === 'cartaz-black-friday' ? ' id="modelos-black-friday"' : '') + ' aria-labelledby="curated-collection-title" style="margin-top:24px">' +
     '<h2 id="curated-collection-title">' + esc(collection.heading) + '</h2>' +
     '<p>' + esc(collection.intro) + '</p>' +
     '<ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;padding:0;list-style:none">' + cards + '</ul>' +
@@ -280,6 +280,9 @@ function snapshot(page) {
     : ''
   const toolCta = page.slug === 'conheca-validade-zero' ? '<p><a href="/validade-zero/" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1d63e9;color:#fff;padding:12px 18px;border-radius:9px;font-weight:700">Abrir Validade Zero ↗</a> <span>Nova identidade visual · aplicativo independente · abre em outra aba</span></p>' : ''
   const updated = page.updatedAt ? `<p style="color:#7b8798;font-size:14px">${esc(page.updatedAt)}</p>` : ''
+  const blackFridayShortcut = page.slug === 'cartaz-black-friday'
+    ? '<p style="margin:18px 0"><a href="#modelos-black-friday" style="display:inline-block;min-height:44px;box-sizing:border-box;padding:12px 16px;border-radius:9px;background:#1d63e9;color:#fff;font-weight:700">Ver os 16 modelos para imprimir</a> <a href="/" style="display:inline-block;padding:12px;color:#1d63e9;font-weight:700">Criar meu cartaz grátis</a></p>'
+    : ''
 
   const paperChoices = page.paperChoices?.length ? `
     <section style="margin-top:26px">
@@ -312,8 +315,10 @@ function snapshot(page) {
     ${updated}
     ${toolCta}
     <ul style="line-height:1.8">${benefits}</ul>
+    ${blackFridayShortcut}
+    ${page.slug === 'cartaz-black-friday' ? curatedModelsSnapshot(page) : ''}
     ${sections}
-    ${curatedModelsSnapshot(page)}
+    ${page.slug === 'cartaz-black-friday' ? '' : curatedModelsSnapshot(page)}
     ${retailCalculatorSnapshot(page)}
     ${listReviewSnapshot(page)}
     ${howToContent}
