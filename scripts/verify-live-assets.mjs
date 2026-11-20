@@ -54,11 +54,12 @@ async function attemptCheck() {
       if (!validAssetMime(resource, response.status, type)) {
         // O FTP pode ter o arquivo correto e a hospedagem responder HTTP 200
         // com HTML (WAF, SPA fallback ou rewrite). Nunca considerar isso OK.
-        const sample = /html/i.test(type) ? (await response.text()).slice(0, 16000) : ''
+        const htmlReply = /html/i.test(type)
+        const sample = htmlReply ? (await response.text()).slice(0, 16000) : ''
         problems.push(resource + ': status=' + response.status +
           ', tipo=' + (type || '(ausente)') +
           ', diagnóstico=' + unexpectedDocumentClass(type, sample))
-        if (!sample) await response.body?.cancel()
+        if (!htmlReply) await response.body?.cancel()
       } else {
         await response.body?.cancel()
       }
