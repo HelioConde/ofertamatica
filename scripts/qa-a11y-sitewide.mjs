@@ -71,7 +71,7 @@ try {
           console.log(`[a11y] ${viewport.name} ${route.path}: ${violations.length} regras, ${violations.filter((item) => item.impact === 'serious' || item.impact === 'critical').length} graves`)
           // Tornar os alertas graves acionáveis também no log, não só no ZIP.
           for (const violation of violations.filter((item) => item.impact === 'serious' || item.impact === 'critical')) {
-            const samples = violation.nodes.slice(0, 3).map((node) => node.target.join(' ') + ': ' + (node.failureSummary || '').replace(/\\s+/g, ' ').slice(0, 180))
+            const samples = violation.nodes.slice(0, 3).map((node) => node.target.join(' ') + ': ' + (node.failureSummary || '').replace(/\s+/g, ' ').slice(0, 180))
             console.warn('[a11y-detail] ' + viewport.name + ' ' + route.path + ' ' + violation.id + '/' + violation.impact + ': ' + violation.count + ' elementos; ' + samples.join(' | '))
           }
           for (const violation of violations.filter((item) => item.impact === 'critical')) {
