@@ -51,7 +51,9 @@ concurrency:
 jobs:
   capture:
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
+    # Playwright 1.55.0 nao instala Chromium no Ubuntu 26.04 (ubuntu-latest).
+    # Fixar a imagem compativel, como no workflow Design Quality.
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
