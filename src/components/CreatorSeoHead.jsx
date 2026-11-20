@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 const SITE_URL = 'https://ofertamatica.com.br'
 const TITLE = 'Criar Placas de Preço e Cartazes Grátis | Ofertamática'
 const DESCRIPTION = 'Crie placas de preço e cartazes de oferta grátis para supermercados. Escolha modelos, personalize em A4, A5 ou A3 e imprima em PDF sem cadastro.'
+const SOCIAL_IMAGE = SITE_URL + '/icons/icon-512.png'
 
 function upsertMeta(selector, attr, value, content) {
   let node = document.querySelector(selector)
@@ -31,10 +32,15 @@ export default function CreatorSeoHead() {
       'og:description': DESCRIPTION,
       'og:url': SITE_URL + '/',
       'og:type': 'website',
+      'og:image': SOCIAL_IMAGE,
+      'og:image:width': '512',
+      'og:image:height': '512',
+      'og:image:alt': 'Logotipo do Ofertamática, criador de cartazes de oferta grátis',
     })) {
       upsertMeta(`meta[property="${field}"]`, 'property', field, value)
     }
     upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary')
+    upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', SOCIAL_IMAGE)
     upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', TITLE)
     upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', DESCRIPTION)
 
