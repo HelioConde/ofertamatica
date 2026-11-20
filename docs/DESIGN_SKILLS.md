@@ -75,3 +75,22 @@ npx impeccable detect src/
 - Validar seletor, geração, prévia, importação, PDF e impressão nas larguras de `DESIGN.md`.
 - Acessibilidade e performance precisam de testes reais, não de uma nota presumida.
 - Skills de agentes não são bibliotecas do bundle e não substituem os testes já existentes.
+
+## Integração adicional das skills selecionadas do catálogo Plado
+
+Referência de descoberta: https://plado.pages.dev/for/design/ui-design/ . As skills foram verificadas nos repositórios de origem, não instaladas por simples popularidade.
+
+**Skills originais de terceiros agora versionadas (MIT):**
+- `.agents/skills/ui-review/` — `arla6ka/design.how`: `SKILL.md` e `references/criteria.md`.
+- `.agents/skills/html-wireframe/` — `plannotator/effective-html`: `SKILL.md` para wireframes sob demanda.
+- `.agents/skills/accessibility/` — `addyosmani/web-quality-skills`: `SKILL.md` e duas referências WCAG.
+
+Licenças e proveniência estão em `docs/THIRD_PARTY_DESIGN_SKILLS.md` e nos arquivos `LICENSE.upstream` de cada skill. Estes são **arquivos reais de skill**, disponíveis para agentes que reconhecem `.agents/skills/`; não são pacotes de produção, não executam automaticamente e não implicam que uma auditoria já passou.
+
+**Skills locais adicionais:**
+- `ofertamatica-impeccable`: guia de uso seguro do CLI oficial e revisão de código.
+- `ofertamatica-ui-verification`: procedimento concreto com os scripts Playwright já existentes no repositório.
+
+**Impeccable em CI:** o workflow `Impeccable Design Scan` executa `npx --yes impeccable@4.10.0 detect --github src/` em PRs que alteram interface ou skills, além do acionamento manual. Achados do detector aparecem como anotações, mas não são correções automáticas. O instalador completo `npx impeccable install` continua **opcional**, a ser executado conscientemente em um checkout de desenvolvimento. Não foram copiadas as centenas de arquivos internos da distribuição oficial.
+
+**Critérios para aplicar ao código:** depois de observar um problema, abrir um PR de correção separado, reproduzir no navegador e verificar `npm run verify`, `npm run qa:design`, `scripts/qa-interactions.mjs` e `scripts/qa-release-print-import.mjs` quando aplicáveis. Nenhuma skill autoriza alterar medidas, tipografia impressa ou o fluxo de dois cliques.

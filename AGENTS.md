@@ -68,7 +68,12 @@ As skills em `.agents/skills/` são orientações de agentes de desenvolvimento,
 - `ofertamatica-design-review`: auditar e refinar uma tela ou fluxo com evidências; usar Impeccable oficial quando instalado.
 - `ofertamatica-design-system`: mapear tokens, componentes e estados sem substituir a identidade existente.
 - `ofertamatica-prototype`: explorar wireframes/protótipos isolados antes de alterar a aplicação.
+- `ofertamatica-impeccable`: aplicar o detector oficial Impeccable no código e revisar achados sem alterar a identidade.
+- `ofertamatica-ui-verification`: verificar o fluxo real no navegador, capturas e impressão com os testes Playwright existentes.
+- `ui-review` (design.how): revisão visual baseada em evidência; requer renderização, não apenas leitura de JSX.
+- `accessibility` (web-quality-skills): checklist WCAG 2.2 e padrões de navegação por teclado.
+- `html-wireframe` (effective-html): protótipos estruturais isolados e acionados somente sob demanda.
 
-O catálogo do documento recebido, a seleção justificada, as fontes, os comandos de instalação **opcionais** e os limites de aplicação estão em `docs/DESIGN_SKILLS.md`. A ferramenta oficial Impeccable não está vendorizada aqui: sua instalação deve ser feita no checkout local, após revisão do instalador, com `npx impeccable install`. A auditoria CLI pode ser executada manualmente no GitHub Actions por `Impeccable Design Scan`.
+O catálogo do documento recebido, a seleção justificada, as fontes, os comandos de instalação **opcionais** e os limites de aplicação estão em `docs/DESIGN_SKILLS.md`. A ferramenta oficial Impeccable não está vendorizada aqui: sua instalação deve ser feita no checkout local, após revisão do instalador, com `npx impeccable install`. O detector CLI oficial roda em PRs de interface e pode ser acionado manualmente no GitHub Actions por `Impeccable Design Scan`; não é a instalação da skill completa.
 
 Prioridade de autoridade: pedido do usuário > contratos do produto (`README.md` e `PRODUCT.md`) > `DESIGN.md` > skills locais > sugestões de ferramentas externas. Não instalar bibliotecas de UI, modificar fontes dos cartazes, alterar dimensões de impressão, ativar live mode com permissões irrestritas ou executar scripts remotos automaticamente. Skills não são prova de melhoria: toda alteração de interface exige verificação real e `npm run verify`.

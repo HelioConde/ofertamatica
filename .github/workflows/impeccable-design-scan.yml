@@ -1,6 +1,13 @@
 name: Impeccable Design Scan
 
 on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'DESIGN.md'
+      - 'PRODUCT.md'
+      - '.agents/skills/**'
+      - '.github/workflows/impeccable-design-scan.yml'
   workflow_dispatch:
 
 permissions:
@@ -8,7 +15,8 @@ permissions:
 
 jobs:
   design-scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,7 +28,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          npx --yes impeccable detect --github src/
+          npx --yes impeccable@4.10.0 detect --github src/
           status=$?
           set -e
           if [ "$status" -eq 1 ]; then
@@ -32,4 +40,4 @@ jobs:
           else
             echo "Impeccable reported no findings for the scanned source." >> "$GITHUB_STEP_SUMMARY"
           fi
-          echo "This manual workflow does not change site code or deploy." >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow does not change site code or deploy." >> "$GITHUB_STEP_SUMMARY"
