@@ -26,6 +26,9 @@ try {
       assert.ok(res && res.status() < 400, 'Página Black Friday indisponível: ' + width)
       const gallery = page.locator('#modelos-black-friday')
       await gallery.locator('.model-showcase-card-white-black-friday').first().waitFor({ state: 'visible', timeout: 30000 })
+      // Captura real da galeria sem a faixa de consentimento cobrindo os cartazes.
+      const rejectOptional = page.getByRole('button', { name: /Rejeitar opcionais/i })
+      if (await rejectOptional.count() && await rejectOptional.isVisible()) await rejectOptional.click()
       await page.evaluate(() => document.fonts.ready)
       assert.equal(await gallery.locator('.model-showcase-card-white-black-friday').count(), 6)
       for (const theme of themes) {
@@ -70,8 +73,10 @@ try {
           assert.equal(actual.badgeBg, 'rgb(8, 8, 8)', theme + ' selo sem tarja preta')
           assert.equal(actual.badgeColor, 'rgb(255, 255, 255)', theme + ' selo sem texto branco')
           if (actual.productRect && actual.badgeRect) {
-            assert.ok(actual.badgeRect.bottom <= actual.productRect.top + 1.5,
-              theme + ' selo sobrepõe o produto: ' + (actual.badgeRect.bottom - actual.productRect.top) + 'px')
+            // Acentos (FEIJÃO / ÓLEO) ultrapassam visualmente o topo da caixa de texto.
+            // Exigir folga além do bounding box evita colisão visual com o selo.
+            assert.ok(actual.productRect.top - actual.badgeRect.bottom >= 10,
+              theme + ' selo sem respiro para acentos: ' + (actual.productRect.top - actual.badgeRect.bottom) + 'px')
           }
         } else {
           assert.equal(actual.badge, '', theme + ' não deveria ter selo de Esquenta')
