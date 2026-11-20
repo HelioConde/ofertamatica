@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-20T11:00:13.597Z",
-  "commit": "8ba5ecf45693663baf3716c72c474467d6f76687",
+  "generatedAt": "2026-11-20T11:10:58.810Z",
+  "commit": "a23503712f6dd4663b2d4871be012d4eaf042989",
   "desktopErrors": [],
   "mobileErrors": [],
   "fontState": {
@@ -95,6 +95,7 @@
         "fontPx": 116.039,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -169,6 +170,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -236,6 +238,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -303,6 +306,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -377,6 +381,7 @@
         "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -451,6 +456,7 @@
         "fontPx": 254.219,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -525,6 +531,7 @@
         "fontPx": 176.031,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -599,6 +606,7 @@
         "fontPx": 202.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -673,6 +681,7 @@
         "fontPx": 510.618,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     },
     {
@@ -747,6 +756,7 @@
         "fontPx": 278.82,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": false
     },
     {
@@ -821,6 +831,7 @@
         "fontPx": 278.82,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": false
     },
     {
@@ -895,6 +906,7 @@
         "fontPx": 360.9,
         "fontFamily": "\"Futura Price\", Impact, \"Arial Black\", sans-serif"
       },
+      "inkClipping": [],
       "overflow": true
     }
   ]
