@@ -2671,3 +2671,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .nav-menu-toggle { display: none !important; }
 }
 
+
+
+/* Acessibilidade transversal: foco de teclado em controles de navegação, trabalho
+   e conteúdo editorial; sem alterar tipografia, layout ou cores dos cartazes. */
+@media screen {
+  :where(.site-header, .format-page, .editor-page, .seo-landing,
+         .free-poster-editor, .cookie-banner, .cookie-dialog, .feedback-nudge)
+  :is(a[href], button, input, textarea, select, summary, [role="button"]):focus-visible {
+    outline: 3px solid #1d63e9 !important;
+    outline-offset: 3px !important;
+  }
+}

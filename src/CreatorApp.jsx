@@ -492,7 +492,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
   })()
 
   return (
-    <main className="format-page format-home-refresh" id="formatos">
+    <main className="format-page format-home-refresh" id="formatos" tabIndex={-1}>
       <section className="format-dialog">
         <header className="format-dialog-head format-dialog-head-clean">
           <div className="format-home-intro">
@@ -1934,7 +1934,7 @@ function Editor({
   }
 
   return (
-    <main className="editor-page" style={posterStyleVars}>
+    <main className="editor-page" id="conteudo-principal" tabIndex={-1} style={posterStyleVars}>
       <div className="editor-topline">
         <div className="editor-context">
           <strong>{format.shortLabel} · {products.length} {products.length === 1 ? 'produto' : 'produtos'}</strong>
@@ -2440,7 +2440,7 @@ function PublicRouteFallback({ page }) {
   const isModels = page.slug === 'modelos'
 
   return (
-    <main className="public-route-loading" aria-busy="true" aria-label="Carregando página">
+    <main className="public-route-loading" id="conteudo-principal" tabIndex={-1} aria-busy="true" aria-label="Carregando página">
       <section className="public-route-loading-hero">
         <div>
           <a className="public-route-loading-breadcrumb" href="/">Ofertamática <span aria-hidden="true">›</span> {page.eyebrow}</a>
@@ -2613,6 +2613,10 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
 
   return (
     <div className={'app ' + appModeClass}>
+      <a className="skip-to-content"
+        href={screen === 'formats' && !seoPage && !publicPage && !isFreeEditor ? '#formatos' : '#conteudo-principal'}>
+        Pular para o conteúdo principal
+      </a>
       <SiteNavigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
       {isFreeEditor ? (
         <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando o editor livre de cartazes...</p></main>}>

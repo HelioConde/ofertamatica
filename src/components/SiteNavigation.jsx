@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Navegação única usada pela Home, páginas públicas e editor.
 const LINKS = [
@@ -13,10 +13,42 @@ const LINKS = [
 
 export default function SiteNavigation({ routePath, screen, onInstall }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const headerRef = useRef(null)
+  const toggleRef = useRef(null)
+
+  // Todos os destinos compartilham este cabeçalho. O menu deve poder ser
+  // dispensado sem navegar, com toque fora, Escape ou rotação para desktop.
+  useEffect(() => {
+    if (!menuOpen) return undefined
+    const closeOutside = (event) => {
+      if (!headerRef.current?.contains(event.target)) setMenuOpen(false)
+    }
+    const closeEscape = (event) => {
+      if (event.key !== 'Escape') return
+      const focusIsInHeader = headerRef.current?.contains(document.activeElement)
+      setMenuOpen(false)
+      if (focusIsInHeader) {
+        event.preventDefault()
+        toggleRef.current?.focus()
+      }
+    }
+    const desktop = window.matchMedia('(min-width: 821px)')
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false) }
+    document.addEventListener('pointerdown', closeOutside)
+    document.addEventListener('keydown', closeEscape)
+    desktop.addEventListener('change', closeOnDesktop)
+    closeOnDesktop()
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside)
+      document.removeEventListener('keydown', closeEscape)
+      desktop.removeEventListener('change', closeOnDesktop)
+    }
+  }, [menuOpen])
+
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="nav-shell">
         <a className="brand" href="/" aria-label="Ofertamática — ir para a página inicial">
           <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />
@@ -25,6 +57,7 @@ export default function SiteNavigation({ routePath, screen, onInstall }) {
         <button
           type="button"
           className="nav-menu-toggle"
+          ref={toggleRef}
           aria-controls="ofertamatica-main-navigation"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
@@ -37,12 +70,6 @@ export default function SiteNavigation({ routePath, screen, onInstall }) {
           id="ofertamatica-main-navigation"
           className={'main-nav' + (menuOpen ? ' is-open' : '')}
           aria-label="Navegação principal"
-          onKeyDown={(event) => {
-            if (event.key === 'Escape' && menuOpen) {
-              setMenuOpen(false)
-              event.currentTarget.previousElementSibling?.focus()
-            }
-          }}
         >
           {LINKS.map(([href, label, mobileLabel]) => {
             const active = cleanPath === href || (href === '/' && screen === 'editor')

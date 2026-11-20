@@ -306,7 +306,7 @@ export default function FreePosterEditor() {
   const chosenExtra = extras.find((x) => x.id === selected)
   const chosenBox = selected === 'contentBox' || selected === 'priceBox' ? boxes[selected] : chosenExtra
   return (
-    <main className="free-poster-editor" style={styleVars}>
+    <main className="free-poster-editor" id="conteudo-principal" tabIndex={-1} style={styleVars}>
       <header className="free-editor-top">
         <div>
           <span className="free-editor-kicker">PERSONALIZAÇÃO AVANÇADA · GRÁTIS</span>

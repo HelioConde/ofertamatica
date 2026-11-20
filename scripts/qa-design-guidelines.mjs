@@ -1,6 +1,7 @@
 import { chromium } from 'playwright'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { INDEXABLE_PAGES } from '../src/seo/seoPages.js'
 
 /**
  * Auditoria visual da interface já hidratada — não mede o skeleton do React.
@@ -9,21 +10,37 @@ import path from 'node:path'
  */
 const base = (process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183').replace(/\/$/, '')
 const outDir = path.resolve('artifacts/design-audit')
+// Fonte única de rotas: toda página pública e SEO entra automaticamente na
+// auditoria, inclusive futuras páginas adicionadas ao catálogo.
 const routes = [
   { path: '/', slug: 'home', ready: '.format-home-chooser .format-grid .format-choice' },
-  { path: '/modelos/', slug: 'modelos', ready: '.model-showcase-grid .model-showcase-card' },
-  { path: '/formatos/', slug: 'formatos', ready: '.seo-landing h1' },
-  { path: '/como-funciona/', slug: 'como-funciona', ready: '.seo-landing h1' },
-  { path: '/editor-livre/', slug: 'editor-livre', ready: '.free-poster-editor h1' },
+  ...INDEXABLE_PAGES.map((page) => ({
+    path: '/' + page.slug + '/',
+    slug: page.slug,
+    ready: page.slug === 'modelos' ? '.model-showcase-grid .model-showcase-card'
+      : page.slug === 'editor-livre' ? '.free-poster-editor h1' : '.seo-landing h1',
+  })),
   { path: '/validade-zero/', slug: 'validade-zero-app', ready: '.heading h1' },
-  { path: '/conheca-validade-zero/', slug: 'conheca-validade-zero', ready: '.validade-zero-hero-actions .validade-zero-open' },
 ]
+const corePaths = new Set([
+  '/', '/modelos/', '/formatos/', '/como-funciona/', '/editor-livre/',
+  '/validade-zero/', '/conheca-validade-zero/',
+])
+const screenshotSlugs = new Set([
+  'home', 'modelos', 'formatos', 'editor-livre', 'guias-para-varejo',
+  'cartaz-black-friday', 'placas-sazonais', 'privacidade', 'validade-zero-app',
+])
+// Todas as páginas: mobile e desktop; rotas críticas também em 360px e tablet.
+const shouldAudit = (viewport, route) =>
+  viewport.width === 390 || viewport.width === 1440 || corePaths.has(route.path)
 const viewports = [
   { label: 'mobile-360', width: 360, height: 800 },
   { label: 'mobile-390', width: 390, height: 844 },
   { label: 'tablet-768', width: 768, height: 1024 },
   { label: 'desktop-1440', width: 1440, height: 900 },
 ]
+const expectedAudits = routes.reduce((count, route) =>
+  count + viewports.filter((viewport) => shouldAudit(viewport, route)).length, 0)
 const findings = []
 const critical = []
 await fs.mkdir(outDir, { recursive: true })
@@ -72,6 +89,10 @@ async function inspect(page) {
         height: Math.round(el.getBoundingClientRect().height),
         html: el.outerHTML.slice(0, 180),
       }))
+    const imagesMissingAlt = [...document.images].filter((img) =>
+      isVisible(img) && !img.hasAttribute('alt')).slice(0, 12).map((img) => ({
+        src: img.getAttribute('src')?.slice(0, 140) || '',
+      }))
     const modelModeButtons = [...document.querySelectorAll('.model-mode-switch button')].map(el => ({
       label: el.querySelector('strong')?.textContent?.trim() || '',
       top: Math.round(el.getBoundingClientRect().top),
@@ -95,6 +116,7 @@ async function inspect(page) {
       interactiveCount: visible.length,
       missingAccessibleNames: noAccessibleName,
       tinyTouchTargets,
+      imagesMissingAlt,
     }
   })
 }
@@ -107,6 +129,7 @@ try {
     })
     try {
       for (const route of routes) {
+        if (!shouldAudit(viewport, route)) continue
         const jsErrors = []
         page.removeAllListeners('pageerror')
         page.on('pageerror', error => {
@@ -138,6 +161,22 @@ try {
           if (result.horizontalOverflowPx > 8 || result.navClipped) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Overflow ou navegação cortada', details: { overflowPx: result.horizontalOverflowPx, navClipped: result.navClipped } })
           }
+          // O atalho precisa funcionar também no editor e em todas as páginas
+          // editoriais, não apenas na Home.
+          if (route.path !== '/validade-zero/') {
+            const skip = page.locator('.skip-to-content')
+            if (await skip.count() !== 1) {
+              critical.push({ route: route.path, viewport: viewport.label, reason: 'Atalho para conteúdo principal ausente ou duplicado' })
+            } else {
+              const href = await skip.getAttribute('href')
+              const targetReady = await page.evaluate((hash) => {
+                if (!hash?.startsWith('#')) return false
+                const target = document.getElementById(hash.slice(1))
+                return target?.tagName === 'MAIN' && target.tabIndex === -1
+              }, href)
+              if (!targetReady) critical.push({ route: route.path, viewport: viewport.label, reason: 'Destino de atalho inexistente ou sem foco programático', details: { href } })
+            }
+          }
           if (route.path === '/modelos/' && viewport.label === 'mobile-390') {
             const [first, second] = result.modelModeButtons
             if (!first || !second || first.top > 600 || Math.abs(first.top - second.top) > 8) {
@@ -152,7 +191,7 @@ try {
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
           }
-          if (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440') {
+          if (screenshotSlugs.has(route.slug) && (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440')) {
             await page.screenshot({ path: path.join(outDir, `${route.slug}-${viewport.label}.png`), fullPage: false })
           }
           if (route.path === '/modelos/' && viewport.width <= 390) {
@@ -214,7 +253,7 @@ try {
             }
           }
           // Menu mobile deve ser acessível, conter todos os links e fechar com Escape.
-          if (route.path === '/' && viewport.width <= 820) {
+          if (route.path !== '/validade-zero/' && viewport.width <= 820 && (viewport.width === 390 || corePaths.has(route.path))) {
             const toggle = page.locator('.nav-menu-toggle')
             if (!await toggle.isVisible()) {
               critical.push({ route: route.path, viewport: viewport.label, reason: 'Botão do menu mobile ausente' })
@@ -231,6 +270,11 @@ try {
               await page.keyboard.press('Escape')
               if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible()) {
                 critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha com Escape' })
+              }
+              await toggle.click()
+              await page.locator('main h1').first().click({ force: true })
+              if (await toggle.getAttribute('aria-expanded') !== 'false') {
+                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha ao clicar fora' })
               }
             }
           }
@@ -249,13 +293,13 @@ try {
 }
 const report = {
   generatedAt: new Date().toISOString(),
-  methodology: 'React hydration gate + Web Interface Guidelines + keyboard focus + responsive screenshots',
+  methodology: 'Todas as rotas INDEXABLE_PAGES + Validade Zero; hidratação React + navegação por teclado + revisão responsiva 360/390/768/1440',
   notes: 'Resultados são verificações automatizadas iniciais, não pontuação visual ou certificação WCAG.',
   findings,
   critical,
 }
 await fs.writeFile(path.join(outDir, 'report.json'), JSON.stringify(report, null, 2) + '\n')
-console.log(`[design] ${findings.length}/${viewports.length * routes.length} páginas prontas auditadas; ${critical.length} falhas críticas.`)
+console.log(`[design] ${findings.length}/${expectedAudits} combinações de páginas e telas auditadas (${routes.length} rotas); ${critical.length} falhas críticas.`)
 if (critical.length) {
   console.error(JSON.stringify(critical, null, 2))
   process.exitCode = 1

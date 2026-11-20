@@ -584,7 +584,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   return (
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
-      <main className={'seo-landing' + (isModels ? ' models-page' : '')}>
+      <main id="conteudo-principal" tabIndex={-1} className={'seo-landing' + (isModels ? ' models-page' : '')}>
         <section className={'seo-hero ' + (isInstitutional ? 'seo-hero-institutional' : '')}>
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
