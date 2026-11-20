@@ -60,3 +60,15 @@ Se o objetivo for mudar a interface a partir de uma imagem, documentar as difere
 - Playwright CLI: execução real no GitHub Actions, com captura e snapshot nomeados. A API Playwright também continua cobrindo os fluxos funcionais.
 
 Não considerar uma ferramenta externa "executada" quando apenas suas orientações forem aplicadas. A instalação local de skills é opcional e exige um agente que leia seus arquivos.
+
+## Skills locais para design e UX (2026-11)
+
+As skills em `.agents/skills/` são orientações de agentes de desenvolvimento, não código enviado ao navegador. Para qualquer tarefa de UX/UI, ler `PRODUCT.md`, `DESIGN.md` e a skill local adequada:
+
+- `ofertamatica-design-review`: auditar e refinar uma tela ou fluxo com evidências; usar Impeccable oficial quando instalado.
+- `ofertamatica-design-system`: mapear tokens, componentes e estados sem substituir a identidade existente.
+- `ofertamatica-prototype`: explorar wireframes/protótipos isolados antes de alterar a aplicação.
+
+O catálogo do documento recebido, a seleção justificada, as fontes, os comandos de instalação **opcionais** e os limites de aplicação estão em `docs/DESIGN_SKILLS.md`. A ferramenta oficial Impeccable não está vendorizada aqui: sua instalação deve ser feita no checkout local, após revisão do instalador, com `npx impeccable install`. A auditoria CLI pode ser executada manualmente no GitHub Actions por `Impeccable Design Scan`.
+
+Prioridade de autoridade: pedido do usuário > contratos do produto (`README.md` e `PRODUCT.md`) > `DESIGN.md` > skills locais > sugestões de ferramentas externas. Não instalar bibliotecas de UI, modificar fontes dos cartazes, alterar dimensões de impressão, ativar live mode com permissões irrestritas ou executar scripts remotos automaticamente. Skills não são prova de melhoria: toda alteração de interface exige verificação real e `npm run verify`.

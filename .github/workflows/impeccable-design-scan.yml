@@ -1,0 +1,35 @@
+name: Impeccable Design Scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan JSX and CSS with Impeccable
+        shell: bash
+        run: |
+          set +e
+          npx --yes impeccable detect --github src/
+          status=$?
+          set -e
+          if [ "$status" -eq 1 ]; then
+            echo "Impeccable failed to scan the target." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "$status" -eq 2 ]; then
+            echo "Impeccable found design warnings. Review the annotations." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Impeccable reported no findings for the scanned source." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "This manual workflow does not change site code or deploy." >> "$GITHUB_STEP_SUMMARY"
