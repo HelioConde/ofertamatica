@@ -145,6 +145,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-black-friday-landing.mjs
+      - name: Validate six white Black Friday posters in screen and print
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-six-white-black-friday.mjs
       - name: Sitewide accessibility audit (WCAG 2.2 A/AA)
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183

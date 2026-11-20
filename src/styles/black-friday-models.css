@@ -367,132 +367,260 @@
 
 
 /*
- * Linha econômica: fundo branco e preto sobre branco.
- * Ilustrações anteriores são referências conceituais: aqui as informações são
- * campos editáveis reais, compartilhados pela prévia e pela impressão.
- * Importante: sobrescreve a regra global bf-* que pinta cartazes escuros.
+ * Black Friday: seis modelos brancos, arte real compartilhada pela galeria,
+ * editor, folha impressa e PDF. Referência visual aprovada: cabeçalho PRETO
+ * e inscrição BRANCA. Preços e produtos seguem campos editáveis, não imagens.
+ *
+ * Fundo do papel sempre branco. Só o cabeçalho, as etiquetas e alguns blocos
+ * de preço levam preto sólido; não pintar toda a página.
  */
 .poster-card[data-poster-theme^="bf-eco-"] .poster-card-layers,
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-background {
-  background: #ffffff !important;
+  background: #fff !important;
+  background-image: none !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-background::after {
   background: none !important;
   mask-image: none !important;
+  border: 0 !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-inner-frame {
-  border: .45mm solid #111111 !important;
-  border-radius: 3mm;
+  left: 3.7%;
+  right: 3.7%;
+  top: 19.2%;
+  bottom: 3.4%;
+  border: .42mm solid #101010 !important;
+  border-radius: .75mm !important;
   background: transparent !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon {
-  background: #ffffff !important;
-  border: .7mm solid #111111 !important;
+  left: 3.7% !important;
+  right: 3.7% !important;
+  top: 2.4% !important;
+  width: auto !important;
+  height: 14.5% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2% !important;
+  border: .45mm solid #080808 !important;
+  border-radius: .85mm !important;
+  background: #080808 !important;
+  color: #fff !important;
   box-shadow: none !important;
-  color: #111111 !important;
   text-shadow: none !important;
   transform: none !important;
-  letter-spacing: -.035em !important;
+  letter-spacing: -.025em !important;
+  font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  font-size: clamp(4.2mm, 7.2cqi, 15mm) !important;
+  line-height: 1 !important;
+}
+.poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon > b {
+  color: #fff !important;
+  text-shadow: none !important;
+  white-space: nowrap;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-signature {
-  color: #333333 !important;
+  color: #333 !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .poster-content-box,
 .poster-card[data-poster-theme^="bf-eco-"] .poster-field-description,
 .poster-card[data-poster-theme^="bf-eco-"] .poster-field-subdescription,
 .poster-card[data-poster-theme^="bf-eco-"] .poster-field-complement,
 .poster-card[data-poster-theme^="bf-eco-"] .poster-field-unit {
-  color: #111111 !important;
+  color: #101010 !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .poster-price-box::before {
-  inset: 6% 0 6% !important;
-  background: transparent !important;
-  border: .7mm solid #111111 !important;
-  border-radius: 2mm;
+  content: "";
+  inset: 8% 1% 8% !important;
+  background: #fff !important;
+  border: .7mm solid #101010 !important;
+  border-radius: 1.7mm !important;
   box-shadow: none !important;
   clip-path: none !important;
   filter: none !important;
   transform: none !important;
 }
-.poster-card[data-poster-theme^="bf-eco-"] .poster-field-price {
-  color: #111111 !important;
+.poster-card[data-poster-theme^="bf-eco-"] .poster-price-box .poster-field-price {
+  color: #101010 !important;
   -webkit-text-stroke: 0 !important;
   text-shadow: none !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .poster-offer-meta-depor {
-  color: #111111 !important;
+  top: 59.7%;
+  left: 9%;
+  right: 9%;
+  min-height: 4%;
+  color: #101010 !important;
+  gap: 1.6mm;
+  white-space: nowrap;
 }
-.poster-card[data-poster-theme^="bf-eco-"] .poster-offer-meta-depor b {
-  background: #ffffff !important;
-  color: #111111 !important;
-  border: .35mm solid #111111;
-}
+.poster-card[data-poster-theme^="bf-eco-"] .poster-offer-meta-depor b,
 .poster-card[data-poster-theme^="bf-eco-"] .poster-offer-meta-depor .poster-discount-badge {
-  color: #111111 !important;
+  border: .25mm solid #101010;
+  border-radius: 1mm;
+  background: #fff !important;
+  color: #101010 !important;
 }
-/* Clássico econômico: moldura fina e preço com sublinhado. */
+.poster-card[data-poster-theme^="bf-eco-"] .poster-offer-footer {
+  color: #101010 !important;
+}
+
+/* 1. Econômico: cabeçalho cheio, preço preto no branco e traço marcante. */
 .poster-card[data-poster-theme="bf-eco-classico"] .poster-price-box::before {
+  inset: 5% 1% 7% !important;
   border: none !important;
-  border-bottom: 1mm solid #111111 !important;
+  border-bottom: 1mm solid #101010 !important;
   border-radius: 0 !important;
+  background: #fff !important;
 }
-/* Impacto em branco: preço dentro de etiqueta angular apenas contornada. */
+
+/* 2. Branco impacto: selo serrilhado preto, números brancos de alto contraste. */
 .poster-card[data-poster-theme="bf-eco-impacto"] .poster-price-box::before {
-  clip-path: polygon(0 9%, 92% 0, 100% 50%, 92% 100%, 0 91%, 5% 50%) !important;
-  background: #ffffff !important;
-  outline: .6mm solid #111111;
-  border: 1mm solid #111111 !important;
+  inset: 4% -1% 5% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #080808 !important;
+  clip-path: polygon(50% 0, 59% 12%, 72% 2%, 77% 17%, 93% 10%, 91% 28%,
+    100% 35%, 92% 49%, 100% 64%, 88% 71%, 94% 90%, 77% 84%,
+    71% 100%, 58% 89%, 50% 100%, 39% 89%, 27% 99%, 23% 83%,
+    6% 90%, 10% 72%, 0 62%, 9% 49%, 0 34%, 12% 27%,
+    6% 10%, 23% 16%, 29% 0, 41% 11%) !important;
 }
-.poster-card[data-poster-theme="bf-eco-impacto"] .ofertamatica-offer-ribbon {
-  border-style: double !important;
-  border-width: 1.2mm !important;
+.poster-card[data-poster-theme="bf-eco-impacto"] .poster-price-box .poster-field-price {
+  color: #fff !important;
 }
-/* Esquenta antecipada: faixa superior inclinada e linhas pretas finas. */
-.poster-card[data-poster-theme="bf-eco-antecipada"] .ofertamatica-offer-ribbon {
-  transform: rotate(-1.5deg) !important;
-  border-radius: 1mm !important;
-  font-size: clamp(4.8mm, 7.1cqi, 12mm) !important;
+
+/* Os quatro Esquenta usam título completo com tamanho adaptado ao papel. */
+.poster-card[data-poster-theme^="bf-eco-"]:is(
+  [data-poster-theme="bf-eco-antecipada"],
+  [data-poster-theme="bf-eco-depor"],
+  [data-poster-theme="bf-eco-semana"],
+  [data-poster-theme="bf-eco-especial"]
+) .ofertamatica-offer-ribbon {
+  font-size: clamp(3.2mm, 5.8cqi, 12mm) !important;
 }
+
+/* Selo secundário decorativo entre o cabeçalho e os campos de produto.
+ * Não altera nem preenche preços. */
+.poster-card[data-poster-theme="bf-eco-antecipada"] .ofertamatica-offer-ribbon::after,
+.poster-card[data-poster-theme="bf-eco-semana"] .ofertamatica-offer-ribbon::after,
+.poster-card[data-poster-theme="bf-eco-especial"] .ofertamatica-offer-ribbon::after {
+  position: absolute;
+  top: calc(100% - .1mm);
+  left: 50%;
+  width: max-content;
+  max-width: 79%;
+  padding: .6mm 3mm;
+  border: 0;
+  border-radius: .5mm;
+  background: #101010;
+  color: #fff;
+  font: 900 clamp(2.4mm, 3.3cqi, 6mm)/1 "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  letter-spacing: .015em;
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.poster-card[data-poster-theme="bf-eco-antecipada"] .ofertamatica-offer-ribbon::after {
+  content: "ANTECIPADA";
+  transform: translateX(-50%) rotate(-2deg);
+}
+.poster-card[data-poster-theme="bf-eco-semana"] .ofertamatica-offer-ribbon::after {
+  content: "ESPECIAL DA SEMANA";
+}
+.poster-card[data-poster-theme="bf-eco-especial"] .ofertamatica-offer-ribbon::after {
+  content: "OFERTA ESPECIAL";
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+/* 3. Antecipada: bloco de preço preto, cantos arredondados e letras brancas. */
 .poster-card[data-poster-theme="bf-eco-antecipada"] .poster-price-box::before {
-  border-radius: 10mm 1mm 10mm 1mm !important;
+  inset: 6% 1% 7% !important;
+  border: none !important;
+  border-radius: 5mm !important;
+  background: #080808 !important;
 }
-/* Esquenta De/Por: etiqueta anterior validada no componente OfferMeta. */
-.poster-card[data-poster-theme="bf-eco-depor"] .ofertamatica-offer-ribbon {
-  font-size: clamp(4.8mm, 7.1cqi, 12mm) !important;
-  border-radius: 1mm 5mm 1mm 5mm !important;
+.poster-card[data-poster-theme="bf-eco-antecipada"] .poster-price-box .poster-field-price {
+  color: #fff !important;
+}
+
+/* 4. De / Por: preço anterior real riscado acima e POR em bloco escuro. */
+.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor > span {
+  padding: .5mm 1.8mm;
+  border: .35mm solid #101010;
+  border-radius: 1mm;
+  background: #fff;
+  color: #101010;
+}
+.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor > b {
+  background: #101010 !important;
+  color: #fff !important;
 }
 .poster-card[data-poster-theme="bf-eco-depor"] .poster-price-box::before {
-  border-style: double !important;
-  border-width: 1.2mm !important;
-  border-radius: 4mm !important;
-}
-/* Esquenta da semana: linhas horizontais sem grandes manchas escuras. */
-.poster-card[data-poster-theme="bf-eco-semana"] .ofertamatica-offer-ribbon {
-  font-size: clamp(4.8mm, 7.1cqi, 12mm) !important;
-  border-left-width: 1.6mm !important;
-  border-right-width: 1.6mm !important;
-}
-.poster-card[data-poster-theme="bf-eco-semana"] .poster-price-box::before {
+  inset: 6% 1% 4% !important;
   border: none !important;
-  border-top: .9mm solid #111111 !important;
-  border-bottom: .9mm solid #111111 !important;
-  border-radius: 0 !important;
+  border-radius: 3.5mm !important;
+  background: #080808 !important;
 }
-/* Esquenta especial: selo de destaque apenas em contorno. */
-.poster-card[data-poster-theme="bf-eco-especial"] .ofertamatica-offer-ribbon {
-  font-size: clamp(4.8mm, 7.1cqi, 12mm) !important;
-  border-radius: 7mm !important;
+.poster-card[data-poster-theme="bf-eco-depor"] .poster-price-box .poster-field-price {
+  color: #fff !important;
 }
+
+/* 5. Semana: grande preço com contorno espesso, interior branco. */
+.poster-card[data-poster-theme="bf-eco-semana"] .poster-price-box::before {
+  inset: 6% 1% 6% !important;
+  border: 1.15mm solid #101010 !important;
+  border-radius: 4mm !important;
+  background: #fff !important;
+}
+
+/* 6. Especial: tarja angular preta de valor, sem pintar a folha toda. */
 .poster-card[data-poster-theme="bf-eco-especial"] .poster-price-box::before {
-  border: 1mm dashed #111111 !important;
-  border-radius: 7mm !important;
+  inset: 5% -1% 6% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #080808 !important;
+  clip-path: polygon(0 16%, 92% 0, 100% 14%, 98% 87%, 13% 100%, 0 85%) !important;
 }
+.poster-card[data-poster-theme="bf-eco-especial"] .poster-price-box .poster-field-price {
+  color: #fff !important;
+}
+
+/* Quando o cartaz é pequeno, preserve respiro e nunca encolha o valor. */
+.poster-card.poster-card-format-a4x8[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
+.poster-card.poster-card-format-a4x4[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon {
+  font-size: clamp(2.4mm, 5.9cqi, 11mm) !important;
+}
+.poster-card.poster-card-format-a4x8[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after {
+  font-size: clamp(1.9mm, 2.9cqi, 3.3mm);
+  padding: .25mm 1mm;
+}
+.poster-card.poster-card-format-a4x8[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor {
+  top: 52.8%;
+}
+
+/* Impressão: preto sólido nos títulos e nas faixas escolhidas; papel branco.
+ * Anula o estilo anterior que apagava o preto ao exportar ou imprimir. */
 @media print {
+  .poster-card[data-poster-theme^="bf-eco-"],
   .poster-card[data-poster-theme^="bf-eco-"] .poster-card-layers,
   .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-background,
   .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
+  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after,
   .poster-card[data-poster-theme^="bf-eco-"] .poster-price-box::before {
-    background-color: #ffffff !important;
-    box-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .poster-card[data-poster-theme^="bf-eco-"] .poster-card-layers,
+  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-background {
+    background: #fff !important;
+    background-image: none !important;
+  }
+  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
+  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after {
+    background: #080808 !important;
+    color: #fff !important;
   }
 }

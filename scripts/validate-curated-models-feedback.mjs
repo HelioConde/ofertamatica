@@ -71,6 +71,8 @@ for (const id of economicalModels) {
   assert.equal(model.background.toLowerCase(), '#ffffff', 'Fundo branco obrigatório: ' + id)
   assert.equal(model.price.toLowerCase(), '#111111', 'Preço preto obrigatório: ' + id)
   assert.equal(model.text.toLowerCase(), '#111111', 'Texto preto obrigatório: ' + id)
+  assert.equal(model.header.toLowerCase(), '#080808', 'Cabeçalho preto obrigatório: ' + id)
+  assert.equal(model.headerText.toLowerCase(), '#ffffff', 'BLACK FRIDAY precisa ser branco no cabeçalho: ' + id)
   assert.ok(model.headerFooterStyle.startsWith('bf-eco-'), 'Modelo não usa tema econômico: ' + id)
   assert.ok(blackFridayCss.includes('data-poster-theme="' + model.headerFooterStyle + '"'), 'CSS econômico não encontrado: ' + id)
   assert.ok(blackFridayCollection.models.includes(id), 'Modelo não está na galeria de Black Friday: ' + id)
@@ -78,6 +80,12 @@ for (const id of economicalModels) {
   assert.ok(bf.includes(model.name), 'Modelo econômico não publicado no HTML: ' + id)
 }
 assert.equal(POSTER_MODEL_PRESETS.find((item) => item.id === 'esquenta-black-friday-de-por').offerMode, 'de-por')
+// A prévia nunca deve prometer um desconto inexistente e a comparação precisa
+// sobreviver à edição/print por meio do mesmo componente de preço real.
+assert.equal(POSTER_MODEL_PRESETS.find((item) => item.id === 'esquenta-black-friday-de-por').previewRegularPrice, '6,99')
+assert.equal(POSTER_MODEL_PRESETS.find((item) => item.id === 'esquenta-black-friday-de-por').value, '5,49')
+assert.ok(blackFridayCss.includes('background: #080808 !important'), 'Cabeçalho preto ausente do CSS real')
+assert.ok(blackFridayCss.includes('print-color-adjust: exact'), 'Cabeçalho não preservado no CSS de impressão')
 
 const blackFridayPage = INDEXABLE_PAGES.find((page) => page.slug === 'cartaz-black-friday')
 assert.ok(blackFridayPage, 'Página Black Friday não cadastrada')
