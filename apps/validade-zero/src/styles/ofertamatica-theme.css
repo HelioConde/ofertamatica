@@ -204,7 +204,9 @@ tbody tr:hover { background: #f7faff; }
 .demo-banner--compact .demo-banner__actions { width: 164px; flex: 0 0 164px; }
 .demo-banner--compact .demo-banner__actions .btn { min-height: 43px; }
 .demo-banner__details { margin-top: 6px; max-width: 730px; color: #eef5ff; }
-.demo-banner__details summary { width: fit-content; font-size: 11px; line-height: 1.5; font-weight: 700;
+/* Área acionável de 44px sem remover o marcador nativo de <summary>. */
+.demo-banner__details summary { width: fit-content; max-width: 100%; box-sizing: border-box;
+  min-height: 44px; padding: 11px 8px; font-size: 11px; line-height: 1.5; font-weight: 700;
   text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .demo-banner__details summary:hover { color: #fff; }
 .demo-banner__details summary:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: 3px; }
