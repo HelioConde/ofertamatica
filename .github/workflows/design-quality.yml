@@ -14,6 +14,7 @@ on:
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
       - 'scripts/qa-a11y-sitewide.mjs'
+      - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/audit-content.mjs'
       - 'scripts/qa-release-print-import.mjs'
       - 'package.json'
@@ -34,6 +35,7 @@ on:
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
       - 'scripts/qa-a11y-sitewide.mjs'
+      - 'scripts/capture-poster-visuals.mjs'
       - 'package.json'
       - '.github/workflows/design-quality.yml'
   workflow_dispatch:
@@ -129,6 +131,12 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-ux-polish.mjs
+      # O snapshot principal publica screenshots somente na main. Este
+      # check read-only protege PRs contra corte real e fotos encobertas.
+      - name: Check printed poster ink and clean screenshots
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/capture-poster-visuals.mjs
       - name: Sitewide accessibility audit (WCAG 2.2 A/AA)
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
@@ -177,5 +185,6 @@ jobs:
           path: |
             artifacts/design-audit/
             screenshots/print-qa/
+            screenshots/cartazes/
           if-no-files-found: warn
           retention-days: 30
