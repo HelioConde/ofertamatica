@@ -1037,7 +1037,7 @@ export function SeoLanding({ page, onCreate }) {
   return (
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
-      <main className="seo-landing">
+      <main id="conteudo-principal" tabIndex={-1} className="seo-landing">
         <section className="seo-hero seo-hero-guide">
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
