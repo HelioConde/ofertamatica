@@ -297,7 +297,19 @@ await scenario('Feedback pequeno: abrir, avaliar, dispensar e respeitar impress�
   }
   await check(page, '.feedback-nudge', 'Convite de feedback não apareceu após resolver cookies')
   await page.getByRole('button', { name: 'Dar minha opinião' }).click()
-  await page.locator('#ofertamatica-feedback-message').fill('Gostaria de mais modelos para hortifruti.')
+  const feedbackInput = page.locator('#ofertamatica-feedback-message')
+  await feedbackInput.waitFor({ state: 'visible' })
+  await page.waitForFunction(() => document.activeElement?.id === 'ofertamatica-feedback-message')
+  const ui = await feedbackInput.evaluate((el) => {
+    const field = el.getBoundingClientRect()
+    const action = document.querySelector('.feedback-nudge-actions button')?.getBoundingClientRect()
+    const close = document.querySelector('.feedback-nudge-close')?.getBoundingClientRect()
+    return { fontSize: Number.parseFloat(getComputedStyle(el).fontSize),
+      fieldHeight: field.height, actionHeight: action?.height || 0, closeHeight: close?.height || 0 }
+  })
+  if (ui.fontSize < 16 || ui.actionHeight < 44 || ui.closeHeight < 44)
+    throw new Error('Feedback mobile: fonte ou área de toque insuficiente: ' + JSON.stringify(ui))
+  await feedbackInput.fill('Gostaria de mais modelos para hortifruti.')
   await page.locator('.feedback-nudge-rating input[value="4"]').check()
   if (!(await page.locator('.feedback-nudge').innerText()).includes('Abrir meu e-mail'))
     throw new Error('Feedback não oferece ação de envio explícita')
