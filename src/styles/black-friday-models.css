@@ -472,7 +472,7 @@
   border: none !important;
   border-bottom: 1mm solid #101010 !important;
   border-radius: 0 !important;
-  background: transparent !important;
+  background: #fff !important;
 }
 
 /* 2. Branco impacto: selo serrilhado preto, números brancos de alto contraste. */
