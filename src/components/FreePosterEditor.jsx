@@ -306,6 +306,17 @@ export default function FreePosterEditor() {
   }
   const chosenExtra = extras.find((x) => x.id === selected)
   const chosenBox = selected === 'contentBox' || selected === 'priceBox' ? boxes[selected] : chosenExtra
+  const selectedBoxLabel = selected === 'contentBox' ? 'Descrição'
+    : selected === 'priceBox' ? 'Preço'
+      : 'Texto ' + (extras.findIndex((item) => item.id === selected) + 1)
+  function nudgeSelectedBox(dx, dy) {
+    if (!chosenBox) return
+    changeBox(selected, { x: round(chosenBox.x + dx), y: round(chosenBox.y + dy) })
+  }
+  function centerSelectedBox() {
+    if (!chosenBox) return
+    changeBox(selected, { x: round((100 - chosenBox.width) / 2) })
+  }
   return (
     <main id="conteudo-principal" tabIndex={-1} className="free-poster-editor" style={styleVars}>
       <header className="free-editor-top">
@@ -401,9 +412,23 @@ export default function FreePosterEditor() {
             {extras.length ? <div className="free-extra-picker" role="group" aria-label="Caixas extras">{extras.map((item, index) => <button key={item.id} type="button" aria-pressed={selected === item.id} className={selected === item.id ? 'active' : ''} onClick={() => setSelected(item.id)}>Texto {index+1}</button>)}</div> : null}
             {chosenBox ? (
               <>
-                <p className="free-editor-help">Arraste a caixa na prévia ou use os campos X, Y, largura e altura abaixo para ajustar a posição e o tamanho por teclado.</p>
+                <p className="free-editor-selected-box" role="status" aria-live="polite" aria-atomic="true">Editando: <strong>{selectedBoxLabel}</strong></p>
+                <p className="free-editor-help">Arraste a caixa na prévia ou ajuste a posição e o tamanho pelos campos abaixo. Os botões de movimento permitem ajustes precisos sem arrastar.</p>
                 <div className="free-editor-number-grid">
                   {[['x','X (%)'],['y','Y (%)'],['width','Largura (%)'],['height','Altura (%)']].map(([field,label])=><NumericSetting key={field} label={label} value={chosenBox[field]} min={field === 'width' ? 8 : field === 'height' ? 6 : 0} onChange={(value)=>changeBox(selected,{[field]:value})}/>)}
+                </div>
+                <div className="free-editor-nudge-panel" role="group" aria-label={'Mover caixa: ' + selectedBoxLabel}>
+                  <div className="free-editor-nudge-heading">
+                    <strong>Ajuste fino de posição</strong>
+                    <small>0,5% por toque · mantém a caixa dentro do cartaz</small>
+                  </div>
+                  <div className="free-editor-nudge-buttons">
+                    <button type="button" aria-label={'Mover ' + selectedBoxLabel + ' para a esquerda'} title="Mover para a esquerda" disabled={chosenBox.x <= 0} onClick={() => nudgeSelectedBox(-0.5, 0)}>←</button>
+                    <button type="button" aria-label={'Mover ' + selectedBoxLabel + ' para cima'} title="Mover para cima" disabled={chosenBox.y <= 0} onClick={() => nudgeSelectedBox(0, -0.5)}>↑</button>
+                    <button type="button" aria-label={'Mover ' + selectedBoxLabel + ' para baixo'} title="Mover para baixo" disabled={chosenBox.y >= 100 - chosenBox.height} onClick={() => nudgeSelectedBox(0, 0.5)}>↓</button>
+                    <button type="button" aria-label={'Mover ' + selectedBoxLabel + ' para a direita'} title="Mover para a direita" disabled={chosenBox.x >= 100 - chosenBox.width} onClick={() => nudgeSelectedBox(0.5, 0)}>→</button>
+                    <button type="button" className="free-editor-nudge-center" aria-label={'Centralizar ' + selectedBoxLabel + ' horizontalmente'} onClick={centerSelectedBox}>Centralizar</button>
+                  </div>
                 </div>
                 {chosenExtra ? (
                   <div className="free-editor-extra-edit">
