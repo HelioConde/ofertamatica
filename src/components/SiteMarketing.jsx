@@ -659,21 +659,29 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <p>Escolha um estilo por campanha ou setor. Ao clicar em “Usar este modelo”, as cores e o cabeçalho ficam preparados para o criador.</p>
               </div>
               <div className="model-gallery-tools">
-                <label className="model-search">
-                  <span>Buscar modelo</span>
-                  <input
-                    type="search"
-                    name="modelo"
-                    autoComplete="off"
-                    value={modelQuery}
-                    placeholder="Ex.: hortifruti, atacado, oferta..."
-                    onChange={(event) => {
-                      setModelQuery(event.target.value)
-                      setModelLimit(12)
-                    }}
-                  />
-                </label>
-                <strong>{visibleModels.length} de {filteredModels.length} encontrados · {MODEL_PRESETS.length} no total</strong>
+                <div className="model-gallery-search-row">
+                  <label className="model-search">
+                    <span>Buscar modelo</span>
+                    <input
+                      type="search"
+                      name="modelo"
+                      autoComplete="off"
+                      aria-controls="ofertamatica-model-results"
+                      value={modelQuery}
+                      placeholder="Ex.: hortifruti, atacado, oferta..."
+                      onChange={(event) => {
+                        setModelQuery(event.target.value)
+                        setModelLimit(12)
+                      }}
+                    />
+                  </label>
+                  {modelQuery ? (
+                    <button type="button" className="model-search-clear" onClick={() => { setModelQuery(''); setModelLimit(12) }}>
+                      Limpar busca
+                    </button>
+                  ) : null}
+                </div>
+                <strong role="status" aria-live="polite" aria-atomic="true">{visibleModels.length} de {filteredModels.length} encontrados · {MODEL_PRESETS.length} no total</strong>
               </div>
               <div className="model-popularity-toolbar">
                 <div className="model-popularity-sort" role="group" aria-label="Ordenar modelos da galeria">
@@ -711,7 +719,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <button type="button" aria-pressed={modelView === 'grade'} onClick={() => setModelView('grade')}>Grade compacta</button>
                 <button type="button" aria-pressed={modelView === 'detalhes'} onClick={() => setModelView('detalhes')}>Prévia maior</button>
               </div>
-              <div className={'model-showcase-grid ' + (modelView === 'detalhes' ? 'model-gallery-detailed' : 'model-gallery-compact')}>
+              <div id="ofertamatica-model-results" className={'model-showcase-grid ' + (modelView === 'detalhes' ? 'model-gallery-detailed' : 'model-gallery-compact')}>
                 {visibleModels.map((item) => <ModelCard item={item} onCreate={onCreate} badge={modelPopularityBadge(item.id, globalCounts)} key={item.id} />)}
               </div>
               {visibleModels.length < filteredModels.length ? (
