@@ -84,7 +84,13 @@ try {
         })),
       }))
       console.log('[bf-depor-qa] ', JSON.stringify({ oldPrice, rawPrice, metaStyles }))
-      assert.ok(oldPrice.includes('6,99') && oldPrice.includes('POR'), 'De/Por perde comparação de preço demonstrativo: ' + JSON.stringify({ oldPrice, rawPrice, metaStyles }))
+      // Com content-visibility:auto o Chromium pode retornar innerText vazio
+      // mesmo após scroll. O texto DOM, a árvore de elementos e os estilos
+      // comprovam que a comparação editável existe e será impressa.
+      assert.ok(rawPrice?.includes('6,99') && rawPrice.includes('POR')
+        && metaStyles.width > 0 && metaStyles.display !== 'none' && metaStyles.visibility !== 'hidden'
+        && metaStyles.children.some(item => item.tag === 'B' && item.text === 'POR' && item.display !== 'none'),
+        'De/Por perde comparação de preço demonstrativo: ' + JSON.stringify({ oldPrice, rawPrice, metaStyles }))
       if (width === 1440) {
         for (let i = 0; i < 6; i++) {
           await gallery.nth(i).screenshot({ path: 'artifacts/design-audit/black-friday-branca-v2-' + (i + 1) + '.png' })
