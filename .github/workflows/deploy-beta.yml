@@ -88,6 +88,11 @@ jobs:
       - name: Verify newly uploaded JS/CSS before switching HTML
         run: node scripts/verify-live-assets.mjs --assets-only
 
+      # O diagnóstico roda apenas quando o guard de assets falha; nunca
+      # autoriza troca de HTML nem enfraquece a verificação de produção.
+      - name: Diagnose HTTP delivery on failure (no secrets or HTML bodies)
+        if: failure()
+        run: node scripts/diagnose-public-assets.mjs
       - name: Verify Validade Zero JS/CSS before switching HTML
         run: node scripts/verify-live-validade-zero.mjs --assets-only
 
