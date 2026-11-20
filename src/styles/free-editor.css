@@ -173,3 +173,118 @@
     color: #1b714f !important;
   }
 }
+
+
+/* Skills de design, a11y e UI Verify: somente controles do Editor Livre.
+   Os componentes .poster-* e a folha impressa não são alterados. */
+@media screen {
+  .free-poster-editor .free-editor-field > span,
+  .free-poster-editor .free-number-setting > span {
+    color: #3c526c;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  .free-poster-editor .free-editor-field input,
+  .free-poster-editor .free-editor-field select,
+  .free-poster-editor .free-editor-field textarea,
+  .free-poster-editor .free-number-setting input {
+    min-height: 44px;
+    border-color: #c9d9ed;
+    border-radius: 10px;
+    color: #243b5b;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .free-poster-editor .free-editor-price-input input { font-size: 18px; }
+  .free-poster-editor .free-editor-top-actions button,
+  .free-poster-editor .free-editor-top-actions a,
+  .free-poster-editor .free-editor-box-tabs button,
+  .free-poster-editor .free-extra-picker button,
+  .free-poster-editor .free-editor-danger,
+  .free-poster-editor .free-editor-small-reset {
+    min-height: 44px;
+    padding: 9px 13px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .free-poster-editor .free-editor-disclosure summary { min-height: 44px; font-size: 13px; }
+  .free-poster-editor .free-editor-checks label,
+  .free-poster-editor .free-editor-checkbox { min-height: 44px; font-size: 12px; }
+  .free-poster-editor .free-editor-checks input,
+  .free-poster-editor .free-editor-checkbox input { width: 18px; height: 18px; flex: 0 0 18px; }
+  .free-poster-editor .free-editor-print-buttons button { min-height: 48px; font-size: 13px; }
+  .free-poster-editor .free-editor-selected-box {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px 12px;
+    border: 1px solid #c6dcf5;
+    border-radius: 10px;
+    background: #eef5ff;
+    color: #405c7d;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .free-poster-editor .free-editor-selected-box strong { color: #174b9a; font-size: 13px; }
+  .free-poster-editor .free-editor-help { color: #4b637e; font-size: 12px; line-height: 1.5; }
+  .free-poster-editor .free-editor-nudge-panel {
+    min-width: 0;
+    display: grid;
+    gap: 10px;
+    padding: 13px;
+    border: 1px solid #d6e4f5;
+    border-radius: 12px;
+    background: #f8fbff;
+  }
+  .free-poster-editor .free-editor-nudge-heading { display: grid; gap: 2px; }
+  .free-poster-editor .free-editor-nudge-heading strong { color: #263f63; font-size: 13px; }
+  .free-poster-editor .free-editor-nudge-heading small { color: #536d8d; font-size: 11px; line-height: 1.45; }
+  .free-poster-editor .free-editor-nudge-buttons {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(112px, 1.4fr);
+    gap: 7px;
+  }
+  .free-poster-editor .free-editor-nudge-buttons button {
+    min-width: 0;
+    min-height: 44px;
+    border: 1px solid #bcd2ef;
+    border-radius: 10px;
+    background: white;
+    color: #1d58a6;
+    font-size: 21px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .free-poster-editor .free-editor-nudge-buttons button:hover:not(:disabled) {
+    border-color: #6b9be5;
+    background: #e9f2ff;
+  }
+  .free-poster-editor .free-editor-nudge-buttons button:disabled { opacity: .43; cursor: not-allowed; }
+  .free-poster-editor .free-editor-nudge-buttons button.free-editor-nudge-center {
+    background: #e6f0ff;
+    font-size: 12px;
+    font-weight: 850;
+  }
+  .free-poster-editor .free-editor-nudge-buttons button:focus-visible {
+    outline: 3px solid #1d63e9;
+    outline-offset: 2px;
+  }
+  @media (max-width: 760px) {
+    .free-poster-editor .free-editor-number-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .free-poster-editor .free-editor-field input,
+    .free-poster-editor .free-editor-field select,
+    .free-poster-editor .free-editor-field textarea,
+    .free-poster-editor .free-number-setting input { font-size: 16px; }
+    .free-poster-editor .free-editor-nudge-buttons { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .free-poster-editor .free-editor-nudge-center { grid-column: 1 / -1; }
+    .free-poster-editor .free-editor-top-actions { width: 100%; }
+    .free-poster-editor .free-editor-top-actions span { font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .free-poster-editor .free-editor-nudge-buttons button { transition: none; }
+  }
+}
