@@ -205,18 +205,30 @@ try {
             : route.path === '/validade-zero/' ? '.demo-banner__details summary' : null
           if (targetSelector) {
             const target = page.locator(targetSelector)
+            // /modelos/ agora oferece dois links de campanha, ambos devem existir
+            // e cumprir o alvo de 44px; Validade Zero ainda tem um único summary.
+            const expectedCount = route.path === '/modelos/' ? 2 : 1
             const count = await target.count()
-            if (count !== 1) {
+            if (count !== expectedCount) {
               critical.push({ route: route.path, viewport: viewport.label,
-                reason: 'Controle de toque esperado ausente', details: { selector: targetSelector, count } })
+                reason: 'Controle de toque esperado ausente', details: { selector: targetSelector, count, expectedCount } })
             } else {
-              const { height, width } = await target.evaluate(el => {
+              const targets = await target.evaluateAll(elements => elements.map(el => {
                 const rect = el.getBoundingClientRect()
-                return { height: rect.height, width: rect.width }
-              })
-              if (height < 43.5 || width < 44) {
-                critical.push({ route: route.path, viewport: viewport.label,
-                  reason: 'Controle de toque abaixo de 44px', details: { selector: targetSelector, height, width } })
+                return { height: rect.height, width: rect.width, href: el.getAttribute('href') }
+              }))
+              if (route.path === '/modelos/') {
+                const destinations = targets.map(item => item.href)
+                if (!destinations.includes('/cartaz-black-friday/') || !destinations.includes('/placas-sazonais/')) {
+                  critical.push({ route: route.path, viewport: viewport.label,
+                    reason: 'Links de campanhas com destino incorreto', details: destinations })
+                }
+              }
+              for (const item of targets) {
+                if (item.height < 43.5 || item.width < 44) {
+                  critical.push({ route: route.path, viewport: viewport.label,
+                    reason: 'Controle de toque abaixo de 44px', details: { selector: targetSelector, ...item } })
+                }
               }
               if (route.path === '/validade-zero/') {
                 await target.focus()
