@@ -144,11 +144,15 @@ export default function PrintableBackgroundGallery() {
       </section>
       <div className="bg-gallery-workspace">
         <div className="bg-gallery-selection">
-          <label className="bg-gallery-search">
-            Buscar arte de fundo
-            <input type="search" placeholder="Ex.: oferta, hortifruti, padaria..." value={query} onChange={(event) => { setQuery(event.target.value); setLimit(8) }} />
-          </label>
-          <div className="bg-gallery-grid" aria-label="Escolha um fundo pronto">
+          <div className="bg-gallery-search-row">
+            <label className="bg-gallery-search">
+              Buscar arte de fundo
+              <input type="search" name="fundo" autoComplete="off" aria-controls="bg-gallery-results" placeholder="Ex.: oferta, hortifruti, padaria..." value={query} onChange={(event) => { setQuery(event.target.value); setLimit(8) }} />
+            </label>
+            {query ? <button type="button" className="bg-gallery-search-clear" onClick={() => { setQuery(''); setLimit(8) }}>Limpar busca</button> : null}
+          </div>
+          <p className="bg-gallery-results-status" role="status" aria-live="polite" aria-atomic="true">{shown.length} de {visible.length} {visible.length === 1 ? 'fundo encontrado' : 'fundos encontrados'}</p>
+          <div id="bg-gallery-results" className="bg-gallery-grid" aria-label="Escolha um fundo pronto">
             {shown.map((model) => (
               <button type="button" key={model.id} className={'bg-gallery-card' + (selected.id === model.id ? ' is-selected' : '')} aria-pressed={selected.id === model.id} onClick={() => setSelectedId(model.id)}>
                 <BackgroundPreview model={model} format={getPosterFormat('A4')} template={backgroundTemplate(model, 'A4')} compact />
