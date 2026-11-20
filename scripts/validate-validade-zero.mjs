@@ -10,19 +10,27 @@ const about = read('dist/conheca-validade-zero/index.html')
 const sitemap = read('dist/sitemap.xml')
 const indexSrc = read('src/App.jsx')
 const editorSrc = read('src/CreatorApp.jsx')
+const sharedNav = read('src/components/SiteNavigation.jsx')
 const marketing = read('src/components/SiteMarketing.jsx')
 const appDir = path.join(root, 'dist', 'validade-zero')
 
 // O Ofertamática segue sendo o criador de cartazes; o sistema de validades é secundário.
 assert.match(home, /Escolha o formato da sua placa de oferta/)
 assert.match(home, /class="format-grid"/)
+// A Home e o editor utilizam a mesma navegação: validar o componente real,
+ // sem exigir cópias antigas do JSX em cada página.
 for (const src of [indexSrc, editorSrc]) {
-  assert.match(src, /\['\/validade-zero',\s*'Validade Zero'/)
-  assert.match(src, /target=\{href === '\/validade-zero' \? '_blank' : undefined\}/)
-  assert.match(src, /rel=\{href === '\/validade-zero' \? 'noopener noreferrer' : undefined\}/)
+  assert.match(src, /import SiteNavigation from '\.\/components\/SiteNavigation'/)
+  assert.match(src, /<SiteNavigation /)
   assert.match(src, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
   assert.match(src, /href="\/conheca-validade-zero\/"/)
 }
+assert.match(sharedNav, /\['\/validade-zero',\s*'Validade Zero'/)
+assert.match(sharedNav, /target=\{href === '\/validade-zero' \? '_blank' : undefined\}/)
+assert.match(sharedNav, /rel=\{href === '\/validade-zero' \? 'noopener noreferrer' : undefined\}/)
+assert.match(sharedNav, /aria-label=\{href === '\/validade-zero'/)
+assert.match(sharedNav, /aria-controls="ofertamatica-main-navigation"/)
+assert.match(sharedNav, /aria-expanded=\{menuOpen\}/)
 assert.match(home, /href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
 assert.match(home, /class="main-nav"[\s\S]*?href="\/validade-zero\/" target="_blank" rel="noopener noreferrer"/)
 assert.doesNotMatch(home, /helioconde\.github\.io\/validade_zero/)
