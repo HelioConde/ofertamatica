@@ -382,6 +382,7 @@
     .seo-landing .marketing-section,
     .seo-landing .related-pages { border-radius: 17px; }
     .seo-landing .model-gallery-tools { padding: 12px; }
+    .seo-landing .model-search input { font-size: 16px; }
     .free-poster-editor .free-editor-top { border-radius: 15px; }
     .free-poster-editor .free-editor-controls { padding: 13px; }
   }
