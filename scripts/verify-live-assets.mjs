@@ -58,8 +58,10 @@ async function attemptCheck() {
         problems.push(resource + ': status=' + response.status +
           ', tipo=' + (type || '(ausente)') +
           ', diagnóstico=' + unexpectedDocumentClass(type, sample))
+        if (!sample) await response.body?.cancel()
+      } else {
+        await response.body?.cancel()
       }
-      await response.body?.cancel()
     } catch (error) {
       problems.push(resource + ': ' + (error?.message || String(error)))
     }
