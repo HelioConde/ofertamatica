@@ -23,6 +23,8 @@ export default function FeedbackNudge({ openAt = null }) {
   useEffect(() => {
     if (safeDismissUntil() > Date.now()) return undefined
     const delay = openAt === null ? OPEN_AFTER_MS : Math.max(0, openAt - Date.now())
+    // A importação pode terminar depois do prazo; exibir sem outro timer.
+    if (delay === 0) { setVisible(true); return undefined }
     const timer = window.setTimeout(() => setVisible(true), delay)
     return () => window.clearTimeout(timer)
   }, [openAt])
