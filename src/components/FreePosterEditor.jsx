@@ -119,16 +119,24 @@ export default function FreePosterEditor() {
   const [printHint, setPrintHint] = useState('')
   const [guideFocus, setGuideFocus] = useState('')
   const dragCleanup = useRef(null)
+  function preferredScrollBehavior() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+  }
   function showGuide() {
     const help = document.getElementById('guia-editor-livre')
     if (help) {
       help.open = true
-      help.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      help.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'nearest' })
+      help.querySelector('summary')?.focus({ preventScroll: true })
     }
   }
   function focusGuide(target) {
     setGuideFocus(target)
-    window.requestAnimationFrame(() => document.querySelector(`[data-guide-section="${target}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }))
+    window.requestAnimationFrame(() => {
+      const section = document.querySelector(`[data-guide-section="${target}"]`)
+      section?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'nearest' })
+      section?.querySelector('input:not(:disabled), select:not(:disabled), textarea:not(:disabled), button:not(:disabled), summary')?.focus({ preventScroll: true })
+    })
   }
   const format = getPosterFormat(state.formatId)
   const model = POSTER_MODEL_PRESETS.find((item) => item.id === state.modelId) || POSTER_MODEL_PRESETS[0]
