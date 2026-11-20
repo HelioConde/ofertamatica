@@ -109,7 +109,7 @@ jobs:
             const visible = await page.locator('.curated-model-grid .model-showcase-card').count()
             // A coleção recebe novas artes sem exigir atualização manual deste teste.
             const { CURATED_POSTER_COLLECTIONS } = await import('./src/config/modelEditorialCollections.js')
-            const expected = CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.filter(id => id.startsWith('black-friday')).length
+            const expected = CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.filter(id => id.startsWith('black-friday') || id.startsWith('esquenta-black-friday')).length
             if (visible !== expected) throw new Error('Esperados ' + expected + ' modelos Black Friday, obtidos ' + visible)
             await page.close()
           }

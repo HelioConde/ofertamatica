@@ -98,7 +98,12 @@ function usePageHead(page, { creator = false } = {}) {
     upsertPropertyMeta('og:description', page.description)
     upsertPropertyMeta('og:url', canonical)
     upsertPropertyMeta('og:type', page.paperChoices ? 'article' : 'website')
+    upsertPropertyMeta('og:image', SITE_URL + '/icons/icon-512.png')
+    upsertPropertyMeta('og:image:width', '512')
+    upsertPropertyMeta('og:image:height', '512')
+    upsertPropertyMeta('og:image:alt', 'Logotipo do Ofertamática, criador de cartazes de oferta grátis')
     upsertMeta('twitter:card', 'summary')
+    upsertMeta('twitter:image', SITE_URL + '/icons/icon-512.png')
     upsertMeta('twitter:title', page.title)
     upsertMeta('twitter:description', page.description)
 
