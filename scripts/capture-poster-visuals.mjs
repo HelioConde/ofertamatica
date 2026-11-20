@@ -18,6 +18,16 @@ async function openQaPage(page) {
   await page.goto(`${baseUrl}/visual-qa/cartazes`, { waitUntil: 'networkidle' })
   await page.locator('[data-fonts-ready="true"]').waitFor({ state: 'visible', timeout: 20_000 })
   await page.locator('.poster-visual-qa-card').first().waitFor({ state: 'visible' })
+  // O aviso fixo estava sobreposto a capturas de cartazes na parte inferior.
+  // Resolver apenas no navegador de QA, usando a opção real de rejeição;
+  // nenhum consentimento é forçado ou alterado no produto publicado.
+  const privacyBanner = page.locator('.cookie-banner')
+  const bannerAppeared = await privacyBanner.waitFor({ state: 'visible', timeout: 2500 })
+    .then(() => true).catch(() => false)
+  if (bannerAppeared) {
+    await privacyBanner.getByRole('button', { name: 'Rejeitar opcionais' }).click()
+    await privacyBanner.waitFor({ state: 'hidden', timeout: 4000 })
+  }
   return errors
 }
 
@@ -113,6 +123,48 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
   const headerBackground = headerStyle?.backgroundColor || ''
   const headerColor = headerStyle?.color || ''
 
+  // Uma caixa pode ter scrollHeight > clientHeight apenas pelo line-height
+  // compacto da Futura Price. Como no QA físico de impressão, medir a tinta
+  // real (Range) contra ancestrais que RECORTAM e contra o limite do cartaz.
+  // Evitar corrigir arte aprovada por um falso positivo de scrollHeight.
+  const inkClipping = [
+    ['description', description],
+    ['subdescription', subdescription],
+    ['unit', unit],
+    ['price', priceText],
+  ].flatMap(([field, element]) => {
+    if (!element || !element.textContent?.trim() || !poster) return []
+    const range = document.createRange()
+    range.selectNodeContents(element)
+    const ink = range.getBoundingClientRect()
+    const rect = ink.width && ink.height ? ink : element.getBoundingClientRect()
+    const tolerance = 3
+    const clippedBy = []
+    for (let ancestor = element.parentElement; ancestor && ancestor !== card; ancestor = ancestor.parentElement) {
+      const style = getComputedStyle(ancestor)
+      const horizontal = ['hidden', 'clip'].includes(style.overflowX)
+      const vertical = ['hidden', 'clip'].includes(style.overflowY)
+      if (!horizontal && !vertical) continue
+      const bounds = ancestor.getBoundingClientRect()
+      if ((horizontal && (rect.left < bounds.left - tolerance || rect.right > bounds.right + tolerance)) ||
+          (vertical && (rect.top < bounds.top - tolerance || rect.bottom > bounds.bottom + tolerance))) {
+        clippedBy.push(typeof ancestor.className === 'string' ? ancestor.className : ancestor.tagName)
+      }
+    }
+    const page = poster.getBoundingClientRect()
+    const outside = rect.left < page.left - tolerance || rect.right > page.right + tolerance ||
+      rect.top < page.top - tolerance || rect.bottom > page.bottom + tolerance
+    if (!clippedBy.length && !outside) return []
+    return [{
+      field,
+      text: element.textContent.trim().slice(0, 60),
+      clippedBy,
+      outsidePoster: outside,
+      ink: { x: Math.round(rect.left), y: Math.round(rect.top),
+        width: Math.round(rect.width), height: Math.round(rect.height) },
+    }]
+  })
+
   return {
     sample,
     format,
@@ -136,6 +188,7 @@ const metrics = await desktop.locator('.poster-visual-qa-card').evaluateAll((car
     subdescription: relative(subdescription),
     unit: relative(unit),
     price: relative(priceText),
+    inkClipping,
     overflow: [content, price].some((element) => element && (
       element.scrollWidth > element.clientWidth + 1 ||
       element.scrollHeight > element.clientHeight + 1
@@ -182,6 +235,7 @@ await fs.writeFile(
 await browser.close()
 
 const overflow = metrics.filter((item) => item.overflow)
+const clippedInk = metrics.flatMap((item) => item.inkClipping.map((issue) => ({ sample: item.sample, ...issue })))
 const invalidFrames = metrics.filter((item) => !item.headerFrameOk)
 const lowContrast = metrics.filter((item) => (
   item.contrast.description < 3 ||
@@ -201,6 +255,7 @@ if (
   !fontState.descriptionReady ||
   !fontState.priceReady ||
   typographyWarnings.length ||
+  clippedInk.length ||
   invalidFrames.length ||
   lowContrast.length ||
   weakPriceCoverage.length ||
@@ -213,6 +268,7 @@ if (
     fontState,
     typographyWarnings,
     overflow,
+    clippedInk,
     invalidFrames: invalidFrames.map((item) => ({ sample: item.sample, frame: item.frame })),
     lowContrast: lowContrast.map((item) => ({ sample: item.sample, contrast: item.contrast })),
     weakPriceCoverage: weakPriceCoverage.map((item) => ({ sample: item.sample, width: item.price?.width })),
@@ -228,6 +284,8 @@ console.log(JSON.stringify({
   fontState,
   typographyWarnings,
   overflowWarnings: overflow.map((item) => item.sample),
+  // Somente texto realmente fora de uma área com recorte bloqueia o job.
+  clippedInk,
   lowContrast: lowContrast.map((item) => item.sample),
   weakPriceCoverage: weakPriceCoverage.map((item) => item.sample),
   transparentHeaders: transparentHeaders.map((item) => item.sample),
