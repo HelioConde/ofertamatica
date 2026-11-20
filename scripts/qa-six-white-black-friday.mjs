@@ -66,6 +66,10 @@ try {
       }
       await inspect('screen')
       const comparison = page.locator('.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor')
+      // A galeria aplica content-visibility:auto nos cartões fora da tela.
+      // Role até a placa antes de pedir innerText (senão Chromium retorna '').
+      await comparison.scrollIntoViewIfNeeded()
+      await comparison.waitFor({ state: 'visible' })
       const oldPrice = await comparison.innerText()
       const rawPrice = await comparison.textContent()
       const metaStyles = await comparison.evaluate(node => ({
