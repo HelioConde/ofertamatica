@@ -34,7 +34,7 @@ const checks = [
   { name: '301 placa 2x1', url: origin + '/placa-2x1', status: 301, location: '/formatos/' },
   { name: 'Nova página farmácia', url: origin + '/cartazes-para-farmacia/', status: 200, contains: ['Cartazes de preço para farmácia e perfumaria', 'https://ofertamatica.com.br/cartazes-para-farmacia/'] },
   { name: 'Nova página hortifruti', url: origin + '/placas-para-hortifruti/', status: 200, contains: ['Placas de preço para frutas, verduras e legumes', 'https://ofertamatica.com.br/placas-para-hortifruti/'] },
-  { name: 'Página Black Friday restaurada', url: origin + '/cartaz-black-friday/', status: 200, contains: ['Cartaz de Black Friday com preço legível', 'https://ofertamatica.com.br/cartaz-black-friday/'] },
+  { name: 'Página Black Friday restaurada', url: origin + '/cartaz-black-friday/', status: 200, contains: [SEO_PAGES.find((page) => page.slug === 'cartaz-black-friday').heading, origin + '/cartaz-black-friday/'] },
   { name: '410 antiga Copa do Mundo com navegação', url: origin + '/cartaz-copa-do-mundo', status: 410, contains: ['Essa página saiu de linha. Suas ofertas, não.', '/fale-conosco/'] },
   { name: '301 legado açougue', url: origin + '/placas-para-acougue/', status: 301, location: '/cartazes-para-acougue/' },
   { name: '301 legado placas para supermercado', url: origin + '/placas-para-supermercado/', status: 301, location: '/cartaz-para-supermercado/' },
