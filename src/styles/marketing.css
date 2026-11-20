@@ -3386,3 +3386,126 @@ summary:focus-visible {
     color: #ffffff;
   }
 }
+
+
+/* Página de maior exposição orgânica: Black Friday.
+   Prioriza escolha de modelo e leitura rápida, sem afetar a arte impressa. */
+@media screen {
+  .seo-landing.black-friday-landing .seo-hero {
+    margin-bottom: 12px;
+    padding-block: clamp(19px, 2.6vw, 34px);
+    gap: 18px;
+  }
+  .seo-landing.black-friday-landing .seo-hero h1 {
+    max-width: 760px;
+    letter-spacing: -.035em;
+    line-height: 1.14;
+  }
+  .seo-landing.black-friday-landing .seo-hero > div > p {
+    max-width: 730px;
+    margin: 12px 0 18px;
+    line-height: 1.58;
+    color: #3e5676;
+  }
+  .seo-landing.black-friday-landing .black-friday-hero-models {
+    min-height: 48px;
+    padding: 11px 17px;
+    border: 1px solid #1251ba;
+    border-radius: 12px;
+    background: #1d63e9;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 850;
+    line-height: 1.35;
+    text-decoration: none;
+    box-shadow: 0 7px 17px rgba(29, 99, 233, .17);
+  }
+  .seo-landing.black-friday-landing .black-friday-hero-models:hover {
+    background: #134fc3;
+    color: #fff;
+    border-color: #134fc3;
+  }
+  .seo-landing.black-friday-landing .black-friday-hero-models span {
+    color: inherit;
+    font-size: inherit;
+  }
+  .seo-landing.black-friday-landing .seo-hero-actions button {
+    min-height: 48px;
+    padding: 11px 16px;
+    border: 1px solid #b7ceeb;
+    border-radius: 12px;
+    background: #fff;
+    color: #24518a;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+  .seo-landing.black-friday-landing .seo-hero-actions button:hover {
+    border-color: #739ddb;
+    background: #edf5ff;
+  }
+  .seo-landing.black-friday-landing .curated-model-section {
+    scroll-margin-top: 92px;
+    margin-top: 16px;
+    border-color: #ccdef1;
+    background: linear-gradient(150deg, #f5f9ff, #fff 45%);
+  }
+  .seo-landing.black-friday-landing .curated-model-section .marketing-heading h2 {
+    color: #183d70;
+  }
+  .seo-landing.black-friday-landing .seasonal-gallery-filters button {
+    min-height: 44px;
+    padding: 9px 13px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .seo-landing.black-friday-landing .seasonal-gallery-filters button[aria-pressed="true"] {
+    background: #1d63e9;
+    color: #fff;
+    border-color: #1d63e9;
+  }
+  .seo-landing.black-friday-landing .curated-model-note {
+    color: #435b7b;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .seo-landing.black-friday-landing .curated-model-all-link { min-height: 44px; }
+  @media (max-width: 680px) {
+    .seo-landing.black-friday-landing .seo-hero {
+      padding: 18px 16px;
+      border-radius: 16px;
+    }
+    .seo-landing.black-friday-landing .seo-hero h1 {
+      font-size: clamp(26px, 7.4vw, 32px);
+    }
+    .seo-landing.black-friday-landing .seo-hero > div > p {
+      font-size: 13px;
+      line-height: 1.52;
+    }
+    .seo-landing.black-friday-landing .seo-hero-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 9px;
+    }
+    .seo-landing.black-friday-landing .seo-hero-actions > * {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+    .seo-landing.black-friday-landing .curated-model-section {
+      margin-top: 12px;
+      padding: 16px 13px;
+      scroll-margin-top: 72px;
+    }
+    .seo-landing.black-friday-landing .curated-model-section .marketing-heading h2 {
+      font-size: 21px;
+      line-height: 1.25;
+    }
+    .seo-landing.black-friday-landing .seasonal-gallery-toolbar {
+      gap: 9px;
+    }
+    .seo-landing.black-friday-landing .seasonal-gallery-toolbar > span {
+      font-size: 12px;
+    }
+  }
+}
