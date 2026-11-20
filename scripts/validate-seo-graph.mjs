@@ -7,6 +7,8 @@ import assert from 'node:assert/strict'
 import { INDEXABLE_PAGES, SITE_URL } from '../src/seo/seoPages.js'
 
 const dist = path.resolve('dist')
+const socialImage = SITE_URL + '/icons/icon-512.png'
+assert.ok(fs.existsSync(path.join(dist, 'icons/icon-512.png')), 'Imagem OG ausente no build')
 const routes = ['/', ...INDEXABLE_PAGES.map((page) => '/' + page.slug + '/'), '/validade-zero/']
 const routeSet = new Set(routes)
 // O app integra o mesmo sitemap/SEO, com HTML inicial próprio e canonical direto.
@@ -40,6 +42,10 @@ for (const route of routes) {
   assert.equal(canonicalMatches.length, 1, 'Canonical ausente ou duplicada: ' + route)
   assert.ok(canonicalMatches[0][0].includes('href="' + expectedCanonical + '"'), 'Canonical incorreta: ' + route)
   assert.ok(html.includes('<meta property="og:url" content="' + expectedCanonical + '"'), 'OG URL incorreta: ' + route)
+  assert.equal((html.match(/<meta property="og:image"/gi) || []).length, 1, 'OG Image duplicada ou ausente: ' + route)
+  assert.ok(html.includes('<meta property="og:image" content="' + socialImage + '"'), 'Imagem OG incorreta: ' + route)
+  assert.equal((html.match(/<meta name="twitter:image"/gi) || []).length, 1, 'Twitter Image duplicada ou ausente: ' + route)
+  assert.ok(html.includes('<meta name="twitter:image" content="' + socialImage + '"'), 'Imagem Twitter incorreta: ' + route)
   assert.equal((html.match(/<title>[^<]+<\/title>/gi) || []).length, 1, 'Título único ausente: ' + route)
   assert.ok(html.includes('<meta name="description" content="'), 'Meta descrição ausente: ' + route)
   const titles = [...html.matchAll(/<title>([^<]+)<\/title>/gi)]
