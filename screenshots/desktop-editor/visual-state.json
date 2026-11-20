@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-20T09:21:52.952Z",
-  "commit": "75c24c9be92391fcbb09d365a4adea6fec018bd3",
+  "generatedAt": "2026-11-20T09:27:45.446Z",
+  "commit": "005b3b91086fe42f7158bd562ae34eed8c9b7d40",
   "results": [
     {
       "formatId": "A4X8",
@@ -13,51 +13,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -74,51 +74,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -135,51 +135,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -196,51 +196,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -257,51 +257,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 307.2,
+        "top": 322.2,
         "width": 320,
         "height": 226.3,
         "right": 1073,
-        "bottom": 533.5
+        "bottom": 548.5
       },
       "firstRow": {
         "left": 81,
-        "top": 445.2,
+        "top": 468.2,
         "width": 640,
         "height": 113.2,
         "right": 721,
-        "bottom": 558.4
+        "bottom": 581.4
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -318,51 +318,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.6,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -379,51 +379,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 193.3,
+        "top": 208.3,
         "width": 320,
         "height": 454,
         "right": 1073,
-        "bottom": 647.4
+        "bottom": 662.4
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
@@ -440,51 +440,51 @@
       "verticalOverflow": false,
       "layout": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 1280,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "editorMain": {
         "left": 80,
-        "top": 116,
+        "top": 124,
         "width": 642,
         "height": 774,
         "right": 722,
-        "bottom": 890
+        "bottom": 898
       },
       "preview": {
         "left": 733,
-        "top": 116,
+        "top": 124,
         "width": 358,
         "height": 774,
         "right": 1091,
-        "bottom": 890
+        "bottom": 898
       },
       "style": {
         "left": 1102,
-        "top": 116,
+        "top": 124,
         "width": 258,
         "height": 774,
         "right": 1360,
-        "bottom": 890
+        "bottom": 898
       },
       "poster": {
         "left": 753,
-        "top": 194.1,
+        "top": 209.1,
         "width": 320,
         "height": 452.5,
         "right": 1073,
-        "bottom": 646.6
+        "bottom": 661.6
       },
       "firstRow": {
         "left": 81,
-        "top": 473.2,
+        "top": 496.2,
         "width": 640,
         "height": 55,
         "right": 721,
-        "bottom": 528.2
+        "bottom": 551.2
       },
       "clippedInputs": false,
       "hasReadableShortList": true,
