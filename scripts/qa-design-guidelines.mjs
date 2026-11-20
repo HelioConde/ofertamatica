@@ -1,6 +1,7 @@
 import { chromium } from 'playwright'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { INDEXABLE_PAGES } from '../src/seo/seoPages.js'
 
 /**
  * Auditoria visual da interface já hidratada — não mede o skeleton do React.
@@ -18,6 +19,14 @@ const routes = [
   { path: '/validade-zero/', slug: 'validade-zero-app', ready: '.heading h1' },
   { path: '/conheca-validade-zero/', slug: 'conheca-validade-zero', ready: '.validade-zero-hero-actions .validade-zero-open' },
 ]
+// As rotas centrais recebem quatro tamanhos; todas as outras páginas indexáveis,
+ // incluindo guias, campanhas e páginas institucionais, recebem mobile + desktop.
+const mainPaths = new Set(routes.map((route) => route.path))
+const extraRoutes = INDEXABLE_PAGES
+  .filter(({ slug }) => !mainPaths.has('/' + slug + '/'))
+  .map(({ slug }) => ({ path: '/' + slug + '/', slug, ready: '.seo-landing h1', core: false }))
+const auditRoutes = [...routes.map((route) => ({ ...route, core: true })), ...extraRoutes]
+
 const viewports = [
   { label: 'mobile-360', width: 360, height: 800 },
   { label: 'mobile-390', width: 390, height: 844 },
@@ -106,7 +115,8 @@ try {
       reducedMotion: 'reduce',
     })
     try {
-      for (const route of routes) {
+      for (const route of auditRoutes) {
+        if (!route.core && viewport.width !== 390 && viewport.width !== 1440) continue
         const jsErrors = []
         page.removeAllListeners('pageerror')
         page.on('pageerror', error => {
@@ -148,6 +158,9 @@ try {
                 details: result.modelModeButtons,
               })
             }
+          }
+          if (result.missingAccessibleNames.length) {
+            critical.push({ route: route.path, viewport: viewport.label, reason: 'Controles sem nome acessível', details: result.missingAccessibleNames })
           }
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
@@ -229,7 +242,7 @@ try {
               }
               await page.locator('.main-nav .nav-link').first().focus()
               await page.keyboard.press('Escape')
-              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible()) {
+              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible() || !await toggle.evaluate((el) => document.activeElement === el)) {
                 critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha com Escape' })
               }
             }
@@ -249,13 +262,15 @@ try {
 }
 const report = {
   generatedAt: new Date().toISOString(),
-  methodology: 'React hydration gate + Web Interface Guidelines + keyboard focus + responsive screenshots',
+  methodology: 'Sitewide React hydration gate + Web Interface Guidelines + keyboard focus + responsive screenshots',
+  routesCovered: auditRoutes.length,
+  viewportsCovered: viewports.map((viewport) => viewport.label),
   notes: 'Resultados são verificações automatizadas iniciais, não pontuação visual ou certificação WCAG.',
   findings,
   critical,
 }
 await fs.writeFile(path.join(outDir, 'report.json'), JSON.stringify(report, null, 2) + '\n')
-console.log(`[design] ${findings.length}/${viewports.length * routes.length} páginas prontas auditadas; ${critical.length} falhas críticas.`)
+console.log(`[design] ${findings.length}/${viewports.length * routes.length + 2 * extraRoutes.length} combinações de rota/viewport auditadas (${auditRoutes.length} rotas); ${critical.length} falhas críticas.`)
 if (critical.length) {
   console.error(JSON.stringify(critical, null, 2))
   process.exitCode = 1
