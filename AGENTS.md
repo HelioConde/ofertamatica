@@ -10,6 +10,14 @@ Leia primeiro `README.md` e `DESIGN.md`. O projeto tem contratos não negociáve
 4. **Image to Code** — skill `image-to-code` em https://github.com/Leonxlnx/taste-skill. Quando houver screenshot de referência, analisar a imagem, identificar componentes/tokens/estados e traduzir para React/CSS existente. Conferir uma nova captura e comparar. Não substituir componentes de cartaz por imagem estática.
 5. **Playwright CLI** — https://github.com/microsoft/playwright-cli. Inspecionar a experiência real e tirar screenshots; complementar os testes E2E de `scripts/qa-interactions.mjs`, `scripts/qa-release-print-import.mjs` e `scripts/qa-design-guidelines.mjs`.
 
+## Skill específica de acessibilidade (seleção de 20/11/2026)
+
+A lista de skills de acessibilidade foi reduzida a **três referências complementares**: `accessibility` (addyosmani/web-quality-skills) para auditoria WCAG, `fixing-accessibility` (ibelick/ui-skills) para correções pontuais e `a11y-debugging` (ChromeDevTools/chrome-devtools-mcp) para validação em navegador, quando o MCP existir. `wcag-audit-patterns` (wshobson/agents) é apenas segunda revisão opcional; não empilhar skills com funções idênticas.
+
+**Codex:** usar a skill local [`ofertamatica-a11y`](.agents/skills/ofertamatica-a11y/SKILL.md) ao criar/alterar menus, botões, formulários, tabs, modais, foco, contraste ou experiências mobile. A seleção e os links das fontes estão em [`docs/SKILLS_ACESSIBILIDADE_2026-11-20.md`](docs/SKILLS_ACESSIBILIDADE_2026-11-20.md).
+
+A skill local é utilizável sem instalar pacotes de terceiros. Não confundir referências documentadas com skills instaladas ou auditorias já executadas. Não sacrificar funcionalidade, consentimento, impressão ou performance para inflar um score de acessibilidade.
+
 ### Instalação opcional no computador/agente de desenvolvimento
 
 Estas skills são ferramentas de **desenvolvimento**, não dependências carregadas pelo site em produção. No diretório do projeto (Node.js 20+):
