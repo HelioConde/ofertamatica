@@ -36,7 +36,9 @@ const shouldAudit = (viewport, route) =>
 const viewports = [
   { label: 'mobile-360', width: 360, height: 800 },
   { label: 'mobile-390', width: 390, height: 844 },
+  { label: 'mobile-412', width: 412, height: 915 },
   { label: 'tablet-768', width: 768, height: 1024 },
+  { label: 'laptop-1000', width: 1000, height: 800 },
   { label: 'desktop-1440', width: 1440, height: 900 },
 ]
 const expectedAudits = routes.reduce((count, route) =>
@@ -191,6 +193,41 @@ try {
           if (result.missingAccessibleNames.length) {
             critical.push({ route: route.path, viewport: viewport.label,
               reason: 'Controles sem nome acessível', details: result.missingAccessibleNames })
+          }
+          // A auditoria identificou dois alvos com altura de 15-17px; manter
+          // o diagnóstico como falha para impedir regressões nos links e detalhes.
+          if (result.tinyTouchTargets.length) {
+            critical.push({ route: route.path, viewport: viewport.label,
+              reason: 'Alvos interativos menores que 24px', details: result.tinyTouchTargets })
+          }
+          // Os alvos de toque de destaque têm critério mais estrito (44px).
+          const targetSelector = route.path === '/modelos/' ? '.curated-seasonal-link a'
+            : route.path === '/validade-zero/' ? '.demo-banner__details summary' : null
+          if (targetSelector) {
+            const target = page.locator(targetSelector)
+            const count = await target.count()
+            if (count !== 1) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Controle de toque esperado ausente', details: { selector: targetSelector, count } })
+            } else {
+              const { height, width } = await target.evaluate(el => {
+                const rect = el.getBoundingClientRect()
+                return { height: rect.height, width: rect.width }
+              })
+              if (height < 43.5 || width < 44) {
+                critical.push({ route: route.path, viewport: viewport.label,
+                  reason: 'Controle de toque abaixo de 44px', details: { selector: targetSelector, height, width } })
+              }
+              if (route.path === '/validade-zero/') {
+                await target.focus()
+                await page.keyboard.press('Enter')
+                if (!await page.locator('.demo-banner__details').evaluate(el => el.open)) {
+                  critical.push({ route: route.path, viewport: viewport.label,
+                    reason: 'Resumo do armazenamento não abre por teclado' })
+                }
+                await page.keyboard.press('Enter')
+              }
+            }
           }
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })

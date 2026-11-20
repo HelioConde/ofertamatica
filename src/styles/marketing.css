@@ -3331,7 +3331,9 @@ summary:focus-visible {
 .curated-model-all-link, .curated-seasonal-link a { color: #175bc1; font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .curated-model-all-link { display: inline-flex; padding: 7px 0; min-height: 34px; align-items: center; }
 .curated-seasonal-link { padding: 13px 16px; margin: 14px 0 20px; background: #f1f6ff; border: 1px solid #d8e6f8; border-radius: 10px; color: #2a4566; font-size: 13px; line-height: 1.65; }
-.curated-seasonal-link a { margin-left: 5px; }
+/* Link sazonal: alvo ≥44px inclusive em 360px, sem ampliar arte de impressão. */
+.curated-seasonal-link a { display: inline-block; box-sizing: border-box; max-width: 100%;
+  min-height: 44px; padding: 10px 0; margin-left: 5px; vertical-align: middle; }
 @media (max-width: 900px) { .curated-model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .curated-model-grid { grid-template-columns: minmax(0, 1fr); } .curated-model-section { padding: 14px; } }
 
