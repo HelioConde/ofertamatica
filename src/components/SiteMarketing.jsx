@@ -1073,8 +1073,10 @@ export function SeoLanding({ page, onCreate }) {
           </aside>
         </section>
 
+        {/* Na Black Friday, a intenção principal é escolher uma arte real. */}
+        {page.slug === 'cartaz-black-friday' ? <CuratedModelSection slug={page.slug} onCreate={onCreate} /> : null}
         <SeoPosterExample page={page} onCreate={onCreate} />
-        <CuratedModelSection slug={page.slug} onCreate={onCreate} />
+        {page.slug !== 'cartaz-black-friday' ? <CuratedModelSection slug={page.slug} onCreate={onCreate} /> : null}
 
         <RetailCalculator key={page.slug} slug={page.slug} />
         {page.slug === 'cartazes-a-partir-de-excel' ? <RetailListReview onCreate={onCreate} /> : null}
