@@ -186,28 +186,6 @@ try {
             }
           }
 
-          // Menu mobile deve ser acessível, conter todos os links e fechar com Escape.
-          if (route.path === '/' && viewport.width <= 820) {
-            const toggle = page.locator('.nav-menu-toggle')
-            if (!await toggle.isVisible()) {
-              critical.push({ route: route.path, viewport: viewport.label, reason: 'Botão do menu mobile ausente' })
-            } else {
-              if (await toggle.getAttribute('aria-expanded') !== 'false') {
-                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não inicia fechado' })
-              }
-              await toggle.click()
-              const navVisible = await page.locator('.main-nav a[href="/validade-zero/"]').isVisible()
-              if (await toggle.getAttribute('aria-expanded') !== 'true' || !navVisible) {
-                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não abriu com todos os links' })
-              }
-              await page.locator('.main-nav .nav-link').first().focus()
-              await page.keyboard.press('Escape')
-              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible()) {
-                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha com Escape' })
-              }
-            }
-          }
-
           if (route.path === '/') {
             // Testa a partir do início do tab-order do navegador real.
             await page.keyboard.press('Tab')
@@ -235,6 +213,28 @@ try {
               }
             }
           }
+          // Menu mobile deve ser acessível, conter todos os links e fechar com Escape.
+          if (route.path === '/' && viewport.width <= 820) {
+            const toggle = page.locator('.nav-menu-toggle')
+            if (!await toggle.isVisible()) {
+              critical.push({ route: route.path, viewport: viewport.label, reason: 'Botão do menu mobile ausente' })
+            } else {
+              if (await toggle.getAttribute('aria-expanded') !== 'false') {
+                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não inicia fechado' })
+              }
+              await toggle.click()
+              const navVisible = await page.locator('.main-nav a[href="/validade-zero/"]').isVisible()
+              if (await toggle.getAttribute('aria-expanded') !== 'true' || !navVisible) {
+                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não abriu com todos os links' })
+              }
+              await page.locator('.main-nav .nav-link').first().focus()
+              await page.keyboard.press('Escape')
+              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible()) {
+                critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha com Escape' })
+              }
+            }
+          }
+
         } catch (error) {
           critical.push({ route: route.path, viewport: viewport.label, reason: String(error.message || error) })
           console.error(`[design] FALHOU ${viewport.label} ${route.path}: ${error.message}`)
