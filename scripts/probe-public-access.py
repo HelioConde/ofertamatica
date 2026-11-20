@@ -12,8 +12,8 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 BASE = "https://ofertamatica.com.br"
-PATHS = ["/", "/modelos/", "/placas-para-hortifruti/", "/robots.txt", "/ads.txt"]
-HTML_PATHS = {"/", "/modelos/", "/placas-para-hortifruti/"}
+PATHS = ["/", "/modelos/", "/cartaz-black-friday/", "/placas-para-hortifruti/", "/robots.txt", "/ads.txt"]
+HTML_PATHS = {"/", "/modelos/", "/cartaz-black-friday/", "/placas-para-hortifruti/"}
 
 
 def fold(value: str) -> str:
