@@ -374,7 +374,7 @@ export const SEO_PAGES = [
     description: 'Crie cartaz Black Friday com 16 modelos editáveis: fundo branco econômico, Esquenta e De/Por. Personalize produtos e preços em A4, A5, A3 ou PDF. Sem cadastro.',
     keywords: 'cartaz black friday, cartazes black friday supermercado, placa oferta black friday, cartaz promocao novembro',
     eyebrow: 'CAMPANHA BLACK FRIDAY',
-    heading: 'Cartaz Black Friday para imprimir grátis',
+    heading: 'Cartaz Black Friday para imprimir grátis: 16 modelos',
     lead: 'Compare 16 modelos reais de Black Friday para supermercado e loja, incluindo fundo branco para economizar tinta e Esquenta Black Friday. Edite produtos e preços e imprima em A4, A5, A3 ou PDF, sem cadastro. Confira as condições e a validade antes de divulgar.',
     benefits: ['16 modelos de Black Friday editáveis', 'Preço e condições da oferta em destaque', 'Impressão grátis em A4, A5 e A3'],
     sections: [
