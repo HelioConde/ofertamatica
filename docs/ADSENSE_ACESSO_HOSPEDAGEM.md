@@ -38,3 +38,14 @@ Só solicite nova revisão após **desaparecer a página intermediária de verif
 - [O que fazer quando o site não estiver pronto](https://support.google.com/adsense/answer/12176698?hl=pt-BR)
 - [Rastreadores do AdSense](https://support.google.com/adsense/answer/99376?hl=pt-BR)
 - [Conteúdo e experiência do usuário](https://support.google.com/adsense/answer/10015918?hl=pt-BR)
+
+
+## Recorrência verificada em 20/11/2026 — Home e Black Friday
+
+A execução pública [Production Lighthouse #44734492817](https://github.com/HelioConde/ofertamatica/actions/runs/44734492817), entre **09h17 e 09h18 (horário de Brasília)**, recebeu novamente nas quatro tentativas de `/` o documento `Verificação de segurança` com **4.051 bytes**, sem a raiz do aplicativo e sem a marca. O artefato `ofertamatica-lighthouse-production` guarda quatro relatórios `production-readiness-N.json`, todos `unexpected_content`; o Lighthouse **não chegou a medir** o desempenho nessa execução.
+
+Isso reforça que o desafio para algumas redes externas é **recorrente**, não demonstra que Googlebot recebeu essa resposta nem explica sozinho os números de indexação do Search Console. A aplicação já inclui proteção que rejeita HTML inesperado; não eliminar o alerta, não falsificar User-Agent do Google e não oferecer conteúdo diferente aos rastreadores.
+
+A Action diária de disponibilidade pública agora inclui também **`/cartaz-black-friday/`** além de Home, Modelos, Hortifruti, robots.txt e ads.txt. É a página de campanha que precisa permanecer diretamente acessível para quem chega da busca. A resposta HTTP 200 só é considerada válida quando há o HTML real da aplicação; uma página de desafio com HTTP 200 é classificada como `security_challenge`.
+
+**Para o suporte da hospedagem:** anexar os horários e o link da execução, solicitar identificação da regra WAF/anti-bot que substituiu o HTML e revisar falsos positivos para redes externas e rastreadores legítimos. Preservar a segurança normal da hospedagem. A validação definitiva é testar acesso externo sem desafio e inspecionar a URL publicada no Search Console.
