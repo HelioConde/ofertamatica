@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../styles/feedback-nudge.css'
 
 const DISMISS_KEY = 'ofertamatica:feedback-dismissed-until:v1'
@@ -13,17 +13,27 @@ function snooze() {
   try { window.localStorage.setItem(DISMISS_KEY, String(Date.now() + DISMISS_DAYS * 86400000)) } catch { /* armazenamento opcional */ }
 }
 
-export default function FeedbackNudge() {
+export default function FeedbackNudge({ openAt = null }) {
   const [visible, setVisible] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [rating, setRating] = useState('')
   const [message, setMessage] = useState('')
   const [copied, setCopied] = useState(false)
+  const messageRef = useRef(null)
   useEffect(() => {
     if (safeDismissUntil() > Date.now()) return undefined
-    const timer = window.setTimeout(() => setVisible(true), OPEN_AFTER_MS)
+    const delay = openAt === null ? OPEN_AFTER_MS : Math.max(0, openAt - Date.now())
+    // A importação pode terminar depois do prazo; exibir sem outro timer.
+    if (delay === 0) { setVisible(true); return undefined }
+    const timer = window.setTimeout(() => setVisible(true), delay)
     return () => window.clearTimeout(timer)
-  }, [])
+  }, [openAt])
+
+  // Depois de acionar “Dar minha opinião”, o botão deixa o DOM.
+  // Mover o foco para o campo evita perda do ponto de navegação pelo teclado.
+  useEffect(() => {
+    if (expanded && visible) messageRef.current?.focus()
+  }, [expanded, visible])
 
   function dismiss() {
     setVisible(false)
@@ -83,7 +93,7 @@ export default function FeedbackNudge() {
             ))}
           </fieldset>
           <label htmlFor="ofertamatica-feedback-message">O que podemos melhorar?</label>
-          <textarea id="ofertamatica-feedback-message" value={message} onChange={(event) => { setMessage(event.target.value); setCopied(false) }}
+          <textarea id="ofertamatica-feedback-message" ref={messageRef} value={message} onChange={(event) => { setMessage(event.target.value); setCopied(false) }}
             rows={3} maxLength={400} required placeholder="Ex.: gostaria de mais modelos para hortifruti..." />
           <div className="feedback-nudge-actions">
             <button type="submit" disabled={!message.trim()}>Abrir meu e-mail</button>

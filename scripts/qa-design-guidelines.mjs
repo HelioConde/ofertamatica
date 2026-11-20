@@ -266,6 +266,18 @@ try {
             }
           }
 
+          if (route.path === '/' && viewport.width <= 760) {
+            const planFields = page.locator('.home-print-plan-fields input, .home-print-plan-fields select')
+            const sizes = await planFields.evaluateAll(elements => elements.map(el => {
+              const rect = el.getBoundingClientRect()
+              return { tag: el.tagName, font: Number.parseFloat(getComputedStyle(el).fontSize), height: rect.height }
+            }))
+            if (sizes.length !== 2 || sizes.some(item => item.font < 16 || item.height < 44)) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Planejador de folhas pode causar zoom no iOS ou é difícil de tocar', details: sizes })
+            }
+          }
+
           if (route.path === '/') {
             // Testa a partir do início do tab-order do navegador real.
             await page.keyboard.press('Tab')

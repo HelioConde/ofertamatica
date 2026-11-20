@@ -4,7 +4,7 @@ import CreatorSeoHead from './components/CreatorSeoHead'
 import SiteNavigation from './components/SiteNavigation'
 import FormatOptionCard from './components/FormatOptionCard'
 import HomePrintHelp from './components/HomePrintHelp'
-import FeedbackNudge from './components/FeedbackNudge'
+import DeferredFeedbackNudge from './components/DeferredFeedbackNudge'
 import { getPosterFormat, POSTER_FORMAT_OPTIONS } from './config/posterFormats'
 
 // A Home usa somente navegação e seletor: o editor completo e suas dependências
@@ -151,7 +151,7 @@ function App() {
         draft={savedDraft}
         onResume={() => setEntry({ resume: true })}
       />
-      <FeedbackNudge />
+      <DeferredFeedbackNudge />
     </div>
   )
 }

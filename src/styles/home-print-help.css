@@ -124,3 +124,10 @@
   width: 100% !important;
   max-width: 100%;
 }
+
+
+/* Planejador de folhas: evitar zoom involuntário ao editar em iPhone. */
+@media screen and (max-width: 760px) {
+  .home-print-plan-fields input,
+  .home-print-plan-fields select { font-size: 16px; min-height: 44px; }
+}
