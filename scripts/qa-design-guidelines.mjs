@@ -36,7 +36,9 @@ const shouldAudit = (viewport, route) =>
 const viewports = [
   { label: 'mobile-360', width: 360, height: 800 },
   { label: 'mobile-390', width: 390, height: 844 },
+  { label: 'mobile-412', width: 412, height: 915 },
   { label: 'tablet-768', width: 768, height: 1024 },
+  { label: 'laptop-1000', width: 1000, height: 800 },
   { label: 'desktop-1440', width: 1440, height: 900 },
 ]
 const expectedAudits = routes.reduce((count, route) =>
