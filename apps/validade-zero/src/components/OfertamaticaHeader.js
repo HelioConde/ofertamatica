@@ -21,8 +21,12 @@ export default function OfertamaticaHeader() {
     if (!menuOpen) return undefined;
     const onKeyDown = event => {
       if (event.key === 'Escape') {
+        const focusInHeader = headerRef.current?.contains(document.activeElement);
         setMenuOpen(false);
-        toggleRef.current?.focus();
+        if (focusInHeader || document.activeElement === document.body) {
+          event.preventDefault();
+          toggleRef.current?.focus();
+        }
       }
     };
     const onPointerDown = event => {
@@ -30,11 +34,16 @@ export default function OfertamaticaHeader() {
         setMenuOpen(false);
       }
     };
+    const desktop = window.matchMedia?.('(min-width: 821px)');
+    const closeOnDesktop = () => { if (desktop?.matches) setMenuOpen(false); };
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('pointerdown', onPointerDown);
+    desktop?.addEventListener?.('change', closeOnDesktop);
+    closeOnDesktop();
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('pointerdown', onPointerDown);
+      desktop?.removeEventListener?.('change', closeOnDesktop);
     };
   }, [menuOpen]);
 

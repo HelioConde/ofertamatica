@@ -35,6 +35,7 @@ import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReada
 import { optimizePosterImage } from './utils/optimizePosterImage'
 import ProductPhotoControls from './components/ProductPhotoControls'
 import SavedProductListsDialog from './components/SavedProductListsDialog'
+import useModalFocus from './utils/useModalFocus'
 import FeedbackNudge from './components/FeedbackNudge'
 import { PHOTO_LAYOUTS, safeProductImageSrc } from './poster-engine/productPhotoLayout'
 import './styles/product-photo.css'
@@ -492,7 +493,7 @@ function FormatChooser({ onSelect, draft, onResume }) {
   })()
 
   return (
-    <main className="format-page format-home-refresh" id="formatos">
+    <main className="format-page format-home-refresh" id="formatos" tabIndex={-1}>
       <section className="format-dialog">
         <header className="format-dialog-head format-dialog-head-clean">
           <div className="format-home-intro">
@@ -618,13 +619,14 @@ function PosterViewport({ format, products, template, layoutPlans, selectedProdu
 }
 
 function ReviewDialog({ format, products, pageCount, warnings, onClose, onPrint, intent = 'print', mode = 'complete', template, backgroundSheetCount, onBackgroundSheetCountChange }) {
+  const modalRef = useModalFocus(true, onClose)
   const savingPdf = intent === 'pdf'
   const backgroundOnly = mode === 'backgrounds'
   const blankTemplate = backgroundOnly && template.headerFooterStyle === 'preimpresso'
   const totalSheets = backgroundOnly ? backgroundSheetCount : pageCount
   return (
     <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <section className="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
+      <section ref={modalRef} tabIndex={-1} className="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
         <header>
           <div>
             <span className="section-label">{backgroundOnly ? 'FUNDO PARA IMPRESSÃO' : (savingPdf ? 'SALVAR COMO PDF' : 'REVISÃO DE IMPRESSÃO')}</span>
@@ -1370,6 +1372,7 @@ function Editor({
 }) {
   const [expanded, setExpanded] = useState(false)
   const [reviewOpen, setReviewOpen] = useState(false)
+  const expandedDialogRef = useModalFocus(expanded, () => setExpanded(false))
   const [reviewIntent, setReviewIntent] = useState('print')
   const [reviewMode, setReviewMode] = useState('complete')
   const [backgroundSheetCount, setBackgroundSheetCount] = useState(1)
@@ -1934,7 +1937,7 @@ function Editor({
   }
 
   return (
-    <main className="editor-page" style={posterStyleVars}>
+    <main className="editor-page" id="conteudo-principal" tabIndex={-1} style={posterStyleVars}>
       <div className="editor-topline">
         <div className="editor-context">
           <strong>{format.shortLabel} · {products.length} {products.length === 1 ? 'produto' : 'produtos'}</strong>
@@ -2390,9 +2393,9 @@ function Editor({
 
       {expanded && products.length ? (
         <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setExpanded(false)}>
-          <section className="poster-modal real-preview-modal" role="dialog" aria-modal="true">
+          <section ref={expandedDialogRef} tabIndex={-1} className="poster-modal real-preview-modal" role="dialog" aria-modal="true" aria-labelledby="expanded-preview-title">
             <header>
-              <div><span>VISUALIZAÇÃO · {format.shortLabel}</span><h2>{title}</h2></div>
+              <div><span>VISUALIZAÇÃO · {format.shortLabel}</span><h2 id="expanded-preview-title">{title}</h2></div>
               <button type="button" aria-label="Fechar visualização" onClick={() => setExpanded(false)}>×</button>
             </header>
             <PosterViewport
@@ -2440,7 +2443,7 @@ function PublicRouteFallback({ page }) {
   const isModels = page.slug === 'modelos'
 
   return (
-    <main className="public-route-loading" aria-busy="true" aria-label="Carregando página">
+    <main className="public-route-loading" id="conteudo-principal" tabIndex={-1} aria-busy="true" aria-label="Carregando página">
       <section className="public-route-loading-hero">
         <div>
           <a className="public-route-loading-breadcrumb" href="/">Ofertamática <span aria-hidden="true">›</span> {page.eyebrow}</a>
@@ -2613,6 +2616,10 @@ function CreatorApp({ initialFormatId = null, resumeOnLoad = false }) {
 
   return (
     <div className={'app ' + appModeClass}>
+      <a className="skip-to-content"
+        href={screen === 'formats' && !seoPage && !publicPage && !isFreeEditor ? '#formatos' : '#conteudo-principal'}>
+        Pular para o conteúdo principal
+      </a>
       <SiteNavigation routePath={routePath} screen={screen} onInstall={installPrompt ? installApp : null} />
       {isFreeEditor ? (
         <Suspense fallback={<main className="format-page" aria-live="polite"><p style={{ padding: 24 }}>Preparando o editor livre de cartazes...</p></main>}>

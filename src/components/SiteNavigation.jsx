@@ -16,32 +16,39 @@ export default function SiteNavigation({ routePath, screen, onInstall }) {
   const headerRef = useRef(null)
   const toggleRef = useRef(null)
 
-  // O menu mobile permanece acessível ao teclado mesmo quando o foco sai dos links.
+  // Todos os destinos compartilham este cabeçalho. O menu deve poder ser
+  // dispensado sem navegar, com toque fora, Escape ou rotação para desktop.
   useEffect(() => {
     if (!menuOpen) return undefined
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false)
+    const closeOutside = (event) => {
+      if (!headerRef.current?.contains(event.target)) setMenuOpen(false)
+    }
+    const closeEscape = (event) => {
+      if (event.key !== 'Escape') return
+      const focusIsInHeader = headerRef.current?.contains(document.activeElement)
+      setMenuOpen(false)
+      if (focusIsInHeader) {
+        event.preventDefault()
         toggleRef.current?.focus()
       }
     }
-    const onPointerDown = (event) => {
-      if (headerRef.current && !headerRef.current.contains(event.target)) {
-        setMenuOpen(false)
-      }
-    }
-    document.addEventListener('keydown', onKeyDown)
-    document.addEventListener('pointerdown', onPointerDown)
+    const desktop = window.matchMedia('(min-width: 821px)')
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false) }
+    document.addEventListener('pointerdown', closeOutside)
+    document.addEventListener('keydown', closeEscape)
+    desktop.addEventListener('change', closeOnDesktop)
+    closeOnDesktop()
     return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('pointerdown', closeOutside)
+      document.removeEventListener('keydown', closeEscape)
+      desktop.removeEventListener('change', closeOnDesktop)
     }
   }, [menuOpen])
 
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
 
   return (
-    <header ref={headerRef} className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="nav-shell">
         <a className="brand" href="/" aria-label="Ofertamática — ir para a página inicial">
           <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />

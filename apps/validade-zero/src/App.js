@@ -525,7 +525,6 @@ function InventoryApp({ cloud = null, user = null, onSignOut = null, onActivateC
   const atRisk = counts.expired + counts.urgent;
   return (
     <div className="app">
-      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <aside className="sidebar no-print" aria-label="Menu principal">
         <div className="sidebar__caption">MENU PRINCIPAL</div>
         <nav className="nav" aria-label="Navegação do sistema">
@@ -761,7 +760,7 @@ function CloudEntry({ onTryLocal, initialUser = null }) {
     onTryLocal();
   }
   if (user) return <InventoryApp key={user.id} cloud={cloudApi} user={user} onSignOut={logout}/>;
-  return <main className="auth-screen">
+  return <main className="auth-screen" id="conteudo" tabIndex={-1}>
     <section className="auth-card" aria-labelledby="auth-title">
       <span className="auth-mark"><Icon name="shield" size={25}/></span>
       <p className="eyebrow">VALIDADE ZERO / NUVEM SEGURA</p>
@@ -801,7 +800,7 @@ export default function App() {
 
   let content;
   if (screen === 'checking') {
-    content = <main className="auth-screen"><p role="status">Verificando sua sessão…</p></main>;
+    content = <main className="auth-screen" id="conteudo" tabIndex={-1}><p role="status">Verificando sua sessão…</p></main>;
   } else if (screen === 'cloud' || screen === 'login') {
     content = <CloudEntry key={screen} initialUser={restoredUser}
       onTryLocal={() => { setRestoredUser(null); setScreen('local'); }}/>;
@@ -812,6 +811,7 @@ export default function App() {
   }
   return (
     <>
+      <a className="skip-link no-print" href="#conteudo">Pular para o conteúdo</a>
       <OfertamaticaHeader />
       {content}
     </>

@@ -1,0 +1,43 @@
+# Scanner externo somente por acionamento manual, após revisão.
+name: Impeccable Design Scan (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Digite REVIEWED_IMPECCABLE para confirmar revisão do CLI externo'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  design-scan:
+    if: ${{ inputs.confirmation == 'REVIEWED_IMPECCABLE' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan JSX and CSS with Impeccable (manual)
+        shell: bash
+        run: |
+          set +e
+          npx --yes impeccable@4.10.0 detect --github src/
+          status=$?
+          set -e
+          if [ "$status" -eq 1 ]; then
+            echo "Impeccable failed to scan the target." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "$status" -eq 2 ]; then
+            echo "Impeccable found design warnings. Review the annotations." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Impeccable reported no findings for the scanned source." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "This manual workflow does not change code or deploy." >> "$GITHUB_STEP_SUMMARY"
