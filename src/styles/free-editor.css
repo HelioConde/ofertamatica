@@ -158,3 +158,18 @@
     font-size: 13px;
   }
 }
+
+/* WCAG 2.2 AA — textos auxiliares da interface, não da arte impressa. */
+@media screen {
+  .free-poster-editor .free-editor-top p,
+  .free-poster-editor .free-editor-control-heading > span,
+  .free-poster-editor .free-editor-help,
+  .free-poster-editor .free-canvas-heading span,
+  .free-poster-editor .free-canvas-bottom p,
+  .free-poster-editor .free-editor-quick-guide > summary small {
+    color: #526781;
+  }
+  .free-poster-editor .free-editor-ready {
+    color: #1b714f !important;
+  }
+}
