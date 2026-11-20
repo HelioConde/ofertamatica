@@ -456,7 +456,7 @@ function CuratedModelSection({ slug, onCreate }) {
     return model.id === seasonFilter
   })
   return (
-    <section id={blackFriday ? 'modelos-black-friday' : undefined} className="marketing-section curated-model-section" aria-label={blackFriday ? 'Escolher um dos 16 modelos Black Friday para imprimir' : 'Modelos para usar nesta página'}>
+    <section id={blackFriday ? 'modelos-black-friday' : undefined} tabIndex={blackFriday ? -1 : undefined} className="marketing-section curated-model-section" aria-label={blackFriday ? 'Escolher um dos 16 modelos Black Friday para imprimir' : 'Modelos para usar nesta página'}>
       <div className="marketing-heading">
         <span className="marketing-kicker">EXEMPLOS EDITÁVEIS</span>
         <h2>{collection.heading}</h2>
