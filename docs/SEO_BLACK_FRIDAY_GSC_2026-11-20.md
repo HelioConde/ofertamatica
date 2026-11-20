@@ -1,38 +1,30 @@
-# Diagnóstico e melhorias de busca — Black Friday (20/11/2026)
+# Otimização SEO e UX — cartazes Black Friday (20/11/2026)
 
-## Dados recebidos pelo responsável do site
+## Evidência e privacidade
 
-Captura do Search Console: tipo de pesquisa **Web**, intervalo selecionado **3 meses**, tabela de páginas, sem posição média nem consultas abertas no print.
+O diagnóstico partiu de capturas **privadas** do Google Search Console fornecidas pelo proprietário. As métricas individuais de cliques, impressões e cobertura **não são publicadas neste repositório**. A página `/cartaz-black-friday/` foi priorizada por ter maior exposição de busca do que outras páginas editoriais no material analisado.
 
-| Página | Cliques | Impressões | CTR calculado |
-| --- | ---: | ---: | ---: |
-| `/` | 63 | 396 | 15,91% |
-| `/cartaz-black-friday/` | 13 | 1.598 | **0,81%** |
-| `/placas-para-hortifruti/` | 9 | 380 | 2,37% |
-| `/cartaz-para-supermercado/` | 7 | 315 | 2,22% |
-| `/cartazes-para-farmacia/` | 5 | 182 | 2,75% |
+**Limite de inferência:** CTR baixo pode depender de posição média, consultas, dispositivo ou aparência do snippet. As capturas não exibiam posição e consultas por URL; não concluir que o título, isoladamente, causava o desempenho e não prometer resultados quantitativos sem medições.
 
-O CTR é calculado por cliques/impressões × 100; não é um score de qualidade. A diferença pode vir de **posição média baixa, consultas pouco alinhadas, dispositivo ou snippet**. Sem posição e consultas da URL, não atribuir causalidade ao título nem prometer aumento de tráfego.
+O painel também registrou URLs do domínio nas categorias redirecionamento, 404, soft 404 e rastreada/não indexada. Essas categorias são **do site inteiro**, não prova de erros da página Black Friday. As listas exatas de URLs afetadas não foram fornecidas; não criar redirecionamentos nem páginas artificiais sem confirmar cada URL e destino equivalente.
 
-O print de cobertura **do domínio inteiro** apresenta: 19 URLs com redirecionamento, 18 respostas 404, 39 rastreadas e ainda não indexadas, 6 soft 404, 1 canônica alternativa e 5 descobertas ainda não indexadas. Essas contagens **não são falhas da página Black Friday** e não oferecem os exemplos de URL; não criar 301s, conteúdo fictício nem alterar canonicals sem identificar cada origem e o destino equivalente.
+## Correções implementadas
 
-## Mudanças implementadas nesta branch
+1. **Título e descrição:** destacar que existem **16 modelos editáveis**, impressão grátis em A4/A5/A3 e opções de fundo branco econômico, Esquenta e De/Por. Não incluir ano fixo para evitar desatualização.
+2. **Intenção de quem chega da busca:** botão `Ver os 16 modelos` leva diretamente à galeria real; `Criar meu cartaz grátis` mantém o atalho ao editor.
+3. **Hierarquia indexável e visível:** página React e HTML estático posicionam a galeria de modelos antes dos exemplos genéricos e artigos explicativos; destino `#modelos-black-friday` funciona em ambos.
+4. **Testes:** `validate-seo-graph.mjs` verifica metadata, galeria e ordem; `qa-black-friday-landing.mjs` verifica 16 cartões, 6 opções econômicas, Enter, navegação à galeria, seleção de arte e viewport de 390 e 1440px; `verify-live-seo.mjs` valida o HTML publicado.
 
-1. **Snippet específico:** título passa a informar os **16 modelos para imprimir grátis**; descrição destaca fundo branco econômico, formatos A4/A5/A3 e ausência de cadastro. Sem ano fixo, para a URL continuar válida após 2026.
-2. **UX da busca:** primeiro botão da landing aponta para a galeria real de 16 modelos; o segundo abre o criador. A galeria recebe id fixo e espaçamento de rolagem para navegação por teclado e celular.
-3. **HTML inicial indexável:** modelos e link interno aparecem antes dos artigos longos no snapshot estático. Assim o conteúdo de busca expressa a mesma prioridade que a interface React.
-4. **Testes:** `validate-seo-graph` valida snippet e hierarquia; `qa-black-friday-landing.mjs` testa HTML 200, H1, 16 cards, filtro dos seis modelos de fundo branco, Enter no atalho, layout 390/1440px e a seleção de modelo. `verify-live-seo` confirma metadados e âncora após publicação.
+A arte dos modelos, seus preços demonstrativos, fontes, formatos, PDF, consentimento e AdSense não foram alterados.
 
-**Fora de escopo:** alterar os 16 designs, o tamanho físico A4/A5/A3, AdSense, consentimento, funcionalidade De/Por, redirecionamentos ou política de indexação sem dados. Todas as placas com preços de exemplo permanecem identificadas como fictícias.
+## Plano de monitoramento
 
-## Monitoramento no Search Console
+Registrar a data de publicação e acompanhar por **2 a 4 semanas** no Search Console (respeitando a defasagem de alguns dias nos dados):
 
-Após publicar, registrar o dia exato do deploy e **aguardar dados consolidados** (normalmente 2–3 dias de atraso). Acompanhar por 2 a 4 semanas:
+- Página exatamente `https://ofertamatica.com.br/cartaz-black-friday/`, dimensões **Consulta**, **Dispositivo** e **Data**; comparar CTR em posições similares.
+- Verificar consultas reais que geraram impressões, distinguindo impressão de interesse informativo e interesse em baixar/imprimir.
+- Inspecionar a URL canônica e seu status de indexação antes de solicitar reindexação.
+- Exportar os exemplos de 404 e soft 404 do Search Console, comparando com os redirecionamentos legados e as rotas intencionalmente desativadas; não confundir 301 esperado com falha.
+- Reavaliar se os visitantes conseguem escolher um modelo e avançar ao criador, quando houver dados de eventos coletados com consentimento.
 
-- Filtro `Página exatamente /cartaz-black-friday/` e dimensões `Consulta`, `Dispositivo` e `Data`: comparar CTR em **posições semelhantes**, não só CTR agregado.
-- Separar consultas como `cartaz black friday para imprimir`, `modelo black friday a4`, `black friday fundo branco` **somente se aparecerem nos dados reais**; são exemplos de segmentação, não consultas verificadas.
-- Inspecionar no GSC a URL canônica `https://ofertamatica.com.br/cartaz-black-friday/`. Se estiver indexada, não solicitar reindexação repetidamente nem tratar impressões como erro.
-- Exportar os exemplos das categorias **404**, **soft 404** e **Rastreada, mas não indexada** para identificar possíveis problemas reais, separados dos 301 intencionais e do `/login` desativado.
-- Conferir Search Console e analytics de cliques em `Ver os 16 modelos` e `Usar este modelo` quando houver eventos de medição consentidos; não inventar taxa de conversão.
-
-A conexão GSC Wizard do chat retornou `payment_required` em 20/11/2026. Esta intervenção se baseia apenas nas capturas do proprietário, no HTML público e nos testes do próprio repositório; **não** foi realizada uma consulta autenticada às posições ou palavras-chave.
+A conexão de análise detalhada GSC Wizard não estava disponível nesta sessão. Nenhuma posição média ou consulta foi inventada ou registrada como verificada.
