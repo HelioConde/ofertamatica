@@ -65,8 +65,22 @@ try {
         }
       }
       await inspect('screen')
-      const oldPrice = await page.locator('.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor').innerText()
-      assert.ok(oldPrice.includes('6,99') && oldPrice.includes('POR'), 'De/Por perde comparação de preço demonstrativo')
+      const comparison = page.locator('.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor')
+      const oldPrice = await comparison.innerText()
+      const rawPrice = await comparison.textContent()
+      const metaStyles = await comparison.evaluate(node => ({
+        display: getComputedStyle(node).display,
+        visibility: getComputedStyle(node).visibility,
+        width: node.getBoundingClientRect().width,
+        children: [...node.children].map(child => ({
+          tag: child.tagName,
+          text: child.textContent,
+          display: getComputedStyle(child).display,
+          visibility: getComputedStyle(child).visibility,
+        })),
+      }))
+      console.log('[bf-depor-qa] ', JSON.stringify({ oldPrice, rawPrice, metaStyles }))
+      assert.ok(oldPrice.includes('6,99') && oldPrice.includes('POR'), 'De/Por perde comparação de preço demonstrativo: ' + JSON.stringify({ oldPrice, rawPrice, metaStyles }))
       if (width === 1440) {
         for (let i = 0; i < 6; i++) {
           await gallery.nth(i).screenshot({ path: 'artifacts/design-audit/black-friday-branca-v2-' + (i + 1) + '.png' })
