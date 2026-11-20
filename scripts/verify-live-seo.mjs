@@ -1,9 +1,22 @@
 import { setTimeout as sleep } from 'node:timers/promises'
 import { PUBLIC_PAGES, SEO_PAGES } from '../src/seo/seoPages.js'
+import { POSTER_MODEL_PRESETS } from '../src/config/posterModelPresets.js'
 
 // Verificação após o upload FTP. Não depende de serviços pagos nem de navegador.
 // Acompanha principalmente a regressão: URL especializada retornando HTML da home.
 const origin = 'https://ofertamatica.com.br'
+const blackFridayWhiteModels = [
+  'black-friday-economico', 'black-friday-branco-impacto',
+  'esquenta-black-friday-antecipada', 'esquenta-black-friday-de-por',
+  'esquenta-black-friday-semana', 'esquenta-black-friday-especial',
+].map((id) => {
+  const model = POSTER_MODEL_PRESETS.find((item) => item.id === id)
+  if (!model) throw new Error('Modelo Black Friday não existe no build: ' + id)
+  return model
+})
+const blackFridayLiveContent = blackFridayWhiteModels.flatMap((model) => [
+  model.name, model.product, 'R$ ' + model.value, model.note,
+])
 const checks = [
   { name: 'Home', url: origin + '/', status: 200, contains: ['Criar Placas de Preço e Cartazes Grátis', '"@type": "WebSite"', '/modelos/', '/formatos/'] },
   { name: 'Modelos', url: origin + '/modelos/', status: 200, contains: [PUBLIC_PAGES.find((page) => page.slug === 'modelos').title, 'https://ofertamatica.com.br/modelos/'] },
@@ -40,6 +53,7 @@ const checks = [
     'href="#modelos-black-friday"',
     'id="modelos-black-friday"',
     origin + '/cartaz-black-friday/',
+    ...blackFridayLiveContent,
   ] },
   { name: '410 antiga Copa do Mundo com navegação', url: origin + '/cartaz-copa-do-mundo', status: 410, contains: ['Essa página saiu de linha. Suas ofertas, não.', '/fale-conosco/'] },
   { name: '301 legado açougue', url: origin + '/placas-para-acougue/', status: 301, location: '/cartazes-para-acougue/' },

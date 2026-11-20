@@ -78,6 +78,9 @@ for (const id of economicalModels) {
   assert.ok(blackFridayCollection.models.includes(id), 'Modelo não está na galeria de Black Friday: ' + id)
   assert.ok(CURATED_POSTER_COLLECTIONS['placas-sazonais'].models.includes(id), 'Modelo não está em placas sazonais: ' + id)
   assert.ok(bf.includes(model.name), 'Modelo econômico não publicado no HTML: ' + id)
+  assert.ok(bf.includes(model.product), 'Produto demonstrativo desatualizado no HTML Black Friday: ' + id)
+  assert.ok(bf.includes('R$ ' + model.value), 'Preço demonstrativo desatualizado no HTML Black Friday: ' + id)
+  assert.ok(bf.includes(model.note), 'Descrição do modelo desatualizada no HTML Black Friday: ' + id)
 }
 assert.equal(POSTER_MODEL_PRESETS.find((item) => item.id === 'esquenta-black-friday-de-por').offerMode, 'de-por')
 // A prévia nunca deve prometer um desconto inexistente e a comparação precisa
