@@ -3386,3 +3386,54 @@ summary:focus-visible {
     color: #ffffff;
   }
 }
+
+
+/* Black Friday: o visitante que chega da busca vê primeiro os modelos.
+   Escopo restrito à landing, sem mudar os cartazes impressos. */
+.seo-black-friday-page #modelos-black-friday {
+  scroll-margin-top: 96px;
+}
+.seo-black-friday-page .seo-black-friday-models-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 2px solid #1d63e9;
+  border-radius: 11px;
+  background: #1d63e9;
+  color: #ffffff;
+  font-weight: 900;
+  text-decoration: none;
+}
+.seo-black-friday-page .seo-black-friday-models-cta:hover {
+  background: #134fc3;
+  border-color: #134fc3;
+  color: #fff;
+}
+.seo-black-friday-page .seo-black-friday-models-cta span {
+  color: inherit;
+}
+.seo-black-friday-page .seo-black-friday-create-cta {
+  min-height: 48px;
+  border: 2px solid #bbcef1;
+  background: #fff;
+  color: #174ea6;
+}
+.seo-black-friday-page .seo-black-friday-create-cta:hover {
+  border-color: #1d63e9;
+  background: #edf4ff;
+}
+@media screen and (max-width: 600px) {
+  .seo-black-friday-page .seo-hero-actions {
+    align-items: stretch;
+    gap: 10px;
+  }
+  .seo-black-friday-page .seo-black-friday-models-cta,
+  .seo-black-friday-page .seo-black-friday-create-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
