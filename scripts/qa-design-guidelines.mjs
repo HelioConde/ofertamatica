@@ -188,6 +188,10 @@ try {
               })
             }
           }
+          if (result.missingAccessibleNames.length) {
+            critical.push({ route: route.path, viewport: viewport.label,
+              reason: 'Controles sem nome acessível', details: result.missingAccessibleNames })
+          }
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
           }
@@ -268,7 +272,7 @@ try {
               }
               await page.locator('.main-nav .nav-link').first().focus()
               await page.keyboard.press('Escape')
-              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible()) {
+              if (await toggle.getAttribute('aria-expanded') !== 'false' || await page.locator('.main-nav').isVisible() || !await toggle.evaluate(el => document.activeElement === el)) {
                 critical.push({ route: route.path, viewport: viewport.label, reason: 'Menu mobile não fecha com Escape' })
               }
               await toggle.click()
@@ -295,6 +299,8 @@ const report = {
   generatedAt: new Date().toISOString(),
   methodology: 'Todas as rotas INDEXABLE_PAGES + Validade Zero; hidratação React + navegação por teclado + revisão responsiva 360/390/768/1440',
   notes: 'Resultados são verificações automatizadas iniciais, não pontuação visual ou certificação WCAG.',
+  routesCovered: routes.length,
+  viewportsCovered: viewports.map(viewport => viewport.label),
   findings,
   critical,
 }

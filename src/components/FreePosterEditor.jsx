@@ -132,6 +132,7 @@ export default function FreePosterEditor() {
   }
   const format = getPosterFormat(state.formatId)
   const model = POSTER_MODEL_PRESETS.find((item) => item.id === state.modelId) || POSTER_MODEL_PRESETS[0]
+  const invalidPreviousPrice = model.offerMode === 'de-por' && Boolean(state.product.regularPrice) && !inspectDePor(state.product.regularPrice, state.product.price).valid
   const base = getDefaultTemplateForFormat(state.formatId)
   const boxes = {
     contentBox: boxWithinBounds(state.boxes?.contentBox || base.contentBox),
@@ -306,7 +307,7 @@ export default function FreePosterEditor() {
   const chosenExtra = extras.find((x) => x.id === selected)
   const chosenBox = selected === 'contentBox' || selected === 'priceBox' ? boxes[selected] : chosenExtra
   return (
-    <main className="free-poster-editor" id="conteudo-principal" tabIndex={-1} style={styleVars}>
+    <main id="conteudo-principal" tabIndex={-1} className="free-poster-editor" style={styleVars}>
       <header className="free-editor-top">
         <div>
           <span className="free-editor-kicker">PERSONALIZAÇÃO AVANÇADA · GRÁTIS</span>
@@ -365,10 +366,10 @@ export default function FreePosterEditor() {
             <input inputMode="decimal" value={state.product.price} onChange={(e) => updateProduct('price', money(e.target.value))} placeholder="Ex.: 9,99" /></label>
           {model.offerMode === 'de-por' ? (
             <label className="free-editor-field free-editor-price-input"><span>Preço anterior real (R$)</span>
-              <input inputMode="decimal" value={state.product.regularPrice || ''} onChange={(e) => updateProduct('regularPrice', money(e.target.value))} placeholder="Ex.: 24,90" />
-              <small>Confirme o preço anterior praticado. O desconto só aparece quando o valor anterior é maior.</small>
-              {state.product.regularPrice && !inspectDePor(state.product.regularPrice, state.product.price).valid
-                ? <span role="alert">O preço anterior precisa ser válido e maior que o preço atual.</span>
+              <input inputMode="decimal" value={state.product.regularPrice || ''} onChange={(e) => updateProduct('regularPrice', money(e.target.value))} placeholder="Ex.: 24,90" aria-invalid={invalidPreviousPrice} aria-describedby={invalidPreviousPrice ? 'free-editor-price-before-error free-editor-price-before-hint' : 'free-editor-price-before-hint'} />
+              <small id="free-editor-price-before-hint">Confirme o preço anterior praticado. O desconto só aparece quando o valor anterior é maior.</small>
+              {invalidPreviousPrice
+                ? <span id="free-editor-price-before-error" role="alert">O preço anterior precisa ser válido e maior que o preço atual.</span>
                 : null}
             </label>
           ) : null}
@@ -392,15 +393,15 @@ export default function FreePosterEditor() {
           </details>
           <section className="free-editor-box-control" data-guide-section="boxes" data-guide-focused={guideFocus === 'boxes' ? 'true' : undefined}>
             <div className="free-editor-control-heading"><h3>Caixas e posições</h3><span>2. Arraste</span></div>
-            <div className="free-editor-box-tabs">
-              <button type="button" className={selected === 'contentBox' ? 'active' : ''} onClick={() => setSelected('contentBox')}>Descrição</button>
-              <button type="button" className={selected === 'priceBox' ? 'active' : ''} onClick={() => setSelected('priceBox')}>Preço</button>
+            <div className="free-editor-box-tabs" role="group" aria-label="Selecionar caixa para editar">
+              <button type="button" aria-pressed={selected === 'contentBox'} className={selected === 'contentBox' ? 'active' : ''} onClick={() => setSelected('contentBox')}>Descrição</button>
+              <button type="button" aria-pressed={selected === 'priceBox'} className={selected === 'priceBox' ? 'active' : ''} onClick={() => setSelected('priceBox')}>Preço</button>
               <button type="button" onClick={addText} disabled={extras.length >= 12}>+ Texto</button>
             </div>
-            {extras.length ? <div className="free-extra-picker" aria-label="Caixas extras">{extras.map((item, index) => <button key={item.id} type="button" className={selected === item.id ? 'active' : ''} onClick={() => setSelected(item.id)}>Texto {index+1}</button>)}</div> : null}
+            {extras.length ? <div className="free-extra-picker" role="group" aria-label="Caixas extras">{extras.map((item, index) => <button key={item.id} type="button" aria-pressed={selected === item.id} className={selected === item.id ? 'active' : ''} onClick={() => setSelected(item.id)}>Texto {index+1}</button>)}</div> : null}
             {chosenBox ? (
               <>
-                <p className="free-editor-help">Arraste a caixa na prévia. Use o círculo no canto inferior direito para redimensionar, ou ajuste os números abaixo.</p>
+                <p className="free-editor-help">Arraste a caixa na prévia ou use os campos X, Y, largura e altura abaixo para ajustar a posição e o tamanho por teclado.</p>
                 <div className="free-editor-number-grid">
                   {[['x','X (%)'],['y','Y (%)'],['width','Largura (%)'],['height','Altura (%)']].map(([field,label])=><NumericSetting key={field} label={label} value={chosenBox[field]} min={field === 'width' ? 8 : field === 'height' ? 6 : 0} onChange={(value)=>changeBox(selected,{[field]:value})}/>)}
                 </div>
