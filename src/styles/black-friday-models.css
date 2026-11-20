@@ -412,11 +412,17 @@
   transform: none !important;
   letter-spacing: -.025em !important;
   font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
-  font-size: clamp(4.2mm, 7.2cqi, 15mm) !important;
-  line-height: 1 !important;
+  font-size: clamp(13mm, 9cqi, 20mm) !important;
+  line-height: 1.04 !important;
 }
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon > b {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   color: #fff !important;
+  font-size: inherit !important;
+  line-height: 1.04 !important;
+  text-align: center;
   text-shadow: none !important;
   white-space: nowrap;
 }
@@ -491,48 +497,55 @@
   color: #fff !important;
 }
 
-/* Os quatro Esquenta usam título completo com tamanho adaptado ao papel. */
+/* O cartaz A4 é reduzido na galeria; títulos amplos conservam a leitura
+ * quando a mesma arte é exibida na miniatura e na impressão. */
 .poster-card[data-poster-theme^="bf-eco-"]:is(
   [data-poster-theme="bf-eco-antecipada"],
   [data-poster-theme="bf-eco-depor"],
   [data-poster-theme="bf-eco-semana"],
   [data-poster-theme="bf-eco-especial"]
 ) .ofertamatica-offer-ribbon {
-  font-size: clamp(3.2mm, 5.8cqi, 12mm) !important;
+  font-size: clamp(12mm, 8.4cqi, 16mm) !important;
 }
 
-/* Selo secundário decorativo entre o cabeçalho e os campos de produto.
- * Não altera nem preenche preços. */
-.poster-card[data-poster-theme="bf-eco-antecipada"] .ofertamatica-offer-ribbon::after,
-.poster-card[data-poster-theme="bf-eco-semana"] .ofertamatica-offer-ribbon::after,
-.poster-card[data-poster-theme="bf-eco-especial"] .ofertamatica-offer-ribbon::after {
+/* Selo secundário em texto real; sobrepõe a base da tarja sem colidir
+ * com as linhas do produto. */
+.poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon .bf-eco-subheading {
   position: absolute;
-  top: calc(100% - .1mm);
+  z-index: 4;
+  top: calc(100% - 7mm);
   left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   width: max-content;
-  max-width: 79%;
-  padding: .6mm 3mm;
-  border: 0;
-  border-radius: .5mm;
-  background: #101010;
+  max-width: 86%;
+  min-height: 11mm;
+  padding: 1mm 3.2mm;
+  border: .5mm solid #fff;
+  border-radius: 1.8mm;
+  background: #080808;
   color: #fff;
-  font: 900 clamp(2.4mm, 3.3cqi, 6mm)/1 "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
-  letter-spacing: .015em;
+  font-family: "Burbank Big Cd Bk", Impact, "Arial Black", sans-serif;
+  font-size: clamp(10mm, 6.5cqi, 12.5mm) !important;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
   text-align: center;
+  white-space: nowrap;
   transform: translateX(-50%);
   pointer-events: none;
-  white-space: nowrap;
 }
-.poster-card[data-poster-theme="bf-eco-antecipada"] .ofertamatica-offer-ribbon::after {
-  content: "ANTECIPADA";
-  transform: translateX(-50%) rotate(-2deg);
+.poster-card[data-poster-theme="bf-eco-semana"] .bf-eco-subheading {
+  font-size: clamp(9mm, 6cqi, 11.4mm) !important;
 }
-.poster-card[data-poster-theme="bf-eco-semana"] .ofertamatica-offer-ribbon::after {
-  content: "ESPECIAL DA SEMANA";
-}
-.poster-card[data-poster-theme="bf-eco-especial"] .ofertamatica-offer-ribbon::after {
-  content: "OFERTA ESPECIAL";
-  transform: translateX(-50%) rotate(-2deg);
+.poster-card.poster-card-format-a4x8[data-poster-theme^="bf-eco-"] .bf-eco-subheading,
+.poster-card.poster-card-format-a4x4[data-poster-theme^="bf-eco-"] .bf-eco-subheading {
+  max-width: 93%;
+  font-size: clamp(4.5mm, 6cqi, 8mm) !important;
+  min-height: 7mm;
+  padding: .4mm 1mm;
 }
 
 /* 3. Antecipada: bloco de preço preto, cantos arredondados e letras brancas. */
@@ -591,11 +604,7 @@
 /* Quando o cartaz é pequeno, preserve respiro e nunca encolha o valor. */
 .poster-card.poster-card-format-a4x8[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
 .poster-card.poster-card-format-a4x4[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon {
-  font-size: clamp(2.4mm, 5.9cqi, 11mm) !important;
-}
-.poster-card.poster-card-format-a4x8[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after {
-  font-size: clamp(1.9mm, 2.9cqi, 3.3mm);
-  padding: .25mm 1mm;
+  font-size: clamp(4.5mm, 6.6cqi, 10mm) !important;
 }
 .poster-card.poster-card-format-a4x8[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor {
   top: 52.8%;
@@ -608,7 +617,7 @@
   .poster-card[data-poster-theme^="bf-eco-"] .poster-card-layers,
   .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-poster-background,
   .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
-  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after,
+  .poster-card[data-poster-theme^="bf-eco-"] .bf-eco-subheading,
   .poster-card[data-poster-theme^="bf-eco-"] .poster-price-box::before {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -619,7 +628,7 @@
     background-image: none !important;
   }
   .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon,
-  .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon::after {
+  .poster-card[data-poster-theme^="bf-eco-"] .bf-eco-subheading {
     background: #080808 !important;
     color: #fff !important;
   }
