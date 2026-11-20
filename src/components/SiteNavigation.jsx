@@ -8,7 +8,7 @@ const LINKS = [
   ['/formatos', 'Formatos', 'Formatos'],
   ['/como-funciona', 'Como funciona', 'Como'],
   ['/guias-para-varejo', 'Guias para varejo', 'Guias'],
-  ['/validade-zero', 'Validade Zero — controle de vencimentos', 'Validade'],
+  ['/validade-zero', 'Validade Zero', 'Validade'],
 ]
 
 export default function SiteNavigation({ routePath, screen, onInstall }) {
