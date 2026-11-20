@@ -191,7 +191,10 @@
   color: #fff;
 }
 
+/* Amarelo sobre vermelho-escuro: 5,95:1 em texto pequeno (WCAG AA).
+   Modifica apenas o selo de desconto, não a cor do preço ou o tamanho do cartaz. */
 .poster-card[data-poster-theme="bf-depor"] .poster-offer-meta-depor .poster-discount-badge {
+  background: #a31324;
   color: #ffe000;
 }
 
