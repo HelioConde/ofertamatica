@@ -88,3 +88,23 @@ A identidade de cartazes inclui amarelo, vermelho, laranja e alto contraste **de
 **Pronto somente quando:** `npm run verify` passa, o Playwright verifica fluxo de criação e importação, `npm run qa:design` produz relatório, screenshots das rotas alteradas são revisadas em desktop e mobile, e nenhuma regressão é encontrada em navegação por teclado, impressões e consentimento.
 
 Ver `AGENTS.md` para o uso combinado das cinco ferramentas.
+
+## 9. Aplicação incremental das skills — sem redesign
+
+- **Baseline visual (Anthropic frontend-design):** priorizar hierarquia, utilidade e clareza em vez de templates de IA; conservar Inter, paleta de UI e tipografia dos cartazes.
+- **Impeccable:** auditar escalas tipográficas, alinhamento, agrupamentos, densidade e estados, sem copiar uma estética externa. OKLCH é apenas uma ferramenta para avaliar contraste; NÃO converter tokens atuais sem proposta e QA.
+- **UI Skill:** `DESIGN.md` é o âncora do sistema; mapear tokens existentes (primitivo → semântico → componente) antes de criar variáveis. Não sobrescrever os tokens com presets.
+- **UI Design:** para cada componente alterado, separar build, audit e stress-test (conteúdo extenso, zoom de 200%, viewport estreito, erro, loading e teclado).
+- **Prototype:** criar 2–3 alternativas em branch/protótipo isolado; mostrar diferenças, testar o fluxo e integrar só a variante escolhida.
+- **Web Quality:** checklist WCAG 2.2 AA; rótulos, estados de foco, ordem de tabulação, zoom, target size, contraste e mensagens de erro.
+- **UI Verify:** testes Playwright de navegação e interação real: escolher formato → gerar cartaz → editar preço/produto → visualizar e imprimir; capturar evidência por largura e proteger dados de usuário.
+
+### Critérios de aceitação específicos
+
+1. A UI não muda a arte impressa: dimensões, escala, fontes, margens, PDF e impressão permanecem equivalentes.
+2. Sem mudanças de stack, sem `shadcn`, sem GSAP e sem dependências remotas instaladas por esta integração.
+3. Toda proposta de mudança visual traz screenshots antes/depois, fluxo por teclado, análise mobile e resultado de `npm run verify` e `npm run qa:design`.
+4. Quando houver resultado inesperado em CI, documentar a causa separadamente e **não** marcar a auditoria como aprovada.
+5. As skills externas são **referência documental** até revisão e autorização de instalação em desenvolvimento, nunca no runtime.
+
+Ver `docs/DESIGN_SKILLS.md` para fontes e processo de avaliação.

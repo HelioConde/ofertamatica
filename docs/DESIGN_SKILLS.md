@@ -1,96 +1,55 @@
-# Skills de design/UX — seleção para o Ofertamática
+# Curadoria de UI/UX para o Ofertamática — adoção documental
 
-Registro da solicitação de aplicar **Impeccable** e as skills do documento fornecido. O documento é um catálogo heterogêneo de skills, agentes, plugins e prompts; não significa que todas sejam compatíveis com React/Vite ou necessárias ao produto.
+Última revisão: 2026-11-20. Escopo: React/Vite, criação e impressão de cartazes promocionais. Fonte de descoberta: https://plado.pages.dev/for/design/ui-design/ .
 
-## O que foi integrado ao repositório
+**Decisão:** integrar apenas princípios, checklists e procedimentos documentados. **Não instalar, copiar ou executar automaticamente skills externas neste PR.** As skills locais `ofertamatica-*` são instruções originais do projeto para agentes, não pacotes de terceiros. O fluxo de produção e `package.json` ficam intactos.
 
-- `.agents/skills/ofertamatica-design-review/SKILL.md`: fluxo local de revisão, acessibilidade e qualidade, preparado para Impeccable.
-- `.agents/skills/ofertamatica-design-system/SKILL.md`: tokens, componentes e estados sem quebrar `DESIGN.md`.
-- `.agents/skills/ofertamatica-prototype/SKILL.md`: wireframes e protótipos isolados.
-- `PRODUCT.md`: contexto persistente do produto para agentes.
-- `.github/workflows/impeccable-design-scan.yml`: detector oficial por acionamento manual, sem bloqueio automático de deploy.
-- `AGENTS.md`: roteamento para as skills locais e preservação dos contratos.
+## Skills priorizadas
 
-**Estado real:** as três skills locais ficam versionadas e disponíveis para agentes que reconhecem `.agents/skills`. Os pacotes externos Impeccable, UI UX Pro Max, design.how, Figma e outros **não foram baixados ou executados** neste commit. A instalação oficial do Impeccable requer um ambiente local/CI, não é uma dependência do site.
+| Prioridade | Skill | Referência | Aplicação segura agora | Uso futuro (somente após revisão) |
+| --- | --- | --- | --- | --- |
+| 1 | Anthropic `frontend-design` | https://github.com/anthropics/skills/tree/main/skills/frontend-design | Baseline visual, intenção, composição e evitar UI genérica; manter identidade atual | Avaliar instalação no agente, sem redesign automático |
+| 2 | Impeccable (Paul Bakaus) | https://github.com/pbakaus/impeccable | Hierarquia, tipografia, espaçamento, estados, contraste e auditoria | Instalar no checkout de desenvolvimento, após revisar permissões; scan somente manual |
+| 3 | UI Skill | https://github.com/lcanady/ui-skill | Inventário dos tokens e componentes descritos em `DESIGN.md`; sem gerar tema novo | Avaliar `npx skills add lcanady/ui-skill` em branch separada |
+| 4 | UI Design | https://github.com/mblode/agent-skills/tree/main/skills/ui-design | Build → audit → stress-test para React/Vite, sem assumir Next/Tailwind | Conferir compatibilidade antes de rodar |
+| 5 | Prototype (Emil Kowalski) | https://github.com/emilkowalski/skills | Prototipar 2–3 variantes isoladas de fluxo/componente e aprovar antes de integrar | Somente execução por solicitação, fora da produção |
+| 6 | Web Quality (Addy Osmani) | https://github.com/addyosmani/web-quality-skills | Checklist WCAG 2.2 AA, contraste, teclado, leitura por tecnologia assistiva e Lighthouse | Avaliar execução de auditorias em CI testado |
+| 7 | UI Verify (AlekseiSDev) | https://github.com/AlekseiSDev/ui-verify | Modelo de teste Playwright: navegar, capturar, interagir, confirmar resultado | Avaliar pacote após estabilizar fluxos existentes |
 
-## Impeccable — principal
+Links acima são referências de pesquisa. Nome do pacote, licença, versão e comandos devem ser confirmados no repositório original antes de instalar. A inspiração em uma skill **não comprova execução ou aprovação** da auditoria.
 
-Fonte: https://github.com/pbakaus/impeccable — licença Apache-2.0.
+## Mapeamento para o projeto
 
-Em um checkout confiável do projeto, após revisar a ferramenta e suas permissões:
+- `DESIGN.md`: fonte de verdade para paleta azul, tipografia Inter/system-ui, tokens CSS, responsividade, acessibilidade e preservação das fontes de cartazes.
+- `PRODUCT.md`: personas, tarefas reais, objetivo da primeira placa em dois cliques e restrições de impressão.
+- `AGENTS.md`: precedência das regras, escolha de skills, workflow de prototipação e testes.
+- `.agents/skills/ofertamatica-design-review/SKILL.md`: checklist e evidências de revisão, inspirado em frontend-design + Impeccable.
+- `.agents/skills/ofertamatica-design-system/SKILL.md`: uso e inventário de tokens, inspirado em UI Skill.
+- `.agents/skills/ofertamatica-prototype/SKILL.md`: fluxo para alternativas isoladas e seleção.
+- `.agents/skills/ofertamatica-impeccable/SKILL.md`: preparação para auditoria manual, não invocação automática.
+- `.agents/skills/ofertamatica-ui-verification/SKILL.md`: verificação de interações com Playwright existente.
+- `scripts/qa-design-guidelines.mjs`, `scripts/qa-interactions.mjs` e `scripts/qa-release-print-import.mjs`: infraestrutura de testes já presente; nenhum instalador adicional é requisito deste PR.
 
-```bash
-npx impeccable install
-# Reiniciar o agente de código para ele descobrir a skill instalada.
-# Exemplos, conforme a interface do agente:
-# /impeccable critique src/components/FormatOptionCard.jsx
-# /impeccable audit src/
-# /impeccable polish src/CreatorApp.jsx
-npx impeccable detect src/
-```
+## Sequência recomendada
 
-O modo live pode lançar um agente externo com aprovações e sandbox desativados em determinados cenários. **Não ativá-lo automaticamente**. Preferir inspeção local, diffs revisáveis e a auditoria CLI. O detector no GitHub Actions é **manual**, pode apontar problemas preexistentes e não prova correção automática.
+1. **Diagnosticar:** identificar problema reproduzível por screenshots/snapshot do fluxo. Não refazer a Home com base em gosto.
+2. **Inventariar:** confirmar tokens atuais em CSS e `DESIGN.md`; proteger dimensões e fontes do cartaz.
+3. **Prototipar:** quando houver mais de uma solução plausível, construir alternativas isoladas, escolher uma e só então propor alteração.
+4. **Implementar em PR separado:** componentes existentes e CSS incremental; sem pacotes de UI novos.
+5. **Auditar:** Playwright, teclado, foco, texto acessível, contraste, responsividade, Lighthouse e zoom; comparar com baseline.
+6. **Verificar impressão:** A4/A3/SRA3 conforme recurso existente, prévia/PDF, quebra de texto, preço e margens. Validar consentimento e uso sem cadastro.
+7. **Registrar:** links de screenshots, resultados de CI e defeitos conhecidos, distinguindo alertas anteriores de regressões.
 
-## Skills do documento: seleção por utilidade
+## Skills a evitar ou usar com cautela
 
-| Prioridade | Skill / fonte | Uso no Ofertamática | Situação |
-| --- | --- | --- | --- |
-| Alta | `design-system` — [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Inventário de tokens e componentes | Incorporada como diretriz local, pacote externo não instalado |
-| Alta | `design-system-boss`, `build-design-system`, `token-mapping`, `ui-review` — [arla6ka/design.how](https://github.com/arla6ka/design.how) | Revisão e consolidação incremental | Incorporadas como diretrizes locais |
-| Alta | `design-tokens` — [julianoczkowski/designer-skills](https://github.com/julianoczkowski/designer-skills) | Consistência de variáveis CSS | Referência para mudanças futuras |
-| Alta | `design-systems` — [cuellarfr/design-skills](https://github.com/cuellarfr/design-skills) | Documentação de componentes | Referência para mudanças futuras |
-| Alta | `html-wireframe`, `html-prototype` — [plannotator/effective-html](https://github.com/plannotator/effective-html) | Testar fluxos sem mexer em produção | Incorporadas como diretrizes locais |
-| Média | `ux-design-expert` — [centminmod/my-claude-code-setup](https://github.com/centminmod/my-claude-code-setup) | Revisões UX específicas | Consultar sob demanda |
-| Média | `prototype` — [spree/spree](https://github.com/spree/spree) | Comparar variantes de componentes | Somente quando suportado |
-| Média | `interactive-prototype`, `wireframe`, `create-design-system` — [manalkaff/opendesign](https://github.com/manalkaff/opendesign) | Prototipação e documentação | Consultar sob demanda |
-| Condicional | `figma-create-design-system-rules`, `figma-code-connect-components` — [openai/skills](https://github.com/openai/skills) | Figma → componentes | Apenas com arquivo Figma conectado |
-| Condicional | `figma-design-to-code`, `figma-create-new-file`, `figma-code-connect` — [figma/mcp-server-guide](https://github.com/figma/mcp-server-guide) | Handoff Figma | Apenas com design Figma real |
-| Condicional | `understand-figma` — [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | Mapeamento de arquivo Figma | Não aplicável sem Figma |
-| Condicional | `vibefigma` — [vibeflowing-inc/vibe_figma](https://github.com/vibeflowing-inc/vibe_figma) | Figma → React | Avaliar somente com design fornecido |
-| Condicional | `figma-build`, `figma-codegen` — [awdr74100/figwright](https://github.com/awdr74100/figwright) | Sincronizar design e código | Não instalar sem fluxo Figma |
-| Condicional | `shadcn-ui`, `stitch::manage-design-system` — [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) | Design no Stitch e shadcn | Não introduzir shadcn no React/CSS atual sem decisão |
-| Condicional | `shadcn` — [spree/spree](https://github.com/spree/spree), [Kiranism/next-shadcn-dashboard-starter](https://github.com/Kiranism/next-shadcn-dashboard-starter), [openstatusHQ/data-table-filters](https://github.com/openstatusHQ/data-table-filters), [panel-ui/PanelUI](https://github.com/panel-ui/PanelUI), [open-slide/open-slide](https://github.com/open-slide/open-slide) | Componentes em projetos que já usam shadcn | Não aplicável à stack atual |
-| Condicional | `migrate-design-system` — [arla6ka/design.how](https://github.com/arla6ka/design.how) | Migração deliberada | Não iniciar migração por padrão |
+- **Taste Skill (Leonxlnx):** não executar por padrão; pode favorecer mudanças estéticas que conflitam com a identidade. Menções anteriores em `AGENTS.md` são históricas e subordinadas à política atual.
+- **Shadcn/Next/Tailwind:** não introduzir stack novo em um site React/Vite com CSS e componentes existentes.
+- **GSAP:** não adicionar animação complexa num editor com saída estática para impressão.
+- **UI Mockups completos:** privilegiar wireframe leve e testes reais; mockups detalhados não são exigência.
+- **Demais coleções do Plado:** não adicionar automaticamente por popularidade, e sim após evidência de necessidade e compatibilidade.
 
-## Itens do documento não adotados automaticamente
+## Instalação e CI (etapa futura)
 
-- **Outro stack ou domínio:** `shadcn-ui-flutter`, `mobile-shadcn-conventions`, `app-ui-design` nativo, `kiranism-shadcn-dashboard`, `scalar-design-system`, `dstack-prototyping`, `prototyper` para jogos e `frontend-mockup-loop-dashboard` específico de outro app.
-- **Figma e produção de mídia sem insumos:** `figma` de HyperFrames/reelmimic, `figma-to-code`, `figma-typings-audit`, `claude2figma`, `figma-create-new-file` e `figma-code-connect`. Requerem contexto/integração próprios.
-- **Exploração e estética opcional:** `brainstorm-prototypes`, `learn-prototype`, `ai-assisted-prototyping`, `html-prototype-build`, `design-system-architect`, `design_system_engineer`, `shadcn-ui-adapter`, `ascii-ui-mockup-generator`, `rapid-prototyper`, `applying-ui-design-system`, `design-system` de snapcn, `ci-mockup-figure` e `prototype` de wayfinder-maps.
-- **Não adequados à tarefa:** `attack-prototype-pollution` (pesquisa ofensiva de segurança), criação de slides/figuras, plugins de animação e prompts de `prompts.chat` sem implementação verificável.
+Nenhum `npx skills add`, `npx impeccable install`, download de skill de terceiros ou alteração em `package.json` é executado por esta integração. O workflow Impeccable está limitado a `workflow_dispatch` com confirmação explícita; o scanner externo só roda se um responsável pedir posteriormente.
 
-Isso não invalida as ferramentas: apenas evita dezenas de dependências redundantes e mudanças de design incompatíveis com um editor de cartazes que precisa imprimir corretamente.
-
-## Comandos e critérios de aceite
-
-```bash
-npm install
-npm run verify
-npm run qa:design
-# Com Impeccable instalado no checkout:
-npx impeccable detect src/
-```
-
-- Fazer alterações visuais em branch e PR próprios; nunca redesenhar a Home por padrão.
-- Validar seletor, geração, prévia, importação, PDF e impressão nas larguras de `DESIGN.md`.
-- Acessibilidade e performance precisam de testes reais, não de uma nota presumida.
-- Skills de agentes não são bibliotecas do bundle e não substituem os testes já existentes.
-
-## Integração adicional das skills selecionadas do catálogo Plado
-
-Referência de descoberta: https://plado.pages.dev/for/design/ui-design/ . As skills foram verificadas nos repositórios de origem, não instaladas por simples popularidade.
-
-**Skills originais de terceiros agora versionadas (MIT):**
-- `.agents/skills/ui-review/` — `arla6ka/design.how`: `SKILL.md` e `references/criteria.md`.
-- `.agents/skills/html-wireframe/` — `plannotator/effective-html`: `SKILL.md` para wireframes sob demanda.
-- `.agents/skills/accessibility/` — `addyosmani/web-quality-skills`: `SKILL.md` e duas referências WCAG.
-
-Licenças e proveniência estão em `docs/THIRD_PARTY_DESIGN_SKILLS.md` e nos arquivos `LICENSE.upstream` de cada skill. Estes são **arquivos reais de skill**, disponíveis para agentes que reconhecem `.agents/skills/`; não são pacotes de produção, não executam automaticamente e não implicam que uma auditoria já passou.
-
-**Skills locais adicionais:**
-- `ofertamatica-impeccable`: guia de uso seguro do CLI oficial e revisão de código.
-- `ofertamatica-ui-verification`: procedimento concreto com os scripts Playwright já existentes no repositório.
-
-**Impeccable em CI:** o workflow `Impeccable Design Scan` executa `npx --yes impeccable@4.10.0 detect --github src/` em PRs que alteram interface ou skills, além do acionamento manual. Achados do detector aparecem como anotações, mas não são correções automáticas. O instalador completo `npx impeccable install` continua **opcional**, a ser executado conscientemente em um checkout de desenvolvimento. Não foram copiadas as centenas de arquivos internos da distribuição oficial.
-
-**Critérios para aplicar ao código:** depois de observar um problema, abrir um PR de correção separado, reproduzir no navegador e verificar `npm run verify`, `npm run qa:design`, `scripts/qa-interactions.mjs` e `scripts/qa-release-print-import.mjs` quando aplicáveis. Nenhuma skill autoriza alterar medidas, tipografia impressa ou o fluxo de dois cliques.
+**Aceite de qualquer implementação visual futura:** `npm run verify`, `npm run qa:design`, Playwright dos fluxos tocados e comparação de screenshots. Uma Action em verde não equivale à aprovação do produto e não dispensa QA de impressão.

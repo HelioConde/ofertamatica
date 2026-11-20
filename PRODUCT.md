@@ -40,3 +40,9 @@ Ferramenta web para criar cartazes promocionais legíveis para supermercados, me
 ## Evidência e validação
 
 Ler `AGENTS.md` para os comandos. Usar `npm run verify`, `npm run qa:design` e QA visual/teclado nas larguras especificadas em `DESIGN.md`. Uma ferramenta ou skill só pode ser descrita como executada se realmente foi executada.
+
+## Acessibilidade e sucesso do fluxo
+
+Ao revisar UX, aplicar WCAG 2.2 AA como meta de projeto: operar totalmente por teclado, receber feedback perceptível de validação, identificar claramente rótulos/ações e usar contraste adequado. Testar zoom de até 200% e larguras reduzidas. A qualidade não pode ser inferida apenas pela presença de uma skill ou por aprovação de um scan automatizado.
+
+O caminho crítico do usuário é **escolher formato → inserir/gerar → revisar → imprimir**. Não propor etapas de cadastro, modais ou efeitos novos que aumentem cliques. Toda intervenção em UI deve preservar as regras físicas do PDF/cartaz e levar para revisão um teste Playwright reproduzível. Consultar `docs/DESIGN_SKILLS.md`.

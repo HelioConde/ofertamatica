@@ -77,3 +77,17 @@ As skills em `.agents/skills/` são orientações de agentes de desenvolvimento,
 O catálogo do documento recebido, a seleção justificada, as fontes, os comandos de instalação **opcionais** e os limites de aplicação estão em `docs/DESIGN_SKILLS.md`. A ferramenta oficial Impeccable não está vendorizada aqui: sua instalação deve ser feita no checkout local, após revisão do instalador, com `npx impeccable install`. O detector CLI oficial roda em PRs de interface e pode ser acionado manualmente no GitHub Actions por `Impeccable Design Scan`; não é a instalação da skill completa.
 
 Prioridade de autoridade: pedido do usuário > contratos do produto (`README.md` e `PRODUCT.md`) > `DESIGN.md` > skills locais > sugestões de ferramentas externas. Não instalar bibliotecas de UI, modificar fontes dos cartazes, alterar dimensões de impressão, ativar live mode com permissões irrestritas ou executar scripts remotos automaticamente. Skills não são prova de melhoria: toda alteração de interface exige verificação real e `npm run verify`.
+
+## Política atual das skills de UI/UX (2026-11-20)
+
+> Esta seção prevalece sobre as sugestões históricas de Taste Skill acima: **não instalar ou executar Taste Skill por padrão**. O objetivo é evoluir a interface atual, não redesenhar a marca.
+
+**Skills de referência, nesta ordem:** (1) Anthropic `frontend-design` para princípios visuais; (2) Impeccable para hierarquia, tipografia, cores e ergonomia; (3) UI Skill de `lcanady/ui-skill` para inventário de tokens; (4) `agent-skills/ui-design` para build/audit/stress-test; (5) `emilkowalski/skills` / prototype para alternativas isoladas; (6) `addyosmani/web-quality-skills` para WCAG 2.2; (7) `AlekseiSDev/ui-verify` como padrão de testes com Playwright.
+
+**Modo de adoção neste PR: documentação e skills locais originais apenas.** Os projetos externos são referências e NÃO foram instalados ou copiados para `.agents/skills/`. Não executar `npx skills add`, `npx impeccable install` ou scripts de terceiros como consequência automática destas instruções. Qualquer execução exige revisão prévia do código, origem e permissões em outra etapa. O scan Impeccable permanece **manual** via `workflow_dispatch`, e só deve ser disparado após aprovação explícita.
+
+**Workflow dos agentes:** observar as telas e problemas reais → consultar tokens existentes em `DESIGN.md` → registrar hipóteses e variantes fora da produção → selecionar uma única solução → implementar em PR separado → testar teclado/contraste/responsividade/fluxos em Playwright → validar PDF/medidas de impressão → revisar screenshots antes de mesclar.
+
+**Checklist de QA:** fluxo de dois cliques, editor desktop em uma viewport, uso grátis sem cadastro, navegação por teclado e foco visível, contraste WCAG, sem overflow horizontal, 360/390/768/1440px, prévia/PDF/impressão coerentes, sem novas dependências pesadas e sem mudança silenciosa de fontes ou identidade.
+
+Fonte e limites de cada skill: `docs/DESIGN_SKILLS.md`. Priorizar esta política em relação aos comandos históricos de instalação nesta documentação.

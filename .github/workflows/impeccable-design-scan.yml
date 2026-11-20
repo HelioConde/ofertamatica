@@ -1,20 +1,20 @@
-name: Impeccable Design Scan
+# Scanner externo somente por acionamento manual, após revisão.
+name: Impeccable Design Scan (manual)
 
 on:
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'DESIGN.md'
-      - 'PRODUCT.md'
-      - '.agents/skills/**'
-      - '.github/workflows/impeccable-design-scan.yml'
   workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Digite REVIEWED_IMPECCABLE para confirmar revisão do CLI externo'
+        type: string
+        required: true
 
 permissions:
   contents: read
 
 jobs:
   design-scan:
+    if: ${{ inputs.confirmation == 'REVIEWED_IMPECCABLE' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Scan JSX and CSS with Impeccable
+      - name: Scan JSX and CSS with Impeccable (manual)
         shell: bash
         run: |
           set +e
@@ -40,4 +40,4 @@ jobs:
           else
             echo "Impeccable reported no findings for the scanned source." >> "$GITHUB_STEP_SUMMARY"
           fi
-          echo "This workflow does not change site code or deploy." >> "$GITHUB_STEP_SUMMARY"
+          echo "This manual workflow does not change code or deploy." >> "$GITHUB_STEP_SUMMARY"
