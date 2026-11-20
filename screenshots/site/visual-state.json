@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-20T09:26:27.818Z",
-  "commit": "005b3b91086fe42f7158bd562ae34eed8c9b7d40",
+  "generatedAt": "2026-11-20T10:19:42.753Z",
+  "commit": "7ffc0b9717727ecef261f1bdd9455af9c623271e",
   "routes": [
     [
       "home",
@@ -1789,14 +1789,14 @@
       "clippedFormatCards": [],
       "formatCardsOverlap": false,
       "formatCardHeights": [
-        157.7,
-        157.7,
-        157.7,
-        157.7,
-        157.7,
-        157.7,
-        157.7,
-        157.7
+        146,
+        146,
+        146,
+        146,
+        146,
+        146,
+        146,
+        146
       ],
       "adOverlapsFormats": false,
       "linksOverlapAd": false,
@@ -1815,15 +1815,15 @@
       "creatorGeometry": {
         "page": {
           "top": 77,
-          "bottom": 1623.7,
+          "bottom": 1624.3,
           "width": 1280,
-          "height": 1546.7
+          "height": 1547.3
         },
         "dialog": {
           "top": 89,
-          "bottom": 757,
+          "bottom": 757.6,
           "width": 1280,
-          "height": 668
+          "height": 668.6
         },
         "header": {
           "top": 90,
@@ -1832,15 +1832,15 @@
           "height": 170.6
         },
         "grid": {
-          "top": 368.6,
-          "bottom": 706,
+          "top": 392.6,
+          "bottom": 706.6,
           "width": 1226,
-          "height": 337.4
+          "height": 314
         },
         "ad": null,
         "links": {
-          "top": 714,
-          "bottom": 756,
+          "top": 714.6,
+          "bottom": 756.6,
           "width": 1278,
           "height": 42
         }
@@ -3675,7 +3675,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 11056,
+      "documentHeight": 11385,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -3732,7 +3732,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 6060,
+      "documentHeight": 6061,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -4425,7 +4425,7 @@
       "width": 360,
       "height": 800,
       "scrollWidth": 360,
-      "documentHeight": 14116,
+      "documentHeight": 14445,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
@@ -5314,7 +5314,7 @@
       "width": 412,
       "height": 915,
       "scrollWidth": 412,
-      "documentHeight": 11127,
+      "documentHeight": 10820,
       "horizontalOverflow": false,
       "visibleOverflow": [],
       "navClipped": false,
