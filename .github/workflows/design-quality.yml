@@ -5,6 +5,9 @@ on:
     paths:
       - 'apps/validade-zero/**'
       - 'scripts/generate-seo-pages.mjs'
+      - 'scripts/verify-live-assets.mjs'
+      - 'scripts/live-asset-probe.mjs'
+      - 'scripts/test-live-asset-probe.mjs'
       - 'scripts/probe-public-access.py'
       - 'scripts/test_probe_public_access.py'
       - '.github/workflows/public-crawl-health.yml'
@@ -26,6 +29,9 @@ on:
     paths:
       - 'apps/validade-zero/**'
       - 'scripts/generate-seo-pages.mjs'
+      - 'scripts/verify-live-assets.mjs'
+      - 'scripts/live-asset-probe.mjs'
+      - 'scripts/test-live-asset-probe.mjs'
       - 'scripts/probe-public-access.py'
       - 'scripts/test_probe_public_access.py'
       - '.github/workflows/public-crawl-health.yml'
@@ -67,6 +73,8 @@ jobs:
           php -l public/api/modelos-populares.php
       - name: Verificar diagnóstico de acesso externo sem rede
         run: python3 -m unittest discover -s scripts -p 'test_probe_public_access.py'
+      - name: Test production asset URL and MIME safeguards
+        run: node scripts/test-live-asset-probe.mjs
       - name: Build and validate
         run: npm run verify
       - name: Diagnose production JS/CSS delivery vs cache-busted check

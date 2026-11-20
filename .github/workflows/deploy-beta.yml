@@ -34,7 +34,9 @@ jobs:
           node --check scripts/validate-build.mjs
           node --check scripts/verify-live-seo.mjs
           node --check scripts/verify-live-assets.mjs
+          node --check scripts/live-asset-probe.mjs
           node --check scripts/check-ftp-assets.mjs
+          node scripts/test-live-asset-probe.mjs
 
       - name: Validate PHP endpoints
         run: |

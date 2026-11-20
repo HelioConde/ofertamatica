@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { browserAssetUrl, validAssetMime, unexpectedDocumentClass } from './live-asset-probe.mjs'
 
 // FTP production guard: the app must never switch its index.html before all
 // referenced hashed JS and CSS are readable by users on the real host.
@@ -38,20 +39,30 @@ async function attemptCheck() {
   const problems = []
   for (const resource of references) {
     try {
-      const url = new URL(resource, ORIGIN)
-      url.searchParams.set('build-check', String(Date.now()))
+      // URLs com hash já são únicas. Um parâmetro aleatório pode acionar
+      // bloqueios anti-bot que NÃO ocorrem nos URLs reais dos navegadores.
+      const url = browserAssetUrl(resource, ORIGIN)
       const response = await fetch(url, {
-        headers: { 'cache-control': 'no-cache', 'user-agent': 'Ofertamatica-Production-Assets-QA/1.0' },
+        headers: {
+          'cache-control': 'no-cache',
+          'accept': resource.endsWith('.js') ? 'text/javascript,application/javascript;q=0.9,*/*;q=0.1' : 'text/css,*/*;q=0.1',
+          'user-agent': 'Ofertamatica-Production-Assets-QA/1.0',
+        },
         signal: AbortSignal.timeout(18000),
       })
       const type = response.headers.get('content-type') || ''
-      const js = resource.includes('.js')
-      if (!response.ok ||
-          (js && !/javascript|ecmascript/i.test(type)) ||
-          (!js && !/text\/css/i.test(type))) {
-        problems.push(resource + ': status=' + response.status + ', tipo=' + (type || '(ausente)'))
+      if (!validAssetMime(resource, response.status, type)) {
+        // O FTP pode ter o arquivo correto e a hospedagem responder HTTP 200
+        // com HTML (WAF, SPA fallback ou rewrite). Nunca considerar isso OK.
+        const htmlReply = /html/i.test(type)
+        const sample = htmlReply ? (await response.text()).slice(0, 16000) : ''
+        problems.push(resource + ': status=' + response.status +
+          ', tipo=' + (type || '(ausente)') +
+          ', diagnóstico=' + unexpectedDocumentClass(type, sample))
+        if (!htmlReply) await response.body?.cancel()
+      } else {
+        await response.body?.cancel()
       }
-      await response.body?.cancel()
     } catch (error) {
       problems.push(resource + ': ' + (error?.message || String(error)))
     }
@@ -59,14 +70,17 @@ async function attemptCheck() {
   if (mode === '--html-and-assets') {
     try {
       const url = new URL('/', ORIGIN)
-      url.searchParams.set('html-check', String(Date.now()))
       const response = await fetch(url, {
-        headers: { 'cache-control': 'no-cache', 'user-agent': 'Ofertamatica-Production-HTML-QA/1.0' },
+        headers: { 'cache-control': 'no-cache', 'accept': 'text/html,*/*;q=0.1', 'user-agent': 'Ofertamatica-Production-HTML-QA/1.0' },
         signal: AbortSignal.timeout(18000),
       })
       const html = await response.text()
       if (!response.ok || !/text\/html/i.test(response.headers.get('content-type') || '')) {
         problems.push('HTML principal indisponível: HTTP ' + response.status)
+      }
+      if (!/<div\s+id=["']root["']/i.test(html)) {
+        problems.push('HTML principal não contém o aplicativo: ' +
+          unexpectedDocumentClass(response.headers.get('content-type') || '', html.slice(0, 16000)))
       }
       for (const resource of references) {
         if (!html.includes(resource)) {
