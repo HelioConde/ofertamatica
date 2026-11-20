@@ -456,7 +456,7 @@ function CuratedModelSection({ slug, onCreate }) {
     return model.id === seasonFilter
   })
   return (
-    <section className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
+    <section id={blackFriday ? 'modelos-black-friday' : undefined} tabIndex={blackFriday ? -1 : undefined} className="marketing-section curated-model-section" aria-label="Modelos para usar nesta página">
       <div className="marketing-heading">
         <span className="marketing-kicker">EXEMPLOS EDITÁVEIS</span>
         <h2>{collection.heading}</h2>
@@ -1045,7 +1045,7 @@ export function SeoLanding({ page, onCreate }) {
   return (
     <>
       <SeoHead page={{ ...page, path: '/' + page.slug }} />
-      <main id="conteudo-principal" tabIndex={-1} className="seo-landing">
+      <main id="conteudo-principal" tabIndex={-1} className={'seo-landing' + (page.slug === 'cartaz-black-friday' ? ' seo-black-friday-page' : '')}>
         <section className="seo-hero seo-hero-guide">
           <div>
             <a className="seo-breadcrumb" href="/">Ofertamática <span>›</span> {page.eyebrow}</a>
@@ -1053,8 +1053,19 @@ export function SeoLanding({ page, onCreate }) {
             <h1>{page.heading}</h1>
             <p>{page.lead}</p>
             <div className="seo-hero-actions">
-              <button type="button" onClick={onCreate}>Criar cartaz</button>
-              <a href="/guias-para-varejo/">Ver todos os guias</a>
+              {page.slug === 'cartaz-black-friday' ? (
+                <>
+                  <a className="seo-black-friday-models-cta" href="#modelos-black-friday">
+                    Ver os 16 modelos <span aria-hidden="true">↓</span>
+                  </a>
+                  <button className="seo-black-friday-create-cta" type="button" onClick={onCreate}>Criar meu cartaz grátis</button>
+                </>
+              ) : (
+                <>
+                  <button type="button" onClick={onCreate}>Criar cartaz</button>
+                  <a href="/guias-para-varejo/">Ver todos os guias</a>
+                </>
+              )}
             </div>
           </div>
           <aside className="seo-benefit-card">
