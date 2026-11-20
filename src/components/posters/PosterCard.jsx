@@ -3,6 +3,13 @@ import { POSTER_DESCRIPTION_FONT } from '../../config/posterTypography.js'
 import PriceValue from './PriceValue'
 import { inspectDePor } from '../../poster-engine/priceComparison.js'
 
+const BF_ECONOMIC_SUBHEADINGS = Object.freeze({
+  'bf-eco-antecipada': 'ANTECIPADA',
+  'bf-eco-depor': 'DE / POR',
+  'bf-eco-semana': 'ESPECIAL DA SEMANA',
+  'bf-eco-especial': 'OFERTA ESPECIAL',
+})
+
 const ACCENT_PATTERN = /[À-ÖØ-öø-ÿ\u0300-\u036f]/
 
 function hasAccent(text) {
@@ -170,6 +177,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
   const noFooterMode = paperStockMode || template.headerFooterStyle === 'header-transparente'
   const headerText = template.headerText || 'OFERTA'
   const headerLengthClass = headerText.length > 15 ? 'header-text-xlong' : headerText.length > 10 ? 'header-text-long' : 'header-text-short'
+  const economicSubheading = BF_ECONOMIC_SUBHEADINGS[template.headerFooterStyle] || ''
   return (
     <article className={`poster-card poster-card-format-${String(format.id || '').toLocaleLowerCase('pt-BR').replace(/_/g, '-')} ${inverted ? 'poster-card-inverted' : ''} ${paperStockMode ? 'poster-card-paper-stock' : ''} ${selected ? 'poster-card-selected' : ''}`} data-product-id={product.id} data-poster-theme={template.headerFooterStyle || ''} onClick={onSelect}>
       <div className="poster-card-layers">
@@ -180,7 +188,7 @@ export default function PosterCard({ product, format, template, layoutPlan, inve
               <img src={template.headerImage} alt="" />
             </div>
           ) : (
-            <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'retail'} ${headerLengthClass}`}><span className="ofertamatica-header-mark" aria-hidden="true"><i /><i /></span><b>{headerText}</b></div>
+            <div className={`ofertamatica-offer-ribbon header-${template.headerStyle || 'retail'} ${headerLengthClass}`}><span className="ofertamatica-header-mark" aria-hidden="true"><i /><i /></span><b>{headerText}</b>{economicSubheading ? <span className="bf-eco-subheading">{economicSubheading}</span> : null}</div>
           )}
           <div className="ofertamatica-inner-frame" />
           <div className="ofertamatica-footer-decoration" />

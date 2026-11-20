@@ -353,10 +353,11 @@ function ModelCard({ item, onCreate, badge }) {
   const pxPerMm = 96 / 25.4
   const naturalWidth = format.widthMm * pxPerMm
   const naturalHeight = format.heightMm * pxPerMm
-  const scale = 0.245
+  const isWhiteBlackFriday = /^bf-eco-/.test(headerFooterStyle)
+  const scale = isWhiteBlackFriday ? 0.276 : 0.245
 
   return (
-    <article className="model-showcase-card model-showcase-card-real">
+    <article className={'model-showcase-card model-showcase-card-real' + (isWhiteBlackFriday ? ' model-showcase-card-white-black-friday' : '')}>
       {badge ? <span className="model-showcase-badge">{badge}</span> : null}
       <div
         className="model-real-poster-shell"

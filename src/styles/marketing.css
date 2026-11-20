@@ -3509,3 +3509,74 @@ summary:focus-visible {
     }
   }
 }
+
+/* UX Black Friday 2026 — prévia maior e leitura real dos seis cartazes brancos.
+   Somente galeria web. A4 físico, editor, PDF e impressão não mudam de escala. */
+@media screen {
+  .seo-landing.black-friday-landing .model-showcase-card-white-black-friday {
+    border-color: #c8d8ee;
+    background: #fbfdff;
+  }
+  .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy {
+    gap: 9px !important;
+    padding: 16px !important;
+  }
+  .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy > strong {
+    font-size: 16px !important;
+    line-height: 1.32;
+    color: #173962;
+  }
+  .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy p {
+    color: #3e5876;
+    font-size: 13px !important;
+    line-height: 1.5;
+  }
+  .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy button {
+    min-height: 46px !important;
+    font-size: 13px !important;
+    border-color: #b8d0f2;
+  }
+  @media (min-width: 601px) {
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-real-poster-shell {
+      width: 219px !important;
+      height: 309px !important;
+      max-width: 100%;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-real-poster-scale {
+      transform: scale(.276) !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday {
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-template-rows: auto 1fr !important;
+      justify-items: stretch;
+      padding: 15px !important;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-real-poster-shell {
+      width: 213px !important;
+      height: 301px !important;
+      max-width: 100%;
+      margin: 0 auto !important;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-real-poster-scale {
+      transform: scale(.268) !important;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy {
+      height: auto !important;
+      width: 100%;
+      min-width: 0;
+      margin-top: 14px;
+      border-top: 1px solid #dce6f2;
+      border-left: 0 !important;
+      padding: 13px 4px 2px !important;
+      align-content: start;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy > strong {
+      font-size: 15px !important;
+    }
+    .seo-landing.black-friday-landing .model-showcase-card-white-black-friday .model-card-copy button {
+      font-size: 14px !important;
+    }
+  }
+}

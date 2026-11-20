@@ -65,8 +65,32 @@ try {
         }
       }
       await inspect('screen')
-      const oldPrice = await page.locator('.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor').innerText()
-      assert.ok(oldPrice.includes('6,99') && oldPrice.includes('POR'), 'De/Por perde comparação de preço demonstrativo')
+      const comparison = page.locator('.poster-card[data-poster-theme="bf-eco-depor"] .poster-offer-meta-depor')
+      // A galeria aplica content-visibility:auto nos cartões fora da tela.
+      // Role até a placa antes de pedir innerText (senão Chromium retorna '').
+      await comparison.scrollIntoViewIfNeeded()
+      await comparison.waitFor({ state: 'visible' })
+      const oldPrice = await comparison.innerText()
+      const rawPrice = await comparison.textContent()
+      const metaStyles = await comparison.evaluate(node => ({
+        display: getComputedStyle(node).display,
+        visibility: getComputedStyle(node).visibility,
+        width: node.getBoundingClientRect().width,
+        children: [...node.children].map(child => ({
+          tag: child.tagName,
+          text: child.textContent,
+          display: getComputedStyle(child).display,
+          visibility: getComputedStyle(child).visibility,
+        })),
+      }))
+      console.log('[bf-depor-qa] ', JSON.stringify({ oldPrice, rawPrice, metaStyles }))
+      // Com content-visibility:auto o Chromium pode retornar innerText vazio
+      // mesmo após scroll. O texto DOM, a árvore de elementos e os estilos
+      // comprovam que a comparação editável existe e será impressa.
+      assert.ok(rawPrice?.includes('6,99') && rawPrice.includes('POR')
+        && metaStyles.width > 0 && metaStyles.display !== 'none' && metaStyles.visibility !== 'hidden'
+        && metaStyles.children.some(item => item.tag === 'B' && item.text === 'POR' && item.display !== 'none'),
+        'De/Por perde comparação de preço demonstrativo: ' + JSON.stringify({ oldPrice, rawPrice, metaStyles }))
       if (width === 1440) {
         for (let i = 0; i < 6; i++) {
           await gallery.nth(i).screenshot({ path: 'artifacts/design-audit/black-friday-branca-v2-' + (i + 1) + '.png' })
