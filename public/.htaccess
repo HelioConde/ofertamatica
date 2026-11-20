@@ -106,6 +106,29 @@ RewriteRule ^cartaz-de-oferta/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
 RewriteRule ^placas-para-farmacia/?$ /cartazes-para-farmacia/ [R=301,L]
 RewriteRule ^placa-2x1/?$ /formatos/ [R=301,L]
 
+# Search Console 20/11/2026: endereços antigos com destino verdadeiramente equivalente.
+# Nunca usar 301 em /ia-para-cartazes, /ia-para-varejo, /ia-para-supermercado ou /placa-sra3:
+# essas experiências não têm página equivalente ativa no produto.
+RewriteRule ^criar-cartaz-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^cartaz-supermercado-gratis/?$ /cartaz-para-supermercado/ [R=301,L]
+RewriteRule ^placa-a3/?$ /formatos/ [R=301,L]
+RewriteRule ^para-quem-e/?$ /sobre/ [R=301,L]
+RewriteRule ^recursos/?$ /como-funciona/ [R=301,L]
+RewriteRule ^placas-de-promocao/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^cartaz-varejo/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^placa-a4/?$ /cartaz-a4/ [R=301,L]
+RewriteRule ^cartazes-promocionais/?$ /gerador-de-cartaz-de-promocao/ [R=301,L]
+RewriteRule ^placa-4x1/?$ /formatos/ [R=301,L]
+RewriteRule ^cartaz-acougue/?$ /cartazes-para-acougue/ [R=301,L]
+RewriteRule ^cartazes-para-atacado/?$ /cartaz-atacado-varejo/ [R=301,L]
+RewriteRule ^cartaz-hortifruti/?$ /placas-para-hortifruti/ [R=301,L]
+RewriteRule ^criador-de-cartazes-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^cartazes-editaveis-gratis/?$ /criador-de-cartaz-de-oferta/ [R=301,L]
+RewriteRule ^placas-prontas/?$ /modelos/ [R=301,L]
+RewriteRule ^cartaz-de-preco/?$ /cartaz-de-preco-online/ [R=301,L]
+RewriteRule ^cartazes/a4-4x1/?$ /formatos/ [R=301,L]
+RewriteRule ^cartaz-a3/?$ /formatos/ [R=301,L]
+
 # Campanha descontinuada sem conteúdo equivalente: HTTP 410 real (não soft 404).
 RewriteRule ^cartaz-copa-do-mundo/?$ - [G,L]
 

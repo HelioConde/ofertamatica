@@ -76,6 +76,26 @@ const LEGACY_REDIRECTS = {
   'excel-para-cartazes': 'cartazes-a-partir-de-excel',
   'importar-produtos-excel': 'cartazes-a-partir-de-excel',
   'ia-para-promocoes': 'como-funciona',
+  // Aliases levantados em 20/11/2026; regras Apache 301 são a fonte de verdade.
+  'criar-cartaz-gratis': 'criador-de-cartaz-de-oferta',
+  'cartaz-supermercado-gratis': 'cartaz-para-supermercado',
+  'placa-a3': 'formatos',
+  'para-quem-e': 'sobre',
+  'recursos': 'como-funciona',
+  'placas-de-promocao': 'gerador-de-cartaz-de-promocao',
+  'cartaz-varejo': 'criador-de-cartaz-de-oferta',
+  'placa-a4': 'cartaz-a4',
+  'cartazes-promocionais': 'gerador-de-cartaz-de-promocao',
+  'placa-4x1': 'formatos',
+  'cartaz-acougue': 'cartazes-para-acougue',
+  'cartazes-para-atacado': 'cartaz-atacado-varejo',
+  'cartaz-hortifruti': 'placas-para-hortifruti',
+  'criador-de-cartazes-gratis': 'criador-de-cartaz-de-oferta',
+  'cartazes-editaveis-gratis': 'criador-de-cartaz-de-oferta',
+  'placas-prontas': 'modelos',
+  'cartaz-de-preco': 'cartaz-de-preco-online',
+  'cartazes/a4-4x1': 'formatos',
+  'cartaz-a3': 'formatos',
 }
 
 

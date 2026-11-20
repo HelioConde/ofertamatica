@@ -39,6 +39,33 @@ const notFoundRedirects = {
   "placas-para-farmacia": "cartazes-para-farmacia",
   "placa-2x1": "formatos"
 }
+// Tabelas de URLs enviadas no relatório de cobertura de 20/11/2026.
+// Estas URLs têm intenção equivalente a páginas já publicadas: HTTP 301 real.
+const november404Redirects = {
+  "criar-cartaz-gratis": "criador-de-cartaz-de-oferta",
+  "cartaz-supermercado-gratis": "cartaz-para-supermercado",
+  "placa-a3": "formatos",
+  "para-quem-e": "sobre",
+  "recursos": "como-funciona",
+  "placas-de-promocao": "gerador-de-cartaz-de-promocao",
+  "cartaz-varejo": "criador-de-cartaz-de-oferta",
+  "placa-a4": "cartaz-a4",
+  "cartazes-promocionais": "gerador-de-cartaz-de-promocao"
+}
+const novemberCrawledRedirects = {
+  "placa-4x1": "formatos",
+  "cartaz-acougue": "cartazes-para-acougue",
+  "cartazes-para-atacado": "cartaz-atacado-varejo",
+  "cartaz-hortifruti": "placas-para-hortifruti",
+  "criador-de-cartazes-gratis": "criador-de-cartaz-de-oferta",
+  "cartazes-editaveis-gratis": "criador-de-cartaz-de-oferta",
+  "placas-prontas": "modelos",
+  "cartaz-de-preco": "cartaz-de-preco-online",
+  "cartazes/a4-4x1": "formatos",
+  "cartaz-a3": "formatos"
+}
+const novemberLegitimate404 = ['ia-para-cartazes', 'ia-para-varejo', 'placa-sra3', 'ia-para-supermercado']
+
 const legitimatelyMissing = ["ia-para-varejo", "placa-sra3", "ia-para-supermercado"]
 const restored = ["cartazes-para-farmacia","cartaz-black-friday"]
 const gone = ["cartaz-copa-do-mundo"]
@@ -59,6 +86,18 @@ for (const [oldSlug, target] of Object.entries(notFoundRedirects)) {
   assert.ok(pages.has(target), 'Destino 404 não indexável: ' + target)
   assert.ok(ht.includes('RewriteRule ^' + oldSlug + '/?$ /' + target + '/ [R=301,L]'), '301 de recuperação ausente: ' + oldSlug)
   assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + oldSlug + '/</loc>'), '404 antiga no sitemap: ' + oldSlug)
+}
+for (const [groupName, group] of [['404', november404Redirects], ['rastreada', novemberCrawledRedirects]]) {
+  for (const [oldSlug, target] of Object.entries(group)) {
+    assert.ok(pages.has(target), 'GSC novembro: destino não indexável: ' + oldSlug + ' -> ' + target)
+    assert.ok(ht.includes('RewriteRule ^' + oldSlug + '/?$ /' + target + '/ [R=301,L]'), 'GSC novembro: 301 ausente em ' + groupName + ': ' + oldSlug)
+    assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + oldSlug + '/</loc>'), 'GSC novembro: URL antiga no sitemap: ' + oldSlug)
+  }
+}
+for (const slug of novemberLegitimate404) {
+  assert.ok(!pages.has(slug), 'Página de IA/SRA3 não publicada não pode ser anunciada: ' + slug)
+  assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + slug + '/</loc>'), 'URL sem produto publicado aparece no sitemap: ' + slug)
+  assert.ok(!ht.includes('RewriteRule ^' + slug + '/?$ /'), '301 sem equivalência para página não publicada: ' + slug)
 }
 for (const slug of legitimatelyMissing) {
   assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/' + slug + '/</loc>'), 'Página não publicada no sitemap: ' + slug)
@@ -81,4 +120,4 @@ for (const slug of alreadyCanonical) {
 const html = fs.readFileSync('dist/placas-para-hortifruti/index.html', 'utf8')
 assert.ok(html.includes('Preço por quilo não é preço por unidade'), 'Conteúdo original de hortifruti ausente')
 assert.ok(!sitemap.includes('<loc>' + SITE_URL + '/placas-hortifruti/</loc>'), 'Slug antigo hortifruti indevido')
-console.log('Cobertura: 31 URLs soft 404 e 9 URLs 404 auditadas; 4 redirecionamentos equivalentes adicionais, sem redirecionamentos artificiais de IA/SRA3.')
+console.log('Cobertura: 31 URLs soft 404 e 9 URLs 404 anteriores; 20/11/2026: ' + Object.keys(november404Redirects).length + ' aliases 404 e ' + Object.keys(novemberCrawledRedirects).length + ' aliases rastreadas com 301 verificado, sem redirecionar IA/SRA3.')
