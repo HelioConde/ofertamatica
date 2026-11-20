@@ -160,6 +160,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-six-white-black-friday.mjs
+      - name: Verify six Black Friday poster headlines fit all screen sizes
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-black-friday-six-geometry.mjs
       - name: Sitewide accessibility audit (WCAG 2.2 A/AA)
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
