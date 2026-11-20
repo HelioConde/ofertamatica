@@ -36,3 +36,14 @@
 #root:has(.cookie-entry) .feedback-nudge,
 .editor-mode .feedback-nudge,
 .free-editor-mode .feedback-nudge { display: none !important; }
+
+
+/* UI móvel: campos de 16px evitam o zoom automático do Safari iOS.
+   Alvos de 44px reduzem toques acidentais sem afetar a impressão. */
+@media screen and (max-width: 760px) {
+  .feedback-nudge-form textarea { font-size: 16px; min-height: 86px; }
+  .feedback-nudge-close { flex-basis: 44px; width: 44px; height: 44px; }
+  .feedback-nudge-cta,
+  .feedback-nudge-actions button { min-height: 44px; }
+  .feedback-nudge-rating label { min-height: 44px; min-width: 44px; }
+}
