@@ -13,6 +13,7 @@ on:
       - 'scripts/qa-interactions.mjs'
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
+      - 'scripts/qa-black-friday-landing.mjs'
       - 'scripts/qa-a11y-sitewide.mjs'
       - 'scripts/capture-poster-visuals.mjs'
       - 'scripts/audit-content.mjs'
@@ -34,6 +35,7 @@ on:
       - 'scripts/qa-interactions.mjs'
       - 'src/**'
       - 'scripts/qa-design-guidelines.mjs'
+      - 'scripts/qa-black-friday-landing.mjs'
       - 'scripts/qa-a11y-sitewide.mjs'
       - 'scripts/capture-poster-visuals.mjs'
       - 'package.json'
@@ -135,6 +137,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-free-editor-ux.mjs
+      - name: Verify Black Friday SEO and UX (mobile and desktop)
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-black-friday-landing.mjs
       # PRs testam o corte real em modo read-only. As capturas publicadas
       # na main continuam sob o workflow Poster Visual Snapshot.
       - name: Check printed poster ink and clean screenshots
