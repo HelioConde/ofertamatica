@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import './styles/ofertamatica-theme.css';
+import './styles/interface-refresh.css';
 import Icon from './components/Icon';
 import OfertamaticaHeader from './components/OfertamaticaHeader';
 import BarcodeCamera from './scanning/BarcodeCamera';
