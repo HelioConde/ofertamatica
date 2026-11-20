@@ -513,7 +513,7 @@
 .poster-card[data-poster-theme^="bf-eco-"] .ofertamatica-offer-ribbon .bf-eco-subheading {
   position: absolute;
   z-index: 4;
-  top: calc(100% - 7mm);
+  top: calc(100% - 12.5mm);
   left: 50%;
   display: inline-flex;
   align-items: center;
