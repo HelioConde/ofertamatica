@@ -141,6 +141,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/capture-poster-visuals.mjs
+      - name: Verify Black Friday landing SEO and model selection
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-black-friday-landing.mjs
       - name: Sitewide accessibility audit (WCAG 2.2 A/AA)
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
