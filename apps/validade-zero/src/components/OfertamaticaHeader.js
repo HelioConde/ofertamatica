@@ -23,7 +23,7 @@ export default function OfertamaticaHeader() {
       if (event.key !== 'Escape') return;
       const focusInHeader = headerRef.current?.contains(document.activeElement);
       setMenuOpen(false);
-      if (focusInHeader) {
+      if (focusInHeader || document.activeElement === document.body) {
         event.preventDefault();
         toggleRef.current?.focus();
       }
