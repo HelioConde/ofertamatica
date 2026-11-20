@@ -4,6 +4,7 @@ import App from './App'
 import CookieConsent from './components/CookieConsent'
 import { startTelemetry } from './utils/telemetry'
 import './styles/home.css'
+import './styles/interface-refresh.css'
 // O CSS das páginas internas é carregado pelas rotas; manter fora da Home reduz CSS não usado.
 
 if ('serviceWorker' in navigator) {
