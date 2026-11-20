@@ -129,6 +129,10 @@ jobs:
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
         run: node scripts/qa-ux-polish.mjs
+      - name: Verify Free Editor keyboard precision and mobile controls
+        env:
+          CAPTURE_BASE_URL: http://127.0.0.1:5183
+        run: node scripts/qa-free-editor-ux.mjs
       - name: Sitewide accessibility audit (WCAG 2.2 A/AA)
         env:
           CAPTURE_BASE_URL: http://127.0.0.1:5183
