@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Navegação única usada pela Home, páginas públicas e editor.
 const LINKS = [
@@ -13,10 +13,35 @@ const LINKS = [
 
 export default function SiteNavigation({ routePath, screen, onInstall }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const headerRef = useRef(null)
+  const toggleRef = useRef(null)
+
+  // O menu mobile permanece acessível ao teclado mesmo quando o foco sai dos links.
+  useEffect(() => {
+    if (!menuOpen) return undefined
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    const onPointerDown = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [menuOpen])
+
   const cleanPath = String(routePath || '/').replace(/\/+$/, '') || '/'
 
   return (
-    <header className="site-header">
+    <header ref={headerRef} className="site-header">
       <div className="nav-shell">
         <a className="brand" href="/" aria-label="Ofertamática — ir para a página inicial">
           <img className="brand-icon" src="/icons/icon-192.png?v=20261008b" width="36" height="36" alt="" decoding="async" />
@@ -25,6 +50,7 @@ export default function SiteNavigation({ routePath, screen, onInstall }) {
         <button
           type="button"
           className="nav-menu-toggle"
+          ref={toggleRef}
           aria-controls="ofertamatica-main-navigation"
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
@@ -37,12 +63,6 @@ export default function SiteNavigation({ routePath, screen, onInstall }) {
           id="ofertamatica-main-navigation"
           className={'main-nav' + (menuOpen ? ' is-open' : '')}
           aria-label="Navegação principal"
-          onKeyDown={(event) => {
-            if (event.key === 'Escape' && menuOpen) {
-              setMenuOpen(false)
-              event.currentTarget.previousElementSibling?.focus()
-            }
-          }}
         >
           {LINKS.map(([href, label, mobileLabel]) => {
             const active = cleanPath === href || (href === '/' && screen === 'editor')
