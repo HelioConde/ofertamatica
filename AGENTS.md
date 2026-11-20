@@ -2,21 +2,20 @@
 
 Leia primeiro `README.md` e `DESIGN.md`. O projeto tem contratos não negociáveis: Home abre diretamente no seletor, primeira placa pronta em dois cliques, fluxo grátis sem cadastro, editor desktop em uma viewport e impressão física fiel. Não editar configurações de FTP, chaves, consentimento ou SEO sem motivo relacionado à tarefa.
 
-## As cinco ferramentas de design
+## Ferramentas históricas de design (referências, não instaladores)
 
-1. **Taste Skill** — https://github.com/Leonxlnx/taste-skill. Aplicar `design-taste-frontend` para refino de layout, tipografia e densidade de interfaces existentes. Não redesenhar por modismo e não trocar a identidade do produto.
+1. **Taste Skill (legado; não executar)** — https://github.com/Leonxlnx/taste-skill. Referência histórica das auditorias anteriores; a política atual desaconselha adoção automática pelo risco de mudar a identidade do produto.
 2. **Web Design Guidelines** — https://github.com/vercel-labs/web-interface-guidelines. Auditar navegação via teclado, foco, rótulos, estados de erro, tamanhos de toque, performance e responsividade. Para revisão via agente, usar a skill de Vercel `web-design-guidelines`.
 3. **Awesome Design** — https://github.com/VoltAgent/awesome-design-md. Consultar DESIGN.md de referência **como repertório**. O arquivo `DESIGN.md` local é a autoridade visual do produto; não copiar estilos de terceiros.
 4. **Image to Code** — skill `image-to-code` em https://github.com/Leonxlnx/taste-skill. Quando houver screenshot de referência, analisar a imagem, identificar componentes/tokens/estados e traduzir para React/CSS existente. Conferir uma nova captura e comparar. Não substituir componentes de cartaz por imagem estática.
 5. **Playwright CLI** — https://github.com/microsoft/playwright-cli. Inspecionar a experiência real e tirar screenshots; complementar os testes E2E de `scripts/qa-interactions.mjs`, `scripts/qa-release-print-import.mjs` e `scripts/qa-design-guidelines.mjs`.
 
-### Instalação opcional no computador/agente de desenvolvimento
+### Comandos históricos de ferramentas (usar apenas após revisão e decisão explícita)
 
 Estas skills são ferramentas de **desenvolvimento**, não dependências carregadas pelo site em produção. No diretório do projeto (Node.js 20+):
 
 ```bash
-npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
-npx skills add https://github.com/Leonxlnx/taste-skill --skill image-to-code
+# Os comandos antigos de instalação de Taste Skill e Image to Code foram desativados.
 npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines
 # Awesome Design: consultar catálogo e adaptar, não clonar uma identidade inteira.
 # https://github.com/VoltAgent/awesome-design-md
@@ -29,8 +28,8 @@ Não executar scripts externos sem revisar seu conteúdo. Essas instalações ex
 ## Fluxo para qualquer mudança visual
 
 1. **Observar:** capturas já existentes em `screenshots/site`, `screenshots/mobile-editor` e `screenshots/desktop-editor`. Anotar problemas reproduzíveis, inclusive impressão.
-2. **Planejar:** aplicar Taste Skill sem quebrar `DESIGN.md`; usar Awesome Design apenas para encontrar decisões transferíveis (espaçamento, contraste, hierarquia).
-3. **Implementar:** Image to Code quando existir mockup/screenshot; reutilizar `src/components`, `src/styles` e tokens CSS.
+2. **Planejar:** aplicar a curadoria em `docs/DESIGN_SKILLS.md` com `DESIGN.md` como autoridade; usar referências externas apenas para encontrar decisões transferíveis (espaçamento, contraste, hierarquia).
+3. **Implementar:** quando existir mockup/screenshot, extrair requisitos visuais antes de modificar componentes; reutilizar `src/components`, `src/styles` e tokens CSS existentes.
 4. **Auditar:** Web Design Guidelines e `npm run qa:design`; testar foco e nomes acessíveis.
 5. **Verificar no navegador:** Playwright CLI em 360/390/768/1440px e comparação de screenshots. Confirmar fluxos de formato, gerar, modelos, personalização, consentimento, PDF e impressão.
 
