@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import {
   calculateDiscount, calculatePriceByWeight, calculatorKindForSlug,
   formatBrl, RETAIL_CALCULATOR_EXAMPLES, RETAIL_CALCULATOR_PAGE_EXAMPLES,
+  validateRetailCalculatorInputs,
 } from '../seo/retailCalculators'
 import '../styles/retail-calculators.css'
 
@@ -13,6 +14,8 @@ export default function RetailCalculator({ slug }) {
   const [second, setSecond] = useState(defaults?.secondary || '')
   if (!defaults) return null
   const result = kind === 'weight' ? calculatePriceByWeight(first, second) : calculateDiscount(first, second)
+  const { firstInvalid, secondInvalid } = validateRetailCalculatorInputs(kind, first, second)
+  const errorId = baseId + '-error'
   return (
     <section className="retail-calculator marketing-section" aria-labelledby={baseId + '-title'}>
       <div className="retail-calculator-intro">
@@ -26,12 +29,15 @@ export default function RetailCalculator({ slug }) {
             {kind === 'weight' ? 'Preço por kg (R$)' : 'Preço anterior (R$)'}
           </label>
           <input id={baseId + '-first'} type="text" inputMode="decimal" value={first}
+            aria-invalid={firstInvalid} aria-describedby={firstInvalid ? errorId : undefined}
             onChange={(event) => setFirst(event.target.value)} placeholder="Ex.: 14,90" maxLength={9} />
           <label htmlFor={baseId + '-second'}>
             {kind === 'weight' ? 'Peso do produto (gramas)' : 'Preço promocional (R$)'}
           </label>
           <input id={baseId + '-second'} type="text" inputMode={kind === 'weight' ? 'numeric' : 'decimal'}
-            value={second} onChange={(event) => setSecond(event.target.value)}
+            value={second} aria-invalid={secondInvalid}
+            aria-describedby={secondInvalid ? errorId : undefined}
+            onChange={(event) => setSecond(event.target.value)}
             placeholder={kind === 'weight' ? 'Ex.: 350' : 'Ex.: 19,90'} maxLength={9} />
           <button type="button" onClick={() => { setFirst(defaults.primary); setSecond(defaults.secondary) }}>
             Restaurar exemplo
@@ -56,7 +62,7 @@ export default function RetailCalculator({ slug }) {
               </>
             )
           ) : (
-            <p role="status" className="retail-calculator-error">
+            <p role="status" id={errorId} className="retail-calculator-error">
               {kind === 'weight' ? 'Informe um preço válido maior que zero e um peso inteiro entre 1 e 100.000 g.' :
                 'Informe preços válidos. O preço anterior deve ser maior que o promocional.'}
             </p>
