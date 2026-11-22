@@ -64,6 +64,19 @@
   border-radius: 10px;
   background: #eff5ff;
 }
+.home-print-plan-fields input[aria-invalid="true"] {
+  border-color: #a32b23;
+  box-shadow: 0 0 0 1px #a32b23;
+}
+.home-print-plan-result.is-invalid {
+  border-color: #e7b6b1;
+  background: #fff5f3;
+}
+.home-print-plan-result.is-invalid strong {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #8d241d;
+}
 .home-print-plan-result span { font-size: 11px; font-weight: 750; color: #47617f; }
 .home-print-plan-result strong { font-size: clamp(22px, 2.8vw, 31px); color: #1758cd; }
 .home-print-plan-result small { font-size: 12px; color: #3c5574; }
