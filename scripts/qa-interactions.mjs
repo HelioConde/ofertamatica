@@ -53,6 +53,20 @@ await scenario('Home útil: calculadora e conteúdo sem bloquear o gerador', { w
   await page.locator('.home-print-plan-fields select').selectOption('A4X8')
   if (!(await page.locator('.home-print-plan-result').innerText()).includes('5 folhas A4'))
     throw new Error('Cálculo de oito por folha falhou')
+  const quantityField = page.locator('.home-print-plan-fields input')
+  for (const value of ['', '0', '1.5', '10000']) {
+    await quantityField.fill(value)
+    if (await quantityField.getAttribute('aria-invalid') !== 'true')
+      throw new Error('Quantidade inválida não foi identificada: ' + value)
+    if (!(await page.locator('#home-print-quantity-error').innerText()).includes('1 a 9.999'))
+      throw new Error('Mensagem acessível ausente para quantidade inválida: ' + value)
+    if ((await page.locator('.home-print-plan-result').innerText()).includes('5 folhas A4'))
+      throw new Error('Estimativa antiga foi exibida com quantidade inválida: ' + value)
+  }
+  await quantityField.fill('1')
+  if (await quantityField.getAttribute('aria-invalid') !== 'false'
+    || !(await page.locator('.home-print-plan-result').innerText()).includes('1 folha A4'))
+    throw new Error('Planejador não recupera o cálculo após corrigir a quantidade')
   await page.locator('.format-choice[data-format-id="A4"]').click()
   await check(page, '.editor-page textarea[aria-label="Lista de produtos, uma linha por produto"]',
     'O guia não pode impedir a abertura direta do editor')

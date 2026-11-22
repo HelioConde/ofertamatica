@@ -4,6 +4,17 @@ import {
   calculateDiscount, calculatePriceByWeight, calculatorKindForSlug,
   calculatorStaticExample, formatBrl, parseBrlCents,
 } from '../src/seo/retailCalculators.js'
+import { calculatePrintPlan, parsePrintQuantity } from '../src/seo/homePrintHelp.js'
+
+// Quantidade inválida não pode gerar uma estimativa silenciosamente corrigida.
+for (const invalid of ['', ' ', '0', '-1', '1.5', '1e3', '10000', 'NaN']) {
+  assert.equal(parsePrintQuantity(invalid), null, 'Quantidade inválida: ' + invalid)
+}
+assert.equal(parsePrintQuantity('37'), 37)
+assert.equal(parsePrintQuantity(' 0037 '), 37)
+assert.equal(parsePrintQuantity(9999), 9999)
+assert.equal(calculatePrintPlan(parsePrintQuantity('37'), 'A4X4').sheets, 10)
+assert.equal(calculatePrintPlan(parsePrintQuantity('37'), 'A4X8').sheets, 5)
 
 assert.equal(parseBrlCents('14,90'), 1490)
 assert.equal(parseBrlCents('14.9'), 1490)

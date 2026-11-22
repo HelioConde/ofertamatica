@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { HOME_GUIDANCE, HOME_LIMITATIONS, HOME_PRINT_OPTIONS, calculatePrintPlan } from '../seo/homePrintHelp'
+import { HOME_GUIDANCE, HOME_LIMITATIONS, HOME_PRINT_OPTIONS, calculatePrintPlan, parsePrintQuantity } from '../seo/homePrintHelp'
 import '../styles/home-print-help.css'
 
 export default function HomePrintHelp() {
   const [quantity, setQuantity] = useState('37')
   const [formatId, setFormatId] = useState('A4X4')
-  const plan = calculatePrintPlan(quantity, formatId)
+  const parsedQuantity = parsePrintQuantity(quantity)
+  const quantityInvalid = parsedQuantity === null
+  const plan = quantityInvalid ? null : calculatePrintPlan(parsedQuantity, formatId)
 
   return (
     <section className="home-print-help" aria-labelledby="home-print-help-title">
@@ -21,6 +23,8 @@ export default function HomePrintHelp() {
             <label>
               <span>Quantidade de cartazes</span>
               <input type="number" inputMode="numeric" min="1" max="9999" step="1" value={quantity}
+                aria-invalid={quantityInvalid}
+                aria-describedby={quantityInvalid ? 'home-print-quantity-error' : undefined}
                 onChange={(event) => setQuantity(event.target.value)} />
             </label>
             <label>
@@ -30,11 +34,19 @@ export default function HomePrintHelp() {
               </select>
             </label>
           </div>
-          <div className="home-print-plan-result" aria-live="polite" aria-atomic="true">
-            <span>Para {plan.quantity} {plan.quantity === 1 ? 'cartaz' : 'cartazes'}</span>
-            <strong>{plan.sheets} {plan.sheets === 1 ? 'folha' : 'folhas'} {plan.option.paper}</strong>
-            <small>{plan.freeSlots === 0 ? 'Todas as posições serão utilizadas.' :
-              `${plan.freeSlots} ${plan.freeSlots === 1 ? 'posição ficará livre' : 'posições ficarão livres'} na última folha.`}</small>
+          <div className={'home-print-plan-result' + (quantityInvalid ? ' is-invalid' : '')}
+            aria-live="polite" aria-atomic="true"
+            id={quantityInvalid ? 'home-print-quantity-error' : undefined}>
+            {plan ? (
+              <>
+                <span>Para {plan.quantity} {plan.quantity === 1 ? 'cartaz' : 'cartazes'}</span>
+                <strong>{plan.sheets} {plan.sheets === 1 ? 'folha' : 'folhas'} {plan.option.paper}</strong>
+                <small>{plan.freeSlots === 0 ? 'Todas as posições serão utilizadas.' :
+                  `${plan.freeSlots} ${plan.freeSlots === 1 ? 'posição ficará livre' : 'posições ficarão livres'} na última folha.`}</small>
+              </>
+            ) : (
+              <strong>Informe uma quantidade inteira de 1 a 9.999 cartazes para calcular.</strong>
+            )}
           </div>
           <p>É uma estimativa de folhas, sem incluir provas, perdas ou reimpressões. A impressora precisa aceitar o papel escolhido.</p>
           <a href="/qual-papel-usar-para-cartaz/">Veja quais papéis e gramaturas são adequados</a>
