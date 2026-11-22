@@ -85,7 +85,15 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
     await inputs.nth(1).fill('0')
     if (!(await page.locator('.retail-calculator-result').innerText()).includes('Informe um preço válido'))
       throw new Error('Peso zero deveria mostrar mensagem de validação')
+    if (await inputs.nth(1).getAttribute('aria-invalid') !== 'true' ||
+        await inputs.nth(0).getAttribute('aria-invalid') !== 'false')
+      throw new Error('Simulador precisa destacar apenas o peso inválido')
+    const weightErrorId = await inputs.nth(1).getAttribute('aria-describedby')
+    if (!weightErrorId || !await page.locator('[id="' + weightErrorId + '"]').isVisible())
+      throw new Error('Campo do peso sem referência ao aviso de erro')
     await page.locator('.retail-calculator-fields button').click()
+    if (await inputs.nth(1).getAttribute('aria-invalid') !== 'false')
+      throw new Error('Erro de peso não foi limpo após restaurar')
     if (await inputs.nth(1).inputValue() !== '350') throw new Error('Botão Restaurar exemplo falhou')
     const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)
     if (horizontalOverflow) throw new Error('Simulador causa rolagem horizontal')
@@ -104,6 +112,15 @@ await scenario('Guia De/Por: economia e desconto', { width: 390, height: 844 }, 
   await inputs.nth(1).fill('24,90')
   output = await page.locator('.retail-calculator-result').innerText()
   if (!output.includes('O preço anterior deve ser maior')) throw new Error('Desconto inválido não foi bloqueado')
+  if (await inputs.nth(0).getAttribute('aria-invalid') !== 'false' ||
+      await inputs.nth(1).getAttribute('aria-invalid') !== 'true')
+    throw new Error('Comparação De/Por não marcou o preço promocional fora da regra')
+  await inputs.nth(0).fill('abc')
+  if (await inputs.nth(0).getAttribute('aria-invalid') !== 'true')
+    throw new Error('Preço anterior inválido não foi marcado')
+  await inputs.nth(0).fill('29,90')
+  if (await inputs.nth(0).getAttribute('aria-invalid') !== 'false')
+    throw new Error('Preço anterior corrigido permanece inválido')
 })
 
 await scenario('Guia Excel: conferência de lista no celular', { width: 390, height: 844 }, async (page) => {
