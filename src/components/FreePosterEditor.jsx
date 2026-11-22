@@ -1,5 +1,5 @@
 import { POSTER_DESCRIPTION_FONT, POSTER_PRICE_FONT } from '../config/posterTypography.js'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import PosterSheet from './posters/PosterSheet'
 import { POSTER_MODEL_PRESETS } from '../config/posterModelPresets'
 import { getDefaultTemplateForFormat } from '../config/posterTemplates'
@@ -106,10 +106,41 @@ function FreeBoard({ format, template, products, layouts, extras, selected, onSe
 }
 
 function NumericSetting({ label, value, onChange, min = 0, max = 100 }) {
-  return <label className="free-number-setting"><span>{label}</span><input type="number" min={min} max={max} step="0.5" value={value} onChange={(event) => {
-    const number = Number(event.target.value)
-    if (event.target.value !== '' && Number.isFinite(number)) onChange(number)
-  }} /></label>
+  const inputId = useId()
+  const errorId = useId()
+  // O rascunho permite apagar e redigitar sem forçar 0 ou mover a caixa
+  // enquanto a pessoa ainda informa um número fora do intervalo permitido.
+  const [draft, setDraft] = useState(null)
+  const shownValue = draft === null ? String(value) : draft
+  const parsed = Number(shownValue)
+  const invalid = draft !== null && (draft.trim() === '' || !Number.isFinite(parsed) || parsed < min || parsed > max)
+
+  function changeDraft(raw) {
+    setDraft(raw)
+    const next = Number(raw)
+    if (raw.trim() !== '' && Number.isFinite(next) && next >= min && next <= max) onChange(next)
+  }
+
+  function finishEditing() {
+    if (draft !== null && draft.trim() !== '' && Number.isFinite(Number(draft))) {
+      onChange(clamp(Number(draft), min, max))
+    }
+    setDraft(null)
+  }
+
+  return (
+    <div className="free-number-setting">
+      <label htmlFor={inputId}>{label}</label>
+      <input id={inputId} type="number" inputMode="decimal" min={min} max={max} step="0.5"
+        value={shownValue} aria-invalid={invalid}
+        aria-describedby={invalid ? errorId : undefined}
+        onChange={(event) => changeDraft(event.target.value)}
+        onBlur={finishEditing} />
+      {invalid ? <small className="free-setting-error" id={errorId} role="status">
+        Digite um número entre {min} e {max}.
+      </small> : null}
+    </div>
+  )
 }
 
 export default function FreePosterEditor() {
@@ -423,7 +454,11 @@ export default function FreePosterEditor() {
                 <p className="free-editor-selected-box" role="status" aria-live="polite" aria-atomic="true">Editando: <strong>{selectedBoxLabel}</strong></p>
                 <p className="free-editor-help">Arraste a caixa na prévia ou ajuste a posição e o tamanho pelos campos abaixo. Os botões de movimento permitem ajustes precisos sem arrastar.</p>
                 <div className="free-editor-number-grid">
-                  {[['x','X (%)'],['y','Y (%)'],['width','Largura (%)'],['height','Altura (%)']].map(([field,label])=><NumericSetting key={field} label={label} value={chosenBox[field]} min={field === 'width' ? 8 : field === 'height' ? 6 : 0} onChange={(value)=>changeBox(selected,{[field]:value})}/>)}
+                  {[['x','X (%)'],['y','Y (%)'],['width','Largura (%)'],['height','Altura (%)']].map(([field,label])=><NumericSetting
+                    key={field} label={label} value={chosenBox[field]}
+                    min={field === 'width' ? 8 : field === 'height' ? 6 : 0}
+                    max={field === 'x' ? round(100 - chosenBox.width) : field === 'y' ? round(100 - chosenBox.height) : 100}
+                    onChange={(value)=>changeBox(selected,{[field]:value})}/>)}
                 </div>
                 <div className="free-editor-nudge-panel" role="group" aria-label={'Mover caixa: ' + selectedBoxLabel}>
                   <div className="free-editor-nudge-heading">
