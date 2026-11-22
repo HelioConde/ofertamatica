@@ -302,6 +302,14 @@ try {
               critical.push({ route: route.path, viewport: viewport.label,
                 reason: 'Limpar busca perdeu o foco do teclado na galeria' })
             }
+            // Usuários de celulares frequentemente omitem acentos na pesquisa.
+            for (const term of ['acougue', 'açougue']) {
+              await search.fill(term)
+              await page.locator('.model-showcase-grid .model-card-copy strong')
+                .filter({ hasText: 'Açougue' }).first().waitFor({ state: 'visible', timeout: 5000 })
+            }
+            await search.fill('')
+
           }
 
           if (route.path === '/' && viewport.width <= 760) {
