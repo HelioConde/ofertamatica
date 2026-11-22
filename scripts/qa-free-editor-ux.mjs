@@ -55,6 +55,25 @@ try {
       await page.getByRole('button', { name: 'Mover Descrição para a esquerda' }).click()
       assert(near(Number(await x.inputValue()), before), 'seta esquerda não desfez o deslocamento')
 
+      // Limites dependem da largura da caixa: nunca aceitar X=100% para uma caixa larga.
+      const widthField = page.locator('.free-editor-number-grid .free-number-setting').nth(2).locator('input')
+      const expectedMaxX = 100 - Number(await widthField.inputValue())
+      assert(near(Number(await x.getAttribute('max')), expectedMaxX), 'limite X não acompanha a largura da caixa')
+      await x.fill('100')
+      assert(await x.getAttribute('aria-invalid') === 'true', 'X fora do cartaz não foi anunciado como inválido')
+      const errorId = await x.getAttribute('aria-describedby')
+      assert(errorId && await page.locator('[id="' + errorId + '"]').isVisible(),
+        'mensagem acessível do campo X não foi vinculada')
+      assert(near(Number(await page.locator('.free-number-setting').first().locator('input').getAttribute('max')), expectedMaxX),
+        'limite X mudou indevidamente durante a digitação')
+      await x.blur()
+      assert(near(Number(await x.inputValue()), expectedMaxX), 'X não respeitou o máximo ao sair do campo')
+      assert(await x.getAttribute('aria-invalid') === 'false', 'erro X não foi limpo após a correção')
+      await x.fill('')
+      assert(await x.getAttribute('aria-invalid') === 'true', 'campo X vazio não foi reconhecido')
+      await x.blur()
+      assert(near(Number(await x.inputValue()), expectedMaxX), 'campo vazio apagou a posição existente')
+
       await page.getByRole('button', { name: 'Preço', exact: true }).click()
       assert((await selected.innerText()).includes('Preço'), 'seleção de preço sem indicação visual')
       assert(await page.getByRole('button', { name: 'Mover Preço para cima' }).count() === 1, 'setas não acompanharam a seleção')
