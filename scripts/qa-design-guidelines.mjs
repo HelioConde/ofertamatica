@@ -333,6 +333,10 @@ try {
               await page.locator('.bg-gallery-card strong')
                 .filter({ hasText: 'Açougue' }).first().waitFor({ state: 'visible', timeout: 5000 })
             }
+            // Evidência visual da galeria realmente alterada, não apenas da aba padrão.
+            await backgroundSearch.fill('acougue')
+            await backgroundSearch.scrollIntoViewIfNeeded()
+            await page.screenshot({ path: path.join(outDir, `modelos-fundos-${viewport.label}.png`), fullPage: false })
             await backgroundSearch.fill('oferta')
             const clearBackgroundSearch = page.locator('.bg-gallery-search-clear')
             await clearBackgroundSearch.focus()
