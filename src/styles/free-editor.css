@@ -14,7 +14,9 @@
 .free-editor-control-heading h2,.free-editor-control-heading h3,.free-canvas-heading h2 { margin:0;font-size:15px;color:#233a58; }
 .free-editor-control-heading > span,.free-editor-ready { color:#607a9a;font-weight:800;font-size:10px; }
 .free-editor-field { display:grid;gap:5px;min-width:0; }
-.free-editor-field > span,.free-number-setting > span { font-size:10px;letter-spacing:.01em;font-weight:800;color:#5e6e87; }
+.free-editor-field > span,.free-number-setting > label { font-size:10px;letter-spacing:.01em;font-weight:800;color:#5e6e87; }
+.free-number-setting input[aria-invalid="true"] { border-color:#b42318; background:#fffafa; }
+.free-setting-error { display:block; font-size:11px; line-height:1.35; font-weight:700; color:#992c22; overflow-wrap:anywhere; }
 .free-editor-field input,.free-editor-field select,.free-editor-field textarea,.free-number-setting input { width:100%;max-width:100%;min-height:37px;border:1px solid #d7e1ed;border-radius:8px;padding:8px 10px;background:white;color:#24354e;font:750 12px Inter,system-ui,sans-serif;outline-offset:2px; }
 .free-editor-field input:focus,.free-editor-field select:focus,.free-editor-field textarea:focus,.free-number-setting input:focus { border-color:#2563eb;box-shadow:0 0 0 2px #dbeafe; }
 .free-editor-fields-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
