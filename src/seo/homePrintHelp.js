@@ -25,6 +25,15 @@ export const HOME_GUIDANCE = [
 ]
 export const HOME_LIMITATIONS = 'O gerador ajuda a diagramar e imprimir. Ele não consulta o ERP, não confirma preços do caixa, não verifica a legislação da promoção e não substitui a revisão da loja. Fotos e logos adicionadas pelo visitante devem ter uso autorizado.'
 
+// Não normalizar silenciosamente valores inválidos da entrada do usuário.
+// A UI só deve mostrar a estimativa depois de receber uma quantidade válida.
+export function parsePrintQuantity(value) {
+  const text = String(value ?? '').trim()
+  if (!/^\d+$/.test(text)) return null
+  const quantity = Number(text)
+  return Number.isSafeInteger(quantity) && quantity >= 1 && quantity <= 9999 ? quantity : null
+}
+
 export function calculatePrintPlan(rawQuantity, formatId) {
   const option = HOME_PRINT_OPTIONS.find((item) => item.id === formatId) || HOME_PRINT_OPTIONS[1]
   const n = Number(rawQuantity)
