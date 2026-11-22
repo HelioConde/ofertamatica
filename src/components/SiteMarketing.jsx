@@ -512,6 +512,7 @@ function SearchTopicSections({ slug }) {
 
 export function PublicPage({ page, onCreate, onChooseFormat }) {
   const [modelQuery, setModelQuery] = useState('')
+  const modelSearchRef = useRef(null)
   const [modelCategory, setModelCategory] = useState('Todos')
   const [modelLimit, setModelLimit] = useState(12)
   const [modelView, setModelView] = useState('grade')
@@ -664,6 +665,7 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                   <label className="model-search">
                     <span>Buscar modelo</span>
                     <input
+                      ref={modelSearchRef}
                       type="search"
                       name="modelo"
                       autoComplete="off"
@@ -677,7 +679,12 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                     />
                   </label>
                   {modelQuery ? (
-                    <button type="button" className="model-search-clear" onClick={() => { setModelQuery(''); setModelLimit(12) }}>
+                    <button type="button" className="model-search-clear" onClick={() => {
+                      setModelQuery('')
+                      setModelLimit(12)
+                      // O botão desaparece após limpar; preserve o contexto de teclado.
+                      modelSearchRef.current?.focus()
+                    }}>
                       Limpar busca
                     </button>
                   ) : null}
@@ -736,7 +743,13 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
                 <div className="model-empty-state">
                   <strong>Nenhum modelo encontrado</strong>
                   <span>Tente outro termo ou escolha “Todos”.</span>
-                  <button type="button" onClick={() => { setModelQuery(''); setModelCategory('Todos'); setModelLimit(12) }}>Limpar filtros</button>
+                  <button type="button" onClick={() => {
+                    setModelQuery('')
+                    setModelCategory('Todos')
+                    setModelLimit(12)
+                    // A ação desmonta este estado vazio: volte ao campo de busca.
+                    modelSearchRef.current?.focus()
+                  }}>Limpar filtros</button>
                 </div>
               ) : null}
             </section>
