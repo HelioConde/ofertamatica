@@ -71,6 +71,30 @@ export function calculateDiscount(oldPrice, offerPrice) {
   }
 }
 
+// Indica qual entrada precisa de correção sem duplicar os cálculos exibidos.
+// Na comparação De/Por, preço promocional zero permanece válido conforme a
+// regra já existente. O segundo campo também erra quando não é menor que o primeiro.
+export function validateRetailCalculatorInputs(kind, first, second) {
+  const primary = parseBrlCents(first)
+  const firstInvalid = primary === null || primary <= 0
+  if (kind === 'weight') {
+    const rawWeight = String(second ?? '').trim()
+    const grams = /^\d{1,6}$/.test(rawWeight) ? Number(rawWeight) : NaN
+    return {
+      firstInvalid,
+      secondInvalid: !Number.isInteger(grams) || grams < 1 || grams > 100000,
+    }
+  }
+  if (kind === 'discount') {
+    const promotional = parseBrlCents(second)
+    return {
+      firstInvalid,
+      secondInvalid: promotional === null || promotional < 0 || (!firstInvalid && promotional >= primary),
+    }
+  }
+  return { firstInvalid: false, secondInvalid: false }
+}
+
 export function calculatorKindForSlug(slug) {
   return RETAIL_CALCULATOR_PAGES[slug] || null
 }

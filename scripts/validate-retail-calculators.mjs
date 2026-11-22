@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {
   calculateDiscount, calculatePriceByWeight, calculatorKindForSlug,
-  calculatorStaticExample, formatBrl, parseBrlCents,
+  calculatorStaticExample, formatBrl, parseBrlCents, validateRetailCalculatorInputs,
 } from '../src/seo/retailCalculators.js'
 import { calculatePrintPlan, parsePrintQuantity } from '../src/seo/homePrintHelp.js'
 
@@ -15,6 +15,21 @@ assert.equal(parsePrintQuantity(' 0037 '), 37)
 assert.equal(parsePrintQuantity(9999), 9999)
 assert.equal(calculatePrintPlan(parsePrintQuantity('37'), 'A4X4').sheets, 10)
 assert.equal(calculatePrintPlan(parsePrintQuantity('37'), 'A4X8').sheets, 5)
+
+assert.deepEqual(validateRetailCalculatorInputs('weight', '14,90', '350'),
+  { firstInvalid: false, secondInvalid: false })
+assert.deepEqual(validateRetailCalculatorInputs('weight', '14,90', '0'),
+  { firstInvalid: false, secondInvalid: true })
+assert.deepEqual(validateRetailCalculatorInputs('weight', 'abc', '350'),
+  { firstInvalid: true, secondInvalid: false })
+assert.deepEqual(validateRetailCalculatorInputs('discount', '24,90', '19,90'),
+  { firstInvalid: false, secondInvalid: false })
+assert.deepEqual(validateRetailCalculatorInputs('discount', '19,90', '24,90'),
+  { firstInvalid: false, secondInvalid: true })
+assert.deepEqual(validateRetailCalculatorInputs('discount', 'abc', '10,00'),
+  { firstInvalid: true, secondInvalid: false })
+assert.deepEqual(validateRetailCalculatorInputs('discount', '24,90', '0,00'),
+  { firstInvalid: false, secondInvalid: false })
 
 assert.equal(parseBrlCents('14,90'), 1490)
 assert.equal(parseBrlCents('14.9'), 1490)
