@@ -45,6 +45,13 @@ const POSTER_STYLE_KEY = 'ofertamatica:poster-style:v1'
 
 const MODEL_PRESETS = POSTER_MODEL_PRESETS
 
+// Busca de catálogo em português: a digitação sem acento deve localizar
+// os mesmos modelos que o nome oficial, sem mudar os rótulos apresentados.
+const normalizeModelSearch = (value) => String(value ?? '')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLocaleLowerCase('pt-BR')
+
 function upsertMeta(name, content) {
   let tag = document.querySelector(`meta[name="${name}"]`)
   if (!tag) {
@@ -571,13 +578,11 @@ export function PublicPage({ page, onCreate, onChooseFormat }) {
   const displayedGuides = guideFiltered ? visibleGuides : visibleGuides.slice(0, guideLimit)
   const remainingGuides = Math.max(0, visibleGuides.length - displayedGuides.length)
   const modelCategories = ['Todos', ...new Set(MODEL_PRESETS.map((item) => item.category))]
-  const normalizedModelQuery = modelQuery.trim().toLocaleLowerCase('pt-BR')
+  const normalizedModelQuery = normalizeModelSearch(modelQuery.trim())
   const rankedModels = sortPosterModels(MODEL_PRESETS, { globalCounts, personalCounts, mode: modelSort })
   const filteredModels = rankedModels.filter((item) => {
     const matchesCategory = modelCategory === 'Todos' || item.category === modelCategory
-    const haystack = [item.name, item.category, item.label, item.product, item.note]
-      .join(' ')
-      .toLocaleLowerCase('pt-BR')
+    const haystack = normalizeModelSearch([item.name, item.category, item.label, item.product, item.note].join(' '))
     const matchesQuery = !normalizedModelQuery || haystack.includes(normalizedModelQuery)
     return matchesCategory && matchesQuery
   })
