@@ -120,6 +120,12 @@
   border-color: #b42318;
   background: #fffafa;
 }
+.free-editor-price-input > span[role="alert"] {
+  color: #992c22;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
 @media screen and (max-width: 760px) {
   .free-poster-editor .free-editor-field:not(.free-editor-price-input) input:not([type="color"]),
   .free-poster-editor .free-editor-field select,
