@@ -278,6 +278,32 @@ try {
             }
           }
 
+          // Busca e filtro vazio devem devolver foco à entrada que continua visível.
+          // Verificar com teclado no celular e desktop, sem alterar a arte impressa.
+          if (route.path === '/modelos/' && (viewport.width === 390 || viewport.width === 1440)) {
+            const search = page.locator('.model-search input[type="search"]')
+            await search.fill('zz-modelo-inexistente-987654')
+            await page.locator('.model-empty-state').waitFor({ state: 'visible' })
+            const reset = page.getByRole('button', { name: 'Limpar filtros', exact: true })
+            await reset.focus()
+            await page.keyboard.press('Enter')
+            if ((await search.inputValue()) !== '' ||
+                !await search.evaluate(el => document.activeElement === el) ||
+                await page.locator('.model-category-strip button[aria-pressed="true"]').innerText() !== 'Todos') {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Limpar filtros não restaurou a busca, categoria Todos e foco no campo' })
+            }
+            await search.fill('oferta')
+            const clear = page.getByRole('button', { name: 'Limpar busca', exact: true })
+            await clear.focus()
+            await page.keyboard.press('Enter')
+            if ((await search.inputValue()) !== '' ||
+                !await search.evaluate(el => document.activeElement === el)) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Limpar busca perdeu o foco do teclado na galeria' })
+            }
+          }
+
           if (route.path === '/' && viewport.width <= 760) {
             const planFields = page.locator('.home-print-plan-fields input, .home-print-plan-fields select')
             const sizes = await planFields.evaluateAll(elements => elements.map(el => {
