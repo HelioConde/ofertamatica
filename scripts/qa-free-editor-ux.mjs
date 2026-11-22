@@ -83,6 +83,31 @@ try {
       await page.getByRole('button', { name: 'Excluir esta caixa' }).click()
       assert((await selected.innerText()).includes('Descrição'), 'exclusão não restaurou seleção')
 
+      // Bloqueia valores inválidos antes de criar PDF ou imprimir,
+      // sem impedir que o usuário imprima quando o preço é válido.
+      await page.evaluate(() => {
+        window.__freeEditorPrintCalls = 0
+        window.print = () => { window.__freeEditorPrintCalls += 1 }
+      })
+      const currentPrice = page.locator('.free-editor-price-input input').first()
+      await currentPrice.fill('abc')
+      assert(await currentPrice.getAttribute('aria-invalid') === 'true',
+        'preço inválido não sinalizado no Editor Livre')
+      const priceError = await currentPrice.getAttribute('aria-describedby')
+      assert(priceError && await page.locator('[id="' + priceError + '"]').isVisible(),
+        'aviso do preço atual não está associado ao campo')
+      await page.getByRole('button', { name: 'Revisar e imprimir' }).click()
+      assert(await page.evaluate(() => window.__freeEditorPrintCalls) === 0,
+        'impressão permitida com preço inválido')
+      assert(await currentPrice.evaluate(el => document.activeElement === el),
+        'foco não retorna ao preço a corrigir')
+      await currentPrice.fill('9,99')
+      assert(await currentPrice.getAttribute('aria-invalid') === 'false',
+        'preço válido não limpa o estado de erro')
+      await page.getByRole('button', { name: 'Salvar PDF' }).click()
+      await page.waitForFunction(() => window.__freeEditorPrintCalls === 1)
+      await page.evaluate(() => window.dispatchEvent(new Event('afterprint')))
+
       await page.getByRole('button', { name: /Como usar o editor/i }).first().click()
       const guideFocused = await page.evaluate(() => document.activeElement?.closest('#guia-editor-livre')?.tagName === 'DETAILS')
       assert(guideFocused, 'foco não foi enviado para o tutorial aberto')
