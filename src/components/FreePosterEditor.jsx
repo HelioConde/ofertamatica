@@ -7,7 +7,7 @@ import { getPosterFormat, POSTER_FORMAT_OPTIONS } from '../config/posterFormats'
 import { FREE_EDITOR_TUTORIAL } from '../seo/seoPages'
 import { trackEvent } from '../utils/telemetry'
 import { createPosterLayouts } from '../poster-engine/layoutPlan'
-import { inspectDePor } from '../poster-engine/priceComparison.js'
+import { brlCents, inspectDePor } from '../poster-engine/priceComparison.js'
 import { createBrowserTextMeasure } from '../utils/posterBrowserMeasure'
 import { resolveReadableHeaderTextColor, resolveReadablePriceColor, resolveReadableTextColor } from '../utils/posterColorContrast'
 import '../styles/free-editor.css'
@@ -150,6 +150,8 @@ export default function FreePosterEditor() {
   const [printHint, setPrintHint] = useState('')
   const [guideFocus, setGuideFocus] = useState('')
   const dragCleanup = useRef(null)
+  const currentPriceRef = useRef(null)
+  const previousPriceRef = useRef(null)
   function preferredScrollBehavior() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
   }
@@ -171,7 +173,9 @@ export default function FreePosterEditor() {
   }
   const format = getPosterFormat(state.formatId)
   const model = POSTER_MODEL_PRESETS.find((item) => item.id === state.modelId) || POSTER_MODEL_PRESETS[0]
-  const invalidPreviousPrice = model.offerMode === 'de-por' && Boolean(state.product.regularPrice) && !inspectDePor(state.product.regularPrice, state.product.price).valid
+  const invalidOfferPrice = state.showPrice && brlCents(state.product.price) === null
+  const invalidPreviousPrice = state.showPrice && model.offerMode === 'de-por'
+    && Boolean(state.product.regularPrice) && !inspectDePor(state.product.regularPrice, state.product.price).valid
   const base = getDefaultTemplateForFormat(state.formatId)
   const boxes = {
     contentBox: boxWithinBounds(state.boxes?.contentBox || base.contentBox),
@@ -238,6 +242,7 @@ export default function FreePosterEditor() {
   function update(field, value) { setState((current) => ({ ...current, [field]: value })) }
   function updateProduct(field, value) {
     setState((current) => ({ ...current, product: { ...current.product, [field]: value } }))
+    if (field === 'price' || field === 'regularPrice') setPrintHint('')
   }
   function updateColor(field, value) {
     setState((current) => ({
@@ -318,6 +323,18 @@ export default function FreePosterEditor() {
     }
   }
   async function print(mode) {
+    // Impede cartazes com preços vazios, negativos ou não numéricos.
+    // A opção "Mostrar preço" desligada continua permitindo cartazes sem preço.
+    if (invalidOfferPrice) {
+      setPrintHint('Corrija o preço da oferta antes de imprimir (ex.: 9,99).')
+      currentPriceRef.current?.focus()
+      return
+    }
+    if (invalidPreviousPrice) {
+      setPrintHint('Corrija o preço anterior real: ele deve ser válido e maior que o preço atual.')
+      previousPriceRef.current?.focus()
+      return
+    }
     if (isPreprinted && !state.showDescription && !state.showPrice && !extras.length) {
       setPrintHint('Este modelo não possui elementos para imprimir.')
       return
@@ -413,10 +430,17 @@ export default function FreePosterEditor() {
             <label className="free-editor-field"><span>Unidade / volume</span><input value={state.product.unit} maxLength="30" onChange={(e) => updateProduct('unit', e.target.value.toLocaleUpperCase('pt-BR'))} /></label>
           </div>
           <label className="free-editor-field free-editor-price-input"><span>Preço (R$)</span>
-            <input inputMode="decimal" value={state.product.price} onChange={(e) => updateProduct('price', money(e.target.value))} placeholder="Ex.: 9,99" /></label>
+            <input ref={currentPriceRef} inputMode="decimal" value={state.product.price}
+              onChange={(e) => updateProduct('price', money(e.target.value))} placeholder="Ex.: 9,99"
+              aria-invalid={invalidOfferPrice}
+              aria-describedby={invalidOfferPrice ? 'free-editor-current-price-error' : undefined} />
+            {invalidOfferPrice ? <span id="free-editor-current-price-error" role="alert">
+              Informe um preço válido maior que zero, como 9,99, antes de imprimir.
+            </span> : null}
+          </label>
           {model.offerMode === 'de-por' ? (
             <label className="free-editor-field free-editor-price-input"><span>Preço anterior real (R$)</span>
-              <input inputMode="decimal" value={state.product.regularPrice || ''} onChange={(e) => updateProduct('regularPrice', money(e.target.value))} placeholder="Ex.: 24,90" aria-invalid={invalidPreviousPrice} aria-describedby={invalidPreviousPrice ? 'free-editor-price-before-error free-editor-price-before-hint' : 'free-editor-price-before-hint'} />
+              <input ref={previousPriceRef} inputMode="decimal" value={state.product.regularPrice || ''} onChange={(e) => updateProduct('regularPrice', money(e.target.value))} placeholder="Ex.: 24,90" aria-invalid={invalidPreviousPrice} aria-describedby={invalidPreviousPrice ? 'free-editor-price-before-error free-editor-price-before-hint' : 'free-editor-price-before-hint'} />
               <small id="free-editor-price-before-hint">Confirme o preço anterior praticado. O desconto só aparece quando o valor anterior é maior.</small>
               {invalidPreviousPrice
                 ? <span id="free-editor-price-before-error" role="alert">O preço anterior precisa ser válido e maior que o preço atual.</span>
