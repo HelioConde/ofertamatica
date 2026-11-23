@@ -27,9 +27,10 @@ export default function RetailListReview({ onCreate }) {
       <label className="retail-review-label" htmlFor={inputId + '-input'}>Produtos e preços (um por linha ou colados do Excel)</label>
       <textarea id={inputId + '-input'} spellCheck={false} rows={6} value={source}
         onChange={(event) => { setSource(event.target.value); setCopyStatus('') }}
-        aria-describedby={inputId + '-hint'} />
+        aria-invalid={Boolean(report.error)}
+        aria-describedby={inputId + '-hint' + (report.error ? ' ' + inputId + '-error' : '')} />
       <p className="retail-review-hint" id={inputId + '-hint'}>Exemplo fictício incluído para demonstração. A análise não consulta o sistema de vendas nem valida preços comerciais.</p>
-      {report.error ? <p role="alert" className="retail-review-error">{report.error}</p> : (
+      {report.error ? <p id={inputId + '-error'} role="alert" className="retail-review-error">{report.error}</p> : (
         <>
           <div className="retail-review-stats" aria-live="polite" aria-atomic="true">
             <span><strong>{report.total}</strong> produtos reconhecidos</span>
