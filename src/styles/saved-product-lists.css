@@ -30,8 +30,9 @@
 .saved-lists-save-row input {
   flex: 1 1 auto; min-width: 0; min-height: 44px; box-sizing: border-box;
   padding: 8px 12px; border: 1px solid #a7bdd7; border-radius: 9px;
-  background: #fff; color: #1b3655; font-size: 14px;
+  background: #fff; color: #1b3655; font-size: 16px;
 }
+.saved-lists-save-row input[aria-invalid="true"] { border-color: #aa273e; box-shadow: 0 0 0 1px #aa273e; }
 .saved-lists-save-row button {
   min-width: 145px; min-height: 44px; padding: 8px 12px; border: 1px solid #1d63e9;
   border-radius: 9px; color: #fff; background: #1d63e9; font-size: 12px; font-weight: 800;
@@ -59,6 +60,7 @@
 .saved-lists-empty { margin: 0; padding: 14px; color: #526985; background: #f5f8fc; border-radius: 10px; font-size: 12px; }
 .saved-lists-error, .saved-lists-status { margin: 12px 0 0; border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; }
 .saved-lists-error { color: #922c2c; background: #fff1f1; }
+.saved-lists-save .saved-lists-name-error { margin-top: 8px; }
 .saved-lists-status { color: #166a44; background: #eef9f1; }
 .saved-lists-privacy { color: #53677e; font-size: 11px; line-height: 1.6; margin: 14px 0 0; }
 .saved-lists-dialog button:focus-visible,
