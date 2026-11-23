@@ -74,6 +74,31 @@ try {
       assert(!(await savedDialog.evaluate(el => el.open)), 'Escape não fecha Minhas listas')
       console.log('[ux-polish] Minhas listas: erro acessível, recuperação e salvamento ' + width + 'px: OK')
       console.log('[ux-polish] Retomada de rascunho ' + width + 'px: OK')
+      // Pré-conferência de listas: vincular aviso de limite ao campo e
+      // preservar leitura e digitação sem zoom no Safari iOS.
+      await open(page, '/cartazes-a-partir-de-excel/', '.retail-review textarea')
+      const reviewInput = page.locator('.retail-review textarea')
+      await reviewInput.fill('x'.repeat(12001))
+      assert(await reviewInput.getAttribute('aria-invalid') === 'true',
+        'Pré-conferência excedida sem aria-invalid')
+      const error = page.locator('.retail-review-error[role="alert"]')
+      assert(await error.isVisible(), 'Pré-conferência não informa o limite excedido')
+      const errorId = await error.getAttribute('id')
+      const describedBy = await reviewInput.getAttribute('aria-describedby') || ''
+      assert(Boolean(errorId) && describedBy.split(/\\s+/).includes(errorId),
+        'Aviso de limite não está associado ao campo')
+      assert(describedBy.includes('-hint'), 'Orientação original do campo foi perdida')
+      if (width === 390) {
+        const fontSize = await reviewInput.evaluate(el => Number.parseFloat(getComputedStyle(el).fontSize))
+        assert(fontSize >= 16, 'Campo de Excel pode acionar zoom involuntário no iOS: ' + fontSize)
+      }
+      await reviewInput.fill('CAFÉ 500G 18,90')
+      assert(await reviewInput.getAttribute('aria-invalid') === 'false',
+        'Correção da lista não remove estado inválido')
+      assert(await error.count() === 0, 'Aviso permanece após corrigir lista')
+      assert(await page.locator('.retail-review-stats').isVisible(), 'Resultado não reaparece após correção')
+      await checkNoOverflow(page, 'pré-conferência de lista do Excel', width)
+      console.log('[ux-polish] Pré-conferência Excel: erro associado e recuperação ' + width + 'px: OK')
     } finally {
       await context.close()
     }
