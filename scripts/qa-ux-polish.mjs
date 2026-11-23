@@ -46,6 +46,33 @@ try {
       if (await cookieReject.count() && await cookieReject.isVisible()) await cookieReject.click()
       await resume.click()
       await page.locator('.editor-page .editor-topline').waitFor({ state: 'visible', timeout: 20000 })
+
+      // Skill A11y: nome inválido em listas salvas precisa identificar o campo,
+      // explicar o erro e devolver foco ao local da correção, em mobile e desktop.
+      await page.locator('.input-menu-trigger').click()
+      await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
+      const savedDialog = page.locator('.saved-lists-dialog')
+      await savedDialog.waitFor({ state: 'visible' })
+      const nameInput = savedDialog.locator('#saved-lists-name')
+      await nameInput.fill('X')
+      await savedDialog.getByRole('button', { name: 'Salvar lista atual' }).click()
+      assert(await nameInput.getAttribute('aria-invalid') === 'true', 'Nome de lista inválido sem aria-invalid')
+      assert((await nameInput.getAttribute('aria-describedby'))?.includes('saved-lists-name-error'),
+        'Nome inválido sem mensagem associada')
+      assert(await savedDialog.locator('#saved-lists-name-error').isVisible(), 'Erro de nome não aparece junto ao campo')
+      assert(await nameInput.evaluate(el => document.activeElement === el), 'Foco não retorna ao nome da lista')
+      if (width === 390) {
+        const font = await nameInput.evaluate(el => Number.parseFloat(getComputedStyle(el).fontSize))
+        assert(font >= 16, 'Nome da lista pode causar zoom involuntário no celular: ' + font)
+      }
+      await nameInput.fill('Ofertas da semana')
+      assert(await nameInput.getAttribute('aria-invalid') !== 'true', 'Correção do nome não limpa aria-invalid')
+      assert(!(await savedDialog.locator('#saved-lists-name-error').count()), 'Mensagem inválida persiste após corrigir nome')
+      await savedDialog.getByRole('button', { name: 'Salvar lista atual' }).click()
+      assert(await savedDialog.locator('.saved-lists-list > li').count() === 1, 'Lista válida não foi salva')
+      await page.keyboard.press('Escape')
+      assert(!(await savedDialog.evaluate(el => el.open)), 'Escape não fecha Minhas listas')
+      console.log('[ux-polish] Minhas listas: erro acessível, recuperação e salvamento ' + width + 'px: OK')
       console.log('[ux-polish] Retomada de rascunho ' + width + 'px: OK')
     } finally {
       await context.close()
