@@ -24,7 +24,7 @@ const routes = [
 ]
 const corePaths = new Set([
   '/', '/modelos/', '/formatos/', '/como-funciona/', '/editor-livre/',
-  '/validade-zero/', '/conheca-validade-zero/',
+  '/validade-zero/', '/conheca-validade-zero/', '/cartazes-a-partir-de-excel/',
 ])
 const screenshotSlugs = new Set([
   'home', 'modelos', 'formatos', 'editor-livre', 'guias-para-varejo',
@@ -245,6 +245,21 @@ try {
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
           }
+          // A captura do topo não mostra o formulário abaixo da dobra.
+          // Registrar o componente real e seu erro em todas as larguras auditadas.
+          if (route.slug === 'cartazes-a-partir-de-excel') {
+            const review = page.locator('.retail-review')
+            const input = review.locator('textarea')
+            const originalSource = await input.inputValue()
+            await review.screenshot({ path: path.join(outDir, `excel-review-valid-${viewport.label}.png`) })
+            await input.fill('x'.repeat(12001))
+            await review.locator('.retail-review-error[role="alert"]').waitFor({ state: 'visible' })
+            await review.screenshot({ path: path.join(outDir, `excel-review-error-${viewport.label}.png`) })
+            await input.fill(originalSource)
+            await review.locator('.retail-review-error').waitFor({ state: 'detached' })
+            await page.evaluate(() => window.scrollTo(0, 0))
+          }
+
           if (screenshotSlugs.has(route.slug) && (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440')) {
             await page.screenshot({ path: path.join(outDir, `${route.slug}-${viewport.label}.png`), fullPage: false })
           }
