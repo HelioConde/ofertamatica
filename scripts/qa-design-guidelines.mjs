@@ -312,6 +312,55 @@ try {
 
           }
 
+          // Galeria de fundos: digitação sem acento, alvos mobile e foco após
+          // remover o botão de limpeza (inclusive no estado sem resultados).
+          if (route.path === '/modelos/' && (viewport.width === 390 || viewport.width === 1440)) {
+            await page.locator('.model-mode-switch button').nth(1).click()
+            const backgroundSearch = page.locator('.bg-gallery-search input[type="search"]')
+            await backgroundSearch.waitFor({ state: 'visible' })
+            if (viewport.width === 390) {
+              const searchMetrics = await backgroundSearch.evaluate(el => ({
+                font: Number.parseFloat(getComputedStyle(el).fontSize),
+                height: el.getBoundingClientRect().height,
+              }))
+              if (searchMetrics.font < 16 || searchMetrics.height < 44) {
+                critical.push({ route: route.path, viewport: viewport.label,
+                  reason: 'Busca de fundos pequena demais em dispositivos móveis', details: searchMetrics })
+              }
+            }
+            for (const term of ['acougue', 'açougue']) {
+              await backgroundSearch.fill(term)
+              await page.locator('.bg-gallery-card strong')
+                .filter({ hasText: 'Açougue' }).first().waitFor({ state: 'visible', timeout: 5000 })
+            }
+            // Evidência visual da galeria realmente alterada, não apenas da aba padrão.
+            await backgroundSearch.fill('acougue')
+            await backgroundSearch.scrollIntoViewIfNeeded()
+            await page.screenshot({ path: path.join(outDir, `modelos-fundos-${viewport.label}.png`), fullPage: false })
+            await backgroundSearch.fill('oferta')
+            const clearBackgroundSearch = page.locator('.bg-gallery-search-clear')
+            await clearBackgroundSearch.focus()
+            await page.keyboard.press('Enter')
+            if ((await backgroundSearch.inputValue()) !== '' ||
+                !await backgroundSearch.evaluate(el => document.activeElement === el)) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Limpar busca de fundos não restaurou foco e entrada' })
+            }
+            await backgroundSearch.fill('zz-fundo-inexistente-987654')
+            await page.locator('.bg-gallery-empty').waitFor({ state: 'visible' })
+            if (await page.locator('.bg-gallery-card').count() !== 0) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Busca de fundos inexistente ainda mostra resultados' })
+            }
+            await clearBackgroundSearch.focus()
+            await page.keyboard.press('Enter')
+            if ((await backgroundSearch.inputValue()) !== '' ||
+                !await backgroundSearch.evaluate(el => document.activeElement === el)) {
+              critical.push({ route: route.path, viewport: viewport.label,
+                reason: 'Limpar busca vazia de fundos perdeu foco' })
+            }
+          }
+
           if (route.path === '/' && viewport.width <= 760) {
             const planFields = page.locator('.home-print-plan-fields input, .home-print-plan-fields select')
             const sizes = await planFields.evaluateAll(elements => elements.map(el => {

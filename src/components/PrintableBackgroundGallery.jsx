@@ -16,6 +16,12 @@ const PX_PER_MM = 96 / 25.4
 const BACKGROUND_MODELS = POSTER_MODEL_PRESETS.filter((model) => model.headerFooterStyle !== 'preimpresso')
 const FORMAT_OPTIONS = POSTER_FORMAT_OPTIONS.filter((format) => format.id !== 'SRA3')
 
+// A busca aceita digitação sem acento, mantendo os nomes oficiais na tela.
+const normalizeBackgroundSearch = (value) => String(value ?? '')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLocaleLowerCase('pt-BR')
+
 function colorsFor(model) {
   return {
     '--poster-background': model.background,
@@ -66,12 +72,14 @@ export default function PrintableBackgroundGallery() {
   const [limit, setLimit] = useState(8)
   const [isPrinting, setIsPrinting] = useState(false)
   const printingRef = useRef(false)
+  const searchRef = useRef(null)
   const selected = BACKGROUND_MODELS.find((item) => item.id === selectedId) || BACKGROUND_MODELS[0]
   const format = getPosterFormat(formatId)
   const template = useMemo(() => backgroundTemplate(selected, formatId), [selected, formatId])
   const colors = useMemo(() => colorsFor(selected), [selected])
+  const normalizedQuery = normalizeBackgroundSearch(query.trim())
   const visible = BACKGROUND_MODELS.filter((model) =>
-    [model.name, model.category, model.label, model.note].join(' ').toLocaleLowerCase('pt-BR').includes(query.trim().toLocaleLowerCase('pt-BR'))
+    normalizeBackgroundSearch([model.name, model.category, model.label, model.note].join(' ')).includes(normalizedQuery)
   )
   const shown = visible.slice(0, limit)
 
@@ -147,9 +155,14 @@ export default function PrintableBackgroundGallery() {
           <div className="bg-gallery-search-row">
             <label className="bg-gallery-search">
               Buscar arte de fundo
-              <input type="search" name="fundo" autoComplete="off" aria-controls="bg-gallery-results" placeholder="Ex.: oferta, hortifruti, padaria..." value={query} onChange={(event) => { setQuery(event.target.value); setLimit(8) }} />
+              <input ref={searchRef} type="search" name="fundo" autoComplete="off" aria-controls="bg-gallery-results" placeholder="Ex.: oferta, hortifruti, padaria..." value={query} onChange={(event) => { setQuery(event.target.value); setLimit(8) }} />
             </label>
-            {query ? <button type="button" className="bg-gallery-search-clear" onClick={() => { setQuery(''); setLimit(8) }}>Limpar busca</button> : null}
+            {query ? <button type="button" className="bg-gallery-search-clear" onClick={() => {
+              setQuery('')
+              setLimit(8)
+              // O botão desaparece ao limpar; manter o contexto do teclado.
+              searchRef.current?.focus()
+            }}>Limpar busca</button> : null}
           </div>
           <p className="bg-gallery-results-status" role="status" aria-live="polite" aria-atomic="true">{shown.length} de {visible.length} {visible.length === 1 ? 'fundo encontrado' : 'fundos encontrados'}</p>
           <div id="bg-gallery-results" className="bg-gallery-grid" aria-label="Escolha um fundo pronto">
