@@ -22,6 +22,8 @@ const routes = [
   { path: '/validade-zero/', ready: '.heading h1' },
 ]
 const viewports = [
+  // 360px cobre a largura mínima comum dos celulares nas rotas essenciais.
+  { name: 'mobile-360', width: 360, height: 800 },
   { name: 'mobile-390', width: 390, height: 844 },
   { name: 'desktop-1440', width: 1440, height: 900 },
 ]
@@ -38,9 +40,9 @@ try {
     })
     try {
       for (const route of routes) {
-        // Todo o conteúdo público no celular; desktop nas telas de trabalho
-        // e nas páginas com experiência visual especializada.
-        if (viewport.name === 'desktop-1440' && !core.has(route.path)) continue
+        // 360px e desktop nas rotas essenciais; 390px em todas as páginas.
+        // Amplia a cobertura sem repetir a auditoria de todo o catálogo.
+        if (viewport.name !== 'mobile-390' && !core.has(route.path)) continue
         const page = await context.newPage()
         try {
           const response = await page.goto(base + route.path, { waitUntil: 'domcontentloaded' })
