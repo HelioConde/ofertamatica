@@ -29,6 +29,7 @@ const corePaths = new Set([
 const screenshotSlugs = new Set([
   'home', 'modelos', 'formatos', 'editor-livre', 'guias-para-varejo',
   'cartaz-black-friday', 'placas-sazonais', 'privacidade', 'validade-zero-app',
+  'cartazes-a-partir-de-excel',
 ])
 // Todas as páginas: mobile e desktop; rotas críticas também em 360px e tablet.
 const shouldAudit = (viewport, route) =>
