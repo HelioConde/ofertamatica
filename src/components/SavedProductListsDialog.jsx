@@ -17,6 +17,7 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
   const [lists, setLists] = useState(() => loadSavedLists(browserStorage()))
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [nameError, setNameError] = useState('')
   const [pending, setPending] = useState(null)
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
     if (open && !dialog.open) {
       setLists(loadSavedLists(browserStorage()))
       setError('')
+      setNameError('')
       setMessage('')
       setPending(null)
       dialog.showModal()
@@ -53,7 +55,19 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
       return
     }
     const result = saveNamedList(browserStorage(), lists, { name, sourceText, formatId })
-    if (!result.ok) { setError(result.error); setMessage(''); return }
+    if (!result.ok) {
+      setMessage('')
+      if (cleanName.length < 2) {
+        setNameError(result.error)
+        setError('')
+        nameRef.current?.focus()
+      } else {
+        setNameError('')
+        setError(result.error)
+      }
+      return
+    }
+    setNameError('')
     setLists(result.lists)
     setName('')
     setPending(null)
@@ -62,6 +76,7 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
   }
 
   function useList(item) {
+    setNameError('')
     if (sourceText.trim() && sourceText.trim() !== item.sourceText &&
       (pending?.type !== 'load' || pending.id !== item.id)) {
       setPending({ type: 'load', id: item.id })
@@ -75,6 +90,7 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
   }
 
   function remove(item) {
+    setNameError('')
     if (pending?.type !== 'delete' || pending.id !== item.id) {
       setPending({ type: 'delete', id: item.id })
       setError('')
@@ -90,6 +106,7 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
   }
 
   function download(item) {
+    setNameError('')
     const text = exportNamedListText(item)
     if (!text) { setError('A lista está vazia e não pode ser exportada.'); return }
     const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }))
@@ -122,12 +139,15 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
         <div className="saved-lists-save-row">
           <input ref={nameRef} id="saved-lists-name" type="text" maxLength={MAX_LIST_NAME_LENGTH}
             value={name} placeholder="Ex.: Ofertas de sexta-feira"
-            onChange={(event) => { setName(event.target.value); setPending(null); setMessage(''); setError('') }}
+            aria-invalid={nameError ? 'true' : undefined}
+            aria-describedby={nameError ? 'saved-lists-name-error' : undefined}
+            onChange={(event) => { setName(event.target.value); setPending(null); setMessage(''); setError(''); setNameError('') }}
             onKeyDown={(event) => { if (event.key === 'Enter') { event.preventDefault(); save() } }} />
           <button type="button" onClick={save} disabled={!sourceText.trim()}>
             {overwrite && pending?.type === 'overwrite' && pending.id === overwrite.id ? 'Substituir lista' : 'Salvar lista atual'}
           </button>
         </div>
+        {nameError ? <p id="saved-lists-name-error" className="saved-lists-error saved-lists-name-error" role="alert">{nameError}</p> : null}
         <small>Salva somente o texto dos produtos; fotos, preços editados separadamente e estilo da placa não são incluídos. Use o rascunho para continuar uma edição completa.</small>
       </div>
 
