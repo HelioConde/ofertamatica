@@ -85,7 +85,7 @@ try {
       assert(await error.isVisible(), 'Pré-conferência não informa o limite excedido')
       const errorId = await error.getAttribute('id')
       const describedBy = await reviewInput.getAttribute('aria-describedby') || ''
-      assert(Boolean(errorId) && describedBy.split(/\\s+/).includes(errorId),
+      assert(Boolean(errorId) && describedBy.split(' ').includes(errorId),
         'Aviso de limite não está associado ao campo')
       assert(describedBy.includes('-hint'), 'Orientação original do campo foi perdida')
       if (width === 390) {
