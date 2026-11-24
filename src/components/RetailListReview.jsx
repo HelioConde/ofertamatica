@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import { inspectRetailList, REVIEW_SAMPLE } from '../seo/retailListReview'
 import '../styles/retail-list-review.css'
 
@@ -6,14 +6,21 @@ export default function RetailListReview({ onCreate }) {
   const inputId = useId()
   const [source, setSource] = useState(REVIEW_SAMPLE)
   const [copyStatus, setCopyStatus] = useState('')
+  const copyRequestId = useRef(0)
   const report = useMemo(() => inspectRetailList(source), [source])
 
   async function copyList() {
+    const requestId = ++copyRequestId.current
+    setCopyStatus('')
     try {
       await navigator.clipboard.writeText(source)
-      setCopyStatus('Lista copiada. Abra o gerador e cole na entrada rápida.')
+      if (requestId === copyRequestId.current) {
+        setCopyStatus('Lista copiada. Abra o gerador e cole na entrada rápida.')
+      }
     } catch {
-      setCopyStatus('O navegador não permitiu copiar automaticamente. Selecione a lista e copie manualmente.')
+      if (requestId === copyRequestId.current) {
+        setCopyStatus('O navegador não permitiu copiar automaticamente. Selecione a lista e copie manualmente.')
+      }
     }
   }
 
@@ -26,7 +33,11 @@ export default function RetailListReview({ onCreate }) {
       </div>
       <label className="retail-review-label" htmlFor={inputId + '-input'}>Produtos e preços (um por linha ou colados do Excel)</label>
       <textarea id={inputId + '-input'} spellCheck={false} rows={6} value={source}
-        onChange={(event) => { setSource(event.target.value); setCopyStatus('') }}
+        onChange={(event) => {
+          copyRequestId.current += 1
+          setSource(event.target.value)
+          setCopyStatus('')
+        }}
         aria-invalid={Boolean(report.error)}
         aria-describedby={inputId + '-hint' + (report.error ? ' ' + inputId + '-error' : '')} />
       <p className="retail-review-hint" id={inputId + '-hint'}>Exemplo fictício incluído para demonstração. A análise não consulta o sistema de vendas nem valida preços comerciais.</p>
