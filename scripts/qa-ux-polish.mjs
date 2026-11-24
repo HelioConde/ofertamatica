@@ -83,6 +83,8 @@ try {
         'Pré-conferência excedida sem aria-invalid')
       const error = page.locator('.retail-review-error[role="alert"]')
       assert(await error.isVisible(), 'Pré-conferência não informa o limite excedido')
+      assert(await page.locator('.retail-review-scroll-hint').count() === 0,
+        'Orientação de rolagem aparece sem tabela no estado de erro')
       const errorId = await error.getAttribute('id')
       const describedBy = await reviewInput.getAttribute('aria-describedby') || ''
       assert(Boolean(errorId) && describedBy.split(' ').includes(errorId),
@@ -97,6 +99,40 @@ try {
         'Correção da lista não remove estado inválido')
       assert(await error.count() === 0, 'Aviso permanece após corrigir lista')
       assert(await page.locator('.retail-review-stats').isVisible(), 'Resultado não reaparece após correção')
+      const reviewTable = page.getByRole('region', { name: 'Resultados da conferência dos produtos', exact: true })
+      const scrollHint = page.locator('.retail-review-scroll-hint')
+      assert(await reviewTable.getAttribute('aria-describedby') === await scrollHint.getAttribute('id'),
+        'Tabela sem orientação de rolagem associada')
+      if (width === 390) {
+        assert(await scrollHint.isVisible(), 'Orientação de rolagem não aparece no celular')
+        await reviewInput.focus()
+        await page.keyboard.press('Tab')
+        assert(await reviewTable.evaluate(el => document.activeElement === el),
+          'Tabela não é alcançável por Tab a partir da lista')
+        const initialScroll = await reviewTable.evaluate(el => el.scrollLeft)
+        await page.keyboard.press('ArrowRight')
+        await page.waitForFunction(start => document.querySelector('.retail-review-scroll').scrollLeft > start,
+          initialScroll, { timeout: 3000 })
+        for (let step = 0; step < 20; step++) await page.keyboard.press('ArrowRight')
+        await page.waitForFunction(() => {
+          const table = document.querySelector('.retail-review-scroll')
+          return table.scrollWidth - table.clientWidth - table.scrollLeft <= 2
+        }, null, { timeout: 3000 })
+        assert(await reviewTable.evaluate(el => {
+          const region = el.getBoundingClientRect()
+          const lastColumn = el.querySelector('thead th:last-child').getBoundingClientRect()
+          return lastColumn.left >= region.left && lastColumn.right <= region.right + 1
+        }), 'Coluna de conferência continua fora da área visível após rolagem')
+        await page.keyboard.press('Tab')
+        assert(await page.getByRole('button', { name: 'Copiar lista', exact: true })
+          .evaluate(el => document.activeElement === el), 'Tabela prende a navegação por Tab')
+      } else {
+        assert(!await scrollHint.isVisible(), 'Orientação mobile ocupa espaço no desktop')
+      }
+      await reviewInput.fill('')
+      assert(await reviewTable.count() === 0 && await scrollHint.count() === 0,
+        'Tabela ou orientação permanece após limpar a lista')
+      await reviewInput.fill('CAFÉ 500G 18,90')
       await checkNoOverflow(page, 'pré-conferência de lista do Excel', width)
       console.log('[ux-polish] Pré-conferência Excel: erro associado e recuperação ' + width + 'px: OK')
     } finally {

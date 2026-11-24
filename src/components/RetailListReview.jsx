@@ -38,21 +38,27 @@ export default function RetailListReview({ onCreate }) {
             <span><strong>{report.attention}</strong> para revisar</span>
           </div>
           {report.rows.length ? (
-            <div className="retail-review-scroll" role="region" aria-label="Resultados da conferência dos produtos" tabIndex={0}>
-              <table>
-                <thead><tr><th scope="col">Produto</th><th scope="col">Unidade</th><th scope="col">Preço</th><th scope="col">Conferência</th></tr></thead>
-                <tbody>{report.rows.map((row) => (
-                  <tr key={row.id}>
-                    <th scope="row">{row.name}</th>
-                    <td>{row.unit}</td>
-                    <td className="retail-review-price">{row.price === '—' ? row.price : 'R$ ' + row.price}</td>
-                    <td><span className={row.ready ? 'retail-review-ok' : 'retail-review-attention'}>
-                      {row.ready ? 'Sem alertas' : row.issues.join(' · ')}
-                    </span></td>
-                  </tr>
-                ))}</tbody>
-              </table>
-            </div>
+            <>
+              <p className="retail-review-scroll-hint" id={inputId + '-scroll-hint'}>
+                Deslize a tabela para conferir preço e alertas. No teclado, use as setas para os lados.
+              </p>
+              <div className="retail-review-scroll" role="region" aria-label="Resultados da conferência dos produtos"
+                aria-describedby={inputId + '-scroll-hint'} tabIndex={0}>
+                <table>
+                  <thead><tr><th scope="col">Produto</th><th scope="col">Unidade</th><th scope="col">Preço</th><th scope="col">Conferência</th></tr></thead>
+                  <tbody>{report.rows.map((row) => (
+                    <tr key={row.id}>
+                      <th scope="row">{row.name}</th>
+                      <td>{row.unit}</td>
+                      <td className="retail-review-price">{row.price === '—' ? row.price : 'R$ ' + row.price}</td>
+                      <td><span className={row.ready ? 'retail-review-ok' : 'retail-review-attention'}>
+                        {row.ready ? 'Sem alertas' : row.issues.join(' · ')}
+                      </span></td>
+                    </tr>
+                  ))}</tbody>
+                </table>
+              </div>
+            </>
           ) : <p className="retail-review-empty">Cole uma lista para ver os produtos interpretados.</p>}
         </>
       )}
