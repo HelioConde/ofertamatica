@@ -245,19 +245,35 @@ try {
           if (jsErrors.length) {
             critical.push({ route: route.path, viewport: viewport.label, reason: 'Erro JavaScript', details: jsErrors.slice(0, 3) })
           }
-          // A captura do topo não mostra o formulário abaixo da dobra.
-          // Registrar o componente real e seu erro em todas as larguras auditadas.
+          // Capturar a página completa a partir do topo: o recorte do componente
+          // podia incluir o cabeçalho fixo sobre o formulário em telas menores.
+          // Focar o campo também remove o foco residual do atalho de navegação.
           if (route.slug === 'cartazes-a-partir-de-excel') {
             const review = page.locator('.retail-review')
             const input = review.locator('textarea')
             const originalSource = await input.inputValue()
-            await review.screenshot({ path: path.join(outDir, `excel-review-valid-${viewport.label}.png`) })
+            const captureReview = async (state) => {
+              await input.focus()
+              if (!await input.evaluate(el => el === document.activeElement)) {
+                throw new Error('Campo da pré-conferência não recebeu foco')
+              }
+              await page.evaluate(() => window.scrollTo(0, 0))
+              await page.screenshot({
+                path: path.join(outDir, `excel-review-${state}-${viewport.label}.png`),
+                fullPage: true,
+              })
+            }
+            await captureReview('valid')
             await input.fill('x'.repeat(12001))
             await review.locator('.retail-review-error[role="alert"]').waitFor({ state: 'visible' })
-            await review.screenshot({ path: path.join(outDir, `excel-review-error-${viewport.label}.png`) })
+            await captureReview('error')
             await input.fill(originalSource)
             await review.locator('.retail-review-error').waitFor({ state: 'detached' })
-            await page.evaluate(() => window.scrollTo(0, 0))
+            await review.locator('.retail-review-stats').waitFor({ state: 'visible' })
+            if (await input.getAttribute('aria-invalid') !== 'false') {
+              throw new Error('Pré-conferência permanece inválida após corrigir a lista')
+            }
+            await captureReview('recovered')
           }
 
           if (screenshotSlugs.has(route.slug) && (viewport.label === 'mobile-390' || viewport.label === 'desktop-1440')) {
