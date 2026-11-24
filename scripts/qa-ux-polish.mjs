@@ -135,6 +135,52 @@ try {
       await reviewInput.fill('CAFÉ 500G 18,90')
       await checkNoOverflow(page, 'pré-conferência de lista do Excel', width)
       console.log('[ux-polish] Pré-conferência Excel: erro associado e recuperação ' + width + 'px: OK')
+      // Controlar a resposta da API para reproduzir edição durante a cópia,
+      // rejeição de permissão e duas solicitações concluídas fora de ordem.
+      await page.evaluate(() => {
+        window.__reviewCopyRequests = []
+        Object.defineProperty(navigator, 'clipboard', {
+          configurable: true,
+          value: { writeText: text => new Promise((resolve, reject) => {
+            window.__reviewCopyRequests.push({ text, resolve, reject })
+          }) },
+        })
+      })
+      const copyButton = page.getByRole('button', { name: 'Copiar lista', exact: true })
+      const copyStatus = page.locator('.retail-review-copy-status[role="status"]')
+      const settleCopy = async (index, succeeds) => {
+        await page.evaluate(async ({ index, succeeds }) => {
+          const request = window.__reviewCopyRequests[index]
+          if (succeeds) request.resolve()
+          else request.reject(new DOMException('Permissão negada no teste', 'NotAllowedError'))
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+        }, { index, succeeds })
+      }
+      await copyButton.click()
+      assert(await page.evaluate(() => window.__reviewCopyRequests[0].text) === 'CAFÉ 500G 18,90',
+        'Cópia não recebeu o conteúdo exato da lista')
+      await reviewInput.fill('ARROZ 5KG 24,90')
+      await settleCopy(0, true)
+      assert(await copyStatus.count() === 0, 'Sucesso atrasado reapareceu após editar a lista')
+      await copyButton.click()
+      await reviewInput.fill('LEITE 1L 4,99')
+      await settleCopy(1, false)
+      assert(await copyStatus.count() === 0, 'Erro atrasado reapareceu após editar a lista')
+      await copyButton.click()
+      await settleCopy(2, true)
+      assert((await copyStatus.innerText()).startsWith('Lista copiada.'), 'Cópia atual não confirma sucesso')
+      await copyButton.click()
+      assert(await copyStatus.count() === 0, 'Nova tentativa mantém confirmação anterior enquanto aguarda')
+      await copyButton.click()
+      await settleCopy(4, false)
+      assert((await copyStatus.innerText()).includes('copie manualmente'), 'Falha atual não orienta cópia manual')
+      await settleCopy(3, true)
+      assert((await copyStatus.innerText()).includes('copie manualmente'),
+        'Resposta antiga substituiu o resultado da tentativa mais recente')
+      await reviewInput.fill('')
+      assert(await copyStatus.count() === 0 && await copyButton.isDisabled(),
+        'Limpar lista não remove feedback ou permite copiar conteúdo vazio')
+      console.log('[ux-polish] Copiar lista: respostas atrasadas, ordem e recuperação ' + width + 'px: OK')
     } finally {
       await context.close()
     }
