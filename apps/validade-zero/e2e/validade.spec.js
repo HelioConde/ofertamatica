@@ -530,3 +530,43 @@ test('OCR ao vivo exige dois quadros iguais, encerra a câmera e espera confirma
   await expect(page.getByLabel('Data de validade *')).toHaveValue('2027-09-28');
   await expect.poll(()=>page.evaluate(()=>window.__ocr.terminated)).toBe(1);
 });
+
+
+test.describe('Expo Camera Web OCR',()=>{
+  test.use({launchOptions:{args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']}});
+  test('abre CameraView real, captura dois quadros e confirma a validade',async({page,context})=>{
+    await context.grantPermissions(['camera']);
+    await page.getByRole('button',{name:/Cadastrar primeiro lote/}).click();
+    await page.evaluate(()=>{
+      window.__expoFrames=[];
+      window.Tesseract={createWorker:async()=>({
+        recognize:async blob=>{window.__expoFrames.push({type:blob.type,size:blob.size});return {data:{text:'VAL 240427'}};},
+        terminate:async()=>{}
+      })};
+    });
+    await page.getByRole('button',{name:'Ler validade pela câmera'}).click();
+    await page.getByRole('button',{name:'Usar Expo Camera'}).click();
+    const camera=page.frameLocator('iframe[title="Expo Camera para validade"]');
+    await expect(camera.locator('video')).toBeVisible({timeout:20000});
+    await expect(page.getByRole('button',{name:/24\/04\/2027/})).toBeVisible({timeout:20000});
+    const frames=await page.evaluate(()=>window.__expoFrames);
+    expect(frames.length).toBe(2);
+    expect(frames.every(f=>f.size>0&&f.type.startsWith('image/'))).toBe(true);
+    await expect(page.getByLabel('Data de validade *')).toHaveValue('');
+    await expect(page.locator('iframe[title="Expo Camera para validade"]')).toHaveCount(0);
+    await page.getByRole('button',{name:/24\/04\/2027/}).click();
+    await expect(page.getByLabel('Data de validade *')).toHaveValue('2027-04-24');
+  });
+  test('abre Expo Camera para EAN e permite voltar ao leitor padrão',async({page,context})=>{
+    await context.grantPermissions(['camera']);
+    await page.getByRole('button',{name:/Escanear EAN com a câmera/}).click();
+    await page.getByRole('button',{name:'Usar Expo Camera'}).click();
+    const camera=page.frameLocator('iframe[title="Expo Camera para EAN"]');
+    await expect(camera.locator('video')).toBeVisible({timeout:20000});
+    await expect(page.getByText('Expo Camera ativo',{exact:true})).toBeVisible({timeout:20000});
+    await page.getByRole('button',{name:'Voltar ao leitor padrão'}).click();
+    await expect(page.locator('iframe[title="Expo Camera para EAN"]')).toHaveCount(0);
+    await expect(page.getByLabel('Visualização da câmera para código de barras')).toBeVisible();
+    await page.getByRole('button',{name:'Fechar leitor de EAN'}).click();
+  });
+});
