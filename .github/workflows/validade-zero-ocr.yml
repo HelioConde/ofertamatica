@@ -24,6 +24,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm test -- --watchAll=false --runInBand
       - run: npm run build
+        env:
+          PUBLIC_URL: '/'
       - run: npm install --no-save --no-package-lock @playwright/test@1.55.1
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --grep 'OCR'

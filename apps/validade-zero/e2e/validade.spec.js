@@ -486,3 +486,47 @@ test('sem API de autofoco, a câmera ainda abre e oferece orientação de distâ
   await expect(page.getByRole('slider', { name: 'Zoom da câmera' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Fechar leitor de EAN' }).click();
 });
+
+
+test('OCR ao vivo exige dois quadros iguais, encerra a câmera e espera confirmação', async ({ page }, testInfo) => {
+  await page.getByRole('button', { name: /Cadastrar primeiro lote/ }).click();
+  await page.evaluate(() => {
+    window.__ocr = { reads:0, workers:0, terminated:0, stopped:false };
+    const canvas=document.createElement('canvas');
+    canvas.width=640;canvas.height=480;
+    const ctx=canvas.getContext('2d');
+    let frame=0;
+    const paint=()=>{
+      ctx.fillStyle='white';ctx.fillRect(0,0,640,480);
+      ctx.fillStyle='black';ctx.font='32px sans-serif';ctx.fillText('VAL: 28 SET 27',150,220);
+      ctx.fillRect(0,0,5+(frame++%5),5);
+    };
+    paint();
+    const stream=canvas.captureStream(12);
+    const track=stream.getVideoTracks()[0],stop=track.stop.bind(track);
+    const timer=setInterval(paint,80);
+    track.stop=()=>{clearInterval(timer);window.__ocr.stopped=true;stop();};
+    navigator.mediaDevices.getUserMedia=async()=>stream;
+    window.Tesseract={createWorker:async()=>{
+      window.__ocr.workers++;
+      return {
+        recognize:async()=>{
+          window.__ocr.reads++;
+          return {data:{text:window.__ocr.reads===1?'VAL: 29 SET 27':'VAL: 28 SET 27'}};
+        },
+        terminate:async()=>{window.__ocr.terminated++;}
+      };
+    }};
+  });
+  await page.getByRole('button',{name:'Ler validade pela câmera'}).click();
+  await page.getByRole('button',{name:'Abrir câmera',exact:true}).click();
+  await expect(page.getByRole('button',{name:/28\/09\/2027/})).toBeVisible({timeout:15000});
+  await expect(page.getByRole('button',{name:/29\/09\/2027/})).toHaveCount(0);
+  await expect(page.getByLabel('Data de validade *')).toHaveValue('');
+  await expect.poll(()=>page.evaluate(()=>window.__ocr.stopped)).toBe(true);
+  expect(await page.evaluate(()=>({reads:window.__ocr.reads,workers:window.__ocr.workers}))).toEqual({reads:3,workers:1});
+  await page.screenshot({path:'test-results/'+testInfo.project.name+'-ocr-consensus.png',fullPage:true});
+  await page.getByRole('button',{name:/28\/09\/2027/}).click();
+  await expect(page.getByLabel('Data de validade *')).toHaveValue('2027-09-28');
+  await expect.poll(()=>page.evaluate(()=>window.__ocr.terminated)).toBe(1);
+});

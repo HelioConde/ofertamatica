@@ -135,6 +135,7 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
     await processImage(blob);
   }
   function start(){
+    cancelWork();setBusy(false);if(!preview)setReady(false);
     setCandidates([]);setRawText('');setMessage('Enquadre a validade impressa.');setPreview(true);setAuto(true);
   }
   function stopAuto(){
