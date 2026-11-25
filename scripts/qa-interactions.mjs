@@ -1,5 +1,6 @@
 import { CURATED_POSTER_COLLECTIONS } from '../src/config/modelEditorialCollections.js'
 import { chromium } from 'playwright'
+import { mkdir } from 'node:fs/promises'
 
 const origin = process.env.CAPTURE_BASE_URL || 'http://127.0.0.1:5183'
 const browser = await chromium.launch({ headless: true })
@@ -163,14 +164,25 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
     await dialog.getByRole('button', { name: 'Baixar TXT da lista Ofertas da semana' }).click()
     const download = await downloadPromise
     if (download.suggestedFilename() !== 'ofertas-da-semana.txt') throw new Error('Arquivo TXT gerado com nome incorreto')
+    await dialog.getByLabel('Nome da lista').fill('Reposição diária')
+    await dialog.getByRole('button', { name: 'Salvar lista atual' }).click()
+    for (const name of ['Ofertas da semana', 'Reposição diária']) {
+      if (await dialog.getByRole('button', { name: 'Usar lista ' + name, exact: true }).count() !== 1)
+        throw new Error('Ação Usar não identifica a lista: ' + name)
+    }
     await dialog.getByRole('button', { name: 'Fechar Minhas listas' }).click()
     await textarea.fill('Leite integral 1L 4,99')
     await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
     await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
     dialog = page.getByRole('dialog', { name: 'Minhas listas de produtos' })
-    await dialog.getByRole('button', { name: 'Usar', exact: true }).click()
+    const useList = dialog.getByRole('button', { name: 'Usar lista Ofertas da semana', exact: true })
+    await useList.focus()
+    await page.keyboard.press('Enter')
     if (!(await dialog.innerText()).includes('substituirá o conteúdo atual')) throw new Error('Troca não pediu confirmação')
-    await dialog.getByRole('button', { name: 'Confirmar troca' }).click()
+    if (await textarea.inputValue() === original) throw new Error('Lista carregada antes de confirmar')
+    const confirmLoad = dialog.getByRole('button', { name: 'Confirmar troca para a lista Ofertas da semana', exact: true })
+    if (!(await confirmLoad.evaluate(el => document.activeElement === el))) throw new Error('Confirmação de troca perdeu foco')
+    await page.keyboard.press('Space')
     await dialog.waitFor({ state: 'hidden' })
     if (await textarea.inputValue() !== original) throw new Error('Lista anterior não foi recuperada')
     await page.waitForFunction((expected) => {
@@ -183,11 +195,19 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
     await page.getByRole('button', { name: 'Abrir ações de entrada' }).click()
     await page.getByRole('menuitem', { name: /Minhas listas/ }).click()
     dialog = page.getByRole('dialog', { name: 'Minhas listas de produtos' })
-    await dialog.getByRole('button', { name: 'Excluir lista Ofertas da semana' }).click()
+    await dialog.getByRole('button', { name: 'Excluir lista Ofertas da semana', exact: true }).focus()
+    await page.keyboard.press('Enter')
     if (!(await dialog.innerText()).includes('não pode ser desfeita')) throw new Error('Exclusão sem confirmação')
-    await dialog.getByRole('button', { name: 'Excluir lista Ofertas da semana' }).click()
-    storageCount = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:saved-product-lists:v1') || '[]').length)
-    if (storageCount !== 0) throw new Error('Lista não foi excluída do armazenamento')
+    if (await dialog.locator('.saved-lists-list > li').count() !== 2) throw new Error('Lista excluída antes da confirmação')
+    const confirmDelete = dialog.getByRole('button', { name: 'Confirmar exclusão da lista Ofertas da semana', exact: true })
+    if (await confirmDelete.innerText() !== 'Confirmar exclusão') throw new Error('Nome acessível não corresponde à confirmação visível')
+    if (!(await confirmDelete.evaluate(el => document.activeElement === el))) throw new Error('Confirmação de exclusão perdeu foco')
+    await mkdir('artifacts/design-audit', { recursive: true })
+    await page.screenshot({ path: 'artifacts/design-audit/saved-lists-confirm-delete-' + viewport.width + '.png' })
+    await page.keyboard.press('Space')
+    const remainingLists = await page.evaluate(() => JSON.parse(localStorage.getItem('ofertamatica:saved-product-lists:v1') || '[]'))
+    if (remainingLists.length !== 1 || remainingLists[0].name !== 'Reposição diária')
+      throw new Error('Exclusão não preservou a outra lista')
   })
 }
 
