@@ -162,11 +162,13 @@ export default function SavedProductListsDialog({ open, onClose, sourceText, for
                   <small>{item.sourceText.split(/\r?\n/).filter(Boolean).length} linhas · criado no formato {item.formatId || 'A4'} · salvo em {item.savedAt ? new Date(item.savedAt).toLocaleDateString('pt-BR') : 'data desconhecida'}</small>
                 </div>
                 <div className="saved-list-actions">
-                  <button type="button" onClick={() => useList(item)} className="saved-list-use">
+                  <button type="button" onClick={() => useList(item)} className="saved-list-use"
+                    aria-label={(pending?.type === 'load' && pending.id === item.id ? 'Confirmar troca para a lista ' : 'Usar lista ') + item.name}>
                     {pending?.type === 'load' && pending.id === item.id ? 'Confirmar troca' : 'Usar'}
                   </button>
                   <button type="button" onClick={() => download(item)} aria-label={'Baixar TXT da lista ' + item.name}>Baixar TXT</button>
-                  <button type="button" onClick={() => remove(item)} className="saved-list-remove" aria-label={'Excluir lista ' + item.name}>
+                  <button type="button" onClick={() => remove(item)} className="saved-list-remove"
+                    aria-label={(pending?.type === 'delete' && pending.id === item.id ? 'Confirmar exclusão da lista ' : 'Excluir lista ') + item.name}>
                     {pending?.type === 'delete' && pending.id === item.id ? 'Confirmar exclusão' : 'Excluir'}
                   </button>
                 </div>
