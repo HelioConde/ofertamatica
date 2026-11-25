@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../components/Icon';
+import ExpoCameraFrame from './ExpoCameraFrame';
 import { advanceExpiryConsensus, createExpirySession } from './expiry';
 import { requestAutoFocus, cameraCapabilities, supportsTorch, applyCameraTorch } from './focus';
 
@@ -22,6 +23,8 @@ function frameBlob(video, treated=false) {
 export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false }) {
   const [open,setOpen]=useState(initiallyOpen);
   const [preview,setPreview]=useState(false);
+  const [expoMode,setExpoMode]=useState(false);
+  const expoRef=useRef(null);
   const [auto,setAuto]=useState(false);
   const [ready,setReady]=useState(false);
   const [busy,setBusy]=useState(false);
@@ -46,7 +49,7 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
   useEffect(()=>{if(open)closeRef.current?.focus();},[open]);
 
   useEffect(()=>{
-    if(!preview)return undefined;
+    if(!preview||expoMode)return undefined;
     let cancelled=false;
     const video=videoRef.current;
     setReady(false);setTorch(false);setTorchAvailable(false);
@@ -72,7 +75,7 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
       streamRef.current?.getTracks().forEach(t=>t.stop());streamRef.current=null;
       if(video){video.pause();video.srcObject=null;}
     };
-  },[preview]);
+  },[preview,expoMode]);
 
   useEffect(()=>{
     if(!auto||!ready||!preview)return undefined;
@@ -84,7 +87,7 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
       if(processing.current){timer=setTimeout(tick,350);return;}
       processing.current=true;setBusy(true);
       try{
-        const blob=await frameBlob(videoRef.current,frames>=3);
+        const blob=expoMode?await expoRef.current?.capture():await frameBlob(videoRef.current,frames>=3);
         if(!active())return;
         if(!blob){timer=setTimeout(tick,400);return;}
         const result=await session().recognise(blob);
@@ -112,8 +115,8 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
       }
     }
     tick();
-    return ()=>{stopped=true;clearTimeout(timer);if(generation.current===id){generation.current++;processing.current=false;}};
-  },[auto,ready,preview]);
+    return ()=>{stopped=true;clearTimeout(timer);processing.current=false;};
+  },[auto,ready,preview,expoMode]);
 
   async function processImage(blob){
     if(!blob||!blob.type.startsWith('image/')){setMessage('Selecione uma imagem válida.');return;}
@@ -130,9 +133,13 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
     }finally{if(generation.current===id)setBusy(false);}
   }
   async function snap(){
-    const blob=await frameBlob(videoRef.current);
+    let blob;
+    try{blob=expoMode?await expoRef.current?.capture():await frameBlob(videoRef.current);}catch(error){setMessage(error.message);return;}
     if(!blob){setMessage('A câmera ainda não está pronta para fotografar.');return;}
     await processImage(blob);
+  }
+  function switchCamera(useExpo){
+    cancelWork();setReady(false);setBusy(false);setCandidates([]);setRawText('');setTorchAvailable(false);setExpoMode(useExpo);setPreview(true);setAuto(true);setMessage('Enquadre a validade impressa.');
   }
   function start(){
     cancelWork();setBusy(false);if(!preview)setReady(false);
@@ -157,12 +164,15 @@ export default function ExpiryCamera({ onConfirm, onClose, initiallyOpen = false
           <button ref={closeRef} type="button" className="icon-button" aria-label="Fechar leitor de validade" onClick={close}><Icon name="close" size={18}/></button>
         </div>
         <p>Enquadre a palavra VAL/VENC e a data impressa. O leitor tenta reconhecer automaticamente; confira a embalagem.</p>
-        {preview && <div className="expiry-viewfinder">
+        {preview && expoMode && <ExpoCameraFrame ref={expoRef} mode="expiry" onReady={()=>setReady(true)} onError={error=>{setAuto(false);setBusy(false);setMessage(error||'Expo Camera indisponível. Use o leitor padrão.');}}/>}
+        {preview && !expoMode && <div className="expiry-viewfinder">
           <video ref={videoRef} className="scanner-video" autoPlay playsInline muted aria-label="Câmera para validade"/>
           <div className="expiry-viewfinder__guide" aria-hidden="true"/>
         </div>}
         <div className="expiry-scanner__buttons">
-          {!preview && <button type="button" className="btn btn--primary" disabled={busy} onClick={start}><Icon name="camera" size={17}/> Abrir câmera</button>}
+          {!preview && <button type="button" className="btn btn--primary" disabled={busy} onClick={()=>switchCamera(false)}><Icon name="camera" size={17}/> Abrir câmera</button>}
+          {(!preview||!expoMode) && <button type="button" className="btn btn--outline" onClick={()=>switchCamera(true)}>Usar Expo Camera</button>}
+          {preview && expoMode && <button type="button" className="btn btn--outline" onClick={()=>switchCamera(false)}>Voltar ao leitor padrão</button>}
           {preview && auto && <button type="button" className="btn btn--outline" onClick={stopAuto}>Pausar leitura automática</button>}
           {preview && !auto && <button type="button" className="btn btn--primary" disabled={!ready||busy} onClick={start}>Tentar leitura automática</button>}
           {preview && <button type="button" className="btn btn--outline" disabled={!ready||busy||auto} onClick={snap}><Icon name="camera" size={17}/> Fotografar data</button>}

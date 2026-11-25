@@ -385,3 +385,7 @@ tbody tr:hover { background: #f8f8f9; }
 .expiry-viewfinder__guide { position: absolute; inset: 18% 5%; border: 2px solid white; border-radius: 8px; box-shadow: 0 0 0 220px rgba(0,0,0,.28); pointer-events: none; }
 .expiry-scanner__buttons .btn { min-height: 44px; }
 .expiry-scanner__panel .icon-button { min-width: 44px; min-height: 44px; }
+
+.vz-expo-camera { min-width: 0; width: 100%; }
+.vz-expo-camera iframe { display: block; width: 100%; height: clamp(220px, 50vw, 360px); border: 0; border-radius: 12px; background: #18181b; }
+.vz-expo-camera p { font-size: 13px; }

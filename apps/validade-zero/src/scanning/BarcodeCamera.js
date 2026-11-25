@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../components/Icon';
+import ExpoCameraFrame from './ExpoCameraFrame';
 import { cameraError, startBarcodeScanner } from './barcode';
 import { readBarcodeFromPhoto } from './photoBarcode';
 
@@ -11,6 +12,7 @@ export default function BarcodeCamera({ onDetected, onClose }) {
   const liveStopRef = useRef(null);
   const mountedRef = useRef(true);
   const [photoMode, setPhotoMode] = useState(false);
+  const [expoMode,setExpoMode]=useState(false);
   const [photoBusy, setPhotoBusy] = useState(false);
   const [status, setStatus] = useState('Solicitando permissão para abrir a câmera…');
   const [error, setError] = useState('');
@@ -25,7 +27,7 @@ export default function BarcodeCamera({ onDetected, onClose }) {
     return () => { mountedRef.current = false; };
   }, []);
   useEffect(() => {
-    if (photoMode) return undefined;
+    if (photoMode || expoMode) return undefined;
     let disposed = false;
     let stop = () => {};
     startBarcodeScanner(videoRef.current, code => {
@@ -49,12 +51,13 @@ export default function BarcodeCamera({ onDetected, onClose }) {
       }
     });
     return () => { disposed = true; cameraControls.current = null; liveStopRef.current = null; stop(); };
-  }, [photoMode]);
+  }, [photoMode, expoMode]);
 
   function takePhoto() {
     if (photoBusy) return;
     // Liberar o vídeo para a câmera nativa do aparelho poder ajustar o foco.
     liveStopRef.current?.();
+    setExpoMode(false);
     setPhotoMode(true);
     setError('');
     setStatus('Use a câmera do celular para fotografar o EAN, ou escolha uma imagem.');
@@ -116,7 +119,9 @@ export default function BarcodeCamera({ onDetected, onClose }) {
       <input ref={photoInputRef} type="file" accept="image/*" capture="environment"
         onChange={onPhotoChosen} aria-label="Foto do código EAN" className="scanner-photo-input"/>
     </div>
-    {!photoMode && <>
+    {!photoMode && <button type="button" className="btn btn--outline" onClick={()=>{liveStopRef.current?.();setExpoMode(value=>!value);setError('');setStatus('');}}>{expoMode?'Voltar ao leitor padrão':'Usar Expo Camera'}</button>}
+    {!photoMode && expoMode && <ExpoCameraFrame mode="ean" onBarcode={code=>detectedRef.current(code)} onError={message=>setError(message||'Expo Camera indisponível.')}/>}
+    {!photoMode && !expoMode && <>
       <div className="barcode-viewfinder">
         <video className="scanner-video" ref={videoRef} autoPlay playsInline muted aria-label="Visualização da câmera para código de barras"/>
         <div className="barcode-viewfinder__guide" aria-hidden="true"><span/></div>
