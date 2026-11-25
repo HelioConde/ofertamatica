@@ -486,3 +486,87 @@ test('sem API de autofoco, a câmera ainda abre e oferece orientação de distâ
   await expect(page.getByRole('slider', { name: 'Zoom da câmera' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Fechar leitor de EAN' }).click();
 });
+
+
+test('OCR ao vivo exige dois quadros iguais, encerra a câmera e espera confirmação', async ({ page }, testInfo) => {
+  await page.getByRole('button', { name: /Cadastrar primeiro lote/ }).click();
+  await page.evaluate(() => {
+    window.__ocr = { reads:0, workers:0, terminated:0, stopped:false };
+    const canvas=document.createElement('canvas');
+    canvas.width=640;canvas.height=480;
+    const ctx=canvas.getContext('2d');
+    let frame=0;
+    const paint=()=>{
+      ctx.fillStyle='white';ctx.fillRect(0,0,640,480);
+      ctx.fillStyle='black';ctx.font='32px sans-serif';ctx.fillText('VAL: 28 SET 27',150,220);
+      ctx.fillRect(0,0,5+(frame++%5),5);
+    };
+    paint();
+    const stream=canvas.captureStream(12);
+    const track=stream.getVideoTracks()[0],stop=track.stop.bind(track);
+    const timer=setInterval(paint,80);
+    track.stop=()=>{clearInterval(timer);window.__ocr.stopped=true;stop();};
+    navigator.mediaDevices.getUserMedia=async()=>stream;
+    window.Tesseract={createWorker:async()=>{
+      window.__ocr.workers++;
+      return {
+        recognize:async()=>{
+          window.__ocr.reads++;
+          return {data:{text:window.__ocr.reads===1?'VAL: 29 SET 27':'VAL: 28 SET 27'}};
+        },
+        terminate:async()=>{window.__ocr.terminated++;}
+      };
+    }};
+  });
+  await page.getByRole('button',{name:'Ler validade pela câmera'}).click();
+  await page.getByRole('button',{name:'Abrir câmera',exact:true}).click();
+  await expect(page.getByRole('button',{name:/28\/09\/2027/})).toBeVisible({timeout:15000});
+  await expect(page.getByRole('button',{name:/29\/09\/2027/})).toHaveCount(0);
+  await expect(page.getByLabel('Data de validade *')).toHaveValue('');
+  await expect.poll(()=>page.evaluate(()=>window.__ocr.stopped)).toBe(true);
+  expect(await page.evaluate(()=>({reads:window.__ocr.reads,workers:window.__ocr.workers}))).toEqual({reads:3,workers:1});
+  await page.screenshot({path:'test-results/'+testInfo.project.name+'-ocr-consensus.png',fullPage:true});
+  await page.getByRole('button',{name:/28\/09\/2027/}).click();
+  await expect(page.getByLabel('Data de validade *')).toHaveValue('2027-09-28');
+  await expect.poll(()=>page.evaluate(()=>window.__ocr.terminated)).toBe(1);
+});
+
+
+test.describe('Expo Camera Web OCR',()=>{
+  test.use({launchOptions:{args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']}});
+  test('abre CameraView real, captura dois quadros e confirma a validade',async({page,context})=>{
+    await context.grantPermissions(['camera']);
+    await page.getByRole('button',{name:/Cadastrar primeiro lote/}).click();
+    await page.evaluate(()=>{
+      window.__expoFrames=[];
+      window.Tesseract={createWorker:async()=>({
+        recognize:async blob=>{window.__expoFrames.push({type:blob.type,size:blob.size});return {data:{text:'VAL 240427'}};},
+        terminate:async()=>{}
+      })};
+    });
+    await page.getByRole('button',{name:'Ler validade pela câmera'}).click();
+    await page.getByRole('button',{name:'Usar Expo Camera'}).click();
+    const camera=page.frameLocator('iframe[title="Expo Camera para validade"]');
+    await expect(camera.locator('video')).toBeVisible({timeout:20000});
+    await expect(page.getByRole('button',{name:/24\/04\/2027/})).toBeVisible({timeout:20000});
+    const frames=await page.evaluate(()=>window.__expoFrames);
+    expect(frames.length).toBe(2);
+    expect(frames.every(f=>f.size>0&&f.type.startsWith('image/'))).toBe(true);
+    await expect(page.getByLabel('Data de validade *')).toHaveValue('');
+    await expect(page.locator('iframe[title="Expo Camera para validade"]')).toHaveCount(0);
+    await page.getByRole('button',{name:/24\/04\/2027/}).click();
+    await expect(page.getByLabel('Data de validade *')).toHaveValue('2027-04-24');
+  });
+  test('abre Expo Camera para EAN e permite voltar ao leitor padrão',async({page,context})=>{
+    await context.grantPermissions(['camera']);
+    await page.getByRole('button',{name:/Escanear EAN com a câmera/}).click();
+    await page.getByRole('button',{name:'Usar Expo Camera'}).click();
+    const camera=page.frameLocator('iframe[title="Expo Camera para EAN"]');
+    await expect(camera.locator('video')).toBeVisible({timeout:20000});
+    await expect(page.getByText('Expo Camera ativo',{exact:true})).toBeVisible({timeout:20000});
+    await page.getByRole('button',{name:'Voltar ao leitor padrão'}).click();
+    await expect(page.locator('iframe[title="Expo Camera para EAN"]')).toHaveCount(0);
+    await expect(page.getByLabel('Visualização da câmera para código de barras')).toBeVisible();
+    await page.getByRole('button',{name:'Fechar leitor de EAN'}).click();
+  });
+});
