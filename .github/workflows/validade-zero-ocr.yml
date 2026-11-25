@@ -1,0 +1,34 @@
+name: Validade Zero OCR QA
+on:
+  pull_request:
+    paths:
+      - 'apps/validade-zero/**'
+      - '.github/workflows/validade-zero-ocr.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scanner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: apps/validade-zero
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - run: npm test -- --watchAll=false --runInBand
+      - run: npm run build
+      - run: npm install --no-save --no-package-lock @playwright/test@1.55.1
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --grep 'OCR'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validade-zero-ocr-playwright
+          path: apps/validade-zero/playwright-report/
